@@ -1,0 +1,1495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Elements">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:scrollingCache="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18.5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="7sp"
+                    android:text="Elements Screen"
+                    android:textColor="#29304d"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/aileron_regular"
+                    android:lineSpacingExtra="3sp"
+                    android:text="Sur cette activité vous avez tout les elements graphique pouvant être utilisés dans la conception graphique de l'application tout en respectant la charte graphique de cash moov. "
+                    android:textColor="#3a3a3a"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_blue"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="3sp"
+                        android:paddingLeft="29dp"
+                        android:paddingTop="13dp"
+                        android:paddingRight="29dp"
+                        android:paddingBottom="13dp"
+                        android:text="Affichez le solde"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/btn_green700"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="3sp"
+                        android:paddingLeft="29dp"
+                        android:paddingTop="13dp"
+                        android:paddingRight="29dp"
+                        android:paddingBottom="13dp"
+                        android:text="Masquez le solde"
+                        android:textColor="#ffffff"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="370dp"
+                    android:layout_height="214dp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/blue"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="16.4dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="26dp"
+                                android:fontFamily="@font/aileron_bold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="4sp"
+                                android:text="AGENT CASH MOOV"
+                                android:textColor="#ffffff"
+                                android:textSize="20sp" />
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="25dp"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/ic_baseline_qr_code_scanner_bl" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:lineSpacingExtra="3sp"
+                                android:text="+224 621 788 789"
+                                android:textColor="#ffffff"
+                                android:textSize="19sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="20dp"
+                            android:gravity="bottom"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/aileron_regular"
+                                    android:lineSpacingExtra="2sp"
+                                    android:text="Nom de l'abonné"
+                                    android:textColor="#ffffff"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/aileron_bold"
+                                    android:gravity="center_horizontal"
+                                    android:lineSpacingExtra="3sp"
+                                    android:text="BALDE MAMADOU LAMARANA"
+                                    android:textColor="#ffffff"
+                                    android:textSize="13sp" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:gravity="end"
+                                android:orientation="horizontal">
+
+
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/logo200x70" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="103dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardBackgroundColor="@color/bleu_cashmoov">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:textSize="15sp"
+                                android:textColor="#ffffff"
+                                android:fontFamily="@font/aileron_bold"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:lineSpacingExtra="10sp"
+                                app:srcCompat="@drawable/ic_upward_24"
+
+                                />
+
+                        </FrameLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:textColor="#ffffff"
+                                android:fontFamily="@font/aileron_bold"
+                                android:lineSpacingExtra="10sp"
+                                android:text="Envoyé"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#ffffff"
+                                android:lineSpacingExtra="3sp"
+                                android:text="$17,000"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="103dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/jaune_cashmoov">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:orientation="vertical">
+
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:textSize="15sp"
+                                android:textColor="#ffffff"
+                                android:fontFamily="@font/aileron_bold"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:lineSpacingExtra="10sp"
+                                app:srcCompat="@drawable/ic_downward_24"
+
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:textColor="@color/blue"
+                                android:fontFamily="@font/aileron_bold"
+                                android:lineSpacingExtra="10sp"
+                                android:text="Reçu"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="@color/blue"
+                                android:lineSpacingExtra="3sp"
+                                android:text="$25,000"
+                                />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="260dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="16dp"
+                        app:cardBackgroundColor="@color/blue"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <ImageView
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="15sp"
+                                            android:textColor="#ffffff"
+                                            android:fontFamily="@font/aileron_bold"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:lineSpacingExtra="10sp"
+                                            app:srcCompat="@drawable/ic_baseline_account_balance_wallet_24"
+
+                                            />
+
+                                    </FrameLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="12dp"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="15sp"
+                                            android:textColor="#ffffff"
+                                            android:fontFamily="@font/aileron_bold"
+                                            android:lineSpacingExtra="10sp"
+                                            android:text="Solde"
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="17sp"
+                                            android:textColor="#ffffff"
+                                            android:lineSpacingExtra="3sp"
+                                            android:text="15,000 GNF"
+                                            />
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="260dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="16dp"
+                        app:cardBackgroundColor="@color/green_700"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <ImageView
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="15sp"
+                                            android:textColor="#ffffff"
+                                            android:fontFamily="@font/aileron_bold"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:lineSpacingExtra="10sp"
+                                            app:srcCompat="@drawable/ic_up"
+
+                                            />
+
+                                    </FrameLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="12dp"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="15sp"
+                                            android:textColor="#ffffff"
+                                            android:fontFamily="@font/aileron_bold"
+                                            android:lineSpacingExtra="10sp"
+                                            android:text="Envoyé"
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="17sp"
+                                            android:textColor="#ffffff"
+                                            android:lineSpacingExtra="3sp"
+                                            android:text="15,000 GNF"
+                                            />
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="260dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="16dp"
+                        app:cardBackgroundColor="@color/jaune_cashmoov"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="bottom"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <FrameLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <ImageView
+                                            android:layout_width="50dp"
+                                            android:layout_height="50dp"
+                                            android:textSize="15sp"
+                                            android:textColor="#ffffff"
+                                            android:fontFamily="@font/aileron_bold"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:lineSpacingExtra="10sp"
+                                            app:srcCompat="@drawable/ic_down"
+
+                                            />
+
+                                    </FrameLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="12dp"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="15sp"
+                                            android:textColor="#ffffff"
+                                            android:fontFamily="@font/aileron_bold"
+                                            android:lineSpacingExtra="10sp"
+                                            android:text="Réçu"
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="17sp"
+                                            android:textColor="#ffffff"
+                                            android:lineSpacingExtra="3sp"
+                                            android:text="15,000 GNF"
+                                            />
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginLeft="16dp"
+                android:background="#F9F9F9"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="130dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="3sp"
+                    android:text="Vos dernières transactions"
+                    android:textColor="#3a3a3a"
+                    android:textSize="17sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
+                        android:src="@drawable/souarecashmoov"
+                        app:civ_border_color="#ffffff"
+                        app:civ_border_width="2.5dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="10sp"
+                            android:text="+224 621 788 789"
+                            android:textColor="#3a3a3a"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:text="2000 GNF"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:layout_marginLeft="7dp"
+                                android:text="11/07/2015"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="91dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="10sp"
+                            android:text="Envoyé"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/btn_green700"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
+                        android:src="@drawable/souarecashmoov"
+                        app:civ_border_color="#ffffff"
+                        app:civ_border_width="2.5dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="10sp"
+                            android:text="+224 621 788 789"
+                            android:textColor="#3a3a3a"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:text="2000 GNF"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:layout_marginLeft="7dp"
+                                android:text="11/07/2015"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="91dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="10sp"
+                            android:text="Reçu"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/btn_blue"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
+                        android:src="@drawable/souarecashmoov"
+                        app:civ_border_color="#ffffff"
+                        app:civ_border_width="2.5dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="10sp"
+                            android:text="+224 621 788 789"
+                            android:textColor="#3a3a3a"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:text="2000 GNF"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:layout_marginLeft="7dp"
+                                android:text="11/07/2015"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="91dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="10sp"
+                            android:text="Envoyé"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/btn_green700"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="59dp"
+                        android:layout_height="59dp"
+                        android:src="@drawable/souarecashmoov"
+                        app:civ_border_color="#ffffff"
+                        app:civ_border_width="2.5dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="10sp"
+                            android:text="+224 621 788 789"
+                            android:textColor="#3a3a3a"
+                            android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:text="2000 GNF"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_semibold"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingExtra="10sp"
+                                android:layout_marginLeft="7dp"
+                                android:text="11/07/2015"
+                                android:textColor="#3a3a3a"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="91dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:gravity="center"
+                            android:lineSpacingExtra="10sp"
+                            android:text="Envoyé"
+                            android:textAlignment="center"
+                            android:layout_gravity="center"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/btn_green700"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonanule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/btn_blue"
+                        android:text="Annuler"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:id="@+id/buttonOk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/btn_green700"
+                        android:text="Confirmer"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="22dp"
+                            android:lineSpacingExtra="4sp"
+                            android:text="Activer la protection"
+                            android:textColor="#000"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="end"
+                            android:layout_marginRight="10dp"
+                            android:gravity="end">
+
+                            <com.suke.widget.SwitchButton
+                                android:id="@+id/switch_button"
+                                android:layout_width="wrap_content"
+                                app:sb_checked="true"
+                                android:layout_height="wrap_content"
+
+                                />
+
+                        </LinearLayout>
+
+
+
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textEmailAddress"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="Nom"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="24dp">
+
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/buttonChoose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="clip_horizontal"
+                            android:background="@drawable/btn_blue"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            app:srcCompat="@drawable/ic_baseline_photo"
+                            />
+
+                        <EditText
+                            android:id="@+id/editTextName"
+                            android:hint="Ex: Recto"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_edittextname"
+                            android:backgroundTint="#999999"
+                            android:inputType="textEmailAddress"
+                            android:lineSpacingExtra="10sp"
+                            android:paddingLeft="37.5dp"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:textColor="#323232"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="Upload" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/buttonChoose2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="clip_horizontal"
+                            android:background="@drawable/btn_blue"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            app:srcCompat="@drawable/ic_baseline_photo"
+                            />
+
+                        <EditText
+                            android:id="@+id/editTextverso"
+                            android:hint="Ex: Verso"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_edittextname"
+                            android:backgroundTint="#999999"
+                            android:inputType="textEmailAddress"
+                            android:lineSpacingExtra="10sp"
+                            android:paddingLeft="37.5dp"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:textColor="#323232"
+                            android:textSize="15sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="Upload" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Spinner
+                        android:id="@+id/SpinnertypeID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:inputType="textEmailAddress"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:textColor="#323232"
+                        android:entries="@array/Spinner_typeID"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:inputType="textEmailAddress"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp"
+                        android:hint="Numéro de la pièce"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="#ffffff"
+                        android:lineSpacingExtra="3sp"
+                        android:layout_marginTop="36dp"
+                        android:layout_marginBottom="130dp"
+                        android:background="@drawable/btn_blue"
+                        android:layout_gravity="center"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:fontFamily="@font/aileron_bold"
+                        android:gravity="center"
+                        android:text="Terminer"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="45dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_group_add_24"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:textColor="#000"
+                            android:text="Vos bénéficiaires"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_translate_blue"/>
+                        <TextView
+                            android:textStyle="bold"
+
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:textColor="#000"
+                            android:text="Modifier la langue"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_security_24"/>
+                        <TextView
+                            android:textStyle="bold"
+
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:textColor="#000"
+                            android:text="Confidentialité"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_share_24"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:text="Recommander l'application"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_library_books_24"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:text="Conditions générales"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_info_24"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:text="A propos"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_fiber_pin_24"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:text="Changer de code PIN"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/profil"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:text="Modifier la photo de profile"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:srcCompat="@drawable/ic_baseline_autorenew_24"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:text="Reinitialisation"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

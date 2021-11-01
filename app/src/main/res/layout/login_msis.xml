@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_20sdp">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+
+                <!--android:descendantFocusability="blocksDescendants"-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/to_login"
+                    android:textColor="#29304d"
+                    android:textSize="@dimen/_25sdp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_regular"
+                    android:lineSpacingExtra="10sp"
+                    android:text="@string/please_enter_username_password"
+                    android:textColor="#323232"
+                    android:textAlignment="textStart"
+                    android:textSize="@dimen/_13sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_50sdp">
+
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_username"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                           >
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_bold"
+                                android:lineSpacingExtra="3sp"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:text="@string/phoneNumber"
+                                android:textColor="#29304d"
+                                android:textSize="17sp" />
+
+                            <EditText
+
+
+                                android:id="@+id/et_phoneNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="10sp"
+                                android:padding="@dimen/_12sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+
+                                android:hint="@string/phoneNumber"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="#323232"
+                                android:background="@drawable/rect_lightcolor_outline"
+ android:maxLength="15"
+                                android:backgroundTint="#999999"
+                                android:textSize="@dimen/_13sdp"
+                                android:textStyle="bold"
+                                android:inputType="phone" />
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+
+                            android:id="@+id/ll_password"
+                            android:layout_width="match_parent"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/aileron_bold"
+                                android:lineSpacingExtra="3sp"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:text="@string/pin"
+                                android:textColor="#29304d"
+                                android:textSize="17sp" />
+
+
+
+                            <EditText
+                                android:id="@+id/et_password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="10sp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:padding="@dimen/_12sdp"
+                                android:hint="@string/pin"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="#323232"
+
+                                android:background="@drawable/rect_lightcolor_outline"
+                                 android:maxLength="4"
+                                android:backgroundTint="#999999"
+                                android:textSize="@dimen/_13sdp"
+                                android:textStyle="bold"
+                                android:inputType="numberPassword"
+                                />
+                        </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_continue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/btn_blue"
+                        android:fontFamily="@font/aileron_bold"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="3sp"
+                        android:paddingTop="@dimen/_15sdp"
+                        android:paddingBottom="@dimen/_15sdp"
+                        android:text="@string/continu"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/_13sdp" />
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/please_see_our_term_condition"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                    <TextView
+
+                        android:id="@+id/tv_pin"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:fontFamily="@font/aileron_bold"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/login_pin"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_15sdp"
+                        android:visibility="gone"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_Or"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/aileron_bold"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/or"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/_15sdp"
+                        android:visibility="gone"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_fingurePrint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aileron_bold"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/login_fingerprint"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp"
+                        android:visibility="gone"
+
+                        />
+
+
+                     </LinearLayout>
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

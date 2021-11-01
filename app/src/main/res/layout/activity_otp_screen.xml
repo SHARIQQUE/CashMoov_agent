@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OtpScreen">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nested_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:scrollingCache="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="48dp"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="35sp"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="@font/aileron_bold"
+                        android:textColor="#29304d"
+                        android:layout_gravity="center"
+                        android:lineSpacingExtra="7sp"
+                        android:text="OTP Verification"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="#323232"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/aileron_regular"
+                        android:lineSpacingExtra="10sp"
+                        android:text="Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123."
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="4"
+                        android:layout_marginTop="80dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_height="70dp">
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="35sp"
+                                android:textColor="#ffffff"
+                                android:fontFamily="@font/aileron_black"
+                                android:gravity="center"
+                                android:paddingTop="14dp"
+                                android:paddingBottom="14dp"
+                                android:background="@drawable/btn_green700"
+                                android:layout_gravity="center"
+                                android:inputType="number"
+                                android:lineSpacingExtra="7sp"
+                                android:text="5"
+                                />
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_height="70dp">
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="35sp"
+                                android:textColor="#a5e8f0"
+                                android:gravity="center"
+                                android:fontFamily="@font/aileron_black"
+                                android:paddingTop="14dp"
+                                android:paddingBottom="14dp"
+                                android:background="@drawable/rect_lightcolor_outline"
+                                android:layout_gravity="center"
+                                android:inputType="number"
+                                android:lineSpacingExtra="7sp"
+                                android:text="7"
+                                />
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_height="70dp">
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="35sp"
+                                android:textColor="#000000"
+                                android:gravity="center"
+                                android:paddingTop="14dp"
+                                android:fontFamily="@font/aileron_black"
+                                android:backgroundTint="@color/light_grey"
+                                android:paddingBottom="14dp"
+                                android:background="@drawable/btn_green700"
+                                android:layout_gravity="center"
+                                android:inputType="number"
+                                android:lineSpacingExtra="7sp"
+                                android:text="4"
+                                />
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_height="70dp">
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="35sp"
+                                android:textColor="#000000"
+                                android:gravity="center"
+                                android:paddingTop="14dp"
+                                android:backgroundTint="@color/light_grey"
+                                android:paddingBottom="14dp"
+                                android:fontFamily="@font/aileron_black"
+                                android:background="@drawable/btn_green700"
+                                android:layout_gravity="center"
+                                android:inputType="number"
+                                android:lineSpacingExtra="7sp"
+                                android:text="1"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="#323232"
+                        android:layout_marginTop="64dp"
+                        android:fontFamily="@font/aileron_regular"
+                        android:lineSpacingExtra="10sp"
+                        android:text="La session expire dans 60 secondes."
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="#323232"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/aileron_regular"
+                        android:lineSpacingExtra="10sp"
+                        android:text="Vous n'avez pas reçu de code? Renvoyer le"
+                        />
+
+
+
+
+                </LinearLayout>
+
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginRight="56dp"
+            android:background="@drawable/btn_blue"
+            android:fontFamily="@font/aileron_bold"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="3sp"
+            android:paddingTop="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            android:paddingBottom="20dp"
+            android:text="Continue"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
+
+
+    </RelativeLayout>

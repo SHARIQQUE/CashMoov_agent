@@ -1,0 +1,539 @@
+<resources>
+    <string name="app_name">cash Move agent</string>
+
+
+
+    <string-array name="Spinner_provider">
+        <item>Select provider*</item>
+        <item>Cashmoov</item>
+    </string-array>
+
+    <string-array name="Spinner_genre">
+        <item>Gender*</item>
+        <item>Homme</item>
+        <item>Femme</item>
+    </string-array>
+
+
+
+    <string-array name="array_genderName">
+        <item>Gender*</item>
+        <item>Homme</item>
+        <item>Femme</item>
+    </string-array>
+
+    <string-array name="array_genderCode">
+
+        <item>Select gender name*</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+
+    <string-array name="Spinner_pays">
+        <item>Pays*</item>
+        <item>Guinée</item>
+        <item>Sénégal</item>
+        <item>France</item>
+    </string-array>
+
+    <string-array name="Spinner_acount_type">
+        <item>Type de compte*</item>
+        <item>Agent</item>
+        <item>Branche</item>
+    </string-array>
+
+
+    <string-array name="Spinner_pays_reception">
+        <item>Pays de reception*</item>
+        <item>Guinée</item>
+        <item>Sénégal</item>
+        <item>France</item>
+    </string-array>
+
+    <string-array name="Spinner_devise">
+        <item>Devise à envoyer*</item>
+        <item>GNF</item>
+        <item>XOF</item>
+        <item>USD</item>
+        <item>EURO</item>
+    </string-array>
+
+    <string-array name="Spinner_ch_devise">
+        <item>Devise: GNF</item>
+        <item>Devise: XOF</item>
+        <item>Devise: USD</item>
+        <item>Devise: EURO</item>
+    </string-array>
+
+    <string-array name="Spinner_typeID">
+        <item>Type de pièce*</item>
+        <item>Carte ID nationale</item>
+        <item>Passeport</item>
+        <item>Carte electeur</item>
+        <item>Carte de sejour</item>
+
+    </string-array>
+    <string name="title_activity_overdraft_limit">OverdraftLimit</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="language_select">French</string>
+    <string name="language_name">French</string>
+    <string name="language_code">FR</string>
+
+    <string name="to_login">Se connecter</string>
+    <string name="please_enter_username_password">Veuillez entrer votre identifiant et mot de passen</string>
+    <string name="phoneNumber">Numero de téléphone</string>
+    <string name="password">Password</string>
+    <string name="continues">keep on going</string>
+    <string name="please_see_our_term_condition">Veuillez consulter notre \nPolitique relative aux conditions d\'utilisation</string>
+    <string name="start_now">Start now</string>
+    <string name="home">Accueil</string>
+    <string name="wallet">Portefeuille</string>
+    <string name="setting">Réglage</string>
+    <string name="profile">Profil</string>
+    <string name="visit_our_site">Visitez notre site</string>
+    <string name="about_cashmoov_app">A Propos de cash moov app</string>
+    <string name="version">Version : 1.0</string>
+    <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
+    <string name="user_id">Identifiant : AR1234567890</string>
+    <string name="acc_created">Compte créé!</string>
+    <string name="acc_created_message">Cher utilisateur, votre compte a été créé avec succès. Connectez-vous pour commencer à utiliser l\'application</string>
+    <string name="continu">Continuer</string>
+    <string name="beneficiary_management">Gestion des bénéficiaires</string>
+    <string name="add_contact">Ajouter un contact</string>
+    <string name="hello">Bonjour</string>
+    <string name="dashboard">Tableau de bord</string>
+    <string name="pay">Solde</string>
+    <string name="balance">Solde</string>
+    <string name="our_operations">Nos operations</string>
+    <string name="money_transfer">Transfert d\'argent</string>
+    <string name="airtime_purchase">Achat de credit</string>
+    <string name="payment">Paiements</string>
+    <string name="merchant_payment">Paiments Marchand</string>
+    <string name="cash_withdrawal">Retrait</string>
+    <string name="receive_remittance">Receive Remittance</string>
+    <string name="fee">Frais de service</string>
+    <string name="service_point">Trouver une agence</string>
+    <string name="complete_profile">Completez le profile</string>
+    <string name="complet_70">complet à 70 %</string>
+    <string name="out_8_10_complete">8 sur 10 completet</string>
+    <string name="recharge_payment">Paiements</string>
+    <string name="next">Suivant</string>
+    <string name="ignore">Ignorer</string>
+    <string name="to_start">Commencer</string>
+    <string name="to_end">Terminer</string>
+    <string name="watch_video">Suivre la video</string>
+    <string name="video_tutorial_message">Si vous êtes nouveau et que vous avez besoin d\'aide, regardez ce court tutoriel pour commencer.</string>
+    <string name="already_acc_login">Vous avez déjà un compte? - S\'identifier</string>
+    <string name="register">S\'enregistrer</string>
+    <string name="register_message">Veuillez entrer votre numéro de téléphone valide. Nous vous enverrons un code à 4 chiffres pour vérifier le compte.</string>
+    <string name="enter_location">Entrez votre emplacement</string>
+    <string name="enter_phone_no">Entrez votre numéro de téléphone</string>
+    <string name="see_terms_policy">Veuillez consulter notre Politique relative aux conditions d\'utilisation</string>
+    <string name="skip">Sauter</string>
+    <string name="complete_your_info">Completez vos informations</string>
+    <string name="register_info_message">Pour terminer votre inscriptions nous avons besoin de certaines informations.</string>
+    <string name="name">Nom</string>
+    <string name="fname">PreNom</string>
+    <string name="email">Email</string>
+    <string name="city">Ville</string>
+    <string name="address">Addresse</string>
+
+
+    <string name="username">
+        <font fgcolor="#000000">Samuel</font><font fgcolor="#4f62c0"> </font><font fgcolor="#4f62c0">Flatcher</font>
+
+    </string>
+    <string name="occupation">Occupation</string>
+    <string name="dob">Date de naissance</string>
+    <string name="choose_pin">Choisir PIN Ex:1234</string>
+    <string name="repeat_pin">Répéter PIN Ex:1234</string>
+    <string name="attach_your_id">Attachez votre ID</string>
+    <string name="attach_id_message">Avec votre appareil prenez une photo de votre pièce d\'identité.</string>
+    <string name="front">Ex: Recto</string>
+    <string name="ex_verso">Ex: Verso</string>
+    <string name="id_proof_no">Numéro de la pièce</string>
+    <string name="verification">Vérification</string>
+    <string name="verification_message">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123.</string>
+    <string name="session_expired_send_back">La session expire dans 60 secondes. Vous n\'avez pas reçu de code? Renvoyer le</string>
+    <string name="my_account">Mon compte</string>
+    <string name="your_currency">Votre devise : GNF</string>
+    <string name="acc_statement">Relevés de compte</string>
+    <string name="last_transactions">Vos dernières transactions</string>
+    <string name="deposit">Dépot</string>
+    <string name="withdrawal">Retrait</string>
+    <string name="bill_payment">Paiement de facture</string>
+    <string name="recharge">Rechargement</string>
+    <string name="your_beneficiaries">Vos bénéficiaires</string>
+    <string name="language">Modifier la langue</string>
+    <string name="confidentiality">Confidentialité</string>
+    <string name="share_app">Recommander l\'application</string>
+    <string name="terms_conditions">Conditions générales</string>
+    <string name="about">A propos</string>
+    <string name="change_pin">Changer de code PIN</string>
+    <string name="edit_profile">Modifier la photo de profile</string>
+    <string name="reset">Reinitialisation</string>
+    <string name="hello_this_is_your">Hello c\'est votre</string>
+    <string name="cash">Cash</string>
+    <string name="moov_qr">Moov QR</string>
+    <string name="scan_me">Scannez moi.</string>
+    <string name="change_language">Changer de langue</string>
+    <string name="choose_language">Veuillez choisir la langue :</string>
+    <string name="french">Français</string>
+    <string name="english">Anglais</string>
+    <string name="action_requires_biometric_auth">Cette action nécessite une authentification biometrique</string>
+    <string name="protection_of_sensitive">La protection des données sensibles n\'est pas active.</string>
+    <string name="activate_ptotection">Activer la protection</string>
+    <string name="press_cancel_return_to_dashboard">Appuyer sur le boutton annuler pour revenir au tableau de bord</string>
+    <string name="cancel">Annuler</string>
+    <string name="delete_configuration">Voulez-vous vraiment supprimer la configuration?</string>
+    <string name="this_action_reset_all_settings">Cette action va réinitialiser l\'ensemble des paramètres de l\'application.</string>
+    <string name="need_to_link_account">Vous devrez à nouveau associer cette application à votre compte</string>
+    <string name="confirm">Confirmer</string>
+    <string name="current_profile_photo">Votre photo de profile actuelle</string>
+    <string name="select_new_profile_photo">Selectioner votre nouvelle photo de profile.</string>
+    <string name="you_are_reloading">Vous effectuez un rechargement</string>
+    <string name="my_number">Mon numero</string>
+    <string name="another_number">Un autre numero</string>
+    <string name="bank_transfer_to_wallet">Transfert Bank vers votre wallet</string>
+    <string name="transaction_details">Transaction détails</string>
+    <string name="select_bank">Select Bank*</string>
+    <string name="acc_number">N° Compte:</string>
+    <string name="montant_a_envoyer">Montant a envoyer</string>
+    <string name="fees">Frais:</string>
+    <string name="amount_to_paid">Montant à payer:</string>
+    <string name="send">Envoyer</string>
+    <string name="choose_operation">Choisir l\'operation</string>
+    <string name="subscriber">Abonné</string>
+    <string name="non_subscriber">Non Abonné</string>
+    <string name="international">Internationale</string>
+    <string name="bank_to_wallet">Banque au portefeuille</string>
+    <string name="wallet_to_bank">portefeuille à la banque</string>
+    <string name="money_transfer_to_subscriber">Transfert d\'argent vers abonné</string>
+    <string name="subscriber_details">Details de l\'abonné</string>
+    <string name="scanner">Scanner</string>
+    <string name="details_du_receveur">Details du receveur</string>
+    <string name="numero_du_destinataire">Numero du destinataire</string>
+    <string name="amount">Montant*</string>
+    <string name="non_subscribed_money_transfer">Transfert d\'argent non abonné</string>
+    <string name="recipient_details">Details du destinataire</string>
+    <string name="valid_fname">Prenom*</string>
+    <string name="valid_lname">Nom de famille*</string>
+    <string name="valid_phone_number">Numéro de téléphone*</string>
+    <string name="valid_email">Email*</string>
+    <string name="valid_city">Ville*</string>
+    <string name="valid_address">Addresse*</string>
+    <string name="valid_select_gender">Sélectionnez le sexe*</string>
+    <string name="valid_select_occupation">Select Occupation*</string>
+    <string name="valid_dob">Date of Birth*</string>
+    <string name="valid_select_id_proof">Sélectionnez la preuve d\'identité*</string>
+    <string name="vaild_id_proof_no">Id Proof Number*</string>
+    <string name="valid_amount_send">Montant à envoyer*</string>
+
+    <string name="gender">Genre</string>
+    <string name="reason_for_sending">Motif de l\'envoi</string>
+    <string name="international_money_transfer">Transfert d\'argent à l\'international</string>
+    <string name="Rate">Taux:</string>
+    <string name="transfer_to_your_bank">Transfert vers votre Bank</string>
+    <string name="valid_select_provider">Select provider*</string>
+    <string name="amount_to_send">Montant a envoyer</string>
+    <string name="destination_bank">Bank de destination</string>
+    <string name="valid_choose_your_bank">Choisir votre Bank*</string>
+    <string name="recharge_your_number">Rechargez votre numero</string>
+    <string name="recharge_details">Recharge détails</string>
+    <string name="valid_amount_charged">Montant à récharger*</string>
+    <string name="recharge_another_number">Vous un rechargement un autre numero</string>
+    <string name="you_make_an_invoice_payment">Vous effectuez un paiement de facture</string>
+    <string name="recharge_tv_star_time">Rechargement Tv Star Time</string>
+    <string name="valid_acc_number">N° Compte*</string>
+    <string name="valid_amount">Montant*</string>
+    <string name="you_make_significant_payment">Vous effectuez un paiement marchant</string>
+    <string name="receiver_details">Details du receveur</string>
+    <string name="you_make_withdrawal">Vous effectuez un retrait</string>
+    <string name="pos_number">Numero PDV</string>
+    <string name="beneficiary_details">Details du beneficiaire</string>
+    <string name="valid_beneficiairy_name">Beneficiairy name*</string>
+    <string name="valid_confirmation_code">Confirmation code*</string>
+    <string name="valid_beneficiary_currency">Beneficiary currency*</string>
+    <string name="locate_agency">Localiser une agence</string>
+    <string name="search_results">Resultat de la recherche</string>
+    <string name="agency_found">Agence trouvées</string>
+    <string name="service_fees">Frais de service</string>
+    <string name="fees_1000_gnf_transaction">Frais: 1000 GNF/transaction</string>
+    <string name="free_service">Service gratuit</string>
+    <string name="transaction_1percent">1% sur la transaction</string>
+    <string name="confirmation_receipt">Reçu de confirmation</string>
+    <string name="service_provider_colon">Service provider :</string>
+    <string name="mobile_number_colom">Numero mobile :</string>
+    <string name="user_colon">Utilisateur :</string>
+    <string name="confirmation_code_colon">Confirmation code :</string>
+    <string name="currency_colon">Devise :</string>
+    <string name="amount_colon">Montant :</string>
+    <string name="fee_colon">Frais :</string>
+    <string name="i_bear_fees">je supporte les frais</string>
+    <string name="pin_colon">PIN :</string>
+    <string name="ex_1234">Ex: 1234</string>
+    <string name="transaction_success">Transaction\nsuccèss!</string>
+    <string name="details_of_transaction">Détails de votre transaction</string>
+    <string name="transaction_type_colon">Type de transaction :</string>
+    <string name="transaction_id_colon">Transaction ID :</string>
+    <string name="change_pin_caps">Changer de PIN</string>
+    <string name="change_pin_message">Veuillez saisir votre ancien code secret:</string>
+    <string name="change_lang_conf_msg">Voulez-vous vraiment changer de langue ?</string>
+    <string name="fee_consulting_service">Service de consultation des frais Cash Moov</string>
+    <string name="service_chosen_colon">Service choisi:</string>
+    <string name="subscriber_transfer_colon">Transfert Abonné :</string>
+    <string name="non_subscriber_transfer_colon">Transfert non abonné :</string>
+    <string name="close">Fermer</string>
+    <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
+    <string name="save_next"><![CDATA[Enregistrer et suivant]]></string>
+    <string name="clear">Duidelik</string>
+    <string name="self_sign">Self Signature</string>
+    <string name="upload">Télécharger</string>
+    <string name="lname">Nom de famille</string>
+    <string name="country">Pays</string>
+    <string name="id_proof_type">Type de preuve d\'identité</string>
+    <string name="select_gender">Sélectionnez le sexe</string>
+    <string name="select_occupation">Sélectionnez la profession</string>
+    <string name="select_id_proof">Sélectionnez la preuve d\'identité</string>
+    <string name="enter_pin">Entrez votre code PIN</string>
+    <string name="login_message">Veuillez entrer votre numéro de téléphone et votre mot de passe pour vous connecter au compte</string>
+    <string name="login">Connexion</string>
+    <string name="login_fingerprint">Connexion avec empreinte digitale ?</string>
+    <string name="use_finger_to_login">Utilisez votre empreinte digitale pour vous connecter</string>
+    <string name="no_fingerprint_senser">Cet appareil n\'a pas de capteur d\'empreintes digitales</string>
+    <string name="no_biometric_senser">Le capteur biométrique est actuellement indisponible</string>
+    <string name="device_not_contain_fingerprint">Votre appareil n\'a pas d\'empreinte digitale enregistrée, veuillez vérifier vos paramètres de sécurité</string>
+    <string name="val_pin">veuillez entrer le code pin</string>
+    <string name="val_valid_pin">La broche doit comporter au moins 4 chiffres</string>
+    <string name="enter_pass">Tapez votre mot de passe</string>
+    <string name="or">OU</string>
+    <string name="login_pin">Se connecter avec le code ?</string>
+    <string name="val_phone">Veuillez entrer le numéro de téléphone</string>
+    <string name="val_pass">Veuillez entrer le mot de passe</string>
+    <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
+    <string name="set_pin">Définir la broche</string>
+    <string name="set_pin_message">Please set 4 digit pin for your account.</string>
+    <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
+    <string name="val_re_pin">Veuillez saisir une nouvelle épingle</string>
+    <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>
+    <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin doivent être identiques]]></string>
+    <string name="val_select_gender">Veuillez sélectionner le sexe</string>
+    <string name="val_select_occupation">Veuillez sélectionner la profession</string>
+    <string name="val_dob">Veuillez sélectionner la date de naissance</string>
+    <string name="val_fname">Veuillez saisir le prénom</string>
+    <string name="val_lname">Veuillez saisir le nom de famille</string>
+    <string name="val_email">Veuillez saisir l\'identifiant e-mail</string>
+    <string name="val_city">Veuillez entrer la ville</string>
+    <string name="val_address">Veuillez saisir l\'adresse</string>
+    <string name="val_proof_no">Veuillez entrer le numéro de preuve d\'identité</string>
+    <string name="val_select_id_proof">Please select id proof type</string>
+    <string name="val_select_country">Veuillez sélectionner le pays</string>
+    <string name="valid_select_country">Choisissez le pays*</string>
+    <string name="val_email_valid">Veuillez saisir une adresse e-mail valide</string>
+    <string name="technical_failure">veuillez ressayer plus tard</string>
+    <string name="register_first_time_message">L\'utilisateur n\'a pas de compte, veuillez vous inscrire une fois pour créer un compte.</string>
+    <string name="getting_user_info">obtention des informations utilisateur veuillez patienter!</string>
+    <string name="login_successful">Connexion réussie</string>
+    <string name="please_wait">S\'il vous plaît, attendez....</string>
+
+    <string name="please_check_internet">Veuillez verifier votre connexion Internet </string>
+    <string name="please_try_again_later">Veuillez réessayer plus tard </string>
+    <string name="pin_change">Changement de broche</string>
+    <string name="please_enter_4_digit_mpin">Veuillez saisir un code à 4 chiffres</string>
+    <string name="otp_verification">Vérification OTP</string>
+    <string name="enter_otp_details">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123</string>
+    <string name="session_expire_60">La session expire dans 60 secondes</string>
+    <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>
+    <string name="please_enter_otp_code">Veuillez entrer le code OTP</string>
+    <string name="plz_enter_6_digit_otp_code">Veuillez entrer le code OTP à 6 chiffres</string>
+
+    <string name="cash_In">cash In</string>
+    <string name="cash_Out">Cash Out</string>
+    <string name="remittance">Remittance</string>
+    <string name="payments">Paiements</string>
+    <string name="wallet_owner">Wallet Owner</string>
+    <string name="transfer">Transfert</string>
+    <string name="credit_ached">Achat de credit</string>
+    <string name="overdraft">Découvert</string>
+    <string name="service_charge">Frais de service</string>
+
+    <string name="mpin_renter_shoud_be_same">Mpin et Re Enter Mpin devraient être identiques</string>
+
+    <string name="login_with_pin">Connectez-vous avec un code PIN</string>
+    <string name="please_choose_language">Veuillez choisir la langue</string>
+
+    <string name="you_have_choose_english_language">Vous avez choisi la langue anglaise</string>
+    <string name="you_have_choose_french_language">Vous avez choisir la langue française</string>
+    <string name="pin">Epingler</string>
+    <string name="please_enter_pin">Veuillez saisir le code PIN</string>
+    <string name="verification_register_otp">Veuillez entrer l\'OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l\'identifiant de messagerie enregistré et au numéro de téléphone portable</string>
+    <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
+    <string name="please_enter_mobileno">Mobile de abonné</string>
+    <string name="you_make_withdrwarl">Vous effectuez un retrait</string>
+    <string name="receipt_details">Details du receveur</string>
+    <string name="scan_details">Vous pouvez scanner le</string>
+    <string name="qr_code_of_the">Code Qr de abonné</string>
+
+
+    <string name="otp_verify">Vérification OTP</string>
+    <string name="verify_subscriber_pin">Vérifier le code PIN d abonné</string>
+    <string name="subscriber_pin">Épingle d abonné</string>
+    <string name="otp_subscriber_success_plz_enter_pin">Vérification OTP réussie Veuillez saisir le code PIN de l abonné</string>
+
+
+    <string name="amount_simple">Montant</string>
+    <string name="amount_start">Montant*</string>
+    <string name="otp_capital">OTP</string>
+    <string name="didnot_get_the_Code"> Vous n avez pas reçu le code ?</string>
+    <string name="resend_it">Renvoyez-le</string>
+
+
+    <string name="plz_enter_amount">Veuillez saisir le montant</string>
+    <string name="minimum_amount_1000">Le montant minimum est de 1000</string>
+
+    <string name="transaction_receiptNo_receiptPage">Numéro de référence de la transaction</string>
+    <string name="otp_has_send_sucessfully_subscriber_register">OTP a été envoyé à l identifiant de courrier électronique enregistré de l abonné ou au numéro de téléphone portable</string>
+    <string name="cash_out_code">Cash Out Code</string>
+
+
+
+
+
+
+
+
+    <!--    Reveiew Page-->
+
+    <string name="amount_reveiewPage">Montant:</string>
+    <string name="senderName_reveiewPage">Nom de expéditeur:</string>
+    <string name="business_type_reveiewPage">Type d entreprise:</string>
+    <string name="email_reveiewPage">Email:</string>
+    <string name="receiverName_reveiewPage">Nom du destinataire:</string>
+    <string name="transactionAmount_reveiewPage">Montant de la transaction:</string>
+    <string name="fee_reveiewPage">Frais:</string>
+    <string name="financialTax_reveiewPage">Taxe financière:</string>
+    <string name="amount_to_be_charged_reveiewPage">Monture à charger:</string>
+    <string name="amount_to_be_credit_reveiewPage">Montant à créditer:</string>
+    <string name="mobileNo_reveiewPage">Numéro de portable:</string>
+    <string name="country_reviewPage">Pays:</string>
+    <string name="amount_to_paid_review_page">Montant à payer:</string>
+
+    <string name="agent_code_reviewpage">Code de l\'agent:</string>
+    <string name="sender_reviewpage">Expéditrice:</string>
+    <string name="benificiarayCode_reviewpage">Code du bénéficiaire:</string>
+    <string name="sender_document_reviewpage">Document de l\'expéditeur:</string>
+    <string name="sending_currency_reviewPage">Devise d\'envoi:</string>
+    <string name="beneficiary_currency_reviewPage"> Monnaie du bénéficiaire:</string>
+    <string name="beneficiary_sendingCurrency_reviewPage"> Devise d\'envoi:</string>
+    <string name="convertionRate_reviewPage"> Taux de conversion:</string>
+    <string name="comment_reviewPage"> Commenter:</string>
+    <string name="amount_to_paid_reviewPage">Montant à payer: </string>
+    <string name="sender_currency_receiptpage">Devise de l\'expéditeur</string>
+    <string name="senderCode_receiptpage">Code expéditeur</string>
+    <string name="benificiary_no_receiptpage">Bénéficiaire Non:</string>
+    <string name="receiver_currency_reviewPage"> Devise du destinataire:</string>
+    <string name="receiver_msisdn_reviewPage"> Récepteur MSISDN:</string>
+
+
+
+    <!--    Receipt Page-->
+
+    <string name="senderName_receiptPage">Nom de texpéditeur</string>
+    <string name="receiverName_receiptPage">Nom du destinataire</string>
+    <string name="financialTax_receiptPage">Taxe financière</string>
+    <string name="fee_receiptPage">Frais</string>
+    <string name="amount_to_be_credit_receiptPage">Montant à créditer</string>
+    <string name="name_receiptPage">Nom</string>
+    <string name="transactionAmount_receiptPage">Montant de la transaction:</string>
+    <string name="mobileNo_receiptPage">Numéro de portable</string>
+    <string name="transactionReferenceNo_receiptPage">Numéro de référence de la transaction</string>
+    <string name="transactionType_receiptPage">Type de transaction</string>
+    <string name="dateOfTransaction_receiptPage">Date de opération</string>
+    <string name="receiver_details_receiptPage">Détails du récepteur</string>
+    <string name="phoneNo_receiptPage">Numéro de téléphone</string>
+    <string name="country_receiptPage">Pays</string>
+    <string name="pin_capital">PIN</string>
+    <string name="amount_to_paid_receiptpage">Montant à payer</string>
+    <string name="amount_to_be_charged_receiptpage">Montant à facturer</string>
+
+    <string name="upload_success">Image de profil téléchargée avec succès</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
+    <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application?</string>
+    <string name="benificiary_currency_receiptpage">Monnaie du bénéficiaire</string>
+
+    <!--   -->
+
+
+
+    <string name="confirmation_code">Code de confirmation</string>
+    <string name="plz_enter_confirmation_code">Veuillez saisir le code de confirmation</string>
+    <string name="login_user_pin">Code d utilisateur de connexion</string>
+    <string name="sender_details">Détails de l expéditeur</string>
+    <string name="receiver_details_cashout">Détails du récepteur</string>
+    <string name="transaction_no">N de transaction</string>
+    <string name="sender_mssidn">Expéditeur MSISDN</string>
+    <string name="benificairay_mssidn">Bénéficiaire MSISDN</string>
+    <string name="conversion_rate">Taux de conversion</string>
+
+    <string name="export_receipt">Reçu d exportation</string>
+    <string name="share_screenshot">Partager une capture d écran</string>
+    <string name="no_app_available">Aucune application disponible</string>
+    <string name="send_remittance_local">Envoyer un versement local</string>
+    <string name="amount_to_pay">Montant à payer</string>
+    <string name="destination_details">Détails de la destination</string>
+    <string name="first_name">Prénom</string>
+    <string name="plz_select_provider">Veuillez sélectionner le fournisseur</string>
+    <string name="plz_enter_country">Veuillez entrer le pays</string>
+    <string name="plz_enter_amount_to_pay">Saisir le montant à payer</string>
+    <string name="plz_enter_firstName">Veuillez saisir le prénom</string>
+    <string name="plz_enter_name">Veuillez entrer le nom</string>
+
+    <string name="cash_to_wallet">Argent au Portefeuille</string>
+    <string name="tax">Taxu</string>
+    <string name="total_amount_invoice">Montant total de la facture</string>
+    <string name="rate">Rate</string>
+    <string name="device_to_send">Device a envoyer</string>
+    <string name="plz_enter_subscriber_no">Veuillez entrer le numéro d\'abonné</string>
+    <string name="subscriber_number"> Abonné non </string>
+    <string name="trasfer_of_mode">Transfert de Mode </string>
+    <string name="wallet_capital">WALLET</string>
+    <string name="sending_currencey_star">Devise d\'envoi*</string>
+    <string name="sending_currencey">Devise d\'envoi*</string>
+    <string name="send_remitance_intenational">Send Remittance International</string>
+    <string name="genderSelect_fixed">Veuillez sélectionner le sexe</string>
+    <string name="receive_country">Pays d\'accueil*</string>
+
+
+    <string name="plz_select_receive_country">Pays d\'accueil*</string>
+    <string name="plz_select_receive_currency">Devise de réception*</string>
+    <string name="receive_courency">Devise de réception*</string>
+
+
+
+
+
+
+
+    <string name="enter_old_pin">Entrez l\'ancien code PIN</string>
+    <string name="enter_new_pin">Entrez un nouveau code PIN</string>
+
+    <string name="plz_enter_old_pin">Veuillez saisir l\'ancien code PIN</string>
+    <string name="plz_enter_new_pin">Veuillez saisir un nouveau code PIN</string>
+
+    <string name="enter_confirm_pin">Entrez confirmer le code PIN</string>
+    <string name="plz_confirm_new_pin">Veuillez entrer confirmer le code PIN</string>
+
+    <string name="new_coinfirm_should_be_same">La nouvelle broche et la broche de confirmation doivent être identiques</string>
+
+
+</resources>
+

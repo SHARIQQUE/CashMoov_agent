@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activity.Showpopup">
+
+    <Button
+        android:onClick="ShowPopup1"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_blue"
+        android:text="show popup 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="ShowPopup2"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_blue"
+        android:text="show popup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="ShowPopup3"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_blue"
+        android:text="show popup3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:onClick="ShowPopup4"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_blue"
+        android:text="show popup5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:onClick="ShowPopup5"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_blue"
+        android:text="show popup5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

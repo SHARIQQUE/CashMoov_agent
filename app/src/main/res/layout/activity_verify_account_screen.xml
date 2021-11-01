@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/container"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:scrollingCache="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/_20sdp">
+            <!--android:descendantFocusability="blocksDescendants"-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:textColor="#29304d"
+                    android:layout_gravity="center"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/verification"
+                    />
+
+                <TextView
+                    android:id="@+id/tvPhoneNoMsg"
+                    android:textAlignment="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="#323232"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_regular"
+                    android:lineSpacingExtra="10sp"
+                    android:text="@string/verification_register_otp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="6"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_25sdp"
+                            android:textColor="#ffffff"
+                            android:fontFamily="@font/aileron_black"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:background="@drawable/btn_green700"
+                            android:layout_gravity="center"
+                            android:inputType="number"
+                            android:lineSpacingExtra="7sp"
+                            android:hint="5"
+                            android:maxLength="1"
+                            android:imeOptions="actionNext"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_25sdp"
+                            android:textColor="#a5e8f0"
+                            android:gravity="center"
+                            android:fontFamily="@font/aileron_black"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:background="@drawable/rect_lightcolor_outline"
+                            android:layout_gravity="center"
+                            android:inputType="number"
+                            android:lineSpacingExtra="7sp"
+                            android:hint="7"
+                            android:maxLength="1"
+                            android:imeOptions="actionNext"/>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etThree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_25sdp"
+                            android:textColor="#000000"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:fontFamily="@font/aileron_black"
+                            android:backgroundTint="@color/light_grey"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:background="@drawable/btn_green700"
+                            android:layout_gravity="center"
+                            android:inputType="number"
+                            android:lineSpacingExtra="7sp"
+                            android:hint="4"
+                            android:maxLength="1"
+                            android:imeOptions="actionNext"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etFour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_25sdp"
+                            android:textColor="#000000"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:backgroundTint="@color/light_grey"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:fontFamily="@font/aileron_black"
+                            android:background="@drawable/btn_green700"
+                            android:layout_gravity="center"
+                            android:inputType="number"
+                            android:lineSpacingExtra="7sp"
+                            android:hint="1"
+                            android:maxLength="1"
+                            android:imeOptions="actionGo"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etFive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_25sdp"
+                            android:textColor="#000000"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:backgroundTint="@color/light_grey"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:fontFamily="@font/aileron_black"
+                            android:background="@drawable/btn_green700"
+                            android:layout_gravity="center"
+                            android:inputType="number"
+                            android:lineSpacingExtra="7sp"
+                            android:hint="1"
+                            android:maxLength="1"
+                            android:imeOptions="actionGo"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etSix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_25sdp"
+                            android:textColor="#000000"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:backgroundTint="@color/light_grey"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:fontFamily="@font/aileron_black"
+                            android:background="@drawable/btn_green700"
+                            android:layout_gravity="center"
+                            android:inputType="number"
+                            android:lineSpacingExtra="7sp"
+                            android:hint="1"
+                            android:maxLength="1"
+                            android:imeOptions="actionGo"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="#323232"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/aileron_regular"
+                    android:lineSpacingExtra="10sp"
+                    android:text="@string/session_expired_send_back"
+                    />
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textColor="#323232"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:fontFamily="@font/aileron_regular"-->
+<!--                    android:lineSpacingExtra="10sp"-->
+<!--                    android:text="Vous n'avez pas reçu de code? Renvoyer le"-->
+<!--                    />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvContinue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:background="@drawable/btn_blue"
+                    android:fontFamily="@font/aileron_bold"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="3sp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp"
+                    android:text="@string/continu"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

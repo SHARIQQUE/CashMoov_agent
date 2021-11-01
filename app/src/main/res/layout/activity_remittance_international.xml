@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RemittanceInternational">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_active" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aileron_semibold"
+                android:lineSpacingExtra="3sp"
+                android:text="Remittance International"
+                android:textColor="#29304d"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="#29304d"
+                android:fontFamily="@font/aileron_semibold"
+                android:lineSpacingExtra="3sp"
+                android:text="Transaction détails"
+                />
+            <Spinner
+                android:id="@+id/Spinnerprovider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:textColor="#323232"
+                android:entries="@array/Spinner_provider"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Montant*"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+            <Spinner
+                android:id="@+id/Spinnertypedevise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:textColor="#323232"
+                android:entries="@array/Spinner_devise"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Pays de reception"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Montant à payer"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="5dp"
+                    app:srcCompat="@drawable/ic_baseline_info_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Frais:"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="#000"
+                    />
+
+                <TextView
+                    android:id="@+id/ccode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Montant total facturé:"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="#000"
+                    />
+
+                <TextView
+                    android:id="@+id/c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="#000"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="5dp"
+                    app:srcCompat="@drawable/ic_baseline_info_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Taux:"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="#000"
+                    />
+
+                <TextView
+                    android:id="@+id/taux"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#000"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tax:"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="#000"
+                    />
+
+                <TextView
+                    android:id="@+id/tax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:layout_gravity="clip_horizontal"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="#000"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_marginTop="10dp"
+                android:textColor="#29304d"
+                android:fontFamily="@font/aileron_semibold"
+                android:lineSpacingExtra="3sp"
+                android:text="Details du destinataire"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Nom*"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Prenom*"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Numero mobile*"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Genre"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="Motif de l'envoi"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonChoose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="clip_horizontal"
+                    android:background="@drawable/btn_blue"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:srcCompat="@drawable/ic_baseline_add_photobl"
+                    />
+
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:hint="Ex: Recto"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textEmailAddress"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="#323232"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="Upload" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/buttonChoose2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="clip_horizontal"
+                    android:background="@drawable/btn_blue"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:srcCompat="@drawable/ic_baseline_add_photobl"
+                    />
+
+                <EditText
+                    android:id="@+id/editTextNam"
+                    android:hint="Ex: Verso"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textEmailAddress"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:textColor="#323232"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="Upload" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="3sp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="130dp"
+                android:background="@drawable/btn_blue"
+                android:layout_gravity="center"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:fontFamily="@font/aileron_bold"
+                android:gravity="center"
+                android:text="Envoyer"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:weightSum="3"
+                android:orientation="horizontal"/>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView >

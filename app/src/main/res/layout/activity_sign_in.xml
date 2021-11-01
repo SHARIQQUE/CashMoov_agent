@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:scrollingCache="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="221dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/to_login"
+                    android:textColor="#29304d"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="47dp"
+                    android:fontFamily="@font/aileron_regular"
+                    android:lineSpacingExtra="10sp"
+                    android:text="@string/please_enter_username_password"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="37dp"
+                    android:background="@drawable/custom_rect"
+                    android:outlineSpotShadowColor="@color/blue"
+                    app:cardCornerRadius="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginTop="53dp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/phoneNumber"
+                    android:textColor="#29304d"
+                    android:textSize="17sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="37dp"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rect_lightcolor_outline"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="29dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/phoneNumber"
+                    android:textColor="#323232"
+                    android:backgroundTint="#999999"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:layout_marginLeft="37dp"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/password"
+                    android:textColor="#29304d"
+                    android:textSize="17sp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="37dp"
+                    android:layout_marginLeft="37dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/rect_lightcolor_outline"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="29dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/password"
+                    android:textColor="#323232"
+                    android:backgroundTint="#999999"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="57dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="57dp"
+                        android:background="@drawable/btn_blue"
+                        android:fontFamily="@font/aileron_bold"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="3sp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:text="@string/continues"
+                        android:textColor="#ffffff"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="33dp"
+                        android:layout_marginBottom="60dp"
+                        android:lineSpacingExtra="10sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/please_see_our_term_condition"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
