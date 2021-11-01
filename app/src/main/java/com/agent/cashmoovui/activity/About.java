@@ -15,9 +15,12 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        //test to commit by rahul
-        //test to commit by abhay
-        //test to commit by Sharique
+
+
+        //  test to commit by rahul
+        //  test to commit by abhay
+        //  test to commit by Sharique
+
 
     }
 }
