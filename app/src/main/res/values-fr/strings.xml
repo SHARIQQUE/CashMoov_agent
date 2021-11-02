@@ -359,9 +359,8 @@
     <string name="cash_Out">Cash Out</string>
     <string name="remittance">Remittance</string>
     <string name="payments">Paiements</string>
-    <string name="wallet_owner">Wallet Owner</string>
     <string name="transfer">Transfert</string>
-    <string name="credit_ached">Achat de credit</string>
+    <string name="credit_purchase">Achat de credit</string>
     <string name="overdraft">Découvert</string>
     <string name="service_charge">Frais de service</string>
 
@@ -533,6 +532,29 @@
     <string name="plz_confirm_new_pin">Veuillez entrer confirmer le code PIN</string>
 
     <string name="new_coinfirm_should_be_same">La nouvelle broche et la broche de confirmation doivent être identiques</string>
+    <string name="view_balance">Voir le solde</string>
+    <string name="my_branch">Ma Branch</string>
+    <string name="my_agents">Mes Agents</string>
+    <string name="comissions">Comissions</string>
+    <string name="over_draft">Découvert</string>
+    <string name="find_a_transaction">Chercher une transaction</string>
+    <string name="your_last_transaction">Vos dernières transactions</string>
+    <string name="choose_the_operation">Choisir l\'operation</string>
+    <string name="owner_management">Gestion du propriétaire</string>
+    <string name="wallet_owner">Propriétaire du portefeuille</string>
+    <string name="add_agent_branch">Ajouter un agent/une succursale</string>
+    <string name="sell_float">Vendre le flotteur</string>
+    <string name="transfer_float">Flotteur de transfert</string>
+    <string name="transfer_commission">Commission Transfert</string>
+    <string name="overdraft_limit">Limite de découvert</string>
+    <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
+    <string name="one_sur_la_transaction">1% sur la transaction</string>
+    <string name="remittance_option">Option de remise</string>
+    <string name="local">Local</string>
+    <string name="you_can_scan_the">Vous pouvez scanner le</string>
+    <string name="subscriber_qr_code">Code Qr de l\'abonné</string>
+    <string name="other">Autre</string>
+    <string name="attach_customer_id">Attachez L\'ID du client</string>
 
 
 </resources>

@@ -27,7 +27,7 @@ public class AgentKYCBranch extends AppCompatActivity implements AdapterView.OnI
         Spinner SpinnertypeAc = findViewById(R.id.SpinnertypeAc);
         SpinnertypeAc.setOnItemSelectedListener(this);
 
-        tv_submit=(TextView) findViewById(R.id.tv_submit);
+        tv_submit=(TextView) findViewById(R.id.tvNext);
         tv_submit.setOnClickListener(this);
 
     }
@@ -45,8 +45,7 @@ public class AgentKYCBranch extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_submit: {
-
+            case R.id.tvNext: {
                 Intent i = new Intent(AgentKYCBranch.this, AgentKYCAtatched.class);
                 startActivity(i);
             }

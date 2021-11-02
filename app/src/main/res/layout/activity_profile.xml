@@ -406,6 +406,6 @@
         app:menu="@menu/bottom_menu"
         app:sideMargins="10dp"
         app:textColor="@color/bleu_cashmoov"
-        app:textSize="14sp" />
+        app:textSize="@dimen/_11sdp" />
 
 </RelativeLayout>

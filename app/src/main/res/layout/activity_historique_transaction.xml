@@ -16,9 +16,9 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="50dp"
+                android:layout_width="@dimen/_50sdp"
                 android:layout_gravity="center"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/_50sdp"
                 android:background="@drawable/ic_historique" />
 
             <TextView
@@ -30,7 +30,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Historique de vos transactions"
                 android:textColor="#29304d"
-                android:textSize="17sp" />
+                android:textSize="@dimen/_15sdp" />
 
         </LinearLayout>
 
@@ -38,42 +38,40 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="#F9F9F9"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="30dp"
-                android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="#F9F9F9"
+            android:orientation="vertical">
+            
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="59dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    app:cardCornerRadius="14dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_6sdp"
                     app:cardElevation="0dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp">
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
                             android:fontFamily="@font/aileron_regular"
                             android:letterSpacing="0.01"
                             android:lineSpacingExtra="7sp"
                             android:text="Chercher une transaction"
                             android:textColor="#33373b"
-                            android:textSize="15sp" />
+                            android:textSize="@dimen/_13sdp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -84,7 +82,6 @@
                             android:id="@+id/serchicon_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="25dp"
                             app:srcCompat="@drawable/ic_search_black_24dp" />
 
                     </LinearLayout>
@@ -94,12 +91,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginLeft="8dp"
                     android:background="#F9F9F9"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="130dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_10sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -108,46 +102,46 @@
                         android:lineSpacingExtra="3sp"
                         android:text="Vos dernières transactions"
                         android:textColor="#3a3a3a"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_13sdp" />
 
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_depot"
                             />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Dépot"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -160,10 +154,9 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -192,7 +185,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/red_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -201,7 +194,7 @@
                                 android:lineSpacingExtra="10sp"
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
 
 
@@ -211,15 +204,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_paymane24"
                             />
 
@@ -227,24 +219,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Retrait"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -257,10 +249,10 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
+                                    
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -288,7 +280,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/green_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -297,7 +289,7 @@
                                 android:lineSpacingExtra="10sp"
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -306,15 +298,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_pmarchant"
                             />
 
@@ -322,24 +313,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                             android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Paiement de facture"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -350,10 +341,10 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
+                                    
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -382,7 +373,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/red_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -392,7 +383,7 @@
 
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -401,15 +392,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             android:src="@drawable/transfer"
                             />
 
@@ -417,24 +407,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                             android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Transfert d'argent"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -447,10 +437,10 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
+                                    
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -479,7 +469,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/red_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -488,7 +478,7 @@
                                 android:lineSpacingExtra="10sp"
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -496,15 +486,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_paymane24"
                             />
 
@@ -512,24 +501,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                             android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Retrait"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -542,10 +531,10 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
+                                    
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -574,7 +563,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/green_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -583,22 +572,21 @@
                                 android:lineSpacingExtra="10sp"
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
 
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_depot"
                             />
 
@@ -606,24 +594,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                             android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Depot"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -636,10 +624,10 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
+                                    
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -668,7 +656,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/red_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -677,22 +665,21 @@
                                 android:lineSpacingExtra="10sp"
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
 
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:padding="10dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             android:src="@drawable/transfer"
                             />
 
@@ -700,24 +687,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                             android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="Transfert d'argent"
                                 android:textColor="#3a3a3a"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -730,10 +717,10 @@
                                     android:fontFamily="@font/aileron_semibold"
                                     android:gravity="right"
                                     android:lineSpacingExtra="10sp"
-                                    android:layout_marginLeft="7dp"
+                                    
                                     android:text="621 78 87 89"
                                     android:textColor="@color/bleu_cashmoov"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_11sdp" />
 
                             </LinearLayout>
 
@@ -762,7 +749,7 @@
                                 android:textAlignment="center"
                                 android:layout_gravity="center"
                                 android:textColor="@color/red_700"
-                                android:textSize="15sp" />
+                                android:textSize="@dimen/_11sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -771,7 +758,7 @@
                                 android:lineSpacingExtra="10sp"
                                 android:text="11/07/2015"
                                 android:textColor="#3a3a3a"
-                                android:textSize="12sp" />
+                                android:textSize="@dimen/_9sdp" />
                         </LinearLayout>
                     </LinearLayout>
 

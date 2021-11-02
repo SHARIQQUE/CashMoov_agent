@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_home"
-    tools:context=".activity.registerstepone">
+    tools:context=".wallet_owner.subscriber.SubscriberKYC">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_margin="@dimen/_15sdp"
         android:orientation="vertical">
 
 
@@ -19,64 +18,66 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18.5dp"
             android:orientation="vertical">
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="25dp"
-                android:layout_height="214dp"
-                app:cardCornerRadius="14dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_6sdp"
                 app:cardElevation="0dp">
-
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/profil"
-                     />
-
-
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:textColor="#29304d"
-                android:fontFamily="@font/aileron_bold"
-                android:lineSpacingExtra="7sp"
-                android:text="Saisir les informations"
-                android:layout_gravity="center"
-                />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:textColor="#323232"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/aileron_semibold"
-                android:lineSpacingExtra="8sp"
-                android:textAlignment="center"
-                android:text="Pour terminez l'inscriptions nous avons besoin de toutes les informations sur le futur utilisateur."
-                android:gravity="center_horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="24dp">
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_15sdp"
+                    android:src="@drawable/profil" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textColor="#29304d"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="7sp"
+                    android:text="Saisir les informations"
+                    android:layout_gravity="center"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="#323232"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:lineSpacingExtra="8sp"
+                    android:textAlignment="center"
+                    android:text="Pour terminez l'inscriptions nous avons besoin de toutes les informations sur le futur utilisateur."
+                    android:gravity="center_horizontal" />
+
+
+            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
                     android:inputType="textEmailAddress"
@@ -194,23 +195,20 @@
 
 
                 <TextView
-                    android:id="@+id/tv_submit"
+                    android:id="@+id/tvNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
+                    android:textSize="@dimen/_13sdp"
                     android:textColor="#ffffff"
                     android:lineSpacingExtra="3sp"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginBottom="130dp"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:background="@drawable/btn_blue"
                     android:layout_gravity="center"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_bold"
                     android:gravity="center"
-                    android:text="Suivant"
-                    />
-
+                    android:text="@string/next" />
             </LinearLayout>
 
         </LinearLayout>

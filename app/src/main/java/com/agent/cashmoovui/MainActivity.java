@@ -7,12 +7,15 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.agent.cashmoovui.activity.FraisDeServices;
 import com.agent.cashmoovui.activity.MobilePrepaid;
 import com.agent.cashmoovui.activity.OverdraftLimit;
 import com.agent.cashmoovui.activity.Paiements;
+import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.activity.WalletScreen;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutOpt;
@@ -23,14 +26,17 @@ import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-
-    LinearLayout ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_serviceCharge;
     SmoothBottomBar bottomBar;
+    ImageView imgQR;
+    CircleImageView imgProfile;
+    TextView tvClick,tvBalance;
+    LinearLayout ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_serviceCharge;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -77,11 +83,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             applicationComponentClass.getmSharedPreferences().edit().putString("isFirstRun", "NO").commit();
         }
 
+        bottomBar = findViewById(R.id.bottomBar);
 
+        imgQR = findViewById(R.id.imgQR);
+        imgQR.setOnClickListener(this);
+
+        imgProfile = findViewById(R.id.imgProfile);
+        imgProfile.setOnClickListener(this);
+
+        tvClick = findViewById(R.id.tvClick);
+        tvClick.setOnClickListener(this);
+
+        tvBalance = findViewById(R.id.tvBalance);
 
         ll_cashIn = (LinearLayout) findViewById(R.id.ll_cashIn);
         ll_cashIn.setOnClickListener(this);
-
 
         ll_cashout = (LinearLayout) findViewById(R.id.ll_cashout);
         ll_cashout.setOnClickListener(this);
@@ -108,9 +124,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_walletowner= (LinearLayout) findViewById(R.id.ll_walletowner);
         ll_walletowner.setOnClickListener(this);
 
-
-        bottomBar = findViewById(R.id.bottomBar);
-
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
@@ -126,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
-
                     Intent i = new Intent(MainActivity.this, WalletScreen.class);
                     startActivity(i);
                     // finish();
@@ -144,84 +156,76 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomBar.setItemActiveIndex(0);
+        bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        tvClick.setVisibility(View.VISIBLE);
+        tvBalance.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onClick(View view) {
-
+        Intent i;
         switch (view.getId()) {
-
-            case R.id.ll_cashIn: {
-
-                Intent i = new Intent(MainActivity.this, CashIn.class);
+            case R.id.imgQR:
+                i = new Intent(MainActivity.this, ShowProfileQr.class);
                 startActivity(i);
+                break;
+            case R.id.imgProfile:
+                i = new Intent(MainActivity.this, Profile.class);
+                startActivity(i);
+                break;
+            case R.id.tvClick:
+                tvClick.setVisibility(View.GONE);
+                tvBalance.setVisibility(View.VISIBLE);
+                break;
 
-            }
-            break;
+            case R.id.ll_cashIn:
+                i = new Intent(MainActivity.this, CashIn.class);
+                startActivity(i);
+                break;
 
-            case R.id.ll_cashout: {
-
-                Intent i = new Intent(MainActivity.this, CashOutOpt.class);
+            case R.id.ll_cashout:
+                i = new Intent(MainActivity.this, CashOutOpt.class);
                 startActivity(i);
                 // finish();
-                }
-            break;
+                break;
 
-            case R.id.ll_remitence: {
-
-                Intent i = new Intent(MainActivity.this, RemittanceOption.class);
+            case R.id.ll_remitence:
+                i = new Intent(MainActivity.this, RemittanceOption.class);
                 startActivity(i);
+                break;
 
-            }
-            break;
-
-            case R.id.ll_payment: {
-
-                Intent i = new Intent(MainActivity.this, Paiements.class);
+            case R.id.ll_payment:
+                i = new Intent(MainActivity.this, Paiements.class);
                 startActivity(i);
-            }
-            break;
+                break;
 
             case R.id.ll_walletowner:
-            {
-
-                Intent i = new Intent(MainActivity.this, WalletOwnerMenu.class);
+                i = new Intent(MainActivity.this, WalletOwnerMenu.class);
                 startActivity(i);
-
-            }
-            break;
+                break;
 
             case R.id.ll_transfer:
-                {
-
-                    Intent i = new Intent(MainActivity.this, TransferOption.class);
-                    startActivity(i);
-
-                }
-            break;
+                i = new Intent(MainActivity.this, TransferOption.class);
+                startActivity(i);
+                break;
 
             case R.id.ll_credit:
-            {
-
-                Intent i = new Intent(MainActivity.this, MobilePrepaid.class);
+                i = new Intent(MainActivity.this, MobilePrepaid.class);
                 startActivity(i);
-
-            }
-            break;
+                break;
 
             case R.id.ll_overdraft:
-            {
-
-                Intent i = new Intent(MainActivity.this, OverdraftLimit.class);
+                i = new Intent(MainActivity.this, OverdraftLimit.class);
                 startActivity(i);
-            }
-
-            break;
+                break;
 
             case R.id.ll_serviceCharge:
-            {
-
-                Intent i = new Intent(MainActivity.this, FraisDeServices.class);
+                i = new Intent(MainActivity.this, FraisDeServices.class);
                 startActivity(i);
-            }
-            break;
+                break;
 
 
 

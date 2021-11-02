@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,11 +41,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class CashToWallet extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-
-
-
     public static LoginPin loginpinC;
     View rootView;
+    ImageView imgBack,imgHome;
     Spinner spinner_gender,spinner_provider;
     ArrayList<String> arrayList_genderName;
     ArrayList<String> arrayList_genderCode;
@@ -110,6 +109,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
             setContentView(R.layout.cash_to_wallet);
+            setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
@@ -222,6 +222,32 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
 
     private void api_country_all() {
 

@@ -6,49 +6,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp"
     android:id="@+id/main_layout">
+
+        <include layout="@layout/toolbar_active"></include>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp">
 
 
         <!--    First Page-->
 
         <LinearLayout
-
             android:id="@+id/ll_page_1"
-            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="visible"
-
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
-
-                <include layout="@layout/toolbar_w_qr"></include>
-
-
-
-            </LinearLayout>
+            android:visibility="visible">
 
 
             <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -58,7 +47,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="@string/cash_to_wallet"
                 android:textColor="#29304d"
-                android:textSize="22sp" />
+                android:textSize="@dimen/_15sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,8 +61,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:layout_marginTop="10dp"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:textColor="#29304d"
                 android:textStyle="bold"
 
@@ -376,15 +365,15 @@
                 android:id="@+id/tv_nextClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="3sp"
-                android:layout_marginTop="36dp"
-                android:layout_marginBottom="130dp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/btn_blue"
                 android:layout_gravity="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_bold"
                 android:gravity="center"
                 android:text="@string/next"

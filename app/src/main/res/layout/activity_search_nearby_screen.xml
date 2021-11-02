@@ -99,23 +99,22 @@
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="@dimen/_55sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         app:backgroundColor="@color/blue"
-        app:cornerRadius="14dp"
-        app:iconSize="24dp"
+        app:cornerRadius="@dimen/_10sdp"
+        app:iconSize="@dimen/_20sdp"
         app:iconTint="#C8FFFFFF"
-        app:iconTintActive="#FFFFFF"
+        app:iconTintActive="@color/bleu_cashmoov"
         app:indicatorColor="@color/jaune_cashmoov"
         app:indicatorRadius="10dp"
         app:itemPadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu"
         app:sideMargins="10dp"
-        app:textColor="#ffffff"
-        app:textSize="14sp" />
-
+        app:textColor="@color/bleu_cashmoov"
+        app:textSize="@dimen/_11sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

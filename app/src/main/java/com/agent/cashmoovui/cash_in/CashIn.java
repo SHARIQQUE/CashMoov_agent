@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,10 +44,9 @@ import java.io.FileOutputStream;
 import java.util.Locale;
 
 public class CashIn  extends AppCompatActivity implements View.OnClickListener {
-
-
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
+    ImageView imgBack,imgHome;
     View rootView;
 
     EditText etPin;
@@ -105,12 +105,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
             setContentView(R.layout.activity_cashin);
-
+            setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
-
-
-
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
@@ -183,7 +180,32 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 
     boolean validation_mobile_Details()

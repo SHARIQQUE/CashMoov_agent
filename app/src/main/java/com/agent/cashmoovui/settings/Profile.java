@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.activity.WalletScreen;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -142,8 +143,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     private void getIds() {
 
-      //  imgQR = findViewById(R.id.imgQR);
-
+        imgQR = findViewById(R.id.imgQR);
 
         bottomBar = findViewById(R.id.bottomBar);
         linBeneficiary = findViewById(R.id.linBeneficiary);
@@ -226,8 +226,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     private void setOnCLickListener() {
 
-      //  imgQR.setOnClickListener(profileC);
-
+        imgQR.setOnClickListener(profileC);
         linBeneficiary.setOnClickListener(profileC);
         linChangeLang.setOnClickListener(profileC);
         linConfidentiality.setOnClickListener(profileC);
@@ -245,10 +244,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Intent intent;
         switch (view.getId()) {
 
-//            case R.id.imgQR:
-//                intent = new Intent(profileC, MyQrCode.class);
-//                startActivity(intent);
-//                break;
+            case R.id.imgQR:
+                intent = new Intent(profileC, ShowProfileQr.class);
+                startActivity(intent);
+                break;
 
             case R.id.linBeneficiary:
 //                intent = new Intent(profileC, AddBeneficiary.class);
