@@ -22,10 +22,10 @@ import com.agent.cashmoovui.remmetience.SendRemittanceOpt;
 import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.SetPin;
 import com.agent.cashmoovui.splash.SplashScreen;
-import com.agent.cashmoovui.transfer.CommissionTransfert;
-import com.agent.cashmoovui.transfer.SellFloat;
-import com.agent.cashmoovui.transfer.TransferFloat;
-import com.agent.cashmoovui.transfer.TransferOption;
+import com.agent.cashmoovui.transfer_float.CommissionTransfer;
+import com.agent.cashmoovui.transfer_float.SellFloat;
+import com.agent.cashmoovui.transfer_float.TransferFloat;
+import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import com.agent.cashmoovui.wallet_owner.add_agent_branch.AgentKYCAtatched;
 import com.agent.cashmoovui.wallet_owner.add_agent_branch.AgentKYCBranch;
@@ -263,7 +263,7 @@ public class ListOfActivity extends AppCompatActivity {
     }
     public void CommissionTransfert(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, CommissionTransfert.class));
+        startActivity(new Intent(ListOfActivity.this, CommissionTransfer.class));
     }
     public void Paiements(View view) {
 

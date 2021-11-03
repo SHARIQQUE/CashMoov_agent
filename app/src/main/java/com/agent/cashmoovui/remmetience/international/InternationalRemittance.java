@@ -106,8 +106,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
     String countryName_GNF="GNF";
-    String code_oneThousend_ninty_two="100092";   // Hard Code acording to Kundan
-    String receiveCurrencyCode_GNF="100062"; // Hard Code acording to Kundan
+    String code_oneThousend_ninty_two="100092";   //  annu Hard Code acording to Kundan
+    String receiveCurrencyCode_GNF="100062"; // annu Hard Code acording to Kundan
     String receiveCountryName_GNF="GNF";
 
 

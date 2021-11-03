@@ -60,10 +60,8 @@
         <activity android:name=".remmetience.SendRemittanceOpt"></activity>
         <activity android:name=".remmetience.SendRemittanceLocal"></activity>
         <activity android:name=".remmetience.SendRemittanceInternaional"></activity>
-        <activity android:name=".transfer.TransferOption"></activity>
-        <activity android:name=".transfer.TransferFloat"></activity>
-        <activity android:name=".transfer.CommissionTransfert"></activity>
-        <activity android:name=".transfer.SellFloat"></activity>
+        <activity android:name=".transfer_float.TransferOption"></activity>
+        <activity android:name=".transfer_float.TransferFloat"></activity>
         <activity android:name=".wallet_owner.WalletOwnerMenu"></activity>
         <activity android:name=".wallet_owner.wallet_owner.WalletOwner"></activity>
         <activity android:name=".wallet_owner.subscriber.SubscriberKYC"></activity>
@@ -106,6 +104,8 @@
         <activity android:name=".remmetience.international.InternationalRemittance"></activity>
         <activity android:name=".remmetience.cash_to_wallet.CashToWallet"></activity>
         <activity android:name=".pin_change.ChangePin"></activity>
+        <activity android:name=".transfer_float.SellFloat"></activity>
+        <activity android:name=".transfer_float.CommissionTransfer"></activity>
 
 
 

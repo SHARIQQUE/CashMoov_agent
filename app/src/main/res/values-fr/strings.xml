@@ -440,6 +440,8 @@
     <string name="benificiary_no_receiptpage">Bénéficiaire Non:</string>
     <string name="receiver_currency_reviewPage"> Devise du destinataire:</string>
     <string name="receiver_msisdn_reviewPage"> Récepteur MSISDN:</string>
+    <string name="agentName_reveiewPage">Nom d\'agent:</string>
+    <string name="excise_tax_reveiewPage">Taxe d\'accise:</string>
 
 
 
@@ -555,6 +557,23 @@
     <string name="subscriber_qr_code">Code Qr de l\'abonné</string>
     <string name="other">Autre</string>
     <string name="attach_customer_id">Attachez L\'ID du client</string>
+
+
+
+    <string name="sell_Float">Vendre le flotteur</string>
+    <string name="reciver_detail">Détails du récepteur</string>
+
+    <string name="select_institute_star">Choisir l\'institut*</string>
+    <string name="select_institute">Choisir l\'institut</string>
+    <string name="select_currency_star">Sélectionnez la devise*</string>
+    <string name="select_currency">Sélectionnez la devise</string>
+
+    <string name="amount_to_paid_star">Montant à payer*</string>
+    <string name="amount_to_paid_without_star">Montant à payer</string>
+    <string name="commision_Transfer">Transfert de commission</string>
+    <string name="currency_Name">Nom de la devise</string>
+    <string name="main_Wallet">Portefeuille principal</string>
+
 
 
 </resources>

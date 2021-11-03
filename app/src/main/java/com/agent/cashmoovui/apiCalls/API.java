@@ -30,6 +30,8 @@ import okhttp3.Route;
 
 
 public class API {
+
+
     private static final String TAG = "API CALLS";
     //"http://202.131.144.130:8081/";//QA
     //http://202.131.144.147:8081/ DEV
@@ -1239,6 +1241,69 @@ public class API {
                 });
     }
 
+
+
+
+    public static void GET_TRANSFER_DETAILS(String URL,String languageToUse, final Api_Responce_Handler responce_handler)
+    {
+        AndroidNetworking.get(BASEURL+URL)
+                .setOkHttpClient(okClient)
+                .addHeaders("Accept-Language",languageToUse)
+                .addHeaders("channel","APP")
+                .addHeaders("source","AGENT")
+                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+
+
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.e("=============", " REQUEST ==============" +BASEURL+URL);
+                        Log.e("=============", " RESPONSE =============="+response+"=============");
+
+                        responce_handler.success(response);
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+
+                        try {
+                            responce_handler.failure(error.toString());
+                        }
+                        catch (Exception e)
+                        {
+                            responce_handler.failure(error.toString());
+                        }
+                        if (error.getErrorCode() != 0) {
+                            if(error.getErrorCode()==401){
+                                MyApplication.showAPIToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                        }
+                    }
+                });
+    }
     public static void GET_REMMITANCE_DETAILS(String URL,String languageToUse, final Api_Responce_Handler responce_handler)
     {
         AndroidNetworking.get(BASEURL+URL)
@@ -1570,6 +1635,91 @@ public class API {
 
     }
 
+
+    public static void POST_TRANSFERDETAILS(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+
+        AndroidNetworking.post(BASEURL+URL)
+
+                .addJSONObjectBody(jsonObject)
+
+                // .addBodyParameter(jsonObject)
+
+                // .addHeaders("Accept-Language","en")
+                .addHeaders("channel","APP")
+                .addHeaders("source","AGENT")
+                .addHeaders("Accept-Language",languageToUse)
+                .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+
+                .setOkHttpClient(okHttpClient)
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        MyApplication.hideLoader();
+
+
+                        responce_handler.success(response);
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        MyApplication.hideLoader();
+                        try {
+                            JSONObject error1=new JSONObject(error.getErrorBody());
+                            if(error1.optString("error").equalsIgnoreCase("1251")){
+                                //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                responce_handler.failure("1251");
+                            }
+
+                            else{
+                                JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+                            System.out.println(e.toString());
+                        }
+
+                        if (error.getErrorCode() != 0) {
+                            if(error.getErrorCode()==401){
+                                MyApplication.showAPIToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            responce_handler.failure(error.getErrorDetail());
+
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                            responce_handler.failure(error.getErrorDetail());
+
+                        }
+                    }
+                });
+
+    }
 
     public static void POST_REMMIT_CASHTOWALLET(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
 

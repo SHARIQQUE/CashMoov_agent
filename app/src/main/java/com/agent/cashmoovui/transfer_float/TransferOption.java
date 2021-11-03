@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.transfer;
+package com.agent.cashmoovui.transfer_float;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -105,7 +105,7 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
 
             case R.id.ll_commissionTransfer:
             {
-                Intent i = new Intent(TransferOption.this, CommissionTransfert.class);
+                Intent i = new Intent(TransferOption.this, CommissionTransfer.class);
                 startActivity(i);
             }
             break;

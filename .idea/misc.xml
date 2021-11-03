@@ -52,6 +52,7 @@
         <entry key="app/src/main/res/drawable/error_toast.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_photo_bl.xml" value="0.2171875" />
+        <entry key="app/src/main/res/drawable/ic_baseline_translate_blue.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable/ic_pass.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/rect_lightcolor_outline.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable/round_blue.xml" value="0.21614583333333334" />
@@ -62,11 +63,11 @@
         <entry key="app/src/main/res/layout/activity_cash_out_code.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_cash_out_opt.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_cash_to_wallet.xml" value="0.19583333333333333" />
-        <entry key="app/src/main/res/layout/activity_cashin.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_cashin.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_change_language.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_change_pin.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_change_profil_img.xml" value="0.12447916666666667" />
-        <entry key="app/src/main/res/layout/activity_commission_transfert.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_commission_transfert.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_confidentialite.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/activity_confidentiality.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/activity_detail_abonne.xml" value="0.19583333333333333" />
@@ -103,7 +104,7 @@
         <entry key="app/src/main/res/layout/activity_showpopup.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_spash_screen.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_transfer_float.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_transfer_float.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_transfer_option.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_verify_account_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_wallet_screen.xml" value="0.19583333333333333" />
@@ -111,6 +112,7 @@
         <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cashout_agent.xml" value="0.22" />
         <entry key="app/src/main/res/layout/change_pin.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/commision_transfer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/ic_baseline_photo_bl.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/include_home_screen.xml" value="0.14" />
         <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.22" />
@@ -126,6 +128,7 @@
         <entry key="app/src/main/res/layout/pin_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/row_item_simple.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/sellfloat.xml" value="0.22" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_active.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_add_contact.xml" value="0.20104166666666667" />

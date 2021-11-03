@@ -21,7 +21,7 @@ import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutOpt;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
-import com.agent.cashmoovui.transfer.TransferOption;
+import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import java.util.Locale;

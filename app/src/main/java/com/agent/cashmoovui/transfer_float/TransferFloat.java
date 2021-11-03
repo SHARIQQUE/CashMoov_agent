@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.transfer;
+package com.agent.cashmoovui.transfer_float;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,16 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.R;
 
-public class SellFloat extends AppCompatActivity {
+public class TransferFloat extends AppCompatActivity {
     ImageView imgBack,imgHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sell_float);
-
+        setContentView(R.layout.activity_transfer_float);
         setBackMenu();
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
