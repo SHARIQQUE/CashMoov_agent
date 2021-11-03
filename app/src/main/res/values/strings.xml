@@ -379,11 +379,10 @@
     <string name="cash_Out">Cash Out</string>
     <string name="remittance">Remittance</string>
     <string name="payments">Payments</string>
-    <string name="wallet_owner">Wallet Owner</string>
     <string name="transfer">Transfer</string>
-    <string name="credit_ached">Credit ached</string>
+    <string name="credit_purchase">Credit purchase</string>
     <string name="overdraft">Overdraft</string>
-    <string name="service_charge">service charge</string>
+    <string name="service_charge">Service Charge</string>
 
     <string name="mpin_renter_shoud_be_same">Mpin and Re enter mpin should be same</string>
     <string name="login_with_pin">Login With Pin</string>
@@ -537,7 +536,29 @@
     <string name="plz_confirm_new_pin">Please enter confirm pin</string>
 
     <string name="new_coinfirm_should_be_same">New pin and Confirm  pin should be same</string>
-
+    <string name="view_balance">View balance</string>
+    <string name="my_branch">My Branch</string>
+    <string name="my_agents">My Agents</string>
+    <string name="comissions">Comissions</string>
+    <string name="over_draft">Over Draft</string>
+    <string name="find_a_transaction">Find a transaction</string>
+    <string name="your_last_transaction">Your last transactions</string>
+    <string name="choose_the_operation">Choose the operation</string>
+    <string name="owner_management">Owner management</string>
+    <string name="wallet_owner">Wallet Owner</string>
+    <string name="add_agent_branch">Add Agent/Branch</string>
+    <string name="sell_float">Sell Float</string>
+    <string name="transfer_float">Transfer Float</string>
+    <string name="transfer_commission">Transfer Commission</string>
+    <string name="overdraft_limit">Overdraft Limit</string>
+    <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 100.000 for 180 days</string>
+    <string name="one_sur_la_transaction">1% on the transa</string>
+    <string name="remittance_option">Remittance Option</string>
+    <string name="local">Local</string>
+    <string name="you_can_scan_the">You can scan the</string>
+    <string name="subscriber_qr_code">Subscriber Qr code</string>
+    <string name="other">Other</string>
+    <string name="attach_customer_id">Attach Customer ID</string>
 
 
 </resources>

@@ -9,16 +9,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
         android:orientation="vertical">
 
         <include layout="@layout/toolbar_active" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
             android:orientation="horizontal">
 
             <TextView
@@ -26,9 +31,9 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Other"
+                android:text="@string/other"
                 android:textColor="#29304d"
-                android:textSize="17sp" />
+                android:textSize="@dimen/_15sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -47,26 +52,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Choisir l'operation"
+                android:text="@string/choose_the_operation"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-
+                android:layout_marginTop="@dimen/_20sdp"
                 android:weightSum="3"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="124dp"
-                    app:cardCornerRadius="14dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_6sdp"
                     android:layout_weight="1"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="#ffffff">
@@ -76,21 +79,22 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_baseline_account_balance_wallet"
                             android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/_13sdp"
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="center_horizontal"
                             android:text="Balance Check"
@@ -108,15 +112,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-
+                android:layout_marginTop="@dimen/_20sdp"
                 android:weightSum="3"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="124dp"
-                    app:cardCornerRadius="14dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_6sdp"
                     android:layout_marginRight="4dp"
                     android:layout_weight="1"
                     app:cardElevation="0dp"
@@ -127,21 +130,22 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:layout_gravity="center"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_baseline_mini_statemane"
                             android:scaleType="centerCrop"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/_13sdp"
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="center_horizontal"
                             android:text="Mini Statement"
@@ -169,7 +173,7 @@
 
 
         </LinearLayout>
-
+    </LinearLayout>
     </LinearLayout>
 
 

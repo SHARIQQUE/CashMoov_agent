@@ -18,18 +18,16 @@
 
                 <include layout="@layout/toolbar_active"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"/>
+                    android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18.5dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="vertical">
-
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -38,18 +36,17 @@
                         android:lineSpacingExtra="7sp"
                         android:text="Mes Agents"
                         android:textColor="#29304d"
-                        android:textSize="35sp" />
+                        android:textSize="@dimen/_20sdp" />
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:scrollbars="none">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:gravity="center_horizontal"
                             android:orientation="horizontal">
 
@@ -65,7 +62,7 @@
                                 android:paddingBottom="13dp"
                                 android:text="Compte GNF"
                                 android:textColor="#ffffff"
-                                android:textSize="13sp" />
+                                android:textSize="@dimen/_10sdp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -79,7 +76,7 @@
                                 android:paddingBottom="13dp"
                                 android:text="Compte XOF"
                                 android:textColor="#ffffff"
-                                android:textSize="13sp" />
+                                android:textSize="@dimen/_10sdp" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -92,32 +89,24 @@
                                 android:paddingBottom="13dp"
                                 android:text="Compte USD"
                                 android:textColor="#ffffff"
-                                android:textSize="13sp" />
+                                android:textSize="@dimen/_10sdp" />
 
 
                         </LinearLayout>
 
                     </HorizontalScrollView>
 
-
-
-
-                </LinearLayout>
-
-
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"/>
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:scrollbars="none">
 
                     <LinearLayout
@@ -126,16 +115,16 @@
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="260dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             app:cardBackgroundColor="@color/blue"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="@dimen/_6sdp"
                             app:cardElevation="0dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:padding="@dimen/_10sdp">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -165,11 +154,8 @@
                                             android:layout_height="wrap_content">
 
                                             <ImageView
-                                                android:layout_width="50dp"
-                                                android:layout_height="50dp"
-                                                android:textSize="15sp"
-                                                android:textColor="#ffffff"
-                                                android:fontFamily="@font/aileron_bold"
+                                                android:layout_width="@dimen/_40sdp"
+                                                android:layout_height="@dimen/_35sdp"
                                                 android:layout_gravity="center"
                                                 android:gravity="center"
                                                 android:lineSpacingExtra="10sp"
@@ -188,7 +174,7 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="15sp"
+                                                android:textSize="@dimen/_11sdp"
                                                 android:textColor="#ffffff"
                                                 android:fontFamily="@font/aileron_bold"
                                                 android:lineSpacingExtra="10sp"
@@ -198,7 +184,7 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="17sp"
+                                                android:textSize="@dimen/_13sdp"
                                                 android:textColor="#ffffff"
                                                 android:lineSpacingExtra="3sp"
                                                 android:text="15,000 GNF"
@@ -218,107 +204,27 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="260dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
                             app:cardBackgroundColor="@color/green_700"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="@dimen/_6sdp"
                             app:cardElevation="0dp">
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"/>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="bottom"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical"/>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
-
-                                        <FrameLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content">
-
-                                            <ImageView
-                                                android:layout_width="50dp"
-                                                android:layout_height="50dp"
-                                                android:textSize="15sp"
-                                                android:textColor="#ffffff"
-                                                android:fontFamily="@font/aileron_bold"
-                                                android:layout_gravity="center"
-                                                android:gravity="center"
-                                                android:lineSpacingExtra="10sp"
-                                                app:srcCompat="@drawable/ic_baseline_account_balance_wallet_24"
-
-                                                />
-
-                                        </FrameLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginLeft="12dp"
-                                            android:orientation="vertical">
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textSize="15sp"
-                                                android:textColor="#ffffff"
-                                                android:fontFamily="@font/aileron_bold"
-                                                android:lineSpacingExtra="10sp"
-                                                android:text="Comissions"
-                                                />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:textSize="17sp"
-                                                android:textColor="#ffffff"
-                                                android:lineSpacingExtra="3sp"
-                                                android:text="15,000 GNF"
-                                                />
-
-                                        </LinearLayout>
-
-
-                                    </LinearLayout>
-
-
-                                </LinearLayout>
-
-                            </LinearLayout>
 
 
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="260dp"
-                            android:layout_height="100dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
                             app:cardBackgroundColor="@color/jaune_cashmoov"
-                            app:cardCornerRadius="14dp"
+                            app:cardCornerRadius="@dimen/_6sdp"
                             app:cardElevation="0dp">
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:padding="@dimen/_10sdp"
                                 android:orientation="vertical">
 
                                 <LinearLayout
@@ -349,11 +255,8 @@
                                             android:layout_height="wrap_content">
 
                                             <ImageView
-                                                android:layout_width="50dp"
-                                                android:layout_height="50dp"
-                                                android:textSize="15sp"
-                                                android:textColor="#ffffff"
-                                                android:fontFamily="@font/aileron_bold"
+                                                android:layout_width="@dimen/_40sdp"
+                                                android:layout_height="@dimen/_35sdp"
                                                 android:layout_gravity="center"
                                                 android:gravity="center"
                                                 android:lineSpacingExtra="10sp"
@@ -366,13 +269,13 @@
                                         <LinearLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginLeft="12dp"
+                                            android:layout_marginLeft="@dimen/_5sdp"
                                             android:orientation="vertical">
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="15sp"
+                                                android:textSize="@dimen/_11sdp"
                                                 android:textColor="@color/bleu_cashmoov"
                                                 android:fontFamily="@font/aileron_bold"
                                                 android:lineSpacingExtra="10sp"
@@ -382,7 +285,7 @@
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:textSize="17sp"
+                                                android:textSize="@dimen/_13sdp"
                                                 android:textColor="@color/bleu_cashmoov"
                                                 android:lineSpacingExtra="3sp"
                                                 android:text="15,000 GNF"
@@ -408,11 +311,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:background="#F9F9F9"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="130dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -422,43 +322,43 @@
                         android:lineSpacingExtra="3sp"
                         android:text="Liste des agents"
                         android:textColor="#3a3a3a"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_prof" />
-
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="+224 621 788 789"
                                 android:textColor="#3a3a3a"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -470,7 +370,7 @@
                                     android:lineSpacingExtra="10sp"
                                     android:text="Solde :"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -481,7 +381,7 @@
                                     android:layout_marginLeft="7dp"
                                     android:text="2000 GNF"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
 
 
@@ -510,7 +410,7 @@
                                 android:layout_gravity="center"
                                 android:textColor="#ffffff"
                                 android:background="@drawable/btn_green700"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                         </LinearLayout>
 
@@ -519,38 +419,37 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_prof" />
-
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="+224 621 788 789"
                                 android:textColor="#3a3a3a"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -562,7 +461,7 @@
                                     android:lineSpacingExtra="10sp"
                                     android:text="Solde :"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -573,7 +472,7 @@
                                     android:layout_marginLeft="7dp"
                                     android:text="3000 GNF"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
 
 
@@ -602,7 +501,7 @@
                                 android:layout_gravity="center"
                                 android:textColor="#ffffff"
                                 android:background="@drawable/btn_green700"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                         </LinearLayout>
 
@@ -611,38 +510,37 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_prof" />
-
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="+224 621 788 789"
                                 android:textColor="#3a3a3a"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -654,7 +552,7 @@
                                     android:lineSpacingExtra="10sp"
                                     android:text="Solde :"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -665,7 +563,7 @@
                                     android:layout_marginLeft="7dp"
                                     android:text="2000 GNF"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
 
 
@@ -694,7 +592,7 @@
                                 android:layout_gravity="center"
                                 android:textColor="#ffffff"
                                 android:background="@drawable/btn_green700"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                         </LinearLayout>
 
@@ -703,38 +601,37 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
                         android:background="#ffffff"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="59dp"
-                            android:layout_height="59dp"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="@dimen/_35sdp"
                             app:srcCompat="@drawable/ic_prof" />
-
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
                                 android:text="+224 621 788 789"
                                 android:textColor="#3a3a3a"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                             <LinearLayout
                                 android:orientation="horizontal"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -746,7 +643,7 @@
                                     android:lineSpacingExtra="10sp"
                                     android:text="Solde :"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -757,7 +654,7 @@
                                     android:layout_marginLeft="7dp"
                                     android:text="2000 GNF"
                                     android:textColor="#3a3a3a"
-                                    android:textSize="12sp" />
+                                    android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
 
 
@@ -786,7 +683,7 @@
                                 android:layout_gravity="center"
                                 android:textColor="#ffffff"
                                 android:background="@drawable/btn_green700"
-                                android:textSize="20sp" />
+                                android:textSize="@dimen/_13sdp" />
 
                         </LinearLayout>
 
@@ -799,6 +696,7 @@
 
 
 
+            </LinearLayout>
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

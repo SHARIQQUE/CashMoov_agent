@@ -20,8 +20,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_marginTop="18.5dp"
                 android:orientation="vertical">
 
 
@@ -38,14 +36,14 @@
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="@dimen/_55sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         app:backgroundColor="@color/blue"
-        app:cornerRadius="14dp"
-        app:iconSize="24dp"
+        app:cornerRadius="@dimen/_10sdp"
+        app:iconSize="@dimen/_20sdp"
         app:iconTint="#C8FFFFFF"
         app:iconTintActive="@color/bleu_cashmoov"
         app:indicatorColor="@color/jaune_cashmoov"
@@ -55,6 +53,6 @@
         app:menu="@menu/bottom_menu"
         app:sideMargins="10dp"
         app:textColor="@color/bleu_cashmoov"
-        app:textSize="14sp" />
+        app:textSize="@dimen/_11sdp" />
 
 </RelativeLayout>

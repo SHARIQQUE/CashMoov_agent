@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.transfer.CommissionTransfert;
@@ -23,7 +25,7 @@ import java.util.Locale;
 // activity_owner_option
 
 public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickListener {
-
+    ImageView imgBack,imgHome;
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
@@ -51,6 +53,8 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
 
         setContentView(R.layout.activity_owner_option);
 
+        setBackMenu();
+
         ll_walletowner = (LinearLayout) findViewById(R.id.ll_walletowner);
         ll_subscriber = (LinearLayout) findViewById(R.id.ll_subscriber);
         ll_addAgentBranch = (LinearLayout) findViewById(R.id.ll_addAgentBranch);
@@ -61,7 +65,34 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         ll_addAgentBranch.setOnClickListener(this);
 
     }
-    
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
+
 
     @Override
     public void onClick(View view) {

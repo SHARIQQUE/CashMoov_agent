@@ -6,31 +6,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-
 import java.util.Locale;
 
 
-public class About extends AppCompatActivity implements View.OnClickListener {
-
-    Button buttonOk;
-
-    @Override
-    public void onClick(View view) {
-
-
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://cashmoov.net/"));
-        startActivity(browserIntent);
-
-    }
-
+public class About extends AppCompatActivity {
     public static About aboutC;
-
+    Button btnVisitSite;
+    TextView tvUserId;
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
@@ -59,14 +46,6 @@ public class About extends AppCompatActivity implements View.OnClickListener {
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_about);
-
-            buttonOk = (Button)findViewById(R.id.buttonOk);
-            buttonOk.setOnClickListener(this);
-
-
-
-
-
             aboutC = this;
             //setBackMenu();
             getIds();
@@ -98,9 +77,27 @@ public class About extends AppCompatActivity implements View.OnClickListener {
 
 
     private void getIds() {
-        // tvSend = findViewById(R.id.tvSend);
+        tvUserId = findViewById(R.id.tvUserId);
+        btnVisitSite = findViewById(R.id.btnVisitSite);
+
+        tvUserId.setText(getString(R.string.user_id)+" : "+ MyApplication.getSaveString("userCode", aboutC));
+
+        btnVisitSite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openURL();
+            }
+        });
+
+    }
+    public void openURL()  {
+        String url="https://www.cashmoov.net";
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        this.startActivity(intent);
+    }
 
 
     }
 
-}
+

@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,11 +47,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
     public static LoginPin loginpinC;
-
     ImageButton qrCode_imageButton;
     private static final int PERMISSION_REQUEST_CODE = 200;
-
     TextView exportReceipt_textview;
+    ImageView imgBack,imgHome;
     View rootView;
 
 
@@ -107,6 +107,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             super.onCreate(savedInstanceState);
             setContentView(R.layout.cashout_agent);
 
+            setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
@@ -187,6 +188,33 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
 
         }
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
     }
 

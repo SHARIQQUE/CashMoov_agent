@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 
@@ -17,7 +19,7 @@ public class CashOutOpt extends AppCompatActivity implements View.OnClickListene
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
-
+    ImageView imgBack,imgHome;
     LinearLayout ll_cashout, ll_cashout_code;
 
     @Override
@@ -41,6 +43,7 @@ public class CashOutOpt extends AppCompatActivity implements View.OnClickListene
                 getBaseContext().getResources().getDisplayMetrics());
 
         setContentView(R.layout.activity_cash_out_opt);
+        setBackMenu();
 
         ll_cashout = (LinearLayout) findViewById(R.id.ll_cashout);
         ll_cashout_code = (LinearLayout) findViewById(R.id.ll_cashout_code);
@@ -48,6 +51,32 @@ public class CashOutOpt extends AppCompatActivity implements View.OnClickListene
 
         ll_cashout.setOnClickListener(this);
         ll_cashout_code.setOnClickListener(this);
+
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
     }
 

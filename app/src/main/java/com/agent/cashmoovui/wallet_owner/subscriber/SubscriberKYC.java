@@ -33,7 +33,7 @@ public class SubscriberKYC extends AppCompatActivity implements AdapterView.OnIt
 
 
         eText=(EditText) findViewById(R.id.datenaiss);
-        tv_submit=(TextView) findViewById(R.id.tv_submit);
+        tv_submit=(TextView) findViewById(R.id.tvNext);
         tv_submit.setOnClickListener(this);
 
         eText.setInputType(InputType.TYPE_NULL);
@@ -76,7 +76,7 @@ public class SubscriberKYC extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_submit: {
+            case R.id.tvNext: {
 
                 Intent i = new Intent(SubscriberKYC.this, SubscriberKYCAtached.class);
                 startActivity(i);

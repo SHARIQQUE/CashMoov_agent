@@ -6,81 +6,87 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".activity.About">
+    tools:context=".activity.setting.About">
 
 
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/colorPrimary">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/_10sdp">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/ic_about" />
+        <ImageView
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_about" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_15sdp">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:text="@string/about_cashmoov_app"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="@dimen/_15sdp"
+            android:gravity="center_horizontal" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A Propos de cash moov app"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/version"
+            android:textAlignment="center"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:gravity="center_horizontal" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Version : 0.0.0"
-                android:textAlignment="center"
-                android:textSize="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/platform_cash_moov"
+            android:textAlignment="center"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:gravity="center_horizontal" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Plateforme : CASH MOOV"
-                android:textAlignment="center"
-                android:textSize="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Identifiant : AR1234567890"
-                android:textAlignment="center"
-                android:textSize="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/tvUserId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:gravity="center_horizontal" />
 
 
+        <Button
+            android:id="@+id/btnVisitSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/btn_green700"
+            android:text="@string/visit_our_site"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/buttonOk"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/btn_green700"
-                    android:text="Visitez notre site"
-                    android:textColor="@color/white" />
 
+    </LinearLayout>
 
-            </LinearLayout>
-
-        </LinearLayout>
+</LinearLayout>
 
 

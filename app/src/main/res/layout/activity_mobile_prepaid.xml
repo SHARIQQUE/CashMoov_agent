@@ -8,16 +8,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_w_qr" />
+        <include layout="@layout/toolbar_active" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -26,7 +31,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="Achat de Credit"
                 android:textColor="#29304d"
-                android:textSize="17sp" />
+                android:textSize="@dimen/_15sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,13 +42,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_25sdp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
@@ -63,7 +68,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
                 android:inputType="textEmailAddress"
@@ -105,21 +110,21 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/tvSend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="3sp"
-                android:layout_marginTop="36dp"
-                android:layout_marginBottom="130dp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/btn_blue"
                 android:layout_gravity="center"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_bold"
                 android:gravity="center"
-                android:text="Envoyer"
-                />
+                android:text="@string/send"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,5 +134,6 @@
                 android:orientation="horizontal"/>
         </LinearLayout>
 
+    </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

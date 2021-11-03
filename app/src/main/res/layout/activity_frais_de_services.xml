@@ -10,15 +10,22 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="22dp"
       android:orientation="vertical">
 
-  <include layout="@layout/toolbar_active" />
+    <include layout="@layout/toolbar_active" />
+
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="22dp"
       android:orientation="horizontal">
 
     <TextView
@@ -26,7 +33,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aileron_semibold"
         android:lineSpacingExtra="3sp"
-        android:text="Frais de service"
+        android:text="@string/service_charge"
         android:textColor="#29304d"
         android:textSize="25sp" />
 
@@ -40,22 +47,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:orientation="horizontal">
 
       <androidx.cardview.widget.CardView
           android:layout_width="match_parent"
-          android:layout_height="103dp"
+          android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:layout_marginRight="5dp"
-          app:cardCornerRadius="14dp"
+          app:cardCornerRadius="@dimen/_6sdp"
           app:cardBackgroundColor="@color/bleu_cashmoov">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
 
           <FrameLayout
               android:layout_width="wrap_content"
@@ -73,11 +80,6 @@
 
                 />
           </FrameLayout>
-          <LinearLayout
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="12dp"
-              android:orientation="vertical"/>
         </LinearLayout>
       </androidx.cardview.widget.CardView>
 
@@ -86,55 +88,45 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="36dp"
-      android:layout_marginLeft="8dp"
       android:background="#F9F9F9"
-      android:layout_marginRight="8dp"
-      android:layout_marginBottom="130dp"
-      android:orientation="vertical">
+      android:orientation="vertical"
+      android:layout_marginTop="@dimen/_20sdp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
-          app:srcCompat="@drawable/ic_rechargement"
-          />
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_rechargement" />
 
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Achat de credit"
+            android:text="@string/credit_purchase"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp">
 
           <TextView
               android:layout_width="wrap_content"
@@ -142,10 +134,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
-              android:text="Service gratuit"
+              android:text="@string/free_service"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -172,45 +163,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
-          app:srcCompat="@drawable/ic_paymane24"
-          />
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_paymane24" />
 
 
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:orientation="vertical"
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Retrait"
+            android:text="@string/withdrawal"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
-
-
 
           <TextView
               android:layout_width="wrap_content"
@@ -218,10 +202,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
-              android:text="1% sur la transaction"
+              android:text="@string/one_sur_la_transaction"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -246,40 +229,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
-          app:srcCompat="@drawable/ic_pmarchant"
-          />
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_pmarchant" />
 
 
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Paiement de facture"
+            android:text="@string/bill_payment"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -290,10 +269,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
-              android:text="Service gratuit"
+              android:text="@string/free_service"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -319,44 +297,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
-          android:src="@drawable/transfer"
-          />
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          android:src="@drawable/transfer" />
 
 
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Transfert d'argent"
+            android:text="@string/money_transfer"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp">
 
 
           <TextView
@@ -365,10 +337,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
-              android:text="1% sur la transaction"
+              android:text="@string/one_sur_la_transaction"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -393,44 +364,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
-          app:srcCompat="@drawable/ic_cashin"
-          />
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_cashin" />
 
 
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Cash In"
+            android:text="@string/cash_In"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp">
 
 
           <TextView
@@ -439,10 +404,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
-              android:text="2% sur la transaction"
+              android:text="@string/one_sur_la_transaction"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -466,15 +430,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
           app:srcCompat="@drawable/ic_cashout"
           />
 
@@ -482,29 +444,25 @@
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Cash Out"
+            android:text="@string/cash_Out"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp">
 
           <TextView
               android:layout_width="wrap_content"
@@ -512,10 +470,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
-              android:text="Service gratuit"
+              android:text="@string/free_service"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -539,45 +496,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
-        android:padding="10dp"
+        android:padding="@dimen/_10sdp"
         android:background="#ffffff"
         android:orientation="horizontal">
 
       <ImageView
-          android:layout_width="59dp"
-          android:layout_height="59dp"
-          android:src="@drawable/transfer"
-          />
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          android:src="@drawable/transfer" />
 
 
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="16dp"
-          android:orientation="vertical">
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="Transfert d'argent"
+            android:text="@string/money_transfer"
             android:textColor="#3a3a3a"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_13sdp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp">
 
           <TextView
               android:layout_width="wrap_content"
@@ -585,10 +535,9 @@
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:layout_marginLeft="7dp"
               android:text="621 78 87 89"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="12sp" />
+              android:textSize="@dimen/_11sdp" />
 
         </LinearLayout>
 
@@ -614,5 +563,5 @@
   </LinearLayout>
 
 
-
+</LinearLayout>
 </androidx.core.widget.NestedScrollView>

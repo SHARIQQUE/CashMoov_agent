@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,9 +45,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class LocalRemittance extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
-
-
-
+    ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     View rootView;
     Spinner spinner_gender,spinner_provider;
@@ -114,6 +113,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
             setContentView(R.layout.local_ramittance);
+            setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
@@ -221,6 +221,34 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
         }
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
+
 
 
     private void api_country_all() {

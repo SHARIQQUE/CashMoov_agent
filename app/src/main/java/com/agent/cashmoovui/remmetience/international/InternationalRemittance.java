@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -58,7 +59,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
     ImageButton btnFront,btnBack;
-
+    ImageView imgBack,imgHome;
     EditText etFront,etBack;
 
     Intent Data;
@@ -165,6 +166,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             setContentView(R.layout.international_ramittance);
+            setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
@@ -311,6 +313,32 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
 
     private void api_country_all() {
 
