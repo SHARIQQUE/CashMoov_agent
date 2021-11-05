@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 import com.agent.cashmoovui.activity.FraisDeServices;
 import com.agent.cashmoovui.activity.MobilePrepaid;
-import com.agent.cashmoovui.activity.OverdraftLimit;
 import com.agent.cashmoovui.activity.Paiements;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.activity.WalletScreen;
+import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutOpt;
+import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transfer_float.TransferOption;
@@ -213,7 +214,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_credit:
-                i = new Intent(MainActivity.this, MobilePrepaid.class);
+                i = new Intent(MainActivity.this, AirtimePurchases.class);
                 startActivity(i);
                 break;
 

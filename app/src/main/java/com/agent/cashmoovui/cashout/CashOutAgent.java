@@ -60,7 +60,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_credit, previous_reviewClick_textview, confirm_reviewClick_textview;
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp;
 
-    String selectClickType="";
+    String selectClickType="",desWalletOwnerCode_from_currency="";
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -357,6 +357,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             currencyName_agent = jsonObject2.getString("currencyName");
                             countryCode_agent = jsonObject2.getString("countryCurrencyCode");
                             currencyCode_agent = jsonObject2.getString("currencyCode");
+                            desWalletOwnerCode_from_currency = jsonObject2.getString("walletOwnerCode");
 
                         }
 
@@ -609,7 +610,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("transactionType", "100000");         // Hard Code according  to Deepak
             jsonObject.put("srcWalletOwnerCode", walletOwnerCode_mssis_agent);
-            jsonObject.put("desWalletOwnerCode", "1000002488");  // Subscriber
+            jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_currency);  // Subscriber
             jsonObject.put("srcCurrencyCode", currencyCode_agent);         // source  srcWalletOwnerCode
             jsonObject.put("desCurrencyCode", "100062");         //  Subscriber
             jsonObject.put("value", amountstr);
@@ -859,12 +860,20 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
-                        JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            tax_financial = jsonObject2.getString("value");
+                        if(exchangeRate.has("taxConfigurationList"))
+                        {
+                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                            for(int i=0;i<jsonArray.length();i++) {
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                tax_financial = jsonObject2.getString("value");
+                            }
                         }
+                        else {
+                            tax_financial = exchangeRate.getString("value");
+                        }
+
+
+
 
                         rp_tv_financialTax.setText("Fr " + tax_financial);
 

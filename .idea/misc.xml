@@ -82,7 +82,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_mobile_prepaid.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_otp_screen.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/activity_overdraft_limit.xml" value="0.15052083333333333" />
+        <entry key="app/src/main/res/layout/activity_overdraft_limit.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_owner_option.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_paiement_tv_star_time.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_paiements.xml" value="0.15052083333333333" />
@@ -108,6 +108,7 @@
         <entry key="app/src/main/res/layout/activity_transfer_option.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_verify_account_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_wallet_screen.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/airtime_purchases.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cashout_agent.xml" value="0.22" />
@@ -133,6 +134,8 @@
         <entry key="app/src/main/res/layout/toolbar_active.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_add_contact.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_w_qr.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/transfer_flaots.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/transfer_floats.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/wallet_recu_pop.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.15052083333333333" />
       </map>

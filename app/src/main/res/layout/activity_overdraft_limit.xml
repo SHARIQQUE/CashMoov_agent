@@ -76,21 +76,8 @@
                     android:text="@string/transaction_details"
                     />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="#999999"
-                    android:inputType="textEmailAddress"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="37.5dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
-                    android:hint="Select currency*"
-                    android:textColor="#323232"
-                    android:textSize="15sp" />
-                <EditText
+                <Spinner
+                    android:id="@+id/spinner_currency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -101,11 +88,30 @@
                     android:paddingLeft="37.5dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:hint="Amount*"
+                    android:textColor="#323232"
+                    />
+
+                <EditText
+                    android:id="@+id/edittext_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="number"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:maxLength="10"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/amount"
                     android:textColor="#323232"
                     android:textSize="15sp" />
 
+
+
                 <EditText
+                    android:id="@+id/edittext_validity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -116,7 +122,7 @@
                     android:paddingLeft="37.5dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:hint="Validity days*"
+                    android:hint="@string/validaty_days"
                     android:textColor="#323232"
                     android:textSize="15sp" />
 
@@ -125,6 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <ImageButton
@@ -161,7 +168,7 @@
 
 
                 <TextView
-                    android:id="@+id/tvSend"
+                    android:id="@+id/send_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"

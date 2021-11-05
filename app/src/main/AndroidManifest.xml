@@ -62,7 +62,6 @@
         <activity android:name=".remmetience.SendRemittanceLocal"></activity>
         <activity android:name=".remmetience.SendRemittanceInternaional"></activity>
         <activity android:name=".transfer_float.TransferOption"></activity>
-        <activity android:name=".transfer_float.TransferFloat"></activity>
         <activity android:name=".wallet_owner.WalletOwnerMenu"></activity>
         <activity android:name=".wallet_owner.wallet_owner.WalletOwner"></activity>
         <activity android:name=".wallet_owner.subscriber.SubscriberKYC"></activity>
@@ -78,7 +77,6 @@
         <activity android:name=".activity.HistoriqueBranch"></activity>
         <activity android:name=".activity.DetailTransaction"></activity>
         <activity android:name=".activity.SettingCurrency"></activity>
-        <activity android:name=".activity.OverdraftLimit"></activity>
         <activity android:name=".activity.HistoriqueTransaction"></activity>
         <activity android:name=".activity.Elements"></activity>
         <activity android:name=".activity.OtherOption"></activity>
@@ -107,7 +105,9 @@
         <activity android:name=".pin_change.ChangePin"></activity>
         <activity android:name=".transfer_float.SellFloat"></activity>
         <activity android:name=".transfer_float.CommissionTransfer"></activity>
-
+        <activity android:name=".overdraft.OverdraftLimit"></activity>
+        <activity android:name=".transfer_float.TransferFloats"></activity>
+        <activity android:name=".airtime_purchase.AirtimePurchases"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

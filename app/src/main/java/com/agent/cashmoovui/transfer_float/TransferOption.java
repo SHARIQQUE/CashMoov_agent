@@ -98,7 +98,7 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
 
             case R.id.ll_transferFloat:
             {
-                Intent i = new Intent(TransferOption.this, TransferFloat.class);
+                Intent i = new Intent(TransferOption.this, TransferFloats.class);
                 startActivity(i);
             }
             break;

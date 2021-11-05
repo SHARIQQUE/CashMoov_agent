@@ -1502,10 +1502,16 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         fees_amount = exchangeRate.getString("fee");
                         rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
 
-                        JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            tax_financial = jsonObject2.getString("value");
+                        if(exchangeRate.has("taxConfigurationList"))
+                        {
+                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                            for(int i=0;i<jsonArray.length();i++) {
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                tax_financial = jsonObject2.getString("value");
+                            }
+                        }
+                        else {
+                            tax_financial = exchangeRate.getString("value");
                         }
 
                         rp_tv_financialTax.setText("Fr "+tax_financial);

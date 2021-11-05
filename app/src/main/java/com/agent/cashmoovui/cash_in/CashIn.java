@@ -49,6 +49,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     View rootView;
 
+    String walletOwnerCode="";
+
     EditText etPin;
     TextView exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
@@ -62,7 +64,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     EditText edittext_mobileNuber,edittext_amount,et_mpin;
 
-    String mobileNoStr="",amountstr="";
+    String mobileNoStr="",amountstr="",desWalletOwnerCode_from_currency="";
 
     String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderNameAgent="";
 
@@ -356,6 +358,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                             currencyName_agent = jsonObject2.getString("currencyName");
                             countryCode_agent = jsonObject2.getString("countryCurrencyCode");
                             currencyCode_agent = jsonObject2.getString("currencyCode");
+                            desWalletOwnerCode_from_currency = jsonObject2.getString("walletOwnerCode");
 
                         }
 
@@ -553,7 +556,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     else {
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
+                     //   finish();
                     }
 
 
@@ -622,7 +625,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 //                    jsonObject.put("desCurrencyCode","100062");         //  Subscriber
 
 
-                    jsonObject.put("desWalletOwnerCode","1000002488");  // Subscriber
+                    jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_currency);  // Subscriber
                   //  jsonObject.put("srcCurrencyCode","100062");         // source  srcWalletOwnerCode
                   //  jsonObject.put("desCurrencyCode","100062");         //  Subscriber
             jsonObject.put("srcCurrencyCode",currencyCode_agent);         // source  srcWalletOwnerCode
@@ -759,12 +762,24 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                       //  credit_amount=exchangeRate.getString("currencyValue");
 
-                        JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                        for(int i=0;i<jsonArray.length();i++) {
 
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            tax_financial = jsonObject2.getString("value");
+                        if(exchangeRate.has("taxConfigurationList"))
+                        {
+                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                            for(int i=0;i<jsonArray.length();i++) {
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                tax_financial = jsonObject2.getString("value");
+                            }
                         }
+                        else {
+                            tax_financial = exchangeRate.getString("value");
+                        }
+
+
+
+
+
+
 
                         rp_tv_financialTax.setText(tax_financial);
 

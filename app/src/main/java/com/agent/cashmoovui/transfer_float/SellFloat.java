@@ -55,7 +55,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
 
-    String currencyName_from_currency="";
+    String currencyName_from_currency="",walletOwnerCode_from_currency="";
     String countryCurrencyCode_from_currency="";
 
 
@@ -453,6 +453,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             countryCode_agent = jsonObject3.getString("countryCurrencyCode");
                             currencyCode_agent = jsonObject3.getString("currencyCode");
 
+                            walletOwnerCode_from_currency = jsonObject3.getString("walletOwnerCode");
+
 
                             arrayList_currecnyName.add(currencyName_from_currency);
                             arrayList_currecnyCode.add(countryCurrencyCode_from_currency);
@@ -502,7 +504,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",SellFloat.this);
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+sellfloat_allSellFloat_featureCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&offset=0&limit=10",languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+sellfloat_allSellFloat_featureCode+"&srcWalletOwnerCode="+walletOwnerCode_from_currency+"&offset=0&limit=10",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -548,13 +550,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                             if(jsonObject2.has("serviceProviderCode"))
                             {
-
                                 serviceProviderCode_from_allSellFloat = jsonObject2.getString("serviceProviderCode");
-
                             }
                             else {
                                 serviceProviderCode_from_allSellFloat = "";
-
                             }
 
                         }
@@ -624,11 +623,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                        for(int i=0;i<jsonArray.length();i++) {
-
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            tax_financial = jsonObject2.getString("value");
+                        if(exchangeRate.has("taxConfigurationList"))
+                        {
+                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                            for(int i=0;i<jsonArray.length();i++) {
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                tax_financial = jsonObject2.getString("value");
+                            }
+                        }
+                        else {
+                            tax_financial = exchangeRate.getString("value");
                         }
 
 

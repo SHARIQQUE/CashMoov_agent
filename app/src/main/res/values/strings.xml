@@ -478,6 +478,9 @@
     <string name="receiver_currency_reviewPage"> Receiver Currency: </string>
     <string name="receiver_msisdn_reviewPage"> Receiver MSISDN:</string>
 
+    <string name="email_receiptPage">Email</string>
+
+
 
     <!--   -->
 
@@ -575,6 +578,9 @@
     <string name="commision_Transfer">Commision Transfer</string>
     <string name="currency_Name">Currency Name</string>
     <string name="main_Wallet">Main Wallet </string>
+    <string name="validaty_days">Validity days* </string>
+    <string name="select_operator">Select Operator </string>
+    <string name="select_operator_star">Select Operator*</string>
 
 </resources>
 

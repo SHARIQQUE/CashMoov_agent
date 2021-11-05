@@ -14,6 +14,7 @@ import com.agent.cashmoovui.cashout.CashOutCodeSubscriber;
 import com.agent.cashmoovui.cashout.CashOutOpt;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.otp.OtpPage;
+import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.remmetience.ReiceveRemittance;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.remmetience.SendRemittanceInternaional;
@@ -24,7 +25,7 @@ import com.agent.cashmoovui.set_pin.SetPin;
 import com.agent.cashmoovui.splash.SplashScreen;
 import com.agent.cashmoovui.transfer_float.CommissionTransfer;
 import com.agent.cashmoovui.transfer_float.SellFloat;
-import com.agent.cashmoovui.transfer_float.TransferFloat;
+import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import com.agent.cashmoovui.wallet_owner.add_agent_branch.AgentKYCAtatched;
@@ -156,7 +157,7 @@ public class ListOfActivity extends AppCompatActivity {
 
     public void TransferFloat(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, TransferFloat.class));
+        startActivity(new Intent(ListOfActivity.this, TransferFloats.class));
     }
     public void TransferOption(View view) {
 

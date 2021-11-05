@@ -574,7 +574,11 @@
     <string name="currency_Name">Nom de la devise</string>
     <string name="main_Wallet">Portefeuille principal</string>
 
+    <string name="validaty_days">Jours de validité* </string>
 
+    <string name="email_receiptPage">E-mail</string>
+    <string name="select_operator_star">Sélectionnez l opérateur*</string>
+    <string name="select_operator">Sélectionnez l opérateur</string>
 
 </resources>
 
