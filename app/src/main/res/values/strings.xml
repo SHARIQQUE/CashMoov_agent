@@ -442,6 +442,7 @@
     <string name="amount_to_paid_reviewPage">Amount to be paid</string>
     <string name="agentName_reveiewPage">Agent name:</string>
     <string name="excise_tax_reveiewPage">Excise_tax:</string>
+    <string name="total_amount_reveiewPage">Total amount:</string>
 
 
 
@@ -583,6 +584,11 @@
     <string name="validaty_days">Validity days* </string>
     <string name="select_operator">Select Operator </string>
     <string name="select_operator_star">Select Operator*</string>
+    <string name="Operator_reviewPage">Operator:</string>
+    <string name="Operator_receiptpage">Operator</string>
+
+
+
     <string name="val_fname_len">First Name must be at least 3 characters long</string>
     <string name="val_lname_len">Last Name must be at least 3 characters long</string>
     <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
