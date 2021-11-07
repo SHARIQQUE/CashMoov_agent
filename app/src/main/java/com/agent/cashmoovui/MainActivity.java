@@ -10,10 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.agent.cashmoovui.activity.FraisDeServices;
-import com.agent.cashmoovui.activity.MobilePrepaid;
-import com.agent.cashmoovui.activity.Paiements;
+import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.activity.WalletScreen;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
@@ -24,9 +22,7 @@ import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
-
 import java.util.Locale;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -199,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_payment:
-                i = new Intent(MainActivity.this, Paiements.class);
+                i = new Intent(MainActivity.this, Payments.class);
                 startActivity(i);
                 break;
 

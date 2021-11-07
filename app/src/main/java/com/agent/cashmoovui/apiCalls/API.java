@@ -36,9 +36,8 @@ public class API {
     //"http://202.131.144.130:8081/";//QA
     //http://202.131.144.147:8081/ DEV
     //http://202.131.144.129:8081/ UAT
-    public static String BASEURL=" http://202.131.144.129:8081/";
+    public static String BASEURL="http://202.131.144.129:8081/";
    //http://202.140.50.120:8081/
-
 
     public static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -562,7 +561,7 @@ public class API {
                 .addJSONObjectBody(jsonObject) // posting json
                 //.addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                // .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
                 //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
@@ -625,11 +624,13 @@ public class API {
 
         AndroidNetworking.post(BASEURL+URL)
                 .addJSONObjectBody(jsonObject) // posting json
+                .setOkHttpClient(okClient)
                 .setTag("test")
-                .setOkHttpClient(client)
-               // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("mac",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -689,7 +690,7 @@ public class API {
                .setOkHttpClient(okClientfileUpload)
                .setContentType("multipart/form-data")
                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-               .addHeaders("source","SUBSCRIBER")
+               .addHeaders("source","AGENT")
                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                .build()
                // setting an executor to get response or completion on that executor thread
@@ -817,7 +818,7 @@ public class API {
                 .setOkHttpClient(clientBASIC)
                 .setContentType("multipart/form-data")
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .build()
                 // setting an executor to get response or completion on that executor thread
@@ -869,29 +870,29 @@ public class API {
 
 
 
-    public static void Upload_REQEST_WH_NEW(String URL, File file,String filename, final Api_Responce_Handler responce_handler){
-
+    public static void Upload_REQEST_WH_NEW(String URL, File file,String docTypeCode,String walletOwnerCode, final Api_Responce_Handler responce_handler){
 
         AndroidNetworking.upload(BASEURL+URL)
-                .addMultipartFile("file",file)
                 .addHeaders("channel","APP")
-                .addMultipartParameter("idProofTypeCode","100000")
-                .addMultipartParameter("customerCode","1000000350")
+                .addMultipartFile("file",file)
+                .addHeaders("mac",MyApplication.getUniqueId())
+                .addMultipartParameter("docTypeCode",docTypeCode)
+                .addMultipartParameter("walletOwnerCode",walletOwnerCode)
                 .setTag("uploadTest")
                 .setPriority(Priority.HIGH)
                 .setOkHttpClient(okClientfileUpload)
                 .setContentType("multipart/form-data")
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .build()
-            // setting an executor to get response or completion on that executor thread
-               /* .setUploadProgressListener(new UploadProgressListener() {
-                    @Override
-                    public void onProgress(long bytesUploaded, long totalBytes) {
-                        // do anything with progress
-                    }
-                })*/
+                // setting an executor to get response or completion on that executor thread
+                /* .setUploadProgressListener(new UploadProgressListener() {
+                     @Override
+                     public void onProgress(long bytesUploaded, long totalBytes) {
+                         // do anything with progress
+                     }
+                 })*/
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -928,7 +929,6 @@ public class API {
                     }
                 });
     }
-
 
     public static void POST_REQEST_WH_NEW(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
@@ -2214,7 +2214,7 @@ public class API {
                 .setOkHttpClient(okClient)
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setPriority(Priority.MEDIUM)
@@ -2273,7 +2273,7 @@ public class API {
                .setOkHttpClient(okClient)
                 .addHeaders("Accept-Language","en")
                 .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
              //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setPriority(Priority.MEDIUM)
@@ -2331,7 +2331,7 @@ public class API {
         AndroidNetworking.put(BASEURL+URL)
                 .setOkHttpClient(okClient)
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .setPriority(Priority.MEDIUM)
@@ -2452,7 +2452,7 @@ public class API {
 
         AndroidNetworking.post(BASEURL+URL)
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("channel","APP")
                 .addHeaders("type","LOGINOTP")
                 .addHeaders("mac",MyApplication.getUniqueId())
@@ -2657,7 +2657,7 @@ public class API {
                 .addBodyParameter("grant_type","password")
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 // .addHeaders("Accept-Language",MyApplication.getLang())
                 .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
@@ -2730,7 +2730,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
                // .addHeaders("Authorization", "Basic Y2FzaG1vb3Y6MTIzNDU2")
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("type", "LOGINOTP")
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -2791,7 +2791,7 @@ public class API {
                 .addJSONObjectBody(jsonObject)
                 .setOkHttpClient(okHttpClient)
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
-                .addHeaders("source","SUBSCRIBER")
+                .addHeaders("source","AGENT")
                 .addHeaders("channel","APP")
                 .addHeaders("type", "LOGINOTP")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))

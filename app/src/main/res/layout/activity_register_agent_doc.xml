@@ -4,14 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wallet_owner.add_agent_branch.AgentKYCAtatched">
+    tools:context=".wallet_owner.agent.AgentKYCAttached">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/_15sdp"
         android:orientation="vertical">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,6 +72,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/_10sdp">
                 <Spinner
+                    android:visibility="gone"
                     android:id="@+id/SpinnertypeID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,6 +86,7 @@
                     android:textColor="#323232"
                     android:entries="@array/Spinner_typeID"/>
                 <EditText
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -105,41 +105,45 @@
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/_10sdp">
+                    android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/buttonChoose"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/btnFront"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="clip_horizontal"
                         android:background="@drawable/btn_blue"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        app:srcCompat="@drawable/ic_baseline_add_photobl"
-                        />
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        app:srcCompat="@drawable/ic_baseline_photo_bl" />
 
                     <EditText
-                        android:id="@+id/editTextName"
-                        android:hint="Ex: Recto"
+                        android:id="@+id/etFront"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/btn_edittextname"
-                        android:backgroundTint="#999999"
-                        android:inputType="textEmailAddress"
+                        android:backgroundTint="@color/bgColorHint"
+                        android:hint="@string/front"
+                        android:inputType="text"
                         android:lineSpacingExtra="10sp"
-                        android:paddingLeft="37.5dp"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        android:textColor="#323232"
-                        android:textSize="15sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:enabled="false"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_13sdp" />
 
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:text="Upload" />
+                    <Button
+                        android:id="@+id/btnFrontUpload"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:clickable="true"
+                        android:textSize="@dimen/_11sdp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/btn_jaune" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -149,54 +153,54 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/buttonChoose2"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/btnBack"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="clip_horizontal"
                         android:background="@drawable/btn_blue"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        app:srcCompat="@drawable/ic_baseline_add_photobl"
-                        />
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        app:srcCompat="@drawable/ic_baseline_photo_bl" />
 
                     <EditText
-                        android:id="@+id/editTextverso"
-                        android:hint="Ex: Verso"
+                        android:id="@+id/etBack"
+                        android:hint="@string/ex_verso"
                         android:layout_weight="1"
                         android:background="@drawable/btn_edittextname"
-                        android:backgroundTint="#999999"
-                        android:inputType="textEmailAddress"
+                        android:backgroundTint="@color/bgColorHint"
+                        android:inputType="text"
                         android:lineSpacingExtra="10sp"
-                        android:paddingLeft="37.5dp"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        android:textColor="#323232"
-                        android:textSize="15sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_13sdp"
                         android:layout_width="wrap_content"
+                        android:enabled="false"
                         android:layout_height="wrap_content" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:text="Upload" />
+                    <Button
+                        android:id="@+id/btnBackUpload"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:clickable="true"
+                        android:textSize="@dimen/_11sdp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/btn_jaune" />
 
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/_15sdp"
                     android:textColor="#29304d"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="7sp"
-                    android:text="Autre documents "
+                    android:text="@string/other_documents"
                     android:layout_gravity="center"
                     />
 
@@ -208,37 +212,42 @@
                     android:layout_marginTop="@dimen/_10sdp">
 
                     <ImageButton
-                        android:id="@+id/buttonChooseautre"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/btnOtherDoc"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="clip_horizontal"
                         android:background="@drawable/btn_blue"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        app:srcCompat="@drawable/ic_baseline_add_photobl"
-                        />
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        app:srcCompat="@drawable/ic_baseline_photo_bl" />
 
                     <EditText
-                        android:id="@+id/editTextNameautre"
-                        android:hint="Ex: doc"
+                        android:id="@+id/etOtherDoc"
+                        android:hint="@string/ex_doc"
                         android:layout_weight="1"
                         android:background="@drawable/btn_edittextname"
-                        android:backgroundTint="#999999"
-                        android:inputType="textEmailAddress"
+                        android:backgroundTint="@color/bgColorHint"
+                        android:inputType="text"
                         android:lineSpacingExtra="10sp"
-                        android:paddingLeft="37.5dp"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        android:textColor="#323232"
-                        android:textSize="15sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_13sdp"
                         android:layout_width="wrap_content"
+                        android:enabled="false"
                         android:layout_height="wrap_content" />
 
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:text="Upload" />
+                    <Button
+                        android:id="@+id/btnOtherDocUpload"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:clickable="true"
+                        android:textSize="@dimen/_11sdp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/btn_jaune" />
 
                 </LinearLayout>
 

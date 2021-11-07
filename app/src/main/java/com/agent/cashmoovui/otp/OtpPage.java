@@ -372,6 +372,7 @@ public class OtpPage extends AppCompatActivity implements View.OnClickListener {
                     MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), OtpPage.this);
 
                     Intent i = new Intent(OtpPage.this, SetPin.class);
+                    i.putExtra("CHECKINTENTSETPIN","VerifyLoginAccountScreen");
                     startActivity(i);
                     finish();
                     // Toast.makeText(OtpPage.this,getString(R.string.login_successful),Toast.LENGTH_LONG).show();

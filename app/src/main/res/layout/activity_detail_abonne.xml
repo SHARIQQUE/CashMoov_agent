@@ -7,318 +7,355 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:scrollbars="none"
-        android:scrollingCache="true"
-        >
+        android:scrollingCache="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="50dp"
             android:orientation="vertical">
 
             <include layout="@layout/toolbar_active" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="405dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <LinearLayout
-                    android:background="@color/bleu_cashmoov"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bleu_cashmoov"
                     android:orientation="vertical">
+
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_marginTop="45dp"
+                        android:id="@+id/profile_img"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/souarecashmoov"/>
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:src="@drawable/profil" />
+
                     <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/tvName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Souare Ibrahima"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_25sdp"
+                        android:text="John Deo"
                         android:textColor="#fff"
-                        android:textStyle="bold"
-                        android:textSize="21sp"/>
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
+
                 <androidx.cardview.widget.CardView
-                    android:layout_width="400dp"
-                    android:layout_height="120dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="275dp">
+                    android:layout_marginBottom="@dimen/_2sdp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:paddingTop="@dimen/_15sdp"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_15sdp"
                         android:weightSum="3">
+
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="vertical"
                             android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_height="match_parent">
+                            android:gravity="center"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_location_24"
-                                android:textSize="20sp"
-                                />
+                                app:srcCompat="@drawable/ic_location_24" />
+
                             <TextView
+                                android:id="@+id/tvAddress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/_5sdp"
                                 android:text="Conakry,Guinee"
-                                android:textStyle="bold"
-                                android:textSize="16dp"
-                                android:paddingTop="10dp"
-                                android:textColor="#000"/>
+                                android:textColor="#000"
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold" />
 
                         </LinearLayout>
+
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="vertical"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.3"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_baseline_local_phone_24"
-                                android:textSize="20sp"
-                                />
+                                app:srcCompat="@drawable/ic_baseline_local_phone_24" />
+
                             <TextView
+                                android:id="@+id/tvPhone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingTop="@dimen/_5sdp"
                                 android:text="621 788 789"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
-                                android:paddingTop="10dp"
-                                android:textColor="#000"/>
+                                android:textColor="#000"
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold" />
 
                         </LinearLayout>
+
                         <LinearLayout
-                            android:gravity="center"
-                            android:orientation="vertical"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_baseline_perm_device_information_24"
-                                android:textSize="20sp"
-                                />
+                                app:srcCompat="@drawable/ic_baseline_perm_device_information_24" />
+
                             <TextView
+                                android:id="@+id/tvCurrency"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Actif"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
-                                android:paddingTop="10dp"
-                                android:textColor="#000"/>
+                                android:paddingTop="@dimen/_5sdp"
+                                android:text="GNF"
+                                android:textColor="#000"
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp">
+            </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                <LinearLayout
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Pays"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/country"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvCountry"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="Guinee"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Langue"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/language"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvLanguage"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="English"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="25dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Email"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/email"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvEmail"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="mlblamarbalde@gmail.com"/>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_marginTop="25dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Type de pièce"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/id_proof_type"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvIdProofType"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="Passeport"/>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_marginTop="25dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Numéro de pièce"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/id_proof_no"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvIdProofNo"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="O00123123"/>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_marginTop="25dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Cashmoov ID"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/cashmoov_id"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvCashmoovId"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="060666"/>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_marginTop="25dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="25dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textStyle="bold"
-
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
                         android:textColor="#000"
-                        android:text="Etat"/>
+                        android:textSize="@dimen/_13sdp"
+                        android:text="@string/state"/>
                     <TextView
-                        android:textStyle="bold"
-
+                        android:id="@+id/tvState"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
+                        android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
+                        android:textSize="@dimen/_13sdp"
                         android:text="Approved"/>
 
                 </LinearLayout>

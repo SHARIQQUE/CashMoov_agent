@@ -1,9 +1,11 @@
 package com.agent.cashmoovui.wallet_owner;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -12,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.wallet_owner.add_agent_branch.AgentKYCBranch;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
+import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.agent.cashmoovui.wallet_owner.wallet_owner.WalletOwner;
 
@@ -110,12 +113,54 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
 
             case R.id.ll_addAgentBranch:
             {
-                Intent i = new Intent(WalletOwnerMenu.this, AgentKYCBranch.class);
-                startActivity(i);
+                showDialog();
             }
             break;
 
 
         }
     }
+
+    public void showDialog() {
+        Dialog operationDialog = new Dialog(WalletOwnerMenu.this);
+        operationDialog.setContentView(R.layout.dialog_agent_branch);
+
+        Button btnAddAgent,btnAddBranch;
+        btnAddAgent = operationDialog.findViewById(R.id.btnAddAgent);
+        btnAddBranch = operationDialog.findViewById(R.id.btnAddBranch);
+
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.InstituteCode)){
+            btnAddAgent.setVisibility(View.VISIBLE);
+            btnAddBranch.setVisibility(View.VISIBLE);
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.AgentCode)){
+            btnAddAgent.setVisibility(View.GONE);
+            btnAddBranch.setVisibility(View.VISIBLE);
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.BranchCode)){
+            ll_addAgentBranch.setVisibility(View.GONE);
+            btnAddAgent.setVisibility(View.GONE);
+            btnAddBranch.setVisibility(View.GONE);
+        }
+
+        btnAddAgent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(WalletOwnerMenu.this, AgentKYC.class);
+                startActivity(i);
+                operationDialog.dismiss();
+            }
+        });
+        btnAddBranch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(WalletOwnerMenu.this, BranchKYC.class);
+                startActivity(i);
+                operationDialog.dismiss();
+            }
+        });
+        //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        operationDialog.show();
+    }
+
 }

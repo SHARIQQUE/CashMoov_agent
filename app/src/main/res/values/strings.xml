@@ -578,9 +578,43 @@
     <string name="commision_Transfer">Commision Transfer</string>
     <string name="currency_Name">Currency Name</string>
     <string name="main_Wallet">Main Wallet </string>
+    <string name="cashmoov_id">Cashmoov ID</string>
+    <string name="state">State</string>
     <string name="validaty_days">Validity days* </string>
     <string name="select_operator">Select Operator </string>
     <string name="select_operator_star">Select Operator*</string>
-
+    <string name="val_fname_len">First Name must be at least 3 characters long</string>
+    <string name="val_lname_len">Last Name must be at least 3 characters long</string>
+    <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
+    <string name="add_agent">Add Agent</string>
+    <string name="add_branch">Add Branch</string>
+    <string name="enter_info">Enter information</string>
+    <string name="user_info_msg">To complete the registration we need all the information about the future user.</string>
+    <string name="valid_select_acc_type">Type of account*</string>
+    <string name="valid_agent_name">Agent Name*</string>
+    <string name="valid_select_region">Select Region*</string>
+    <string name="valid_select_business_type">Select Business Type*</string>
+    <string name="agent">Agent</string>
+    <string name="val_agent_name">Please enter agent name</string>
+    <string name="val_agent_name_len">Agent Name must be at least 3 characters long</string>
+    <string name="val_select_business_type">Please select business type</string>
+    <string name="val_select_region">Please select region</string>
+    <string name="other_documents">Other documents</string>
+    <string name="ex_doc">Ex: doc</string>
+    <string name="branch">Branch</string>
+    <string name="valid_branch_name">Branch Name*</string>
+    <string name="val_branch_name">Please enter branch name</string>
+    <string name="val_branch_name_len">Branch Name must be at least 3 characters long</string>
+    <string name="agent_added">Agent added successfully!</string>
+    <string name="branch_added">Branch added successfully!</string>
+    <string name="acc_number_colon">Account number :</string>
+    <string name="operator_colon">Operator :</string>
+    <string name="amount_charged_colon">Amount to be Charged :</string>
+    <string name="amount_paid_colon">Amount to be Paid :</string>
+    <string name="trans_amount_colon">Transaction Amount :</string>
+    <string name="val_acc_no">Please enter account number</string>
+    <string name="val_valid_acc_no">Account number must be at least 4 characters long</string>
+    <string name="val_amount">Please enter amount</string>
+    <string name="val_valid_amount">Please enter valid amount</string>
 </resources>
 

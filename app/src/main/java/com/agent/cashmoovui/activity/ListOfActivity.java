@@ -15,6 +15,8 @@ import com.agent.cashmoovui.cashout.CashOutOpt;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
+import com.agent.cashmoovui.payments.PaymentDetails;
+import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.remmetience.ReiceveRemittance;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.remmetience.SendRemittanceInternaional;
@@ -28,10 +30,10 @@ import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
-import com.agent.cashmoovui.wallet_owner.add_agent_branch.AgentKYCAtatched;
-import com.agent.cashmoovui.wallet_owner.add_agent_branch.AgentKYCBranch;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYCAtached;
+import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYCAttached;
 import com.agent.cashmoovui.wallet_owner.wallet_owner.WalletOwner;
 
 
@@ -127,7 +129,7 @@ public class ListOfActivity extends AppCompatActivity {
 
     public void registersteptwo(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, SubscriberKYCAtached.class));
+        startActivity(new Intent(ListOfActivity.this, SubscriberKYCAttached.class));
     }
 
     public void Reset(View view) {
@@ -255,12 +257,12 @@ public class ListOfActivity extends AppCompatActivity {
 
     public void RegisterAgentOrBranch(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, AgentKYCBranch.class));
+        startActivity(new Intent(ListOfActivity.this, AgentKYC.class));
     }
 
     public void RegisterAgentOrBranchDoc(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, AgentKYCAtatched.class));
+        startActivity(new Intent(ListOfActivity.this, AgentKYCAttached.class));
     }
     public void CommissionTransfert(View view) {
 
@@ -268,11 +270,11 @@ public class ListOfActivity extends AppCompatActivity {
     }
     public void Paiements(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, Paiements.class));
+        startActivity(new Intent(ListOfActivity.this, Payments.class));
     }
     public void PaiementTvStarTime(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, PaiementTvStarTime.class));
+        startActivity(new Intent(ListOfActivity.this, PaymentDetails.class));
     }
 
     public void MobilePrepaid(View view) {

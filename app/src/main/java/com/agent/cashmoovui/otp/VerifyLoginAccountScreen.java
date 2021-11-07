@@ -27,8 +27,8 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements View.
     EditText etOne,etTwo,etThree,etFour,etFive,etSix;
     TextView tvPhoneNoMsg,tvContinue;
     MyApplication applicationComponentClass;
-
     String  languageToUse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -94,6 +94,7 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements View.
                 }
             });
         }
+
 
         setOnCLickListener();
 

@@ -573,12 +573,45 @@
     <string name="commision_Transfer">Transfert de commission</string>
     <string name="currency_Name">Nom de la devise</string>
     <string name="main_Wallet">Portefeuille principal</string>
-
+    <string name="cashmoov_id">Cashmoov ID</string>
+    <string name="state">Etat</string>
     <string name="validaty_days">Jours de validité* </string>
 
     <string name="email_receiptPage">E-mail</string>
     <string name="select_operator_star">Sélectionnez l opérateur*</string>
     <string name="select_operator">Sélectionnez l opérateur</string>
-
+    <string name="val_fname_len">Le prénom doit comporter au moins 3 caractères</string>
+    <string name="val_lname_len">Le nom de famille doit comporter au moins 3 caractères</string>
+    <string name="enter_phone_no_val">Le numéro de portable doit comporter au moins 9 chiffres</string>
+    <string name="add_agent">Ajouter un agent</string>
+    <string name="add_branch">Ajouter une succursale</string>
+    <string name="enter_info">Saisir les informations</string>
+    <string name="user_info_msg">Pour terminez l\'inscriptions nous avons besoin de toutes les informations sur le futur utilisateur.</string>
+    <string name="valid_select_acc_type">Type de compte*</string>
+    <string name="valid_agent_name">Nom d\'agent*</string>
+    <string name="valid_select_region">Choisissez une région*</string>
+    <string name="valid_select_business_type">Sélectionnez le type d\'entreprise*</string>
+    <string name="agent">Agent</string>
+    <string name="val_agent_name">Veuillez saisir le nom de l\'agent</string>
+    <string name="val_agent_name_len">Le nom de l\'agent doit comporter au moins 3 caractères</string>
+    <string name="val_select_business_type">Veuillez sélectionner le type d\'entreprise</string>
+    <string name="val_select_region">Veuillez sélectionner la région</string>
+    <string name="other_documents">Autre documents</string>
+    <string name="ex_doc">Ex: doc</string>
+    <string name="branch">Branche</string>
+    <string name="valid_branch_name">Nom de la filiale*</string>
+    <string name="val_branch_name">Veuillez saisir le nom de la succursale</string>
+    <string name="val_branch_name_len">Le nom de la succursale doit comporter au moins 3 caractères</string>
+    <string name="agent_added">Agent ajouté avec succès !</string>
+    <string name="branch_added">Branche ajoutée avec succès !</string>
+    <string name="acc_number_colon">Numéro de compte :</string>
+    <string name="operator_colon">Opérateur :</string>
+    <string name="amount_charged_colon">Montant à facturer :</string>
+    <string name="amount_paid_colon">Montant à payer :</string>
+    <string name="trans_amount_colon">Montant de la transaction :</string>
+    <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
+    <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
+    <string name="val_amount">Veuillez saisir le montant</string>
+    <string name="val_valid_amount">Veuillez saisir un montant valide</string>
 </resources>
 

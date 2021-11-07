@@ -44,6 +44,7 @@ import okhttp3.Route;
 
 public class MyApplication extends Application {
     private static final String TAG = MyApplication.class.getSimpleName();
+    public static String UserMobile;
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;
@@ -52,6 +53,13 @@ public class MyApplication extends Application {
     private String PREF_NAME = "cashmoove_sh";
 
     public static String ImageURL;
+    public static String AgentCode = "100002";
+    public static String BranchCode = "100001";
+    public static String InstituteCode = "100000";
+    public static String MerchatCode = "100011";
+    public static String OutletCode = "100012";
+    public static String SubscriberCode = "100010";
+    public static String channelTypeCode = "100000";
 
 
     public SharedPreferences getmSharedPreferences() {
@@ -110,7 +118,7 @@ public class MyApplication extends Application {
                 @Override
                 public Request authenticate(Route route, Response response) throws IOException {
                     return response.request().newBuilder()
-                            .header("source","SUBSCRIBER")
+                            .header("source","AGENT")
                             .header("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                             .build();
                 }

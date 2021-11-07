@@ -7,19 +7,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginMsis;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
+import com.agent.cashmoovui.wallet_owner.agent.AgentSignature;
+import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
+import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberSignature;
 
 import org.json.JSONObject;
-
 import java.util.Locale;
 
 public class SetPin extends AppCompatActivity implements View.OnClickListener {
@@ -27,9 +28,9 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
     MyApplication applicationComponentClass;
     String languageToUse = "";
     String strPin = "", strRePin;
-
     EditText et_Pin, et_reEnterPin;
     TextView tv_continue;
+    String checkIntent;
 
 
     @Override
@@ -59,7 +60,10 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
         tv_continue = (TextView) findViewById(R.id.tv_continue);
 
 
+        if (getIntent().getExtras() != null) {
+            checkIntent = (getIntent().getStringExtra("CHECKINTENTSETPIN"));
 
+        }
 
         tv_continue.setOnClickListener(this);
 
@@ -105,7 +109,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
 
-        else if(strPin.length() < 3) {
+        else if(strPin.length() < 4) {
 
             MyApplication.showErrorToast(this,getString(R.string.enter_pin));
 
@@ -119,7 +123,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
 
-        else if(strRePin.length() < 3) {
+        else if(strRePin.length() < 4) {
 
             MyApplication.showErrorToast(this,getString(R.string.re_enter_pin));
 
@@ -156,10 +160,31 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
 
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-
                             MyApplication.showToast(SetPin.this,"Your Pin generate Successfully!");
-                            Intent intent = new Intent(SetPin.this, LoginMsis.class);
-                            startActivity(intent);
+                            if(checkIntent.equalsIgnoreCase("SubscriberKYC")){
+                                Intent intent = new Intent(SetPin.this, SubscriberSignature.class);
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
+                            if(checkIntent.equalsIgnoreCase("AgentKYC")) {
+                                Intent intent = new Intent(SetPin.this, AgentSignature.class);
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
+                            if(checkIntent.equalsIgnoreCase("BranchKYC")) {
+                                Intent intent = new Intent(SetPin.this, BranchSignature.class);
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
+                            else {
+                                Intent intent = new Intent(SetPin.this, LoginMsis.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
 
                         }
 

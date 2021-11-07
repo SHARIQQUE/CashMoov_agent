@@ -90,7 +90,7 @@
                         android:padding="@dimen/_5sdp"
                         android:drawablePadding="@dimen/_5sdp"
                         android:drawableRight="@drawable/ic_arrow_down"
-                        android:text="@string/agent"
+                        android:text="@string/branch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
@@ -99,7 +99,7 @@
 
 
                 <EditText
-                    android:id="@+id/etAgentName"
+                    android:id="@+id/etBranchName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -111,7 +111,7 @@
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/valid_agent_name"
+                    android:hint="@string/valid_branch_name"
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp" />
 
