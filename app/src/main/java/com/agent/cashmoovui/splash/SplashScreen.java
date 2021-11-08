@@ -41,9 +41,6 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
         }
 
 
-
-
-
         Locale locale = new Locale(languageToUse);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -51,7 +48,12 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
 
+
+
+
         setContentView(R.layout.activity_spash_screen);
+
+
 
 
         startnow_textview = (TextView)findViewById(R.id.startnow_textview);

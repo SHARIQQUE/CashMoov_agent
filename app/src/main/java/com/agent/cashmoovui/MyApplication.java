@@ -188,16 +188,19 @@ public class MyApplication extends Application {
     }
 
 
+
     public static void showErrorToast(Activity activity, String message){
+
         Toast toast= Toast.makeText(activity, message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
+
+      /*  toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
         View view = toast.getView();
         // view.getBackground().setColorFilter(appInstance.getColor(R.color.white), PorterDuff.Mode.SRC_IN);
         view.setBackgroundResource(R.drawable.error_toast);
         TextView text = view.findViewById(android.R.id.message);
         text.setPadding(20,10,20,10);
         text.setTextSize(13);
-        text.setTextColor(ContextCompat.getColor(activity, R.color.white));
+        text.setTextColor(ContextCompat.getColor(activity, R.color.white));*/
         toast.show();
     }
 

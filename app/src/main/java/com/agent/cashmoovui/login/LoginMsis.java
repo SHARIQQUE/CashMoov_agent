@@ -206,14 +206,14 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         strPhoneNo = et_phoneNo.getText().toString();
 
         if(strPhoneNo.isEmpty()) {
-            MyApplication.showErrorToast(this,getString(R.string.val_phone));
+            MyApplication.showErrorToast(LoginMsis.this,getString(R.string.val_phone));
 
             return false;
         }
 
        else if(strPhoneNo.length() < 9) {
 
-            MyApplication.showErrorToast(this,getString(R.string.val_phone));
+            MyApplication.showErrorToast(LoginMsis.this,getString(R.string.val_phone));
 
             return false;
         }
@@ -230,7 +230,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         strPasword = et_password.getText().toString();
 
       if(strPasword.isEmpty()) {
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
+
+            MyApplication.showErrorToast(LoginMsis.this, getString(R.string.please_enter_4_digit_mpin));
 
             return false;
         }
@@ -241,7 +242,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             return true;
         }
         else {
-          MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
+          MyApplication.showErrorToast(LoginMsis.this, getString(R.string.please_enter_4_digit_mpin));
 
           return false;
       }
