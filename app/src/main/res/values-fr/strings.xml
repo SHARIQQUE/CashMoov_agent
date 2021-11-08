@@ -619,5 +619,13 @@
     <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
     <string name="val_amount">Veuillez saisir le montant</string>
     <string name="val_valid_amount">Veuillez saisir un montant valide</string>
+
+
+    <string name="country_star">Pays</string>
+    <string name="mobileNumber_star">Numéro de portable</string>
+    <string name="firstname_star">Prénom</string>
+    <string name="Date_OF_Birth">Date de naissance</string>
+    <string name="id_proof_expiryDate">Date d\'expiration de la preuve d\'identité</string>
+
 </resources>
 

@@ -17,8 +17,8 @@ import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.payments.PaymentDetails;
 import com.agent.cashmoovui.payments.Payments;
-import com.agent.cashmoovui.remmetience.ReiceveRemittance;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
+import com.agent.cashmoovui.remmetience.RemittanceReceive;
 import com.agent.cashmoovui.remmetience.SendRemittanceInternaional;
 import com.agent.cashmoovui.remmetience.SendRemittanceLocal;
 import com.agent.cashmoovui.remmetience.SendRemittanceOpt;
@@ -252,7 +252,7 @@ public class ListOfActivity extends AppCompatActivity {
 
     public void ReiceveRemittance(View view) {
 
-        startActivity(new Intent(ListOfActivity.this, ReiceveRemittance.class));
+        startActivity(new Intent(ListOfActivity.this, RemittanceReceive.class));
     }
 
     public void RegisterAgentOrBranch(View view) {

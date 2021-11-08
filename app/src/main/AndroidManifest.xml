@@ -57,7 +57,6 @@
         <activity android:name=".cashout.CashOutCodeSubscriber"></activity>
         <activity android:name=".cashout.CashOutOpt"></activity>
         <activity android:name=".remmetience.RemittanceOption"></activity>
-        <activity android:name=".remmetience.ReiceveRemittance"></activity>
         <activity android:name=".remmetience.SendRemittanceOpt"></activity>
         <activity android:name=".remmetience.SendRemittanceLocal"></activity>
         <activity android:name=".remmetience.SendRemittanceInternaional"></activity>
@@ -114,6 +113,7 @@
         <activity android:name=".overdraft.OverdraftLimit"></activity>
         <activity android:name=".transfer_float.TransferFloats"></activity>
         <activity android:name=".airtime_purchase.AirtimePurchases"></activity>
+        <activity android:name=".remmetience.RemittanceReceive"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

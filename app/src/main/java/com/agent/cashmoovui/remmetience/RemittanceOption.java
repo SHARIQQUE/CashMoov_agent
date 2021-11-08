@@ -91,7 +91,7 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
         {
             case R.id.ll_receiveRemitance: {
 
-                Intent i = new Intent(RemittanceOption.this, ReiceveRemittance.class);
+                Intent i = new Intent(RemittanceOption.this, RemittanceReceive.class);
                 startActivity(i);
             }
             break;
