@@ -160,30 +160,38 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
 
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+
                             MyApplication.showToast(SetPin.this,"Your Pin generate Successfully!");
-                            if(checkIntent.equalsIgnoreCase("SubscriberKYC")){
-                                Intent intent = new Intent(SetPin.this, SubscriberSignature.class);
-                                startActivity(intent);
-                                finish();
-                                return;
-                            }
-                            if(checkIntent.equalsIgnoreCase("AgentKYC")) {
-                                Intent intent = new Intent(SetPin.this, AgentSignature.class);
-                                startActivity(intent);
-                                finish();
-                                return;
-                            }
-                            if(checkIntent.equalsIgnoreCase("BranchKYC")) {
-                                Intent intent = new Intent(SetPin.this, BranchSignature.class);
-                                startActivity(intent);
-                                finish();
-                                return;
-                            }
-                            else {
-                                Intent intent = new Intent(SetPin.this, LoginMsis.class);
-                                startActivity(intent);
-                                finish();
-                            }
+
+
+
+                            Intent intent = new Intent(SetPin.this, LoginMsis.class);
+                            startActivity(intent);
+                            finish();
+
+//                            if(checkIntent.equalsIgnoreCase("SubscriberKYC")){
+//                                Intent intent = new Intent(SetPin.this, SubscriberSignature.class);
+//                                startActivity(intent);
+//                                finish();
+//                                return;
+//                            }
+//                            if(checkIntent.equalsIgnoreCase("AgentKYC")) {
+//                                Intent intent = new Intent(SetPin.this, AgentSignature.class);
+//                                startActivity(intent);
+//                                finish();
+//                                return;
+//                            }
+//                            if(checkIntent.equalsIgnoreCase("BranchKYC")) {
+//                                Intent intent = new Intent(SetPin.this, BranchSignature.class);
+//                                startActivity(intent);
+//                                finish();
+//                                return;
+//                            }
+//                            else {
+//                                Intent intent = new Intent(SetPin.this, LoginMsis.class);
+//                                startActivity(intent);
+//                                finish();
+//                            }
 
 
                         }

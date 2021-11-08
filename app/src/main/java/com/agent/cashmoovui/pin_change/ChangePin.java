@@ -185,6 +185,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                   //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1890125\",\"requestTime\":\"Thu Oct 28 12:15:22 IST 2021\",\"responseTime\":\"Thu Oct 28 12:15:23 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\"}");
 
                     if (jsonObject != null) {
+
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
 
                             MyApplication.showToast(ChangePin.this,"Your Pin generate Successfully!");
