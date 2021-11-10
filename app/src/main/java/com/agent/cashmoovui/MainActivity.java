@@ -13,13 +13,13 @@ import android.widget.TextView;
 import com.agent.cashmoovui.activity.FraisDeServices;
 import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
-import com.agent.cashmoovui.activity.WalletScreen;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutOpt;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
+import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import java.util.Locale;
@@ -137,15 +137,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 if (bottomId == 1) {
                     Intent i = new Intent(MainActivity.this, WalletScreen.class);
+
                     startActivity(i);
                     // finish();
                 }
+
                 if (bottomId == 2) {
                     Intent i = new Intent(MainActivity.this, Profile.class);
                     startActivity(i);
                     // finish();
                 }
+
                 return false;
+
             }
         });
 

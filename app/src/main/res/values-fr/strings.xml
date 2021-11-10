@@ -627,5 +627,14 @@
     <string name="Date_OF_Birth">Date de naissance</string>
     <string name="id_proof_expiryDate">Date d\'expiration de la preuve d\'identité</string>
 
+
+    <string name="institue">Institute</string>
+    <string name="branch_history">Branche</string>
+    <string name="agent_history">Agente</string>
+
+    <string name="commision_wallet">Portefeuille de la Commission</string>
+    <string name="overdraft_wallet">Découvert</string>
+
+
 </resources>
 

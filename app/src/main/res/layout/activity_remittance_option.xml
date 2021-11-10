@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Remittance"
+                android:text="Send"
                 android:textColor="#29304d"
                 android:textSize="@dimen/_15sdp" />
 

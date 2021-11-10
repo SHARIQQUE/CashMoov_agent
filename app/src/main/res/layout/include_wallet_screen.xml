@@ -38,7 +38,7 @@
                 android:textColor="#29304d"
                 android:textSize="@dimen/_20sdp" />
             <Spinner
-                android:id="@+id/Spinnertypedevise"
+                android:id="@+id/spinner_currency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
@@ -47,7 +47,7 @@
                 android:paddingTop="@dimen/_5sdp"
                 android:paddingBottom="@dimen/_5sdp"
                 android:textColor="#323232"
-                android:entries="@array/Spinner_ch_devise"/>
+                />
 
 
             <HorizontalScrollView
@@ -65,6 +65,7 @@
 
 
                     <TextView
+                        android:id="@+id/insitute_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/btn_blue"
@@ -74,11 +75,12 @@
                         android:paddingTop="13dp"
                         android:paddingRight="29dp"
                         android:paddingBottom="13dp"
-                        android:text="@string/acc_statement"
+                        android:text="@string/institue"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
+                        android:id="@+id/insitute_branch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -89,11 +91,14 @@
                         android:paddingTop="13dp"
                         android:paddingRight="29dp"
                         android:paddingBottom="13dp"
-                        android:text="@string/my_branch"
+                        android:text="@string/branch"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
+
+                        android:id="@+id/agent_textview"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -104,7 +109,7 @@
                         android:paddingTop="13dp"
                         android:paddingRight="29dp"
                         android:paddingBottom="13dp"
-                        android:text="@string/my_agents"
+                        android:text="@string/agent_history"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_10sdp" />
 
@@ -189,21 +194,23 @@
                                     android:orientation="vertical">
 
                                     <TextView
+
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/aileron_bold"
                                         android:lineSpacingExtra="10sp"
-                                        android:text="@string/balance"
+                                        android:text="@string/main_Wallet"
                                         android:textColor="#ffffff"
                                         android:textSize="@dimen/_11sdp" />
 
                                     <TextView
+                                        android:id="@+id/mainwallet_textview"
+
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/_13sdp"
                                         android:textColor="#ffffff"
                                         android:lineSpacingExtra="3sp"
-                                        android:text="15,000 GNF"
                                         />
 
                                 </LinearLayout>
@@ -280,22 +287,23 @@
                                     android:orientation="vertical">
 
                                     <TextView
+
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/_11sdp"
                                         android:textColor="#ffffff"
                                         android:fontFamily="@font/aileron_bold"
                                         android:lineSpacingExtra="10sp"
-                                        android:text="@string/comissions"
+                                        android:text="@string/commision_wallet"
                                         />
 
                                     <TextView
+                                        android:id="@+id/commision_wallet_textview"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/_13sdp"
                                         android:textColor="#ffffff"
                                         android:lineSpacingExtra="3sp"
-                                        android:text="15,000 GNF"
                                         />
 
                                 </LinearLayout>
@@ -382,12 +390,14 @@
                                         />
 
                                     <TextView
+
+                                        android:id="@+id/overdraft_wallet_textview"
+
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textSize="@dimen/_13sdp"
                                         android:textColor="@color/bleu_cashmoov"
                                         android:lineSpacingExtra="3sp"
-                                        android:text="15,000 GNF"
                                         />
 
                                 </LinearLayout>
@@ -424,29 +434,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="@dimen/_10sdp">
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/aileron_regular"
-                        android:letterSpacing="0.01"
-                        android:lineSpacingExtra="7sp"
-                        android:text="@string/find_a_transaction"
-                        android:textColor="#33373b"
-                        android:textSize="@dimen/_11sdp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                    <EditText
+                        android:id="@+id/edittext_search"
+
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:maxLength="11"
+                        android:hint="@string/find_a_transaction"
+
+                        android:paddingBottom="16dp"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+
 
                     <ImageView
-                        android:id="@+id/serchicon_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/search_imageView"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_30sdp"
                         app:srcCompat="@drawable/ic_search_black_24dp" />
 
                 </LinearLayout>

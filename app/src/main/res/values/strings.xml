@@ -630,6 +630,11 @@
     <string name="Date_OF_Birth">Date of Birth</string>
     <string name="id_proof_expiryDate">Id Proof expiry date</string>
 
+    <string name="institue">Institute</string>
+    <string name="branch_history">Branch</string>
+    <string name="agent_history">Agent</string>
+    <string name="commision_wallet">Commision wallet</string>
+    <string name="overdraft_wallet">Over draft</string>
 
 
 </resources>

@@ -86,7 +86,6 @@
         <activity android:name=".activity.HistoriqueTransaction"></activity>
         <activity android:name=".activity.Elements"></activity>
         <activity android:name=".activity.OtherOption"></activity>
-        <activity android:name=".activity.WalletScreen"></activity>
         <activity android:name=".activity.Reset"></activity>
         <activity android:name=".activity.About"></activity>
         <activity android:name=".activity.Confidentialite"></activity>

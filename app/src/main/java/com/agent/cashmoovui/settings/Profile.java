@@ -19,15 +19,11 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.ShowProfileQr;
-import com.agent.cashmoovui.activity.WalletScreen;
-import com.agent.cashmoovui.otp.OtpPage;
-import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.pin_change.ChangePin;
-import com.agent.cashmoovui.set_pin.SetPin;
+import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.bumptech.glide.BuildConfig;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.Locale;
 

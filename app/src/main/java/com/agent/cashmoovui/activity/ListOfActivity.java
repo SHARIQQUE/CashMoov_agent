@@ -25,6 +25,7 @@ import com.agent.cashmoovui.remmetience.SendRemittanceOpt;
 import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.SetPin;
 import com.agent.cashmoovui.splash.SplashScreen;
+import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.agent.cashmoovui.transfer_float.CommissionTransfer;
 import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.agent.cashmoovui.transfer_float.TransferFloats;
