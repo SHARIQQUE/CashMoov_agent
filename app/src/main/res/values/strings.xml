@@ -637,5 +637,14 @@
     <string name="overdraft_wallet">Over draft</string>
 
 
+    <string name="report">Rapport</string>
+    <string name="dashboard_mainpage">Tableau de bord</string>
+    <string name="our_operation">Nos Operation</string>
+
+
+
+
+
+
 </resources>
 

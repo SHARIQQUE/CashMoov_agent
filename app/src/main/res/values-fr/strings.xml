@@ -636,5 +636,10 @@
     <string name="overdraft_wallet">Découvert</string>
 
 
+    <string name="report">Report</string>
+    <string name="dashboard_mainpage">Dashboard</string>
+    <string name="our_operation">Our Operations</string>
+
+
 </resources>
 
