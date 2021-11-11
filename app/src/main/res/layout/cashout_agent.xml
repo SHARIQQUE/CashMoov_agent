@@ -1350,7 +1350,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@drawable/round_blue"
-
+android:visibility="gone"
 
                 android:padding="10dp"
                 android:text="@string/export_receipt"

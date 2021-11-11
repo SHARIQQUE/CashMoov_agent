@@ -34,7 +34,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+x
         </activity>
 
 
@@ -113,6 +113,7 @@
         <activity android:name=".transfer_float.TransferFloats"></activity>
         <activity android:name=".airtime_purchase.AirtimePurchases"></activity>
         <activity android:name=".remmetience.RemittanceReceive"></activity>
+        <activity android:name=".transactionhistory_walletscreen.WalletScreen"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

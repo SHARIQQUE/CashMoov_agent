@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -28,6 +30,8 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
+import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -60,7 +64,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
 
-    TextView fees_first_page,rate_first_page,tax_first_page,total_amount_invoice_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,exportReceipt_textview, rp_tv_comment, rp_tv_convertionFees, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency,rp_tv_ReceiverMSISDN, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView fees_first_page,amountTobeCharged_first_page,tax_first_page,convertionRate_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,exportReceipt_textview, rp_tv_comment, rp_tv_convertionFees, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency,rp_tv_ReceiverMSISDN, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_charge, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
@@ -77,7 +81,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
     String firstname_destinationStr="",deviceSenderStr="",amountToPayStr="",tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
-    String mpinStr = "", convertionFeesStr="";
+    String mpinStr = "", convertionFeesStr="",senderCode_from_senderApi="",receivercode_from_receiverAPi="";
 
 
     String name_destinationStr ="",serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
@@ -110,6 +114,9 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
             setContentView(R.layout.cash_to_wallet);
             setBackMenu();
+
+
+
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
@@ -167,10 +174,10 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
             fees_first_page = (TextView) findViewById(R.id.fees_first_page);
-            rate_first_page = (TextView) findViewById(R.id.rate_first_page);
+            amountTobeCharged_first_page = (TextView) findViewById(R.id.amountTobeCharged_first_page);
             tax_first_page = (TextView) findViewById(R.id.tax_first_page);
 
-            total_amount_invoice_first_page = (TextView) findViewById(R.id.total_amount_invoice_first_page);
+            convertionRate_first_page = (TextView) findViewById(R.id.convertionRate_first_page);
             receiptPage_tv_senderCurrency = (TextView) findViewById(R.id.receiptPage_tv_senderCurrency);
             receiptPage_tv_BenificiaryCurrency = (TextView) findViewById(R.id.receiptPage_tv_BenificiaryCurrency);
 
@@ -213,6 +220,42 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             } else {
                 Toast.makeText(CashToWallet.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
+
+            edittext_amount.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(CashToWallet.this)) {
+
+                        amountstr = edittext_amount.getText().toString().trim();
+
+                        if (amountstr.length()>1) {
+
+                            api_exchangeRate();
+
+                        }
+
+                        else {
+                            edittext_amount_pay.setText(getString(R.string.amount_to_pay));;
+                        }
+
+                    } else {
+                        Toast.makeText(CashToWallet.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
 
 
         } catch (Exception e) {
@@ -385,13 +428,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         spinner_provider.setAdapter(recordAdapter2);
 
 
-
-                        fees_first_page.setText("0.0");
-                        total_amount_invoice_first_page.setText("0.0");
-                        rate_first_page.setText("0.0");
-                        tax_first_page.setText("0.0");
-
-
+                        api_serviceProvider();
 
 
                     } else {
@@ -497,7 +534,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
 
-        if (provider_select_name.equalsIgnoreCase("Select provider*") || (provider_select_name.equalsIgnoreCase("Select provider*")))
+       if (spinner_provider.getSelectedItemPosition()==0)
         {
 
             MyApplication.showErrorToast(this, getString(R.string.plz_select_provider));
@@ -574,19 +611,16 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             return false;
         }
 
-        else if (genderSelect_name.equalsIgnoreCase("Please select gender") || (provider_select_name.equalsIgnoreCase("Veuillez sélectionner le sexe")))
+        else if (spinner_gender.getSelectedItemPosition()==0)
         {
-
             MyApplication.showErrorToast(this, getString(R.string.genderSelect_fixed));
 
             return false;
         }
 
-
-
-
-
         return true;
+
+
     }
 
 
@@ -693,8 +727,15 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                              currecnyname_from_walletOwnerCountryCurrency = jsonObject3.getString("currencyCode");
 
                         }
-                        
-                        api_exchangeRate();
+
+
+
+                        ll_page_1.setVisibility(View.GONE);
+                        ll_reviewpage.setVisibility(View.VISIBLE);
+                        ll_receiptPage.setVisibility(View.GONE);
+
+
+
 
 
                     } else {
@@ -755,7 +796,6 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-                        api_idProof();
 
                     } else {
                         Toast.makeText(CashToWallet.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -985,8 +1025,207 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void api_receiver() {
 
-    private void mpin_final_api() {
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+
+
+//            {
+//                "firstName":"saasasas",
+//                    "lastName":"asasassasa",
+//                    "email":"",
+//                    "mobileNumber":"455445455445",
+//                    "idProofTypeCode":"",
+//                    "idProofNumber":"",
+//                    "idExpiryDate":null,
+//                    "dateOfBirth":null,
+//                    "countryCode":"100092",
+//                    "regionCode":"",
+//                    "city":"",
+//                    "address":"",
+//                    "issuingCountryCode":"100092",
+//                    "gender":"M
+//            }
+
+
+            jsonObject.put("firstName", firstname_destinationStr);
+            jsonObject.put("lastName", ""); // No in UI
+            jsonObject.put("email", "");    // No in UI
+            jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
+            jsonObject.put("idProofTypeCode", "");    // No in UI
+            jsonObject.put("idProofNumber", "");    // No in UI By Defualt
+            jsonObject.put("idExpiryDate", "");    // No in UI
+            jsonObject.put("dateOfBirth", "");    // No in UI
+            // jsonObject.put("countryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("countryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("regionCode",""); // No in UI
+            jsonObject.put("city","");   // No in UI
+            jsonObject.put("address","");   // No in UI
+            jsonObject.put("issuingCountryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("gender",genderSelect_name);
+
+
+
+            API.POST_REMMIT_LOCAL("ewallet/api/v1/customer/receiver", jsonObject, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
+
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+                            JSONObject jsonObject1 = jsonObject.getJSONObject("customer");
+
+                            receivercode_from_receiverAPi = jsonObject1.getString("code");
+
+
+                            api_mpin_final();
+
+                        } else {
+                            Toast.makeText(CashToWallet.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(CashToWallet.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(CashToWallet.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    } else
+
+                        Toast.makeText(CashToWallet.this, aFalse, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(CashToWallet.this, e.toString(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void api_sender() {
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+
+
+//            {
+//                "firstName":"saasasas",
+//                    "lastName":"asasassasa",
+//                    "email":"",
+//                    "mobileNumber":"455445455445",
+//                    "idProofTypeCode":"",
+//                    "idProofNumber":"",
+//                    "idExpiryDate":null,
+//                    "dateOfBirth":null,
+//                    "countryCode":"100092",
+//                    "regionCode":"",
+//                    "city":"",
+//                    "address":"",
+//                    "issuingCountryCode":"100092",
+//                    "gender":"M
+//            }
+
+
+            jsonObject.put("firstName", name_destinationStr); // No in UI
+            jsonObject.put("lastName", ""); // No in UI
+            jsonObject.put("email", "");    // No in UI
+            jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
+            jsonObject.put("idProofTypeCode", "100004");   // No in UI By Defualt (is mandatory)
+            jsonObject.put("idProofNumber", "idProofNumber");    // No in UI By Defualt (is mandatory)
+            jsonObject.put("idExpiryDate", "");    // No in UI By Defualt (is mandatory)
+            jsonObject.put("dateOfBirth", "");     // No in UI By Defualt (is mandatory)
+            jsonObject.put("countryCode","100062");  // Hard Code according  to Deepak
+            jsonObject.put("regionCode","100018");  // No in UI By Defualt (is mandatory)
+            jsonObject.put("city","city");   // No in UI By Defualt (is mandatory)
+            jsonObject.put("address","address");   // No in UI By Defualt (is mandatory)
+            jsonObject.put("issuingCountryCode","100062");  // Hard Code according  to Deepak
+            jsonObject.put("gender",genderSelect_name);
+
+
+
+            API.POST_REMMIT_LOCAL("ewallet/api/v1/customer/sender", jsonObject, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
+
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+                            JSONObject jsonObject1 = jsonObject.getJSONObject("customer");
+
+                            senderCode_from_senderApi = jsonObject1.getString("code");
+
+                            api_receiver();
+
+                        } else {
+                            Toast.makeText(CashToWallet.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(CashToWallet.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(CashToWallet.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    } else
+
+                        Toast.makeText(CashToWallet.this, aFalse, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(CashToWallet.this, e.toString(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void api_mpin_final() {
 
 
         try {
@@ -994,8 +1233,8 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("walletOwnerCode", walletOwnerCode_mssis_agent);
-            jsonObject.put("senderCode", "1000001709");
-            jsonObject.put("receiverCode", "1000002794");
+            jsonObject.put("senderCode",senderCode_from_senderApi);
+            jsonObject.put("receiverCode",receivercode_from_receiverAPi);
             jsonObject.put("fromCurrencyCode", "100062");  // Hard Code according  to Deepak
             jsonObject.put("toCurrencyCode", "100062");   // Hard Code according  to Deepak
             jsonObject.put("amount", amountstr);
@@ -1008,7 +1247,6 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             jsonObject.put("serviceCode", serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);
-            jsonObject.put("sendCountryCode","100092");
             jsonObject.put("receiveCountryCode","100092");
             jsonObject.put("firstName",firstname_destinationStr);
             jsonObject.put("mobileNumber",mobileNoStr);
@@ -1127,6 +1365,11 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         fees_amount = exchangeRate.getString("fee");
                         rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
 
+
+                        edittext_amount_pay.setEnabled(false);
+                        edittext_amount_pay.setText("Fr "+amountstr);
+                        convertionRate_first_page.setText("Fr "+exchangeRate.getString("value"));
+
                         if(exchangeRate.has("taxConfigurationList"))
                         {
                             JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
@@ -1138,6 +1381,10 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         else {
                             tax_financial = exchangeRate.getString("value");
                         }
+
+
+                        tax_first_page.setText("Fr "+tax_financial);
+                        fees_first_page.setText("Fr "+fees_amount);
 
 
                         rp_tv_financialTax.setText("Fr "+tax_financial);
@@ -1159,15 +1406,13 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         rp_tv_transactionAmount.setText("Fr "+amountstr);
                         rp_tv_amount_to_be_paid.setText("Fr "+amountstr);
 
+                        amountTobeCharged_first_page.setText("Fr "+totalAmount_str);
 
-
-                        ll_page_1.setVisibility(View.GONE);
-                        ll_reviewpage.setVisibility(View.VISIBLE);
-                        ll_receiptPage.setVisibility(View.GONE);
-
-
-
-
+//
+//                        ll_page_1.setVisibility(View.GONE);
+//                        ll_reviewpage.setVisibility(View.VISIBLE);
+//                        ll_receiptPage.setVisibility(View.GONE);
+//
 
 
 
@@ -1212,7 +1457,8 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                         MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
 
-                        api_serviceProvider();
+                        api_idProof();
+
 
 
                     } else {
@@ -1231,7 +1477,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                         MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
 
-                        mpin_final_api();
+                        api_sender();
 
                     } else {
                         Toast.makeText(CashToWallet.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();

@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.agent.cashmoovui.activity.FraisDeServices;
 import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
@@ -136,10 +138,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
-                    Intent i = new Intent(MainActivity.this, WalletScreen.class);
 
+
+                    Toast.makeText(MainActivity.this,"Coming Soon.....", Toast.LENGTH_SHORT).show();
+
+                    Intent i = new Intent(MainActivity.this, WalletScreen.class);
                     startActivity(i);
-                    // finish();
+
                 }
 
                 if (bottomId == 2) {

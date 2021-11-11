@@ -118,6 +118,8 @@
         <entry key="app/src/main/res/layout/activity_showpopup.xml" value="0.12916666666666668" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.18020833333333333" />
         <entry key="app/src/main/res/layout/activity_spash_screen.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_spash_screen_permission.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/activity_transfer_float.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_transfer_option.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_verify_account_screen.xml" value="0.22" />
@@ -148,6 +150,7 @@
         <entry key="app/src/main/res/layout/toolbar_active.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_add_contact.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_w_qr.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/transfer_flaots.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/wallet_recu_pop.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.15052083333333333" />
       </map>

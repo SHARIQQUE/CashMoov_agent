@@ -99,9 +99,14 @@ public class WalletScreen extends AppCompatActivity implements AdapterView.OnIte
                     //  finish();
                 }
                 if (bottomId == 1) {
+
+
+
 //                    Intent i = new Intent(WalletScreen.this, WalletScreen.class);
 //                    startActivity(i);
 //                    finish();
+
+
                 }
                 if (bottomId == 2) {
                     Intent i = new Intent(WalletScreen.this, Profile.class);

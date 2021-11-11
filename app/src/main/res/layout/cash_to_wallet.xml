@@ -147,6 +147,42 @@
 
 
                 <TextView
+
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/conversion_rate"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/convertionRate_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
                     android:layout_width="16dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -172,75 +208,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
 
-
-                <TextView
-
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="@string/total_amount_invoice"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:id="@+id/total_amount_invoice_first_page"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
-
-
-                <TextView
-
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="@string/rate"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:id="@+id/rate_first_page"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -275,6 +243,41 @@
 
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="11dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/amount_to_be_charged_receiptpage"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/amountTobeCharged_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
 
 
             <TextView
@@ -351,7 +354,7 @@
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:paddingBottom="16dp"
                 android:textColor="#323232"
                 />
@@ -1708,7 +1711,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/round_blue"
 
-
+android:visibility="gone"
                 android:padding="10dp"
                 android:text="@string/export_receipt"
                 android:layout_marginLeft="20dp"

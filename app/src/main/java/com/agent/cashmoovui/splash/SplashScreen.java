@@ -1,13 +1,22 @@
 package com.agent.cashmoovui.splash;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -15,7 +24,10 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.LanguageChoose;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
+import java.util.List;
 import java.util.Locale;
 
 
@@ -62,33 +74,61 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
         String firstRunApp = applicationComponentClass.getmSharedPreferences().getString("isFirstRun", "");
 
-            if (firstRunApp.trim().length() == 0) {
 
-                startnow_textview.setVisibility(View.GONE);
 
-                loginPage();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                PermissionListener permissionlistener = new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+
+
+                        String firstRunApp = applicationComponentClass.getmSharedPreferences().getString("isFirstRun", "");
+
+                        if (firstRunApp.trim().length() == 0) {
+                            startnow_textview.setVisibility(View.GONE);
+                            loginPage();
+                        }
+
+                        else if (firstRunApp.equalsIgnoreCase("YES")) {
+                            startnow_textview.setVisibility(View.GONE);
+                            loginPage();
+                        }
+
+                        else if (firstRunApp.equalsIgnoreCase("NO")) {
+                            startnow_textview.setVisibility(View.GONE);
+                            loginPage();
+                        }
+
+                        else if (firstRunApp.equalsIgnoreCase("NO_LOGINPIN"))
+                        {
+                            startnow_textview.setVisibility(View.GONE);
+                            loginPage();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionDenied(List<String> deniedPermissions) {
+                        Toast.makeText(SplashScreen.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT)
+                                .show();
+                    }
+
+
+                };
+
+                TedPermission.with(SplashScreen.this)
+                        .setPermissionListener(permissionlistener)
+                        .setDeniedMessage("If you reject permission, you can not use this service.\n\nPlease turn on permissions at [Setting] > [Permission]")
+                        .setGotoSettingButtonText("Go to settings")
+                        .setPermissions(CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE)
+                        .check();
+
+                // This method will be executed once the timer is over
+
             }
-
-            else if (firstRunApp.equalsIgnoreCase("YES")) {
-
-                startnow_textview.setVisibility(View.GONE);
-
-                loginPage();
-            }
-
-            else if (firstRunApp.equalsIgnoreCase("NO")) {
-
-                startnow_textview.setVisibility(View.GONE);
-
-                loginPage();
-            }
-
-            else if (firstRunApp.equalsIgnoreCase("NO_LOGINPIN"))
-            {
-                startnow_textview.setVisibility(View.GONE);
-
-                loginPage();
-            }
+        }, 2000);
 
 
 
@@ -156,4 +196,32 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+
+    private boolean checkPermission_camera() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            return false;
+        }
+        return true;
+    }
+
+    private void requestPermission_read_external_storage() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+    }
+
+    private boolean checkPermission_read_external_storage() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            return false;
+        }
+        return true;
+    }
+    private void requestPermission_camera() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 101);
+    }
+
+
 }
