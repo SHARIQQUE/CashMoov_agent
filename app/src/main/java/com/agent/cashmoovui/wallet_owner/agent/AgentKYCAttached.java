@@ -165,8 +165,8 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
                     return;
                 }
 
-                intent = new Intent(agentkycattachedC, SetPin.class);
-                intent.putExtra("CHECKINTENTSETPIN","AgentKYC");
+                intent = new Intent(agentkycattachedC, AgentSignature.class);
+                //intent.putExtra("CHECKINTENTSETPIN","AgentKYC");
                 startActivity(intent);
                 finish();
 

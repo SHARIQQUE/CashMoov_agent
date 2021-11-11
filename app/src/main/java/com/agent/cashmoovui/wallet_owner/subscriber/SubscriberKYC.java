@@ -219,18 +219,18 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     jsonObject.put("ownerName",etFname.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
                     jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-                    jsonObject.put("idExpiryDate","");
+                    jsonObject.put("idExpiryDate","2021-11-09");
                     jsonObject.put("email",etEmail.getText().toString().trim());
                     jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
                     jsonObject.put("idProofNumber",etProofNo.getText().toString().trim());
                     jsonObject.put("idProofTypeCode",idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
-                    jsonObject.put("issuingCountryCode","");
+                    jsonObject.put("issuingCountryCode","100092");
                     jsonObject.put("registerCountryCode","100092");
-                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
-                    jsonObject.put("city",etCity.getText().toString().trim());
+//                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
+//                    jsonObject.put("city",etCity.getText().toString().trim());
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", subscriberkycC));
-                    jsonObject.put("notificationTypeCode","");
+                    jsonObject.put("notificationTypeCode","100000");
                     jsonObject.put("occupationTypeCode","");
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.SubscriberCode);
 

@@ -170,8 +170,8 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
                     return;
                 }
 
-                intent = new Intent(branchkycattachedC, SetPin.class);
-                intent.putExtra("CHECKINTENTSETPIN","BranchKYC");
+                intent = new Intent(branchkycattachedC, BranchSignature.class);
+                //intent.putExtra("CHECKINTENTSETPIN","BranchKYC");
                 startActivity(intent);
                 finish();
 

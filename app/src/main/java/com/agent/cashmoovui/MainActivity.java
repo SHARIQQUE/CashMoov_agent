@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agent.cashmoovui.activity.FraisDeServices;
+import com.agent.cashmoovui.apiCalls.API;
+import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
@@ -24,6 +26,10 @@ import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -97,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvClick.setOnClickListener(this);
 
         tvBalance = findViewById(R.id.tvBalance);
+        tvBalance.setOnClickListener(this);
 
         ll_cashIn = (LinearLayout) findViewById(R.id.ll_cashIn);
         ll_cashIn.setOnClickListener(this);
@@ -161,6 +168,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        callApiWalletList();
+
 
     }
 
@@ -203,7 +212,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tvClick.setVisibility(View.GONE);
                 tvBalance.setVisibility(View.VISIBLE);
                 break;
-
+            case R.id.tvBalance:
+                tvClick.setVisibility(View.VISIBLE);
+                tvBalance.setVisibility(View.GONE);
+                break;
             case R.id.ll_cashIn:
                 i = new Intent(MainActivity.this, CashIn.class);
                 startActivity(i);
@@ -250,14 +262,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
 
-
-
-
-
-
         }
     }
 
+    private void callApiWalletList() {
+        try {
+            MyApplication.showloader(MainActivity.this,"Please wait!");
+            API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            System.out.println("MiniStatement response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                    if(jsonObject.has("walletList") &&jsonObject.optJSONArray("walletList")!=null){
+                                        JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletList");
+                                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                            if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
+                                                if(data.optString("currencyCode").equalsIgnoreCase("100062")) {
+                                                    tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+
+
+                                } else {
+                                    MyApplication.showToast(MainActivity.this,jsonObject.optString("resultDescription"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
     @Override
     public void onBackPressed() {

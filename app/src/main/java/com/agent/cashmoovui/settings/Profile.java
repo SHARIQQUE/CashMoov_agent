@@ -19,11 +19,15 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.ShowProfileQr;
+import com.agent.cashmoovui.apiCalls.API;
+import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.pin_change.ChangePin;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.bumptech.glide.BuildConfig;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -160,13 +164,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
 
-      //  String lastName= MyApplication.getSaveString("firstName",profileC)+" "+MyApplication.getSaveString("lastName",profileC);
-        String add= MyApplication.getSaveString("issuingCountryName",profileC);
-        String num= MyApplication.getSaveString("mobile",profileC);
+        String lastName= MyApplication.getSaveString("firstName",profileC)+" "+MyApplication.getSaveString("lastName",profileC);
+        //String add= MyApplication.getSaveString("issuingCountryName",profileC);
+        //String num= MyApplication.getSaveString("mobile",profileC);
         String firstName= MyApplication.getSaveString("firstName",profileC);
-
-
-        number.setText(num);
+       // number.setText(num);
 
 
         if(firstName.equalsIgnoreCase(""))
@@ -186,9 +188,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             name.setText(firstName);
 
         }
-
-
-        etAddress.setText(add);
+//
+//
+//        etAddress.setText(add);
 
 
         bottomBar.setItemActiveIndex(2);
@@ -215,6 +217,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 return true;
             }
         });
+
+        callAPIWalletOwnerDetails();
 
         setOnCLickListener();
 
@@ -284,12 +288,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.linChangePin:
-
-
-
                 intent = new Intent(profileC, ChangePin.class);
                 startActivity(intent);
-
 
                 break;
 
@@ -317,8 +317,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 }
 
 
-
-
                 break;
 
             case R.id.linReset:
@@ -327,6 +325,67 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
         }
+    }
+
+
+    public void callAPIWalletOwnerDetails(){
+        API.GET("ewallet/api/v1/walletOwner/"+MyApplication.getSaveString("walletOwnerCode", profileC), new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                    //name.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName","N/A"));
+                    etAddress.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryName","N/A"));
+                    number.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
+
+                    callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
+                }else{
+                    MyApplication.showToast(profileC,jsonObject.optString("resultDescription"));
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(profileC,aFalse);
+            }
+        });
+    }
+
+    private void callApiFromCurrency(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+                                    currency.setText(jsonObject.optJSONObject("country").optString("currencyCode"));
+                                    //fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
+
+
+                                } else {
+                                    MyApplication.showToast(profileC,jsonObject.optString("resultDescription", "  "));
+                                }
+                            }
+
+                            // callApiBenefiCurrency();
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 
