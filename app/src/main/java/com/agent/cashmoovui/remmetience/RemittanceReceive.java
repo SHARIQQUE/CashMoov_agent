@@ -474,7 +474,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
     private void api_confcode() {
 
-        MyApplication.showloader(RemittanceReceive.this, getString(R.string.getting_user_info));
+     //   MyApplication.showloader(RemittanceReceive.this, getString(R.string.getting_user_info));
 
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/holdingAccount/confirmationCode/" + confirmationCodeStr, languageToUse, new Api_Responce_Handler() {

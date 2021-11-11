@@ -222,6 +222,11 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+    public static JSONArray taxConfigurationList;
+
+
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -385,6 +390,8 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         total_amount_invoice_first_page.setText("0.0");
                         rate_first_page.setText("0.0");
                         tax_first_page.setText("0.0");
+
+
 
 
                     } else {

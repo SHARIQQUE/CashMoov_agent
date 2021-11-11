@@ -49,7 +49,7 @@ public class LanguageChoose extends AppCompatActivity implements View.OnClickLis
         languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
 
         if (languageToUse.trim().length() == 0) {
-            languageToUse = "fr";
+            languageToUse = "en";
         }
 
         Locale locale = new Locale(languageToUse);

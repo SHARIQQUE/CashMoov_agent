@@ -40,7 +40,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
 
         if (languageToUse.trim().length() == 0) {
-            languageToUse = "fr";
+            languageToUse = "en";
         }
 
         Locale locale = new Locale(languageToUse);

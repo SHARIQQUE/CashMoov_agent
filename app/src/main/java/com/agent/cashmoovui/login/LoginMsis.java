@@ -271,16 +271,18 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             if (checkPermission_camera()) {
 
                                 if (checkPermission_read_external_storage()) {
-                                    if (checkPermission_write_external_storage()) {
+
+
+                                  //  if (checkPermission_write_external_storage()) {
 
                                         MyApplication.showloader(LoginMsis.this, getString(R.string.getting_user_info));
 
                                         all_api();
 
 
-                                    } else {
-                                        requestPermission_write_external_storage();
-                                    }
+//                                    } else {
+//                                        requestPermission_write_external_storage();
+//                                    }
                                 } else {
                                     requestPermission_read_external_storage();
                                 }

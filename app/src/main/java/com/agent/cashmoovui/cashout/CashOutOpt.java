@@ -32,7 +32,7 @@ public class CashOutOpt extends AppCompatActivity implements View.OnClickListene
         languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
 
         if (languageToUse.trim().length() == 0) {
-            languageToUse = "fr";
+            languageToUse = "en";
         }
 
         Locale locale = new Locale(languageToUse);

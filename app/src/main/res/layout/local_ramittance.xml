@@ -97,7 +97,7 @@
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"
-                android:maxLength="10"
+                android:maxLength="5"
                 android:paddingBottom="16dp"
                 android:hint="@string/amount"
                 android:textColor="#323232"
@@ -131,11 +131,48 @@
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"
-                android:maxLength="10"
+                android:maxLength="20"
                 android:paddingBottom="16dp"
                 android:hint="@string/amount_to_pay"
                 android:textColor="#323232"
                 android:textSize="15sp" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/conversion_rate"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/convertionRate_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
 
 
             <LinearLayout
@@ -172,11 +209,81 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/tax"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/tax_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/amount_to_be_charged_receiptpage"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/amountTobecharged_charged_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
+                android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textColor="#29304d"

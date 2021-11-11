@@ -166,9 +166,11 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     private void api_currency() {
 
-        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",OverdraftLimit.this);
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+userCode_agentCode_from_mssid,languageToUse,new Api_Responce_Handler() {
+
+        String walletOwnerCode_from_msis =  MyApplication.getSaveString("walletOwnerCode",OverdraftLimit.this);
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+walletOwnerCode_from_msis,languageToUse,new Api_Responce_Handler() {
 
             @Override
             public void success(JSONObject jsonObject) {
@@ -270,7 +272,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
+
                         String userCode_from_walletCode = walletOwnerUser.getString("userCode");
+                        walletOwnerName_fromServer = walletOwnerUser.getString("firstName");
+
 
                         api_wallet_walletOwner(userCode_from_walletCode);
 
@@ -278,6 +283,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                     } else {
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
+
 
 
                 } catch (Exception e) {
@@ -378,11 +384,11 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     private void api_creditLimitAllocation() {
 
-        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",OverdraftLimit.this);
+        String walletOwnerCode_from_mssid =  MyApplication.getSaveString("walletOwnerCode",OverdraftLimit.this);
 
 
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitAllocation/all?walletOwnerCode="+userCode_agentCode_from_mssid, languageToUse, new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitAllocation/all?walletOwnerCode="+walletOwnerCode_from_mssid, languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -404,7 +410,6 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
 
                             String walletOwnerCode = jsonObject3.getString("walletOwnerCode");
-                            walletOwnerName_fromServer = jsonObject3.getString("walletOwnerName");
                         }
 
 

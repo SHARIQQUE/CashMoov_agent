@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Tableau de bord"
+                android:text="@string/dashboard"
                 android:textColor="#29304d"
                 android:textSize="@dimen/_13sdp"  />
 
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_regular"
                 android:lineSpacingExtra="3sp"
-                android:text="Rapport"
+                android:text="@string/report"
                 android:textColor="#000"
                 android:textSize="@dimen/_11sdp" />
 
@@ -219,7 +219,7 @@
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Nos operations"
+                android:text="@string/our_operation"
                 />
 
             <LinearLayout

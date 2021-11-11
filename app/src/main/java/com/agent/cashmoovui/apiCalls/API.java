@@ -44,7 +44,6 @@ public class API {
     public static String BASEURL="http://202.131.144.130:8081/";    // QA
 
 
-
     public static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build();

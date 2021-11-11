@@ -55,7 +55,7 @@
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Choisir l'operation"
+                android:text="@string/chooseOption"
                 />
 
 

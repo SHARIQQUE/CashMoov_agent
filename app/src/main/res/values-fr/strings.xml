@@ -636,9 +636,17 @@
     <string name="overdraft_wallet">Découvert</string>
 
 
-    <string name="report">Report</string>
-    <string name="dashboard_mainpage">Dashboard</string>
-    <string name="our_operation">Our Operations</string>
+    <string name="report">Rapport</string>
+    <string name="dashboard_mainpage">Tableau de bord</string>
+    <string name="our_operation">Nos Operation</string>
+    <string name="cashout_option">Option de retrait</string>
+    <string name="chooseOption">Choisir l\'operation</string>
+    <string name="Cash_Out">Encaisser</string>
+    <string name="cashout_code">Code de retrait</string>
+    <string name="sending_country">Pays d\'envoi</string>
+    <string name="sending_country_star">Pays d\'envoi*</string>
+
+
 
 
 </resources>

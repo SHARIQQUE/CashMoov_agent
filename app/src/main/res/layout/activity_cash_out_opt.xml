@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Cash Out Option"
+                android:text="@string/cashout_option"
                 android:textColor="#29304d"
                 android:textSize="@dimen/_15sdp" />
 
@@ -56,7 +56,7 @@
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="Choisir l'operation"
+                android:text="@string/chooseOption"
                 />
 
             <LinearLayout
@@ -98,7 +98,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="center_horizontal"
-                            android:text="Cash Out"
+                            android:text="@string/cash_Out"
                             />
 
                     </LinearLayout>
@@ -146,7 +146,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:fontFamily="@font/aileron_semibold"
                             android:gravity="center_horizontal"
-                            android:text="Cash Out Code"
+                            android:text="@string/cash_out_code"
                             />
 
 

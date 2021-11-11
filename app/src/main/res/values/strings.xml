@@ -636,14 +636,16 @@
     <string name="commision_wallet">Commision wallet</string>
     <string name="overdraft_wallet">Over draft</string>
 
+    <string name="report">Report</string>
+    <string name="dashboard_mainpage">Dashboard</string>
+    <string name="our_operation">Our Operations</string>
+    <string name="cashout_option">Cash Out Option</string>
+    <string name="chooseOption">Choose Option</string>
+    <string name="Cash_Out">Cash Out</string>
+    <string name="cashout_code">Cash Out Code</string>
 
-    <string name="report">Rapport</string>
-    <string name="dashboard_mainpage">Tableau de bord</string>
-    <string name="our_operation">Nos Operation</string>
-
-
-
-
+    <string name="sending_country">Sending country</string>
+    <string name="sending_country_star">Sending country*</string>
 
 
 </resources>

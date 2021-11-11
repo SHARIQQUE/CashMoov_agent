@@ -207,6 +207,41 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="left"
+                    android:text="@string/conversion_rate"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/convertionRate_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
                     android:text="@string/fee_receiptPage"
                     android:textColor="@android:color/black"
                     android:textSize="16dp"
@@ -226,73 +261,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
 
-
-                <TextView
-
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="@string/total_amount_invoice"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:id="@+id/total_amount_invoice_first_page"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
-
-
-                <TextView
-
-                    android:layout_width="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="@string/rate"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:id="@+id/rate_first_page"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -328,11 +297,47 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/amount_to_be_charged_receiptpage"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/amountTobeCharged_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
+                android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textColor="#29304d"

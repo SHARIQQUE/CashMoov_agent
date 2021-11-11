@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +33,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.RemittanceReceive;
 import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -64,10 +67,10 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-    TextView receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionFees, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView convertionRate_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionFees, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount,fees_first_page, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,amountTobecharged_charged_first_page, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout;
 
     MyApplication applicationComponentClass;
@@ -77,8 +80,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-    String mobileNoStr = "", amountstr = "",currencyCode_agent="",countryName_agent ="",currencyName_agent="",countryCode_agent="",genderSelect_name = "",provider_select_name = "", genderSelect_code = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
-    String firstname_destinationStr="",senderNameStr="",amountToPayStr="",tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
+    String receivercode_from_receiverAPi="",senderCode_from_senderApi="",mobileNoStr = "", amountstr = "",currencyCode_agent="",countryName_agent ="",currencyName_agent="",countryCode_agent="",genderSelect_name = "",provider_select_name = "", genderSelect_code = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
+    String firstname_destinationStr="",senderNameStr="",amountToPayStr="",tax_financial = "", fees_amount="", totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "", convertionFeesStr="",reasonOfSending="";
@@ -149,9 +152,11 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
             rp_tv_convertionFees = (TextView) findViewById(R.id.rp_tv_convertionFees);
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
+            fees_first_page = (TextView) findViewById(R.id.fees_first_page);
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_paid = (TextView) findViewById(R.id.rp_tv_amount_to_be_paid);
+            amountTobecharged_charged_first_page = (TextView) findViewById(R.id.amountTobecharged_charged_first_page);
             rp_tv_comment = (TextView) findViewById(R.id.rp_tv_comment);
 
             et_fp_desinationName = (EditText) findViewById(R.id.et_fp_desinationName);
@@ -172,6 +177,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
             receiptPage_tv_senderCurrency = (TextView) findViewById(R.id.receiptPage_tv_senderCurrency);
+            tax_first_page = (TextView) findViewById(R.id.tax_first_page);
+            convertionRate_first_page = (TextView) findViewById(R.id.convertionRate_first_page);
             receiptPage_tv_BenificiaryCurrency = (TextView) findViewById(R.id.receiptPage_tv_BenificiaryCurrency);
 
             receiptPage_tv_senderCode = (TextView) findViewById(R.id.receiptPage_tv_senderCode);
@@ -213,6 +220,46 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             } else {
                 Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
+
+
+
+
+
+            edittext_amount.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(LocalRemittance.this)) {
+
+                        amountstr = edittext_amount.getText().toString().trim();
+
+                        if (amountstr.length()>1) {
+
+                            api_exchangeRate();
+
+                        }
+
+                        else {
+                            edittext_amount_pay.setText(getString(R.string.amount_to_pay));;
+                        }
+
+                    } else {
+                        Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
 
 
         } catch (Exception e) {
@@ -428,6 +475,9 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         CustomeBaseAdapterProvided recordAdapter2 = new CustomeBaseAdapterProvided(LocalRemittance.this, provided_array);
                         spinner_provider.setAdapter(recordAdapter2);
 
+                        api_serviceProvider();
+
+
 
                     } else {
                         Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -529,6 +579,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
         reasonOfSending = et_fp_reason_sending.getText().toString().trim();
 
+
+
   
 
 
@@ -625,80 +677,6 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    private void subscriber_details_api_walletownerUser() {
-
-        String walletOwnerCategoryCode = MyApplication.getSaveString("walletOwnerCategoryCode", LocalRemittance.this);
-
-        walletOwnerCategoryCode = "100010"; // HARD CODE FINAL ACORDING TO PARVEEN
-
-
-        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + mobileNoStr + "&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
-
-                MyApplication.hideLoader();
-
-                try {
-
-                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
-
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
-
-                    if (resultCode.equalsIgnoreCase("0")) {
-
-
-                        //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
-
-
-                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
-
-                            rp_tv_senderDocument.setText(jsonObject2.getString("email"));
-                            rp_tv_sending_currency.setText(jsonObject2.getString("issuingCountryName"));
-
-                            receivernameStr = jsonObject2.getString("ownerName");
-                            rp_tv_beneficiaryCurrency.setText(receivernameStr);
-
-
-//                                JSONObject walletTransfer = jsonObject.getJSONObject("walletTransfer");
-//                                JSONObject srcWalletOwner = walletTransfer.getJSONObject("srcWalletOwner");
-//                                rp_tv_businessType.setText(srcWalletOwner.getString("businessTypeName"));
-
-
-                        }
-
-                        api_currency();
-
-                    } else {
-                        Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
-                        //  finish();
-                    }
-
-
-                } catch (Exception e) {
-                    Toast.makeText(LocalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-
-            }
-
-
-            @Override
-            public void failure(String aFalse) {
-
-                MyApplication.hideLoader();
-                Toast.makeText(LocalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        });
-
-
-    }
 
     private void api_currency() {
 
@@ -736,7 +714,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-                        api_exchangeRate();
+
+                        api_allByCriteria();
 
 
                     } else {
@@ -797,7 +776,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         }
 
-                        api_idProof();
+
 
                     } else {
                         Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -981,6 +960,205 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
     }
 
+    private void api_receiver() {
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+
+
+//            {
+//                "firstName":"saasasas",
+//                    "lastName":"asasassasa",
+//                    "email":"",
+//                    "mobileNumber":"455445455445",
+//                    "idProofTypeCode":"",
+//                    "idProofNumber":"",
+//                    "idExpiryDate":null,
+//                    "dateOfBirth":null,
+//                    "countryCode":"100092",
+//                    "regionCode":"",
+//                    "city":"",
+//                    "address":"",
+//                    "issuingCountryCode":"100092",
+//                    "gender":"M
+//            }
+
+
+            jsonObject.put("firstName", firstname_destinationStr);
+            jsonObject.put("lastName", ""); // No in UI
+            jsonObject.put("email", "");    // No in UI
+            jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
+            jsonObject.put("idProofTypeCode", "");    // No in UI
+            jsonObject.put("idProofNumber", "");    // No in UI By Defualt
+            jsonObject.put("idExpiryDate", "");    // No in UI
+            jsonObject.put("dateOfBirth", "");    // No in UI
+            jsonObject.put("countryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("regionCode",""); // No in UI
+            jsonObject.put("city","");   // No in UI
+            jsonObject.put("address","");   // No in UI
+            jsonObject.put("issuingCountryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("gender",genderSelect_name);
+
+
+
+            API.POST_REMMIT_LOCAL("ewallet/api/v1/customer/receiver", jsonObject, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
+
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+                            JSONObject jsonObject1 = jsonObject.getJSONObject("customer");
+
+                            receivercode_from_receiverAPi = jsonObject1.getString("code");
+
+                            mpin_final_api();
+
+                        } else {
+                            Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(LocalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(LocalRemittance.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    } else
+
+                        Toast.makeText(LocalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(LocalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void api_sender() {
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+
+
+//            {
+//                "firstName":"saasasas",
+//                    "lastName":"asasassasa",
+//                    "email":"",
+//                    "mobileNumber":"455445455445",
+//                    "idProofTypeCode":"",
+//                    "idProofNumber":"",
+//                    "idExpiryDate":null,
+//                    "dateOfBirth":null,
+//                    "countryCode":"100092",
+//                    "regionCode":"",
+//                    "city":"",
+//                    "address":"",
+//                    "issuingCountryCode":"100092",
+//                    "gender":"M
+//            }
+
+
+            jsonObject.put("firstName", senderNameStr);
+            jsonObject.put("lastName", ""); // No in UI
+            jsonObject.put("email", "");    // No in UI
+            jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
+            jsonObject.put("idProofTypeCode", "100004");   // No in UI By Defualt (is mandatory)
+            jsonObject.put("idProofNumber", "idProofNumber");    // No in UI By Defualt (is mandatory)
+            jsonObject.put("idExpiryDate", "");    // No in UI By Defualt (is mandatory)
+            jsonObject.put("dateOfBirth", "");     // No in UI By Defualt (is mandatory)
+            jsonObject.put("countryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("regionCode","100018");  // No in UI By Defualt (is mandatory)
+            jsonObject.put("city","city");   // No in UI By Defualt (is mandatory)
+            jsonObject.put("address","address");   // No in UI By Defualt (is mandatory)
+            jsonObject.put("issuingCountryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("gender",genderSelect_name);
+
+
+
+            API.POST_REMMIT_LOCAL("ewallet/api/v1/customer/sender", jsonObject, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
+
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+                            JSONObject jsonObject1 = jsonObject.getJSONObject("customer");
+
+                            senderCode_from_senderApi = jsonObject1.getString("code");
+
+
+                            api_receiver();
+
+                        } else {
+                            Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(LocalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(LocalRemittance.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    } else
+
+                        Toast.makeText(LocalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (Exception e) {
+            Toast.makeText(LocalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
 
     private void mpin_final_api() {
 
@@ -990,8 +1168,10 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
             jsonObject.put("walletOwnerCode", walletOwnerCode_mssis_agent);
             jsonObject.put("transactionType", "SENDREMITTANCE");
-            jsonObject.put("senderCode", "1000001684");
-            jsonObject.put("receiverCode", "1000001220");
+
+            jsonObject.put("senderCode", senderCode_from_senderApi); // 1000001658 annu
+            jsonObject.put("receiverCode", receivercode_from_receiverAPi);
+
             jsonObject.put("fromCurrencyCode", "100062");  // Hard Code according  to Deepak
             jsonObject.put("toCurrencyCode", "100062");   // Hard Code according  to Deepak
             jsonObject.put("amount", amountstr);
@@ -1124,12 +1304,25 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                     //   Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
                         rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
+                        fees_first_page.setText("Fr "+fees_amount);
+
+                        edittext_amount_pay.setEnabled(false);
+
+                        convertionRate_first_page.setText("Fr "+exchangeRate.getString("value"));
+
+
+
+                        amountToPayStr=amountstr;
+
+
+                        edittext_amount_pay.setText("Fr "+amountstr);
+
 
                         if(exchangeRate.has("taxConfigurationList"))
                         {
@@ -1142,6 +1335,10 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         else {
                             tax_financial = exchangeRate.getString("value");
                         }
+
+                        tax_first_page.setText("Fr "+tax_financial);
+
+
 
 
                         rp_tv_financialTax.setText("Fr "+tax_financial);
@@ -1163,7 +1360,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         rp_tv_transactionAmount.setText("Fr "+amountstr);
                         rp_tv_amount_to_be_paid.setText("Fr "+amountstr);
 
-                        api_allByCriteria();
+                        amountTobecharged_charged_first_page.setText("Fr "+totalAmount_str);
+
 
 
 
@@ -1208,8 +1406,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         MyApplication.showloader(LocalRemittance.this, getString(R.string.getting_user_info));
 
-                        api_serviceProvider();
-
+                        api_idProof();
 
                     } else {
                         Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
@@ -1227,7 +1424,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         MyApplication.showloader(LocalRemittance.this, getString(R.string.getting_user_info));
 
-                        mpin_final_api();
+                       api_sender();
 
                     } else {
                         Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();

@@ -116,12 +116,18 @@ public class LoginPin extends AppCompatActivity {
 
                 if (checkPermission_camera()) {
                     if (checkPermission_read_external_storage()) {
-                        if (checkPermission_write_external_storage()) {
+
+                       // if (checkPermission_write_external_storage()) {
+
                             callApiLoginPass();
-                        } else {
-                            requestPermission_write_external_storage();
-                        }
-                    } else {
+
+
+//                        } else {
+//                            requestPermission_write_external_storage();
+//                        }
+                    }
+
+                    else {
                         requestPermission_read_external_storage();
                     }
                 } else {
@@ -194,11 +200,14 @@ public class LoginPin extends AppCompatActivity {
                 if (checkPermission_camera()) {
 
                     if (checkPermission_read_external_storage()) {
-                        if (checkPermission_write_external_storage()) {
+
+                       // if (checkPermission_write_external_storage()) {
+
                             callApiLoginPassF();
-                        } else {
-                            requestPermission_write_external_storage();
-                        }
+
+//                        } else {
+//                            requestPermission_write_external_storage();
+//                        }
                     } else {
                         requestPermission_read_external_storage();
                     }
