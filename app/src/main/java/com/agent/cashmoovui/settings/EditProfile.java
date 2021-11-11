@@ -114,6 +114,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         String firstName=MyApplication.getSaveString("firstName",editprofileC);
         String lastName=  MyApplication.getSaveString("lastName",editprofileC);
+        String issuingCountryName=MyApplication.getSaveString("issuingCountryName",editprofileC);
 
       if(lastName.equalsIgnoreCase(""))
       {
@@ -217,15 +218,16 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 Data = data;
-                profile_img.setImageBitmap(imageBitmap);
+
 
                 Uri cameraImage = getImageUri(getApplicationContext(), imageBitmap);
-
-
+                //profile_img.setImageURI(cameraImage);
+                Glide.with(this).load(cameraImage).into(profile_img);
 
                 file = new File(getRealPathFromURI(cameraImage).toString());
                 isSelect=true;
-                int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
+                int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+
 
                 //  btnFrontUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
@@ -243,7 +245,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             if (resultCode == RESULT_OK) {
 
                 Uri selectedImage = data.getData();
-                profile_img.setImageURI(selectedImage);
+                Glide.with(this).load(selectedImage).into(profile_img);
                 file = new File(getRealPathFromURI(selectedImage).toString());
                 isSelect=true;
 
@@ -316,6 +318,9 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                                             .centerCrop()
                                             .placeholder(R.drawable.profil)
                                             .error(R.drawable.profil);
+                                    MyApplication.ImageURL=API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
+                                            MyApplication.getSaveString("walletOwnerCode",editprofileC)+"/";
+
                                     if (ImageName != null && ImageName.length() > 1) {
                                         String image_url = MyApplication.ImageURL + ImageName;
                                         Glide.with(editprofileC).load(image_url).apply(options).into(profile_img);

@@ -2,6 +2,7 @@ package com.agent.cashmoovui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +21,10 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.CountryInfoModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,6 +49,25 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_phone_number_registration_screen);
         phnoregistrationccreenC = this;
         getIds();
+    }
+
+    String FCM_TOKEN;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (!task.isSuccessful()) {
+                    FCM_TOKEN = task.getException().getMessage();
+                    Log.w("FCM TOKEN Failed", task.getException());
+                } else {
+                    FCM_TOKEN = task.getResult().getToken();
+                    Log.i("FCM TOKEN", FCM_TOKEN);
+                }
+            }
+        });
+
     }
 
     private void getIds() {

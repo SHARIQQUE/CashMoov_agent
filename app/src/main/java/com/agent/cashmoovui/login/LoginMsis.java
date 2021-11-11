@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,6 +27,10 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONObject;
 
@@ -199,6 +204,26 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
 
     }
+
+    String FCM_TOKEN;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (!task.isSuccessful()) {
+                    FCM_TOKEN = task.getException().getMessage();
+                    Log.w("FCM TOKEN Failed", task.getException());
+                } else {
+                    FCM_TOKEN = task.getResult().getToken();
+                    Log.i("FCM TOKEN", FCM_TOKEN);
+                }
+            }
+        });
+
+    }
+
 
     boolean validation_mobile_Details()
     {
@@ -420,6 +445,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             MyApplication.saveString("EMAIL",EMAIL,LoginMsis.this);
                             MyApplication.saveString("USERCODE",USERCODE,LoginMsis.this);
                             MyApplication.saveString("NTTYPECODE",NTTYPECODE,LoginMsis.this);
+
 
 
                             if (firstLoginStatus.equalsIgnoreCase("Y"))

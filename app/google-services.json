@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "645123873158",
+    "project_id": "cashmoov-agent",
+    "storage_bucket": "cashmoov-agent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645123873158:android:0078830ef3144d7daf7407",
+        "android_client_info": {
+          "package_name": "com.agent.cashmoovui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645123873158-ho7r6lk7lcjfv06fd47fnmmtdq50lsnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGH7BtrKEJr8QxwEPgEep2tklPb8hzlqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645123873158-ho7r6lk7lcjfv06fd47fnmmtdq50lsnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

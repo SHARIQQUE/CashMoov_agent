@@ -22,12 +22,14 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.apiCalls.API;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.agent.cashmoovui.login.PhoneNumberRegistrationScreen;
 import com.github.florent37.viewtooltip.ViewTooltip;
+import com.google.firebase.FirebaseApp;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
@@ -86,10 +88,12 @@ public class MyApplication extends Application {
         super.onCreate();
         appInstance = this;
 
-        ImageURL="http://202.131.144.129:8081/ewallet/api/v1/fileUpload/download/" +
+
+        ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                 getSaveString("walletOwnerCode",appInstance)+"/";
 
         AndroidNetworking.initialize(getApplicationContext());
+
        /* BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPurgeable = true;
         AndroidNetworking.setBitmapDecodeOptions(options);*/
