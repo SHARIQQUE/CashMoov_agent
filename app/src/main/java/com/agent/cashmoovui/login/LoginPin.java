@@ -251,6 +251,8 @@ public class LoginPin extends AppCompatActivity {
             }
         });
 
+        biometricPrompt.authenticate(promptInfo);
+
     }
 
 

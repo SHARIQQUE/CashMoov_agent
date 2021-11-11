@@ -24,6 +24,9 @@ import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -159,6 +162,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.profil)
+                .error(R.drawable.profil);
+        String ImageName=MyApplication.getSaveString("ImageName", MainActivity.this);
+        if(ImageName!=null&&ImageName.length()>1) {
+            String image_url = MyApplication.ImageURL + ImageName;
+            Glide.with(this).load(image_url).apply(options).into(imgProfile);
+        }
     }
 
     @Override
