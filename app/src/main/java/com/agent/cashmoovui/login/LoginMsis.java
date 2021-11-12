@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -49,6 +52,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
     LinearLayout ll_password;
     String selectButtonType="0";
 
+    boolean  isPasswordVisible;
+
     private static final int PERMISSION_REQUEST_CODE = 200,READ_EXTERNAL_STORAGE=201,WRITE_EXTERNAL_STORAGE=202;
 
     @Override
@@ -91,6 +96,35 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         tv_fingurePrint.setOnClickListener(this);
 
         ll_password = (LinearLayout) findViewById(R.id.ll_password);
+
+        et_password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (et_password.getRight() - et_password.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = et_password.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            et_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            et_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            et_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        et_password.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
 
 
 

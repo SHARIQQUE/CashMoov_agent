@@ -359,7 +359,7 @@
     <string name="please_check_internet">Please Check Internet </string>
     <string name="please_try_again_later">Please try again later</string>
     <string name="pin_change">Pin Change</string>
-    <string name="please_enter_4_digit_mpin">Please enter 4 digit mpin</string>
+    <string name="please_enter_4_digit_mpin">Please enter pin</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="enter_otp_details">Enter the 6-digit OTP code we sent to +224 621 123 123</string>
     <string name="session_expire_60">Session expires in 60 seconds</string>
@@ -405,6 +405,7 @@
 
     <string name="plz_enter_amount">Please enter amount</string>
     <string name="minimum_amount_1000">Minimum amount is 1000</string>
+    <string name="maximum_amount_10000">Maximum amount is 10000</string>
     <string name="otp_has_send_sucessfully_subscriber_register"> OTP has been sent to subscriber registered email id Or mobile number </string>
     <string name="didnot_get_the_Code"> Didnot get the code?</string>
     <string name="resend_it">Resend it</string>
@@ -486,6 +487,7 @@
     <!--   -->
 
     <string name="confirmation_code">Confirmation code</string>
+    <string name="confirmation_code_star">Confirmation code*</string>
     <string name="plz_enter_confirmation_code">Please enter confirmation code</string>
     <string name="sender_details">Sender Details</string>
     <string name="receiver_details_cashout">Receiver Details</string>
@@ -515,6 +517,7 @@
     <string name="device_to_send">Device to send</string>
     <string name="plz_enter_subscriber_no">Please enter subscriber no</string>
     <string name="subscriber_number"> Subscriber no </string>
+    <string name="subscriber_number_new"> Subscriber number </string>
     <string name="trasfer_of_mode">Transfer of Mode  </string>
     <string name="wallet_capital">WALLET</string>
 
@@ -625,7 +628,7 @@
 
 
     <string name="country_star">Country</string>
-    <string name="mobileNumber_star">Mobile number</string>
+    <string name="mobileNumber_star">Mobile number*</string>
     <string name="firstname_star">First name</string>
     <string name="Date_OF_Birth">Date of Birth</string>
     <string name="id_proof_expiryDate">Id Proof expiry date</string>

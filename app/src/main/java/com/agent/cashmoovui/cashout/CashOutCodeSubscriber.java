@@ -9,6 +9,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +34,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.RemittanceReceive;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -42,6 +48,7 @@ import java.util.Locale;
 
 public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnClickListener {
 
+    boolean  isPasswordVisible,isPasswordVisible2;
 
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
@@ -173,7 +180,6 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             confirm_reviewClick_textview.setOnClickListener(this);
             close_receiptPage_textview.setOnClickListener(this);
 
-            edittext_mobileNuber.setEnabled(true);
 
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CashOutCodeSubscriber.this);
@@ -187,6 +193,97 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
+
+            et_mpin.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_mpin.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_mpin.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
+            et_otp.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_otp.getRight() - et_otp.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_otp.getSelectionEnd();
+                            if (isPasswordVisible2) {
+                                // set drawable image
+                                et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_otp.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible2 = false;
+                            } else  {
+                                // set drawable image
+                                et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_otp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible2 = true;
+                            }
+                            et_otp.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
+
+            edittext_amount.setEnabled(false);
+          //  edittext_mobileNuber.setEnabled(false);
+
+            edittext_confirmationCode.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
+
+                        confirmationCodeStr = edittext_confirmationCode.getText().toString().trim();
+
+                        if (confirmationCodeStr.length()==11) {
+
+                            api_confirmaCode();
+                        }
+
+                    } else {
+                        Toast.makeText(CashOutCodeSubscriber.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
 
 
         } catch (Exception e) {
@@ -231,17 +328,6 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
         mpinStr = et_mpin.getText().toString();
 
 
-        if (amountstr.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
-
-            return false;
-        } else if (amountstr.trim().length() < 2) {
-
-            MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
-
-            return false;
-        }
 
 
         if (confirmationCodeStr.isEmpty()) {
@@ -259,15 +345,28 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
         if (mobileNoStr.isEmpty()) {
 
-            MyApplication.showErrorToast(this, getString(R.string.val_phone));
+            MyApplication.showErrorToast(this, getString(R.string.mobileNumber_star));
 
             return false;
         } else if (mobileNoStr.length() < 9) {
 
-            MyApplication.showErrorToast(this, getString(R.string.val_phone));
+            MyApplication.showErrorToast(this, getString(R.string.mobileNumber_star));
 
             return false;
         }
+
+        if (amountstr.isEmpty()) {
+
+            MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
+
+            return false;
+        } else if (amountstr.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
+
+            return false;
+        }
+
 
 
         if (mpinStr.trim().isEmpty()) {
@@ -571,7 +670,8 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                         senderNameAgent = walletOwner.getString("ownerName");
                         rp_tv_senderName.setText(senderNameAgent);
 
-                        confcode_chck_api();
+                        mpin_final_api();
+
 
                     } else {
                         Toast.makeText(CashOutCodeSubscriber.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -600,7 +700,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
     }
 
-    private void confcode_chck_api() {
+    private void api_confirmaCode() {
 
         API.GET_CASHOUT_CONFCODE_DETAILS("ewallet/api/v1/holdingAccount/confirmationCode/" + confirmationCodeStr, languageToUse, new Api_Responce_Handler() {
             @Override
@@ -618,10 +718,14 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                     if (resultCode.equalsIgnoreCase("0")) {
 
 
-                     //   Toast.makeText(CashOutCodeSubscriber.this,"---RAYYAN-"+resultDescription , Toast.LENGTH_SHORT).show();
+                        JSONObject jsonObject1 = new JSONObject(jsonObject.getString("accountHolding"))   ;
+
+                        String sendingAmount_fromApi = jsonObject1.getString("sendingAmount");
+                        edittext_amount.setText(sendingAmount_fromApi);
+
+                        edittext_amount.setEnabled(true);
 
 
-                        mpin_final_api();
 
                     } else {
                         Toast.makeText(CashOutCodeSubscriber.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -761,11 +865,13 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                             receiptPage_sbenificairay_mssidn.setText(MyApplication.getSaveString("USERNAME", CashOutCodeSubscriber.this));
 
 
+                            receiptPage_tv_transactionAmount.setText("Fr " +amountstr);
 
                             receiptPage_tv_amount_to_be_charged.setText("Fr " +remittance_object.getInt("amount"));
                             receiptPage_amount_to_paid_receiptpage.setText("Fr " +remittance_object.getInt("amountToPaid"));
 
-                            receiptPage_tv_transactionAmount.setText("Fr " +amountstr);
+
+
                             receiptPage_tv_fee.setText("Fr "+remittance_object.getInt("fee"));
                             receiptPage_conversion_rate.setText("Fr " +remittance_object.getString("conversionRate"));
                             receiptPage_tv_financialtax.setText("Fr " +remittance_object.getInt("amount"));

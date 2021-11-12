@@ -763,6 +763,8 @@
                     android:backgroundTint="#999999"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:inputType="numberPassword" />
 
 

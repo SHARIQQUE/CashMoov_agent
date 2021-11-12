@@ -3,6 +3,9 @@ package com.agent.cashmoovui.pin_change;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +33,9 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
     EditText et_oldPin, et_newPin,et_confirmPin;
     TextView tv_continue;
+
+
+    boolean isPasswordVisible,isPasswordVisible2,isPasswordVisible3;
 
 
     @Override
@@ -63,6 +69,91 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
 
         tv_continue.setOnClickListener(this);
+
+
+        et_oldPin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (et_oldPin.getRight() - et_oldPin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = et_oldPin.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            et_oldPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            et_oldPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            et_oldPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            et_oldPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        et_oldPin.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        et_newPin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (et_newPin.getRight() - et_newPin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = et_newPin.getSelectionEnd();
+                        if (isPasswordVisible2) {
+                            // set drawable image
+                            et_newPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            et_newPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible2 = false;
+                        } else  {
+                            // set drawable image
+                            et_newPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            et_newPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible2 = true;
+                        }
+                        et_newPin.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        et_confirmPin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (et_confirmPin.getRight() - et_confirmPin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = et_confirmPin.getSelectionEnd();
+                        if (isPasswordVisible3) {
+                            // set drawable image
+                            et_confirmPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            et_confirmPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible3 = false;
+                        } else  {
+                            // set drawable image
+                            et_confirmPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            et_confirmPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible3 = true;
+                        }
+                        et_confirmPin.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
 
     }

@@ -9,6 +9,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -44,6 +47,8 @@ import java.io.FileOutputStream;
 import java.util.Locale;
 
 public class CashOutAgent extends AppCompatActivity implements View.OnClickListener {
+
+    boolean  isPasswordVisible,isPasswordVisible2;
 
 
     public static LoginPin loginpinC;
@@ -183,6 +188,63 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
 
+            et_mpin.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_mpin.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_mpin.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
+
+            et_otp.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_otp.getRight() - et_otp.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_otp.getSelectionEnd();
+                            if (isPasswordVisible2) {
+                                // set drawable image
+                                et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_otp.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible2 = false;
+                            } else  {
+                                // set drawable image
+                                et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_otp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible2 = true;
+                            }
+                            et_otp.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
 
         } catch (Exception e) {
             Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
@@ -225,30 +287,39 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         amountstr = edittext_amount.getText().toString().trim();
 
 
+        if (mobileNoStr.isEmpty()) {
+
+            MyApplication.showErrorToast(this, getString(R.string.subscriber_number_new));
+
+            return false;
+        } else if (mobileNoStr.length() < 9) {
+
+            MyApplication.showErrorToast(this, getString(R.string.subscriber_number_new));
+
+            return false;
+        }
+
         if (amountstr.isEmpty()) {
 
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
 
             return false;
-        } else if (amountstr.trim().length() < 4) {
+        }
 
-            MyApplication.showErrorToast(this, getString(R.string.minimum_amount_1000));
+//        else if (amountstr.trim().length() < 4) {
+//
+//            MyApplication.showErrorToast(this, getString(R.string.minimum_amount_1000));
+//
+//            return false;
+//        }
+
+        if (amountstr.trim().length() > 5) {
+
+            MyApplication.showErrorToast(this, getString(R.string.maximum_amount_10000));
 
             return false;
         }
 
-
-        if (mobileNoStr.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.val_phone));
-
-            return false;
-        } else if (mobileNoStr.length() < 9) {
-
-            MyApplication.showErrorToast(this, getString(R.string.val_phone));
-
-            return false;
-        }
 
 
         return true;
@@ -997,15 +1068,19 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             String NTTYPECODE = MyApplication.getSaveString("NTTYPECODE",CashOutAgent.this);
             String USERCODE = MyApplication.getSaveString("USERCODE",CashOutAgent.this);
 
+            /*
             jsonObject.put("email",EMAIL);
             jsonObject.put("notificationTypeCode",NTTYPECODE);
             jsonObject.put("transTypeCode","101813");      // Temporary Hard Code acording to Praveen
             jsonObject.put("status","Active");
-
             String USER_CODE_FROM_TOKEN_AGENTDETAILS =  MyApplication.getSaveString("userCode", CashOutAgent.this);
-
-           // jsonObject.put("walletOwnerUserCode","101961"); // Temporary Hard Code acording to Praveen
             jsonObject.put("walletOwnerUserCode",USER_CODE_FROM_TOKEN_AGENTDETAILS);
+
+             */
+
+            jsonObject.put("transTypeCode","100001");
+           // jsonObject.put("transTypeCode","101813");
+            jsonObject.put("subscriberWalletOwnerCode",USERCODE);
 
 
             API.POST_GET_OTP("ewallet/api/v1/otp",jsonObject,new Api_Responce_Handler() {
@@ -1116,7 +1191,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             JSONObject jsonObject=new JSONObject();
 
-            jsonObject.put("transTypeCode","101813");      // Temporary Hard Code acording to Praveen
+            jsonObject.put("transTypeCode","100001");      // Temporary Hard Code acording to Praveen
             jsonObject.put("otp",otpStr);
 
 

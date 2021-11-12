@@ -6,7 +6,10 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -43,6 +46,7 @@ public class LoginPin extends AppCompatActivity {
     TextView tvContinue,tvFinger,msgText,tvregister;
     private static final int PERMISSION_REQUEST_CODE = 200,READ_EXTERNAL_STORAGE=201,WRITE_EXTERNAL_STORAGE=202;
 
+    boolean  isPasswordVisible;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -74,6 +78,36 @@ public class LoginPin extends AppCompatActivity {
         setContentView(R.layout.login_pin);
         loginpinC = this;
         getIds();
+
+        etPin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (etPin.getRight() - etPin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = etPin.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        etPin.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
     }
 
 

@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,6 +58,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     ArrayList<String> arrayList_genderName;
     ArrayList<String> arrayList_genderCode;
 
+    boolean  isPasswordVisible;
 
     String countryName_GNF="GNF";
     String sendCurrencyCode_GNF="100092";   // Hard Code acording to Kundan
@@ -206,6 +210,35 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             close_receiptPage_textview.setOnClickListener(this);
 
             edittext_mobileNuber.setEnabled(true);
+
+            et_mpin.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_mpin.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_mpin.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
 
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", LocalRemittance.this);
@@ -1239,7 +1272,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                             receiptPage_tv_sender_name.setText(senderNameStr);
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", LocalRemittance.this));
 
-                            receiptPage_tv_receiver_name.setText(receivernameStr);
+                            receiptPage_tv_receiver_name.setText(name_destinationStr);
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
 
 

@@ -347,7 +347,7 @@
     <string name="please_check_internet">Veuillez verifier votre connexion Internet </string>
     <string name="please_try_again_later">Veuillez réessayer plus tard </string>
     <string name="pin_change">Changement de broche</string>
-    <string name="please_enter_4_digit_mpin">Veuillez saisir un code à 4 chiffres</string>
+    <string name="please_enter_4_digit_mpin">Veuillez saisir chiffres</string>
     <string name="otp_verification">Vérification OTP</string>
     <string name="enter_otp_details">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123</string>
     <string name="session_expire_60">La session expire dans 60 secondes</string>
@@ -397,6 +397,7 @@
 
     <string name="plz_enter_amount">Veuillez saisir le montant</string>
     <string name="minimum_amount_1000">Le montant minimum est de 1000</string>
+    <string name="maximum_amount_10000">Le montant maximm est de is 10000</string>
 
     <string name="transaction_receiptNo_receiptPage">Numéro de référence de la transaction</string>
     <string name="otp_has_send_sucessfully_subscriber_register">OTP a été envoyé à l identifiant de courrier électronique enregistré de l abonné ou au numéro de téléphone portable</string>
@@ -523,6 +524,7 @@
 
 
 
+    <string name="subscriber_number_new"> Abonné nonmber </string>
 
 
 
@@ -622,7 +624,9 @@
 
 
     <string name="country_star">Pays</string>
-    <string name="mobileNumber_star">Numéro de portable</string>
+    <string name="mobileNumber_star">Numéro de portable*</string>
+    <string name="confirmation_code_star">code de confirmation*</string>
+
     <string name="firstname_star">Prénom</string>
     <string name="Date_OF_Birth">Date de naissance</string>
     <string name="id_proof_expiryDate">Date d\'expiration de la preuve d\'identité</string>

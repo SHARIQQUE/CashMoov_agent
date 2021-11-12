@@ -163,6 +163,39 @@
 
         </LinearLayout>
 
+            <EditText
+                android:id="@+id/edittext_confirmationCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:maxLength="20"
+                android:paddingBottom="16dp"
+                android:hint="@string/confirmation_code_star"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/edittext_mobileNuber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="number"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="@string/mobileNumber_star"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
 
             <EditText
                 android:id="@+id/edittext_amount"
@@ -181,39 +214,10 @@
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/edittext_confirmationCode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textPersonName"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:maxLength="20"
-                android:paddingBottom="16dp"
-                android:hint="@string/confirmation_code"
-                android:textColor="#323232"
-                android:textSize="15sp" />
 
 
-            <EditText
-                android:id="@+id/edittext_mobileNuber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="number"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/please_enter_mobileno"
-                android:textColor="#323232"
-                android:textSize="15sp" />
+
+
 
             <LinearLayout
 
@@ -255,6 +259,8 @@
                     android:maxLength="4"
                     android:backgroundTint="#999999"
                     android:textSize="@dimen/_13sdp"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:textStyle="bold"
                     android:inputType="numberPassword" />
 
@@ -756,6 +762,8 @@
                     android:backgroundTint="#999999"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:inputType="numberPassword" />
 
 
@@ -1298,7 +1306,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp"
-
+android:visibility="gone"
             android:layout_weight="2">
 
 

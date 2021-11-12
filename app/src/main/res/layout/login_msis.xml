@@ -133,6 +133,7 @@
                                 android:hint="@string/pin"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
+                                android:drawableRight="@drawable/ic_visibility_off_black_24dp"
 
                                 android:background="@drawable/rect_lightcolor_outline"
                                  android:maxLength="4"

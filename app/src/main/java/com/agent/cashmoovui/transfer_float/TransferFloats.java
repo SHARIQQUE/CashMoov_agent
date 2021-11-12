@@ -12,6 +12,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -57,6 +60,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String mobileNoStr="";
 
     String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="";
+
+    boolean  isPasswordVisible;
 
 
 
@@ -218,6 +223,34 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
             api_insititute();
+
+            et_mpin.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_mpin.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_mpin.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
 
 
 

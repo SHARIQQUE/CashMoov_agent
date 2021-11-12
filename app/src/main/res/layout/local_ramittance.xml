@@ -905,6 +905,8 @@
                     android:hint="@string/please_enter_4_digit_mpin"
                     android:layout_gravity="center_vertical"
                     android:textColor="#323232"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
                     android:backgroundTint="#999999"

@@ -725,6 +725,8 @@
                     android:textColor="#323232"
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:backgroundTint="#999999"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"

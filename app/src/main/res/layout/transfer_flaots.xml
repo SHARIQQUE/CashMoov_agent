@@ -735,6 +735,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:padding="@dimen/_12sdp"
                     android:hint="@string/please_enter_4_digit_mpin"
                     android:layout_gravity="center_vertical"

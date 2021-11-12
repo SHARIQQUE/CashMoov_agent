@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -58,6 +61,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
     public static LoginPin loginpinC;
     String buttonClick="0";
+    boolean  isPasswordVisible;
 
     ImageButton qrCode_imageButton;
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -228,6 +232,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         if (confirmationCodeStr.length()==11) {
 
+
+
                             api_confcode();
                         }
 
@@ -236,6 +242,37 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                     }
                 }
             });
+
+
+
+            et_mpin.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_mpin.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_mpin.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
 
 
         } catch (Exception e) {
@@ -512,6 +549,18 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         edittext_firstName.setText(firstName_from_confcode);
                         edittext_countryName.setText(countryName_from_confcode);
 
+
+                        if(jsonObject.has("accountHolding"))
+                        {
+
+                            JSONObject jsonObject3=jsonObject.getJSONObject("accountHolding");
+                            amountstr = jsonObject3.getString("sendingAmount");
+                            edittext_amount.setText(amountstr);
+                        }
+                        else {
+
+                        }
+
                         if(gender_from_confcode.equalsIgnoreCase("M"))
                         {
                             edittext_gender.setText("Male");
@@ -671,7 +720,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                     try {
 
-                      //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"118645\",\"requestTime\":\"Mon Nov 08 18:50:03 IST 2021\",\"responseTime\":\"Mon Nov 08 18:50:04 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"remittance\":{\"id\":2254,\"code\":\"1000002362\",\"walletOwnerCode\":\"1000002849\",\"transactionType\":\"RECEIVE REMITTANCE\",\"receiverCode\":\"1000001756\",\"fromCurrencyCode\":\"100062\",\"fromCurrencyName\":\"GNF\",\"fromCurrencySymbol\":\"Fr\",\"toCurrencyCode\":\"100018\",\"toCurrencyName\":\"XOF\",\"toCurrencySymbol\":\"CFA\",\"amount\":3130,\"amountToPaid\":150,\"fee\":0,\"tax\":\"0.0\",\"conversionRate\":0.06,\"confirmationCode\":\"MM*********\",\"transactionReferenceNo\":\"118645\",\"transactionDateTime\":\"2021-11-08 18:50:03\",\"sender\":{\"id\":110743,\"code\":\"1000002849\",\"firstName\":\"Sharique subs\",\"lastName\":\"sharque anwar\",\"mobileNumber\":\"90159313688\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"56yhjjhhh\",\"idExpiryDate\":\"2021-11-05\",\"dateOfBirth\":\"1960-01-15\",\"email\":\"sharique9718@gmail.com\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"status\":\"Active\",\"creationDate\":\"2021-11-03 22:13:29\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-11-03 22:20:03\",\"modifiedBy\":\"100250\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"ownerName\":\"Sharique subs\",\"regesterCountryDialCode\":\"+224\"},\"receiver\":{\"id\":1752,\"code\":\"1000001756\",\"firstName\":\"abhey\",\"lastName\":\"thakur\",\"mobileNumber\":\"9898989898\",\"gender\":\"M\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idProofNumber\":\"id1234\",\"email\":\"sharique9718@gmail.com\",\"countryCode\":\"100195\",\"countryName\":\"Senegal\",\"idProofUrl\":\"Paspost_size_demo.jpg\",\"status\":\"Active\",\"creationDate\":\"2021-11-08 13:36:46\",\"createdBy\":\"102114\",\"modificationDate\":\"2021-11-08 18:48:49\",\"modifiedBy\":\"102114\",\"dialCode\":\"+221\"},\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":65,\"taxAvailBy\":\"Fee Amount\"}],\"sendCountryCode\":\"100092\",\"receiveCountryCode\":\"100195\",\"sendCountryName\":\"Guinea\",\"receiveCountryName\":\"Senegal\",\"walletToCash\":true}}");
+
+                       // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"115028\",\"requestTime\":\"Fri Nov 12 16:12:57 IST 2021\",\"responseTime\":\"Fri Nov 12 16:12:57 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"remittance\":{\"id\":1846,\"code\":\"1000001880\",\"walletOwnerCode\":\"1000002687\",\"transactionType\":\"RECEIVE REMITTANCE\",\"receiverCode\":\"1000001834\",\"fromCurrencyCode\":\"100062\",\"fromCurrencyName\":\"GNF\",\"fromCurrencySymbol\":\"Fr\",\"toCurrencyCode\":\"100062\",\"toCurrencyName\":\"GNF\",\"toCurrencySymbol\":\"Fr\",\"comments\":\"ok\",\"amount\":3000,\"amountToPaid\":3000,\"fee\":0,\"tax\":\"0.0\",\"conversionRate\":0,\"confirmationCode\":\"MM*********\",\"transactionReferenceNo\":\"115028\",\"transactionDateTime\":\"2021-11-12 16:12:57\",\"sender\":{\"id\":110581,\"code\":\"1000002687\",\"firstName\":\"Sharique Subs\",\"lastName\":\"Sharique Subs\",\"mobileNumber\":\"9015931368\",\"gender\":\"M\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idProofNumber\":\"id12345\",\"idExpiryDate\":\"2021-11-12\",\"dateOfBirth\":\"1960-01-22\",\"email\":\"sharique9718@gmail.com\",\"issuingCountryCode\":\"100195\",\"issuingCountryName\":\"Senegal\",\"status\":\"Active\",\"creationDate\":\"2021-11-10 21:07:00\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-11-11 10:58:24\",\"modifiedBy\":\"100308\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"ownerName\":\"Sharique Subs\",\"regesterCountryDialCode\":\"+224\"},\"receiver\":{\"id\":1805,\"code\":\"1000001834\",\"firstName\":\"annu sender\",\"lastName\":\"last annu\",\"mobileNumber\":\"9990063618\",\"gender\":\"M\",\"email\":\"annu@gmail.com\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"creationDate\":\"2021-11-12 15:58:41\",\"createdBy\":\"101975\",\"modificationDate\":\"2021-11-12 16:00:53\",\"modifiedBy\":\"101975\",\"dialCode\":\"+224\"},\"sendCountryCode\":\"100092\",\"receiveCountryCode\":\"100092\",\"sendCountryName\":\"Guinea\",\"receiveCountryName\":\"Guinea\",\"walletToCash\":true}}");
+
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
@@ -704,7 +755,6 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             receiptPage_tv_amount_to_be_charged.setText("Fr " +remittance_object.getInt("amount"));
                             receiptPage_amount_to_paid_receiptpage.setText("Fr " +remittance_object.getInt("amountToPaid"));
-
                             receiptPage_tv_transactionAmount.setText("Fr " +amountstr);
                             receiptPage_tv_fee.setText("Fr "+remittance_object.getInt("fee"));
                             receiptPage_conversion_rate.setText("Fr " +remittance_object.getString("conversionRate"));
@@ -717,49 +767,134 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             ////////////////////////////// Sender Details ///////////
 
-                            receiptPage_tv_sender_name.setText(remittance_sender.getString("firstName")+" "+remittance_sender.getString("lastName"));
-                            receiptPage_tv_sender_phoneNo.setText(remittance_sender.getString("mobileNumber"));
-                            receiptPage_tv_sender_emailid.setText(remittance_sender.getString("email"));
-
-                            if(remittance_sender.getString("gender").equalsIgnoreCase("M"))
+                            String senderFirstNameTemp="",senderlastNameTemp="";
+                            if(remittance_sender.has("firstName"))
                             {
-                                receiptPage_tv_sender_gender.setText("Male");
-                            }
-                            else
-                            {
-                                receiptPage_tv_sender_gender.setText("Female");
+                                senderFirstNameTemp=  remittance_sender.getString("firstName") ;
+                                receiptPage_tv_sender_name.setText(senderFirstNameTemp);
                             }
 
+                            if(remittance_sender.has("lastName"))
+                            {
+                                senderlastNameTemp=  remittance_sender.getString("lastName") ;
+                                receiptPage_tv_sender_name.setText(senderFirstNameTemp +" "+senderlastNameTemp);
+                            }
 
-                            receiptPage_tv_sender_country.setText(remittance_sender.getString("registerCountryName"));
+                            if(remittance_sender.has("mobileNumber"))
+                            {
+                                receiptPage_tv_sender_phoneNo.setText(remittance_sender.getString("mobileNumber"));
+                            }
+
+                            if(remittance_sender.has("email"))
+                            {
+                                receiptPage_tv_sender_emailid.setText(remittance_sender.getString("email"));
+                            }
+
+                            if(remittance_sender.has("gender")) {
+
+                                if (remittance_sender.getString("gender").equalsIgnoreCase("M")) {
+                                    receiptPage_tv_sender_gender.setText("Male");
+                                } else {
+                                    receiptPage_tv_sender_gender.setText("Female");
+                                }
+                            }
+
+                            if(remittance_sender.has("registerCountryName"))
+                            {
+                                receiptPage_tv_sender_country.setText(remittance_sender.getString("registerCountryName"));
+                            }
                             receiptPage_tv_sender_address.setText("");
-                            receiptPage_tv_sender_dob.setText(remittance_sender.getString("dateOfBirth"));
-                            receiptPage_tv_sender_idproofType.setText(remittance_sender.getString("idProofTypeName"));
-                            receiptPage_tv_sender_idproofNumber.setText(remittance_sender.getString("idProofNumber"));
-                            receiptPage_tv_sender_idproofExpirayDate.setText(remittance_sender.getString("idExpiryDate"));
+
+                            if(remittance_sender.has("dateOfBirth"))
+                            {
+                                receiptPage_tv_sender_dob.setText(remittance_sender.getString("dateOfBirth"));
+                            }
+
+                            if(remittance_sender.has("idProofTypeName"))
+                            {
+                                receiptPage_tv_sender_idproofType.setText(remittance_sender.getString("idProofTypeName"));
+                            }
+
+                            if(remittance_sender.has("idProofNumber"))
+                            {
+                                receiptPage_tv_sender_idproofNumber.setText(remittance_sender.getString("idProofNumber"));
+                            }
+
+                            if(remittance_sender.has("idExpiryDate"))
+                            {
+                                receiptPage_tv_sender_idproofExpirayDate.setText(remittance_sender.getString("idExpiryDate"));
+                            }
 
                             ////////////////////////////// Receiver Details ///////////
 
 
 
-                            receiptPage_tv_receiver_name.setText(remittance_receiver.getString("firstName")+" "+remittance_receiver.getString("lastName"));
-                            receiptPage_tv_receiver_phoneNo.setText(remittance_receiver.getString("mobileNumber"));
+                            String receiveFirstNameTemp="",receiverlastNameTemp="";
+                            if(remittance_receiver.has("firstName"))
+                            {
+                                receiveFirstNameTemp=  remittance_receiver.getString("firstName") ;
+                                receiptPage_tv_sender_name.setText(receiveFirstNameTemp);
+                            }
 
-                            receiptPage_tv_receiver_emailid.setText(remittance_receiver.getString("email"));
-                            if(remittance_receiver.getString("gender").equalsIgnoreCase("M"))
+                            if(remittance_receiver.has("lastName"))
                             {
-                                receiptPage_tv_receiver_gender.setText("Male");
+                                receiverlastNameTemp=  remittance_receiver.getString("lastName") ;
+                                receiptPage_tv_receiver_name.setText(receiveFirstNameTemp +" "+receiverlastNameTemp);
+
                             }
-                            else
+
+                            if(remittance_receiver.has("mobileNumber"))
                             {
-                                receiptPage_tv_receiver_gender.setText("Female");
+                                receiptPage_tv_receiver_phoneNo.setText(remittance_receiver.getString("mobileNumber"));
                             }
-                            receiptPage_tv_receiver_country.setText(remittance_receiver.getString("countryName"));
+
+                            if(remittance_receiver.has("email"))
+                            {
+                                receiptPage_tv_receiver_emailid.setText(remittance_receiver.getString("email"));
+                            }
+
+                            if(remittance_receiver.has("gender")) {
+
+                                if (remittance_receiver.getString("gender").equalsIgnoreCase("M")) {
+                                    receiptPage_tv_receiver_gender.setText("Male");
+                                } else {
+                                    receiptPage_tv_receiver_gender.setText("Female");
+                                }
+                            }
+
+
+                            if(remittance_receiver.has("email"))
+                            {
+                                receiptPage_tv_receiver_emailid.setText(remittance_receiver.getString("email"));
+                            }
+
+
+                            if(remittance_receiver.has("countryName"))
+                            {
+                                receiptPage_tv_receiver_country.setText(remittance_receiver.getString("countryName"));
+                            }
+
+                            if(remittance_receiver.has("creationDate"))
+                            {
+                                receiptPage_tv_receiver_dob.setText(remittance_receiver.getString("creationDate"));
+                            }
+
+                            if(remittance_receiver.has("idProofTypeName"))
+                            {
+                                receiptPage_tv_receiver_idproofType.setText(remittance_receiver.getString("idProofTypeName"));
+                            }
+
+                            if(remittance_receiver.has("idProofNumber"))
+                            {
+                                receiptPage_tv_receiver_idproofNumber.setText(remittance_receiver.getString("idProofNumber"));
+                            }
+
+                            if(remittance_receiver.has("modificationDate"))
+                            {
+                                receiptPage_tv_receiver_idproofExpirayDate.setText(remittance_receiver.getString("modificationDate"));
+                            }
+
                             receiptPage_tv_receiver_address.setText("");
-                            receiptPage_tv_receiver_dob.setText(remittance_receiver.getString("creationDate"));
-                            receiptPage_tv_receiver_idproofType.setText(remittance_receiver.getString("idProofTypeName"));
-                            receiptPage_tv_receiver_idproofNumber.setText(remittance_receiver.getString("idProofNumber"));
-                            receiptPage_tv_receiver_idproofExpirayDate.setText(remittance_receiver.getString("modificationDate"));
 
 
 

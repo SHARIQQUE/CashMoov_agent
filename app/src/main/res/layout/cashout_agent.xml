@@ -163,23 +163,6 @@
 
 
             <EditText
-                android:id="@+id/edittext_amount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="number"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:maxLength="10"
-                android:paddingBottom="16dp"
-                android:hint="@string/amount"
-                android:textColor="#323232"
-                android:textSize="15sp" />
-
-            <EditText
                 android:id="@+id/edittext_mobileNuber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,7 +174,25 @@
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:hint="@string/please_enter_mobileno"
+                android:hint="@string/subscriber_number_new"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
+
+            <EditText
+                android:id="@+id/edittext_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="number"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:maxLength="5"
+                android:paddingBottom="16dp"
+                android:hint="@string/amount"
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
@@ -678,6 +679,8 @@
                     android:hint="@string/please_enter_4_digit_mpin"
                     android:layout_gravity="center_vertical"
                     android:textColor="#323232"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
                     android:backgroundTint="#999999"
@@ -734,6 +737,8 @@
                     android:backgroundTint="#999999"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
+                    android:drawableRight="@drawable/ic_visibility_off_black_24dp"
+
                     android:inputType="numberPassword" />
 
 
