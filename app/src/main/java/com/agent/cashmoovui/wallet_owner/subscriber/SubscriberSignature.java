@@ -24,6 +24,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.github.gcacace.signaturepad.views.SignaturePad;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -224,11 +225,7 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
 
-                                MyApplication.showToast(subscribersignatureC,"upload success");
-                                // callApiUpdateDataApproval();
-                                Intent intent = new Intent(subscribersignatureC, MainActivity.class);
-                                startActivity(intent);
-                                finish();
+                                callApiAddBranchDataApproval();
 
                             } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                                 MyApplication.showToast(subscribersignatureC,getString(R.string.technical_failure));
@@ -245,6 +242,63 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
 
                     }
                 });
+    }
+
+
+    private void callApiAddBranchDataApproval() {
+        try {
+            JSONObject jsonObjectn = new JSONObject();
+            JSONArray jsonArray = new JSONArray();
+            jsonObjectn.put("actionType", "Created");
+            jsonObjectn.put("assignTo", "");
+            jsonObjectn.put("comments", "");
+            jsonObjectn.put("entityCode", SubscriberKYC.subscriberWalletOwnerCode);
+            jsonObjectn.put("entityName", SubscriberKYC.etFname.getText().toString());
+            jsonObjectn.put("featureCode", "100006");
+            jsonObjectn.put("status", "U");
+            JSONObject ja=new JSONObject();
+            jsonObjectn.put("updatedInformation", ja);
+
+            jsonArray.put(jsonObjectn);
+            JSONObject data = new JSONObject();
+            data.put("dataApprovalList", jsonArray);
+
+            System.out.println("test "+data.toString());
+
+            // MyApplication.showloader(walletowneradduserC,"Please wait!");
+            API.POST_REQEST_WH_NEW("ewallet/api/v1/dataApproval", data, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    System.out.println("BranchDataApproval Bresponse======="+jsonObject.toString());
+
+                    if (jsonObject != null) {
+                        if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            //MyApplication.showToast(agentkycattachedC,jsonObject.optString("resultDescription", "N/A"));
+                            MyApplication.showToast(subscribersignatureC,getString(R.string.subscriber_added));
+                            Intent intent = new Intent(subscribersignatureC, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                            MyApplication.showToast(subscribersignatureC,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(subscribersignatureC,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+
     }
 
 

@@ -646,6 +646,7 @@
 
     <string name="sending_country">Sending country</string>
     <string name="sending_country_star">Sending country*</string>
+    <string name="subscriber_added">Subscriber added successfully!</string>
 
 
 </resources>

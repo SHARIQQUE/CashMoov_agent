@@ -645,8 +645,7 @@
     <string name="cashout_code">Code de retrait</string>
     <string name="sending_country">Pays d\'envoi</string>
     <string name="sending_country_star">Pays d\'envoi*</string>
-
-
+    <string name="subscriber_added">Abonné ajouté avec succès !</string>
 
 
 </resources>

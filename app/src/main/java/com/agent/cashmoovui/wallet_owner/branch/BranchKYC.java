@@ -214,6 +214,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 }
                 JSONObject jsonObject=new JSONObject();
                 try {
+                    jsonObject.put("code","");
                     jsonObject.put("ownerName",etBranchName.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
                     jsonObject.put("dateOfBirth","");
@@ -222,16 +223,20 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("gender","");
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
                     jsonObject.put("businessTypeCode",businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
+                    jsonObject.put("businessName","");
+                    jsonObject.put("lineOfBusiness","");
+                    jsonObject.put("groupCode","");
                     jsonObject.put("idProofNumber",etProofNo.getText().toString().trim());
                     jsonObject.put("idProofTypeCode",idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
                     jsonObject.put("issuingCountryCode","");
                     jsonObject.put("registerCountryCode",countryModelList.get((Integer) spCountry.getTag()).getCode());
-                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
-                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
-                    jsonObject.put("city",etCity.getText().toString().trim());
+//                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
+//                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
+//                    jsonObject.put("city",etCity.getText().toString().trim());
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", branchkycC));
-                    jsonObject.put("notificationTypeCode","");
-                    jsonObject.put("occupationTypeCode","");
+                    jsonObject.put("notificationTypeCode","100002");
+                    jsonObject.put("profileTypeCode","100000");
+                    jsonObject.put("walletOwnerParentCode",MyApplication.getSaveString("walletOwnerCode",branchkycC));
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.BranchCode);
 
                 } catch (JSONException e) {

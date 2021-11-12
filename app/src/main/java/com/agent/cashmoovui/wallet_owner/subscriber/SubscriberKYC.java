@@ -40,7 +40,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
     public static SubscriberKYC subscriberkycC;
     DatePickerDialog picker;
-    EditText etFname,etLname,etPhone,etEmail,etCity,etAddress,etDob,etProofNo;
+    public static EditText etFname,etLname,etPhone,etEmail,etCity,etAddress,etDob,etProofNo;
     TextView tvNext,spGender,spIdProof;
     SpinnerDialog spinnerDialogGender,spinnerDialogIdProofType;
     private ArrayList<String> genderList = new ArrayList<>();
@@ -230,8 +230,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
 //                    jsonObject.put("city",etCity.getText().toString().trim());
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", subscriberkycC));
-                    jsonObject.put("notificationTypeCode","100000");
-                    jsonObject.put("occupationTypeCode","");
+                    jsonObject.put("notificationTypeCode","100002");
+                    jsonObject.put("occupationTypeCode","100001");
+                    jsonObject.put("state","U");
+                    jsonObject.put("status","Y");
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.SubscriberCode);
 
                 } catch (JSONException e) {

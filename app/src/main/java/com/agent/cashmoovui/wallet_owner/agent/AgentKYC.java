@@ -216,6 +216,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                 }
                 JSONObject jsonObject=new JSONObject();
                 try {
+                    jsonObject.put("code","");
                     jsonObject.put("ownerName",etAgentName.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
                     jsonObject.put("dateOfBirth","");
@@ -224,16 +225,20 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     jsonObject.put("gender","");
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
                     jsonObject.put("businessTypeCode",businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
+                    jsonObject.put("businessName","");
+                    jsonObject.put("lineOfBusiness","");
+                    jsonObject.put("groupCode","");
                     jsonObject.put("idProofNumber",etProofNo.getText().toString().trim());
                     jsonObject.put("idProofTypeCode",idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
                     jsonObject.put("issuingCountryCode","");
                     jsonObject.put("registerCountryCode",countryModelList.get((Integer) spCountry.getTag()).getCode());
-                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
-                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
-                    jsonObject.put("city",etCity.getText().toString().trim());
+//                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
+//                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
+//                    jsonObject.put("city",etCity.getText().toString().trim());
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", agentkycC));
-                    jsonObject.put("notificationTypeCode","");
-                    jsonObject.put("occupationTypeCode","");
+                    jsonObject.put("notificationTypeCode","100002");
+                    jsonObject.put("profileTypeCode","100000");
+                    jsonObject.put("walletOwnerParentCode",MyApplication.getSaveString("walletOwnerCode",agentkycC));
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.AgentCode);
 
                 } catch (JSONException e) {
@@ -544,9 +549,27 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
         });
 
-
-
-
     }
 
 }
+
+////////// For address Post Api
+
+//{
+//        "walletOwnerCode": "1000002708",
+//        "addressList": [
+//        {
+//        "addTypeCode": "",
+//        "addressLine1": "105",
+//        "addressLine2": "",
+//        "countryCode": "100102",
+//        "city": "100025",
+//        "regionCode": "100010",
+//        "location": ""
+//        }
+//        ]
+//        }
+//
+//
+//
+//        http://202.131.144.130:8081/ewallet/api/v1/address
