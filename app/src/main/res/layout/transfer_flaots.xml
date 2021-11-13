@@ -179,15 +179,13 @@
             <Spinner
                 android:id="@+id/spinner_insititue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_42sdp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:textColor="#323232"
                 />
 
@@ -195,15 +193,13 @@
             <Spinner
                 android:id="@+id/spinner_currency"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_42sdp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
                 android:textColor="#323232"
                 />
 

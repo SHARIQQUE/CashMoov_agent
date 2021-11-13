@@ -62,6 +62,11 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
     String receiveCurrencyCode_GNF="100062"; // Hard Code acording to Kundan
     String receiveCountryName_GNF="GNF";
 
+    String  firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
+            email_sender_from_walletOwnerUser="",idProofTypeCode_sender_from_walletOwnerUser="",idProofNumber_sender_from_walletOwnerUser=""
+            ,idExpiryDate_sender_from_walletOwnerUser="",dateOfBirth_sender_from_walletOwnerUser="",
+            regionCode_sender_from_walletOwnerUser="",city_sender_from_walletOwnerUser="",address_sender_from_walletOwnerUser,mobileNumber_sender_from_walletOwnerUser="",gender_sender_from_allByCriteria="";
+
 
 
     EditText etPin;
@@ -685,17 +690,34 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
 
-                            rp_tv_senderDocument.setText(jsonObject2.getString("email"));
-                            rp_tv_sending_currency.setText(jsonObject2.getString("issuingCountryName"));
+                            if(jsonObject2.has("walletOwnerCode"))
+                            {
+                                walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
+                            }
 
-                            receivernameStr = jsonObject2.getString("ownerName");
-                            rp_tv_beneficiaryCurrency.setText(receivernameStr);
+
+                            if(jsonObject2.has("email"))
+                            {
+                                rp_tv_senderDocument.setText(jsonObject2.getString("email"));
+                            }
+
+                            if(jsonObject2.has("issuingCountryName"))
+                            {
+                                rp_tv_sending_currency.setText(jsonObject2.getString("issuingCountryName"));
+                            }
+
+                            if(jsonObject2.has("ownerName"))
+                            {
+                                receivernameStr = jsonObject2.getString("ownerName");
+                                rp_tv_beneficiaryCurrency.setText(receivernameStr);
+
+                            }
+
+
 
                         }
 
-                        api_allByCriteria();
 
 
                     } else {
@@ -768,6 +790,9 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         ll_receiptPage.setVisibility(View.GONE);
 
 
+                     api_sender();
+
+
 
 
 
@@ -835,6 +860,10 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                     }
 
 
+                    api_subscriberDetails();
+
+
+
                 } catch (Exception e) {
                     Toast.makeText(CashToWallet.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
@@ -876,20 +905,86 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                      //  Toast.makeText(LocalRemittance.this,"----- api_walletOwnerUser ----"+ resultDescription, Toast.LENGTH_LONG).show();
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+                            //  Toast.makeText(LocalRemittance.this,"----- api_walletOwnerUser ----"+ resultDescription, Toast.LENGTH_LONG).show();
+
+                            if (jsonObject.has("walletOwnerUser")) {
+
+                                JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+
+                                if (walletOwnerUser.has("mobileNumber")) {
+                                    mobileNumber_sender_from_walletOwnerUser = walletOwnerUser.getString("mobileNumber");
+                                }
 
 
-                       //  JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+                                if (walletOwnerUser.has("firstName")) {
+                                    firstName_sender_from_walletOwnerUser = walletOwnerUser.getString("firstName");
 
-                      //   countryCode_from_countryList_str=walletOwnerUser.getString("code");
+                                    if(firstName_sender_from_walletOwnerUser.contains(" "))
+                                    {
+                                        String[] lastName_temp=firstName_sender_from_walletOwnerUser.split("\\ ");
+                                        lastName_sender_from_walletOwnerUser = lastName_temp[1];
+                                    }
+                                    else
+                                    {
+
+                                    }
+
+                                }
+
+                                if (walletOwnerUser.has("email")) {
+                                    email_sender_from_walletOwnerUser = walletOwnerUser.getString("email");
+                                }
+
+                                if (walletOwnerUser.has("idProofTypeCode")) {
+                                    idProofTypeCode_sender_from_walletOwnerUser = walletOwnerUser.getString("idProofTypeCode");
+                                }
 
 
-                        //   senderNameAgent=walletOwnerUser.getString("firstName");
-                       //  rp_tv_agentCode.setText("rp_tv_agentCode");
 
-                      //  api_subscriberDetails();
+                                if (walletOwnerUser.has("idProofNumber")) {
+                                    idProofNumber_sender_from_walletOwnerUser = walletOwnerUser.getString("idProofNumber");
+                                }
 
-                        api_subscriberDetails();
+                                if (walletOwnerUser.has("creationDate")) {
+                                    idExpiryDate_sender_from_walletOwnerUser = walletOwnerUser.getString("creationDate");
+                                }
+
+                                if (walletOwnerUser.has("creationDate")) {
+                                    dateOfBirth_sender_from_walletOwnerUser = walletOwnerUser.getString("creationDate");
+                                }
+
+
+                                if (walletOwnerUser.has("addressList")) {
+
+                                    JSONArray jsonArray = walletOwnerUser.getJSONArray("addressList");
+
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                                        if (jsonObject2.has("regionCode")) {
+                                            regionCode_sender_from_walletOwnerUser = jsonObject2.getString("regionCode");
+                                        }
+                                        if (jsonObject2.has("cityName")) {
+                                            city_sender_from_walletOwnerUser = jsonObject2.getString("cityName");
+                                        }
+                                        if (jsonObject2.has("addressLine1")) {
+                                            address_sender_from_walletOwnerUser = jsonObject2.getString("addressLine1");
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            api_currency();
+
+
+
+                        } else {
+                            Toast.makeText(CashToWallet.this, resultDescription, Toast.LENGTH_LONG).show();
+                        }
+
 
 
 
@@ -985,9 +1080,24 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
-                    rp_tv_agentCode.setText("1000002785");  // Temporary hard code no Option on First Page
-                    rp_tv_sender_id.setText("1000001707");  // Temporary hard code no Option on First Page
-                    rp_tv_benificicaryCode.setText("1000001707"); // Temporary hard code no Option on First Page
+
+                    if(jsonObject.has("customerList")) {
+                        JSONArray jsonArray = jsonObject.getJSONArray("customerList");
+                        {
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                if(jsonObject1.has("gender"))
+                                {
+                                    gender_sender_from_allByCriteria=jsonObject1.getString("gender");
+                                }
+
+                            }
+                        }
+                    }
+
+                    rp_tv_agentCode.setText(MyApplication.getSaveString("USERCODE", CashToWallet.this));
+                    rp_tv_sender_id.setText(senderCode_from_senderApi);
+                    rp_tv_benificicaryCode.setText(receivercode_from_receiverAPi);
                     rp_tv_senderDocument.setText("on image available"); // Temporary hard code no Option on First Page
 
                     rp_tv_sending_currency.setText("GNF");
@@ -1120,7 +1230,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                             receivercode_from_receiverAPi = jsonObject1.getString("code");
 
 
-                            api_mpin_final();
+                            api_allByCriteria();
 
                         } else {
                             Toast.makeText(CashToWallet.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -1159,6 +1269,8 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+
     private void api_sender() {
 
         try {
@@ -1184,24 +1296,32 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 //            }
 
 
-            jsonObject.put("firstName", name_destinationStr); // No in UI
-            jsonObject.put("lastName", ""); // No in UI
-            jsonObject.put("email", "");    // No in UI
-            jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
-            jsonObject.put("idProofTypeCode", "100004");   // No in UI By Defualt (is mandatory)
-            jsonObject.put("idProofNumber", "idProofNumber");    // No in UI By Defualt (is mandatory)
-            jsonObject.put("idExpiryDate", "");    // No in UI By Defualt (is mandatory)
-            jsonObject.put("dateOfBirth", "");     // No in UI By Defualt (is mandatory)
-            jsonObject.put("countryCode","100062");  // Hard Code according  to Deepak
-            jsonObject.put("regionCode","100018");  // No in UI By Defualt (is mandatory)
-            jsonObject.put("city","city");   // No in UI By Defualt (is mandatory)
-            jsonObject.put("address","address");   // No in UI By Defualt (is mandatory)
-            jsonObject.put("issuingCountryCode","100062");  // Hard Code according  to Deepak
-            jsonObject.put("gender",genderSelect_name);
+            jsonObject.put("firstName", firstName_sender_from_walletOwnerUser);
+            jsonObject.put("lastName", lastName_sender_from_walletOwnerUser);
+            jsonObject.put("email", email_sender_from_walletOwnerUser);
+            jsonObject.put("mobileNumber", mobileNumber_sender_from_walletOwnerUser);
+            jsonObject.put("idProofTypeCode", idProofTypeCode_sender_from_walletOwnerUser);
+            jsonObject.put("idProofNumber", idProofTypeCode_sender_from_walletOwnerUser);
+            jsonObject.put("idExpiryDate", idExpiryDate_sender_from_walletOwnerUser);
+            jsonObject.put("dateOfBirth", dateOfBirth_sender_from_walletOwnerUser);
+            jsonObject.put("countryCode","100092");
+            jsonObject.put("regionCode",regionCode_sender_from_walletOwnerUser);
+            jsonObject.put("city",city_sender_from_walletOwnerUser);
+            jsonObject.put("address",address_sender_from_walletOwnerUser);
+            jsonObject.put("issuingCountryCode","100092");
+
+            if(gender_sender_from_allByCriteria.equalsIgnoreCase("")) // If Not Coming From Server Then Send M (It mandatory )
+            {
+                jsonObject.put("gender","M");
+            }
+            else {
+                jsonObject.put("gender",gender_sender_from_allByCriteria);
+
+            }
 
 
 
-            API.POST_REMMIT_LOCAL("ewallet/api/v1/customer/sender", jsonObject, languageToUse, new Api_Responce_Handler() {
+            API.POST_REMIT_SENDER_RECEIVER("ewallet/api/v1/customer/sender", jsonObject, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -1218,6 +1338,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                             JSONObject jsonObject1 = jsonObject.getJSONObject("customer");
 
                             senderCode_from_senderApi = jsonObject1.getString("code");
+
 
                             api_receiver();
 
@@ -1257,6 +1378,9 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+
 
     private void api_mpin_final() {
 
@@ -1510,7 +1634,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                         MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
 
-                        api_sender();
+                       api_mpin_final();
 
                     } else {
                         Toast.makeText(CashToWallet.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();

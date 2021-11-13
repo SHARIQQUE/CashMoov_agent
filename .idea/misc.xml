@@ -97,7 +97,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_mobile_prepaid.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_otp_screen.xml" value="0.18020833333333333" />
-        <entry key="app/src/main/res/layout/activity_overdraft_limit.xml" value="0.15052083333333333" />
+        <entry key="app/src/main/res/layout/activity_overdraft_limit.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_owner_option.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_paiement_tv_star_time.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_paiements.xml" value="0.15052083333333333" />
@@ -127,18 +127,19 @@
         <entry key="app/src/main/res/layout/activity_transfer_option.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_verify_account_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_wallet_screen.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/airtime_purchases.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/airtime_purchases.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.18" />
         <entry key="app/src/main/res/layout/cashout_agent.xml" value="0.22" />
         <entry key="app/src/main/res/layout/change_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/commision_transfer.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/ic_baseline_photo_bl.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/include_home_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/include_wallet_screen.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/item_payments_operator.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/language_choose.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.22" />
         <entry key="app/src/main/res/layout/login_msis.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_with_pin.xml" value="0.22" />
@@ -150,7 +151,7 @@
         <entry key="app/src/main/res/layout/remitance_receive.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/row_item_simple.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/sellfloat.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/sellfloat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_active.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_add_contact.xml" value="0.20104166666666667" />
