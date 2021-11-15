@@ -1667,6 +1667,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode="
                 + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent
                 ,languageToUse, new Api_Responce_Handler() {
+
+
+
             @Override
             public void success(JSONObject jsonObject) {
 

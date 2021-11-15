@@ -129,7 +129,7 @@
         <entry key="app/src/main/res/layout/activity_wallet_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/airtime_purchases.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cashout_agent.xml" value="0.22" />
         <entry key="app/src/main/res/layout/change_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/commision_transfer.xml" value="0.20104166666666667" />

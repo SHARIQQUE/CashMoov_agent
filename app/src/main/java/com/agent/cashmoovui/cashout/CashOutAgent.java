@@ -76,7 +76,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     String walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, senderNameAgent = "";
 
-    String currencyCode_agent = "", countryCode_agent = "", currencyName_agent = "";
+    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
+    String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",agentCode_subscriber;
 
     String tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
@@ -245,6 +246,16 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 }
             });
 
+            if (new InternetCheck().isConnected(CashOutAgent.this)) {
+
+                MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+
+                api_walletOwner_agent();
+
+            } else {
+                Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+            }
+
 
         } catch (Exception e) {
             Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
@@ -252,6 +263,54 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    private void api_walletOwner_agent() {
+
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/"+walletOwnerCode_mssis_agent,languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+                        rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
+
+                    } else {
+                        Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (Exception e) {
+                    Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -358,9 +417,14 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                             walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
 
+                            countryCode_subscriber = jsonObject2.getString("registerCountryCode");
+                            agentCode_subscriber = jsonObject2.getString("code");
+
                             rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
                             rp_tv_email.setText(jsonObject2.getString("email"));
-                            rp_tv_country.setText(jsonObject2.getString("issuingCountryName"));
+
+                            rp_tv_country.setText(countryName_agent);
+
 
                             receivernameStr = jsonObject2.getString("ownerName");
                             rp_tv_receiverName.setText(receivernameStr);
@@ -373,7 +437,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-                        currency_api();
+                      api_currency_sender();
 
                     } else {
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -402,7 +466,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void currency_api() {
+    private void api_currency_subscriber() {
 
         API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/" + walletOwnerCode_subs, languageToUse, new Api_Responce_Handler() {
             @Override
@@ -419,24 +483,30 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
-
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            currencyName_agent = jsonObject2.getString("currencyName");
-                            countryCode_agent = jsonObject2.getString("countryCurrencyCode");
-                            currencyCode_agent = jsonObject2.getString("currencyCode");
-                            desWalletOwnerCode_from_currency = jsonObject2.getString("walletOwnerCode");
+                            if(jsonObject2.has("currencyName")) {
 
+                                String  currencyName_subscriber_temp = jsonObject2.getString("currencyName");
+                                if (currencyName_subscriber_temp.equalsIgnoreCase("GNF")) {
+                                    currencyName_subscriber = jsonObject2.getString("currencyName");
+                                    currencyCode_subscriber = jsonObject2.getString("currencyCode");
+
+                                } else {
+
+                                }
+                            }
                         }
+
 
 
                         //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
 
 
-                        exchange_rate_api();
+                        api_exchange();
 
 
                     } else {
@@ -470,7 +540,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
         // Hard Code Final Deepak
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100011&status=Y", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100012&status=Y", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -549,6 +619,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     if (resultCode.equalsIgnoreCase("0")) {
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+
+                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
                         senderNameAgent = walletOwnerUser.getString("firstName");
                         rp_tv_senderName.setText(senderNameAgent);
@@ -680,14 +753,16 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("transactionType", "100000");         // Hard Code according  to Deepak
-            jsonObject.put("srcWalletOwnerCode", walletOwnerCode_mssis_agent);
-            jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_currency);  // Subscriber
-            jsonObject.put("srcCurrencyCode", currencyCode_agent);         // source  srcWalletOwnerCode
-            jsonObject.put("desCurrencyCode", "100062");         //  Subscriber
+
+            jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
+            jsonObject.put("desWalletOwnerCode",agentCode_subscriber);
+            jsonObject.put("srcCurrencyCode",currencyCode_agent);
+            jsonObject.put("desCurrencyCode",currencyCode_subscriber);
+
             jsonObject.put("value", amountstr);
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin", encryptionDatanew);
-            jsonObject.put("channelTypeCode", "2");           // Hard Code according  to Deepak
+            jsonObject.put("channelTypeCode", "100002");           // Hard Code according  to Deepak
             jsonObject.put("serviceCode", serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
@@ -900,15 +975,88 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+    private void api_currency_sender() {
 
-    private void exchange_rate_api() {
-
-        // API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=100062&sendCountryCode=100092&receiveCountryCode=&currencyValue=1000&channelTypeCode=100000&serviceCode=100003&serviceCategoryCode=100011&serviceProviderCode=100106&walletOwnerCode=1000002606&remitAgentCode=1000002606&payAgentCode=1000002488",languageToUse,new Api_Responce_Handler() {
-
-
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent + "&receiveCurrencyCode=100062&sendCountryCode=" + countryCode_agent + "&receiveCountryCode=" +
-                "&currencyValue=" + amountstr + "&channelTypeCode=2&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" + walletOwnerCode_mssis_agent + "&payAgentCode=1000002488", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+walletOwnerCode_mssis_agent,languageToUse,new Api_Responce_Handler() {
             @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789322","requestTime":"Wed Oct 20 15:53:33 IST 2021","responseTime":"Wed Oct 20 15:53:33 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","walletOwnerCountryCurrencyList":[{"id":7452,"code":"107451","walletOwnerCode":"1000002488","currencyCode":"100062","currencyName":"GNF","currencySymbol":"Fr","countryCurrencyCode":"100076","inBound":true,"outBound":true,"status":"Active"}]}");
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+                        for(int i=0;i<jsonArray.length();i++) {
+
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+
+                            if(jsonObject2.has("currencyName")) {
+
+                                String  currencyName_agent_temp = jsonObject2.getString("currencyName");
+                                if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
+                                    currencyCode_agent = jsonObject2.getString("currencyCode");
+                                    currencyName_agent = jsonObject2.getString("currencyName");
+
+                                } else {
+
+                                }
+                            }
+
+                        }
+
+
+                        api_currency_subscriber();
+
+                    }
+
+                    else {
+                        Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(CashOutAgent.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void api_exchange() {
+
+
+             API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
+                    "&receiveCurrencyCode="+currencyCode_subscriber+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_subscriber+
+                    "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+            serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_subs + "&remitAgentCode=" +
+                     walletOwnerCode_mssis_agent + "&payAgentCode="+agentCode_subscriber,languageToUse, new Api_Responce_Handler() {
+
+
+                @Override
             public void success(JSONObject jsonObject) {
 
                 MyApplication.hideLoader();
@@ -964,13 +1112,13 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                     } else {
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
                     }
 
 
                 } catch (Exception e) {
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
 
             }

@@ -59,7 +59,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String countryCurrencyCode_from_currency="";
     String mobileNoStr="";
 
-    String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="";
+    String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="",countryCode_agent="";
 
     boolean  isPasswordVisible;
 
@@ -89,7 +89,10 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderNameAgent="";
 
-    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="";
+    String  currencyCode_agent="",currencyName_agent="";
+
+    String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",agentCode_subscriber;
+
 
     String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
@@ -301,19 +304,39 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
 
-                            ownerNameTemp = jsonObject3.getString("ownerName");
-                            mobileNumberTemp = jsonObject3.getString("mobileNumber");
 
 
+                            if(jsonObject3.has("ownerName"))
+                            {
+                                ownerNameTemp = jsonObject3.getString("ownerName");
 
-                            businessTypeName_walletOwnerCategoryCode = jsonObject3.getString("businessTypeName");
+                                arrayList_instititueName.add(ownerNameTemp);
+                            }
+
+                            if(jsonObject3.has("mobileNumber"))
+                            {
+                                mobileNumberTemp = jsonObject3.getString("mobileNumber");
+
+                                arrayList_instititueCode.add(mobileNumberTemp);
+                            }
+
+
+                            if(jsonObject3.has("registerCountryCode"))
+                            {
+                                countryCode_subscriber = jsonObject3.getString("registerCountryCode");
+                            }
+
+
+                            if(jsonObject3.has("businessTypeName"))
+                            {
+                                businessTypeName_walletOwnerCategoryCode = jsonObject3.getString("businessTypeName");
+                            }
+
 
 
 
                             // countryName_walletOwnerCategoryCode = jsonObject3.getString("issuingCountryName");
 
-                            arrayList_instititueName.add(ownerNameTemp);
-                            arrayList_instititueCode.add(mobileNumberTemp);
 
                         }
 
@@ -575,9 +598,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             countryCurrencyCode_from_currency = jsonObject3.getString("countryCurrencyCode");
 
 
-                            currencyName_agent = jsonObject3.getString("currencyName");
-                            countryCode_agent = jsonObject3.getString("countryCurrencyCode");
-                            currencyCode_agent = jsonObject3.getString("currencyCode");
+                          //  currencyName_agent = jsonObject3.getString("currencyName");
+                          //  countryCode_agent = jsonObject3.getString("countryCurrencyCode");
+                          //  currencyCode_agent = jsonObject3.getString("currencyCode");
 
                             walletOwnerCode_from_currency = jsonObject3.getString("walletOwnerCode");
 
@@ -720,11 +743,157 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void exchange_rate_api() {
+    private void api_currency_subscriber() {
+
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/" + walletOwnerCode_subs, languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789322","requestTime":"Wed Oct 20 15:53:33 IST 2021","responseTime":"Wed Oct 20 15:53:33 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","walletOwnerCountryCurrencyList":[{"id":7452,"code":"107451","walletOwnerCode":"1000002488","currencyCode":"100062","currencyName":"GNF","currencySymbol":"Fr","countryCurrencyCode":"100076","inBound":true,"outBound":true,"status":"Active"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                            if(jsonObject2.has("currencyName")) {
+
+                                String  currencyName_subscriber_temp = jsonObject2.getString("currencyName");
+                                if (currencyName_subscriber_temp.equalsIgnoreCase("GNF")) {
+                                    currencyName_subscriber = jsonObject2.getString("currencyName");
+                                    currencyCode_subscriber = jsonObject2.getString("currencyCode");
+
+                                } else {
+
+                                }
+                            }
+                        }
 
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+srcCurrencyCode_from_allSellFloat+"&receiveCurrencyCode=100062&sendCountryCode="+desCurrencyCode_from_allSellFloat+"&receiveCountryCode=" +
-                "&currencyValue="+amountstr+"&channelTypeCode=100000&serviceCode="+serviceCode_from_serviceCategory+"&serviceCategoryCode="+serviceCategoryCode_from_serviceCategory+"&serviceProviderCode="+serviceProviderCode_from_serviceCategory+"&walletOwnerCode="+walletOwnerCode_mssis_agent+"&remitAgentCode="+walletOwnerCode_mssis_agent+"&payAgentCode=1000002488",languageToUse,new Api_Responce_Handler() {
+                        api_exchange_rate();
+
+
+
+                    } else {
+                        Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(TransferFloats.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void api_currency_sender() {
+
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+walletOwnerCode_mssis_agent,languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789322","requestTime":"Wed Oct 20 15:53:33 IST 2021","responseTime":"Wed Oct 20 15:53:33 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","walletOwnerCountryCurrencyList":[{"id":7452,"code":"107451","walletOwnerCode":"1000002488","currencyCode":"100062","currencyName":"GNF","currencySymbol":"Fr","countryCurrencyCode":"100076","inBound":true,"outBound":true,"status":"Active"}]}");
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+                        for(int i=0;i<jsonArray.length();i++) {
+
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+
+                            if(jsonObject2.has("currencyName")) {
+
+                                String  currencyName_agent_temp = jsonObject2.getString("currencyName");
+                                if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
+                                    currencyCode_agent = jsonObject2.getString("currencyCode");
+                                    currencyName_agent = jsonObject2.getString("currencyName");
+
+                                } else {
+
+                                }
+                            }
+
+                        }
+
+
+                        api_currency_subscriber();
+
+                    }
+
+                    else {
+                        Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(TransferFloats.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+
+    private void api_exchange_rate() {
+
+
+
+                API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
+                        "&receiveCurrencyCode="+selectCurrecnyCode+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_subscriber+
+                        "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" +
+                        serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+                        serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
+                        walletOwnerCode_mssis_agent + "&payAgentCode="+walletOwnerCode_mssis_agent,languageToUse, new Api_Responce_Handler() {
+
+
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -909,6 +1078,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
+                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+
+
                         rp_tv_agentName.setText(agentName_from_walletOwner);
                         rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", TransferFloats.this));
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
@@ -918,15 +1090,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
 
-
-
-
-
-
-                        exchange_rate_api();
-
-
-
+                api_currency_sender();
 
 
                     } else {
@@ -1078,10 +1242,14 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("transactionType","101612"); // Hard code
+
             jsonObject.put("srcWalletOwnerCode",srcWalletOwnerCode_from_allSellFloat);
             jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_allSellFloat);
-            jsonObject.put("srcCurrencyCode",srcCurrencyCode_from_allSellFloat);
-            jsonObject.put("desCurrencyCode",desCurrencyCode_from_allSellFloat);
+
+            jsonObject.put("srcCurrencyCode",currencyCode_agent);
+            jsonObject.put("desCurrencyCode",currencyCode_subscriber);
+
+
             jsonObject.put("value",amountstr);
 
 

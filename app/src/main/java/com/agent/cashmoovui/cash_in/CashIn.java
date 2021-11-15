@@ -35,6 +35,7 @@ import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.agent.cashmoovui.settings.EditProfile;
+import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -53,6 +54,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     View rootView;
     boolean  isPasswordVisible;
 
+    String agentCode_subscriber="";
+
+
 
     String walletOwnerCode="";
 
@@ -69,16 +73,17 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     EditText edittext_mobileNuber,edittext_amount,et_mpin;
 
-    String mobileNoStr="",amountstr="",desWalletOwnerCode_from_currency="";
+    String mobileNoStr="",amountstr="";
 
     String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderNameAgent="";
 
-    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="";
+    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
+    String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",countryName_subscriber;
 
     String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
-   String mpinStr="";
+    String mpinStr="";
 
 
     String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
@@ -208,6 +213,15 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CashIn.this);
 
 
+            if (new InternetCheck().isConnected(CashIn.this)) {
+
+                MyApplication.showloader(CashIn.this, getString(R.string.getting_user_info));
+
+                api_walletOwner_agent();
+
+            } else {
+                Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+            }
 
         }
         catch (Exception e)
@@ -266,7 +280,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
 
-       else if(amountstr.isEmpty()) {
+        else if(amountstr.isEmpty()) {
 
             MyApplication.showErrorToast(this,getString(R.string.plz_enter_amount));
 
@@ -284,6 +298,60 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         return true;
     }
 
+    private void api_walletOwner_agent() {
+
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/"+walletOwnerCode_mssis_agent,languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
+
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+                        rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
+
+                    } else {
+                        Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(CashIn.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    finish();
+
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CashIn.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+
 
     private void subscriber_details_api_walletownerUser() {
 
@@ -293,81 +361,76 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
         API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+mobileNoStr+"&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
-                @Override
-                public void success(JSONObject jsonObject) {
+            @Override
+            public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+                MyApplication.hideLoader();
 
-                    try {
+                try {
 
-                        //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
 
-                        String resultCode =  jsonObject.getString("resultCode");
-                        String resultDescription =  jsonObject.getString("resultDescription");
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
 
-                        if(resultCode.equalsIgnoreCase("0")) {
+                    if(resultCode.equalsIgnoreCase("0")) {
 
+                        //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
 
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
 
-                          //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                            walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
 
+                            countryCode_subscriber = jsonObject2.getString("registerCountryCode");
+                            agentCode_subscriber = jsonObject2.getString("code");
 
-                            JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
-                            for(int i=0;i<jsonArray.length();i++)
-                            {
-                                
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
+                            rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
+                            rp_tv_email.setText(jsonObject2.getString("email"));
+                            rp_tv_country.setText(countryName_agent);
 
-                                rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
-                                rp_tv_email.setText(jsonObject2.getString("email"));
-                                rp_tv_country.setText(jsonObject2.getString("issuingCountryName"));
-
-                                receivernameStr=jsonObject2.getString("ownerName");
-                                rp_tv_receiverName.setText(receivernameStr);
-
-
-//                                JSONObject walletTransfer = jsonObject.getJSONObject("walletTransfer");
-//                                JSONObject srcWalletOwner = walletTransfer.getJSONObject("srcWalletOwner");
-//                                rp_tv_businessType.setText(srcWalletOwner.getString("businessTypeName"));
-
-
-                            }
-
-                            currency_api();
-
+                            receivernameStr=jsonObject2.getString("ownerName");
+                            rp_tv_receiverName.setText(receivernameStr);
                         }
 
-                            else {
-                                Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
-                              //  finish();
-                            }
-
+                        api_currency_sender();
 
                     }
-                    catch (Exception e)
-                    {
-                        Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
+
+                    else {
+                        Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  finish();
                     }
 
-           }
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
 
 
-                @Override
-                public void failure(String aFalse) {
+            @Override
+            public void failure(String aFalse) {
 
-                    MyApplication.hideLoader();
-                    Toast.makeText(CashIn.this, aFalse, Toast.LENGTH_SHORT).show();
-                    finish();
+                MyApplication.hideLoader();
+                Toast.makeText(CashIn.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
 
-                     }
-            });
+            }
+        });
 
 
     }
 
-    private void currency_api() {
+
+
+    private void api_currency_subscriber() {
 
         API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+walletOwnerCode_subs,languageToUse,new Api_Responce_Handler() {
             @Override
@@ -384,26 +447,99 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if(resultCode.equalsIgnoreCase("0")) {
 
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+                        for(int i=0;i<jsonArray.length();i++) {
+
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                            if(jsonObject2.has("currencyName")) {
+
+                                String  currencyName_subscriber_temp = jsonObject2.getString("currencyName");
+                                if (currencyName_subscriber_temp.equalsIgnoreCase("GNF")) {
+                                    currencyName_subscriber = jsonObject2.getString("currencyName");
+                                    currencyCode_subscriber = jsonObject2.getString("currencyCode");
+
+                                } else {
+
+                                }
+                            }
+
+
+                        }
+
+                        api_exchange_rate();
+
+                    }
+
+                    else {
+                        Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CashIn.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void api_currency_sender() {
+
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+walletOwnerCode_mssis_agent,languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789322","requestTime":"Wed Oct 20 15:53:33 IST 2021","responseTime":"Wed Oct 20 15:53:33 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","walletOwnerCountryCurrencyList":[{"id":7452,"code":"107451","walletOwnerCode":"1000002488","currencyCode":"100062","currencyName":"GNF","currencySymbol":"Fr","countryCurrencyCode":"100076","inBound":true,"outBound":true,"status":"Active"}]}");
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
 
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
                         for(int i=0;i<jsonArray.length();i++) {
 
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            currencyName_agent = jsonObject2.getString("currencyName");
-                            countryCode_agent = jsonObject2.getString("countryCurrencyCode");
-                            currencyCode_agent = jsonObject2.getString("currencyCode");
-                            desWalletOwnerCode_from_currency = jsonObject2.getString("walletOwnerCode");
+                            if(jsonObject2.has("currencyName")) {
+
+                                String  currencyName_agent_temp = jsonObject2.getString("currencyName");
+                                if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
+                                    currencyCode_agent = jsonObject2.getString("currencyCode");
+                                    currencyName_agent = jsonObject2.getString("currencyName");
+
+                                } else {
+
+                                }
+                            }
 
                         }
 
 
+                        // Toast.makeText(CashIn.this, currencyCode_subscriber, Toast.LENGTH_LONG).show();
 
-                      //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
-
-
-                       exchange_rate_api();
-
+                        api_currency_subscriber();
 
                     }
 
@@ -455,7 +591,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if(resultCode.equalsIgnoreCase("0")) {
 
-
                         JSONArray jsonArray = jsonObject.getJSONArray("serviceProviderList");
                         for(int i=0;i<jsonArray.length();i++) {
 
@@ -464,11 +599,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                             serviceCode_from_serviceCategory = jsonObject2.getString("serviceCode");
                             serviceCategoryCode_from_serviceCategory = jsonObject2.getString("serviceCategoryCode");
                             serviceProviderCode_from_serviceCategory = jsonObject2.getString("code");
-
                         }
 
                         agent_details_api_walletownerUser();
-
 
                     }
 
@@ -515,21 +648,21 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                 try {
 
-                   // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
 
                     String resultCode =  jsonObject.getString("resultCode");
                     String resultDescription =  jsonObject.getString("resultDescription");
 
                     if(resultCode.equalsIgnoreCase("0")) {
 
-                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+                        JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
-                          senderNameAgent=walletOwnerUser.getString("firstName");
-                          rp_tv_senderName.setText(senderNameAgent);
+                        senderNameAgent=walletOwnerUser.getString("firstName");
+                        rp_tv_senderName.setText(senderNameAgent);
 
                         subscriber_details_api_walletownerUser();
-
-
 
                     }
 
@@ -591,7 +724,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     else {
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
-                     //   finish();
+                        //   finish();
                     }
 
 
@@ -651,110 +784,94 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
         try {
 
-                    JSONObject jsonObject = new JSONObject();
+            JSONObject jsonObject = new JSONObject();
 
-                    jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);  // Agent  srcWalletOwnerCode
-
-//                    jsonObject.put("desWalletOwnerCode","1000002488");  // Subscriber
-//                    jsonObject.put("srcCurrencyCode","100062");         // source  srcWalletOwnerCode
-//                    jsonObject.put("desCurrencyCode","100062");         //  Subscriber
-
-
-                    jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_currency);  // Subscriber
-                  //  jsonObject.put("srcCurrencyCode","100062");         // source  srcWalletOwnerCode
-                  //  jsonObject.put("desCurrencyCode","100062");         //  Subscriber
-            jsonObject.put("srcCurrencyCode",currencyCode_agent);         // source  srcWalletOwnerCode
-            jsonObject.put("desCurrencyCode","100062");         //  Subscriber
-
-
+            jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
+            jsonObject.put("desWalletOwnerCode",agentCode_subscriber);
+            jsonObject.put("srcCurrencyCode",currencyCode_agent);
+            jsonObject.put("desCurrencyCode",currencyCode_subscriber);
             jsonObject.put("value",amountstr);
-
-                    String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
-                    jsonObject.put("pin",encryptionDatanew);
-
-
-                    jsonObject.put("transactionType","100000");         // Hard Code according  to Deepak
-                    jsonObject.put("channelTypeCode","2");           // Hard Code according  to Deepak
-                  //  jsonObject.put("serviceCode","100003");          // Hard Code according  to Deepak
-                    jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
-                  //  jsonObject.put("serviceCategoryCode","100011");  // Hard Code according  to Deepak
-                    jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
-                    jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
-                   // jsonObject.put("serviceProviderCode","100106");  // Hard Code according  to Deepak
+            String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
+            jsonObject.put("pin",encryptionDatanew);
+            jsonObject.put("transactionType","100000");         // Hard Code according  to Deepak
+            jsonObject.put("channelTypeCode","2");           // Hard Code according  to Deepak
+            jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
+            jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
+            jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
 
 
 
 
-        API.POST_CASHIN_MPIN("ewallet/api/v1/walletTransfer/cashIn", jsonObject, languageToUse, new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
+            API.POST_CASHIN_MPIN("ewallet/api/v1/walletTransfer/cashIn", jsonObject, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+                    MyApplication.hideLoader();
 
-                try {
+                    try {
 
-                  // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"116204\",\"requestTime\":\"Wed Oct 20 19:51:47 IST 2021\",\"responseTime\":\"Wed Oct 20 19:51:47 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletTransfer\":{\"code\":\"116204\",\"srcWalletCode\":\"1000024941\",\"desWalletCode\":\"1000022471\",\"srcWalletOwnerCode\":\"1000002606\",\"desWalletOwnerCode\":\"1000002488\",\"srcWalletTypeCode\":\"100008\",\"desWalletTypeCode\":\"100008\",\"srcCurrencyCode\":\"100062\",\"desCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"desCurrencyName\":\"GNF\",\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"value\":2130,\"createdBy\":\"101917\",\"creationDate\":\"2021-10-20 19:51:47\",\"fee\":1000,\"finalAmount\":1000,\"srcWalletOwner\":{\"id\":110500,\"code\":\"1000002606\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"TATASnegal\",\"mobileNumber\":\"8888888882\",\"businessTypeCode\":\"100001\",\"businessTypeName\":\"Telecom\",\"idProofNumber\":\"44444444444\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-01T09:01:15.968+0530\",\"modificationDate\":\"2021-10-01T09:10:25.037+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100014\",\"100013\",\"100012\",\"100007\",\"100010\",\"100008\",\"100005\",\"100002\",\"100001\",\"100003\",\"100069\",\"100062\",\"100004\",\"100000\",\"100028\",\"100027\",\"100026\",\"100024\",\"100021\",\"100020\",\"100019\",\"100017\",\"100015\",\"100018\",\"100058\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002606\"},\"desWalletOwner\":{\"id\":110382,\"code\":\"1000002488\",\"walletOwnerCategoryCode\":\"100010\",\"ownerName\":\"Kundan\",\"mobileNumber\":\"118110111\",\"idProofNumber\":\"vc12345\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100006\",\"idProofTypeName\":\"OTHER\",\"idExpiryDate\":\"2021-09-29\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-26\",\"lastName\":\"New\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100375\",\"modifiedBy\":\"100322\",\"creationDate\":\"2021-09-16T17:08:49.796+0530\",\"modificationDate\":\"2021-09-16T17:10:17.009+0530\",\"walletExists\":true,\"profileTypeCode\":\"100001\",\"profileTypeName\":\"tier2\",\"walletOwnerCatName\":\"Subscriber\",\"occupationTypeCode\":\"100002\",\"occupationTypeName\":\"Others\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"issuingCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002488\"},\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":130,\"taxAvailBy\":\"Fee Amount\"}],\"transactionType\":\"CASH-IN\"}}");
+                        // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"116204\",\"requestTime\":\"Wed Oct 20 19:51:47 IST 2021\",\"responseTime\":\"Wed Oct 20 19:51:47 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletTransfer\":{\"code\":\"116204\",\"srcWalletCode\":\"1000024941\",\"desWalletCode\":\"1000022471\",\"srcWalletOwnerCode\":\"1000002606\",\"desWalletOwnerCode\":\"1000002488\",\"srcWalletTypeCode\":\"100008\",\"desWalletTypeCode\":\"100008\",\"srcCurrencyCode\":\"100062\",\"desCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"desCurrencyName\":\"GNF\",\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"value\":2130,\"createdBy\":\"101917\",\"creationDate\":\"2021-10-20 19:51:47\",\"fee\":1000,\"finalAmount\":1000,\"srcWalletOwner\":{\"id\":110500,\"code\":\"1000002606\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"TATASnegal\",\"mobileNumber\":\"8888888882\",\"businessTypeCode\":\"100001\",\"businessTypeName\":\"Telecom\",\"idProofNumber\":\"44444444444\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-01T09:01:15.968+0530\",\"modificationDate\":\"2021-10-01T09:10:25.037+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100014\",\"100013\",\"100012\",\"100007\",\"100010\",\"100008\",\"100005\",\"100002\",\"100001\",\"100003\",\"100069\",\"100062\",\"100004\",\"100000\",\"100028\",\"100027\",\"100026\",\"100024\",\"100021\",\"100020\",\"100019\",\"100017\",\"100015\",\"100018\",\"100058\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002606\"},\"desWalletOwner\":{\"id\":110382,\"code\":\"1000002488\",\"walletOwnerCategoryCode\":\"100010\",\"ownerName\":\"Kundan\",\"mobileNumber\":\"118110111\",\"idProofNumber\":\"vc12345\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100006\",\"idProofTypeName\":\"OTHER\",\"idExpiryDate\":\"2021-09-29\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-26\",\"lastName\":\"New\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100375\",\"modifiedBy\":\"100322\",\"creationDate\":\"2021-09-16T17:08:49.796+0530\",\"modificationDate\":\"2021-09-16T17:10:17.009+0530\",\"walletExists\":true,\"profileTypeCode\":\"100001\",\"profileTypeName\":\"tier2\",\"walletOwnerCatName\":\"Subscriber\",\"occupationTypeCode\":\"100002\",\"occupationTypeName\":\"Others\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"issuingCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002488\"},\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":130,\"taxAvailBy\":\"Fee Amount\"}],\"transactionType\":\"CASH-IN\"}}");
 
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                    if (resultCode.equalsIgnoreCase("0")) {
+                        if (resultCode.equalsIgnoreCase("0")) {
 
-                        ll_page_1.setVisibility(View.GONE);
-                        ll_reviewPage.setVisibility(View.GONE);
-                        ll_receiptPage.setVisibility(View.VISIBLE);
+                            ll_page_1.setVisibility(View.GONE);
+                            ll_reviewPage.setVisibility(View.GONE);
+                            ll_receiptPage.setVisibility(View.VISIBLE);
 
-                        receiptPage_tv_stransactionType.setText("CASH-IN");
-                        receiptPage_tv_transactionAmount.setText(amountstr);
-                        receiptPage_tv_fee.setText(fees_amount);
-                        receiptPage_tv_financialtax.setText(tax_financial);
-
-
-                        receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                        receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                        receiptPage_tv_amount_to_be_credit.setText(amountstr);
-
-                        receiptPage_tv_sender_name.setText(senderNameAgent);
-                        receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
-
-                        receiptPage_tv_sender_name.setText(senderNameAgent);
-                        receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
-
-                        receiptPage_tv_receiver_name.setText(receivernameStr);
-                        receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+                            receiptPage_tv_stransactionType.setText("CASH-IN");
+                            receiptPage_tv_transactionAmount.setText(amountstr);
+                            receiptPage_tv_fee.setText(fees_amount);
+                            receiptPage_tv_financialtax.setText(tax_financial);
 
 
-                    } else {
-                        Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
-                        //  finish();
+                            receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
+                            receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
+                            receiptPage_tv_amount_to_be_credit.setText(amountstr);
+
+                            receiptPage_tv_sender_name.setText(senderNameAgent);
+                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
+
+                            receiptPage_tv_sender_name.setText(senderNameAgent);
+                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
+
+                            receiptPage_tv_receiver_name.setText(receivernameStr);
+                            receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+
+
+                        } else {
+                            Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(CashIn.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
                     }
 
-
-                } catch (Exception e) {
-                    Toast.makeText(CashIn.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
                 }
 
-            }
 
+                @Override
+                public void failure(String aFalse) {
 
-            @Override
-            public void failure(String aFalse) {
+                    MyApplication.hideLoader();
 
-                MyApplication.hideLoader();
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(CashIn.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
 
-                if (aFalse.equalsIgnoreCase("1251")) {
-                    Intent i = new Intent(CashIn.this, VerifyLoginAccountScreen.class);
-                    startActivity(i);
-                    finish();
+                        Toast.makeText(CashIn.this, aFalse, Toast.LENGTH_SHORT).show();
                 }
-                else
+            });
 
-                Toast.makeText(CashIn.this, aFalse, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
+        }
         catch (Exception e)
         {
             Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -764,16 +881,18 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    private void exchange_rate_api() {
+    private void api_exchange_rate() {
 
-       // API.GET_CASHIN_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=100062&sendCountryCode=100092&receiveCountryCode=&currencyValue=1000&channelTypeCode=100000&serviceCode=100003&serviceCategoryCode=100011&serviceProviderCode=100106&walletOwnerCode=1000002606&remitAgentCode=1000002606&payAgentCode=1000002488",languageToUse,new Api_Responce_Handler() {
+        // API.GET_CASHIN_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=100062&sendCountryCode=100092&receiveCountryCode=&currencyValue=1000&channelTypeCode=100000&serviceCode=100003&serviceCategoryCode=100011&serviceProviderCode=100106&walletOwnerCode=1000002606&remitAgentCode=1000002606&payAgentCode=1000002488",languageToUse,new Api_Responce_Handler() {
 
+        http://202.131.144.130:8081/ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100011&status=Y
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent + "&receiveCurrencyCode="+currencyCode_subscriber+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+ // countryCode_subscriber Blanck Acording to Web
+                "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+                serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
+                        walletOwnerCode_subs + "&payAgentCode="+agentCode_subscriber,
 
+                languageToUse, new Api_Responce_Handler() {
 
-
-
-        API.GET_CASHIN_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+currencyCode_agent+"&receiveCurrencyCode=100062&sendCountryCode="+countryCode_agent+"&receiveCountryCode=" +
-                "&currencyValue="+amountstr+"&channelTypeCode=2&serviceCode="+serviceCode_from_serviceCategory+"&serviceCategoryCode="+serviceCategoryCode_from_serviceCategory+"&serviceProviderCode="+serviceProviderCode_from_serviceCategory+"&walletOwnerCode="+walletOwnerCode_mssis_agent+"&remitAgentCode="+walletOwnerCode_mssis_agent+"&payAgentCode=1000002488",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -795,7 +914,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         fees_amount = exchangeRate.getString("fee");
                         rp_tv_fees_reveiewPage.setText(fees_amount);
 
-                      //  credit_amount=exchangeRate.getString("currencyValue");
+                        //  credit_amount=exchangeRate.getString("currencyValue");
 
 
                         if(exchangeRate.has("taxConfigurationList"))
@@ -813,19 +932,15 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
 
-
-
-
                         rp_tv_financialTax.setText(tax_financial);
 
-                         tax_financial_double = Double.parseDouble(tax_financial);
-                       //  credit_amount_double = Double.parseDouble(credit_amount);
-                         fees_amount_double = Double.parseDouble(fees_amount);
+                        tax_financial_double = Double.parseDouble(tax_financial);
+                        fees_amount_double = Double.parseDouble(fees_amount);
                         amountstr_double = Double.parseDouble(amountstr);
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
-                         totalAmount_str = String.valueOf(totalAmount_double);
-                         rp_tv_amount_to_be_charge.setText(totalAmount_str);
+                        totalAmount_str = String.valueOf(totalAmount_double);
+                        rp_tv_amount_to_be_charge.setText(totalAmount_str);
 
                         amountstr = String.valueOf(amountstr_double);
                         rp_tv_transactionAmount.setText(amountstr);
@@ -911,7 +1026,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 store(bitmap, "test.jpg");
             }
 
-                break;
+            break;
 
             case R.id.previous_reviewClick_textview: {
 
@@ -935,19 +1050,19 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             break;
 
             case R.id.close_receiptPage_textview:
-                 {
+            {
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);
 
-                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                     startActivity(intent);
-                     finish();
+                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
 
-                 }
+            }
 
             break;
 
@@ -977,7 +1092,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     String str = result.getContents();
 
                     if (str.equalsIgnoreCase("")) {
-                       // 1000002786:TarunMwTest
+                        // 1000002786:TarunMwTest
 
                         Toast.makeText(this, "QR Code Not Valid", Toast.LENGTH_LONG).show();
                         edittext_mobileNuber.setEnabled(true);
@@ -994,7 +1109,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
                         // Toast.makeText(this, "QR Code  Valid", Toast.LENGTH_LONG).show();
-                       }
+                    }
 
                 }
 

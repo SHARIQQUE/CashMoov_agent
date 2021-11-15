@@ -65,7 +65,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     String receiveCurrencyCode_GNF="100062"; // Hard Code acording to Kundan
     String receiveCountryName_GNF="GNF";
 
-    String  firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
+    String  senderCountryCode_from_walletOwnerUser_agent_api="",firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
             email_sender_from_walletOwnerUser="",idProofTypeCode_sender_from_walletOwnerUser="",idProofNumber_sender_from_walletOwnerUser=""
             ,idExpiryDate_sender_from_walletOwnerUser="",dateOfBirth_sender_from_walletOwnerUser="",
             regionCode_sender_from_walletOwnerUser="",city_sender_from_walletOwnerUser="",address_sender_from_walletOwnerUser,mobileNumber_sender_from_walletOwnerUser="",gender_sender_from_allByCriteria="";
@@ -427,7 +427,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                        api_walletOwnerUser();
+                        api_sender();
+
 
                     } else {
                         Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -619,7 +620,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-  
+
 
 
         if (provider_select_name.equalsIgnoreCase("Select provider*") || (provider_select_name.equalsIgnoreCase("Select provider*")))
@@ -741,16 +742,22 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
 
+                            if(jsonObject3.has("currCode")) {
 
-                             countryName_agent = jsonObject3.getString("countryName");
-                             currencyName_agent = jsonObject3.getString("currencyName");
+                                String  currencyName_agent_temp = jsonObject3.getString("currCode");
+                                if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
+                                    countryCode_agent = jsonObject3.getString("countryCode");
+                                    currencyCode_agent = jsonObject3.getString("currencyCode");
 
-                             countryCode_agent = jsonObject3.getString("countryCode");
-                            currencyCode_agent = jsonObject3.getString("currencyCode");
+                                } else {
+
+                                }
+                            }
 
                         }
 
-                      api_sender();
+
+
 
 
                     } else {
@@ -811,6 +818,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         }
 
+                        api_walletOwnerUser();
+
 
 
                     } else {
@@ -864,6 +873,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         if (jsonObject.has("walletOwnerUser")) {
 
                             JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+
+                            senderCountryCode_from_walletOwnerUser_agent_api = walletOwnerUser.getString("issuingCountryCode");
 
                             if (walletOwnerUser.has("mobileNumber")) {
                                 mobileNumber_sender_from_walletOwnerUser = walletOwnerUser.getString("mobileNumber");
@@ -1289,8 +1300,12 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             jsonObject.put("senderCode", senderCode_from_senderApi); // 1000001658 annu
             jsonObject.put("receiverCode", receivercode_from_receiverAPi);
 
-            jsonObject.put("fromCurrencyCode", "100062");  // Hard Code according  to Deepak
-            jsonObject.put("toCurrencyCode", "100062");   // Hard Code according  to Deepak
+            jsonObject.put("fromCurrencyCode", currencyCode_agent);  // Hard Code according  to Deepak (Both are same LOcal Country )
+            jsonObject.put("toCurrencyCode", currencyCode_agent);   // Hard Code according  to Deepak (Both are same LOcal Country )
+            jsonObject.put("sendCountryCode",countryCode_agent);  // Hard Code according  to Deepak (Both are same LOcal Country )
+            jsonObject.put("receiveCountryCode",countryCode_agent);  // Hard Code according  to Deepak (Both are same LOcal Country )
+
+
             jsonObject.put("amount", amountstr);
             jsonObject.put("conversionRate", convertionFeesStr);
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
@@ -1300,8 +1315,6 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             jsonObject.put("serviceCode", serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);
-            jsonObject.put("sendCountryCode","100092");  // Hard Code according  to Deepak
-            jsonObject.put("receiveCountryCode","100092");  // Hard Code according  to Deepak
 
 
 
@@ -1397,16 +1410,36 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
     }
 
+
+
     private void api_exchangeRate() {
 
 
-        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
-                "100062"+"&receiveCurrencyCode=100062&sendCountryCode="+
-                "100092"+"&receiveCountryCode="+"100092"+"&currencyValue="
-                + amountstr + "&channelTypeCode=10000&serviceCode=" + serviceCode_from_serviceCategory +
-                "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode="
-                + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent
-                ,languageToUse, new Api_Responce_Handler() {
+//        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
+//                "100062"+"&receiveCurrencyCode=100062&sendCountryCode="+
+//                        senderCountryCode_from_walletOwnerUser_agent_api+"&receiveCountryCode="+"100092"+"&currencyValue="
+//                + amountstr + "&channelTypeCode=10000&serviceCode=" + serviceCode_from_serviceCategory +
+//                "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode="
+//                + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent
+//                ,languageToUse, new Api_Responce_Handler() {
+
+
+
+
+        // Same Country Select because Local remitance both are same Country same courency
+
+             API.GET_REMMITANCE_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
+                            "&receiveCurrencyCode="+currencyCode_agent+"&sendCountryCode=" +
+                             countryCode_agent + "&receiveCountryCode="+countryCode_agent+
+                            "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" +
+                             serviceCode_from_serviceCategory + "&serviceCategoryCode=" +
+                             serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+                    serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent,
+
+                     languageToUse, new Api_Responce_Handler() {
+
+
+
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1524,6 +1557,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         MyApplication.showloader(LocalRemittance.this, getString(R.string.getting_user_info));
 
                         api_idProof();
+
+
 
                     } else {
                         Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
