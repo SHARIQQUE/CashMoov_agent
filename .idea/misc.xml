@@ -62,6 +62,8 @@
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/toolbar.xml" value="0.1390625" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/toolbar_active.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/drawable-v24/round_blue.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/drawable-xxxhdpi/round_gray.xml" value="0.2171875" />
+        <entry key="app/src/main/res/drawable/backround_listview.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable/custom_rect.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable/error_toast.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.1" />
@@ -151,11 +153,17 @@
         <entry key="app/src/main/res/layout/remitance_receive.xml" value="0.25" />
         <entry key="app/src/main/res/layout/row.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/row_item_simple.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/search_transaction_adapter.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/search_transaction_agent.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/search_transaction_branch.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/sellfloat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_active.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_add_contact.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/toolbar_w_qr.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/transaction_history_agent.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/transaction_history_branch.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/layout/transaction_history_mainpage.xml" value="0.22" />
         <entry key="app/src/main/res/layout/transfer_flaots.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/wallet_recu_pop.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.15052083333333333" />

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import com.agent.cashmoovui.apiCalls.API;
+import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
@@ -34,6 +35,7 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -50,6 +52,10 @@ public class MyApplication extends Application {
     private static KProgressHUD hud;
     public static MyApplication appInstance;
     public static String lang;
+
+    public static ArrayList<CurrencyModel> currencyModelArrayList=new ArrayList<>();
+
+
 
     private SharedPreferences mSharedPreferences;
     private String PREF_NAME = "cashmoove_sh";

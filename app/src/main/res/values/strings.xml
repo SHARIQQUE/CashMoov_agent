@@ -650,6 +650,11 @@
     <string name="sending_country">Sending country</string>
     <string name="sending_country_star">Sending country*</string>
     <string name="subscriber_added">Subscriber added successfully!</string>
+    <string name="transaction_type">Transaction type</string>
+    <string name="agentName">Agent name</string>
+    <string name="agent_mobileNumber">Agent mobile no</string>
+    <string name="agent_details">Agent details</string>
+    <string name="branch_details">Branch details</string>
 
 
 </resources>

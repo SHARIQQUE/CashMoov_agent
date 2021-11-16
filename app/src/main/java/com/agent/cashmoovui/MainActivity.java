@@ -23,6 +23,7 @@ import com.agent.cashmoovui.cashout.CashOutOpt;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
@@ -150,9 +151,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (bottomId == 1) {
 
 
-                    Toast.makeText(MainActivity.this,"Coming Soon.....", Toast.LENGTH_SHORT).show();
 
-                    Intent i = new Intent(MainActivity.this, WalletScreen.class);
+                    Intent i = new Intent(MainActivity.this, TransactionHistoryMainPage.class);
                     startActivity(i);
 
                 }

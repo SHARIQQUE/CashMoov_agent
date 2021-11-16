@@ -650,6 +650,13 @@
     <string name="sending_country">Pays d\'envoi</string>
     <string name="sending_country_star">Pays d\'envoi*</string>
     <string name="subscriber_added">Abonné ajouté avec succès !</string>
+    <string name="transaction_type">Type de transaction</string>
+    <string name="agentName">Nom d\'agent</string>
+
+    <string name="agent_mobileNumber">Agent mobile non</string>
+    <string name="agent_details">Détails de l\'agent</string>
+    <string name="branch_details">bronc Détails</string>
+
 
 
 </resources>
