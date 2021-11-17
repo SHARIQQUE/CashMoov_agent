@@ -6,53 +6,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp"
     android:id="@+id/main_layout"
-    tools:context=".activity.About">
+    tools:context=".airtime_purchase.AirtimePurchases">
+
+
+                <include layout="@layout/toolbar_active"></include>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-
-
-
-        <!--    First Page-->
+        android:fillViewport="true">
 
         <LinearLayout
-
-            android:id="@+id/ll_page_1"
-            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="visible"
-
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
-
-                <include layout="@layout/toolbar_w_qr"></include>
-
-
-
-            </LinearLayout>
-
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -183,7 +161,7 @@
                 android:id="@+id/edittext_mobileNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
                 android:inputType="number"
@@ -261,8 +239,6 @@
                 android:text="@string/next"
                 />
 
-
-        </LinearLayout>
 
 
         <!--    Reveiw Page-->
@@ -1475,4 +1451,4 @@ android:visibility="gone"
 
     </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>

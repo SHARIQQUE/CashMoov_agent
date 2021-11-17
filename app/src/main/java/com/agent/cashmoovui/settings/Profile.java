@@ -22,6 +22,7 @@ import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.pin_change.ChangePin;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.bumptech.glide.BuildConfig;
 import com.bumptech.glide.Glide;
@@ -205,7 +206,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     //  finish();
                 }
                 if (bottomId == 1) {
-                    Intent i = new Intent(profileC, WalletScreen.class);
+                    Intent i = new Intent(profileC, TransactionHistoryMainPage.class);
                     startActivity(i);
                     //finish();
                 }

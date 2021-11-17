@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ import java.util.Locale;
 
 public class AirtimePurchases extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
-
+    ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
 
@@ -161,6 +162,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
             setContentView(R.layout.airtime_purchases);
+            setBackMenu();
 
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
@@ -297,7 +299,32 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     }
 
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 
     boolean validation_mobile_Details() {

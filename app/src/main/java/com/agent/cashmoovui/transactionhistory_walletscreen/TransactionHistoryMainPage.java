@@ -29,6 +29,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.model.transaction.ModalUserDetails;
 import com.agent.cashmoovui.model.UserDetail;
+import com.agent.cashmoovui.settings.Profile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -39,9 +40,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import me.ibrahimsn.lib.OnItemSelectedListener;
+import me.ibrahimsn.lib.SmoothBottomBar;
+
 public class TransactionHistoryMainPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-
+    SmoothBottomBar bottomBar;
     String searchStr="";
     EditText edittext_search;
     ImageView imgQR,search_imageView;
@@ -86,8 +90,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         setContentView(R.layout.transaction_history_mainpage);
 
+        bottomBar = findViewById(R.id.bottomBar);
         imgQR = findViewById(R.id.imgQR);
         imgQR.setOnClickListener(this);
+
+        bottomBar.setItemActiveIndex(1);
+        bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
@@ -125,6 +134,34 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             insitute_textview.setVisibility(View.GONE);
             agent_textview.setVisibility(View.GONE);
         }
+
+        bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public boolean onItemSelect(int bottomId) {
+                if (bottomId == 0) {
+                    Intent i = new Intent(TransactionHistoryMainPage.this, MainActivity.class);
+                    startActivity(i);
+                    //  finish();
+                }
+                if (bottomId == 1) {
+
+
+
+//                    Intent i = new Intent(WalletScreen.this, WalletScreen.class);
+//                    startActivity(i);
+//                    finish();
+
+
+                }
+                if (bottomId == 2) {
+                    Intent i = new Intent(TransactionHistoryMainPage.this, Profile.class);
+                    startActivity(i);
+                    //  finish();
+                }
+                return true;
+            }
+        });
+
 
         edittext_search =(EditText)findViewById(R.id.edittext_search);
         edittext_search.addTextChangedListener(new TextWatcher() {
@@ -171,7 +208,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     }
 
 
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomBar.setItemActiveIndex(1);
+        bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+    }
 
 
     private void api_wallet_walletOwner() {

@@ -935,9 +935,10 @@ public class API {
         AndroidNetworking.post(BASEURL+URL)
                 .addJSONObjectBody(jsonObject) // posting json
                 .setOkHttpClient(okClient)
-                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                .addHeaders("Accept-Language","en")
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
+                .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)

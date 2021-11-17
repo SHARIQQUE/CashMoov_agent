@@ -79,6 +79,7 @@ x
         <activity android:name=".payments.Payments"></activity>
         <activity android:name=".payments.PaymentDetails"></activity>
         <activity android:name=".payments.PaymentConfirm"></activity>
+        <activity android:name=".activity.TransactionSuccessScreen"></activity>
         <activity android:name=".payments.PaymentReceipt"></activity>
         <activity android:name=".activity.HistoriqueAgent"></activity>
         <activity android:name=".activity.HistoriqueBranch"></activity>

@@ -97,8 +97,6 @@ public class Payments extends AppCompatActivity implements OperatorListeners {
                                 JSONObject data = walletOwnerListArr.optJSONObject(i);
                                 if (data.optString("walletTypeCode").equalsIgnoreCase("100008")) {
                                     mobile = data.optString("walletOwnerMsisdn");
-                                    currency = data.optString("currencyName");
-                                    currencySymbol = data.optString("currencySymbol");
                                    // MyApplication.showToast(paymentsC,"CurrencySymbol--"+currencySymbol);
                                 }
 
@@ -107,6 +105,8 @@ public class Payments extends AppCompatActivity implements OperatorListeners {
 
                         }
                     }
+
+                    callApiFromCurrency();
 
                 }else{
                     MyApplication.showToast(paymentsC,jsonObject.optString("resultDescription"));
@@ -121,11 +121,51 @@ public class Payments extends AppCompatActivity implements OperatorListeners {
             }
         });
 
-        callApioperatorProvider();
 
     }
 
+    private void callApiFromCurrency() {
+        try {
 
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/"+MyApplication.getSaveString("walletOwnerCode",paymentsC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerCurrListArr = jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+                                    for (int i = 0; i < walletOwnerCurrListArr.length(); i++) {
+                                        JSONObject data = walletOwnerCurrListArr.optJSONObject(i);
+                                        if (data.optString("currencyCode").equalsIgnoreCase("100062")) {
+                                            currency = data.optString("currencyName");
+                                            currencySymbol = data.optString("currencySymbol");
+                                        }
+
+                                    }
+                                    callApioperatorProvider();
+
+                                } else {
+                                    MyApplication.showToast(paymentsC,jsonObject.optString("resultDescription", "  "));
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
 
     private void callApioperatorProvider() {

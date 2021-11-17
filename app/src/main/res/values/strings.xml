@@ -655,6 +655,8 @@
     <string name="agent_mobileNumber">Agent mobile no</string>
     <string name="agent_details">Agent details</string>
     <string name="branch_details">Branch details</string>
+    <string name="total_amount_colon">Total Amount :</string>
+    <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
 
 
 </resources>

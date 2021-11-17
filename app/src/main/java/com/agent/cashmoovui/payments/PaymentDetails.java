@@ -157,7 +157,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
                             + "&serviceCategoryCode=" + Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode") +
                             "&serviceProviderCode=" + Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode") +
                             "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", paymentdetailsC) +
-                            "&productCode=+" + Payments.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
+                            "&productCode=" + Payments.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -179,7 +179,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 //                                    }else{
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
-
+                                    tvSend.setVisibility(View.VISIBLE);
                                     if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                         taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                     } else {
@@ -188,6 +188,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 
 
                                 } else {
+                                    tvSend.setVisibility(View.GONE);
                                     MyApplication.showToast(paymentdetailsC, jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }

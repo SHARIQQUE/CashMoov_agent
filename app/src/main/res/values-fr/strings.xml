@@ -656,7 +656,8 @@
     <string name="agent_mobileNumber">Agent mobile non</string>
     <string name="agent_details">Détails de l\'agent</string>
     <string name="branch_details">bronc Détails</string>
-
+    <string name="total_amount_colon">Montant total :</string>
+    <string name="vendor_trans_id_colom">Identifiant de transaction du fournisseur :</string>
 
 
 </resources>
