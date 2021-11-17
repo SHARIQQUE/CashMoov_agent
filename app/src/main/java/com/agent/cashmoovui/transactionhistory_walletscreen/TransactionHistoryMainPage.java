@@ -540,10 +540,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 try {
 
-                    Toast.makeText(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList.get(i).mainWalletValue.toString()+"---commisiiom---"
-                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
-                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
-                    ;
+//                 //   Toast.makeText(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList.get(i).mainWalletValue.toString()+"---commisiiom---"
+//                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
+//                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
+//                    ;
 
                     mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
                    commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);

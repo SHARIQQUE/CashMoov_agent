@@ -23,6 +23,7 @@ import com.agent.cashmoovui.adapter.SearchAdapteAgentDetails;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
+import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.model.UserDetailAgent;
 
 import org.json.JSONArray;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class TransactionHistoryAgent extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class TransactionHistoryAgent extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,CallBackRecycleViewClick {
 
     String searchStr="";
     EditText edittext_search;
@@ -239,6 +240,14 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
                                     }
 
+                                    if(jsonObject1.has("walletOwnerCode"))
+                                    {
+
+                                        String  walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                        userDetailAgent.setWalletOwnerCode(walletOwnerCode);
+
+                                    }
+
                                     arrayList_modalDetails.add(userDetailAgent);
 
                                 }
@@ -256,7 +265,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
                         recyclerView_agent.setLayoutManager(new LinearLayoutManager(TransactionHistoryAgent.this));
 
-                        adpter= new  SearchAdapteAgentDetails(TransactionHistoryAgent.this,arrayList_modalDetails);
+                        adpter= new  SearchAdapteAgentDetails(TransactionHistoryAgent.this,arrayList_modalDetails,TransactionHistoryAgent.this);
                         recyclerView_agent.setAdapter(adpter);
 
                     }
@@ -372,6 +381,16 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    @Override
+    public void callBackReycleView(String code_walletOwnerChildList) {
+
+        MyApplication.saveString("code_walletOwnerChildList",code_walletOwnerChildList, TransactionHistoryAgent.this);
+
+        Intent i = new Intent(TransactionHistoryAgent.this, TransactionHistoryAgentRecycleClick.class);
+        startActivity(i);
 
     }
 }

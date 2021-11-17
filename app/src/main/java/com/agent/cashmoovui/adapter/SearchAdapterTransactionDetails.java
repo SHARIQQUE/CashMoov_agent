@@ -1,6 +1,7 @@
 package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.model.UserDetailAgent;
@@ -46,6 +48,14 @@ public class SearchAdapterTransactionDetails extends RecyclerView.Adapter<Search
         viewHolder.amount.setText(arrayList_modalUserData.get(i).getTransactionAmount());
         viewHolder.mobileNumber.setText(arrayList_modalUserData.get(i).getDestMobileNumber());
         viewHolder.transactionDate.setText(arrayList_modalUserData.get(i).getCreationDate());
+
+
+//        if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//            viewHolder.amount.setTextColor(Color.parseColor("#D32F2F"));
+//        }
+//        if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//            viewHolder.amount.setTextColor(Color.parseColor("#388E3C"));
+//        }
 
 
 //        viewHolder.viewAgent.setOnClickListener(new View.OnClickListener() {

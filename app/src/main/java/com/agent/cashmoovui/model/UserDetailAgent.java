@@ -6,6 +6,15 @@ public class UserDetailAgent {
     private String mobileNumber="";
     private String email="";
     private String issuingCountryName="";
+    private String walletOwnerCode="";
+
+    public String getWalletOwnerCode() {
+        return walletOwnerCode;
+    }
+
+    public void setWalletOwnerCode(String walletOwnerCode) {
+        this.walletOwnerCode = walletOwnerCode;
+    }
 
     public String getOwnerName() {
         return ownerName;

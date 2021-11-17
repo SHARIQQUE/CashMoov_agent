@@ -657,6 +657,8 @@
     <string name="branch_details">Branch details</string>
     <string name="total_amount_colon">Total Amount :</string>
     <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
+    <string name="transaction_amount_receiptPage">Transaction Amount</string>
+    <string name="vendor_transaction_id_receipt">Vendor Transaction id</string>
 
 
 </resources>

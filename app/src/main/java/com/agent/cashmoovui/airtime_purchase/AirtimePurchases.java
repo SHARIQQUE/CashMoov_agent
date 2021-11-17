@@ -35,6 +35,7 @@ import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterAllCountry;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutCodeSubscriber;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
@@ -55,12 +56,19 @@ import java.util.Locale;
 
 public class AirtimePurchases extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
+
+    String operatorName_from_operatorList="",serviceProviderCode_from_operatorList="",serviceCategoryCode_from_operatorList="",sPName_from_operatorList="",sPCode_from_operatorList="";
+
+    String operator_code_from_operatorList="";
+    String productCode_code_fromapi="";
+
     ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
 
     String selectOperatorList="";
     boolean  isPasswordVisible;
+    String currencyName_subscriber="",currencyCode_subscriber="";
 
 
 
@@ -89,9 +97,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     View rootView;
 
     EditText etPin;
-    TextView receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_operator,rp_tv_totalAmount
+    TextView receiptPage_tv_mobileNumber,operator_tv_receipt,vendorTransId_tv_receiptPage,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_operator,rp_tv_totalAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
-            receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
+            receiptPage_tv_amount, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_transactionAmount,previous_reviewClick_textview,confirm_reviewClick_textview;
     LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout;
@@ -106,7 +114,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderNameAgent="";
 
-    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="";
+    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent="";
 
     String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
@@ -122,13 +130,15 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     String selectInstititueName="";
     String selectInstititueCode="";
+    String serviceCode_from_operatorList="";
 
 
     ArrayList<String> arrayList_serviceCategoryCode = new ArrayList<String>();
-    ArrayList<String> arrayList_serviceCategoryName = new ArrayList<String>();
+    ArrayList<String> arrayList_ServiceCode = new ArrayList<String>();
     ArrayList<String> arrayList_serviceProviderCode = new ArrayList<String>();
     ArrayList<String> arrayList_serviceProviderName = new ArrayList<String>();
-    ArrayList<String> arrayList_OperatorList = new ArrayList<String>();
+    ArrayList<String> arrayList_OperatorListName = new ArrayList<String>();
+    ArrayList<String> arrayList_OperatorListCode = new ArrayList<String>();
 
 
 
@@ -214,17 +224,20 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             receiptPage_tv_stransactionType = (TextView) findViewById(R.id.receiptPage_tv_stransactionType);
             receiptPage_tv_dateOfTransaction = (TextView) findViewById(R.id.receiptPage_tv_dateOfTransaction);
             receiptPage_tv_transactionAmount = (TextView) findViewById(R.id.receiptPage_tv_transactionAmount);
-            receiptPage_tv_amount_to_be_credit = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_credit);
+            receiptPage_tv_amount = (TextView) findViewById(R.id.receiptPage_tv_amount);
             receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
             receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
             receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
             receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
-            receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
+          //  receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
             receiptPage_tv_receiver_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_receiver_phoneNo);
-            receiptPage_tv_receiver_emailId  = (TextView) findViewById(R.id.receiptPage_tv_receiver_emailId);
+         //   receiptPage_tv_receiver_emailId  = (TextView) findViewById(R.id.receiptPage_tv_receiver_emailId);
 
-            receiptPage_tv_sender_emailId  = (TextView) findViewById(R.id.receiptPage_tv_sender_emailId);
+        //    receiptPage_tv_sender_emailId  = (TextView) findViewById(R.id.receiptPage_tv_sender_emailId);
+           receiptPage_tv_mobileNumber  = (TextView) findViewById(R.id.receiptPage_tv_mobileNumber);
+            vendorTransId_tv_receiptPage  = (TextView) findViewById(R.id.vendorTransId_tv_receiptPage);
             receiptPage_tv_sender_country  = (TextView) findViewById(R.id.receiptPage_tv_sender_country);
+            operator_tv_receipt  = (TextView) findViewById(R.id.operator_tv_receipt);
 
             receiptPage_tv_receiver_country = (TextView) findViewById(R.id.receiptPage_tv_receiver_country);
             close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
@@ -361,13 +374,13 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             return false;
         }
 
-        else if (spinner_senderCountry.getSelectedItemPosition()==0) {
-
-            Toast.makeText(AirtimePurchases.this, getString(R.string.val_select_country), Toast.LENGTH_LONG).show();
-
-
-            return false;
-        }
+//        else if (spinner_senderCountry.getSelectedItemPosition()==0) {
+//
+//            Toast.makeText(AirtimePurchases.this, getString(R.string.val_select_country), Toast.LENGTH_LONG).show();
+//
+//
+//            return false;
+//        }
 
 
 
@@ -395,6 +408,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/operator/allByCriteria?serviceCode=100009&serviceCategoryCode=100021&status=Y&offset=0&limit=200",languageToUse,new Api_Responce_Handler() {
+
+
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -409,8 +424,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     String resultDescription =  jsonObject.getString("resultDescription");
 
 
-                    arrayList_OperatorList.add(getString(R.string.select_operator_star));
-                    arrayList_serviceCategoryName.add(getString(R.string.select_operator_star));
+                    arrayList_OperatorListCode.add(getString(R.string.select_operator_star));
+                    arrayList_OperatorListName.add(getString(R.string.select_operator_star));
+                    arrayList_ServiceCode.add(getString(R.string.select_operator_star));
                     arrayList_serviceCategoryCode.add(getString(R.string.select_operator_star));
                     arrayList_serviceProviderName.add(getString(R.string.select_operator_star));
                     arrayList_serviceProviderCode.add(getString(R.string.select_operator_star));
@@ -424,23 +440,38 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
 
+                            String  operatorCode = jsonObject2.getString("code");
                             String  name_from_operatorList = jsonObject2.getString("name");
-                            String serviceCategoryName_from_operatorList = jsonObject2.getString("serviceCategoryName");
-                            String serviceCategoryCode_from_operatorList = jsonObject2.getString("serviceCategoryCode");
+                            String serviceCode_from_operatorList = jsonObject2.getString("serviceCode");
+                            String serviceCategoryCode = jsonObject2.getString("serviceCategoryCode");
+
                             String serviceProviderName_from_operatorList = jsonObject2.getString("serviceProviderName");
-                            String serviceProviderCode_from_operatorList = jsonObject2.getString("serviceProviderCode");
+                            String serviceProviderCode = jsonObject2.getString("serviceProviderCode");
 
 
-                            arrayList_OperatorList.add(name_from_operatorList);
-                            arrayList_serviceCategoryName.add(serviceCategoryName_from_operatorList);
-                            arrayList_serviceCategoryCode.add(serviceCategoryCode_from_operatorList);
-                            arrayList_serviceProviderName.add(serviceProviderName_from_operatorList);
-                            arrayList_serviceProviderCode.add(serviceProviderCode_from_operatorList);
+                            arrayList_OperatorListCode.add(operatorCode);
+                            arrayList_OperatorListName.add(name_from_operatorList);
+                            arrayList_ServiceCode.add(serviceCode_from_operatorList);
+                            arrayList_serviceCategoryCode.add(serviceCategoryCode);
+                            arrayList_serviceProviderCode.add(serviceProviderCode);
+
+                            //  arrayList_serviceProviderName.add(serviceProviderName_from_operatorList);
+                          //  arrayList_serviceProviderCode.add(serviceProviderCode_from_operatorList);
 
                         }
 
-                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(AirtimePurchases.this, arrayList_OperatorList);
+                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(AirtimePurchases.this, arrayList_OperatorListName);
+
+//                         if(countryCode_agent.equalsIgnoreCase(""))
+//                                {
+//                                    spinner_operator.setSelection(1);
+//
+//                                }
+
+
                         spinner_operator.setAdapter(arraadapter2);
+
+
 
 
 
@@ -476,6 +507,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
     }
+
+
 
     private void api_master_PRODUCTTYPE() {
 
@@ -583,9 +616,14 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            currencyName_agent = jsonObject2.getString("currencyName");
-                            countryCode_agent = jsonObject2.getString("countryCurrencyCode");
-                            currencyCode_agent = jsonObject2.getString("currencyCode");
+                            String  currencyName_agent_temp = jsonObject2.getString("currencyName");
+                            if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
+                                currencyCode_agent = jsonObject2.getString("currencyCode");
+                                currencyName_agent = jsonObject2.getString("currencyName");
+
+                            } else {
+
+                            }
 
                         }
 
@@ -650,33 +688,39 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         arrayList_senderCountryName = new ArrayList<>();
                         arrayList_senderCountryCode = new ArrayList<>();
 
-                        arrayList_senderCountryName.add(getString(R.string.valid_select_country));
-                        arrayList_senderCountryCode.add(getString(R.string.valid_select_country));
+                       // arrayList_senderCountryName.add(getString(R.string.valid_select_country));
+                       // arrayList_senderCountryCode.add(getString(R.string.valid_select_country));
+
+                        arrayList_senderCountryName.add("Guinea");
+                        arrayList_senderCountryCode.add("Guinea");
+
 
 
                         //Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
-                        JSONArray jsonArray_countryList = jsonObject.getJSONArray("countryList");
-                        for (int i = 0; i < jsonArray_countryList.length(); i++) {
-
-                            JSONObject jsonObject2 = jsonArray_countryList.getJSONObject(i);
-
-                            int country_id = jsonObject2.getInt("id");
-                            String country_code = jsonObject2.getString("code");
-                            String country_isoCode = jsonObject2.getString("isoCode");
-                            String countryCode_from_countryList_str = jsonObject2.getString("name");
-                            String country_status = jsonObject2.getString("status");
-
-
-                            selectCountryCode = String.valueOf(country_id);
-
-                            arrayList_senderCountryCode.add(selectCountryCode);
-                            arrayList_senderCountryName.add(countryCode_from_countryList_str);
-
-                        }
+//                        JSONArray jsonArray_countryList = jsonObject.getJSONArray("countryList");
+//                        for (int i = 0; i < jsonArray_countryList.length(); i++) {
+//
+//                            JSONObject jsonObject2 = jsonArray_countryList.getJSONObject(i);
+//
+//                            int country_id = jsonObject2.getInt("id");
+//                            String country_code = jsonObject2.getString("code");
+//                            String country_isoCode = jsonObject2.getString("isoCode");
+//                            String countryCode_from_countryList_str = jsonObject2.getString("name");
+//                            String country_status = jsonObject2.getString("status");
+//
+//
+//                            selectCountryCode = String.valueOf(country_id);
+//
+//                            arrayList_senderCountryCode.add(selectCountryCode);
+//                            arrayList_senderCountryName.add(countryCode_from_countryList_str);
+//
+//                        }
 
                         CustomeBaseAdapterAllCountry adapterGender4= new CustomeBaseAdapterAllCountry(AirtimePurchases.this, arrayList_senderCountryName);
                         spinner_senderCountry.setAdapter(adapterGender4);
+                        spinner_senderCountry.setEnabled(false);
+
 
                         api_master_PRODUCTTYPE();
 
@@ -707,10 +751,11 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     }
 
+    private void api_product_allByCriteria_serviceCategoryCode(String serviceCode_from_operatorList) {
 
-    private void api_product_allByCriteria_serviceCategoryCode() {
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/product/allByCriteria?serviceCategoryCode=100021&operatorCode=100051",languageToUse,new Api_Responce_Handler() {
+      //  ewallet/api/v1/product/allByCriteria?serviceCategoryCode=100021&operatorCode=100051
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/product/allByCriteria?serviceCategoryCode=100021&operatorCode="+serviceCode_from_operatorList,languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -774,15 +819,28 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void exchange_rate_api() {
+    private void api_exchange_rate() {
 
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+      //  MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
+                        "&receiveCurrencyCode="+
+                        currencyCode_agent+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_agent+
+                        "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" +
+                        serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory +
+                        "&serviceProviderCode=" +
+                        serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
+                        walletOwnerCode_subs + "&productCode="+code_from_product_allByCriteria,languageToUse,
 
+    //  API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=" +
+//                "100062&sendCountryCode="+"100102"+"&receiveCountryCode="+"100102"+
+//                "&currencyValue="+amountstr+"&channelTypeCode=100000&serviceCode="+
+//                serviceCode_from_serviceCategory+"&serviceCategoryCode="+serviceCategoryCode_from_serviceCategory+
+//                "&serviceProviderCode="+serviceProviderCode_from_serviceCategory+"&walletOwnerCode="+walletOwnerCode_mssis_agent+
+//                "&productCode="+code_from_product_allByCriteria,languageToUse,
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=100062&sendCountryCode="+"100102"+"&receiveCountryCode="+"100102"+
-                "&currencyValue="+amountstr+"&channelTypeCode=100000&serviceCode="+serviceCode_from_serviceCategory+"&serviceCategoryCode="+serviceCategoryCode_from_serviceCategory+"&serviceProviderCode="+serviceProviderCode_from_serviceCategory+"&walletOwnerCode="+walletOwnerCode_mssis_agent+"&productCode="+code_from_product_allByCriteria,languageToUse,new Api_Responce_Handler() {
+                new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -908,7 +966,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         }
 
 
-                        api_product_allByCriteria_serviceCategoryCode();
+                      //  api_product_allByCriteria_serviceCategoryCode(); //annu
 
 
 
@@ -938,74 +996,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     }
 
-    private void api_walletOwner() {
-
-
-        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE", AirtimePurchases.this);
-
-
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/"+userCode_agentCode_from_mssid,languageToUse,new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
-
-
-
-                MyApplication.hideLoader();
-
-                try {
-
-
-                    //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
-
-
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
-
-                    if (resultCode.equalsIgnoreCase("0")) {
-
-                        String walletOwnerCategoryCodeTemp="";
-                        String ownerNameTemp="";
-
-                        JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
-
-                        walletOwnerCategoryCodeTemp = jsonObject_walletOwner.getString("walletOwnerCategoryCode");
-
-                        agentName_from_walletOwner = jsonObject_walletOwner.getString("ownerName");
-                        sender_emailId_str = jsonObject_walletOwner.getString("email");
-                        sender_country_str = jsonObject_walletOwner.getString("issuingCountryName");
-
-                        rp_tv_country.setText(sender_country_str);
-                        rp_tv_email.setText(sender_emailId_str);
-
-                        // annu
-
-
-
-                    } else {
-                        Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
-                    }
-
-
-                } catch (Exception e) {
-                    Toast.makeText(AirtimePurchases.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-
-            }
-
-
-            @Override
-            public void failure(String aFalse) {
-
-                MyApplication.hideLoader();
-                Toast.makeText(AirtimePurchases.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        });
-
-
-    }
 
     private void api_allByCriteria_msisdnPrefix() {
 
@@ -1035,7 +1025,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         if(resultDescription.equalsIgnoreCase("Operator Not Found"))
                         {
-                            Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+                           // Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
 
                             mpin_final_api();
                         }
@@ -1095,21 +1085,18 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);
-                        rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", AirtimePurchases.this));
+                        rp_tv_mobileNumber.setText(mobileNoStr);
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
-                        rp_tv_operator.setText(selectOperatorList);
+                        rp_tv_operator.setText(operatorName_from_operatorList);
                         rp_tv_totalAmount.setText(amountstr);
 
 
-
-
-                        exchange_rate_api();
-
-
+                        api_exchange_rate();
 
 
 
@@ -1196,16 +1183,20 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             jsonObject.put("requestType","recharge");
             jsonObject.put("channel","SELFCARE");
-            jsonObject.put("operator","100051");
-            jsonObject.put("serviceCode",serviceCategoryCode_from_serviceCategory);
-            jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
-            jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
-            jsonObject.put("fromCurrencyCode","100062");
-            jsonObject.put("accountNumber",MyApplication.getSaveString("USERNAME", AirtimePurchases.this));
+            jsonObject.put("operator",operator_code_from_operatorList);
+
+
+            jsonObject.put("productCode",code_from_product_allByCriteria);
+
+
+            jsonObject.put("serviceCode",serviceCode_from_operatorList);
+            jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_operatorList);
+            jsonObject.put("serviceProviderCode",serviceProviderCode_from_operatorList);
+            jsonObject.put("fromCurrencyCode",currencyCode_agent);
+            jsonObject.put("accountNumber",mobileNoStr);
             jsonObject.put("amount",amountstr);
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
-            jsonObject.put("productCode","100030");
 
 
 
@@ -1219,7 +1210,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     try {
 
 
-                        // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"118470\",\"requestTime\":\"Thu Nov 04 03:22:59 IST 2021\",\"responseTime\":\"Thu Nov 04 03:22:59 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletTransfer\":{\"code\":\"118470\",\"srcWalletCode\":\"1000029190\",\"desWalletCode\":\"1000029322\",\"srcWalletOwnerCode\":\"1000002846\",\"desWalletOwnerCode\":\"1000002855\",\"srcWalletTypeCode\":\"100008\",\"desWalletTypeCode\":\"100008\",\"srcCurrencyCode\":\"100062\",\"desCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"desCurrencyName\":\"GNF\",\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"value\":1000.0,\"createdBy\":\"102112\",\"creationDate\":\"2021-11-04 03:22:59\",\"fee\":0.0,\"finalAmount\":1000.0,\"srcWalletOwner\":{\"id\":110740,\"code\":\"1000002846\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100010\",\"businessTypeName\":\"Restaurant\",\"lineOfBusiness\":\"788\",\"idProofNumber\":\"id1234\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100000\",\"idProofTypeName\":\"PASSPORT\",\"idExpiryDate\":\"2021-11-11\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-11-03T21:20:23.606+0530\",\"modificationDate\":\"2021-11-03T21:27:28.112+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002846\"},\"desWalletOwner\":{\"id\":110749,\"code\":\"1000002855\",\"walletOwnerParentCode\":\"1000002846\",\"walletOwnerCategoryCode\":\"100002\",\"ownerName\":\"sharique agnet witin hir\",\"mobileNumber\":\"97181968499\",\"businessTypeCode\":\"100006\",\"businessTypeName\":\"service delivery\",\"lineOfBusiness\":\"1234\",\"idProofNumber\":\"id12345\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100001\",\"idProofTypeName\":\"NATIONAL IDENTITY CARD\",\"idExpiryDate\":\"2021-11-20\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-13\",\"lastName\":\"sharque\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-11-04T03:19:39.311+0530\",\"modificationDate\":\"2021-11-04T03:22:59.827+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Agent\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002855\"},\"transactionType\":\"TRANSFER FLOAT\"}}");
+                      //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"115313\",\"requestTime\":\"Wed Nov 17 14:57:03 IST 2021\",\"responseTime\":\"Wed Nov 17 14:57:07 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"recharge\":{\"requestType\":\"topup\",\"channel\":\"SELFCARE\",\"operator\":\"ORANGE\",\"accountNumber\":\"629300694\",\"amount\":\"1000.0\",\"totalAmount\":\"1000.0\",\"fee\":\"0.0\",\"tax\":\"0.0\",\"vendorTransId\":\"624505\",\"vendorResultCode\":\"000\",\"vendorResultDescription\":\"Successful\",\"resultDescription\":\"Transaction Successful\",\"creationDate\":\"2021-11-17T14:57:07.637+0530\"}}");
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
@@ -1233,21 +1224,29 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
 
-                            receiptPage_tv_stransactionType.setText(" RECHARGE");
+                            receiptPage_tv_stransactionType.setText("Airtime Purchase");
                             receiptPage_tv_transactionAmount.setText(amountstr);
                             receiptPage_tv_fee.setText(fees_amount);
                             receiptPage_tv_financialtax.setText(tax_financial);
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount_to_be_credit.setText(amountstr);
-                            receiptPage_tv_sender_name.setText(agentName_from_walletOwner);
-                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", AirtimePurchases.this));
-                            receiptPage_tv_sender_emailId.setText(sender_emailId_str);
-                            receiptPage_tv_sender_country.setText(sender_country_str);
-                            receiptPage_tv_receiver_name.setText(receiver_name_str);
-                            receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
-                            receiptPage_tv_receiver_emailId.setText(receiver_emailId_str);
-                            receiptPage_tv_receiver_country.setText(receiver_country_str);
+                            receiptPage_tv_amount.setText(amountstr);
+
+
+                          //  receiptPage_tv_sender_name.setText(agentName_from_walletOwner);
+                         //   receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", AirtimePurchases.this));
+                           // receiptPage_tv_sender_emailId.setText(sender_emailId_str);
+                          //  receiptPage_tv_sender_country.setText(sender_country_str);
+                          //  receiptPage_tv_receiver_name.setText(receiver_name_str);
+                          //  receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+                         //   receiptPage_tv_receiver_emailId.setText(receiver_emailId_str);
+                          //  receiptPage_tv_receiver_country.setText(receiver_country_str);
+
+                            receiptPage_tv_mobileNumber.setText(mobileNoStr);
+
+                           vendorTransId_tv_receiptPage.setText(jsonObject.getString("transactionId"));
+                            operator_tv_receipt.setText(operatorName_from_operatorList);
+
 
 
 
@@ -1316,7 +1315,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                         api_walletOwnerUser();
-
 
                     } else {
                         Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
@@ -1514,7 +1512,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             case R.id.spinner_operator:
             {
-                selectOperatorList = arrayList_OperatorList.get(i);
 
                  if(spinner_operator.getSelectedItemPosition()==0)
                  {
@@ -1522,7 +1519,21 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                  }
                  else
                  {
-                    // MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+
+
+                     operator_code_from_operatorList = arrayList_OperatorListCode.get(i);
+                     operatorName_from_operatorList = arrayList_OperatorListName.get(i);
+                     serviceCode_from_operatorList = arrayList_ServiceCode.get(i);
+                     serviceCategoryCode_from_operatorList = arrayList_serviceCategoryCode.get(i);
+                     serviceProviderCode_from_operatorList = arrayList_serviceProviderCode.get(i);
+
+
+                     MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+
+
+
+                     api_product_allByCriteria_serviceCategoryCode(operator_code_from_operatorList);
+
 
 
                  }
@@ -1535,6 +1546,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                 selectCountryName = arrayList_senderCountryName.get(i);
                 selectCountryCode = arrayList_senderCountryCode.get(i);
+
+
 
                 //  Toast.makeText(LocalRemittance.this, genderSelect_name, Toast.LENGTH_SHORT).show();
             }

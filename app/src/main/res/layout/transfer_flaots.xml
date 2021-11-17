@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/sell_Float"
+                android:text="@string/transfer_float"
                 android:textColor="#29304d"
                 android:textSize="22sp" />
 

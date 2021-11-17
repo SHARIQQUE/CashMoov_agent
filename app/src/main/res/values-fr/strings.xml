@@ -658,7 +658,10 @@
     <string name="branch_details">bronc Détails</string>
     <string name="total_amount_colon">Montant total :</string>
     <string name="vendor_trans_id_colom">Identifiant de transaction du fournisseur :</string>
+    <string name="transaction_amount_receiptPage">Amount transaction</string>
 
+    <string name="vendor_transaction_id_receipt">Vendor Transaction id
+</string>
 
 </resources>
 
