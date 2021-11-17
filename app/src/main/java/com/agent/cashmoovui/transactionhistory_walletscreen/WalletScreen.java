@@ -16,11 +16,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agent.cashmoovui.MainActivity;
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.remmetience.RemittanceReceive;
 import com.agent.cashmoovui.settings.Profile;
+import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
@@ -52,7 +54,7 @@ public class WalletScreen extends AppCompatActivity implements AdapterView.OnIte
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
-         insitute_textview =(TextView)findViewById(R.id.insitute_textview);
+        insitute_textview =(TextView)findViewById(R.id.insitute_textview);
         insitute_branch =(TextView)findViewById(R.id.insitute_branch);
         agent_textview =(TextView)findViewById(R.id.agent_textview);
 
@@ -62,6 +64,19 @@ public class WalletScreen extends AppCompatActivity implements AdapterView.OnIte
         search_imageView.setOnClickListener(this);
         overdraft_wallet_textview =(TextView)findViewById(R.id.overdraft_wallet_textview);
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletScreen.this).equalsIgnoreCase(MyApplication.InstituteCode)){
+            insitute_textview.setClickable(false);
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletScreen.this).equalsIgnoreCase(MyApplication.AgentCode)){
+            agent_textview.setClickable(false);
+            insitute_textview.setVisibility(View.GONE);
+
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletScreen.this).equalsIgnoreCase(MyApplication.BranchCode)){
+            insitute_branch.setClickable(false);
+            insitute_textview.setVisibility(View.GONE);
+            agent_textview.setVisibility(View.GONE);
+        }
 
         edittext_search =(EditText)findViewById(R.id.edittext_search);
         edittext_search.addTextChangedListener(new TextWatcher() {

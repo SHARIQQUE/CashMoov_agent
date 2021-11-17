@@ -17,8 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.adapter.CurrencyListTransaction;
 import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
 import com.agent.cashmoovui.apiCalls.API;
@@ -42,7 +44,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     String searchStr="";
     EditText edittext_search;
-    ImageView search_imageView;
+    ImageView imgQR,search_imageView;
     TextView main_wallet_value_textview;
     ArrayList<UserDetail> arrayList_modalDetails;
 
@@ -84,6 +86,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         setContentView(R.layout.transaction_history_mainpage);
 
+        imgQR = findViewById(R.id.imgQR);
+        imgQR.setOnClickListener(this);
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
 
@@ -107,6 +112,19 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         commisionwallet_value_textview =(TextView)findViewById(R.id.commisionwallet_value_textview);
         overdraft_value_heding_textview =(TextView)findViewById(R.id.overdraft_value_heding_textview);
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
+            insitute_textview.setClickable(false);
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.AgentCode)){
+            agent_textview.setClickable(false);
+            insitute_textview.setVisibility(View.GONE);
+
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.BranchCode)){
+            insitute_branch.setClickable(false);
+            insitute_textview.setVisibility(View.GONE);
+            agent_textview.setVisibility(View.GONE);
+        }
 
         edittext_search =(EditText)findViewById(R.id.edittext_search);
         edittext_search.addTextChangedListener(new TextWatcher() {
@@ -342,10 +360,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     @Override
     public void onClick(View view) {
-        Intent intent;
         switch (view.getId()) {
 
-
+            case R.id.imgQR:
+                Intent intent = new Intent(TransactionHistoryMainPage.this, ShowProfileQr.class);
+                startActivity(intent);
+                break;
 
             case R.id.search_imageView:
 
@@ -536,4 +556,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+
 }

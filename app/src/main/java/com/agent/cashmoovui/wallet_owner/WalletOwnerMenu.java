@@ -63,6 +63,17 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         ll_subscriber.setOnClickListener(this);
         ll_addAgentBranch.setOnClickListener(this);
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.InstituteCode)){
+            ll_addAgentBranch.setVisibility(View.VISIBLE);
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.AgentCode)){
+            ll_addAgentBranch.setVisibility(View.VISIBLE);
+        }
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.BranchCode)){
+            ll_addAgentBranch.setVisibility(View.GONE);
+
+        }
+
     }
 
     @Override
@@ -138,7 +149,6 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
             btnAddBranch.setVisibility(View.VISIBLE);
         }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.BranchCode)){
-            ll_addAgentBranch.setVisibility(View.GONE);
             btnAddAgent.setVisibility(View.GONE);
             btnAddBranch.setVisibility(View.GONE);
         }
