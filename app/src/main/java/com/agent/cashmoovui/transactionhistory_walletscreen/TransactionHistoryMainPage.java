@@ -304,11 +304,15 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                         JSONArray jsonArray = jsonObject.getJSONArray("transactionsList");
                         arrayList_modalDetails=new ArrayList<>();
 
+                        arrayList_modalDetails.clear();
+
                        ModalUserDetails modalUserDetails;
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                              modalUserDetails=new ModalUserDetails();
+
+
                              UserDetail user = new UserDetail();
 
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
