@@ -830,8 +830,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" +
                         serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory +
                         "&serviceProviderCode=" +
-                        serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
-                        walletOwnerCode_subs + "&productCode="+code_from_product_allByCriteria,languageToUse,
+                        serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent +"&productCode="+code_from_product_allByCriteria,languageToUse,
 
     //  API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=" +
 //                "100062&sendCountryCode="+"100102"+"&receiveCountryCode="+"100102"+
