@@ -59,8 +59,6 @@ x
         <activity android:name=".cashout.CashOutOpt"></activity>
         <activity android:name=".remmetience.RemittanceOption"></activity>
         <activity android:name=".remmetience.SendRemittanceOpt"></activity>
-        <activity android:name=".remmetience.SendRemittanceLocal"></activity>
-        <activity android:name=".remmetience.SendRemittanceInternaional"></activity>
         <activity android:name=".transfer_float.TransferOption"></activity>
         <activity android:name=".wallet_owner.WalletOwnerMenu"></activity>
         <activity android:name=".wallet_owner.wallet_owner.WalletOwner"></activity>

@@ -694,7 +694,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
     private void api_allSellFloat_featureCode() {
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",SellFloat.this);
@@ -897,8 +896,11 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
 
+        //
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode="+serviceCode_from_allSellFloat+"&serviceCategoryCode="+serviceCategoryCode_from_allSellFloat+"&status=Y",languageToUse,new Api_Responce_Handler() {
+
+       // 100016 is hard code acording to praveen 19 Nov
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode="+serviceCode_from_allSellFloat+"&serviceCategoryCode="+"100016"+"&status=Y",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1169,9 +1171,20 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                     jsonObject.put("value",amountstr);
-                    jsonObject.put("serviceCode",serviceCategoryCode_from_serviceCategory);
+
+
+//                    jsonObject.put("serviceCode",serviceCategoryCode_from_serviceCategory);          // Change according to Portal 19 Nov
+//                    jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory); // Change according to Portal 19 Nov
+//                    jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory); // Change according to Portal 19 Nov
+
+                    jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
                     jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
                     jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
+
+
+
+
+
 
 
            // String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);

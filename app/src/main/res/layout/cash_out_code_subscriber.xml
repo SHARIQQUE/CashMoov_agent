@@ -168,9 +168,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+
+
+                android:textAllCaps="true"
+                android:inputType="textCapCharacters"
+
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
-                android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"

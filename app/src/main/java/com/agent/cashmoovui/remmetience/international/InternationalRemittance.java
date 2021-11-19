@@ -71,7 +71,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     EditText etFront,etBack;
 
 
-    String  firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
+    String  email_destination="",firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
             email_sender_from_walletOwnerUser="",idProofTypeCode_sender_from_walletOwnerUser="",idProofNumber_sender_from_walletOwnerUser=""
             ,idExpiryDate_sender_from_walletOwnerUser="",dateOfBirth_sender_from_walletOwnerUser="",
             regionCode_sender_from_walletOwnerUser="",city_sender_from_walletOwnerUser="",address_sender_from_walletOwnerUser,mobileNumber_sender_from_walletOwnerUser="",gender_sender_from_allByCriteria="";
@@ -145,7 +145,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    EditText edittext_mobileNuber, edittext_amount, et_mpin,edittext_amount_pay,et_fp_desinationName,et_fp_firstNameDestination;
+    EditText edittext_email_destination,edittext_mobileNuber, edittext_amount, et_mpin,edittext_amount_pay,et_fp_desinationName,et_fp_firstNameDestination;
 
 
 
@@ -202,6 +202,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
+
+            edittext_email_destination = (EditText) findViewById(R.id.edittext_email_destination);
+
             et_fp_reason_sending = (EditText) findViewById(R.id.et_fp_reason_sending);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
@@ -902,6 +905,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         name_destinationStr = et_fp_desinationName.getText().toString().trim();
         firstname_destinationStr = et_fp_firstNameDestination.getText().toString().trim();
         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
+        email_destination = edittext_email_destination.getText().toString().trim();
+
         reasonOfSending = et_fp_reason_sending.getText().toString().trim();
 
   
@@ -1006,6 +1011,24 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         else if(mobileNoStr.length() < 9) {
 
             MyApplication.showErrorToast(this,getString(R.string.please_enter_mobileno));
+
+            return false;
+        }
+
+
+        else if(email_destination.isEmpty()) {
+
+            MyApplication.showErrorToast(this,getString(R.string.val_email));
+
+            return false;
+        }
+
+
+
+        if(!MyApplication.email_validation(email_destination)){
+
+            MyApplication.showErrorToast(this,getString(R.string.val_email_valid));
+
 
             return false;
         }
@@ -1930,7 +1953,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             jsonObject.put("firstName", firstname_destinationStr);
             jsonObject.put("lastName", ""); // No in UI
-            jsonObject.put("email", "");    // No in UI
+
+
+            jsonObject.put("email", email_destination);    // No in UI
             jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
             jsonObject.put("idProofTypeCode", "");    // No in UI
             jsonObject.put("idProofNumber", "");    // No in UI By Defualt

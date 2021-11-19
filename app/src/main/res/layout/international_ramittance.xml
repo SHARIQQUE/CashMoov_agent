@@ -385,6 +385,22 @@
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
+            <EditText
+                android:id="@+id/edittext_email_destination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="@string/email"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/spinner_gender"
                 android:layout_width="match_parent"

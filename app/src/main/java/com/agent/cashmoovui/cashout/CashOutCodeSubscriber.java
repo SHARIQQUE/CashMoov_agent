@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -272,6 +273,9 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                     if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
 
                         confirmationCodeStr = edittext_confirmationCode.getText().toString().trim();
+
+                        //edittext_confirmationCode.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+
 
                         if (confirmationCodeStr.length()==11) {
 

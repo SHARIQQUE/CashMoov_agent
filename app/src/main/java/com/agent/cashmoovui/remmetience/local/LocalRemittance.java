@@ -58,6 +58,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     ArrayList<String> arrayList_genderName;
     ArrayList<String> arrayList_genderCode;
 
+
     boolean  isPasswordVisible;
 
     String countryName_GNF="GNF";
@@ -65,7 +66,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     String receiveCurrencyCode_GNF="100062"; // Hard Code acording to Kundan
     String receiveCountryName_GNF="GNF";
 
-    String  senderCountryCode_from_walletOwnerUser_agent_api="",firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
+    String  email_destination="",senderCountryCode_from_walletOwnerUser_agent_api="",firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
             email_sender_from_walletOwnerUser="",idProofTypeCode_sender_from_walletOwnerUser="",idProofNumber_sender_from_walletOwnerUser=""
             ,idExpiryDate_sender_from_walletOwnerUser="",dateOfBirth_sender_from_walletOwnerUser="",
             regionCode_sender_from_walletOwnerUser="",city_sender_from_walletOwnerUser="",address_sender_from_walletOwnerUser,mobileNumber_sender_from_walletOwnerUser="",gender_sender_from_allByCriteria="";
@@ -85,7 +86,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    EditText edittext_mobileNuber, edittext_amount, et_mpin,et_fp_senderName,edittext_amount_pay,et_fp_desinationName,et_fp_firstNameDestination;
+    EditText edittext_email_destination,edittext_mobileNuber, edittext_amount, et_mpin,et_fp_senderName,edittext_amount_pay,et_fp_desinationName,et_fp_firstNameDestination;
 
 
 
@@ -135,6 +136,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
+            edittext_email_destination = (EditText) findViewById(R.id.edittext_email_destination);
             et_fp_reason_sending = (EditText) findViewById(R.id.et_fp_reason_sending);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
@@ -616,6 +618,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
         name_destinationStr = et_fp_desinationName.getText().toString().trim();
         firstname_destinationStr = et_fp_firstNameDestination.getText().toString().trim();
         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
+        email_destination = edittext_email_destination.getText().toString().trim();
         reasonOfSending = et_fp_reason_sending.getText().toString().trim();
 
 
@@ -688,6 +691,23 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
         else if(mobileNoStr.isEmpty()) {
 
             MyApplication.showErrorToast(this,getString(R.string.please_enter_mobileno));
+
+            return false;
+        }
+
+        else if(email_destination.isEmpty()) {
+
+            MyApplication.showErrorToast(this,getString(R.string.val_email));
+
+            return false;
+        }
+
+
+
+        if(!MyApplication.email_validation(email_destination)){
+
+            MyApplication.showErrorToast(this,getString(R.string.val_email_valid));
+
 
             return false;
         }
@@ -1106,7 +1126,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
             jsonObject.put("firstName", firstname_destinationStr);
             jsonObject.put("lastName", ""); // No in UI
-            jsonObject.put("email", "");    // No in UI
+
+            jsonObject.put("email", email_destination);    // No in UI
             jsonObject.put("mobileNumber", mobileNoStr);    // Not mandatory
             jsonObject.put("idProofTypeCode", "");   // Not mandatory
             jsonObject.put("idProofNumber", "");    // Not mandatory

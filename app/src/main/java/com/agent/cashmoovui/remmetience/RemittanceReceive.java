@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -63,6 +64,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     String buttonClick="0";
     boolean  isPasswordVisible;
 
+    String emailId_from_api="";
+
+
     ImageButton qrCode_imageButton;
     private static final int PERMISSION_REQUEST_CODE = 200;
     ImageView imgBack,imgHome;
@@ -78,7 +82,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage,ll_pin;
     MyApplication applicationComponentClass;
     String languageToUse = "";
-    EditText edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,edittext_firstName,edittext_gender;
+    EditText edittext_email,edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,edittext_firstName,edittext_gender;
     String mobileNoStr = "", amountstr  = "",confirmationCodeStr;
     String walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, senderNameAgent = "";
     String currencyCode_agent = "", countryCode_agent = "", currencyName_agent = "";
@@ -125,12 +129,15 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
             edittext_confirmationCode = (EditText) findViewById(R.id.edittext_confirmationCode);
 
+
+
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
+            edittext_email = (EditText) findViewById(R.id.edittext_email);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
             //    Reveiw page
@@ -229,6 +236,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                     if (new InternetCheck().isConnected(RemittanceReceive.this)) {
 
                         confirmationCodeStr = edittext_confirmationCode.getText().toString().trim();
+
+
 
                         if (confirmationCodeStr.length()==11) {
 
@@ -508,6 +517,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
     }
 
+    JSONObject jsonObject_beneficiaryCustomer=null;
+    JSONObject jsonObject_accountHolding=null;
 
     private void api_confcode() {
 
@@ -527,19 +538,79 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
+
+
                     if (resultCode.equalsIgnoreCase("0")) {
 
-
-                        JSONObject accountHolding=jsonObject.getJSONObject("accountHolding");
-                        JSONObject beneficiaryCustomer=accountHolding.getJSONObject("beneficiaryCustomer");
+                        // ############################    accountHolding  ############################
 
 
-                        firstName_from_confcode = beneficiaryCustomer.getString("firstName");
-                        lastName_from_confcode = beneficiaryCustomer.getString("lastName");
-                        countryName_from_confcode = beneficiaryCustomer.getString("countryName");
-                        gender_from_confcode = beneficiaryCustomer.getString("gender");
-                        countryCode_from_confcode = beneficiaryCustomer.getString("countryCode");
-                        currencyCode_from_confcode = beneficiaryCustomer.getString("toCurrencyCode");
+                        if (jsonObject.has("accountHolding")) {
+
+                            jsonObject_accountHolding = jsonObject.getJSONObject("accountHolding");
+
+
+
+                        // ############################    beneficiaryCustomer  ############################
+
+
+                            if (jsonObject_accountHolding.has("beneficiaryCustomer")) {
+                                jsonObject_beneficiaryCustomer = jsonObject_accountHolding.getJSONObject("beneficiaryCustomer");
+                            } else {
+
+                            }
+
+                            if (jsonObject_beneficiaryCustomer.has("lastName")) {
+                            lastName_from_confcode = jsonObject_beneficiaryCustomer.getString("lastName");
+                        } else {
+                            lastName_from_confcode = "";
+                        }
+
+
+                        if (jsonObject_beneficiaryCustomer.has("firstName")) {
+                            firstName_from_confcode = jsonObject_beneficiaryCustomer.getString("firstName");
+                        } else {
+                            firstName_from_confcode = "";
+                        }
+
+                        if (jsonObject_beneficiaryCustomer.has("countryName")) {
+                            countryName_from_confcode = jsonObject_beneficiaryCustomer.getString("countryName");
+                        } else {
+                            countryName_from_confcode = "";
+                        }
+
+                        if (jsonObject_beneficiaryCustomer.has("gender")) {
+                            gender_from_confcode = jsonObject_beneficiaryCustomer.getString("gender");
+                        } else {
+                            gender_from_confcode = "";
+                        }
+
+
+                        if (jsonObject_beneficiaryCustomer.has("countryCode")) {
+                            countryCode_from_confcode = jsonObject_beneficiaryCustomer.getString("countryCode");
+                        } else {
+                            countryCode_from_confcode = "";
+                        }
+
+
+                        if (jsonObject_beneficiaryCustomer.has("toCurrencyCode")) {
+                            currencyCode_from_confcode = jsonObject_beneficiaryCustomer.getString("toCurrencyCode");
+                        } else {
+                            currencyCode_from_confcode = "";
+                        }
+
+
+
+                            if (jsonObject_beneficiaryCustomer.has("email")) {
+                                emailId_from_api = jsonObject_beneficiaryCustomer.getString("email");
+
+                                edittext_email.setEnabled(false);
+                                edittext_email.setText(emailId_from_api);
+                            } else {
+                                emailId_from_api = "";
+                                edittext_email.setEnabled(false);
+                                edittext_email.setText(emailId_from_api);
+                            }
 
 
                         edittext_firstName.setEnabled(false);
@@ -550,26 +621,24 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         edittext_countryName.setText(countryName_from_confcode);
 
 
-                        if(jsonObject.has("accountHolding"))
-                        {
+                        if (jsonObject.has("accountHolding")) {
 
-                            JSONObject jsonObject3=jsonObject.getJSONObject("accountHolding");
+                            JSONObject jsonObject3 = jsonObject.getJSONObject("accountHolding");
                             amountstr = jsonObject3.getString("sendingAmount");
                             edittext_amount.setText(amountstr);
-                        }
-                        else {
+                        } else {
 
                         }
 
-                        if(gender_from_confcode.equalsIgnoreCase("M"))
-                        {
+                        if (gender_from_confcode.equalsIgnoreCase("M")) {
                             edittext_gender.setText("Male");
-                        }
-                        else {
+                        } else {
                             edittext_gender.setText("Female");
                         }
 
-                      //  mpin_final_api();
+                        //  mpin_final_api();
+
+                    }
 
                     } else {
                         Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();

@@ -752,10 +752,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         try {
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("transactionType", "100000");         // Hard Code according  to Deepak
+            jsonObject.put("transactionType", "100001");         // Hard Code according  to Deepak
 
-            jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
-            jsonObject.put("desWalletOwnerCode",agentCode_subscriber);
+            jsonObject.put("srcWalletOwnerCode",agentCode_subscriber);
+            jsonObject.put("desWalletOwnerCode",walletOwnerCode_mssis_agent);
+
+
             jsonObject.put("srcCurrencyCode",currencyCode_agent);
             jsonObject.put("desCurrencyCode",currencyCode_subscriber);
 
