@@ -341,7 +341,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-          CommonBaseAdapter aaaaaa = new CommonBaseAdapter(SellFloat.this, arrayList_instititueName);
+                        System.out.println(arrayList_instititueName);
+                        System.out.println(arrayList_instititueCode);
+
+
+
+                        CommonBaseAdapter aaaaaa = new CommonBaseAdapter(SellFloat.this, arrayList_instititueName);
            spinner_insititue.setAdapter(aaaaaa);
 
 
@@ -698,7 +703,11 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",SellFloat.this);
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+sellfloat_allSellFloat_featureCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&offset=0&limit=10",languageToUse,new Api_Responce_Handler() {
+
+
+        String featureCode_hardCode="100076";   // 100076 is hard code according to praveen 19 Nov
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+featureCode_hardCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&offset=0&limit=10",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -896,11 +905,15 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
 
-        //
+        String serviceCategoryCode_hardcode="100016";   // 100016 is hard code according to praveen 19 Nov
+
+        String serviceCode_LoginApi = MyApplication.getSaveString("serviceCode_LoginApi", SellFloat.this);
 
 
-       // 100016 is hard code acording to praveen 19 Nov
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode="+serviceCode_from_allSellFloat+"&serviceCategoryCode="+"100016"+"&status=Y",languageToUse,new Api_Responce_Handler() {
+      //   Toast.makeText(SellFloat.this, "---------------"+serviceCode_LoginApi, Toast.LENGTH_LONG).show();
+
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode="+serviceCode_LoginApi+"&serviceCategoryCode="+serviceCategoryCode_hardcode+"&status=Y",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -915,8 +928,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     if(resultCode.equalsIgnoreCase("0")) {
 
-
                         JSONArray jsonArray = jsonObject.getJSONArray("serviceProviderList");
+
                         for(int i=0;i<jsonArray.length();i++) {
 
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -1097,7 +1110,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
-                               mpin_final_api();
+                               api_mpin();
 
                         } else {
                             Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -1139,7 +1152,153 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    private void mpin_final_api() {
+    public void createJson(JSONObject jsonObject){
+
+
+        JSONObject mainObj=new JSONObject();
+        JSONArray mainArray=new JSONArray();
+        JSONObject dataObj=new JSONObject();
+
+        JSONObject jsonObject_walletOperation = new JSONObject();
+        jsonObject_walletOperation=jsonObject.optJSONObject("walletOperation");
+
+
+
+        try{
+
+            dataObj.put("actionType","Created");
+            dataObj.put("assignTo","");
+            dataObj.put("comments","");
+            dataObj.put("entityCode",jsonObject_walletOperation.optString("code"));
+            dataObj.put("entityName",jsonObject_walletOperation.optString("srcWalletOwnerName"));
+            dataObj.put("entityCode",jsonObject_walletOperation.optString("code"));
+            dataObj.put("featureCode","100076");
+            dataObj.put("status","U");
+
+            JSONObject oneObj=new JSONObject();
+            JSONObject twoObj=new JSONObject();
+            twoObj.put("code",jsonObject_walletOperation.optString("code"));
+            twoObj.put("featureCode","100076");
+            twoObj.put("desWalletCode",jsonObject_walletOperation.optString("desWalletCode"));
+            twoObj.put("srcWalletCode",jsonObject_walletOperation.optString("srcWalletCode"));
+            twoObj.put("srcWalletOwnerCode",jsonObject_walletOperation.optString("srcWalletOwnerCode"));
+            twoObj.put("srcWalletOwnerName",jsonObject_walletOperation.optString("srcWalletOwnerName"));
+            twoObj.put("srcCurrencyCode",jsonObject_walletOperation.optString("srcCurrencyCode"));
+            twoObj.put("srcCurrencyName",jsonObject_walletOperation.optString("srcCurrencyName"));
+            twoObj.put("srcWalletTypeCode",jsonObject_walletOperation.optString("srcWalletTypeCode"));
+            twoObj.put("srcWalletTypeName",jsonObject_walletOperation.optString("srcWalletTypeName"));
+            twoObj.put("desWalletTypeCode",jsonObject_walletOperation.optString("desWalletTypeCode"));
+            twoObj.put("desWalletTypeName",jsonObject_walletOperation.optString("desWalletTypeName"));
+            twoObj.put("desWalletOwnerCode",jsonObject_walletOperation.optString("desWalletOwnerCode"));
+            twoObj.put("desWalletOwnerName",jsonObject_walletOperation.optString("desWalletOwnerName"));
+            twoObj.put("desWalletOwnerNumber",jsonObject_walletOperation.optString("desWalletOwnerNumber"));
+            twoObj.put("amount",jsonObject_walletOperation.optString("amount"));
+            twoObj.put("channelTypeCode",jsonObject_walletOperation.optString("channelTypeCode"));
+            twoObj.put("desCurrencyCode",jsonObject_walletOperation.optString("desCurrencyCode"));
+            twoObj.put("desCurrencyName",jsonObject_walletOperation.optString("desCurrencyName"));
+            twoObj.put("status",jsonObject_walletOperation.optString("status"));
+            twoObj.put("createdBy",jsonObject_walletOperation.optString("createdBy"));
+            twoObj.put("creationDate",jsonObject_walletOperation.optString("creationDate"));
+
+            twoObj.put("tax",jsonObject_walletOperation.optString("tax"));
+            twoObj.put("fee",jsonObject_walletOperation.optString("fee"));
+            twoObj.put("finalAmount",jsonObject_walletOperation.optString("finalAmount"));
+            twoObj.put("srcCurrencySymbol",jsonObject_walletOperation.optString("srcCurrencySymbol"));
+            twoObj.put("desCurrencySymbol",jsonObject_walletOperation.optString("desCurrencySymbol"));
+            twoObj.put("transactionType",jsonObject_walletOperation.optString("transactionType"));
+            twoObj.put("serviceCode",jsonObject_walletOperation.optString("serviceCode"));
+            twoObj.put("serviceCategoryCode",jsonObject_walletOperation.optString("serviceCategoryCode"));
+            twoObj.put("serviceProviderCode",jsonObject_walletOperation.optString("serviceProviderCode"));
+
+            dataObj.put("entity",twoObj);
+            dataObj.put("updatedInformation",oneObj);
+            mainArray.put(dataObj);
+
+            mainObj.put("dataApprovalList",mainArray);
+
+            System.out.println("jsososm============"+mainObj.toString());
+
+            api_approval(mainObj);
+
+
+
+        }
+
+        catch (Exception e){
+
+            Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+
+    }
+
+    private void api_approval(JSONObject mainObj) {
+
+        try {
+
+
+            API.POST_TRANSFERDETAILS("ewallet/api/v1/dataApproval", mainObj, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+
+                       // JSONObject jsonObject = new JSONObject();
+
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
+
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+
+                            alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
+
+
+                        } else {
+                            Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(SellFloat.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
+
+                        Toast.makeText(SellFloat.this, aFalse, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(SellFloat.this,e.toString(),Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void api_mpin() {
 
         try {
 
@@ -1163,10 +1322,19 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("transactionType","101611"); // Hard code
                     jsonObject.put("channelTypeCode","100000"); // Hard code
 
-                    jsonObject.put("srcWalletOwnerCode",srcWalletOwnerCode_from_allSellFloat);
-                    jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_allSellFloat);
 
-                     jsonObject.put("srcCurrencyCode",currencyCode_agent);
+                    jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
+
+                 //   jsonObject.put("desWalletOwnerCode",select_insitute_code);   // Not working
+
+              jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_allSellFloat);
+
+
+            //  Toast.makeText(SellFloat.this, "----srcWalletOwnerCode--------------"+walletOwnerCode_mssis_agent, Toast.LENGTH_LONG).show();
+          //  Toast.makeText(SellFloat.this, "---------desWalletOwnerCode---------"+desWalletOwnerCode_from_allSellFloat, Toast.LENGTH_LONG).show();
+
+
+                    jsonObject.put("srcCurrencyCode",currencyCode_agent);
                     jsonObject.put("desCurrencyCode",currencyCode_subscriber);
 
 
@@ -1183,15 +1351,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-
-
-
-
-           // String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
-          //  jsonObject.put("pin",encryptionDatanew);
-
-
-
         API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/sellFloat/", jsonObject, languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -1201,7 +1360,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 try {
 
 
-                  //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930978\",\"requestTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"responseTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOperation\":{\"code\":\"1000152390\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1500,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T15:27:01.364+0530\",\"tax\":0,\"fee\":0,\"finalAmount\":1500,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100020\",\"serviceCategoryCode\":\"ALL011\",\"serviceProviderCode\":\"100109\"}}");
+                    //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930978\",\"requestTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"responseTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOperation\":{\"code\":\"1000152390\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1500,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T15:27:01.364+0530\",\"tax\":0,\"fee\":0,\"finalAmount\":1500,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100020\",\"serviceCategoryCode\":\"ALL011\",\"serviceProviderCode\":\"100109\"}}");
 
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
@@ -1209,7 +1368,25 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     if (resultCode.equalsIgnoreCase("0")) {
 
 
-                        alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
+
+//
+//                        {"transactionId":"1788378","requestTime":"Fri Nov 19 14:39:32 IST 2021",
+//                                "responseTime":"Fri Nov 19 14:39:32 IST 2021","resultCode":"0","resultDescription":"Transaction Successful",
+//                                "walletOperation":{"code":"1000152285","featureCode":"100076","desWalletCode":"1000026588",
+//                                "srcWalletCode":"1000026741","srcWalletOwnerCode":"1000002692","srcWalletOwnerName":"sharique agent",
+//                                "srcCurrencyCode":"100062","srcCurrencyName":"GNF","srcWalletTypeCode":"100008","srcWalletTypeName":
+//                            "Main Wallet","desWalletTypeCode":"100008","desWalletTypeName":"Main Wallet","desWalletOwnerCode":"1000002689",
+//                                    "desWalletOwnerName":"sharique agent","desWalletOwnerNumber":"9990063618","amount":1500,"channelTypeCode":"100000",
+//                                    "desCurrencyCode":"100062","desCurrencyName":"GNF","status":"Pending","createdBy":"101979","creationDate":
+//                            "2021-11-19T14:39:32.587+0530","tax":1.3,"fee":10,"finalAmount":1511.3,"srcCurrencySymbol":"Fr","desCurrencySymbol":
+//                            "Fr","transactionType":"101611","serviceCode":"100020",
+//                                "serviceCategoryCode":"ALL011","serviceProviderCode":"100109"}}
+
+
+
+
+                   createJson(jsonObject);
+
 
 
                     } else {
@@ -1467,7 +1644,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             {
                 select_insitute_name = arrayList_instititueName.get(i);
                 select_insitute_code = arrayList_instititueCode.get(i);
-                select_insitute_countryCode = arrayList_instititue_countryCode.get(i);
+
 
                 Toast.makeText(SellFloat.this, ""+select_insitute_name+"("+select_insitute_code+")", Toast.LENGTH_SHORT).show();
             }

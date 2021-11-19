@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -353,6 +354,59 @@ public class LoginPin extends AppCompatActivity {
                             MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), loginpinC);
                             MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), loginpinC);
 
+
+                            // #################### serviceList Add  serviceCategoryList add  serviceCode
+
+                            if(jsonObject.has("serviceList"))
+                            {
+                                JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
+
+                                for(int i=0;i<jsonArray_serviceList.length();i++)
+                                {
+                                    JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
+
+                                    if(jsonObject1.has("serviceCategoryList"))
+                                    {
+                                        JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
+                                        for(int j=0;j<jsonArray_serviceCategoryList.length();j++)
+                                        {
+                                            JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
+
+                                            if(jsonObject2.has("serviceName"))
+                                            {
+                                                String serviceName =jsonObject2.getString("serviceName");
+
+                                                if(serviceName.equalsIgnoreCase("Money Transfer"))
+                                                {
+                                                    if(jsonObject2.has("serviceCode"))
+                                                    {
+                                                        String serviceCode =jsonObject2.getString("serviceCode");
+
+
+                                                        MyApplication.saveString("serviceCode_LoginApi", serviceCode, loginpinC);
+
+                                                    }
+                                                    else {
+                                                        MyApplication.saveString("serviceCode_LoginApi", "", loginpinC); // not coming from server
+
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+                            else {
+                                MyApplication.saveString("serviceCode_LoginApi", "", loginpinC); // not coming from server
+
+                            }
+
+
+
                             Intent i = new Intent(loginpinC, MainActivity.class);
                             startActivity(i);
                             finish();
@@ -455,6 +509,61 @@ public class LoginPin extends AppCompatActivity {
                             MyApplication.saveString("username", jsonObject.optString("username"), loginpinC);
                             MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), loginpinC);
                             MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), loginpinC);
+
+
+                            // #################### serviceList Add  serviceCategoryList add  serviceCode
+
+                            if(jsonObject.has("serviceList"))
+                            {
+                                JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
+
+                                for(int i=0;i<jsonArray_serviceList.length();i++)
+                                {
+                                    JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
+
+                                    if(jsonObject1.has("serviceCategoryList"))
+                                        {
+                                            JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
+                                            for(int j=0;j<jsonArray_serviceCategoryList.length();j++)
+                                            {
+                                                JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
+
+                                                if(jsonObject2.has("serviceName"))
+                                                {
+                                                    String serviceName =jsonObject2.getString("serviceName");
+
+                                                    if(serviceName.equalsIgnoreCase("Money Transfer"))
+                                                    {
+                                                        if(jsonObject2.has("serviceCode"))
+                                                        {
+                                                            String serviceCode =jsonObject2.getString("serviceCode");
+
+
+                                                            MyApplication.saveString("serviceCode_LoginApi", serviceCode, loginpinC);
+
+                                                        }
+                                                        else {
+                                                            MyApplication.saveString("serviceCode_LoginApi", "", loginpinC); // not coming from server
+
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+
+                                        }
+
+                                }
+
+                            }
+                            else {
+                                 MyApplication.saveString("serviceCode_LoginApi", "", loginpinC); // not coming from server
+
+                            }
+
+
+
+                            // ###################################################################################
 
 
                             Intent i = new Intent(loginpinC, MainActivity.class);

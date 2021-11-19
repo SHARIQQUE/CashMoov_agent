@@ -93,6 +93,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
@@ -180,6 +181,7 @@
                 android:id="@+id/spinner_insititue"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_42sdp"
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
@@ -189,6 +191,21 @@
                 android:textColor="#323232"
                 />
 
+            <EditText
+                android:id="@+id/edittext_mobileNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="number"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="@string/please_enter_mobileno"
+                android:textColor="#323232"
+                android:textSize="15sp" />
 
             <Spinner
                 android:id="@+id/spinner_currency"
@@ -222,21 +239,7 @@
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/edittext_mobileNo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="number"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/please_enter_mobileno"
-                android:textColor="#323232"
-                android:textSize="15sp" />
+
 
             <TextView
                 android:id="@+id/tv_nextClick"

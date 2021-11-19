@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -609,6 +610,55 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                  MyApplication.saveString("username", jsonObject.optString("username"), LoginMsis.this);
                                  MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
                                  MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), LoginMsis.this);
+
+                                 // #################### serviceList Add  serviceCategoryList add  serviceCode
+
+                                 if(jsonObject.has("serviceList"))
+                                 {
+                                     JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
+
+                                     for(int i=0;i<jsonArray_serviceList.length();i++)
+                                     {
+                                         JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
+
+                                         if(jsonObject1.has("serviceCategoryList"))
+                                         {
+                                             JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
+                                             for(int j=0;j<jsonArray_serviceCategoryList.length();j++)
+                                             {
+                                                 JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
+
+                                                 if(jsonObject2.has("serviceName"))
+                                                 {
+                                                     String serviceName =jsonObject2.getString("serviceName");
+
+                                                     if(serviceName.equalsIgnoreCase("Money Transfer"))
+                                                     {
+                                                         if(jsonObject2.has("serviceCode"))
+                                                         {
+                                                             String serviceCode =jsonObject2.getString("serviceCode");
+
+                                                             MyApplication.saveString("serviceCode_LoginApi", serviceCode, LoginMsis.this);
+                                                         }
+                                                         else {
+                                                             MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
+
+                                                         }
+                                                     }
+
+                                                 }
+                                             }
+
+                                         }
+
+                                     }
+
+                                 }
+                                 else {
+                                     MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
+
+                                 }
+
 
 
                                  Intent i = new Intent(LoginMsis.this, MainActivity.class);
