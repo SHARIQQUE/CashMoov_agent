@@ -826,7 +826,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
                         "&receiveCurrencyCode="+
-                        currencyCode_agent+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_agent+
+                        currencyCode_agent+"&sendCountryCode=" + "100092" + "&receiveCountryCode="+"100092"+
                         "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" +
                         serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory +
                         "&serviceProviderCode=" +
@@ -937,7 +937,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
         // Hard Code Final Deepak
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100002&serviceCategoryCode=100001&status=Y", languageToUse, new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100009&serviceCategoryCode=100021&status=Y", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1101,7 +1101,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
                         rp_tv_operator.setText(operatorName_from_operatorList);
-                        rp_tv_totalAmount.setText(amountstr);
+                        rp_tv_totalAmount.setText("Fr "+amountstr);
 
 
                         api_exchange_rate();
@@ -1186,17 +1186,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 //            }
 
 
-
             JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("requestType","recharge");
             jsonObject.put("channel","SELFCARE");
             jsonObject.put("operator",operator_code_from_operatorList);
-
-
             jsonObject.put("productCode",code_from_product_allByCriteria);
-
-
             jsonObject.put("serviceCode",serviceCode_from_operatorList);
             jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_operatorList);
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_operatorList);
@@ -1205,8 +1200,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             jsonObject.put("amount",amountstr);
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
-
-
 
 
             API.POST_TRANSFERDETAILS("ewallet/api/v1/recharge/mobile-prepaid", jsonObject, languageToUse, new Api_Responce_Handler() {
