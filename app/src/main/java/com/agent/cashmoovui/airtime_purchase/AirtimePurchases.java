@@ -822,6 +822,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     private void api_exchange_rate() {
 
 
+
       //  MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
