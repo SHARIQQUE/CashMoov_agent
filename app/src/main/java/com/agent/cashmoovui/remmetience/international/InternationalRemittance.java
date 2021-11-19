@@ -1490,7 +1490,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         if(resultDescription.equalsIgnoreCase("Customer Not Found"))
                         {
-                            Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                           // Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.VISIBLE);

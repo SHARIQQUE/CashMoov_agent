@@ -542,8 +542,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="#000"
-                    android:textSize="@dimen/_13sdp"
-                    />
+                    android:textSize="@dimen/_13sdp"/>
 
                 <TextView
                     android:id="@+id/tvAmountCharged"

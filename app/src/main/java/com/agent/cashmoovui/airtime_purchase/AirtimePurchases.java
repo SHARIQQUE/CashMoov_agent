@@ -359,7 +359,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
         else if(mobileNoStr.length() < 9) {
 
-            Toast.makeText(AirtimePurchases.this, getString(R.string.please_enter_mobileno), Toast.LENGTH_LONG).show();
+            Toast.makeText(AirtimePurchases.this, getString(R.string.enter_phone_no_val), Toast.LENGTH_LONG).show();
 
 
             return false;
@@ -999,8 +999,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     private void api_allByCriteria_msisdnPrefix() {
 
-
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/operator/allByCriteria?msisdnPrefix=22499&status=Y",languageToUse,new Api_Responce_Handler() {
+        String number = edittext_mobileNo.getText().toString();
+        String firstTwodigits = number.substring(0,2);
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/operator/allByCriteria?msisdnPrefix=224"+firstTwodigits+"&status=Y",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1085,8 +1086,16 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
-                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
+                        if(walletOwnerUser.has("issuingCountryCode")){
+                            countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        }else{
+                            countryCode_agent = "";
+                        }
+                        if(walletOwnerUser.has("issuingCountryName")){
+                            countryName_agent = walletOwnerUser.getString("issuingCountryName");
+                        }else{
+                            countryName_agent = "";
+                        }
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);
                         rp_tv_mobileNumber.setText(mobileNoStr);

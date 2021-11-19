@@ -275,7 +275,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
         else if(mobileNoStr.length() < 9) {
 
-            MyApplication.showErrorToast(this,getString(R.string.val_phone));
+            MyApplication.showErrorToast(this,getString(R.string.enter_phone_no_val));
 
             return false;
         }
@@ -287,9 +287,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
 
-        else if(amountstr.trim().length() < 4) {
+        else if(amountstr.trim().length() < 2) {
 
-            MyApplication.showErrorToast(this,getString(R.string.minimum_amount_1000));
+            MyApplication.showErrorToast(this,getString(R.string.minimum_amount_10));
 
             return false;
         }
@@ -656,10 +656,22 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     if(resultCode.equalsIgnoreCase("0")) {
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
-                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
-                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
+                        if(walletOwnerUser.has("issuingCountryCode")){
+                            countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        }else{
+                            countryCode_agent = "";
+                        }
+                        if(walletOwnerUser.has("issuingCountryName")){
+                            countryName_agent = walletOwnerUser.getString("issuingCountryName");
+                        }else{
+                            countryName_agent = "";
+                        }
+                        if(walletOwnerUser.has("firstName")){
+                            senderNameAgent = walletOwnerUser.getString("firstName");
+                        }else{
+                            senderNameAgent = "";
+                        }
 
-                        senderNameAgent=walletOwnerUser.getString("firstName");
                         rp_tv_senderName.setText(senderNameAgent);
 
                         subscriber_details_api_walletownerUser();

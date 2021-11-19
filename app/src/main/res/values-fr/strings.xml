@@ -396,6 +396,7 @@
 
 
     <string name="plz_enter_amount">Veuillez saisir le montant</string>
+    <string name="minimum_amount_10">Le montant minimum est de 10</string>
     <string name="minimum_amount_1000">Le montant minimum est de 1000</string>
     <string name="maximum_amount_10000">Le montant maximm est de is 10000</string>
 
@@ -658,6 +659,17 @@
     <string name="branch_details">bronc Détails</string>
     <string name="total_amount_colon">Montant total :</string>
     <string name="vendor_trans_id_colom">Identifiant de transaction du fournisseur :</string>
+    <string name="gnf_fixed">GNF fixe</string>
+    <string name="on_the_transaction">sur la transaction</string>
+    <string name="gnf_transaction">GNF/transaction</string>
+    <string name="recharge_mobile">Recharger le mobile :</string>
+    <string name="recharge_tv">Recharger la télévision :</string>
+    <string name="international_colon">International :</string>
+    <string name="send_remittance_colon">Envoyer un versement :</string>
+    <string name="receive_remittance_colon">Recevoir le versement :</string>
+    <string name="cash_to_wallet_colon">Cash to Wallet :</string>
+    <string name="sell_float_colon">Vendre le flotteur :</string>
+    <string name="transfer_float_colon">Flotteur de transfert :</string>
     <string name="transaction_amount_receiptPage">Amount transaction</string>
 
     <string name="vendor_transaction_id_receipt">Vendor Transaction id

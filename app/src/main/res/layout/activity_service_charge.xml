@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FraisDeServices">
+    tools:context=".activity.ServiceCharge">
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -92,209 +92,8 @@
       android:orientation="vertical"
       android:layout_marginTop="@dimen/_20sdp">
 
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp"
-        android:background="#ffffff"
-        android:orientation="horizontal">
-
-      <ImageView
-          android:layout_width="@dimen/_35sdp"
-          android:layout_height="@dimen/_35sdp"
-          app:srcCompat="@drawable/ic_rechargement" />
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/_10sdp"
-          android:orientation="vertical"
-          android:layout_gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/aileron_semibold"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="10sp"
-            android:text="@string/credit_purchase"
-            android:textColor="#3a3a3a"
-            android:textSize="@dimen/_13sdp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp">
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:fontFamily="@font/aileron_semibold"
-              android:gravity="right"
-              android:lineSpacingExtra="10sp"
-              android:text="@string/free_service"
-              android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
-
-        </LinearLayout>
-
-
-
-      </LinearLayout>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp"
-        android:background="#ffffff"
-        android:orientation="horizontal">
-
-      <ImageView
-          android:layout_width="@dimen/_35sdp"
-          android:layout_height="@dimen/_35sdp"
-          app:srcCompat="@drawable/ic_paymane24" />
-
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_marginLeft="@dimen/_10sdp"
-          android:layout_gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/aileron_semibold"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="10sp"
-            android:text="@string/withdrawal"
-            android:textColor="#3a3a3a"
-            android:textSize="@dimen/_13sdp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:fontFamily="@font/aileron_semibold"
-              android:gravity="right"
-              android:lineSpacingExtra="10sp"
-              android:text="@string/one_sur_la_transaction"
-              android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
-
-        </LinearLayout>
-
-
-
-      </LinearLayout>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp"
-        android:background="#ffffff"
-        android:orientation="horizontal">
-
-      <ImageView
-          android:layout_width="@dimen/_35sdp"
-          android:layout_height="@dimen/_35sdp"
-          app:srcCompat="@drawable/ic_pmarchant" />
-
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/_10sdp"
-          android:orientation="vertical"
-          android:layout_gravity="center_vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/aileron_semibold"
-            android:gravity="center_horizontal"
-            android:lineSpacingExtra="10sp"
-            android:text="@string/bill_payment"
-            android:textColor="#3a3a3a"
-            android:textSize="@dimen/_13sdp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:fontFamily="@font/aileron_semibold"
-              android:gravity="right"
-              android:lineSpacingExtra="10sp"
-              android:text="@string/free_service"
-              android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
-
-        </LinearLayout>
-
-
-
-      </LinearLayout>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
+        android:id="@+id/linRemittance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10sdp"
@@ -315,53 +114,35 @@
           android:layout_gravity="center_vertical">
 
         <TextView
+            android:id="@+id/tvRemittance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aileron_semibold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="@string/money_transfer"
+            android:text="@string/remittance"
             android:textColor="#3a3a3a"
             android:textSize="@dimen/_13sdp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+
+        <TextView
+            android:id="@+id/tvFeeRemittance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp">
-
-
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:fontFamily="@font/aileron_semibold"
-              android:gravity="right"
-              android:lineSpacingExtra="10sp"
-              android:text="@string/one_sur_la_transaction"
-              android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
-
-        </LinearLayout>
-
-
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/aileron_semibold"
+            android:gravity="right"
+            android:lineSpacingExtra="10sp"
+            android:text="@string/free_service"
+            android:textColor="@color/bleu_cashmoov"
+            android:textSize="@dimen/_11sdp" />
 
       </LinearLayout>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-
     </LinearLayout>
 
+
     <LinearLayout
+        android:id="@+id/linCreditPurchase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10sdp"
@@ -371,7 +152,53 @@
       <ImageView
           android:layout_width="@dimen/_35sdp"
           android:layout_height="@dimen/_35sdp"
-          app:srcCompat="@drawable/ic_cashin" />
+          app:srcCompat="@drawable/ic_rechargement" />
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical"
+          android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvCreditPurchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_semibold"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="10sp"
+            android:text="@string/credit_purchase"
+            android:textColor="#3a3a3a"
+            android:textSize="@dimen/_13sdp" />
+
+          <TextView
+              android:id="@+id/tvFeeCreditPurchase"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:fontFamily="@font/aileron_semibold"
+              android:gravity="right"
+              android:lineSpacingExtra="10sp"
+              android:text="@string/free_service"
+              android:textColor="@color/bleu_cashmoov"
+              android:textSize="@dimen/_11sdp"
+              android:layout_marginTop="@dimen/_2sdp"/>
+
+        </LinearLayout>
+      </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linBillPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+      <ImageView
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_baseline_payment_24" />
 
 
       <LinearLayout
@@ -382,6 +209,102 @@
           android:layout_gravity="center_vertical">
 
         <TextView
+            android:id="@+id/tvBillPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_semibold"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="10sp"
+            android:text="@string/bill_payment"
+            android:textColor="#3a3a3a"
+            android:textSize="@dimen/_13sdp" />
+
+        <TextView
+            android:id="@+id/tvFeeBillPayment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_semibold"
+            android:gravity="right"
+            android:lineSpacingExtra="10sp"
+            android:text="@string/free_service"
+            android:textColor="@color/bleu_cashmoov"
+            android:textSize="@dimen/_11sdp"
+            android:layout_marginTop="@dimen/_2sdp"/>
+
+      </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linMoneyTransfer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+      <ImageView
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_paymane24" />
+
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvMoneyTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_semibold"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="10sp"
+            android:text="@string/money_transfer"
+            android:textColor="#3a3a3a"
+            android:textSize="@dimen/_13sdp" />
+
+          <TextView
+              android:id="@+id/tvFeeMoneyTransfer"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:fontFamily="@font/aileron_semibold"
+              android:gravity="right"
+              android:lineSpacingExtra="10sp"
+              android:text="@string/free_service"
+              android:textColor="@color/bleu_cashmoov"
+              android:textSize="@dimen/_11sdp"
+              android:layout_marginTop="@dimen/_2sdp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linCashIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10sdp">
+
+      <ImageView
+          android:layout_width="@dimen/_35sdp"
+          android:layout_height="@dimen/_35sdp"
+          app:srcCompat="@drawable/ic_cashin" />
+
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:layout_marginLeft="@dimen/_10sdp"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCashIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aileron_semibold"
@@ -391,43 +314,24 @@
             android:textColor="#3a3a3a"
             android:textSize="@dimen/_13sdp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp">
-
-
           <TextView
+              android:id="@+id/tvFeeCashIn"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:fontFamily="@font/aileron_semibold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/one_sur_la_transaction"
+              android:text="@string/free_service"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
+              android:textSize="@dimen/_11sdp"
+              android:layout_marginTop="@dimen/_2sdp"/>
 
         </LinearLayout>
-
-
-
       </LinearLayout>
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
 
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-
-    </LinearLayout>
     <LinearLayout
+        android:id="@+id/linCashOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10sdp"
@@ -449,6 +353,7 @@
           android:layout_gravity="center_vertical">
 
         <TextView
+            android:id="@+id/tvCashOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aileron_semibold"
@@ -458,13 +363,9 @@
             android:textColor="#3a3a3a"
             android:textSize="@dimen/_13sdp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp">
 
           <TextView
+              android:id="@+id/tvFeeCashOut"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:fontFamily="@font/aileron_semibold"
@@ -472,28 +373,15 @@
               android:lineSpacingExtra="10sp"
               android:text="@string/free_service"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
+              android:textSize="@dimen/_11sdp"
+              android:layout_marginTop="@dimen/_2sdp"/>
 
         </LinearLayout>
-
-
-
       </LinearLayout>
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
 
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-
-    </LinearLayout>
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10sdp"
@@ -503,7 +391,7 @@
       <ImageView
           android:layout_width="@dimen/_35sdp"
           android:layout_height="@dimen/_35sdp"
-          android:src="@drawable/transfer" />
+          android:src="@drawable/ic_baseline_cashin" />
 
 
       <LinearLayout
@@ -523,12 +411,6 @@
             android:textColor="#3a3a3a"
             android:textSize="@dimen/_13sdp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp">
-
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -537,26 +419,12 @@
               android:lineSpacingExtra="10sp"
               android:text="621 78 87 89"
               android:textColor="@color/bleu_cashmoov"
-              android:textSize="@dimen/_11sdp" />
+              android:textSize="@dimen/_11sdp"
+              android:layout_marginTop="@dimen/_2sdp"/>
 
         </LinearLayout>
-
-
-
       </LinearLayout>
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"/>
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:orientation="vertical"
-          android:gravity="center"/>
-    </LinearLayout>
 
 
   </LinearLayout>

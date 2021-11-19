@@ -404,6 +404,7 @@
 
 
     <string name="plz_enter_amount">Please enter amount</string>
+    <string name="minimum_amount_10">Minimum amount is 10</string>
     <string name="minimum_amount_1000">Minimum amount is 1000</string>
     <string name="maximum_amount_10000">Maximum amount is 10000</string>
     <string name="otp_has_send_sucessfully_subscriber_register"> OTP has been sent to subscriber registered email id Or mobile number </string>
@@ -657,6 +658,17 @@
     <string name="branch_details">Branch details</string>
     <string name="total_amount_colon">Total Amount :</string>
     <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
+    <string name="gnf_fixed">GNF Fixed</string>
+    <string name="on_the_transaction">on the transaction</string>
+    <string name="gnf_transaction">GNF / transaction</string>
+    <string name="recharge_mobile">Recharge Mobile:</string>
+    <string name="recharge_tv">Recharge TV:</string>
+    <string name="international_colon">International:</string>
+    <string name="send_remittance_colon">Send Remittance:</string>
+    <string name="receive_remittance_colon">Receive Remittance:</string>
+    <string name="cash_to_wallet_colon">Cash to Wallet:</string>
+    <string name="sell_float_colon">Sell Float:</string>
+    <string name="transfer_float_colon">Transfer Float:</string>
     <string name="transaction_amount_receiptPage">Transaction Amount</string>
     <string name="vendor_transaction_id_receipt">Vendor Transaction id</string>
 

@@ -894,27 +894,27 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                             JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                            senderCountryCode_from_walletOwnerUser_agent_api = walletOwnerUser.getString("issuingCountryCode");
-
-                            if (walletOwnerUser.has("mobileNumber")) {
-                                mobileNumber_sender_from_walletOwnerUser = walletOwnerUser.getString("mobileNumber");
+                            if(walletOwnerUser.has("issuingCountryCode")){
+                                senderCountryCode_from_walletOwnerUser_agent_api = walletOwnerUser.getString("issuingCountryCode");
+                            }else{
+                                senderCountryCode_from_walletOwnerUser_agent_api = "";
                             }
-
-
-                            if (walletOwnerUser.has("firstName")) {
+                            if(walletOwnerUser.has("mobileNumber")){
+                                mobileNumber_sender_from_walletOwnerUser = walletOwnerUser.getString("mobileNumber");
+                            }else{
+                                mobileNumber_sender_from_walletOwnerUser = "";
+                            }
+                            if(walletOwnerUser.has("firstName")){
                                 firstName_sender_from_walletOwnerUser = walletOwnerUser.getString("firstName");
-
                                 if(firstName_sender_from_walletOwnerUser.contains(" "))
                                 {
                                     String[] lastName_temp=firstName_sender_from_walletOwnerUser.split("\\ ");
                                     lastName_sender_from_walletOwnerUser = lastName_temp[1];
                                 }
-                                else
-                                {
-
-                                }
-
+                            }else{
+                                firstName_sender_from_walletOwnerUser = "";
                             }
+
 
                             if (walletOwnerUser.has("email")) {
                                 email_sender_from_walletOwnerUser = walletOwnerUser.getString("email");

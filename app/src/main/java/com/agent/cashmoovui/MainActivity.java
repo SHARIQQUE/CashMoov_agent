@@ -10,9 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.agent.cashmoovui.activity.FraisDeServices;
+import com.agent.cashmoovui.activity.ServiceCharge;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.payments.Payments;
@@ -24,7 +23,6 @@ import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.remmetience.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
-import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
@@ -258,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_serviceCharge:
-                i = new Intent(MainActivity.this, FraisDeServices.class);
+                i = new Intent(MainActivity.this, ServiceCharge.class);
                 startActivity(i);
                 break;
 

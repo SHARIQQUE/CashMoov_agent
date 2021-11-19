@@ -72,7 +72,7 @@ x
         <activity android:name=".wallet_owner.branch.BranchKYCAttached"></activity>
         <activity android:name=".wallet_owner.branch.BranchSignature"></activity>
         <activity android:name=".activity.ListUsers"></activity>
-        <activity android:name=".activity.FraisDeServices"></activity>
+        <activity android:name=".activity.ServiceCharge"></activity>
         <activity android:name=".activity.MobilePrepaid"></activity>
         <activity android:name=".payments.Payments"></activity>
         <activity android:name=".payments.PaymentDetails"></activity>

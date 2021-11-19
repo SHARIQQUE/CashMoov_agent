@@ -620,7 +620,12 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        receiver_name_str = walletOwnerUser.getString("firstName");
+
+                        if(walletOwnerUser.has("firstName")){
+                            receiver_name_str = walletOwnerUser.getString("firstName");
+                        }else{
+                            receiver_name_str = "";
+                        }
 
 
                         subscriber_details_api_walletownerUser();

@@ -353,7 +353,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             return false;
         } else if (mobileNoStr.length() < 9) {
 
-            MyApplication.showErrorToast(this, getString(R.string.subscriber_number_new));
+            MyApplication.showErrorToast(this, getString(R.string.enter_phone_no_val));
 
             return false;
         }
@@ -620,10 +620,21 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
-                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
-
-                        senderNameAgent = walletOwnerUser.getString("firstName");
+                        if(walletOwnerUser.has("issuingCountryCode")){
+                            countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        }else{
+                            countryCode_agent = "";
+                        }
+                        if(walletOwnerUser.has("issuingCountryName")){
+                            countryName_agent = walletOwnerUser.getString("issuingCountryName");
+                        }else{
+                            countryName_agent = "";
+                        }
+                        if(walletOwnerUser.has("firstName")){
+                            senderNameAgent = walletOwnerUser.getString("firstName");
+                        }else{
+                            senderNameAgent = "";
+                        }
                         rp_tv_senderName.setText(senderNameAgent);
 
                         subscriber_details_api_walletownerUser();

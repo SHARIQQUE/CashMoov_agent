@@ -281,7 +281,6 @@
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"
-                android:maxLength="20"
                 android:paddingBottom="16dp"
                 android:hint="@string/email"
                 android:textColor="#323232"
