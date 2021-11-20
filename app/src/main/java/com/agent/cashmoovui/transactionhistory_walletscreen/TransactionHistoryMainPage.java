@@ -306,11 +306,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                         arrayList_modalDetails.clear();
 
-                       ModalUserDetails modalUserDetails;
 
                         for (int i = 0; i < jsonArray.length(); i++) {
-
-                             modalUserDetails=new ModalUserDetails();
 
 
                              UserDetail user = new UserDetail();
@@ -322,9 +319,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String  transTypeName = jsonObject1.getString("transTypeName");
                                 user.setTransTypeName(transTypeName);
-
-                                arrayList_modalDetails.add(user);
-                                modalUserDetails.setModalUserDetails(arrayList_modalDetails);
                             }
 
                             if(jsonObject1.has("destMobileNumber"))
@@ -333,8 +327,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 user.setDestMobileNumber(destMobileNumber);
 
-                                arrayList_modalDetails.add(user);
-                                modalUserDetails.setModalUserDetails(arrayList_modalDetails);
                             }
 
                             if(jsonObject1.has("transactionAmount"))
@@ -342,17 +334,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 String  transactionAmount = jsonObject1.getString("transactionAmount");
 
                                 user.setTransactionAmount(transactionAmount);
-                                arrayList_modalDetails.add(user);
-                                modalUserDetails.setModalUserDetails(arrayList_modalDetails);
                             }
                             if(jsonObject1.has("desCurrencyName"))
                             {
                                 String  desCurrencyName = jsonObject1.getString("desCurrencyName");
                                 user.setDesCurrencyName(desCurrencyName);
-
-                                arrayList_modalDetails.add(user);
-                                modalUserDetails.setModalUserDetails(arrayList_modalDetails);
-
                             }
 
                             if(jsonObject1.has("creationDate"))
@@ -360,9 +346,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 String  creationDate = jsonObject1.getString("creationDate");
                                 user.setCreationDate(creationDate);
 
-                                arrayList_modalDetails.add(user);
-                                modalUserDetails.setModalUserDetails(arrayList_modalDetails);
                             }
+
+                            arrayList_modalDetails.add(user);
+
                         }
 
                         recyclerView.setLayoutManager(new LinearLayoutManager(TransactionHistoryMainPage.this));

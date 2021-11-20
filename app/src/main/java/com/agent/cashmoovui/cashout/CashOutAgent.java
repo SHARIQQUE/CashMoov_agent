@@ -59,11 +59,11 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     View rootView;
 
 
-    TextView tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_credit, previous_reviewClick_textview, confirm_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp;
+    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
 
     String selectClickType="",desWalletOwnerCode_from_currency="";
 
@@ -125,12 +125,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
             //    Reveiw page
 
             ll_reviewPage = (LinearLayout) findViewById(R.id.ll_reviewPage);
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
 
             rp_tv_senderName = (TextView) findViewById(R.id.rp_tv_senderName);
             rp_tv_mobileNumber = (TextView) findViewById(R.id.rp_tv_mobileNumber);
@@ -800,7 +803,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
+
 
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
                             receiptPage_tv_transactionAmount.setText("Fr " + amountstr);
@@ -815,6 +821,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
                             receiptPage_tv_receiver_name.setText(receivernameStr);
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+
+
 
                         } else {
                             Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -899,6 +907,20 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     }
                 }
 
+                else if (selectClickType.equalsIgnoreCase("select_subscriber_mpin")) {
+                    if (validation_mpin_detail()) {
+                        if (new InternetCheck().isConnected(CashOutAgent.this)) {
+                            MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+
+
+                           api_mpin_subscriber();
+
+                        } else {
+                            Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+
                 else if (selectClickType.equalsIgnoreCase("select_mpin")) {
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
@@ -912,6 +934,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
+
+
             }
             break;
 
@@ -920,6 +944,18 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
+            }
+            break;
+
+            case R.id.tvContinue: {
+
+                ll_page_1.setVisibility(View.GONE);
+                ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.VISIBLE);
+
+
             }
             break;
 
@@ -1390,15 +1426,106 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                             if (resultCode.equalsIgnoreCase("0"))
                             {
-                                selectClickType="select_mpin";
+
+                                selectClickType="select_subscriber_mpin";
                                 confirm_reviewClick_textview.setText(getString(R.string.verify_subscriber_pin));
                                 ll_otp.setVisibility(View.GONE);
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
-
                                 ll_pin.setVisibility(View.VISIBLE);
 
 
+                            }
+
+                            else {
+                                Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        Toast.makeText(CashOutAgent.this,e.toString(),Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(CashOutAgent.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }catch (Exception e){
+
+            MyApplication.hideLoader();
+            MyApplication.showToast(CashOutAgent.this,e.toString());
+        }
+
+    }
+    private void api_mpin_subscriber() {
+        try{
+
+            JSONObject jsonObject=new JSONObject();
+
+            String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
+            jsonObject.put("pin", encryptionDatanew.toLowerCase(Locale.ROOT));
+            jsonObject.put("mobileNumber",mobileNoStr);
+
+
+            API.POST_CASHOUT_MPIN("ewallet/api/v1/walletOwnerUser/verifyMPin",jsonObject,languageToUse,new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+                        //JSONObject jsonObject = new JSONObject("");
+
+                        if (jsonObject.has("error")) {
+
+                            String error = jsonObject.getString("error");
+                            String error_message = jsonObject.getString("error_message");
+
+                            Toast.makeText(CashOutAgent.this, error_message, Toast.LENGTH_LONG).show();
+
+                            if(error.equalsIgnoreCase("1251")) {
+
+                                Intent i = new Intent(CashOutAgent.this, VerifyLoginAccountScreen.class);
+                                startActivity(i);
+
+                                // finish();
+                            }
+                        }
+
+                        else
+                        {
+                            String resultDescription = jsonObject.getString("resultDescription");
+                            String resultCode = jsonObject.getString("resultCode");
+
+
+                            if (resultCode.equalsIgnoreCase("0"))
+                            {
+
+                                et_mpin.setText("");
+                                mpinStr="";
+
+                                selectClickType="select_mpin";
+                                confirm_reviewClick_textview.setText(getString(R.string.pin_capital));
+                                ll_otp.setVisibility(View.GONE);
+                                ll_otp.setVisibility(View.GONE);
+                                ll_resendOtp.setVisibility(View.GONE);
+                                ll_pin.setVisibility(View.VISIBLE);
 
                             }
 

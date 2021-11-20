@@ -79,8 +79,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,tvContinue,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -180,8 +180,13 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             //    Receipt page
 
+            tvContinue = (TextView)(findViewById(R.id.tvContinue));
+
+            tvContinue.setOnClickListener(this);
+
             ll_receiptPage = (LinearLayout) findViewById(R.id.ll_receiptPage);
             main_layout = (LinearLayout) findViewById(R.id.main_layout);
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
             rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
             exportReceipt_textview.setOnClickListener(this);
@@ -672,7 +677,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     else {
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
+                       // finish();
                     }
 
 
@@ -871,7 +876,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     else {
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
+                      //  finish();
                     }
 
 
@@ -1254,8 +1259,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
+                            ll_page_1.setVisibility(View.GONE);
+                            ll_reviewPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
 
-                            alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
 
 
                         } else {
@@ -1453,6 +1460,18 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     }
                 }
             }
+
+            break;
+
+            case R.id.tvContinue: {
+
+
+
+                alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
+
+
+            }
+
 
             break;
 

@@ -61,12 +61,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String walletOwnerCode="";
 
     EditText etPin;
-    TextView exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_financialTax,rp_tv_amount_to_be_charge,rp_tv_amount_to_be_credit,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -123,6 +123,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
@@ -144,6 +145,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
 
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
@@ -728,6 +731,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
                         ll_page_1.setVisibility(View.GONE);
+                        ll_successPage.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
 
@@ -829,9 +833,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
-                            ll_page_1.setVisibility(View.GONE);
-                            ll_reviewPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.VISIBLE);
 
                             receiptPage_tv_stransactionType.setText("CASH-IN");
                             receiptPage_tv_transactionAmount.setText(amountstr);
@@ -851,6 +852,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                             receiptPage_tv_receiver_name.setText(receivernameStr);
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+
+                            ll_page_1.setVisibility(View.GONE);
+                            ll_reviewPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
 
 
                         } else {
@@ -1032,6 +1038,19 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             }
             break;
 
+
+
+            case R.id.tvContinue: {
+
+                ll_page_1.setVisibility(View.GONE);
+                ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.VISIBLE);
+
+            }
+            break;
+
+
             case R.id.exportReceipt_textview: {
 
                 Bitmap bitmap = getScreenShot(rootView);
@@ -1044,6 +1063,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
             }
             break;

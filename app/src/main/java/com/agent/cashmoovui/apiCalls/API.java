@@ -251,7 +251,7 @@ public class API {
                 .setOkHttpClient(okHttpClient)
 
                 .setPriority(Priority.MEDIUM)
-                .setTag("LOGINOTPVERIFY")
+                .setTag("LOGINMPINSUBSCRIBER")
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
                     @Override

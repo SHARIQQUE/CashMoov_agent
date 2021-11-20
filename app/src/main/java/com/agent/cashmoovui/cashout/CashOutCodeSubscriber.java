@@ -58,11 +58,11 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
     TextView exportReceipt_textview;
     View rootView;
 
-    TextView tv_nextClick, rp_tv_senderName,receiptPage_sender_mssidn,receiptPage_sbenificairay_mssidn,receiptPage_conversion_rate, receiptPage_confirmationCode,rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView tvContinue,tv_nextClick, rp_tv_senderName,receiptPage_sender_mssidn,receiptPage_sbenificairay_mssidn,receiptPage_conversion_rate, receiptPage_confirmationCode,rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_charged,receiptPage_amount_to_paid_receiptpage, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_credit, previous_reviewClick_textview, confirm_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp;
+    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
 
     String selectClickType="";
     String senderName_str="",receiver_name_str;
@@ -129,6 +129,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
 
             //    Reveiw page
 
@@ -151,9 +152,13 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
             confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
 
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
+
             //    Receipt page
 
             ll_receiptPage = (LinearLayout) findViewById(R.id.ll_receiptPage);
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
 
 
             receiptPage_conversion_rate = (TextView) findViewById(R.id.receiptPage_conversion_rate);
@@ -859,7 +864,8 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
 
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
 
@@ -1010,6 +1016,17 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+            }
+            break;
+
+            case R.id.tvContinue: {
+
+                ll_page_1.setVisibility(View.GONE);
+                ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.VISIBLE);
+
             }
             break;
 
@@ -1287,6 +1304,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                                 ll_page_1.setVisibility(View.GONE);
                                 ll_receiptPage.setVisibility(View.GONE);
                                 ll_pin.setVisibility(View.GONE);
+                                ll_successPage.setVisibility(View.GONE);
 
                                 et_otp.setText("");
                                 et_mpin.setText("");

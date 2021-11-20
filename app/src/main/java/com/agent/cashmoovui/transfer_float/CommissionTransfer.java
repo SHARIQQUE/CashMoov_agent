@@ -69,12 +69,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     View rootView;
 
     EditText etPin;
-    TextView mainbalance_textview,available_balance,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView tvContinue,mainbalance_textview,available_balance,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -176,6 +176,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             ll_receiptPage = (LinearLayout) findViewById(R.id.ll_receiptPage);
             main_layout = (LinearLayout) findViewById(R.id.main_layout);
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
             rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
             exportReceipt_textview.setOnClickListener(this);
@@ -210,6 +211,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             mainbalance_textview = (TextView)(findViewById(R.id.mainbalance_textview));
             mainbalance_textview.setText("");
+
+            tvContinue = (TextView)(findViewById(R.id.tvContinue));
+
+            tvContinue.setOnClickListener(this);
 
 
             if (new InternetCheck().isConnected(CommissionTransfer.this)) {
@@ -411,8 +416,11 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
+                            ll_page_1.setVisibility(View.GONE);
+                            ll_reviewPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
 
-                            alert_dialogue_sh("Commission transfer successfully to main wallet ");
 
 
                         } else {
@@ -478,6 +486,14 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 }
             }
 
+            break;
+
+            case R.id.tvContinue: {
+
+
+                alert_dialogue_sh("Commission transfer successfully to main wallet ");
+
+            }
             break;
 
 

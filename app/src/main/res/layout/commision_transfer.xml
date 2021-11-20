@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp"
     android:id="@+id/main_layout"
     tools:context=".activity.About">
 
@@ -399,6 +398,76 @@
 
 
         </LinearLayout>
+        <!--    success  Receive -->
+
+        <LinearLayout
+
+            android:id="@+id/ll_successPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@color/colorPrimary">
+
+                <ImageView
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/check"
+                    android:backgroundTint="@color/colorPrimaryDark" />
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/check" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/aileron_bold"
+                android:lineSpacingExtra="7sp"
+                android:textColor="#29304d"
+                android:textSize="@dimen/_25sdp"
+                android:textAlignment="center"
+                android:text="@string/transaction_success" />
+
+
+
+            <TextView
+                android:id="@+id/tvContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_100sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@drawable/btn_blue"
+                android:fontFamily="@font/aileron_bold"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="3sp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                android:text="@string/continu"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_13sdp" />
+
+
+
+
+        </LinearLayout>
+
 
 
         <!--    Reveiw Page-->
