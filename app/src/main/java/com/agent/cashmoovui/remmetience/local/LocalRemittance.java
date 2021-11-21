@@ -77,11 +77,11 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-    TextView convertionRate_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionFees, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount,fees_first_page, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView tvContinue,convertionRate_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionFees, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount,fees_first_page, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,amountTobecharged_charged_first_page, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout;
+    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -153,6 +153,10 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             //    Reveiw page
 
             ll_reviewPage = (LinearLayout) findViewById(R.id.ll_reviewPage);
+
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
 
             rp_tv_agentCode = (TextView) findViewById(R.id.rp_tv_agentCode);
             rp_tv_sender_id = (TextView) findViewById(R.id.rp_tv_sender_id);
@@ -1357,7 +1361,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
 
                             receiptPage_tv_stransactionType.setText("SEND REMITTANCE");
 
@@ -1587,6 +1592,16 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                 }
             }
 
+            break;
+
+            case R.id.tvContinue: {
+
+                ll_page_1.setVisibility(View.GONE);
+                ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.VISIBLE);
+
+            }
             break;
 
             case R.id.confirm_reviewClick_textview: {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +35,15 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     ImageView imgBack,imgHome;
     EditText edittext_amount,edittext_validity;
-    TextView send_textview;
+    TextView send_textview,tvContinue;
     String profileTypeCode_fromServer="",profileTypeName_fromServer="",walletOwnerName_fromServer="";
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",validityDaysStr;
     Spinner spinner_currency;
+
+    LinearLayout ll_firstPage,ll_successPage;
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
@@ -79,6 +82,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
         setContentView(R.layout.activity_overdraft_limit);
 
+        ll_successPage =(LinearLayout)findViewById(R.id.ll_successPage);
+        ll_firstPage =(LinearLayout)findViewById(R.id.ll_firstPage);
+
+        tvContinue = (TextView) findViewById(R.id.tvContinue);
 
 
 
@@ -152,6 +159,28 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                         api_walletOwnerUser();
 
+
+
+                    } else {
+                        Toast.makeText(OverdraftLimit.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
+
+        tvContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (validation_mobile_Details()) {
+
+                    if (new InternetCheck().isConnected(OverdraftLimit.this)) {
+
+                      //  ll_firstPage.setVisibility(View.GONE);
+                     //   ll_successPage.setVisibility(View.GONE);
+
+                        alert_dialogue_sh("Your overdraft request created successfully and send for approval");
 
 
                     } else {
@@ -495,9 +524,6 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
 
-        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",OverdraftLimit.this);
-
-
         API.POST_TRANSFER("ewallet/api/v1/dataApproval",jsonObject_0 ,languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -514,7 +540,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                        alert_dialogue_sh("Your overdraft request created successfully and send for approval");
+                      ll_firstPage.setVisibility(View.GONE);
+                      ll_successPage.setVisibility(View.VISIBLE);
 
                     } else {
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();

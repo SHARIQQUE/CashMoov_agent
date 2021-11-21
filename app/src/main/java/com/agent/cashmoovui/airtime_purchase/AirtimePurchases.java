@@ -97,12 +97,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     View rootView;
 
     EditText etPin;
-    TextView receiptPage_tv_mobileNumber,operator_tv_receipt,vendorTransId_tv_receiptPage,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_operator,rp_tv_totalAmount
+    TextView tvContinue,receiptPage_tv_mobileNumber,operator_tv_receipt,vendorTransId_tv_receiptPage,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_operator,rp_tv_totalAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_transactionAmount,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -219,6 +219,11 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
             rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
             exportReceipt_textview.setOnClickListener(this);
+
+
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
 
             receiptPage_tv_transaction_receiptNo = (TextView) findViewById(R.id.receiptPage_tv_transaction_receiptNo);
             receiptPage_tv_stransactionType = (TextView) findViewById(R.id.receiptPage_tv_stransactionType);
@@ -897,6 +902,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         ll_page_1.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
+                        ll_successPage.setVisibility(View.GONE);
 
 
 
@@ -1222,7 +1228,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
 
 
 
@@ -1357,6 +1364,17 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+            }
+            break;
+
+            case R.id.tvContinue: {
+
+                ll_page_1.setVisibility(View.GONE);
+                ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.VISIBLE);
+
             }
             break;
 

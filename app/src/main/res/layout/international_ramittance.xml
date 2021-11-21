@@ -10,7 +10,6 @@
     tools:context=".activity.About">
 
 
-        <include layout="@layout/toolbar_active"></include>
 
 
     <ScrollView
@@ -23,8 +22,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp">
 
 
@@ -35,8 +32,12 @@
             android:id="@+id/ll_page_1"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:padding="@dimen/_10sdp"
             android:layout_height="match_parent"
             android:visibility="visible">
+
+            <include layout="@layout/toolbar_active"></include>
+
 
 
             <LinearLayout
@@ -564,120 +565,137 @@
                 android:background="@color/colorPrimary">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/check" />
+                    android:background="@drawable/check"
+                    android:backgroundTint="@color/colorPrimaryDark" />
 
             </RelativeLayout>
 
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/agent_code_reviewpage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_agentCode"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
 
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/sender_reviewpage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_sender_id"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
+
+
+
+
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/benificiarayCode_reviewpage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_benificicaryCode"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
-
-
-
 
 
 
@@ -715,71 +733,84 @@
 
 
             </LinearLayout>
+
+
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/sending_currency_reviewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_sending_currency"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/beneficiary_currency_reviewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_beneficiaryCurrency"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
@@ -787,69 +818,80 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/transactionAmount_reveiewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_transactionAmount"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
 
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/convertionRate_reviewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_convertionFees"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
@@ -857,172 +899,205 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/fee_reveiewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_fees_reveiewPage"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
+
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/financialTax_reveiewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_financialTax"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
+
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/amount_to_be_charged_reveiewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_amount_to_be_charge"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/amount_to_paid_reviewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_amount_to_be_paid"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
+
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="2">
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
 
                 <TextView
-
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
                     android:text="@string/comment_reviewPage"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
 
                 <TextView
-
                     android:id="@+id/rp_tv_comment"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="left"
-                    android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1033,6 +1108,13 @@
                 android:layout_weight="4">
 
 
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
                 <TextView
 
                     android:layout_width="142dp"
@@ -1045,7 +1127,7 @@
                     android:text="@string/pin_capital"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold" />
+                     />
 
                 <EditText
 
@@ -1123,9 +1205,75 @@
         </LinearLayout>
 
 
+            <!--    success  Receive -->
 
-        /////////////////
+            <LinearLayout
 
+                android:id="@+id/ll_successPage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@color/colorPrimary">
+
+                    <ImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/check"
+                        android:backgroundTint="@color/colorPrimaryDark" />
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="7sp"
+                    android:textColor="#29304d"
+                    android:textSize="@dimen/_25sdp"
+                    android:textAlignment="center"
+                    android:text="@string/transaction_success" />
+
+
+
+                <TextView
+                    android:id="@+id/tvContinue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_100sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/btn_blue"
+                    android:fontFamily="@font/aileron_bold"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="3sp"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp"
+                    android:text="@string/continu"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_13sdp" />
+
+
+
+
+            </LinearLayout>
 
         <!--    Receipt Page-->
 
@@ -1153,249 +1301,287 @@
         </RelativeLayout>
 
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/transaction_receiptNo_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_transaction_receiptNo"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
 
+
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/confirmation_code"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_confirmation_code"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/transactionType_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_stransactionType"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/sender_currency_receiptpage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_senderCurrency"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/benificiary_currency_receiptpage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_BenificiaryCurrency"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/senderCode_receiptpage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_senderCode"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
+
+
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/benificiary_no_receiptpage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_benificiary_no"
-                android:layout_weight="1"
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
@@ -1403,174 +1589,201 @@
 
 
 
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/dateOfTransaction_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_dateOfTransaction"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/transactionAmount_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_transactionAmount"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@color/blue_colour_review"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/amount_to_be_credit_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_amount_to_be_credit"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/fee_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_fee"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@color/blue_colour_review"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/financialTax_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_financialtax"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@color/blue_colour_review"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
@@ -1601,73 +1814,86 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/name_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_sender_name"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
+
+
+
+
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/phoneNo_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_sender_phoneNo"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -1695,70 +1921,83 @@
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/name_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_receiver_name"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
 
+
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:gravity="left"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="2">
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
 
             <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
                 android:text="@string/phoneNo_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
 
             <TextView
-
                 android:id="@+id/receiptPage_tv_receiver_phoneNo"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
 
 
         </LinearLayout>
@@ -1815,6 +2054,8 @@ android:visibility="gone"
 
 
     </LinearLayout>
+
+
 
     </LinearLayout>
 

@@ -58,7 +58,7 @@ import java.util.Locale;
 public class RemittanceReceive extends AppCompatActivity implements View.OnClickListener{
 
 
-    TextView receiptPage_tv_receiver_emailid,receiptPage_tv_receiver_gender,receiptPage_tv_receiver_country,receiptPage_tv_receiver_address,receiptPage_tv_receiver_dob,receiptPage_tv_receiver_idproofType,receiptPage_tv_receiver_idproofNumber,receiptPage_tv_receiver_idproofExpirayDate,receiptPage_tv_sender_idproofType,receiptPage_tv_sender_idproofExpirayDate,receiptPage_tv_sender_idproofNumber,receiptPage_tv_sender_emailid,receiptPage_tv_sender_gender,receiptPage_tv_sender_country,receiptPage_tv_sender_address,receiptPage_tv_sender_dob;
+    TextView tvContinue,receiptPage_tv_receiver_emailid,receiptPage_tv_receiver_gender,receiptPage_tv_receiver_country,receiptPage_tv_receiver_address,receiptPage_tv_receiver_dob,receiptPage_tv_receiver_idproofType,receiptPage_tv_receiver_idproofNumber,receiptPage_tv_receiver_idproofExpirayDate,receiptPage_tv_sender_idproofType,receiptPage_tv_sender_idproofExpirayDate,receiptPage_tv_sender_idproofNumber,receiptPage_tv_sender_emailid,receiptPage_tv_sender_gender,receiptPage_tv_sender_country,receiptPage_tv_sender_address,receiptPage_tv_sender_dob;
 
     public static LoginPin loginpinC;
     String buttonClick="0";
@@ -79,7 +79,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             receiptPage_tv_amount_to_be_charged,receiptPage_amount_to_paid_receiptpage, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_credit, previous_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage,ll_pin;
+    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage,ll_pin,ll_successPage;
     MyApplication applicationComponentClass;
     String languageToUse = "";
     EditText edittext_email,edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,edittext_firstName,edittext_gender;
@@ -197,6 +197,10 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", RemittanceReceive.this);
+
+            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
 
 
             receiptPage_tv_sender_emailid = (TextView) findViewById(R.id.receiptPage_tv_sender_emailid);
@@ -801,7 +805,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.VISIBLE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.VISIBLE);
 
                             receiptPage_tv_stransactionType.setText("RECEIVE REMITTANCE");
 
@@ -1103,6 +1108,17 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             }
 
             break;
+
+            case R.id.tvContinue: {
+
+                ll_page_1.setVisibility(View.GONE);
+                ll_reviewPage.setVisibility(View.GONE);
+                ll_successPage.setVisibility(View.GONE);
+                ll_receiptPage.setVisibility(View.VISIBLE);
+
+            }
+            break;
+
 
             case R.id.close_receiptPage_textview: {
 

@@ -123,7 +123,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
+
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
+            tvContinue = (TextView) findViewById(R.id.tvContinue);
+            tvContinue.setOnClickListener(this);
+
+
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
@@ -145,9 +150,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
-            tvContinue = (TextView) findViewById(R.id.tvContinue);
-            tvContinue.setOnClickListener(this);
-
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
 
