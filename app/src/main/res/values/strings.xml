@@ -582,7 +582,7 @@
     <string name="amount_to_paid_without_star">Amount to be paid </string>
 
     <string name="commision_Transfer">Commision Transfer</string>
-    <string name="currency_Name">Currency Name</string>
+    <string name="currency_Name">Currency name</string>
     <string name="main_Wallet">Main Wallet </string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">State</string>
@@ -672,6 +672,22 @@
     <string name="transfer_float_colon">Transfer Float:</string>
     <string name="transaction_amount_receiptPage">Transaction Amount</string>
     <string name="vendor_transaction_id_receipt">Vendor Transaction id</string>
+    <string name="receiver_msisdn"> Receiver MSISDN</string>
+
+    <string name="receiverName_receiptPage_without_coln">Receiver name</string>
+    <string name="final_amount">Final Amount </string>
+    <string name="status">Status </string>
+    <string name="create_on">Created On </string>
+    <string name="action">Action </string>
+
+
+
+
+    <string name="sender_wallet_owner_code"> Sender wallet owner code </string>
+    <string name="receiver_wallet_owner_code">Receiver wallet owner code </string>
+    <string name="view_details"> View Details  </string>
+    <string name="senderName_without_semic"> Sender name </string>
+    <string name="exchangeRate"> Exchange rate  </string>
 
 
 </resources>

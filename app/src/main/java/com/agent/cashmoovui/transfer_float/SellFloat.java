@@ -4,6 +4,7 @@ import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_allSellFloat_fe
 import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_walletOwnerCategoryCode;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -25,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -32,15 +36,24 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.CommonBaseAdapter;
 import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterReceiveCurrency;
+import com.agent.cashmoovui.adapter.RecordAdapter;
+import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
+import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.agent.cashmoovui.transactionhistory_walletscreen.CallBackRecycleViewClick;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
+import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
+import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -52,26 +65,34 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class SellFloat extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+public class SellFloat extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener, CallBackSellFloatRecycleViewClick {
 
+    String[] strArray={"10","25","50","100"};
+
+    String recordString="10";
 
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
 
+    RecyclerView recyclerView;
+
+
     String currencyName_from_currency="";
+
+    ArrayList<SellFloatModal> arrayList_sellFloat;
 
 
     boolean  isPasswordVisible;
 
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
 
-    String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",agentCode_subscriber;
+    String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",desWalletOwnerCode_from_allSellFloat="";
 
 
-    String  serviceCode_from_allSellFloat ="",serviceCategoryCode_from_allSellFloat="",serviceProviderCode_from_allSellFloat="",srcCurrencyCode_from_allSellFloat="",desCurrencyCode_from_allSellFloat="",srcWalletOwnerCode_from_allSellFloat="",desWalletOwnerCode_from_allSellFloat="";
 
 
-    Spinner  spinner_insititue,spinner_currency;
+    Spinner  spinner_insititue,spinner_currency,spinner_record;
+
     View rootView;
 
     EditText etPin;
@@ -80,7 +101,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,tvContinue,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage,linearLayout_record;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -97,7 +118,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
-   String mpinStr="";
+    String mpinStr="";
 
 
     String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
@@ -187,6 +208,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             ll_receiptPage = (LinearLayout) findViewById(R.id.ll_receiptPage);
             main_layout = (LinearLayout) findViewById(R.id.main_layout);
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
+            linearLayout_record = (LinearLayout) findViewById(R.id.linearLayout_record);
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
             rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
             exportReceipt_textview.setOnClickListener(this);
@@ -205,6 +227,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
             qrCode_imageButton = (ImageButton) findViewById(R.id.qrCode_imageButton);
 
+
+            recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+
             qrCode_imageButton.setOnClickListener(this);
             tv_nextClick.setOnClickListener(this);
             previous_reviewClick_textview.setOnClickListener(this);
@@ -216,6 +241,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             spinner_insititue= (Spinner) findViewById(R.id.spinner_insititue);
             spinner_insititue.setOnItemSelectedListener(this);
+
+            spinner_record= (Spinner) findViewById(R.id.spinner_record);
+            spinner_record.setOnItemSelectedListener(this);
+
 
 
             spinner_currency= (Spinner) findViewById(R.id.spinner_currency);
@@ -255,6 +284,21 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
+            if (new InternetCheck().isConnected(SellFloat.this)) {
+
+
+
+                api_allSellFloat_featureCode(recordString);
+
+
+
+            } else {
+                Toast.makeText(SellFloat.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+            }
+
+            RecordAdapter recordAdapter = new RecordAdapter(SellFloat.this, strArray);
+            spinner_record.setAdapter(recordAdapter);
+
 
         }
         catch (Exception e)
@@ -282,9 +326,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     if (resultCode.equalsIgnoreCase("0")) {
 
 
-                         arrayList_instititueName = new ArrayList<String>();
-                         arrayList_instititueCode = new ArrayList<String>();
-                         arrayList_instititue_countryCode = new ArrayList<String>();
+                        arrayList_instititueName = new ArrayList<String>();
+                        arrayList_instititueCode = new ArrayList<String>();
+                        arrayList_instititue_countryCode = new ArrayList<String>();
 
 
 
@@ -340,7 +384,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             }
 
 
-                           // countryName_walletOwnerCategoryCode = jsonObject3.getString("issuingCountryName");
+                            // countryName_walletOwnerCategoryCode = jsonObject3.getString("issuingCountryName");
 
 
                         }
@@ -352,7 +396,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                         CommonBaseAdapter aaaaaa = new CommonBaseAdapter(SellFloat.this, arrayList_instititueName);
-           spinner_insititue.setAdapter(aaaaaa);
+                        spinner_insititue.setAdapter(aaaaaa);
 
 
 
@@ -402,7 +446,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 try {
 
 
-                //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
+                    //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
 
 
                     String resultCode = jsonObject.getString("resultCode");
@@ -415,7 +459,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
 
-                            walletOwnerCategoryCodeTemp = jsonObject_walletOwner.getString("walletOwnerCategoryCode");
+                        walletOwnerCategoryCodeTemp = jsonObject_walletOwner.getString("walletOwnerCategoryCode");
 
                         agentName_from_walletOwner = jsonObject_walletOwner.getString("ownerName");
 
@@ -529,8 +573,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-                    CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(SellFloat.this, arrayList_currecnyName);
-                    spinner_currency.setAdapter(arraadapter2);
+                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(SellFloat.this, arrayList_currecnyName);
+                        spinner_currency.setAdapter(arraadapter2);
 
 
                         api_walletOwner();
@@ -677,7 +721,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     else {
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                       // finish();
+                        // finish();
                     }
 
 
@@ -704,15 +748,15 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    private void api_allSellFloat_featureCode() {
+    private void api_allSellFloat_featureCode( String recordString) {
+
+
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",SellFloat.this);
 
-
-
         String featureCode_hardCode="100076";   // 100076 is hard code according to praveen 19 Nov
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+featureCode_hardCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&offset=0&limit=10",languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+featureCode_hardCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&offset=0&limit="+recordString,languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -720,66 +764,152 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                 try {
 
-                //    JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1924722\",\"requestTime\":\"Tue Nov 02 09:07:39 IST 2021\",\"responseTime\":\"Tue Nov 02 09:07:39 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"pageable\":{\"totalRecords\":2},\"walletOperationList\":[{\"id\":152211,\"code\":\"1000152373\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028775\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002820\",\"desWalletOwnerName\":\"Oceans Forex\",\"desWalletOwnerNumber\":\"605218330333\",\"amount\":1000.0,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T09:07:37.950+0530\",\"tax\":50.0,\"fee\":1000.0,\"exchangeRate\":0.0,\"finalAmount\":2050.0,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100000\",\"serviceCategoryCode\":\"100016\",\"serviceProviderCode\":\"100109\"},{\"id\":152207,\"code\":\"1000152369\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1000.0,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-01T13:36:27.890+0530\",\"tax\":50.0,\"fee\":1000.0,\"exchangeRate\":0.0,\"finalAmount\":2050.0,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100000\",\"serviceCategoryCode\":\"100016\",\"serviceProviderCode\":\"100109\"}]}");
+                    //    JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1924722\",\"requestTime\":\"Tue Nov 02 09:07:39 IST 2021\",\"responseTime\":\"Tue Nov 02 09:07:39 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"pageable\":{\"totalRecords\":2},\"walletOperationList\":[{\"id\":152211,\"code\":\"1000152373\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028775\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002820\",\"desWalletOwnerName\":\"Oceans Forex\",\"desWalletOwnerNumber\":\"605218330333\",\"amount\":1000.0,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T09:07:37.950+0530\",\"tax\":50.0,\"fee\":1000.0,\"exchangeRate\":0.0,\"finalAmount\":2050.0,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100000\",\"serviceCategoryCode\":\"100016\",\"serviceProviderCode\":\"100109\"},{\"id\":152207,\"code\":\"1000152369\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1000.0,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-01T13:36:27.890+0530\",\"tax\":50.0,\"fee\":1000.0,\"exchangeRate\":0.0,\"finalAmount\":2050.0,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100000\",\"serviceCategoryCode\":\"100016\",\"serviceProviderCode\":\"100109\"}]}");
 
                     String resultCode =  jsonObject.getString("resultCode");
                     String resultDescription =  jsonObject.getString("resultDescription");
 
+
+                    arrayList_sellFloat= new ArrayList<>();
+                    arrayList_sellFloat.clear();
+
                     if(resultCode.equalsIgnoreCase("0")) {
 
-                        JSONArray jsonArray = jsonObject.getJSONArray("walletOperationList");
-
-                        for(int i=0;i<jsonArray.length();i++) {
-
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-
-                            serviceCode_from_allSellFloat = jsonObject2.getString("serviceCode");
-                            serviceCategoryCode_from_allSellFloat= jsonObject2.getString("serviceCategoryCode");
-                            srcCurrencyCode_from_allSellFloat= jsonObject2.getString("srcCurrencyCode");
-                            desCurrencyCode_from_allSellFloat= jsonObject2.getString("desCurrencyCode");
+                        recyclerView.removeAllViewsInLayout();
+                        recyclerView.setVisibility(View.VISIBLE);
+                        linearLayout_record.setVisibility(View.VISIBLE);
 
 
-                            srcWalletOwnerCode_from_allSellFloat= jsonObject2.getString("srcWalletOwnerCode");
-                            desWalletOwnerCode_from_allSellFloat= jsonObject2.getString("desWalletOwnerCode");
+                        if(jsonObject.has("walletOperationList")) {
+
+                            JSONArray jsonArray_walletOperationList = jsonObject.getJSONArray("walletOperationList");
+
+                            for (int i = 0; i < jsonArray_walletOperationList.length(); i++) {
+
+                                SellFloatModal sellFloatModal = new SellFloatModal();
 
 
-                            Double tax_double=0.0,fee_double=0.0,exchangeRate_double=0.0,finalAmount_double=0.0;
-
-
-                            String  tax_from_allSellFloat="",fee_from_allSellFloat="",exchangeRate_from_allSellFloat="",finalAmount_from_allSellFloat="";
+                                JSONObject jsonObject2 = jsonArray_walletOperationList.getJSONObject(i);
 
 
 
-                           // rp_tv_tax.setText("Fr " +jsonObject2.getInt("tax"));
+                                if(jsonObject2.has("srcWalletOwnerCode")) {
+                                    String  sellFloat_srcWalletOwnerCode = jsonObject2.getString("srcWalletOwnerCode");
+
+                                    sellFloatModal.setSellFloat_srcWalletOwnerCode(sellFloat_srcWalletOwnerCode);
+
+                                }
+
+                                if(jsonObject2.has("srcWalletOwnerName")) {
+                                    String  sellFloat_srcWalletOwnerName = jsonObject2.getString("srcWalletOwnerName");
+
+                                    sellFloatModal.setSellFloat_srcWalletOwnerName(sellFloat_srcWalletOwnerName);
+
+                                }
 
 
 
+                                if(jsonObject2.has("desWalletOwnerName")) {
+                                    String  sellFloat_desWalletOwnerName = jsonObject2.getString("desWalletOwnerName");
+
+                                    sellFloatModal.setSellFloat_desWalletOwnerName(sellFloat_desWalletOwnerName);
+
+                                }
 
 
-                            if(jsonObject2.has("serviceProviderCode"))
-                            {
-                                serviceProviderCode_from_allSellFloat = jsonObject2.getString("serviceProviderCode");
+                                if(jsonObject2.has("desWalletOwnerCode")) {
+                                    String  sellFloat_desWalletOwnerCode = jsonObject2.getString("desWalletOwnerCode");
+
+                                    sellFloatModal.setSellFloat_desWalletOwnerCode(sellFloat_desWalletOwnerCode);
+
+                                    desWalletOwnerCode_from_allSellFloat = jsonObject2.getString("desWalletOwnerCode");
+
+                                }
+
+                                if(jsonObject2.has("desWalletOwnerNumber")) {
+                                    String  sellFloat_desWalletOwnerNumber = jsonObject2.getString("desWalletOwnerNumber");
+                                    sellFloatModal.setSellFloat_desWalletOwnerNumber(sellFloat_desWalletOwnerNumber);
+                                }
+
+                                if(jsonObject2.has("desCurrencyName")) {
+                                    String  sellFloat_desCurrencyName = jsonObject2.getString("desCurrencyName");
+                                    sellFloatModal.setSellFloat_desCurrencyName(sellFloat_desCurrencyName);
+                                }
+
+                                if(jsonObject2.has("amount")) {
+                                    Double  sellFloat_amount = jsonObject2.optDouble("amount");
+                                    sellFloatModal.setSellFloat_amount(sellFloat_amount);
+                                }
+
+                                if(jsonObject2.has("exchangeRate")) {
+                                    Double  sellFloat_aexchangeRate = jsonObject2.optDouble("exchangeRate");
+                                    sellFloatModal.setSellFloat_exchangeRate(sellFloat_aexchangeRate);
+                                }
+
+
+
+                                if(jsonObject2.has("fee")) {
+                                    Double  sellFloat_fee = jsonObject2.optDouble("fee");
+                                    sellFloatModal.setSellFloat_fee(sellFloat_fee);
+                                }
+
+                                if(jsonObject2.has("fee")) {
+                                    Double  sellFloat_fee = jsonObject2.optDouble("fee");
+                                    sellFloatModal.setSellFloat_fee(sellFloat_fee);
+                                }
+
+
+                                if(jsonObject2.has("Tax")) {
+                                    Double  sellFloat_Tax = jsonObject2.optDouble("Tax");
+                                    sellFloatModal.setSellFloat_tax(sellFloat_Tax);
+                                }
+
+                                if(jsonObject2.has("finalAmount")) {
+                                    Double  sellFloat_finalAmount = jsonObject2.optDouble("finalAmount");
+                                    sellFloatModal.setSellFloat_finalAmount(sellFloat_finalAmount);
+                                }
+
+                                if(jsonObject2.has("desCurrencyName")) {
+                                    String  sellFloat_desCurrencyName = jsonObject2.optString("desCurrencyName");
+                                    sellFloatModal.setSellFloat_desCurrencyName(sellFloat_desCurrencyName);
+                                }
+
+                                if(jsonObject2.has("status")) {
+                                    String  sellFloat_status = jsonObject2.optString("status");
+                                    sellFloatModal.setSellFloat_status(sellFloat_status);
+                                }
+
+                                if(jsonObject2.has("status")) {
+                                    String  sellFloat_status = jsonObject2.optString("status");
+                                    sellFloatModal.setSellFloat_status(sellFloat_status);
+                                }
+
+                                if(jsonObject2.has("creationDate")) {
+                                    String  sellFloat_creationDate = jsonObject2.optString("creationDate");
+                                    sellFloatModal.setSellFloat_creationDate(sellFloat_creationDate);
+                                }
+
+
+                                arrayList_sellFloat.add(sellFloatModal);
                             }
-                            else {
-                                serviceProviderCode_from_allSellFloat = "";
-                            }
+
+                            recyclerView.setLayoutManager(new LinearLayoutManager(SellFloat.this));
+                            SellFloatAdapterRecycle adpter= new SellFloatAdapterRecycle(SellFloat.this,arrayList_sellFloat,SellFloat.this);
+                            recyclerView.setAdapter(adpter);
 
                         }
-
-
-                        api_serviceProvider();
-
-
-
                     }
 
                     else {
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
+                        recyclerView.setVisibility(View.GONE);
+                        linearLayout_record.setVisibility(View.GONE);
+
                     }
-
-
                 }
+
+
+
                 catch (Exception e)
                 {
                     Toast.makeText(SellFloat.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -876,7 +1006,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     else {
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                      //  finish();
+                        //  finish();
                     }
 
 
@@ -908,14 +1038,13 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     private void api_serviceProvider() {
 
-        MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
 
         String serviceCategoryCode_hardcode="100016";   // 100016 is hard code according to praveen 19 Nov
 
         String serviceCode_LoginApi = MyApplication.getSaveString("serviceCode_LoginApi", SellFloat.this);
 
 
-      //   Toast.makeText(SellFloat.this, "---------------"+serviceCode_LoginApi, Toast.LENGTH_LONG).show();
+        //   Toast.makeText(SellFloat.this, "---------------"+serviceCode_LoginApi, Toast.LENGTH_LONG).show();
 
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode="+serviceCode_LoginApi+"&serviceCategoryCode="+serviceCategoryCode_hardcode+"&status=Y",languageToUse,new Api_Responce_Handler() {
@@ -1001,7 +1130,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                      String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                        String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
                         countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                         countryName_agent = walletOwnerUser.getString("issuingCountryName");
@@ -1097,8 +1226,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
-              jsonObject.put("pin",encryptionDatanew);
-              jsonObject.put("mobileNumber",mobileNumber_login);
+            jsonObject.put("pin",encryptionDatanew);
+            jsonObject.put("mobileNumber",mobileNumber_login);
 
             API.POST_TRANSFERDETAILS("ewallet/api/v1/walletOwnerUser/verifyMPin/", jsonObject, languageToUse, new Api_Responce_Handler() {
                 @Override
@@ -1108,14 +1237,14 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     try {
 
-                       // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930977\",\"requestTime\":\"Tue Nov 02 15:26:38 IST 2021\",\"responseTime\":\"Tue Nov 02 15:26:38 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\"}");
+                        // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930977\",\"requestTime\":\"Tue Nov 02 15:26:38 IST 2021\",\"responseTime\":\"Tue Nov 02 15:26:38 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\"}");
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
-                               api_mpin();
+                            api_mpin();
 
                         } else {
                             Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -1252,7 +1381,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     try {
 
 
-                       // JSONObject jsonObject = new JSONObject();
+                        // JSONObject jsonObject = new JSONObject();
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
@@ -1324,55 +1453,55 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 //            }
 
 
-                    JSONObject jsonObject = new JSONObject();
+            JSONObject jsonObject = new JSONObject();
 
-                    jsonObject.put("transactionType","101611"); // Hard code
-                    jsonObject.put("channelTypeCode","100000"); // Hard code
+            jsonObject.put("transactionType","101611"); // Hard code
+            jsonObject.put("channelTypeCode","100000"); // Hard code
 
 
-                    jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
+            jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
 
-                 //   jsonObject.put("desWalletOwnerCode",select_insitute_code);   // Not working
+            //   jsonObject.put("desWalletOwnerCode",select_insitute_code);   // Not working
 
-              jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_allSellFloat);
+            jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_allSellFloat);
 
 
             //  Toast.makeText(SellFloat.this, "----srcWalletOwnerCode--------------"+walletOwnerCode_mssis_agent, Toast.LENGTH_LONG).show();
-          //  Toast.makeText(SellFloat.this, "---------desWalletOwnerCode---------"+desWalletOwnerCode_from_allSellFloat, Toast.LENGTH_LONG).show();
+            //  Toast.makeText(SellFloat.this, "---------desWalletOwnerCode---------"+desWalletOwnerCode_from_allSellFloat, Toast.LENGTH_LONG).show();
 
 
-                    jsonObject.put("srcCurrencyCode",currencyCode_agent);
-                    jsonObject.put("desCurrencyCode",currencyCode_subscriber);
+            jsonObject.put("srcCurrencyCode",currencyCode_agent);
+            jsonObject.put("desCurrencyCode",currencyCode_subscriber);
 
 
-                    jsonObject.put("value",amountstr);
+            jsonObject.put("value",amountstr);
 
 
 //                    jsonObject.put("serviceCode",serviceCategoryCode_from_serviceCategory);          // Change according to Portal 19 Nov
 //                    jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory); // Change according to Portal 19 Nov
 //                    jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory); // Change according to Portal 19 Nov
 
-                    jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
-                    jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
-                    jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
+            jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
+            jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
+            jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
 
 
 
-        API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/sellFloat/", jsonObject, languageToUse, new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
+            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/sellFloat/", jsonObject, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+                    MyApplication.hideLoader();
 
-                try {
+                    try {
 
 
-                    //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930978\",\"requestTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"responseTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOperation\":{\"code\":\"1000152390\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1500,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T15:27:01.364+0530\",\"tax\":0,\"fee\":0,\"finalAmount\":1500,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100020\",\"serviceCategoryCode\":\"ALL011\",\"serviceProviderCode\":\"100109\"}}");
+                        //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930978\",\"requestTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"responseTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOperation\":{\"code\":\"1000152390\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1500,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T15:27:01.364+0530\",\"tax\":0,\"fee\":0,\"finalAmount\":1500,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100020\",\"serviceCategoryCode\":\"ALL011\",\"serviceProviderCode\":\"100109\"}}");
 
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                    if (resultCode.equalsIgnoreCase("0")) {
+                        if (resultCode.equalsIgnoreCase("0")) {
 
 
 
@@ -1392,41 +1521,41 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                   createJson(jsonObject);
+                            createJson(jsonObject);
 
 
 
-                    } else {
-                        Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                        //  finish();
+                        } else {
+                            Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
+                            //  finish();
+                        }
+
+
+                    } catch (Exception e) {
+                        Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
                     }
 
-
-                } catch (Exception e) {
-                    Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
                 }
 
-            }
 
+                @Override
+                public void failure(String aFalse) {
 
-            @Override
-            public void failure(String aFalse) {
+                    MyApplication.hideLoader();
 
-                MyApplication.hideLoader();
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(SellFloat.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    }
+                    else
 
-                if (aFalse.equalsIgnoreCase("1251")) {
-                    Intent i = new Intent(SellFloat.this, VerifyLoginAccountScreen.class);
-                    startActivity(i);
-                    finish();
+                        Toast.makeText(SellFloat.this, aFalse, Toast.LENGTH_SHORT).show();
                 }
-                else
+            });
 
-                Toast.makeText(SellFloat.this, aFalse, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
+        }
         catch (Exception e)
         {
             Toast.makeText(SellFloat.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -1452,7 +1581,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
 
 
-                        api_allSellFloat_featureCode();
+
+                        api_serviceProvider();
+
 
 
                     } else {
@@ -1499,7 +1630,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 store(bitmap, "test.jpg");
             }
 
-                break;
+            break;
 
             case R.id.previous_reviewClick_textview: {
 
@@ -1523,19 +1654,19 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             break;
 
             case R.id.close_receiptPage_textview:
-                 {
+            {
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);
 
-                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                     startActivity(intent);
-                     finish();
+                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
 
-                 }
+            }
 
             break;
 
@@ -1565,10 +1696,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     String str = result.getContents();
 
                     if (str.equalsIgnoreCase("")) {
-                       // 1000002786:TarunMwTest
+                        // 1000002786:TarunMwTest
 
                         Toast.makeText(this, "QR Code Not Valid", Toast.LENGTH_LONG).show();
-                       // edittext_mobileNuber.setEnabled(true);
+                        // edittext_mobileNuber.setEnabled(true);
 
                     }
                     else {
@@ -1576,12 +1707,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         String[] qrData = str.split("\\:");
 
-                       // mobileNoStr=qrData[0];
-                       // edittext_mobileNuber.setText(mobileNoStr);
-                       // edittext_mobileNuber.setEnabled(false);
+                        // mobileNoStr=qrData[0];
+                        // edittext_mobileNuber.setText(mobileNoStr);
+                        // edittext_mobileNuber.setEnabled(false);
                         // Toast.makeText(this, "QR Code  Valid", Toast.LENGTH_LONG).show();
 
-                       }
+                    }
 
                 }
 
@@ -1661,6 +1792,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             case R.id.spinner_insititue:
             {
+
+
                 select_insitute_name = arrayList_instititueName.get(i);
                 select_insitute_code = arrayList_instititueCode.get(i);
 
@@ -1669,12 +1802,55 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             }
             break;
 
+
+            case R.id.spinner_record:
+            {
+
+                recordString =strArray[i];
+
+                if(recordString.equalsIgnoreCase("10"))
+                {
+
+                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+
+
+                    api_allSellFloat_featureCode(recordString);
+                }
+
+                else if(recordString.equalsIgnoreCase("25"))
+                {
+                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+
+                    api_allSellFloat_featureCode(recordString);
+                }
+
+                else if(recordString.equalsIgnoreCase("50"))
+                {
+                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+
+                    api_allSellFloat_featureCode(recordString);
+                }
+
+
+                else if(recordString.equalsIgnoreCase("100"))
+                {
+                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+
+
+                    api_allSellFloat_featureCode(recordString);
+                }
+
+
+            }
+            break;
+
+
             case R.id.spinner_currency:
             {
                 select_currecnyName = arrayList_currecnyName.get(i);
                 select_currecnyCode = arrayList_currecnyCode.get(i);
 
-              //  Toast.makeText(SellFloat.this, ""+selectCurrecnyName+"("+selectCurrecnyCode+")", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(SellFloat.this, ""+selectCurrecnyName+"("+selectCurrecnyCode+")", Toast.LENGTH_SHORT).show();
             }
 
             break;
@@ -1691,7 +1867,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.transaction_details))
-              //  .setIcon(R.drawable.ic_baseline_translate_blue)
+                //  .setIcon(R.drawable.ic_baseline_translate_blue)
                 .setMessage(transactionSuccess)
                 .setCancelable(false)
 
@@ -1705,10 +1881,80 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                       finish();
+                        finish();
                     }
                 }).create().show();
     }
 
+
+    public void alertdialouge_recycleiView(String transactionDetails) {
+
+        try {
+
+
+            Dialog operationDialog = new Dialog(SellFloat.this);
+            operationDialog.setContentView(R.layout.alert_dialogue_sellfloat);
+
+            Button closeButton;
+            TextView senderWalletOwnerCode_textview, receiverWalletOwnerCode_textview, senderName_textview, receiverName_textview, currencyName_textview, amount_textview, fee_textview, tax_textview, exchangeRate_textview, final_amount_textview, create_on_textview, status_textview;
+            closeButton = operationDialog.findViewById(R.id.closeButton);
+
+            String[] strArray = transactionDetails.split("\\|");
+            System.out.println(strArray);
+            System.out.println(strArray);
+
+
+            senderWalletOwnerCode_textview = operationDialog.findViewById(R.id.senderWalletOwnerCode_textview);
+            receiverWalletOwnerCode_textview = operationDialog.findViewById(R.id.receiverWalletOwnerCode_textview);
+            senderName_textview = operationDialog.findViewById(R.id.senderName_textview);
+            receiverName_textview = operationDialog.findViewById(R.id.receiverName_textview);
+            currencyName_textview = operationDialog.findViewById(R.id.currencyName_textview);
+            amount_textview = operationDialog.findViewById(R.id.amount_textview);
+            fee_textview = operationDialog.findViewById(R.id.fee_textview);
+            tax_textview = operationDialog.findViewById(R.id.tax_textview);
+            exchangeRate_textview = operationDialog.findViewById(R.id.exchangeRate_textview);
+            final_amount_textview = operationDialog.findViewById(R.id.final_amount_textview);
+            create_on_textview = operationDialog.findViewById(R.id.create_on_textview);
+            status_textview = operationDialog.findViewById(R.id.status_textview);
+
+            senderWalletOwnerCode_textview.setText(strArray[1]);
+            receiverWalletOwnerCode_textview.setText(strArray[2]);
+            senderName_textview.setText(strArray[3]);
+            receiverName_textview.setText(strArray[4]);
+            currencyName_textview.setText(strArray[5]);
+            amount_textview.setText(strArray[6]);
+            fee_textview.setText(strArray[7]);
+            tax_textview.setText(strArray[8]);
+            exchangeRate_textview.setText(strArray[9]);
+            final_amount_textview.setText(strArray[10]);
+            create_on_textview.setText(strArray[11]);
+            status_textview.setText(strArray[12]);
+
+
+
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    operationDialog.dismiss();
+                }
+            });
+            //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            operationDialog.show();
+        } catch (Exception e) {
+
+            Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+
+
+    @Override
+    public void callBackSellFloat (String transactionDetails){
+
+        alertdialouge_recycleiView(transactionDetails);
+    }
 
 }

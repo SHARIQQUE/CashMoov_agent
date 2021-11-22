@@ -132,7 +132,9 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         }
     }
 
+
     public void showDialog() {
+
         Dialog operationDialog = new Dialog(WalletOwnerMenu.this);
         operationDialog.setContentView(R.layout.dialog_agent_branch);
 

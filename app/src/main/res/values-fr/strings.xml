@@ -475,6 +475,9 @@
     <string name="benificiary_currency_receiptpage">Monnaie du bénéficiaire:</string>
     <string name="total_amount_receiptpage">Montant total</string>
 
+
+    <string name="receiver_msisdn"> Récepteur MSISDN</string>
+
     <!--   -->
 
 
@@ -672,8 +675,20 @@
     <string name="transfer_float_colon">Flotteur de transfert :</string>
     <string name="transaction_amount_receiptPage">Amount transaction</string>
 
-    <string name="vendor_transaction_id_receipt">Vendor Transaction id
-</string>
+    <string name="vendor_transaction_id_receipt">Vendor Transaction id </string>
+
+   <string name="receiverName_receiptPage_without_coln">Nom du destinataire</string>
+    <string name="final_amount">Le montant final </string>
+    <string name="status">Statut </string>
+    <string name="create_on">Créé sur </string>
+    <string name="action">Action </string>
+
+    <string name="sender_wallet_owner_code"> Code du propriétaire du portefeuille de l\'expéditeur </string>
+    <string name="receiver_wallet_owner_code">eceiver wallet owner code </string>
+    <string name="view_details"> Voir les détails  </string>
+    <string name="senderName_without_semic"> Nom de expéditeur </string>
+    <string name="exchangeRate"> Taux de change  </string>
+
 
 </resources>
 

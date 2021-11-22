@@ -518,6 +518,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
         spinner_currency.setAdapter(arraadapter2);
+
+
+        MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
+
         api_transactionHistory_all();
 
     }
