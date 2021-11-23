@@ -688,6 +688,7 @@
     <string name="view_details"> Voir les détails  </string>
     <string name="senderName_without_semic"> Nom de expéditeur </string>
     <string name="exchangeRate"> Taux de change  </string>
+    <string name="Currency_without_colon"> Monnaie  </string>
 
 
 </resources>

@@ -15,15 +15,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
+import com.agent.cashmoovui.adapter.OverDraftAdapterRecycle;
+import com.agent.cashmoovui.adapter.RecordAdapter;
+import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.transfer_float.SellFloat;
+import com.agent.cashmoovui.transfer_float.SellFloatModal;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,12 +44,19 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
     TextView send_textview,tvContinue;
     String profileTypeCode_fromServer="",profileTypeName_fromServer="",walletOwnerName_fromServer="",entityCode_from_creditLimitAllocation="";
 
+    RecyclerView recyclerView;
+
+    ArrayList<OverDraftModal> arrayList_overdraft;
+
+    String[] strArray={"10","25","50","100"};
+    String recordString="10";
+
     MyApplication applicationComponentClass;
     String languageToUse = "";
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",validityDaysStr;
-    Spinner spinner_currency;
+    Spinner spinner_currency,spinner_record;
 
-    LinearLayout ll_firstPage,ll_successPage;
+    LinearLayout ll_firstPage,ll_successPage,linearLayout_record;
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
@@ -83,13 +96,24 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_overdraft_limit);
 
         ll_successPage =(LinearLayout)findViewById(R.id.ll_successPage);
+        linearLayout_record =(LinearLayout)findViewById(R.id.linearLayout_record);
         ll_firstPage =(LinearLayout)findViewById(R.id.ll_firstPage);
 
         tvContinue = (TextView) findViewById(R.id.tvContinue);
 
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        spinner_record = (Spinner) findViewById(R.id.spinner_record);
+
+
 
 
         setBackMenu();
+
+        linearLayout_record.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
+
+        RecordAdapter recordAdapter = new RecordAdapter(OverdraftLimit.this, strArray);
+        spinner_record.setAdapter(recordAdapter);
 
 
         if (new InternetCheck().isConnected(OverdraftLimit.this)) {
@@ -158,8 +182,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         MyApplication.showloader(OverdraftLimit.this, getString(R.string.getting_user_info));
 
 
-                        api_creditLimitAllocation_all_walletOwnerCode();
 
+                        api_creditLimitAllocation();
 
 
 
@@ -435,22 +459,70 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
+
+                    arrayList_overdraft= new ArrayList<>();
+                    arrayList_overdraft.clear();
+
+
                     if (resultCode.equalsIgnoreCase("0")) {
+
+                        recyclerView.removeAllViewsInLayout();
+                        recyclerView.setVisibility(View.VISIBLE);
+                        linearLayout_record.setVisibility(View.VISIBLE);
+
 
 
                         JSONArray jsonArray = jsonObject.getJSONArray("creditLimitAllocationList");
                         for(int i=0;i<jsonArray.length();i++)
                         {
-                            JSONObject jsonObject3 = jsonArray.getJSONObject(i);
 
-                            String walletOwnerCode = jsonObject3.getString("walletOwnerCode");
+                            OverDraftModal overDraftModal = new OverDraftModal();
+
+                            JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+                           // String walletOwnerCode = jsonObject3.getString("walletOwnerCode");
+
+
+                            if(jsonObject3.has("currencyName")) {
+                                String  currencyName = jsonObject3.getString("currencyName");
+                                overDraftModal.setCurrencyName(currencyName);
+                            }
+
+                            if(jsonObject3.has("amount")) {
+                                String  amount = jsonObject3.getString("amount");
+                                overDraftModal.setAmount(amount);
+                            }
+
+                            if(jsonObject3.has("currencySymbol")) {
+                                String  currencySymbol = jsonObject3.getString("currencySymbol");
+                                overDraftModal.setCurrencySymbol(currencySymbol);
+                            }
+
+                            if(jsonObject3.has("status")) {
+                                String  status = jsonObject3.getString("status");
+                                overDraftModal.setStatus(status);
+                            }
+
+                            if(jsonObject3.has("creationDate")) {
+                                String  creationDate = jsonObject3.getString("creationDate");
+                                overDraftModal.setCreationDate(creationDate);
+                            }
+
+                            arrayList_overdraft.add(overDraftModal);
+
+                            recyclerView.setLayoutManager(new LinearLayoutManager(OverdraftLimit.this));
+                            OverDraftAdapterRecycle adpter= new OverDraftAdapterRecycle(OverdraftLimit.this,arrayList_overdraft);
+                            recyclerView.setAdapter(adpter);
+
                         }
 
 
-                        api_creditLimitAllocation();
 
                     } else {
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                        recyclerView.setVisibility(View.GONE);
+                        linearLayout_record.setVisibility(View.GONE);
+
                       //  finish();
                     }
 
@@ -517,9 +589,6 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                         JSONObject jsonObject_creditLimitAllocation = jsonObject.getJSONObject("creditLimitAllocation");
                         entityCode_from_creditLimitAllocation = jsonObject_creditLimitAllocation.getString("code");
-
-                        Toast.makeText(OverdraftLimit.this, entityCode_from_creditLimitAllocation, Toast.LENGTH_LONG).show();
-
 
 
                         api_creditLimitConfig();
@@ -767,6 +836,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                         }
+
+
+                        api_creditLimitAllocation_all_walletOwnerCode();
+
 
 
 

@@ -115,7 +115,7 @@ public class Logout extends AppCompatActivity implements View.OnClickListener {
                             if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                 // MyApplication.saveString("Locale","",myprofileC);
                                 MyApplication.saveBool("FirstLogin",false,LogoutC);
-                                MyApplication.saveString("ImageName", "1", LogoutC);
+                               // MyApplication.saveString("ImageName", "1", LogoutC);
 
 
 

@@ -688,6 +688,7 @@
     <string name="view_details"> View Details  </string>
     <string name="senderName_without_semic"> Sender name </string>
     <string name="exchangeRate"> Exchange rate  </string>
+    <string name="Currency_without_colon"> Currency  </string>
 
 
 </resources>

@@ -93,6 +93,7 @@ public class API {
         AndroidNetworking.post(BASEURL+URL)
                 .addBodyParameter("username",jsonObject.optString("username")) // posting json
                 .addBodyParameter("password",jsonObject.optString("password"))
+                .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
                 .addBodyParameter("grant_type","password")
                // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")

@@ -555,6 +555,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("password",strPasword);
             jsonObject.put("grant_type","password");
             jsonObject.put("scope","read write");
+            jsonObject.put("fcmToken",FCM_TOKEN);
+
 
 
 
