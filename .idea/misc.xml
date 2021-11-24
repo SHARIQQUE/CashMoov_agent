@@ -77,7 +77,9 @@
         <entry key="app/src/main/res/drawable/error_toast.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_photo_bl.xml" value="0.2171875" />
+        <entry key="app/src/main/res/drawable/ic_close.xml" value="0.14583333333333334" />
         <entry key="app/src/main/res/drawable/ic_pass.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/ic_view.xml" value="0.2171875" />
         <entry key="app/src/main/res/drawable/rect_lightcolor_outline.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/drawable/round_blue.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/round_yellow.xml" value="0.21614583333333334" />
@@ -141,11 +143,13 @@
         <entry key="app/src/main/res/layout/change_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/commision_transfer.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/dialog_agent_branch.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/dialog_view_trans_details.xml" value="0.18" />
         <entry key="app/src/main/res/layout/ic_baseline_photo_bl.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/include_home_screen.xml" value="0.14" />
         <entry key="app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/include_wallet_screen.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_transaction_list.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/language_choose.xml" value="0.25" />
         <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.2" />
         <entry key="app/src/main/res/layout/login_msis.xml" value="0.25" />

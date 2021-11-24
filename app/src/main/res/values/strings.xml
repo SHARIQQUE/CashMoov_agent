@@ -691,5 +691,22 @@
     <string name="Currency_without_colon"> Currency  </string>
 
 
+    <string name="trans_id">Transaction Id</string>
+
+    <string name="source">Source</string>
+    <string name="destination">Destination</string>
+    <string name="source_msisdn">Source MSISDN</string>
+    <string name="dest_msisdn">Destination MSISDN</string>
+    <string name="recharge_no">Recharge Number</string>
+    <string name="amounts">Amount</string>
+    <string name="tax_type">Tax Type</string>
+    <string name="trans_reversed">Transaction Reversed</string>
+    <string name="trans_date">Transaction Date</string>
+    <string name="view_deatils">View Details</string>
+    <string name="post_balance">Post Balance</string>
+
+    <string name="receiving_country">Receiving country </string>
+
+
 </resources>
 

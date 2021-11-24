@@ -17,6 +17,10 @@
     <color name="bleu_cashmoov">#004AAD</color>
     <color name="jaune_cashmoov">#FFDE59</color>
     <color name="view_color_light">#28EFEFEF</color>
+    <color name="view_color">#FDD3D0D0</color>
+
+    <color name="textcolorheading">#333333</color>
+    <color name="textcolor">#666666</color>
 
     <color name="toastTextColor">#0f6848</color>
     <color name="toastBgColor">#d2f4e8</color>

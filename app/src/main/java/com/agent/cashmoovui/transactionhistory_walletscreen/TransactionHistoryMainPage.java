@@ -1,5 +1,6 @@
 package com.agent.cashmoovui.transactionhistory_walletscreen;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -37,13 +38,17 @@ import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class TransactionHistoryMainPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class TransactionHistoryMainPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisners {
 
     SmoothBottomBar bottomBar;
     String searchStr="";
@@ -51,6 +56,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     ImageView imgQR,search_imageView;
     TextView main_wallet_value_textview;
     ArrayList<UserDetail> arrayList_modalDetails;
+
+    TransactionListAdapter transactionListAdapter;
+
+
+    private List<TransactionModel> transactionList = new ArrayList<>();
+
 
     RecyclerView recyclerView;
 
@@ -390,6 +401,95 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     }
 
+    private void getTransactionList() {
+
+        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
+
+
+        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis+"&offset=0&limit=5000", new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                transactionList.clear();
+                String taxName;
+
+                if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                    JSONArray dataArray = jsonObject.optJSONArray("transactionsList");
+                    if(dataArray!=null&&dataArray.length()>0) {
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject data = dataArray.optJSONObject(i);
+                            if(data.has("taxConfigurationList")){
+                                JSONArray taxArray = data.optJSONArray("taxConfigurationList");
+                                taxName = taxArray.optJSONObject(0).optString("taxTypeName");
+                            }else{
+                                taxName = "N/A";
+                            }
+                            transactionList.add(new TransactionModel(
+                                    data.optInt("id"),
+                                    data.optString("code"),
+                                    data.optString("transactionId"),
+                                    data.optString("transTypeCode"),
+                                    data.optString("transTypeName"),
+                                    data.optString("srcWalletOwnerCode"),
+                                    data.optString("srcWalletOwnerName"),
+                                    data.optString("desWalletOwnerCode"),
+                                    data.optString("desWalletOwnerName"),
+                                    data.optString("srcWalletCode"),
+                                    data.optString("desWalletCode"),
+                                    data.optString("srcCurrencyCode"),
+                                    data.optString("srcCurrencyName"),
+                                    data.optString("srcCurrencySymbol"),
+                                    data.optString("desCurrencyCode"),
+                                    data.optString("desCurrencyName"),
+                                    data.optString("desCurrencySymbol"),
+                                    data.optInt("transactionAmount"),
+                                    data.optString("tax"),
+                                    data.optString("resultCode"),
+                                    data.optString("resultDescription"),
+                                    data.optString("creationDate"),
+                                    data.optString("createdBy"),
+                                    data.optString("status"),
+                                    data.optBoolean("transactionReversed"),
+                                    data.optInt("srcMobileNumber"),
+                                    data.optInt("destMobileNumber"),
+                                    data.optBoolean("receiverBearer"),
+                                    data.optString("rechargeNumber"),
+                                    data.optInt("fee"),
+                                    taxName,
+                                    data.optInt("value"),
+                                    data.optInt("srcPreBalance"),
+                                    data.optInt("destPreBalance"),
+                                    data.optInt("srcPostBalance"),
+                                    data.optInt("destPostBalance")));
+
+                        }
+
+                        setData(transactionList);
+
+
+
+                    }
+                }else{
+                    MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
+                }
+
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(TransactionHistoryMainPage.this,aFalse);
+            }
+        });
+    }
+
+    private void setData(List<TransactionModel> transactionList) {
+        transactionListAdapter = new TransactionListAdapter(TransactionHistoryMainPage.this,transactionList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        recyclerView.setAdapter(transactionListAdapter);
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -522,7 +622,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
 
-        api_transactionHistory_all();
+      //  api_transactionHistory_all();
+
+        getTransactionList();
 
     }
 
@@ -593,6 +695,62 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    @Override
+    public void onTransactionViewItemClick(String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, int postBalance, String status) {
+        Dialog dialog = new Dialog(TransactionHistoryMainPage.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
+        dialog.setContentView(R.layout.dialog_view_trans_details);
+
+        //get ids
+        TextView etTransId = dialog.findViewById(R.id.etTransId);
+        TextView etTransType = dialog.findViewById(R.id.etTransType);
+        TextView etTransDate = dialog.findViewById(R.id.etTransDate);
+        TextView etSource = dialog.findViewById(R.id.etSource);
+        TextView etDestination = dialog.findViewById(R.id.etDestination);
+        TextView etSourcMSISDN = dialog.findViewById(R.id.etSourcMSISDN);
+        TextView etDestMSISDN = dialog.findViewById(R.id.etDestMSISDN);
+        TextView etAmount = dialog.findViewById(R.id.etAmount);
+        TextView etFee = dialog.findViewById(R.id.etFee);
+        TextView etTaxType = dialog.findViewById(R.id.etTaxType);
+        TextView etTax = dialog.findViewById(R.id.etTax);
+        TextView etPostBalance = dialog.findViewById(R.id.etPostBalance);
+        TextView etStatus = dialog.findViewById(R.id.etStatus);
+
+        //set values
+        etTransId.setText(transId);
+        etTransType.setText(transType);
+        etSource.setText(source);
+        etDestination.setText(destination);
+        etSourcMSISDN.setText(String.valueOf(sourceMsisdn));
+        etDestMSISDN.setText(String.valueOf(destMsisdn));
+        etAmount.setText(symbol+" "+MyApplication.addDecimal(String.valueOf((amount))));
+        etFee.setText(MyApplication.addDecimal(String.valueOf((fee))));
+        etTaxType.setText(taxType);
+        etTax.setText(MyApplication.addDecimal(String.valueOf((tax))));
+        etPostBalance.setText(symbol+" "+MyApplication.addDecimal(String.valueOf((postBalance))));
+        etStatus.setText(status);
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
+            date = inputFormat.parse(transDate);
+            String formattedDate = outputFormat.format(date);
+            etTransDate.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        dialog.findViewById(R.id.img_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+
 
 
 }
