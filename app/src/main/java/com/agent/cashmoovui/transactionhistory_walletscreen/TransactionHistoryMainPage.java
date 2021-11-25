@@ -57,7 +57,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     TextView main_wallet_value_textview;
     ArrayList<UserDetail> arrayList_modalDetails;
 
-    TransactionListAdapter transactionListAdapter;
+    TransactionListAdapterNew transactionListAdapterNew;
 
 
     private List<TransactionModel> transactionList = new ArrayList<>();
@@ -287,126 +287,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     }
 
-    private void api_transactionHistory_all() {
-
-        // http://202.131.144.130:8081/ewallet/api/v1/transaction/all?srcWalletOwnerCode=1000002692&resultCode=0&offset=0&limit=5000
-
-
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
-
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
-
-            @Override
-            public void success(JSONObject jsonObject) {
-
-                MyApplication.hideLoader();
-
-                try {
-
-
-                    String resultCode =  jsonObject.getString("resultCode");
-                    String resultDescription =  jsonObject.getString("resultDescription");
-
-                    if(resultCode.equalsIgnoreCase("0")) {
-
-                        recyclerView.removeAllViewsInLayout();
-                        recyclerView.setVisibility(View.VISIBLE);
-
-                        JSONArray jsonArray = jsonObject.getJSONArray("transactionsList");
-                        arrayList_modalDetails=new ArrayList<>();
-
-                        arrayList_modalDetails.clear();
-
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                             UserDetail user = new UserDetail();
-
-                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
-                            if(jsonObject1.has("transTypeName"))
-                            {
-
-                                String  transTypeName = jsonObject1.getString("transTypeName");
-                                user.setTransTypeName(transTypeName);
-                            }
-
-                            if(jsonObject1.has("destMobileNumber"))
-                            {
-                                String  destMobileNumber = jsonObject1.getString("destMobileNumber");
-
-                                user.setDestMobileNumber(destMobileNumber);
-
-                            }
-
-                            if(jsonObject1.has("transactionAmount"))
-                            {
-                                String  transactionAmount = jsonObject1.getString("transactionAmount");
-
-                                user.setTransactionAmount(transactionAmount);
-                            }
-                            if(jsonObject1.has("desCurrencyName"))
-                            {
-                                String  desCurrencyName = jsonObject1.getString("desCurrencyName");
-                                user.setDesCurrencyName(desCurrencyName);
-                            }
-
-                            if(jsonObject1.has("creationDate"))
-                            {
-                                String  creationDate = jsonObject1.getString("creationDate");
-                                user.setCreationDate(creationDate);
-
-                            }
-
-                            arrayList_modalDetails.add(user);
-
-                        }
-
-                        recyclerView.setLayoutManager(new LinearLayoutManager(TransactionHistoryMainPage.this));
-
-                         adpter= new SearchAdapterTransactionDetails(TransactionHistoryMainPage.this,arrayList_modalDetails);
-                         recyclerView.setAdapter(adpter);
-
-                    }
-
-                    else {
-                        Toast.makeText(TransactionHistoryMainPage.this, resultDescription, Toast.LENGTH_LONG).show();
-                        recyclerView.setVisibility(View.GONE);
-
-                    }
-
-
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(TransactionHistoryMainPage.this,e.toString(),Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                    finish();
-                }
-
-            }
-
-
-            @Override
-            public void failure(String aFalse) {
-
-                MyApplication.hideLoader();
-                Toast.makeText(TransactionHistoryMainPage.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        });
-
-
-    }
 
     private void getTransactionList() {
 
         String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
 
 
-        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis+"&offset=0&limit=5000", new Api_Responce_Handler() {
+        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis+"&offset=0&limit=100", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -484,10 +371,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     }
 
     private void setData(List<TransactionModel> transactionList) {
-        transactionListAdapter = new TransactionListAdapter(TransactionHistoryMainPage.this,transactionList);
+
+        transactionListAdapterNew = new TransactionListAdapterNew(TransactionHistoryMainPage.this,transactionList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(transactionListAdapter);
+        recyclerView.setAdapter(transactionListAdapterNew);
 
     }
 

@@ -57,6 +57,8 @@ import java.util.Locale;
 
 public class RemittanceReceive extends AppCompatActivity implements View.OnClickListener{
 
+    String currencySymbol_sender="";
+    String currencySymbol_receiver="";
 
     TextView tvContinue,receiptPage_tv_receiver_emailid,receiptPage_tv_receiver_gender,receiptPage_tv_receiver_country,receiptPage_tv_receiver_address,receiptPage_tv_receiver_dob,receiptPage_tv_receiver_idproofType,receiptPage_tv_receiver_idproofNumber,receiptPage_tv_receiver_idproofExpirayDate,receiptPage_tv_sender_idproofType,receiptPage_tv_sender_idproofExpirayDate,receiptPage_tv_sender_idproofNumber,receiptPage_tv_sender_emailid,receiptPage_tv_sender_gender,receiptPage_tv_sender_country,receiptPage_tv_sender_address,receiptPage_tv_sender_dob;
 
@@ -821,18 +823,29 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             JSONObject remittance_receiver = remittance_object.getJSONObject("receiver");
 
 
+                            if(remittance_object.has("fromCurrencySymbol"))
+                            {
+                                currencySymbol_sender = remittance_object.getString("fromCurrencySymbol");
+                            }
+
+                            if(remittance_object.has("toCurrencySymbol"))
+                            {
+                                currencySymbol_receiver = remittance_object.getString("toCurrencySymbol");
+                            }
+
+
 
 
                             receiptPage_sbenificairay_mssidn.setText(MyApplication.getSaveString("USERNAME", RemittanceReceive.this));
 
 
 
-                            receiptPage_tv_amount_to_be_charged.setText("Fr " +remittance_object.getInt("amount"));
-                            receiptPage_amount_to_paid_receiptpage.setText("Fr " +remittance_object.getInt("amountToPaid"));
-                            receiptPage_tv_transactionAmount.setText("Fr " +amountstr);
-                            receiptPage_tv_fee.setText("Fr "+remittance_object.getInt("fee"));
-                            receiptPage_conversion_rate.setText("Fr " +remittance_object.getString("conversionRate"));
-                            receiptPage_tv_financialtax.setText("Fr " +remittance_object.getInt("amount"));
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender+" "+remittance_object.getInt("amount"));
+                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver+" "+remittance_object.getInt("amountToPaid"));
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" "+amountstr);
+                            receiptPage_tv_fee.setText(currencySymbol_sender+" "+remittance_object.getInt("fee"));
+                            receiptPage_conversion_rate.setText(currencySymbol_sender+" "+remittance_object.getString("conversionRate"));
+                            receiptPage_tv_financialtax.setText(currencySymbol_sender+" "+remittance_object.getInt("amount"));
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));

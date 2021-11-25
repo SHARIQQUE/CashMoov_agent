@@ -49,6 +49,10 @@ import java.util.Locale;
 
 public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnClickListener {
 
+
+    String currencySymbol_sender="";
+    String currencySymbol_receiver="";
+
     boolean  isPasswordVisible,isPasswordVisible2;
 
     public static LoginPin loginpinC;
@@ -862,6 +866,8 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                         if (resultCode.equalsIgnoreCase("0")) {
 
 
+
+
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_receiptPage.setVisibility(View.GONE);
@@ -877,19 +883,35 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                             receiptPage_confirmationCode.setText(remittance_object.getString("confirmationCode"));
 
 
+
+
+                            if(remittance_object.has("fromCurrencySymbol"))
+                            {
+                                currencySymbol_sender = remittance_object.getString("fromCurrencySymbol");
+                            }
+
+                            if(remittance_object.has("toCurrencySymbol"))
+                            {
+                                currencySymbol_receiver = remittance_object.getString("toCurrencySymbol");
+
+                            }
+
+
+
+
                             receiptPage_sbenificairay_mssidn.setText(MyApplication.getSaveString("USERNAME", CashOutCodeSubscriber.this));
 
 
-                            receiptPage_tv_transactionAmount.setText("Fr " +amountstr);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+ " " +amountstr);
 
-                            receiptPage_tv_amount_to_be_charged.setText("Fr " +remittance_object.getInt("amount"));
-                            receiptPage_amount_to_paid_receiptpage.setText("Fr " +remittance_object.getInt("amountToPaid"));
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender+ " " +remittance_object.getInt("amount"));
+                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver+ " " +remittance_object.getInt("amountToPaid"));
 
 
 
-                            receiptPage_tv_fee.setText("Fr "+remittance_object.getInt("fee"));
-                            receiptPage_conversion_rate.setText("Fr " +remittance_object.getString("conversionRate"));
-                            receiptPage_tv_financialtax.setText("Fr " +remittance_object.getInt("amount"));
+                            receiptPage_tv_fee.setText(currencySymbol_sender+ " " +remittance_object.getInt("fee"));
+                            receiptPage_conversion_rate.setText(currencySymbol_sender+ " " +remittance_object.getString("conversionRate"));
+                            receiptPage_tv_financialtax.setText(currencySymbol_sender+ " " +remittance_object.getInt("amount"));
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));

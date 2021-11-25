@@ -52,6 +52,11 @@ import java.util.Locale;
 
 public class TransferFloats extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
+    String currencySymbol_receiver="";
+
+
+
+
 
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
@@ -111,6 +116,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
+    ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
+
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
 
@@ -461,8 +468,11 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
                         arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
+                       arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
 
-                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+
+
+                       JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
                         for(int i=0;i<jsonArray.length();i++)
                         {
 
@@ -471,6 +481,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             currencyName_from_currency = jsonObject3.getString("currencyName");
                             countryCurrencyCode_from_currency = jsonObject3.getString("countryCurrencyCode");
                             walletOwnerCode_from_currency = jsonObject3.getString("walletOwnerCode");
+
+                            String currencySymbol = jsonObject3.getString("currencySymbol");
 
 
 
@@ -482,6 +494,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                                     currencyName_subscriber = jsonObject3.getString("currencyName");
                                     currencyCode_subscriber = jsonObject3.getString("currencyCode");
 
+
+
+
                                 } else {
 
                                 }
@@ -489,6 +504,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                             arrayList_currecnyName.add(currencyName_from_currency);
                             arrayList_currecnyCode.add(countryCurrencyCode_from_currency);
+                            arrayList_currencySymbol.add(currencySymbol);
+
 
                         }
 
@@ -824,10 +841,10 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
 
 
-                        rp_tv_convertionrate.setText("Fr " +"0.0");
-                        rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
-                        rp_tv_excise_tax.setText("Fr " +tax_financial);
-                        rp_tv_amount_paid.setText("Fr " +amountstr);
+                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +"0.0");
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" " +fees_amount);
+                        rp_tv_excise_tax.setText(currencySymbol_receiver+" " +tax_financial);
+                        rp_tv_amount_paid.setText(currencySymbol_receiver+" " +amountstr);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
@@ -835,7 +852,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText("Fr " +totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" " +totalAmount_str);
 
 
 
@@ -990,7 +1007,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
                       //  rp_tv_receiverName.setText(selectInstititueName);
-                        rp_tv_transactionAmount.setText(amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_receiver+" " +amountstr);
 
 
 
@@ -1193,14 +1210,14 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                             receiptPage_tv_stransactionType.setText(" TRANSFER FLOAT");
-                            receiptPage_tv_transactionAmount.setText(amountstr);
-                            receiptPage_tv_fee.setText(fees_amount);
-                            receiptPage_tv_financialtax.setText(tax_financial);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +amountstr);
+                            receiptPage_tv_fee.setText(currencySymbol_receiver+" " +fees_amount);
+                            receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +tax_financial);
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount_to_be_credit.setText(amountstr);
+                            receiptPage_tv_amount_to_be_credit.setText(currencySymbol_receiver+" " +amountstr);
 
                             receiptPage_tv_sender_name.setText(agentName_from_walletOwner);
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", TransferFloats.this));
@@ -1497,7 +1514,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 selectCurrecnyName = arrayList_currecnyName.get(i);
                 selectCurrecnyCode = arrayList_currecnyCode.get(i);
 
-                System.out.println(selectCurrecnyCode);
+                currencySymbol_receiver = arrayList_currencySymbol.get(i);
 
                 //  Toast.makeText(SellFloat.this, ""+selectCurrecnyName+"("+selectCurrecnyCode+")", Toast.LENGTH_SHORT).show();
             }

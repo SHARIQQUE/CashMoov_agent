@@ -58,11 +58,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     ImageView imgBack,imgHome;
     View rootView;
 
+    String currencySymbol_sender="";
+    String currencySymbol_receiver="";
+
+
 
     TextView tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
-            receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
+            receiptPage_tv_amount_to_be_paid, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_credit, previous_reviewClick_textview, confirm_reviewClick_textview;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
 
     String selectClickType="",desWalletOwnerCode_from_currency="";
@@ -145,7 +149,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
-            rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
+            rp_tv_amount_to_be_paid = (TextView) findViewById(R.id.rp_tv_amount_to_be_paid);
 
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
@@ -161,7 +165,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             receiptPage_tv_stransactionType = (TextView) findViewById(R.id.receiptPage_tv_stransactionType);
             receiptPage_tv_dateOfTransaction = (TextView) findViewById(R.id.receiptPage_tv_dateOfTransaction);
             receiptPage_tv_transactionAmount = (TextView) findViewById(R.id.receiptPage_tv_transactionAmount);
-            receiptPage_tv_amount_to_be_credit = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_credit);
+            receiptPage_tv_amount_to_be_paid = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_paid);
             receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
             receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
             receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
@@ -497,6 +501,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 if (currencyName_subscriber_temp.equalsIgnoreCase("GNF")) {
                                     currencyName_subscriber = jsonObject2.getString("currencyName");
                                     currencyCode_subscriber = jsonObject2.getString("currencyCode");
+                                    currencySymbol_receiver = jsonObject2.getString("currencySymbol");
 
                                 } else {
 
@@ -809,12 +814,17 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
-                            receiptPage_tv_transactionAmount.setText("Fr " + amountstr);
-                            receiptPage_tv_fee.setText("Fr " + fees_amount);
-                            receiptPage_tv_financialtax.setText("Fr " + tax_financial);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender +" "+ amountstr);
+                            receiptPage_tv_fee.setText(currencySymbol_sender +" " + fees_amount);
+                            receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ tax_financial);
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount_to_be_credit.setText("Fr " + amountstr);
+
+
+                            receiptPage_tv_amount_to_be_paid.setText(currencySymbol_receiver +" " + amountstr);
+
+
+
                             receiptPage_tv_sender_name.setText(senderNameAgent);
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
                             receiptPage_tv_sender_name.setText(senderNameAgent);
@@ -1053,6 +1063,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
                                     currencyCode_agent = jsonObject2.getString("currencyCode");
                                     currencyName_agent = jsonObject2.getString("currencyName");
+                                    currencySymbol_sender = jsonObject2.getString("currencySymbol");
 
                                 } else {
 
@@ -1124,7 +1135,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
-                        rp_tv_fees_reveiewPage.setText("Fr " + fees_amount);
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + fees_amount);
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
@@ -1143,7 +1154,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
 
-                        rp_tv_financialTax.setText("Fr " + tax_financial);
+                        rp_tv_financialTax.setText(currencySymbol_sender+" "  + tax_financial);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble(fees_amount);
@@ -1151,11 +1162,11 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText("Fr " + totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
 
                         amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText("Fr " + amountstr);
-                        rp_tv_amount_to_be_credit.setText("Fr " + amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " + amountstr);
+                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "  +amountstr);
 
                         allByCriteria_walletOwnerCode_api();
 

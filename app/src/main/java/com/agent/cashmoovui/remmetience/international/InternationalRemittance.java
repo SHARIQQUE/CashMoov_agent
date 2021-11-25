@@ -100,12 +100,14 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     String select_sender_CountryCode= "";
     String select_sender_currencyName= "";
     String select_sender_currencyCode= "";
+    String select_sender_currencySymbol= "";
 
 
     String select_receiver_CountryName= "";
     String select_receiver_CountryCode= "";
     String select_receiver_currencyName= "";
     String select_receiver_currencyCode= "";
+    String select_receiver_currencySymbol= "";
 
 
 
@@ -717,7 +719,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 receiverCurrencyModal.setCurrencySymbol_reciver(currencySymbol);
                             }
                             else {
-                                receiverCurrencyModal.setCurrencyCode_reciver("");
+                                receiverCurrencyModal.setCurrencySymbol_reciver("");
                             }
 
 
@@ -1634,9 +1636,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_benificiary_no.setText(jsonObject_remittance.getString("receiverCode"));
 
 
-                            receiptPage_tv_transactionAmount.setText(amountstr);
-                            receiptPage_tv_fee.setText(fees_amount);
-                            receiptPage_tv_financialtax.setText(tax_financial);
+                            receiptPage_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
+                            receiptPage_tv_fee.setText(select_sender_currencySymbol+ " "+fees_amount);
+                            receiptPage_tv_financialtax.setText(select_sender_currencySymbol+ " "+tax_financial);
 
 
 
@@ -1645,10 +1647,12 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
 
 
-                            receiptPage_tv_amount_to_be_charged.setText(totalAmount_str);
+                            receiptPage_tv_amount_to_be_charged.setText(select_sender_currencySymbol+ " "+totalAmount_str);
 
 
-                            receiptPage_tv_amount_to_be_paid.setText(amountToPayStr);
+                            receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+
                             receiptPage_tv_senderCountry.setText(select_sender_CountryName);
                             receiptPage_tv_receiverCountry.setText(select_receiver_CountryName);
 
@@ -1729,20 +1733,20 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
-                        rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
+                        rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
 
                         edittext_amount_pay.setEnabled(false);
-                        edittext_amount_pay.setText("Fr "+amountstr);
+                        edittext_amount_pay.setText(select_sender_currencySymbol+ " "+amountstr);
 
 
                         if(exchangeRate.has("value")) {
-                            convertionRate_first_page.setText("Fr "+exchangeRate.getString("value"));
+                            convertionRate_first_page.setText(select_sender_currencySymbol+ " "+exchangeRate.getString("value"));
                         }
 
                         if(exchangeRate.has("currencyValue")) {
 
                             amountToPayStr=exchangeRate.getString("currencyValue");
-                            edittext_amount_pay.setText("Fr "+amountToPayStr);
+                            edittext_amount_pay.setText(select_sender_currencySymbol+ " "+amountToPayStr);
                         }
 
 
@@ -1762,11 +1766,11 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             tax_financial = exchangeRate.getString("value");
                         }
 
-                        tax_first_page.setText("Fr "+tax_financial);
+                        tax_first_page.setText(select_sender_currencySymbol+ " "+tax_financial);
 
-                        fees_first_page.setText("Fr "+fees_amount);
+                        fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
 
-                        rp_tv_financialTax.setText("Fr "+tax_financial);
+                        rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         //  credit_amount_double = Double.parseDouble(credit_amount);
@@ -1776,18 +1780,18 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                          convertionFeesStr = String.valueOf(fees_amount_double);
 
 
-                        rp_tv_convertionRate.setText("Fr "+tax_financial);
+                        rp_tv_convertionRate.setText(select_sender_currencySymbol+ " "+tax_financial);
 
 
                         totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText("Fr "+totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(select_sender_currencySymbol+ " "+totalAmount_str);
 
                         amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText("Fr "+amountstr);
-                        rp_tv_amount_to_be_paid.setText("Fr "+amountToPayStr);
+                        rp_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
+                        rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
 
-                        amountTobeCharged_first_page.setText("Fr "+totalAmount_str);
+                        amountTobeCharged_first_page.setText(select_sender_currencySymbol+ " "+totalAmount_str);
 
 
 
@@ -2402,6 +2406,11 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                 select_sender_currencyName = arrayList_senderCurrencyDetails.get(i).currencyName_sender;
                 select_sender_currencyCode = arrayList_senderCurrencyDetails.get(i).currencyCode_sender;
+                select_sender_currencySymbol = arrayList_senderCurrencyDetails.get(i).currencySymbol_sender;
+
+                edittext_amount.setText("");
+                edittext_amount_pay.setText("");
+
 
             }
                 break;
@@ -2432,6 +2441,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                 select_receiver_currencyName = arrayList_receiverCurrencyDetails.get(i).currencyName_reciver;
                 select_receiver_currencyCode = arrayList_receiverCurrencyDetails.get(i).currencyCode_reciver;
+                select_receiver_currencySymbol = arrayList_receiverCurrencyDetails.get(i).currencySymbol_reciver;
 
             }
                 break;

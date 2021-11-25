@@ -835,30 +835,43 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
+                            String currencySymbol_sender="";
+                            String currencySymbol_receiver="";
 
-                            receiptPage_tv_stransactionType.setText("CASH-IN");
-                            receiptPage_tv_transactionAmount.setText(amountstr);
-                            receiptPage_tv_fee.setText(fees_amount);
-                            receiptPage_tv_financialtax.setText(tax_financial);
+                            if(jsonObject.has("walletTransfer")) {
 
 
-                            receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount_to_be_credit.setText(amountstr);
+                                JSONObject jsonObject_walletTransfer = jsonObject.getJSONObject("walletTransfer");
 
-                            receiptPage_tv_sender_name.setText(senderNameAgent);
-                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
+                                currencySymbol_sender = jsonObject_walletTransfer.getString("srcCurrencySymbol");
+                                currencySymbol_receiver = jsonObject_walletTransfer.getString("desCurrencySymbol");
 
-                            receiptPage_tv_sender_name.setText(senderNameAgent);
-                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
 
-                            receiptPage_tv_receiver_name.setText(receivernameStr);
-                            receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+                                receiptPage_tv_stransactionType.setText("CASH-IN");
+                                receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" "+amountstr);
+                                receiptPage_tv_fee.setText(currencySymbol_sender+" "+fees_amount);
+                                receiptPage_tv_financialtax.setText(currencySymbol_sender+" "+tax_financial);
 
-                            ll_page_1.setVisibility(View.GONE);
-                            ll_reviewPage.setVisibility(View.GONE);
-                            ll_successPage.setVisibility(View.VISIBLE);
-                            ll_receiptPage.setVisibility(View.GONE);
+
+                                receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
+                                receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
+
+                                receiptPage_tv_amount_to_be_credit.setText(currencySymbol_sender+" "+amountstr);
+
+                                receiptPage_tv_sender_name.setText(senderNameAgent);
+                                receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashIn.this));
+
+                                receiptPage_tv_sender_name.setText(senderNameAgent);
+                                receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashIn.this));
+
+                                receiptPage_tv_receiver_name.setText(receivernameStr);
+                                receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+
+                                ll_page_1.setVisibility(View.GONE);
+                                ll_reviewPage.setVisibility(View.GONE);
+                                ll_successPage.setVisibility(View.VISIBLE);
+                                ll_receiptPage.setVisibility(View.GONE);
+                            }
 
 
                         } else {

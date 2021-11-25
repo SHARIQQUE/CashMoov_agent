@@ -132,9 +132,14 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
+    ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
+
 
     String select_currecnyName="";
     String select_currecnyCode="";
+
+    String currencySymbol_sender="";
+    String currencySymbol_receiver="";
 
 
 
@@ -553,6 +558,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
                         arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
+                        arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
 
 
 
@@ -564,10 +570,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                             String currencyName = jsonObject3.getString("currencyName");
                             String currencyCode = jsonObject3.getString("currencyCode");
+                            String currencySymbol = jsonObject3.getString("currencySymbol");
 
 
                             arrayList_currecnyName.add(currencyName);
                             arrayList_currecnyCode.add(currencyCode);
+                            arrayList_currencySymbol.add(currencySymbol);
 
 
                         }
@@ -979,10 +987,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-                        rp_tv_convertionrate.setText("Fr " +"0.0");
-                        rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
-                        rp_tv_excise_tax.setText("Fr " +tax_financial);
-                        rp_tv_amount_paid.setText("Fr " +amountstr);
+                        rp_tv_convertionrate.setText(currencySymbol_receiver+" "+"0.0");
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" "+fees_amount);
+                        rp_tv_excise_tax.setText(currencySymbol_receiver+" "+tax_financial);
+                        rp_tv_amount_paid.setText(currencySymbol_receiver+" "+amountstr);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
@@ -990,7 +998,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText("Fr " +totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" "+totalAmount_str);
 
 
 
@@ -1849,8 +1857,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             {
                 select_currecnyName = arrayList_currecnyName.get(i);
                 select_currecnyCode = arrayList_currecnyCode.get(i);
+                currencySymbol_receiver = arrayList_currencySymbol.get(i);
 
-                //  Toast.makeText(SellFloat.this, ""+selectCurrecnyName+"("+selectCurrecnyCode+")", Toast.LENGTH_SHORT).show();
             }
 
             break;

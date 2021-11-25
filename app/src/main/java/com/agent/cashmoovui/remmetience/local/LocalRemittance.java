@@ -628,8 +628,6 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-
-
         if (provider_select_name.equalsIgnoreCase("Select provider*") || (provider_select_name.equalsIgnoreCase("Select provider*")))
         {
 
@@ -1137,11 +1135,13 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             jsonObject.put("idProofNumber", "");    // Not mandatory
             jsonObject.put("idExpiryDate", "");    /// Not mandatory
             jsonObject.put("dateOfBirth", "");    // Not mandatory
+
             jsonObject.put("countryCode","100092");  // Hard Code according  to Deepak
+            jsonObject.put("issuingCountryCode","100092");  // Hard Code according  to Deepak
+
             jsonObject.put("regionCode","");    /// Not mandatory
             jsonObject.put("city","");          // Not mandatory
             jsonObject.put("address","");      // Not mandatory
-            jsonObject.put("issuingCountryCode","100092");  // Hard Code according  to Deepak
             jsonObject.put("gender",genderSelect_name);
 
 
@@ -1237,11 +1237,13 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             jsonObject.put("idProofNumber", idProofTypeCode_sender_from_walletOwnerUser);
             jsonObject.put("idExpiryDate", idExpiryDate_sender_from_walletOwnerUser);
             jsonObject.put("dateOfBirth", dateOfBirth_sender_from_walletOwnerUser);
+
             jsonObject.put("countryCode","100092");
+            jsonObject.put("issuingCountryCode","100092");
+
             jsonObject.put("regionCode",regionCode_sender_from_walletOwnerUser);
             jsonObject.put("city",city_sender_from_walletOwnerUser);
             jsonObject.put("address",address_sender_from_walletOwnerUser);
-            jsonObject.put("issuingCountryCode","100092");
 
            if(gender_sender_from_allByCriteria.equalsIgnoreCase("")) // If Not Coming From Server Then Send M (It mandatory )
            {
@@ -1363,6 +1365,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_receiptPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
+
+
 
                             receiptPage_tv_stransactionType.setText("SEND REMITTANCE");
 
