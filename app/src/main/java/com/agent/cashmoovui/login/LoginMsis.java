@@ -479,8 +479,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             MyApplication.saveString("COUNTRYNAME_AGENT",countryName_agent,LoginMsis.this);
                             MyApplication.saveString("COUNTRYCODE_AGENT",countryCode_agent,LoginMsis.this);
-
-
                             MyApplication.saveString("USERNAME",strPhoneNo,LoginMsis.this);
                             MyApplication.saveString("PASSWORD",strPasword,LoginMsis.this);
                             MyApplication.saveString("CODE_AGENT",CODE_AGENT,LoginMsis.this);

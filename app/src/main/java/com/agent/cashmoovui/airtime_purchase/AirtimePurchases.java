@@ -56,7 +56,7 @@ import java.util.Locale;
 
 public class AirtimePurchases extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
-
+    String currencySymbol_sender="";
     String operatorName_from_operatorList="",serviceProviderCode_from_operatorList="",serviceCategoryCode_from_operatorList="",sPName_from_operatorList="",sPCode_from_operatorList="";
 
     String operator_code_from_operatorList="";
@@ -625,6 +625,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
                                 currencyCode_agent = jsonObject2.getString("currencyCode");
                                 currencyName_agent = jsonObject2.getString("currencyName");
+                                currencySymbol_sender = jsonObject2.getString("currencySymbol");
 
                             } else {
 
@@ -832,7 +833,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
                         "&receiveCurrencyCode="+
-                        currencyCode_agent+"&sendCountryCode=" + "100092" + "&receiveCountryCode="+"100092"+
+                        currencyCode_agent+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+"100092"+
                         "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" +
                         serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory +
                         "&serviceProviderCode=" +
@@ -883,10 +884,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         }
 
 
-                        rp_tv_convertionrate.setText("Fr " +"0.0");
-                        rp_tv_fees_reveiewPage.setText("Fr "+fees_amount);
-                        rp_tv_excise_tax.setText("Fr " +tax_financial);
-                        rp_tv_transactionAmount.setText("Fr " +amountstr);
+                        rp_tv_convertionrate.setText(currencySymbol_sender+" " +"0.0");
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +fees_amount);
+                        rp_tv_excise_tax.setText(currencySymbol_sender+" " +tax_financial);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " +amountstr);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
@@ -894,7 +895,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText("Fr " +totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" " +totalAmount_str);
 
 
 
@@ -1026,6 +1027,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
+
+                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+
+
                         mpin_final_api();
 
                     } else {
@@ -1033,6 +1038,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         if(resultDescription.equalsIgnoreCase("Operator Not Found"))
                         {
                            // Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+                            MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
                             mpin_final_api();
                         }
@@ -1108,7 +1114,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
                         rp_tv_operator.setText(operatorName_from_operatorList);
-                        rp_tv_totalAmount.setText("Fr "+amountstr);
+                        rp_tv_totalAmount.setText(currencySymbol_sender+" " +amountstr);
 
 
                         api_exchange_rate();
@@ -1234,12 +1240,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                             receiptPage_tv_stransactionType.setText("Airtime Purchase");
-                            receiptPage_tv_transactionAmount.setText(amountstr);
-                            receiptPage_tv_fee.setText(fees_amount);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" " +amountstr);
+                            receiptPage_tv_fee.setText(currencySymbol_sender+" " +fees_amount);
                             receiptPage_tv_financialtax.setText(tax_financial);
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount.setText(amountstr);
+                            receiptPage_tv_amount.setText(currencySymbol_sender+" " +amountstr);
 
 
                           //  receiptPage_tv_sender_name.setText(agentName_from_walletOwner);

@@ -30,6 +30,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.model.transaction.ModalUserDetails;
 import com.agent.cashmoovui.model.UserDetail;
+import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.settings.Profile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -506,6 +507,18 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
         spinner_currency.setAdapter(arraadapter2);
+
+
+     //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
+       String currencyName_mssis_agent = "GNF";  // no currency tag is comming in MSSID
+
+        for (int i = 0; i < MyApplication.currencyModelArrayList.size(); i++) {
+            if (currencyName_mssis_agent.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyName()))
+            {
+                spinner_currency.setSelection(i);
+            }
+        }
+
 
 
         MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
