@@ -1,5 +1,6 @@
 package com.agent.cashmoovui.transactionhistory_walletscreen;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -29,12 +30,16 @@ import com.agent.cashmoovui.model.UserDetailAgent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class TransactionHistoryAgent extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,CallBackRecycleViewClick {
+public class TransactionHistoryAgent extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisnersAgent,CallBackRecycleViewClick {
 
-    String searchStr="";
+    String searchStr = "";
     EditText edittext_search;
     ImageView search_imageView;
     TextView main_wallet_value_textview;
@@ -43,14 +48,14 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
     RecyclerView recyclerView_agent;
 
     MyApplication applicationComponentClass;
-    String languageToUse = "",select_currency_name="",select_currency_code="",select_walletType_name="",select_walletValue_name="";
+    String languageToUse = "", select_currency_name = "", select_currency_code = "", select_walletType_name = "", select_walletValue_name = "";
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     ArrayList<String> arrayList_walletTypeName = new ArrayList<String>();
     ArrayList<String> arrayList_wallet_value = new ArrayList<String>();
 
-    TextView close_receiptPage_textview,insitute_textview,insitute_branch,agent_textview,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
+    TextView close_receiptPage_textview, insitute_textview, insitute_branch, agent_textview, mainwallet_textview, overdraft_value_heding_textview, commision_wallet_textview, overdraft_wallet_textview, commisionwallet_value_textview;
 
     Spinner spinner_currency;
 
@@ -79,74 +84,73 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
         setContentView(R.layout.transaction_history_agent);
 
-    try {
+        try {
 
             recyclerView_agent = (RecyclerView) findViewById(R.id.recyclerView_agent);
 
 
-        spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
-        spinner_currency.setOnItemSelectedListener(this);
+            spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
+            spinner_currency.setOnItemSelectedListener(this);
 
 
-        close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
-        close_receiptPage_textview.setOnClickListener(this);
-        insitute_textview = (TextView) findViewById(R.id.insitute_textview);
-        insitute_branch = (TextView) findViewById(R.id.insitute_branch);
-        agent_textview = (TextView) findViewById(R.id.agent_textview);
+            close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
+            close_receiptPage_textview.setOnClickListener(this);
+            insitute_textview = (TextView) findViewById(R.id.insitute_textview);
+            insitute_branch = (TextView) findViewById(R.id.insitute_branch);
+            agent_textview = (TextView) findViewById(R.id.agent_textview);
 
-        mainwallet_textview = (TextView) findViewById(R.id.mainwallet_textview);
-        commision_wallet_textview = (TextView) findViewById(R.id.commision_wallet_textview);
-        search_imageView = (ImageView) findViewById(R.id.search_imageView);
-        search_imageView.setOnClickListener(this);
-        overdraft_wallet_textview = (TextView) findViewById(R.id.overdraft_wallet_textview);
-        main_wallet_value_textview = (TextView) findViewById(R.id.main_wallet_value_textview);
-        commisionwallet_value_textview = (TextView) findViewById(R.id.commisionwallet_value_textview);
-        overdraft_value_heding_textview = (TextView) findViewById(R.id.overdraft_value_heding_textview);
-
-
-        edittext_search = (EditText) findViewById(R.id.edittext_search);
-        edittext_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            mainwallet_textview = (TextView) findViewById(R.id.mainwallet_textview);
+            commision_wallet_textview = (TextView) findViewById(R.id.commision_wallet_textview);
+            search_imageView = (ImageView) findViewById(R.id.search_imageView);
+            search_imageView.setOnClickListener(this);
+            overdraft_wallet_textview = (TextView) findViewById(R.id.overdraft_wallet_textview);
+            main_wallet_value_textview = (TextView) findViewById(R.id.main_wallet_value_textview);
+            commisionwallet_value_textview = (TextView) findViewById(R.id.commisionwallet_value_textview);
+            overdraft_value_heding_textview = (TextView) findViewById(R.id.overdraft_value_heding_textview);
 
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
-
-                    searchStr = edittext_search.getText().toString().trim();
-
-                    adpter.filter(s.toString());
+            edittext_search = (EditText) findViewById(R.id.edittext_search);
+            edittext_search.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 
-                } else {
-                    Toast.makeText(TransactionHistoryAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                 }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
+
+                        searchStr = edittext_search.getText().toString().trim();
+
+                        adpter.filter(s.toString());
+
+
+                    } else {
+                        Toast.makeText(TransactionHistoryAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+
+            if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
+
+                MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.getting_user_info));
+
+                api_transactionHistory_agent();
+
+            } else {
+                Toast.makeText(TransactionHistoryAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
-        });
 
-
-        if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
-
-            MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.getting_user_info));
-
-            api_transactionHistory_agent();
-
-        } else {
-            Toast.makeText(TransactionHistoryAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-        }
-
-    } catch (Exception e)
-        {
-            Toast.makeText(TransactionHistoryAgent.this,e.toString(),Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(TransactionHistoryAgent.this, e.toString(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
             finish();
         }
@@ -154,18 +158,14 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
     }
 
 
-
-
-
-
     private void api_transactionHistory_agent() {
 
         // http://202.131.144.130:8081/ewallet/api/v1/transaction/all?srcWalletOwnerCode=1000002692&resultCode=0&offset=0&limit=5000
 
 
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryAgent.this);
+        String usercode_from_msis = MyApplication.getSaveString("USERCODE", TransactionHistoryAgent.this);
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/" + usercode_from_msis, languageToUse, new Api_Responce_Handler() {
 
             @Override
             public void success(JSONObject jsonObject) {
@@ -174,76 +174,69 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
                 try {
 
-                    arrayList_modalDetails=new ArrayList<>();
+                    arrayList_modalDetails = new ArrayList<>();
                     UserDetailAgent userDetailAgent;// = new UserDetailAgent();
 
                     arrayList_modalDetails.clear();
 
 
-                    String resultCode =  jsonObject.getString("resultCode");
-                    String resultDescription =  jsonObject.getString("resultDescription");
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
 
-                    if(resultCode.equalsIgnoreCase("0")) {
-
+                    if (resultCode.equalsIgnoreCase("0")) {
 
 
                         recyclerView_agent.removeAllViewsInLayout();
                         recyclerView_agent.setVisibility(View.VISIBLE);
 
 
-                        if(jsonObject.has("walletOwner")) {
+                        if (jsonObject.has("walletOwner")) {
 
-                            JSONObject jsonObject1_walletOwner= jsonObject.getJSONObject("walletOwner");
+                            JSONObject jsonObject1_walletOwner = jsonObject.getJSONObject("walletOwner");
 
 
-                            if(jsonObject1_walletOwner.has("walletOwnerChildList")) {
+                            if (jsonObject1_walletOwner.has("walletOwnerChildList")) {
 
                                 JSONArray jsonArray = jsonObject1_walletOwner.getJSONArray("walletOwnerChildList");
 
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
-                                     userDetailAgent = new UserDetailAgent();
-
+                                    userDetailAgent = new UserDetailAgent();
 
 
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
 
-                                    if(jsonObject1.has("ownerName"))
-                                    {
+                                    if (jsonObject1.has("ownerName")) {
 
-                                        String  ownerName = jsonObject1.getString("ownerName");
+                                        String ownerName = jsonObject1.getString("ownerName");
                                         userDetailAgent.setOwnerName(ownerName);
 
                                     }
 
-                                    if(jsonObject1.has("mobileNumber"))
-                                    {
-                                        String  mobileNumber = jsonObject1.getString("mobileNumber");
+                                    if (jsonObject1.has("mobileNumber")) {
+                                        String mobileNumber = jsonObject1.getString("mobileNumber");
 
                                         userDetailAgent.setMobileNumber(mobileNumber);
 
                                     }
 
-                                    if(jsonObject1.has("email"))
-                                    {
-                                        String  email = jsonObject1.getString("email");
+                                    if (jsonObject1.has("email")) {
+                                        String email = jsonObject1.getString("email");
 
                                         userDetailAgent.setEmail(email);
                                     }
-                                    if(jsonObject1.has("issuingCountryName"))
-                                    {
-                                        String  issuingCountryName = jsonObject1.getString("issuingCountryName");
+                                    if (jsonObject1.has("issuingCountryName")) {
+                                        String issuingCountryName = jsonObject1.getString("issuingCountryName");
                                         userDetailAgent.setIssuingCountryName(issuingCountryName);
 
 
                                     }
 
-                                    if(jsonObject1.has("walletOwnerCode"))
-                                    {
+                                    if (jsonObject1.has("walletOwnerCode")) {
 
-                                        String  walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                        String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
                                         userDetailAgent.setWalletOwnerCode(walletOwnerCode);
 
                                     }
@@ -253,34 +246,26 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
                                 }
 
 
-
-
                             }
 
 
                         }
 
 
-
-
                         recyclerView_agent.setLayoutManager(new LinearLayoutManager(TransactionHistoryAgent.this));
 
-                        adpter= new  SearchAdapteAgentDetails(TransactionHistoryAgent.this,arrayList_modalDetails,TransactionHistoryAgent.this);
+                        adpter = new SearchAdapteAgentDetails(TransactionHistoryAgent.this, arrayList_modalDetails, TransactionHistoryAgent.this);
                         recyclerView_agent.setAdapter(adpter);
 
-                    }
-
-                    else {
+                    } else {
                         Toast.makeText(TransactionHistoryAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         recyclerView_agent.setVisibility(View.GONE);
 
                     }
 
 
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(TransactionHistoryAgent.this,e.toString(),Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(TransactionHistoryAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                     finish();
                 }
@@ -301,12 +286,104 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
     }
 
+    TransactionListAdapterAgent transactionListAdapterNew;
+    private List<TransactionModelAgent> transactionList = new ArrayList<>();
+
+
+    private void getTransactionList(String WalletOwnerCode_fromChild) {
+
+
+        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode=" + WalletOwnerCode_fromChild + "&offset=0&limit=100", new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                transactionList.clear();
+                String taxName;
+
+                if (jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
+                    JSONArray dataArray = jsonObject.optJSONArray("transactionsList");
+                    if (dataArray != null && dataArray.length() > 0) {
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject data = dataArray.optJSONObject(i);
+                            if (data.has("taxConfigurationList")) {
+                                JSONArray taxArray = data.optJSONArray("taxConfigurationList");
+                                taxName = taxArray.optJSONObject(0).optString("taxTypeName");
+                            } else {
+                                taxName = "N/A";
+                            }
+                            transactionList.add(new TransactionModelAgent(
+                                    data.optInt("id"),
+                                    data.optString("code"),
+                                    data.optString("transactionId"),
+                                    data.optString("transTypeCode"),
+                                    data.optString("transTypeName"),
+                                    data.optString("srcWalletOwnerCode"),
+                                    data.optString("srcWalletOwnerName"),
+                                    data.optString("desWalletOwnerCode"),
+                                    data.optString("desWalletOwnerName"),
+                                    data.optString("srcWalletCode"),
+                                    data.optString("desWalletCode"),
+                                    data.optString("srcCurrencyCode"),
+                                    data.optString("srcCurrencyName"),
+                                    data.optString("srcCurrencySymbol"),
+                                    data.optString("desCurrencyCode"),
+                                    data.optString("desCurrencyName"),
+                                    data.optString("desCurrencySymbol"),
+                                    data.optInt("transactionAmount"),
+                                    data.optString("tax"),
+                                    data.optString("resultCode"),
+                                    data.optString("resultDescription"),
+                                    data.optString("creationDate"),
+                                    data.optString("createdBy"),
+                                    data.optString("status"),
+                                    data.optBoolean("transactionReversed"),
+                                    data.optInt("srcMobileNumber"),
+                                    data.optInt("destMobileNumber"),
+                                    data.optBoolean("receiverBearer"),
+                                    data.optString("rechargeNumber"),
+                                    data.optInt("fee"),
+                                    taxName,
+                                    data.optInt("value"),
+                                    data.optInt("srcPreBalance"),
+                                    data.optInt("destPreBalance"),
+                                    data.optInt("srcPostBalance"),
+                                    data.optInt("destPostBalance")));
+
+                        }
+
+                        setData(transactionList);
+
+
+                    }
+                } else {
+                    MyApplication.showToast(TransactionHistoryAgent.this, jsonObject.optString("resultDescription"));
+                    MyApplication.hideLoader();
+                }
+
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(TransactionHistoryAgent.this, aFalse);
+            }
+        });
+    }
+
+    private void setData(List<TransactionModelAgent> transactionList) {
+
+        transactionListAdapterNew = new TransactionListAdapterAgent(TransactionHistoryAgent.this, transactionList);
+        recyclerView_agent.setHasFixedSize(true);
+        recyclerView_agent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView_agent.setAdapter(transactionListAdapterNew);
+
+    }
+
 
     @Override
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
-
 
 
             case R.id.search_imageView:
@@ -329,8 +406,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
 
-            case R.id.spinner_currency:
-            {
+            case R.id.spinner_currency: {
 
                 try {
 
@@ -340,33 +416,24 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
                     select_walletType_name = arrayList_walletTypeName.get(i);
                     select_walletValue_name = arrayList_wallet_value.get(i);
 
-                    if(spinner_currency.getSelectedItemPosition()==0)
-                    {
+                    if (spinner_currency.getSelectedItemPosition() == 0) {
                         main_wallet_value_textview.setText("");
                         commisionwallet_value_textview.setText("");
                         overdraft_value_heding_textview.setText("");
-                    }
-                    else {
+                    } else {
 
-                        if(select_walletType_name.equalsIgnoreCase("Main Wallet"))
-                        {
+                        if (select_walletType_name.equalsIgnoreCase("Main Wallet")) {
                             main_wallet_value_textview.setText(select_walletValue_name);
-                        }
-                        else if(select_walletType_name.equalsIgnoreCase("Comission Wallet"))
-                        {
+                        } else if (select_walletType_name.equalsIgnoreCase("Comission Wallet")) {
                             commisionwallet_value_textview.setText(select_walletValue_name);
-                        }
-                        else if(select_walletType_name.equalsIgnoreCase("Overdraft Wallet"))
-                        {
+                        } else if (select_walletType_name.equalsIgnoreCase("Overdraft Wallet")) {
                             overdraft_value_heding_textview.setText(select_walletValue_name);
                         }
 
                     }
 
 
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(TransactionHistoryAgent.this, e.toString(), Toast.LENGTH_LONG).show();
 
@@ -385,12 +452,71 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
     }
 
     @Override
-    public void callBackReycleView(String code_walletOwnerChildList) {
+    public void onTransactionViewItemClick(String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, int postBalance, String status) {
+        Dialog dialog = new Dialog(TransactionHistoryAgent.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
+        dialog.setContentView(R.layout.dialog_view_trans_details_agent);
 
-        MyApplication.saveString("code_walletOwnerChildList",code_walletOwnerChildList, TransactionHistoryAgent.this);
+        //get ids
+        TextView etTransId = dialog.findViewById(R.id.etTransId);
+        TextView etTransType = dialog.findViewById(R.id.etTransType);
+        TextView etTransDate = dialog.findViewById(R.id.etTransDate);
+        TextView etSource = dialog.findViewById(R.id.etSource);
+        TextView etDestination = dialog.findViewById(R.id.etDestination);
+        TextView etSourcMSISDN = dialog.findViewById(R.id.etSourcMSISDN);
+        TextView etDestMSISDN = dialog.findViewById(R.id.etDestMSISDN);
+        TextView etAmount = dialog.findViewById(R.id.etAmount);
+        TextView etFee = dialog.findViewById(R.id.etFee);
+        TextView etTaxType = dialog.findViewById(R.id.etTaxType);
+        TextView etTax = dialog.findViewById(R.id.etTax);
+        TextView etPostBalance = dialog.findViewById(R.id.etPostBalance);
+        TextView etStatus = dialog.findViewById(R.id.etStatus);
 
-        Intent i = new Intent(TransactionHistoryAgent.this, TransactionHistoryAgentRecycleClick.class);
-        startActivity(i);
+        //set values
+        etTransId.setText(transId);
+        etTransType.setText(transType);
+        etSource.setText(source);
+        etDestination.setText(destination);
+        etSourcMSISDN.setText(String.valueOf(sourceMsisdn));
+        etDestMSISDN.setText(String.valueOf(destMsisdn));
+        etAmount.setText(symbol + " " + MyApplication.addDecimal(String.valueOf((amount))));
+        etFee.setText(MyApplication.addDecimal(String.valueOf((fee))));
+        etTaxType.setText(taxType);
+        etTax.setText(MyApplication.addDecimal(String.valueOf((tax))));
+        etPostBalance.setText(symbol + " " + MyApplication.addDecimal(String.valueOf((postBalance))));
+        etStatus.setText(status);
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
+            date = inputFormat.parse(transDate);
+            String formattedDate = outputFormat.format(date);
+            etTransDate.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+        dialog.findViewById(R.id.img_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    @Override
+    public void callBackReycleView(String WalletOwnerCode_fromChild) {
+
+        if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
+
+            MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.getting_user_info));
+
+            getTransactionList(WalletOwnerCode_fromChild);
+
+        } else {
+            Toast.makeText(TransactionHistoryAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+        }
     }
 }
+

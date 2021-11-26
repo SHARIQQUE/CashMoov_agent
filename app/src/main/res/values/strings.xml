@@ -553,6 +553,7 @@
     <string name="comissions">Comissions</string>
     <string name="over_draft">Over Draft</string>
     <string name="find_a_transaction">Find a transaction</string>
+    <string name="find_a_agent">Find a agent</string>
     <string name="your_last_transaction">Your last transactions</string>
     <string name="choose_the_operation">Choose the operation</string>
     <string name="owner_management">Owner management</string>

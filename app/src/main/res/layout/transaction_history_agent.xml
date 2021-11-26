@@ -467,7 +467,7 @@ android:id="@+id/commisionwallet_heding_textview"
                             android:paddingLeft="37.5dp"
                             android:paddingTop="16dp"
                             android:maxLength="11"
-                            android:hint="@string/find_a_transaction"
+                            android:hint="@string/find_a_agent"
 
                             android:paddingBottom="16dp"
                             android:textColor="#323232"

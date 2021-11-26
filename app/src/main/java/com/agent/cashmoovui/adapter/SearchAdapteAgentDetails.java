@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.UserDetailAgent;
 import com.agent.cashmoovui.transactionhistory_walletscreen.CallBackRecycleViewClick;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionListLisnersAgent;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -48,7 +49,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
         viewHolder.agentName_textview.setText(arrayList_modalUserData.get(i).getOwnerName());
         viewHolder.agent_mobileNumber.setText(arrayList_modalUserData.get(i).getMobileNumber());
         viewHolder.email_textview.setText(arrayList_modalUserData.get(i).getEmail());
-        viewHolder.countryName_textview.setText(arrayList_modalUserData.get(i).getEmail());
+        viewHolder.countryName_textview.setText(arrayList_modalUserData.get(i).getIssuingCountryName());
 
         viewHolder.click_row_layout.setId(i);
 
@@ -57,8 +58,9 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
             @Override
             public void onClick(View v) {
 
-            //    callBackRecycleViewClick.callBackReycleView(arrayList_modalUserData.get(i).getWalletOwnerCode());
 
+
+                callBackRecycleViewClick.callBackReycleView(arrayList_modalUserData.get(i).getWalletOwnerCode());
 
             }
         });
@@ -102,7 +104,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View listItem = layoutInflater.inflate(R.layout.search_transaction_agent, viewGroup, false);
+        View listItem = layoutInflater.inflate(R.layout.search_transaction_agent_new, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }

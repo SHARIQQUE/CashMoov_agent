@@ -96,7 +96,10 @@ public class TransactionListAdapterNew extends RecyclerView.Adapter<TransactionL
                 Date date = null;
                 date = inputFormat.parse(transaction.getCreationDate());
                 String formattedDate = outputFormat.format(date);
-                holder.transDate.setText(formattedDate);
+
+                String[] dateTemp = formattedDate.split("\\ ");
+
+                holder.transDate.setText(dateTemp[0]);
 
             }
 
@@ -139,10 +142,15 @@ public class TransactionListAdapterNew extends RecyclerView.Adapter<TransactionL
                 Date date = null;
                 date = inputFormat.parse(transaction.getCreationDate());
                 String formattedDate = outputFormat.format(date);
-                holder.transDate.setText(formattedDate);
 
 
-            }
+                    String[] dateTemp = formattedDate.split("\\ ");
+
+                    holder.transDate.setText(dateTemp[0]);
+
+
+
+                }
 
 
         } catch (ParseException e) {

@@ -8,6 +8,9 @@ public class UserDetailAgent {
     private String issuingCountryName="";
     private String walletOwnerCode="";
 
+
+
+
     public String getWalletOwnerCode() {
         return walletOwnerCode;
     }

@@ -548,6 +548,7 @@
     <string name="comissions">Comissions</string>
     <string name="over_draft">Découvert</string>
     <string name="find_a_transaction">Chercher une transaction</string>
+    <string name="find_a_agent">Chercher une agent</string>
     <string name="your_last_transaction">Vos dernières transactions</string>
     <string name="choose_the_operation">Choisir l\'operation</string>
     <string name="owner_management">Gestion du propriétaire</string>
