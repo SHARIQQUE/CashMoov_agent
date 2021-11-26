@@ -228,7 +228,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("groupCode","");
                     jsonObject.put("idProofNumber",etProofNo.getText().toString().trim());
                     jsonObject.put("idProofTypeCode",idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
-                    jsonObject.put("issuingCountryCode","");
+                    jsonObject.put("issuingCountryCode","100092");
+                    jsonObject.put("walletCurrencyList",new JSONArray(walletCurrencyList));
                     jsonObject.put("registerCountryCode",countryModelList.get((Integer) spCountry.getTag()).getCode());
 //                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
@@ -360,6 +361,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                             spCountry.setText(item);
                                             spCountry.setTag(position);
                                             //  callApiRegions();
+                                            callApiCurrencyList(countryModelList.get(position).getCode());
                                             callApiRegions(countryModelList.get(position).getCode());
 
 
@@ -455,6 +457,60 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         callApiIdProofType();
 
     }
+
+
+    ArrayList<String>walletCurrencyList;
+    JSONObject currenyList;
+    private void callApiCurrencyList(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //
+                            // MyApplication.hideLoader();
+                            walletCurrencyList=new ArrayList<>();
+                            walletCurrencyList.clear();
+                            currenyList=new JSONObject();
+                            if (jsonObject != null) {
+                                regionList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("countryCurrencyList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        walletCurrencyList.add(data.optString("currencyCode"));
+//"walletCurrencyList":["100106","100062","100003","100004"]
+
+
+
+
+                                    }
+
+                                    System.out.println("LISTTTT  "+walletCurrencyList.toString());
+
+                                } else {
+                                    MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+
+    }
+
 
     private void callApiIdProofType() {
         try {

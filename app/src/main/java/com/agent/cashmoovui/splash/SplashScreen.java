@@ -24,9 +24,18 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.LanguageChoose;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.CurrencyModel;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,6 +45,9 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
     MyApplication applicationComponentClass;
     String languageToUse = "";
     TextView startnow_textview;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,6 +234,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
     private void requestPermission_camera() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 101);
     }
+
 
 
 }

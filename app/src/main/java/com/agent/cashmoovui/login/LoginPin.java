@@ -355,7 +355,7 @@ public class LoginPin extends AppCompatActivity {
                             MyApplication.saveString("username", jsonObject.optString("username"), loginpinC);
                             MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), loginpinC);
                             MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), loginpinC);
-
+                            MyApplication.setService(jsonObject.optJSONArray("serviceList"));
 
                             // #################### serviceList Add  serviceCategoryList add  serviceCode
 
@@ -514,6 +514,7 @@ public class LoginPin extends AppCompatActivity {
                             MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), loginpinC);
                             MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), loginpinC);
 
+                            MyApplication.setService(jsonObject.optJSONArray("serviceList"));
 
                             // #################### serviceList Add  serviceCategoryList add  serviceCode
 
@@ -649,6 +650,8 @@ public class LoginPin extends AppCompatActivity {
 
 
     ///////////////////////////////////////////////////////////////////////////////
+
+
 
 
 }

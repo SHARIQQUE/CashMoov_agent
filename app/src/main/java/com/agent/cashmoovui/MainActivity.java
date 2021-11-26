@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        callApiWalletList();
+
 
 
     }
@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
+
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.profil)
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String image_url = MyApplication.ImageURL + ImageName;
             Glide.with(this).load(image_url).apply(options).into(imgProfile);
         }
+        callApiWalletList();
     }
 
     @Override

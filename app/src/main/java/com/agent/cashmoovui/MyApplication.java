@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
@@ -32,6 +33,9 @@ import com.agent.cashmoovui.login.PhoneNumberRegistrationScreen;
 import com.github.florent37.viewtooltip.ViewTooltip;
 import com.google.firebase.FirebaseApp;
 import com.kaopiz.kprogresshud.KProgressHUD;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -53,7 +57,7 @@ public class MyApplication extends Application {
     public static MyApplication appInstance;
     public static String lang;
 
-    public static ArrayList<CurrencyModel> currencyModelArrayList=new ArrayList<>();
+
 
 
 
@@ -68,6 +72,7 @@ public class MyApplication extends Application {
     public static String OutletCode = "100012";
     public static String SubscriberCode = "100010";
     public static String channelTypeCode = "100000";
+    public static ArrayList<CurrencyModel> currencyModelArrayList=new ArrayList<>();
 
 
     public SharedPreferences getmSharedPreferences() {
@@ -370,5 +375,70 @@ public class MyApplication extends Application {
         Configuration config = new Configuration();//get Configuration
         config.locale = myLocale;//set config locale as selected locale
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());//Update the config
+    }
+
+    public static JSONObject ServiceConfiguration;
+    public static void setService(JSONArray serviceListArray){
+
+        ServiceConfiguration=new JSONObject();
+        for(int i=0;i<serviceListArray.length();i++){
+            JSONObject object=serviceListArray.optJSONObject(i);
+            JSONArray serviceCategoryListArray=object.optJSONArray("serviceCategoryList");
+            for(int j=0;j<serviceCategoryListArray.length();j++){
+                try {
+                    JSONObject data=serviceCategoryListArray.optJSONObject(j);
+                    //Sell Float
+                    if(data.optString("code").equalsIgnoreCase("100016")){//Sell Float
+                        ServiceConfiguration.put("isSellFloat",true);
+                    }
+                    //Float Transfer
+                    if(data.optString("code").equalsIgnoreCase("100017")){
+                        ServiceConfiguration.put("isFloatTransfer",true);
+                    }
+                    //Recharge & Payment
+                    if(data.optString("code").equalsIgnoreCase("100028")){
+                        ServiceConfiguration.put("isRechargePayment",true);
+                    }
+                    //Receive Remittance
+                    if(data.optString("code").equalsIgnoreCase("100018")){
+                        ServiceConfiguration.put("isReceiveRemittance",true);
+                    }
+                    //Cash to Wallet
+                    if(data.optString("code").equalsIgnoreCase("100061")){
+                        ServiceConfiguration.put("isCashtoWallet",true);
+                    }
+                    //Send Remittance
+                    if(data.optString("code").equalsIgnoreCase("100001")){
+                        ServiceConfiguration.put("isSendRemittance",true);
+                    }
+                    //Mobile Prepaid
+                    if(data.optString("code").equalsIgnoreCase("100021")){
+                        ServiceConfiguration.put("isMobilePrepaid",true);
+                    }
+                    //Transaction Details
+                    if(data.optString("code").equalsIgnoreCase("TRNSDT")){
+                        ServiceConfiguration.put("isTransactionDetails",true);
+                    }
+                    //Overdraft Transfer
+                    if(data.optString("code").equalsIgnoreCase("ODTRF")){
+                        ServiceConfiguration.put("isOverdraftTransfer",true);
+                    }
+                    //Commission Transfer
+                    if(data.optString("code").equalsIgnoreCase("COMTRF")){
+                        ServiceConfiguration.put("isCommissionTransfer",true);
+                    }
+
+                }catch (Exception e){
+
+                }
+
+
+
+            }
+
+        }
+
+        System.out.println("ServiceConfiguration   "+ServiceConfiguration.toString());
+
     }
 }

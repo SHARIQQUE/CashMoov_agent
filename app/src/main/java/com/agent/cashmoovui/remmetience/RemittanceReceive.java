@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
+import com.agent.cashmoovui.MyFirebaseMessagingService;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterAllCountry;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterGender;
@@ -556,7 +557,12 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             jsonObject_accountHolding = jsonObject.getJSONObject("accountHolding");
 
 
+                        if(jsonObject_accountHolding.optBoolean("walletToCash")){
+                            Toast.makeText(RemittanceReceive.this, "Receive remittance is not allocated for", Toast.LENGTH_LONG).show();
+                            return;
+                        }else{
 
+                        }
                         // ############################    beneficiaryCustomer  ############################
 
 
@@ -630,7 +636,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         if (jsonObject.has("accountHolding")) {
 
                             JSONObject jsonObject3 = jsonObject.getJSONObject("accountHolding");
-                            amountstr = jsonObject3.getString("sendingAmount");
+                            amountstr = jsonObject3.getString("beneficiaryAmount");
                             edittext_amount.setText(amountstr);
                         } else {
 
