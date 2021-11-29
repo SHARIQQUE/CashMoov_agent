@@ -835,7 +835,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("walletOwnerCode", walletOwnerCode_mssis_agent);
-            jsonObject.put("transactionType", "RECEIVEREMITTANCE"); // Hard Code according  to Deepak
+            jsonObject.put("transactionType", "CASHOUTSUBSCRIBER"); // Hard Code according  to Deepak
             jsonObject.put("confirmationCode", confirmationCodeStr);
             jsonObject.put("firstName",senderName_susbcriber);
             jsonObject.put("lastName", senderName_str);
