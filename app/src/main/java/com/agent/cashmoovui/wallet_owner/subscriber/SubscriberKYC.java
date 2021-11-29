@@ -21,8 +21,10 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
+import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 
 import org.json.JSONArray;
@@ -40,9 +42,15 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
     public static SubscriberKYC subscriberkycC;
     DatePickerDialog picker;
-    public static EditText etFname,etLname,etPhone,etEmail,etCity,etAddress,etDob,etProofNo;
-    TextView tvNext,spGender,spIdProof;
-    SpinnerDialog spinnerDialogGender,spinnerDialogIdProofType;
+    public static EditText etFname,etLname,etPhone,etEmail,etAddress,etDob,etProofNo;
+    TextView tvNext,spGender,spIdProof,spRegion,spCity;
+    SpinnerDialog spinnerDialogRegion,spinnerDialogCity,spinnerDialogGender,spinnerDialogIdProofType;
+
+    private ArrayList<String> regionList = new ArrayList<>();
+    private ArrayList<RegionInfoModel.Region> regionModelList = new ArrayList<>();
+    private ArrayList<String> cityList = new ArrayList<>();
+    private ArrayList<CityInfoModel.City> cityModelList = new ArrayList<>();
+
     private ArrayList<String> genderList = new ArrayList<>();
     private ArrayList<GenderModel.Gender> genderModelList=new ArrayList<>();
 
@@ -65,7 +73,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         etLname = findViewById(R.id.etLname);
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
-        etCity = findViewById(R.id.etCity);
+        spRegion = findViewById(R.id.spRegion);
+        spCity = findViewById(R.id.spCity);
         etAddress = findViewById(R.id.etAddress);
         spGender = findViewById(R.id.spGender);
         etDob = findViewById(R.id.etDob);
@@ -93,6 +102,25 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        spRegion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogRegion!=null){
+                    spinnerDialogRegion.showSpinerDialog();
+                }
+
+            }
+        });
+        spCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCity!=null){
+                    spinnerDialogCity.showSpinerDialog();
+                }
+
+            }
+        });
+
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +136,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        callApiGenderType();
+        callApiRegions();
 
         setOnCLickListener();
 
@@ -180,9 +208,15 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etCity.getText().toString().trim().isEmpty()) {
-                    // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_city));
-                    MyApplication.showTipError(this,getString(R.string.val_city),etCity);
+                if(spRegion.getText().toString().equals(getString(R.string.valid_select_region))) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                    MyApplication.showTipError(this,getString(R.string.val_select_region),spRegion);
+                    MyApplication.hideKeyboard(subscriberkycC);
+                    return;
+                }
+                if(spCity.getText().toString().equals(getString(R.string.valid_select_city))) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                    MyApplication.showTipError(this,getString(R.string.val_select_city),spCity);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
@@ -241,6 +275,142 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                 }
 
                 callRegisterApi(jsonObject);
+
+        }
+
+    }
+
+    private void callApiRegions() {
+        try {
+//http://202.131.144.130:8081/ewallet/public/region/country/100092
+            API.GET_PUBLIC("ewallet/public/region/country/100092",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                regionList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("regionList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        regionModelList.add(new RegionInfoModel.Region(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("countryCode"),
+                                                data.optString("countryName"),
+                                                data.optString("creationDate"),
+                                                data.optString("name"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        regionList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogRegion = new SpinnerDialog(subscriberkycC, regionList, "Select Region", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRegion.setCancellable(true); // for cancellable
+                                    spinnerDialogRegion.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogRegion.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spRegion.setText(item);
+                                            spRegion.setTag(position);
+                                            spCity.setText(getString(R.string.valid_select_city));
+
+                                            callApiCity(regionModelList.get(position).getCode());
+                                        }
+                                    });
+
+
+                                } else {
+                                    MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void callApiCity(String code) {
+        try {
+//http://202.131.144.130:8081/ewallet/public/city/region/100068
+            API.GET_PUBLIC("ewallet/public/city/region/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                cityList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        cityModelList.add(new CityInfoModel.City(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optString("name"),
+                                                data.optString("regionCode"),
+                                                data.optString("regionName"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        cityList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(subscriberkycC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity.setCancellable(true); // for cancellable
+                                    spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCity.setText(item);
+                                            spCity.setTag(position);
+                                        }
+                                    });
+
+                                    callApiGenderType();
+
+                                } else {
+                                    MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
 
         }
 
@@ -380,9 +550,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                         subscriberWalletOwnerCode = jsonObject.optString("walletOwnerCode");
                         MyApplication.UserMobile=etPhone.getText().toString().trim();
-                        Intent i = new Intent(subscriberkycC, SubscriberKYCAttached.class);
-                        startActivity(i);
-                        finish();
+                        callApiAddSubscriberAddress(subscriberWalletOwnerCode);
+
                     }else{
                         MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription"));
                     }
@@ -398,9 +567,62 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
         });
 
+    }
 
+    private void callApiAddSubscriberAddress(String subscriberWalletOwnerCode) {
+        try{
+            JSONObject jsonObjectadd=new JSONObject();
+            JSONObject addSubscriberJson=new JSONObject();
+            try {
+                addSubscriberJson.put("walletOwnerCode",subscriberWalletOwnerCode);
 
+                jsonObjectadd.put("addTypeCode","");
+                jsonObjectadd.put("addressLine1",etAddress.getText().toString().trim());
+                jsonObjectadd.put("addressLine2","");
+                jsonObjectadd.put("countryCode","100092");
+                jsonObjectadd.put("city",cityModelList.get((Integer) spCity.getTag()).getCode());
+                jsonObjectadd.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
+                jsonObjectadd.put("location","");
+
+                JSONArray jsonArray=new JSONArray();
+
+                jsonArray.put(jsonObjectadd);
+                addSubscriberJson.put("addressList",jsonArray);
+
+            }catch (Exception e){
+
+            }
+
+            MyApplication.showloader(subscriberkycC,"Please wait!");
+            API.POST_REQEST_REGISTER("ewallet/api/v1/address", addSubscriberJson, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
+                    if (jsonObject != null) {
+                        if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            //MyApplication.showToast(getString(R.string.address_add_msg));
+                            Intent i = new Intent(subscriberkycC, SubscriberKYCAttached.class);
+                            startActivity(i);
+                            finish();
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                            MyApplication.showToast(subscriberkycC,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
 
     }
+
 
 }

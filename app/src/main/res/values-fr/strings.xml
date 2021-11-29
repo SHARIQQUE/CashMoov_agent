@@ -703,8 +703,9 @@
     <string name="trans_date">Date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>
     <string name="post_balance">Publier le solde</string>
-
     <string name="receiving_country">Pays d\'accueil</string>
+    <string name="valid_select_city">Sélectionnez une ville*</string>
+    <string name="val_select_city">Veuillez sélectionner la ville</string>
 
 
 </resources>

@@ -15,6 +15,8 @@ import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,8 +26,8 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class BranchKYC extends AppCompatActivity implements View.OnClickListener {
     public static BranchKYC branchkycC;
-    TextView spAccType,spBusinessType,spCountry,spRegion,spIdProof,tvNext;
-    public static EditText etBranchName,etLname,etEmail,etPhone,etCity,etAddress,etProofNo;
+    TextView spAccType,spBusinessType,spCountry,spRegion,spCity,spIdProof,tvNext;
+    public static EditText etBranchName,etLname,etEmail,etPhone,etAddress,etProofNo;
     private ArrayList<String> businessTypeList = new ArrayList<>();
     private ArrayList<BusinessTypeModel.BusinessType> businessTypeModelList = new ArrayList<>();
     private ArrayList<String> idProofTypeList = new ArrayList<>();
@@ -56,14 +58,13 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         spBusinessType = findViewById(R.id.spBusinessType);
         spCountry = findViewById(R.id.spCountry);
         spRegion = findViewById(R.id.spRegion);
-        etCity = findViewById(R.id.etCity);
+        spCity = findViewById(R.id.spCity);
         spIdProof = findViewById(R.id.spIdProof);
         etAddress = findViewById(R.id.etAddress);
         etBranchName = findViewById(R.id.etBranchName);
         etLname = findViewById(R.id.etLname);
         etEmail = findViewById(R.id.etEmail);
         etPhone = findViewById(R.id.etPhone);
-        etCity = findViewById(R.id.etCity);
         etAddress = findViewById(R.id.etAddress);
         etProofNo = findViewById(R.id.etProofNo);
         tvNext = findViewById(R.id.tvNext);
@@ -94,6 +95,17 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
             }
         });
+
+        spCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCity!=null){
+                    spinnerDialogCity.showSpinerDialog();
+                }
+
+            }
+        });
+
 
         spIdProof.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,9 +202,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
-                if(etCity.getText().toString().trim().isEmpty()) {
-                    // MyApplication.showErrorToast(branchkycC,getString(R.string.val_city));
-                    MyApplication.showTipError(this,getString(R.string.val_city),etCity);
+                if(spCity.getText().toString().equals(getString(R.string.valid_select_city))) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
+                    MyApplication.showTipError(this,getString(R.string.val_select_city),spCity);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
@@ -362,7 +374,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                             spCountry.setTag(position);
                                             //  callApiRegions();
                                             callApiCurrencyList(countryModelList.get(position).getCode());
-                                            callApiRegions(countryModelList.get(position).getCode());
+
 
 
                                         }
@@ -431,9 +443,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spRegion.setText(item);
                                             spRegion.setTag(position);
-                                           // spCity.setText("Select");
+                                            spCity.setText(getString(R.string.valid_select_city));
 
-                                           // callApiCity(regionModelList.get(position).getCode());
+                                            callApiCity(regionModelList.get(position).getCode());
                                         }
                                     });
 
@@ -453,8 +465,75 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         } catch (Exception e) {
 
         }
-        
-        callApiIdProofType();
+
+
+    }
+
+    private void callApiCity(String code) {
+        try {
+//http://202.131.144.130:8081/ewallet/public/city/region/100068
+            API.GET_PUBLIC("ewallet/public/city/region/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                cityList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        cityModelList.add(new CityInfoModel.City(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optString("name"),
+                                                data.optString("regionCode"),
+                                                data.optString("regionName"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        cityList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(branchkycC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity.setCancellable(true); // for cancellable
+                                    spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCity.setText(item);
+                                            spCity.setTag(position);
+                                        }
+                                    });
+
+                                    callApiIdProofType();
+
+                                } else {
+                                    MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
 
     }
 
@@ -489,6 +568,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                     }
 
                                     System.out.println("LISTTTT  "+walletCurrencyList.toString());
+
+                                    callApiRegions(code);
 
                                 } else {
                                     MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
@@ -585,9 +666,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                         branchWalletOwnerCode = jsonObject.optString("walletOwnerCode");
                         MyApplication.UserMobile=etPhone.getText().toString().trim();
-                        Intent i = new Intent(branchkycC, BranchKYCAttached.class);
-                        startActivity(i);
-                        finish();
+                        callApiAddBranchAddress(branchWalletOwnerCode);
                     }else{
                         MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription"));
                     }
@@ -602,9 +681,60 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
             }
 
         });
+    }
 
+    private void callApiAddBranchAddress(String branchWalletOwnerCode) {
+        try{
+            JSONObject jsonObjectadd=new JSONObject();
+            JSONObject addSubscriberJson=new JSONObject();
+            try {
+                addSubscriberJson.put("walletOwnerCode",branchWalletOwnerCode);
 
+                jsonObjectadd.put("addTypeCode","");
+                jsonObjectadd.put("addressLine1",etAddress.getText().toString().trim());
+                jsonObjectadd.put("addressLine2","");
+                jsonObjectadd.put("countryCode",countryModelList.get((Integer) spCountry.getTag()).getCode());
+                jsonObjectadd.put("city",cityModelList.get((Integer) spCity.getTag()).getCode());
+                jsonObjectadd.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
+                jsonObjectadd.put("location","");
 
+                JSONArray jsonArray=new JSONArray();
+
+                jsonArray.put(jsonObjectadd);
+                addSubscriberJson.put("addressList",jsonArray);
+
+            }catch (Exception e){
+
+            }
+
+            MyApplication.showloader(branchkycC,"Please wait!");
+            API.POST_REQEST_REGISTER("ewallet/api/v1/address", addSubscriberJson, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
+                    if (jsonObject != null) {
+                        if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            //MyApplication.showToast(getString(R.string.address_add_msg));
+                            Intent i = new Intent(branchkycC, BranchKYCAttached.class);
+                            startActivity(i);
+                            finish();
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                            MyApplication.showToast(branchkycC,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
 
     }
 
