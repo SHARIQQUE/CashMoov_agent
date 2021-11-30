@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.model.MiniStatementTrans;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.model.UserDetailAgent;
 
@@ -25,12 +26,12 @@ public class SearchAdapterTransactionDetails extends RecyclerView.Adapter<Search
 
 
 
-    ArrayList<UserDetail> arrayList_modalUserData;
-    private ArrayList<UserDetail> arrayListTemp = null;
+    ArrayList<MiniStatementTrans> arrayList_modalUserData;
+    private ArrayList<MiniStatementTrans> arrayListTemp = null;
 
 
 
-    public SearchAdapterTransactionDetails(Context context, ArrayList<UserDetail> arrayList_modalUserData) {
+    public SearchAdapterTransactionDetails(Context context, ArrayList<MiniStatementTrans> arrayList_modalUserData) {
         this.context = context;
         this.arrayList_modalUserData = arrayList_modalUserData;
 
@@ -44,9 +45,9 @@ public class SearchAdapterTransactionDetails extends RecyclerView.Adapter<Search
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
 
-        viewHolder.transactionType.setText(arrayList_modalUserData.get(i).getTransTypeName());
-        viewHolder.amount.setText(arrayList_modalUserData.get(i).getTransactionAmount());
-        viewHolder.mobileNumber.setText(arrayList_modalUserData.get(i).getDestMobileNumber());
+        viewHolder.transactionType.setText(arrayList_modalUserData.get(i).getTransactionTypeName());
+        viewHolder.amount.setText(String .valueOf(arrayList_modalUserData.get(i).getTransactionAmount()));
+        viewHolder.mobileNumber.setText(arrayList_modalUserData.get(i).getFromWalletOwnerMsisdn());
         viewHolder.transactionDate.setText(arrayList_modalUserData.get(i).getCreationDate());
 
 
@@ -123,8 +124,8 @@ public class SearchAdapterTransactionDetails extends RecyclerView.Adapter<Search
         if (charText.length() == 0) {
             arrayList_modalUserData.addAll(arrayListTemp);
         } else {
-            for (UserDetail wp : arrayListTemp) {
-                if (wp.getTransTypeName().toLowerCase(Locale.getDefault()).contains(charText)) {
+            for (MiniStatementTrans wp : arrayListTemp) {
+                if (wp.getTransactionTypeName().toLowerCase(Locale.getDefault()).contains(charText)) {
                     arrayList_modalUserData.add(wp);
                 }
             }

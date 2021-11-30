@@ -708,6 +708,8 @@
     <string name="receiving_country">Pays d\'accueil</string>
     <string name="valid_select_city">Sélectionnez une ville*</string>
     <string name="val_select_city">Veuillez sélectionner la ville</string>
+    <string name="transaction_successful">Transaction réussie</string>
+    <string name="date">Date</string>
 
     <string name="sender_info_colon">Informations sur l\'expéditeur:</string>
     <string name="receiver_info_colon">Informations sur le récepteur:</string>

@@ -115,6 +115,7 @@ x
         <activity android:name=".remmetience.RemittanceReceive"></activity>
         <activity android:name=".transactionhistory_walletscreen.WalletScreen"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryMainPage"></activity>
+        <activity android:name=".transactionhistory_walletscreen.WalletTransactionDetails"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryBranch"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryAgent"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryAgentRecycleClick"></activity>

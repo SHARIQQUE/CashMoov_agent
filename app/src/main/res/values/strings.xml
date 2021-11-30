@@ -711,6 +711,8 @@
     <string name="receiving_country">Receiving country </string>
     <string name="valid_select_city">Select City*</string>
     <string name="val_select_city">Please select city</string>
+    <string name="transaction_successful">Transaction Successful</string>
+    <string name="date">Date</string>
     <string name="sender_info_colon">Sender info:</string>
     <string name="receiver_info_colon">Receiver info:</string>
 
