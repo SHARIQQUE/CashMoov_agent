@@ -6,8 +6,6 @@
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-hdpi/ic_cashpickup24.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable/ic_arrow_down.xml" value="0.2203125" />
-        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable/ic_baseline_cashin.xml" value="0.2203125" />
-        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable/ic_cashin.xml" value="0.2203125" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable/ic_visibility_off_black_24dp.xml" value="0.2203125" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/acticity_subscriber_signature.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_about.xml" value="0.2" />
@@ -82,6 +80,7 @@
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/toolbar_active.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/transaction_history_agent_recycleclick.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/transaction_history_mainpage.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/login_msis.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/round_blue.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/error_toast.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.1" />
