@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -142,8 +143,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         String ImageName=MyApplication.getSaveString("ImageName", editprofileC);
         if(ImageName!=null&&ImageName.length()>1) {
-            String image_url = MyApplication.ImageURL + ImageName;
-            Glide.with(this).load(image_url).apply(options).into(profile_img);
+            String[] url = ImageName.split(":");
+            if (url[0].equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", EditProfile.this))) {
+                String image_url = MyApplication.ImageURL + url[1];
+                Glide.with(this).load(image_url).apply(options).into(profile_img);
+            }
         }
 
         setOnCLickListener();
@@ -312,7 +316,9 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                                     JSONObject jsonObject1 = jsonObject.optJSONObject("documentUpload");
 
                                     MyApplication.saveString("ImageCode", jsonObject1.optString("code"), editprofileC);
-                                    MyApplication.saveString("ImageName", jsonObject1.optString("fileName"), editprofileC);
+                                    MyApplication.saveString("ImageName",MyApplication.getSaveString("walletOwnerCode",editprofileC)+":"+
+                                            jsonObject1.optString("fileName"), editprofileC);
+                                    //MyApplication.saveString("ImageUserCode", jsonObject1.optString("fileName"), editprofileC);
                                     String ImageName = MyApplication.getSaveString("ImageName", editprofileC);
                                     RequestOptions options = new RequestOptions()
                                             .centerCrop()
@@ -322,7 +328,8 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                                             MyApplication.getSaveString("walletOwnerCode",editprofileC)+"/";
 
                                     if (ImageName != null && ImageName.length() > 1) {
-                                        String image_url = MyApplication.ImageURL + ImageName;
+                                        String[] url=ImageName.split(":");
+                                        String image_url = MyApplication.ImageURL + url[1];
                                         Glide.with(editprofileC).load(image_url).apply(options).into(profile_img);
                                     }
 

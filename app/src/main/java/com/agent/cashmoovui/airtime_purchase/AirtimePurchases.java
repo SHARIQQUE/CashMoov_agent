@@ -299,7 +299,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-                MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+               // MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
                 api_serviceCategoryCode_operatorList();
 
@@ -519,7 +519,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     private void api_master_PRODUCTTYPE() {
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+      //  MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/master/PRODUCTTYPE",languageToUse,new Api_Responce_Handler() {

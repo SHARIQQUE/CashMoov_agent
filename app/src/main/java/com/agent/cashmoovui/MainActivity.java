@@ -183,8 +183,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .error(R.drawable.profil);
         String ImageName=MyApplication.getSaveString("ImageName", MainActivity.this);
         if(ImageName!=null&&ImageName.length()>1) {
-            String image_url = MyApplication.ImageURL + ImageName;
-            Glide.with(this).load(image_url).apply(options).into(imgProfile);
+            String[] url = ImageName.split(":");
+            if (url[0].equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", MainActivity.this))) {
+                String image_url = MyApplication.ImageURL + url[1];
+                Glide.with(this).load(image_url).apply(options).into(imgProfile);
+            }
         }
         callApiWalletList();
     }
@@ -273,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void callApiWalletList() {
         try {
-            MyApplication.showloader(MainActivity.this,"Please wait!");
+           // MyApplication.showloader(MainActivity.this,"Please wait!");
             API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
                     new Api_Responce_Handler() {
                         @Override
