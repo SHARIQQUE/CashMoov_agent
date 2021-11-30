@@ -1,5 +1,7 @@
 package com.agent.cashmoovui;
 
+import static kotlin.random.RandomKt.Random;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -63,8 +65,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setColor(getColor(R.color.colorAccent))
                 .setLights(Color.RED, 1000, 300)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
-                .setNumber(++numMessages);
-               // .setSmallIcon(R.drawable.ic_baseline_notifications);
+                .setStyle(new NotificationCompat.BigTextStyle())
+                .setNumber(++numMessages)
+                .setSmallIcon(R.drawable.ic_baseline_notifications);
 
         try {
             String picture = data.get(FCM_PARAM);
@@ -98,6 +101,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         assert notificationManager != null;
-        notificationManager.notify(1, notificationBuilder.build());
+        int id= Random(System.currentTimeMillis()).nextInt(1000);
+        notificationManager.notify(id, notificationBuilder.build());
     }
 }
