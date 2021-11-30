@@ -328,7 +328,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
 
-                        if (mobileNoStr.length()>6) {
+                        if (mobileNoStr.length()>7) {
 
                             api_subscriber_details();
 
@@ -417,7 +417,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                     else {
 
-                        Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         //  finish();
                     }

@@ -64,6 +64,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     boolean  isPasswordVisible;
 
+    String converstionRate_fromApi="";
+
+
     String FIRSTNAME_USERINFO="";
     String LASTNAME_USERINFO="";
 
@@ -121,7 +124,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-    TextView receiptPage_tv_receiverCountry,receiptPage_tv_senderCountry,receiptPage_tv_amount_to_be_paid,tvContinue,fees_first_page,convertionRate_first_page,amountTobeCharged_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionRate, tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView receiptPage_tv_receiverCountry,receiptPage_tv_senderCountry,receiptPage_tv_amount_to_be_paid,tvContinue,fees_first_page,convertionRate_first_page,amountTobeCharged_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionRate, convertionRate_receiptPage,tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_charged, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
@@ -169,6 +172,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             setContentView(R.layout.international_ramittance);
+
             setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
@@ -236,6 +240,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             rp_tv_beneficiaryCurrency = (TextView) findViewById(R.id.rp_tv_beneficiaryCurrency);
             rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
             rp_tv_convertionRate = (TextView) findViewById(R.id.rp_tv_convertionRate);
+            convertionRate_receiptPage = (TextView) findViewById(R.id.convertionRate_receiptPage);
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
@@ -407,7 +412,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
 
-                        if (mobileNoStr.length()>6) {
+                        if (mobileNoStr.length()>7) {
 
                             api_subscriber_details();
 
@@ -534,7 +539,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                     else {
 
-                        Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         //  finish();
                     }
@@ -1889,18 +1894,26 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
 
                         edittext_amount_pay.setEnabled(false);
-                        edittext_amount_pay.setText(select_sender_currencySymbol+ " "+amountstr);
+
 
 
                         if(exchangeRate.has("value")) {
-                            convertionRate_first_page.setText(select_sender_currencySymbol+ " "+exchangeRate.getString("value"));
+
+                            converstionRate_fromApi =exchangeRate.getString("value");
+                            convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+                        }
+                        else {
+
+                            converstionRate_fromApi="0.0";
+                            convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
                         }
 
-                        if(exchangeRate.has("currencyValue")) {
 
-                            amountToPayStr=exchangeRate.getString("currencyValue");
-                            edittext_amount_pay.setText(select_sender_currencySymbol+ " "+amountToPayStr);
-                        }
+
+//                        if(exchangeRate.has("currencyValue")) {
+//                            amountToPayStr=exchangeRate.getString("currencyValue");
+//                            edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+//                        }
 
 
                         if(exchangeRate.has("code")) {
@@ -1933,7 +1946,6 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                          convertionFeesStr = String.valueOf(fees_amount_double);
 
 
-                        rp_tv_convertionRate.setText(select_sender_currencySymbol+ " "+tax_financial);
 
 
                         totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
@@ -1943,12 +1955,22 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         amountstr = String.valueOf(amountstr_double);
                         rp_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
 
-                        rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
-
-                        receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
 
 
                         amountTobeCharged_first_page.setText(select_sender_currencySymbol+ " "+totalAmount_str);
+                        rp_tv_convertionRate.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+                        convertionRate_receiptPage.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+
+
+
+                        amountToPayStr=amountstr;
+
+                        rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+                        receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+                        edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+
+
 
 
 
@@ -2039,6 +2061,23 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             break;
 
             case R.id.previous_reviewClick_textview: {
+
+                edittext_amount.setText("");
+                edittext_amount_pay.setText("");
+
+                amountstr="";
+                amountToPayStr="";
+                select_receiver_currencySymbol="";
+                rp_tv_amount_to_be_paid.setText("");
+                receiptPage_tv_amount_to_be_paid.setText("");
+
+                //  rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+               // receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+
+
+
+
 
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
@@ -2599,6 +2638,28 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 select_receiver_currencyName = arrayList_receiverCurrencyDetails.get(i).currencyName_reciver;
                 select_receiver_currencyCode = arrayList_receiverCurrencyDetails.get(i).currencyCode_reciver;
                 select_receiver_currencySymbol = arrayList_receiverCurrencyDetails.get(i).currencySymbol_reciver;
+
+
+                if(select_receiver_currencySymbol.equalsIgnoreCase(""))
+                {
+                    amountToPayStr="";
+                    edittext_amount_pay.setText(""+ " "+amountToPayStr);
+
+                     rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+                     receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+
+                }
+                else
+                {
+                    edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+                    rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+                    receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+
+                }
+
+
 
             }
                 break;
