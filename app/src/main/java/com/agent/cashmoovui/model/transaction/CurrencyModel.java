@@ -2,6 +2,9 @@ package com.agent.cashmoovui.model.transaction;
 
 public class CurrencyModel {
 
+    public String code;
+    public String Ccode;
+    public String Ocode;
     public String currencyCode;
     public String currencyName;
     public String currencySymbol;
@@ -9,7 +12,10 @@ public class CurrencyModel {
     public String overdraftWalletValue;
     public String mainWalletValue;
 
-    public CurrencyModel(String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue) {
+    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue) {
+        this.code = code;
+        Ccode = ccode;
+        Ocode = ocode;
         this.currencyCode = currencyCode;
         this.currencyName = currencyName;
         this.currencySymbol = currencySymbol;
@@ -21,13 +27,40 @@ public class CurrencyModel {
     @Override
     public String toString() {
         return "CurrencyModel{" +
-                "currencyCode='" + currencyCode + '\'' +
+                "code='" + code + '\'' +
+                ", Ccode='" + Ccode + '\'' +
+                ", Ocode='" + Ocode + '\'' +
+                ", currencyCode='" + currencyCode + '\'' +
                 ", currencyName='" + currencyName + '\'' +
                 ", currencySymbol='" + currencySymbol + '\'' +
                 ", commisionWalletValue='" + commisionWalletValue + '\'' +
                 ", overdraftWalletValue='" + overdraftWalletValue + '\'' +
                 ", mainWalletValue='" + mainWalletValue + '\'' +
                 '}';
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCcode() {
+        return Ccode;
+    }
+
+    public void setCcode(String ccode) {
+        Ccode = ccode;
+    }
+
+    public String getOcode() {
+        return Ocode;
+    }
+
+    public void setOcode(String ocode) {
+        Ocode = ocode;
     }
 
     public String getCurrencyCode() {
