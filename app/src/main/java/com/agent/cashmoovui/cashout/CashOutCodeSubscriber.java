@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -204,6 +205,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
 
+            et_mpin.setTransformationMethod(new HiddenPassTransformationMethod());
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -232,6 +234,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                 }
             });
 
+            et_otp.setTransformationMethod(new HiddenPassTransformationMethod());
             et_otp.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.SearchAdapteAgentDetails;
@@ -37,14 +38,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class TransactionHistoryAgent extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisnersAgent,CallBackRecycleViewClick {
+public class TransactionHistoryAgent extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,CallBackRecycleViewClick {
 
     String searchStr = "";
     EditText edittext_search;
     ImageView search_imageView;
     TextView main_wallet_value_textview;
     ArrayList<UserDetailAgent> arrayList_modalDetails;
-
+    ImageView imgBack,imgHome;
     RecyclerView recyclerView_agent;
 
     MyApplication applicationComponentClass;
@@ -83,6 +84,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
                 getBaseContext().getResources().getDisplayMetrics());
 
         setContentView(R.layout.transaction_history_agent);
+        setBackMenu();
 
         try {
 
@@ -157,6 +159,34 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
 
     private void api_transactionHistory_agent() {
 
@@ -202,50 +232,57 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
-                                    userDetailAgent = new UserDetailAgent();
-
-
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
+                                    if (MyApplication.AgentCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
+                                        userDetailAgent = new UserDetailAgent();
 
-                                    if (jsonObject1.has("ownerName")) {
+                                        if (jsonObject1.has("ownerName")) {
 
-                                        String ownerName = jsonObject1.getString("ownerName");
-                                        userDetailAgent.setOwnerName(ownerName);
+                                            String ownerName = jsonObject1.getString("ownerName");
+                                            userDetailAgent.setOwnerName(ownerName);
+
+                                        }
+
+                                        if (jsonObject1.has("mobileNumber")) {
+                                            String mobileNumber = jsonObject1.getString("mobileNumber");
+
+                                            userDetailAgent.setMobileNumber(mobileNumber);
+
+                                        }
+
+                                        if (jsonObject1.has("email")) {
+                                            String email = jsonObject1.getString("email");
+
+                                            userDetailAgent.setEmail(email);
+                                        }
+                                        if (jsonObject1.has("issuingCountryName")) {
+                                            String issuingCountryName = jsonObject1.getString("issuingCountryName");
+                                            userDetailAgent.setIssuingCountryName(issuingCountryName);
+
+
+                                        }
+
+                                        if (jsonObject1.has("walletOwnerCode")) {
+
+                                            String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                            userDetailAgent.setWalletOwnerCode(walletOwnerCode);
+
+                                        }
+
+                                        if (jsonObject1.has("registerCountryCode")) {
+
+                                            String registerCountryCode = jsonObject1.getString("registerCountryCode");
+                                            userDetailAgent.setRegisterCountryCode(registerCountryCode);
+
+                                        }
+
+                                        arrayList_modalDetails.add(userDetailAgent);
 
                                     }
 
-                                    if (jsonObject1.has("mobileNumber")) {
-                                        String mobileNumber = jsonObject1.getString("mobileNumber");
-
-                                        userDetailAgent.setMobileNumber(mobileNumber);
-
-                                    }
-
-                                    if (jsonObject1.has("email")) {
-                                        String email = jsonObject1.getString("email");
-
-                                        userDetailAgent.setEmail(email);
-                                    }
-                                    if (jsonObject1.has("issuingCountryName")) {
-                                        String issuingCountryName = jsonObject1.getString("issuingCountryName");
-                                        userDetailAgent.setIssuingCountryName(issuingCountryName);
-
-
-                                    }
-
-                                    if (jsonObject1.has("walletOwnerCode")) {
-
-                                        String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
-                                        userDetailAgent.setWalletOwnerCode(walletOwnerCode);
-
-                                    }
-
-                                    arrayList_modalDetails.add(userDetailAgent);
 
                                 }
-
-
                             }
 
 
@@ -314,6 +351,8 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
                             transactionList.add(new TransactionModelAgent(
                                     data.optInt("id"),
                                     data.optString("code"),
+                                    data.optString("registerCountryCode"),
+                                    data.optString("registerCountryName"),
                                     data.optString("transactionId"),
                                     data.optString("transTypeCode"),
                                     data.optString("transTypeName"),
@@ -451,72 +490,80 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
     }
 
+
+//        @Override
+//        public void onTransactionViewItemClick(String walletOwnerCode, String registerCountryCode,String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, int postBalance, String status) {
+//        Dialog dialog = new Dialog(TransactionHistoryAgent.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
+//        dialog.setContentView(R.layout.dialog_view_trans_details_agent);
+//
+//        //get ids
+//        TextView etTransId = dialog.findViewById(R.id.etTransId);
+//        TextView etTransType = dialog.findViewById(R.id.etTransType);
+//        TextView etTransDate = dialog.findViewById(R.id.etTransDate);
+//        TextView etSource = dialog.findViewById(R.id.etSource);
+//        TextView etDestination = dialog.findViewById(R.id.etDestination);
+//        TextView etSourcMSISDN = dialog.findViewById(R.id.etSourcMSISDN);
+//        TextView etDestMSISDN = dialog.findViewById(R.id.etDestMSISDN);
+//        TextView etAmount = dialog.findViewById(R.id.etAmount);
+//        TextView etFee = dialog.findViewById(R.id.etFee);
+//        TextView etTaxType = dialog.findViewById(R.id.etTaxType);
+//        TextView etTax = dialog.findViewById(R.id.etTax);
+//        TextView etPostBalance = dialog.findViewById(R.id.etPostBalance);
+//        TextView etStatus = dialog.findViewById(R.id.etStatus);
+//
+//        //set values
+//        etTransId.setText(transId);
+//        etTransType.setText(transType);
+//        etSource.setText(source);
+//        etDestination.setText(destination);
+//        etSourcMSISDN.setText(String.valueOf(sourceMsisdn));
+//        etDestMSISDN.setText(String.valueOf(destMsisdn));
+//        etAmount.setText(symbol + " " + MyApplication.addDecimal(String.valueOf((amount))));
+//        etFee.setText(MyApplication.addDecimal(String.valueOf((fee))));
+//        etTaxType.setText(taxType);
+//        etTax.setText(MyApplication.addDecimal(String.valueOf((tax))));
+//        etPostBalance.setText(symbol + " " + MyApplication.addDecimal(String.valueOf((postBalance))));
+//        etStatus.setText(status);
+//        try {
+//            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+//            Date date = null;
+//            date = inputFormat.parse(transDate);
+//            String formattedDate = outputFormat.format(date);
+//            etTransDate.setText(formattedDate);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        dialog.findViewById(R.id.img_close).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
+
     @Override
-    public void onTransactionViewItemClick(String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, int postBalance, String status) {
-        Dialog dialog = new Dialog(TransactionHistoryAgent.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
-        dialog.setContentView(R.layout.dialog_view_trans_details_agent);
-
-        //get ids
-        TextView etTransId = dialog.findViewById(R.id.etTransId);
-        TextView etTransType = dialog.findViewById(R.id.etTransType);
-        TextView etTransDate = dialog.findViewById(R.id.etTransDate);
-        TextView etSource = dialog.findViewById(R.id.etSource);
-        TextView etDestination = dialog.findViewById(R.id.etDestination);
-        TextView etSourcMSISDN = dialog.findViewById(R.id.etSourcMSISDN);
-        TextView etDestMSISDN = dialog.findViewById(R.id.etDestMSISDN);
-        TextView etAmount = dialog.findViewById(R.id.etAmount);
-        TextView etFee = dialog.findViewById(R.id.etFee);
-        TextView etTaxType = dialog.findViewById(R.id.etTaxType);
-        TextView etTax = dialog.findViewById(R.id.etTax);
-        TextView etPostBalance = dialog.findViewById(R.id.etPostBalance);
-        TextView etStatus = dialog.findViewById(R.id.etStatus);
-
-        //set values
-        etTransId.setText(transId);
-        etTransType.setText(transType);
-        etSource.setText(source);
-        etDestination.setText(destination);
-        etSourcMSISDN.setText(String.valueOf(sourceMsisdn));
-        etDestMSISDN.setText(String.valueOf(destMsisdn));
-        etAmount.setText(symbol + " " + MyApplication.addDecimal(String.valueOf((amount))));
-        etFee.setText(MyApplication.addDecimal(String.valueOf((fee))));
-        etTaxType.setText(taxType);
-        etTax.setText(MyApplication.addDecimal(String.valueOf((tax))));
-        etPostBalance.setText(symbol + " " + MyApplication.addDecimal(String.valueOf((postBalance))));
-        etStatus.setText(status);
-        try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
-            Date date = null;
-            date = inputFormat.parse(transDate);
-            String formattedDate = outputFormat.format(date);
-            etTransDate.setText(formattedDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        dialog.findViewById(R.id.img_close).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
-
-    @Override
-    public void callBackReycleView(String WalletOwnerCode_fromChild) {
+    public void callBackReycleView(String walletOwnerCode,String registerCountryCode) {
 
         if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
 
-            MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.getting_user_info));
+            //MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.getting_user_info));
 
-            getTransactionList(WalletOwnerCode_fromChild);
+            //getTransactionList(WalletOwnerCode_fromChild);
+
+            Intent i = new Intent(TransactionHistoryAgent.this,TransactionHistoryAgentPage.class);
+            i.putExtra("WALLETOWNERCODE",walletOwnerCode);
+            i.putExtra("REGISTERCOUNTRYCODE",registerCountryCode);
+            startActivity(i);
 
         } else {
             Toast.makeText(TransactionHistoryAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
         }
     }
+
+
 }
 

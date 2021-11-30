@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -162,7 +163,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
 
-
+            et_mpin.setTransformationMethod(new HiddenPassTransformationMethod());
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

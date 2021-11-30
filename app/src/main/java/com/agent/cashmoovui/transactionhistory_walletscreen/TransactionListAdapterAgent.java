@@ -162,7 +162,7 @@ public class TransactionListAdapterAgent extends RecyclerView.Adapter<Transactio
             @Override
             public void onClick(View view) {
                 if(transaction.getCode()!=null)
-                    transactionListLisners.onTransactionViewItemClick(transaction.getTransactionId(),transaction.getTransTypeName(),
+                    transactionListLisners.onTransactionViewItemClick(transaction.getCode(),transaction.getRegisterCountryCode(),transaction.getTransactionId(),transaction.getTransTypeName(),
                             transaction.getCreationDate(),transaction.getSrcWalletOwnerName(),transaction.getDesWalletOwnerName(),
                             transaction.getSrcMobileNumber(),transaction.getDestMobileNumber(),transaction.getSrcCurrencySymbol(),
                             transaction.getTransactionAmount(),transaction.getFee(),transaction.getTaxTypeName(),transaction.getTax(),

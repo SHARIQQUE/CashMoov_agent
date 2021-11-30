@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import java.util.Locale;
 
@@ -54,6 +55,23 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
             ll_sellFloat.setOnClickListener(this);
             ll_transferFloat.setOnClickListener(this);
             ll_commissionTransfer.setOnClickListener(this);
+
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferOption.this).equalsIgnoreCase(MyApplication.InstituteCode)){
+                ll_sellFloat.setVisibility(View.VISIBLE);
+                ll_transferFloat.setVisibility(View.VISIBLE);
+                ll_commissionTransfer.setVisibility(View.VISIBLE);
+            }
+            if(MyApplication.getSaveString("walletOwnerCategoryCode",TransferOption.this).equalsIgnoreCase(MyApplication.AgentCode)){
+                ll_sellFloat.setVisibility(View.GONE);
+                ll_transferFloat.setVisibility(View.VISIBLE);
+                ll_commissionTransfer.setVisibility(View.VISIBLE);
+            }
+            if(MyApplication.getSaveString("walletOwnerCategoryCode",TransferOption.this).equalsIgnoreCase(MyApplication.BranchCode)){
+                ll_sellFloat.setVisibility(View.GONE);
+                ll_transferFloat.setVisibility(View.VISIBLE);
+                ll_commissionTransfer.setVisibility(View.VISIBLE);
+
+            }
 
         }
 

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.SearchAdapteAgentDetails;
@@ -33,14 +34,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class TransactionHistoryBranch extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class TransactionHistoryBranch extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,CallBackRecycleViewClick {
 
     String searchStr="";
     EditText edittext_search;
     ImageView search_imageView;
     TextView main_wallet_value_textview;
     ArrayList<UserDetailBranch> arrayList_modalDetails;
-
+    ImageView imgBack,imgHome;
     RecyclerView recyclerView_agent;
 
     MyApplication applicationComponentClass;
@@ -79,6 +80,7 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
                 getBaseContext().getResources().getDisplayMetrics());
 
         setContentView(R.layout.transaction_history_branch);
+        setBackMenu();
 
     try {
 
@@ -156,7 +158,32 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
 
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 
     private void api_transactionHistory_agent() {
@@ -204,50 +231,57 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
-                                     userDetailBranch = new UserDetailBranch();
-
-
-
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
+                                    if (MyApplication.BranchCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
+                                        userDetailBranch = new UserDetailBranch();
 
-                                    if(jsonObject1.has("ownerName"))
-                                    {
 
-                                        String  ownerName = jsonObject1.getString("ownerName");
-                                        userDetailBranch.setOwnerName(ownerName);
+                                        if (jsonObject1.has("ownerName")) {
+
+                                            String ownerName = jsonObject1.getString("ownerName");
+                                            userDetailBranch.setOwnerName(ownerName);
+
+                                        }
+
+                                        if (jsonObject1.has("mobileNumber")) {
+                                            String mobileNumber = jsonObject1.getString("mobileNumber");
+
+                                            userDetailBranch.setMobileNumber(mobileNumber);
+
+                                        }
+
+                                        if (jsonObject1.has("email")) {
+                                            String email = jsonObject1.getString("email");
+
+                                            userDetailBranch.setEmail(email);
+                                        }
+                                        if (jsonObject1.has("issuingCountryName")) {
+                                            String issuingCountryName = jsonObject1.getString("issuingCountryName");
+                                            userDetailBranch.setIssuingCountryName(issuingCountryName);
+
+
+                                        }
+                                        if (jsonObject1.has("walletOwnerCode")) {
+
+                                            String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                            userDetailBranch.setWalletOwnerCode(walletOwnerCode);
+
+                                        }
+
+                                        if (jsonObject1.has("registerCountryCode")) {
+
+                                            String registerCountryCode = jsonObject1.getString("registerCountryCode");
+                                            userDetailBranch.setRegisterCountryCode(registerCountryCode);
+
+                                        }
+
+                                        arrayList_modalDetails.add(userDetailBranch);
 
                                     }
 
-                                    if(jsonObject1.has("mobileNumber"))
-                                    {
-                                        String  mobileNumber = jsonObject1.getString("mobileNumber");
-
-                                        userDetailBranch.setMobileNumber(mobileNumber);
-
-                                    }
-
-                                    if(jsonObject1.has("email"))
-                                    {
-                                        String  email = jsonObject1.getString("email");
-
-                                        userDetailBranch.setEmail(email);
-                                    }
-                                    if(jsonObject1.has("issuingCountryName"))
-                                    {
-                                        String  issuingCountryName = jsonObject1.getString("issuingCountryName");
-                                        userDetailBranch.setIssuingCountryName(issuingCountryName);
-
-
-                                    }
-
-                                    arrayList_modalDetails.add(userDetailBranch);
 
                                 }
-
-
-
-
                             }
 
 
@@ -258,8 +292,10 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
                         recyclerView_agent.setLayoutManager(new LinearLayoutManager(TransactionHistoryBranch.this));
 
-                        adpter= new SearchAdapteBranchDetails(TransactionHistoryBranch.this,arrayList_modalDetails);
+
+                        adpter = new SearchAdapteBranchDetails(TransactionHistoryBranch.this, arrayList_modalDetails, TransactionHistoryBranch.this);
                         recyclerView_agent.setAdapter(adpter);
+
 
                     }
 
@@ -375,5 +411,13 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    public void callBackReycleView(String walletOwnerCode, String registerCountryCode) {
+        Intent i = new Intent(TransactionHistoryBranch.this,TransactionHistoryBranchPage.class);
+        i.putExtra("WALLETOWNERCODE",walletOwnerCode);
+        i.putExtra("REGISTERCOUNTRYCODE",registerCountryCode);
+        startActivity(i);
     }
 }

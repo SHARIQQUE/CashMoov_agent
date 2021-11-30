@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="@dimen/_10sdp">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/imgLogo"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:srcCompat="@drawable/ic_notification"
+        app:tint="@color/colorPrimary"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_semibold"
+            android:text="@string/deposit"
+            android:textColor="@color/textcolorheading"
+            android:textSize="@dimen/_12sdp"
+            android:textAlignment="textStart"/>
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_regular"
+            android:text="@string/deposit"
+            android:textColor="@color/textColorBlack"
+            android:textSize="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textAlignment="textStart"/>
+        <TextView
+            android:id="@+id/tvCreationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_semibold"
+            android:text="11/07/2015"
+            android:textColor="@color/green_700"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_9sdp"
+            android:textAlignment="textEnd"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

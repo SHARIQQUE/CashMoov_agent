@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -70,7 +71,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
         tv_continue.setOnClickListener(this);
 
-
+        et_oldPin.setTransformationMethod(new HiddenPassTransformationMethod());
         et_oldPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -99,6 +100,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        et_newPin.setTransformationMethod(new HiddenPassTransformationMethod());
         et_newPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -127,6 +129,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        et_confirmPin.setTransformationMethod(new HiddenPassTransformationMethod());
         et_confirmPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

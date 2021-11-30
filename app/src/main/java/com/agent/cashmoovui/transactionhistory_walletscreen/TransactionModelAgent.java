@@ -3,6 +3,8 @@ package com.agent.cashmoovui.transactionhistory_walletscreen;
 public class TransactionModelAgent {
     public int id;
     public String code;
+    public String registerCountryCode;
+    public String registerCountryName;
     public String transactionId;
     public String transTypeCode;
     public String transTypeName;
@@ -38,9 +40,11 @@ public class TransactionModelAgent {
     public int srcPostBalance;
     public int destPostBalance;
 
-    public TransactionModelAgent(int id, String code, String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode, String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode, String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol, String desCurrencyCode, String desCurrencyName, String desCurrencySymbol, int transactionAmount, String tax, String resultCode, String resultDescription, String creationDate, String createdBy, String status, boolean transactionReversed, int srcMobileNumber, int destMobileNumber, boolean receiverBearer, String rechargeNumber, int fee, String taxTypeName, int value, int srcPreBalance, int destPreBalance, int srcPostBalance, int destPostBalance) {
+    public TransactionModelAgent(int id, String code, String registerCountryCode, String registerCountryName,String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode, String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode, String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol, String desCurrencyCode, String desCurrencyName, String desCurrencySymbol, int transactionAmount, String tax, String resultCode, String resultDescription, String creationDate, String createdBy, String status, boolean transactionReversed, int srcMobileNumber, int destMobileNumber, boolean receiverBearer, String rechargeNumber, int fee, String taxTypeName, int value, int srcPreBalance, int destPreBalance, int srcPostBalance, int destPostBalance) {
         this.id = id;
         this.code = code;
+        this.registerCountryCode = registerCountryCode;
+        this.registerCountryName = registerCountryName;
         this.transactionId = transactionId;
         this.transTypeCode = transTypeCode;
         this.transTypeName = transTypeName;
@@ -91,6 +95,22 @@ public class TransactionModelAgent {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getRegisterCountryCode() {
+        return registerCountryCode;
+    }
+
+    public void setRegisterCountryCode(String registerCountryCode) {
+        this.registerCountryCode = registerCountryCode;
+    }
+
+    public String getRegisterCountryName() {
+        return registerCountryName;
+    }
+
+    public void setRegisterCountryName(String registerCountryName) {
+        this.registerCountryName = registerCountryName;
     }
 
     public String getTransactionId() {

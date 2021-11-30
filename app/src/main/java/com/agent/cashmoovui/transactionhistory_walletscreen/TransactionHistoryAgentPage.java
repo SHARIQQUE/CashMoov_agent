@@ -22,20 +22,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.NotificationList;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.adapter.CurrencyListTransaction;
+import com.agent.cashmoovui.adapter.MiniStatementAgentTransAdapter;
 import com.agent.cashmoovui.adapter.MiniStatementTransAdapter;
 import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
+import com.agent.cashmoovui.listeners.AgentMiniStatemetListners;
 import com.agent.cashmoovui.listeners.MiniStatemetListners;
 import com.agent.cashmoovui.model.MiniStatementTrans;
-import com.agent.cashmoovui.model.transaction.CurrencyModel;
-import com.agent.cashmoovui.model.transaction.ModalUserDetails;
 import com.agent.cashmoovui.model.UserDetail;
-import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
+import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.settings.Profile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,16 +53,17 @@ import java.util.Locale;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class TransactionHistoryMainPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisners, MiniStatemetListners {
+public class TransactionHistoryAgentPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisners, AgentMiniStatemetListners {
 
-    SmoothBottomBar bottomBar;
     String searchStr="";
     EditText edittext_search;
-    ImageView imgNotification,imgQR,search_imageView;
-    TextView main_wallet_value_textview;
+    ImageView search_imageView;
+    ImageView imgBack,imgHome;
+
+    TextView tvName,main_wallet_value_textview;
     ArrayList<UserDetail> arrayList_modalDetails;
     CardView cardMainWallet,cardCommissionWallet,cardOverdraftWallet;
-
+    String walletOwnerCode,registerCountryCode;
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     TransactionListAdapterNew transactionListAdapterNew;
 
@@ -108,16 +108,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
 
-        setContentView(R.layout.transaction_history_mainpage);
+        setContentView(R.layout.transaction_history_agentpage);
 
-        bottomBar = findViewById(R.id.bottomBar);
-        imgNotification = findViewById(R.id.imgNotification);
-        imgNotification.setOnClickListener(this);
-        imgQR = findViewById(R.id.imgQR);
-        imgQR.setOnClickListener(this);
-
-        bottomBar.setItemActiveIndex(1);
-        bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        setBackMenu();
 
 
         cardMainWallet = findViewById(R.id.cardMainWallet);
@@ -145,51 +138,22 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         commision_wallet_textview =(TextView)findViewById(R.id.commision_wallet_textview);
         search_imageView =(ImageView) findViewById(R.id.search_imageView);
         search_imageView.setOnClickListener(this);
+        tvName = findViewById(R.id.tvName);
+        tvName.setText(getString(R.string.agent_details));
         overdraft_wallet_textview =(TextView)findViewById(R.id.overdraft_wallet_textview);
         main_wallet_value_textview =(TextView)findViewById(R.id.main_wallet_value_textview);
         commisionwallet_value_textview =(TextView)findViewById(R.id.commisionwallet_value_textview);
         overdraft_value_heding_textview =(TextView)findViewById(R.id.overdraft_value_heding_textview);
 
-        if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
-            insitute_textview.setClickable(false);
-        }
-        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.AgentCode)){
-            agent_textview.setClickable(false);
-            insitute_textview.setVisibility(View.GONE);
+        insitute_textview.setVisibility(View.GONE);
+        agent_textview.setVisibility(View.GONE);
+        insitute_branch.setVisibility(View.GONE);
 
-        }
-        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.BranchCode)){
-            insitute_branch.setClickable(false);
-            insitute_textview.setVisibility(View.GONE);
-            agent_textview.setVisibility(View.GONE);
+        if (getIntent().getExtras() != null) {
+            walletOwnerCode = (getIntent().getStringExtra("WALLETOWNERCODE"));
+            registerCountryCode = (getIntent().getStringExtra("REGISTERCOUNTRYCODE"));
         }
 
-        bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public boolean onItemSelect(int bottomId) {
-                if (bottomId == 0) {
-                    Intent i = new Intent(TransactionHistoryMainPage.this, MainActivity.class);
-                    startActivity(i);
-                    //  finish();
-                }
-                if (bottomId == 1) {
-
-
-
-//                    Intent i = new Intent(WalletScreen.this, WalletScreen.class);
-//                    startActivity(i);
-//                    finish();
-
-
-                }
-                if (bottomId == 2) {
-                    Intent i = new Intent(TransactionHistoryMainPage.this, Profile.class);
-                    startActivity(i);
-                    //  finish();
-                }
-                return true;
-            }
-        });
 
 
         edittext_search =(EditText)findViewById(R.id.edittext_search);
@@ -208,7 +172,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (new InternetCheck().isConnected(TransactionHistoryMainPage.this)) {
+                if (new InternetCheck().isConnected(TransactionHistoryAgentPage.this)) {
 
                     searchStr = edittext_search.getText().toString().trim();
 
@@ -216,7 +180,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
                 } else {
-                    Toast.makeText(TransactionHistoryMainPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    Toast.makeText(TransactionHistoryAgentPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -224,33 +188,52 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
 
-        if (new InternetCheck().isConnected(TransactionHistoryMainPage.this)) {
+        if (new InternetCheck().isConnected(TransactionHistoryAgentPage.this)) {
 
-            MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(TransactionHistoryAgentPage.this, getString(R.string.getting_user_info));
 
-            callApiFromCurrency(MyApplication.getSaveString("userCountryCode",TransactionHistoryMainPage.this));
+            callApiFromCurrency(registerCountryCode);
 
 
         } else {
-            Toast.makeText(TransactionHistoryMainPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+            Toast.makeText(TransactionHistoryAgentPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
         }
 
     }
 
-
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        bottomBar.setItemActiveIndex(1);
-        bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
     private void api_wallet_walletOwner() {
 
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
+       // String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryAgentPage.this);
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/wallet/walletOwner/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/wallet/walletOwner/"+walletOwnerCode,languageToUse,new Api_Responce_Handler() {
 
             @Override
             public void success(JSONObject jsonObject) {
@@ -278,7 +261,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
                     else {
-                        Toast.makeText(TransactionHistoryMainPage.this, resultDescription, Toast.LENGTH_LONG).show();
+                        Toast.makeText(TransactionHistoryAgentPage.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
@@ -286,7 +269,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(TransactionHistoryMainPage.this,e.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(TransactionHistoryAgentPage.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
@@ -297,7 +280,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             public void failure(String aFalse) {
 
                 MyApplication.hideLoader();
-                Toast.makeText(TransactionHistoryMainPage.this, aFalse, Toast.LENGTH_SHORT).show();
+                Toast.makeText(TransactionHistoryAgentPage.this, aFalse, Toast.LENGTH_SHORT).show();
                 finish();
 
             }
@@ -309,7 +292,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     private void getTransactionList() {
 
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
+        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryAgentPage.this);
 
 
         API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis+"&offset=0&limit=100", new Api_Responce_Handler() {
@@ -376,7 +359,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                     }
                 }else{
-                    MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
+                    MyApplication.showToast(TransactionHistoryAgentPage.this,jsonObject.optString("resultDescription"));
                 }
 
 
@@ -384,14 +367,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
             @Override
             public void failure(String aFalse) {
-                MyApplication.showToast(TransactionHistoryMainPage.this,aFalse);
+                MyApplication.showToast(TransactionHistoryAgentPage.this,aFalse);
             }
         });
     }
 
     private void setDatas(List<TransactionModel> transactionList) {
 
-        transactionListAdapterNew = new TransactionListAdapterNew(TransactionHistoryMainPage.this,transactionList);
+        transactionListAdapterNew = new TransactionListAdapterNew(TransactionHistoryAgentPage.this,transactionList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(transactionListAdapterNew);
@@ -468,7 +451,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     }
 
                                 } else {
-                                    MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
+                                    MyApplication.showToast(TransactionHistoryAgentPage.this,jsonObject.optString("resultDescription"));
                                 }
 
                             }
@@ -488,7 +471,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     }
 
     private void setData(List<MiniStatementTrans> miniStatementTransList){
-        MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryMainPage.this,miniStatementTransList);
+        MiniStatementAgentTransAdapter miniStatementTransAdapter = new MiniStatementAgentTransAdapter(TransactionHistoryAgentPage.this,miniStatementTransList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(miniStatementTransAdapter);
@@ -509,14 +492,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ocode;
                 callApiMiniStatementTrans(walletCode,"100011");
                 break;
-            case R.id.imgNotification:
-                Intent in = new Intent(TransactionHistoryMainPage.this, NotificationList.class);
-                startActivity(in);
-                break;
-            case R.id.imgQR:
-                Intent intent = new Intent(TransactionHistoryMainPage.this, ShowProfileQr.class);
-                startActivity(intent);
-                break;
+//            case R.id.imgQR:
+//                Intent intent = new Intent(TransactionHistoryAgentPage.this, ShowProfileQr.class);
+//                startActivity(intent);
+//                break;
 
             case R.id.search_imageView:
 
@@ -526,14 +505,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
             case R.id.agent_textview:
 
-                Intent i = new Intent(TransactionHistoryMainPage.this, TransactionHistoryAgent.class);
+                Intent i = new Intent(TransactionHistoryAgentPage.this, TransactionHistoryAgent.class);
                 startActivity(i);
 
                 break;
 
             case R.id.insitute_branch:
 
-                Intent iiiii = new Intent(TransactionHistoryMainPage.this, TransactionHistoryBranch.class);
+                Intent iiiii = new Intent(TransactionHistoryAgentPage.this, TransactionHistoryBranch.class);
                 startActivity(iiiii);
 
                 break;
@@ -562,7 +541,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     api_wallet_walletOwner();
 
                                 } else {
-                                    MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription", "  "));
+                                    MyApplication.showToast(TransactionHistoryAgentPage.this,jsonObject.optString("resultDescription", "  "));
                                 }
                             }
 
@@ -690,7 +669,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         }
 
-        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
+        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryAgentPage.this, MyApplication.currencyModelArrayList);
         spinner_currency.setAdapter(arraadapter2);
 
 
@@ -713,7 +692,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
        // getTransactionList();
 
-       // callApiMiniStatementTrans(walletCode,"100008");
+      //  callApiMiniStatementTrans(walletCode,"100008");
 
     }
 
@@ -773,7 +752,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 catch (Exception e)
                 {
                     e.printStackTrace();
-                    Toast.makeText(TransactionHistoryMainPage.this, e.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(TransactionHistoryAgentPage.this, e.toString(), Toast.LENGTH_LONG).show();
 
                 }
 
@@ -791,7 +770,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     @Override
     public void onTransactionViewItemClick(String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, int postBalance, String status) {
-        Dialog dialog = new Dialog(TransactionHistoryMainPage.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
+        Dialog dialog = new Dialog(TransactionHistoryAgentPage.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
         dialog.setContentView(R.layout.dialog_view_trans_details);
 
         //get ids
@@ -845,14 +824,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
+    public void onAgentMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
         String name="";
         if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
             name = walletOwnerMsisdn;
         }else{
             name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
         }
-        Intent intent = new Intent(TransactionHistoryMainPage.this, WalletTransactionDetails.class);
+        Intent intent = new Intent(TransactionHistoryAgentPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",name);
         intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.agent.cashmoovui.activity.NotificationList;
 import com.agent.cashmoovui.activity.ServiceCharge;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
@@ -40,7 +41,7 @@ import me.ibrahimsn.lib.SmoothBottomBar;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     SmoothBottomBar bottomBar;
-    ImageView imgQR;
+    ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance;
     LinearLayout ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_serviceCharge;
@@ -91,7 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         bottomBar = findViewById(R.id.bottomBar);
-
+        imgNotification = findViewById(R.id.imgNotification);
+        imgNotification.setOnClickListener(this);
         imgQR = findViewById(R.id.imgQR);
         imgQR.setOnClickListener(this);
 
@@ -200,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Intent i;
         switch (view.getId()) {
+            case R.id.imgNotification:
+                i = new Intent(MainActivity.this, NotificationList.class);
+                startActivity(i);
+                break;
             case R.id.imgQR:
                 i = new Intent(MainActivity.this, ShowProfileQr.class);
                 startActivity(i);

@@ -57,10 +57,8 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
         viewHolder.click_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-                callBackRecycleViewClick.callBackReycleView(arrayList_modalUserData.get(i).getWalletOwnerCode());
+                callBackRecycleViewClick.callBackReycleView(arrayList_modalUserData.get(i).getWalletOwnerCode(),
+                        arrayList_modalUserData.get(i).getRegisterCountryCode());
 
             }
         });

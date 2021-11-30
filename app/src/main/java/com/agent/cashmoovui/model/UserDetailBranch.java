@@ -6,6 +6,8 @@ public class UserDetailBranch {
     private String mobileNumber="";
     private String email="";
     private String issuingCountryName="";
+    private String walletOwnerCode="";
+    private String registerCountryCode="";
 
     public String getOwnerName() {
         return ownerName;
@@ -37,5 +39,21 @@ public class UserDetailBranch {
 
     public void setIssuingCountryName(String issuingCountryName) {
         this.issuingCountryName = issuingCountryName;
+    }
+
+    public String getWalletOwnerCode() {
+        return walletOwnerCode;
+    }
+
+    public void setWalletOwnerCode(String walletOwnerCode) {
+        this.walletOwnerCode = walletOwnerCode;
+    }
+
+    public String getRegisterCountryCode() {
+        return registerCountryCode;
+    }
+
+    public void setRegisterCountryCode(String registerCountryCode) {
+        this.registerCountryCode = registerCountryCode;
     }
 }

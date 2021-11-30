@@ -22,6 +22,7 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -97,6 +98,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         tv_fingurePrint.setOnClickListener(this);
 
         ll_password = (LinearLayout) findViewById(R.id.ll_password);
+
+        et_password.setTransformationMethod(new HiddenPassTransformationMethod());
 
         et_password.setOnTouchListener(new View.OnTouchListener() {
             @Override

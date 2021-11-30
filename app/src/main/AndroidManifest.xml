@@ -118,8 +118,10 @@ x
         <activity android:name=".transactionhistory_walletscreen.WalletTransactionDetails"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryBranch"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryAgent"></activity>
+        <activity android:name=".transactionhistory_walletscreen.TransactionHistoryAgentPage"></activity>
+        <activity android:name=".transactionhistory_walletscreen.TransactionHistoryBranchPage"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryAgentRecycleClick"></activity>
-
+        <activity android:name=".activity.NotificationList"></activity>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"

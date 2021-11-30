@@ -8,12 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.listeners.AgentMiniStatemetListners;
 import com.agent.cashmoovui.listeners.MiniStatemetListners;
 import com.agent.cashmoovui.model.MiniStatementTrans;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryAgentPage;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -23,15 +27,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatementTransAdapter.ViewHolder>{
+public class MiniStatementAgentTransAdapter extends RecyclerView.Adapter<MiniStatementAgentTransAdapter.ViewHolder>{
     private Context context;
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
-    private MiniStatemetListners miniStatemetListners;
+    private AgentMiniStatemetListners miniStatemetListners;
 
-    public MiniStatementTransAdapter(Context context, List<MiniStatementTrans> miniStatementTransList) {
+    public MiniStatementAgentTransAdapter(Context context, List<MiniStatementTrans> miniStatementTransList) {
         this.context = context;
         this.miniStatementTransList = miniStatementTransList;
-        miniStatemetListners = (MiniStatemetListners) context;
+        miniStatemetListners = (AgentMiniStatemetListners) context;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -110,27 +114,28 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(miniStatementTrans.getCode()!=null)
+              //  if(miniStatementTrans.getCode()!=null)
+                //MyApplication.showToast((TransactionHistoryAgentPage)context,miniStatementTrans.getFromWalletOwnerName());
 
                     if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                        miniStatemetListners.onAgentMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
                                 miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
                                 miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
                         return;
                     }
                     if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-                        miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                        miniStatemetListners.onAgentMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
                                 miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
                                 miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
                         return;
                     }
-                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+
+                 miniStatemetListners.onAgentMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                         miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
                         miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
                         miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
-
 
             }
         });
