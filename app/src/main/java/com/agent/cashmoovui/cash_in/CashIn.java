@@ -1,7 +1,9 @@
 package com.agent.cashmoovui.cash_in;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -20,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,6 +33,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
@@ -36,6 +41,7 @@ import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.agent.cashmoovui.settings.EditProfile;
 import com.agent.cashmoovui.transfer_float.SellFloat;
+import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -55,6 +61,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     boolean  isPasswordVisible;
 
     String agentCode_subscriber="";
+    private static final int REQUEST_CODE_QR_SCAN = 101;
 
 
 
@@ -1099,11 +1106,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             case R.id.qrCode_imageButton: {
 
 
-                IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-                intentIntegrator.setPrompt("Scan a barcode or QR Code");
-                intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.initiateScan();
-
+                qrScan();
 
             }
 
@@ -1130,62 +1133,93 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    public void qrScan(){
+
+        Intent i = new Intent(CashIn.this, QrCodeActivity.class);
+        startActivityForResult( i,REQUEST_CODE_QR_SCAN);
+    }
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        try {
-
-            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
+            if (data == null)
+                return;
+            //Getting the passed result
+            String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
             if (result != null) {
-
-                System.out.println(resultCode);
-
-                if (result.getContents() == null) {
-
-                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-                }
-
-                else {
-
-
-                    String str = result.getContents();
-
-                    if (str.equalsIgnoreCase("")) {
-                        // 1000002786:TarunMwTest
-
-                        Toast.makeText(this, "QR Code Not Valid", Toast.LENGTH_LONG).show();
-                        edittext_mobileNuber.setEnabled(true);
-
-                    }
-                    else {
-
-
-                        String[] qrData = str.split("\\:");
-                        mobileNoStr=qrData[0];
-                        edittext_mobileNuber.setText(mobileNoStr);
-                        edittext_mobileNuber.setEnabled(false);
-
-
-
-                        // Toast.makeText(this, "QR Code  Valid", Toast.LENGTH_LONG).show();
-                    }
-
-                }
-
-            } else {
-                super.onActivityResult(requestCode, resultCode, data);
+                AlertDialog alertDialog = new AlertDialog.Builder(CashIn.this).create();
+                alertDialog.setTitle(getString(R.string.scan_error));
+                alertDialog.setMessage(getString(R.string.val_scan_error_content));
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
+            return;
 
-
-        } catch (Exception e) {
-
-            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-
-            e.printStackTrace();
         }
 
+
+        if (requestCode == REQUEST_CODE_QR_SCAN) {
+
+            if (data == null)
+                return;
+            //Getting the passed result
+            String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
+            Log.d("LOGTAG", "Have scan result in your app activity :" + result);
+
+            String[] date=result.split(":");
+
+            callwalletOwnerDetailsQR(date[0]);
+
+
+
+        }
     }
+
+    public void callwalletOwnerDetailsQR(String Code){
+
+        API.GET("ewallet/api/v1/walletOwner/"+Code, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+
+                    mobileNoStr = jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A");
+
+                    edittext_mobileNuber.setText(mobileNoStr);
+                    edittext_mobileNuber.setEnabled(false);
+
+                    rp_tv_businessType.setText(jsonObject.optJSONObject("walletOwner").optString("businessTypeName"));
+
+                    //  callwalletOwnerCountryCurrency();
+                }else{
+
+                    MyApplication.showToast(CashIn.this,jsonObject.optString("resultDescription"));
+                    mobileNoStr="";
+                    edittext_mobileNuber.setText("");
+
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(CashIn.this,aFalse);
+            }
+        });
+    }
+
+
+
 
     @Override
     public void onBackPressed() {
