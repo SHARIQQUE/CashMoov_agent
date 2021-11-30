@@ -583,6 +583,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -1592,6 +1593,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp">
 
@@ -1633,6 +1635,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp">
 
@@ -1925,7 +1928,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="left"
                 android:textStyle="bold"
-                android:text="@string/senderName_receiptPage"
+                android:text="@string/sender_info_colon"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/blue_colour_review"
                 android:textSize="20dp" />
@@ -2033,7 +2036,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="left"
                 android:textStyle="bold"
-                android:text="@string/receiverName_receiptPage"
+                android:text="@string/receiver_info_colon"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/blue_colour_review"
                 android:textSize="20dp" />

@@ -556,7 +556,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         try{
 
 
-            API.GET("/ewallet/api/v1/walletOwner/"+userCode,new Api_Responce_Handler() {
+            API.GET("ewallet/api/v1/walletOwner/"+userCode,new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -573,26 +573,52 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         if(resultCode.equalsIgnoreCase("0")) {
 
 
-                            JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+                            JSONObject walletOwner = jsonObject.getJSONObject("walletOwner");
+//
+//                            String EMAIL = walletOwnerUser.getString("email");
+//                            String USERCODE = walletOwnerUser.getString("userCode");
+//                            String CODE_AGENT = walletOwnerUser.getString("code");
+//                            String NTTYPECODE = walletOwnerUser.getString("notificationTypeCode");
+//
+//
+//
+                            if(walletOwner.has("registerCountryName")){
+                                MyApplication.saveString("COUNTRY_NAME_USERINFO", walletOwner.getString("registerCountryName"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("COUNTRY_NAME_USERINFO", "", LoginMsis.this);
+                            }
 
-                            String EMAIL = walletOwnerUser.getString("email");
-                            String USERCODE = walletOwnerUser.getString("userCode");
-                            String CODE_AGENT = walletOwnerUser.getString("code");
-                            String NTTYPECODE = walletOwnerUser.getString("notificationTypeCode");
-                            String firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+
+                            if(walletOwner.has("registerCountryCode")){
+                                MyApplication.saveString("COUNTRY_CODE_USERINFO", walletOwner.getString("registerCountryCode"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("COUNTRY_CODE_USERINFO", "", LoginMsis.this);
+                            }
+//
+//
+//                            MyApplication.saveString("USERNAME", strPhoneNo, LoginMsis.this);
+//                            MyApplication.saveString("PASSWORD", strPasword, LoginMsis.this);
+//                            MyApplication.saveString("CODE_AGENT", CODE_AGENT, LoginMsis.this);
+//                            MyApplication.saveString("EMAIL", EMAIL, LoginMsis.this);
+//                            MyApplication.saveString("USERCODE", USERCODE, LoginMsis.this);
+//                            MyApplication.saveString("NTTYPECODE", NTTYPECODE, LoginMsis.this);
+//
+//
+//
+
+                            if(walletOwner.has("ownerName")){
+                                  MyApplication.saveString("FIRSTNAME_USERINFO", walletOwner.getString("ownerName"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("FIRSTNAME_USERINFO", "", LoginMsis.this);
+                            }
+
+                            if(walletOwner.has("lastName")){
+                                MyApplication.saveString("LASTNAME_USERINFO", walletOwner.getString("lastName"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("LASTNAME_USERINFO", "", LoginMsis.this);
+                            }
 
 
-                            String countryCode_agent = walletOwnerUser.getString("registerCountryCode");
-                            String countryName_agent = walletOwnerUser.getString("registerCountryName");
-                            // MyApplication.getSaveString("COUNTRYCODE_AGENT"
-                            MyApplication.saveString("COUNTRYNAME_AGENT", countryName_agent, LoginMsis.this);
-                            MyApplication.saveString("COUNTRYCODE_AGENT", countryCode_agent, LoginMsis.this);
-                            MyApplication.saveString("USERNAME", strPhoneNo, LoginMsis.this);
-                            MyApplication.saveString("PASSWORD", strPasword, LoginMsis.this);
-                            MyApplication.saveString("CODE_AGENT", CODE_AGENT, LoginMsis.this);
-                            MyApplication.saveString("EMAIL", EMAIL, LoginMsis.this);
-                            MyApplication.saveString("USERCODE", USERCODE, LoginMsis.this);
-                            MyApplication.saveString("NTTYPECODE", NTTYPECODE, LoginMsis.this);
                             Intent i = new Intent(LoginMsis.this, MainActivity.class);
                             startActivity(i);
                             finish();
@@ -683,6 +709,13 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                 Toast.makeText(LoginMsis.this, "Invalid pin", Toast.LENGTH_LONG).show();
 
                             }
+
+                            else if (jsonObject.getString("error_message").equalsIgnoreCase("User Not Found")) {
+
+
+                                Toast.makeText(LoginMsis.this, "User Not Found", Toast.LENGTH_LONG).show();
+
+                            }
                         }
 
                         else
@@ -759,7 +792,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
 
 
-                                userInfo_api(jsonObject.optString("userCountryCode"));
+                                userInfo_api(jsonObject.optString("walletOwnerCode"));
+
                                  Toast.makeText(LoginMsis.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             }
                  }

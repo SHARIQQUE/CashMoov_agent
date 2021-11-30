@@ -105,6 +105,7 @@
 
             <EditText
                 android:id="@+id/et_fp_senderName"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -292,6 +293,22 @@
                 android:text="@string/destination_details"
                 />
 
+            <EditText
+                android:id="@+id/edittext_mobileNuber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="number"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="@string/please_enter_mobileno"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
 
             <EditText
                 android:id="@+id/et_fp_desinationName"
@@ -325,21 +342,7 @@
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/edittext_mobileNuber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="number"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/please_enter_mobileno"
-                android:textColor="#323232"
-                android:textSize="15sp" />
+
 
             <EditText
                 android:id="@+id/edittext_email_destination"
@@ -440,6 +443,7 @@
                 android:gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
@@ -1374,6 +1378,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp">
 
@@ -1415,6 +1420,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp">
 
@@ -1662,7 +1668,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="left"
                 android:textStyle="bold"
-                android:text="@string/senderName_receiptPage"
+                android:text="@string/sender_info_colon"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/blue_colour_review"
                 android:textSize="20dp" />
@@ -1690,7 +1696,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/senderName_receiptPage"
+                android:text="@string/name_receiptPage"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
@@ -1767,7 +1773,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="left"
                 android:textStyle="bold"
-                android:text="@string/receiverName_receiptPage"
+                android:text="@string/receiver_info_colon"
                 android:layout_marginLeft="10dp"
                 android:textColor="@color/blue_colour_review"
                 android:textSize="20dp" />

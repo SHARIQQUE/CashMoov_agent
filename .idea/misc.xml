@@ -141,7 +141,7 @@
         <entry key="app/src/main/res/layout/activity_wallet_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/airtime_purchases.xml" value="0.25" />
         <entry key="app/src/main/res/layout/alert_dialogue_sellfloat.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cash_to_wallet.xml" value="0.22" />
         <entry key="app/src/main/res/layout/cashout_agent.xml" value="0.22" />
         <entry key="app/src/main/res/layout/change_pin.xml" value="0.25" />
@@ -153,12 +153,12 @@
         <entry key="app/src/main/res/layout/include_home_screen.xml" value="0.21" />
         <entry key="app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/include_wallet_screen.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/international_ramittance.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_transaction_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_transaction_list_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_transaction_list_new_agent.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/language_choose.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.33" />
         <entry key="app/src/main/res/layout/login_msis.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_with_pin.xml" value="0.22" />

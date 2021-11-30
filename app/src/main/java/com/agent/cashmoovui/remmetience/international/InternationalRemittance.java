@@ -47,6 +47,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 
 import org.json.JSONArray;
@@ -63,6 +64,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     boolean  isPasswordVisible;
 
+    String FIRSTNAME_USERINFO="";
+    String LASTNAME_USERINFO="";
 
     static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
@@ -71,7 +74,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     EditText etFront,etBack;
 
 
-    String  exchangeRateCode_from_tax_api="",countryName_mssis_agent="",countryCode_mssis_agent="",email_destination="",firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
+    String  exchangeRateCode_from_tax_api="",COUNTRY_NAME_USERINFO="",COUNTRY_CODE_USERINFO="",email_destination="",firstName_sender_from_walletOwnerUser="",lastName_sender_from_walletOwnerUser="",
             email_sender_from_walletOwnerUser="",idProofTypeCode_sender_from_walletOwnerUser="",idProofNumber_sender_from_walletOwnerUser=""
             ,idExpiryDate_sender_from_walletOwnerUser="",dateOfBirth_sender_from_walletOwnerUser="",
             regionCode_sender_from_walletOwnerUser="",city_sender_from_walletOwnerUser="",address_sender_from_walletOwnerUser,mobileNumber_sender_from_walletOwnerUser="",gender_sender_from_allByCriteria="";
@@ -132,7 +135,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
     String mobileNoStr = "", amountstr = "",genderSelect_name = "",provider_select_name = "", genderSelect_code = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
-    String firstname_destinationStr="",amountToPayStr="",tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
+    String lastname_destinationStr="",amountToPayStr="",tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "", convertionFeesStr="",reasonOfSending="",receivercode_from_receiverAPi="",senderCode_from_senderApi="";
@@ -340,8 +343,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", InternationalRemittance.this);
-            countryName_mssis_agent = MyApplication.getSaveString("COUNTRYNAME_AGENT", InternationalRemittance.this);
-            countryCode_mssis_agent = MyApplication.getSaveString("COUNTRYCODE_AGENT", InternationalRemittance.this);
+            COUNTRY_NAME_USERINFO = MyApplication.getSaveString("COUNTRY_NAME_USERINFO", InternationalRemittance.this);
+            COUNTRY_CODE_USERINFO = MyApplication.getSaveString("COUNTRY_CODE_USERINFO", InternationalRemittance.this);
 
 
 
@@ -384,6 +387,42 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                     return false;
                 }
             });
+
+            edittext_mobileNuber.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(InternationalRemittance.this)) {
+
+                        mobileNoStr = edittext_mobileNuber.getText().toString().trim();
+
+                        if (mobileNoStr.length()>6) {
+
+                            api_subscriber_details();
+
+                        }
+
+                        else {
+                            edittext_mobileNuber.setHint(getString(R.string.please_enter_mobileno));;
+                        }
+
+                    } else {
+                        Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
 
 
 
@@ -430,6 +469,100 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
     }
+
+    private void api_subscriber_details() {
+
+        String walletOwnerCategoryCode =  MyApplication.getSaveString("walletOwnerCategoryCode", InternationalRemittance.this);
+
+        walletOwnerCategoryCode ="100010"; // HARD CODE FINAL ACORDING TO PARVEEN
+
+
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+mobileNoStr+"&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                            walletOwnerCode_subs = jsonObject2.getString("walletOwnerCode");
+
+                            email_destination = jsonObject2.getString("email");
+                            edittext_email_destination.setText(email_destination);
+
+                            if(jsonObject2.has("ownerName"))
+                            {
+                                name_destinationStr = jsonObject2.getString("ownerName");
+                                et_fp_desinationName.setText(name_destinationStr);
+                            }
+
+                            if(jsonObject2.has("lastName"))
+                            {
+                                lastname_destinationStr = jsonObject2.getString("lastName");
+                                et_fp_firstNameDestination.setText(lastname_destinationStr);
+                            }
+
+
+
+
+                            genderSelect_name = jsonObject2.getString("gender");
+                            if(genderSelect_name.equalsIgnoreCase("M"))
+                            {
+                                genderSelect_name = "Male";
+                                genderSelect_code = "M";
+                            }
+                            else {
+                                genderSelect_name = "Female";
+                                genderSelect_code = "F";
+                            }
+
+                        }
+
+
+                    }
+
+                    else {
+
+                        Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                        //  finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(InternationalRemittance.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -520,7 +653,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
                         for (int i = 0; i < arrayList_senderCountryDetails.size(); i++) {
-                            if (countryName_mssis_agent.equalsIgnoreCase(arrayList_senderCountryDetails.get(i).getCountryName_sender()))
+                            if (COUNTRY_NAME_USERINFO.equalsIgnoreCase(arrayList_senderCountryDetails.get(i).getCountryName_sender()))
                             {
                                 spinner_senderCountry.setSelection(i);
                                 spinner_senderCountry.setEnabled(false);
@@ -862,6 +995,16 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         CustomeBaseAdapterGender recordAdapter = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_genderName);
                         spinner_gender.setAdapter(recordAdapter);
 
+                        for (int i = 0; i < arrayList_genderCode.size(); i++) {
+                            if (genderSelect_code.equalsIgnoreCase(arrayList_genderCode.get(i)))
+                            {
+                                spinner_gender.setSelection(i);
+
+                                //  spinner_gender.setEnabled(false);
+
+                            }
+                        }
+
 
                         String provided_array[] = getResources().getStringArray(R.array.Spinner_provider);
                         CustomeBaseAdapterProvided recordAdapter2 = new CustomeBaseAdapterProvided(InternationalRemittance.this, provided_array);
@@ -969,7 +1112,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         amountstr = edittext_amount.getText().toString().trim();
         amountToPayStr = edittext_amount_pay.getText().toString().trim();
         name_destinationStr = et_fp_desinationName.getText().toString().trim();
-        firstname_destinationStr = et_fp_firstNameDestination.getText().toString().trim();
+        lastname_destinationStr = et_fp_firstNameDestination.getText().toString().trim();
         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
         email_destination = edittext_email_destination.getText().toString().trim();
 
@@ -1055,7 +1198,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         }
 
 
-        else if (firstname_destinationStr.trim().length() < 2) {
+        else if (lastname_destinationStr.trim().length() < 2) {
 
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_firstName));
 
@@ -1468,7 +1611,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     private void api_allByCriteria() {
 
-        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?firstName="+firstname_destinationStr+"%20&countryCode=" + "100092", languageToUse, new Api_Responce_Handler() {
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?firstName="+name_destinationStr+"%20&countryCode=" + "100092", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1482,8 +1625,12 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     rp_tv_agentCode.setText(MyApplication.getSaveString("USERCODE", InternationalRemittance.this));
-                    rp_tv_sender_id.setText(senderCode_from_senderApi);
-                    rp_tv_benificicaryCode.setText(receivercode_from_receiverAPi);
+
+
+
+                    rp_tv_sender_id.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
+
+                    rp_tv_benificicaryCode.setText(mobileNoStr);
                     rp_tv_senderDocument.setText("on image available");     // Temporary hard code no Option on First Page
 
                     rp_tv_sending_currency.setText(select_sender_currencyName);
@@ -1650,7 +1797,6 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_amount_to_be_charged.setText(select_sender_currencySymbol+ " "+totalAmount_str);
 
 
-                            receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
 
 
                             receiptPage_tv_senderCountry.setText(select_sender_CountryName);
@@ -1660,7 +1806,14 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
 
-                            receiptPage_tv_receiver_name.setText(name_destinationStr);
+
+                            FIRSTNAME_USERINFO = MyApplication.getSaveString("FIRSTNAME_USERINFO", InternationalRemittance.this);
+                            LASTNAME_USERINFO = MyApplication.getSaveString("LASTNAME_USERINFO", InternationalRemittance.this);
+                            receiptPage_tv_sender_name.setText(FIRSTNAME_USERINFO +" "+LASTNAME_USERINFO);
+
+
+                            receiptPage_tv_receiver_name.setText( name_destinationStr +" "+lastname_destinationStr);
+
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
 
 
@@ -1789,7 +1942,11 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         amountstr = String.valueOf(amountstr_double);
                         rp_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
+
                         rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+                        receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
 
                         amountTobeCharged_first_page.setText(select_sender_currencySymbol+ " "+totalAmount_str);
 
@@ -2001,8 +2158,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 //            }
 
 
-            jsonObject.put("firstName", firstname_destinationStr);
-            jsonObject.put("lastName", ""); // No in UI
+            jsonObject.put("firstName", name_destinationStr);
+            jsonObject.put("lastName", lastname_destinationStr); // No in UI
 
 
             jsonObject.put("email", email_destination);    // No in UI

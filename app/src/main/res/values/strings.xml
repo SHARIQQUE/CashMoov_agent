@@ -545,6 +545,8 @@
     <string name="plz_enter_old_pin">Please enter old pin</string>
     <string name="plz_enter_new_pin">Please enter new pin</string>
     <string name="plz_confirm_new_pin">Please enter confirm pin</string>
+    <string name="scan_error">Scan Error</string>
+    <string name="val_scan_error_content">QR Code could not be scanned</string>
 
     <string name="new_coinfirm_should_be_same">New pin and Confirm  pin should be same</string>
     <string name="view_balance">View balance</string>
@@ -709,6 +711,8 @@
     <string name="receiving_country">Receiving country </string>
     <string name="valid_select_city">Select City*</string>
     <string name="val_select_city">Please select city</string>
+    <string name="sender_info_colon">Sender info:</string>
+    <string name="receiver_info_colon">Receiver info:</string>
 
 
 </resources>

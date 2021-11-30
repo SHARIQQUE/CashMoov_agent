@@ -61,6 +61,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String walletOwnerCode="";
 
     EditText etPin;
+    LinearLayout linear_layout_businessType;
     TextView tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
@@ -123,6 +124,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
+            linear_layout_businessType = (LinearLayout) findViewById(R.id.linear_layout_businessType);
 
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
@@ -326,7 +328,18 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     if (resultCode.equalsIgnoreCase("0")) {
 
                         JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
-                        rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
+
+                        if(jsonObject_walletOwner.has("businessTypeName"))
+                        {
+                            if(jsonObject_walletOwner.getString("businessTypeName").equalsIgnoreCase(""))
+                            {
+                                rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
+                                linear_layout_businessType.setVisibility(View.VISIBLE);
+                            }
+                            else {
+                                linear_layout_businessType.setVisibility(View.GONE);
+                            }
+                        }
 
                     } else {
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();

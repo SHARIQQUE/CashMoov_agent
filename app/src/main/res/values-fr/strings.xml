@@ -540,6 +540,8 @@
 
     <string name="enter_confirm_pin">Entrez confirmer le code PIN</string>
     <string name="plz_confirm_new_pin">Veuillez entrer confirmer le code PIN</string>
+    <string name="scan_error">Echec Scanning</string>
+    <string name="val_scan_error_content">le QR code ne peut pas etre scanne</string>
 
     <string name="new_coinfirm_should_be_same">La nouvelle broche et la broche de confirmation doivent être identiques</string>
     <string name="view_balance">Voir le solde</string>
@@ -707,6 +709,8 @@
     <string name="valid_select_city">Sélectionnez une ville*</string>
     <string name="val_select_city">Veuillez sélectionner la ville</string>
 
+    <string name="sender_info_colon">Informations sur l\'expéditeur:</string>
+    <string name="receiver_info_colon">Informations sur le récepteur:</string>
 
 </resources>
 
