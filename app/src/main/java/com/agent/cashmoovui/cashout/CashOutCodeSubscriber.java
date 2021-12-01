@@ -878,7 +878,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
 
-                            receiptPage_sender_mssidn.setText(mobileNoStr);
+                            receiptPage_sender_mssidn.setText(MyApplication.getSaveString("USERNAME", CashOutCodeSubscriber.this));
 
 
 
@@ -902,7 +902,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
 
 
-                            receiptPage_sbenificairay_mssidn.setText(MyApplication.getSaveString("USERNAME", CashOutCodeSubscriber.this));
+                            receiptPage_sbenificairay_mssidn.setText(mobileNoStr);
 
 
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender+ " " +amountstr);
