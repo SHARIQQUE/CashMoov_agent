@@ -721,6 +721,7 @@
     <string name="send_remittance">Send Remittance</string>
     <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
     <string name="mobile_recharge">Mobile Recharge</string>
+    <string name="wallet_owner_name">Wallet owner name</string>
 
 
 </resources>

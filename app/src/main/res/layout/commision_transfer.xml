@@ -47,12 +47,12 @@
 
    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_15sdp">
+     >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:textColor="#29304d"
                     android:fontFamily="@font/aileron_semibold"
@@ -193,30 +194,17 @@
                     android:layout_weight="4">
 
 
-                    <TextView
-
-                        android:layout_width="101dp"
+                    <Spinner
+                        android:id="@+id/spinner_currency"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="@string/currency_Name"
-                        android:textSize="@dimen/_14sdp"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="@dimen/_30sdp"
+
+                        android:background="@drawable/spinner_background"
+                        android:textColor="#323232"
                         />
 
-                    <TextView
-
-                        android:layout_width="86dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-
-                        android:text="GNF"
-                        android:textSize="@dimen/_14sdp"
-                        />
 
 
                 </LinearLayout>
@@ -390,7 +378,6 @@
                     android:textColor="#ffffff"
                     android:lineSpacingExtra="3sp"
                     android:layout_marginTop="36dp"
-                    android:layout_marginBottom="130dp"
                     android:background="@drawable/btn_blue"
                     android:layout_gravity="center"
                     android:paddingTop="20dp"
@@ -401,9 +388,72 @@
                     />
 
 
+       <LinearLayout
+           android:id="@+id/linearLayout_record"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/_10sdp"
+           android:weightSum="3"
+
+           android:orientation="horizontal">
+
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+
+               android:layout_gravity="center"
+               android:textSize="@dimen/_14sdp"
+               android:text="Show"
+               android:textStyle="bold" />
+
+           <Spinner
+               android:id="@+id/spinner_record"
+               android:layout_width="wrap_content"
+               android:layout_weight="1"
+               android:textSize="@dimen/_14sdp"
+               android:layout_marginLeft="@dimen/_10sdp"
+
+               android:layout_height="40dp" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_weight="1"
+               android:layout_marginLeft="@dimen/_10sdp"
+               android:textSize="@dimen/_14sdp"
+
+
+               android:text="Entries"
+               android:textStyle="bold" />
+
+
+
+
+       </LinearLayout>
+
+
+
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recyclerView"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/_10sdp"
+           />
+
+
+
+
             </LinearLayout>
 
+
+
         </LinearLayout>
+
+
             <!--    success  Receive -->
 
             <LinearLayout

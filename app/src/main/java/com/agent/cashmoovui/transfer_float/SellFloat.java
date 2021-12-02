@@ -3,6 +3,7 @@ package com.agent.cashmoovui.transfer_float;
 import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_allSellFloat_featureCode;
 import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_walletOwnerCategoryCode;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +39,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.CommonBaseAdapter;
 import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
+import com.agent.cashmoovui.adapter.CustomeBaseAdapterProvided;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterReceiveCurrency;
 import com.agent.cashmoovui.adapter.RecordAdapter;
 import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
@@ -50,12 +53,14 @@ import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
+import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.agent.cashmoovui.transactionhistory_walletscreen.CallBackRecycleViewClick;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
+import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -398,7 +403,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             if(jsonObject3.has("ownerName"))
                             {
                                 ownerNameTemp = jsonObject3.getString("ownerName");
-                                arrayList_instititueName.add(ownerNameTemp);
+
+                                String mobileNumber_temp = jsonObject3.getString("mobileNumber");
+
+                                arrayList_instititueName.add(ownerNameTemp +"("+ mobileNumber_temp+")");
                             }
 
                             if(jsonObject3.has("mobileNumber"))
@@ -845,8 +853,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                     sellFloatModal.setSellFloat_srcWalletOwnerName(sellFloat_srcWalletOwnerName);
 
                                 }
-
-
 
                                 if(jsonObject2.has("desWalletOwnerName")) {
                                     String  sellFloat_desWalletOwnerName = jsonObject2.getString("desWalletOwnerName");
@@ -1684,10 +1690,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             case R.id.qrCode_imageButton: {
 
 
-                IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-                intentIntegrator.setPrompt("Scan a barcode or QR Code");
-                intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.initiateScan();
+                qrScan();
 
 
             }
@@ -1714,62 +1717,117 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         }
     }
 
+    public void qrScan(){
+
+        Intent i = new Intent(SellFloat.this, QrCodeActivity.class);
+        startActivityForResult( i,REQUEST_CODE_QR_SCAN);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        try {
-
-            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
+            if (data == null)
+                return;
+            //Getting the passed result
+            String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
             if (result != null) {
-
-                System.out.println(resultCode);
-
-                if (result.getContents() == null) {
-
-                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-                }
-
-                else {
-
-
-                    String str = result.getContents();
-
-                    if (str.equalsIgnoreCase("")) {
-                        // 1000002786:TarunMwTest
-
-                        Toast.makeText(this, "QR Code Not Valid", Toast.LENGTH_LONG).show();
-                        // edittext_mobileNuber.setEnabled(true);
-
-                    }
-                    else {
-
-
-                        String[] qrData = str.split("\\:");
-
-                        // mobileNoStr=qrData[0];
-                        // edittext_mobileNuber.setText(mobileNoStr);
-                        // edittext_mobileNuber.setEnabled(false);
-                        // Toast.makeText(this, "QR Code  Valid", Toast.LENGTH_LONG).show();
-
-                    }
-
-                }
-
-            } else {
-                super.onActivityResult(requestCode, resultCode, data);
+                androidx.appcompat.app.AlertDialog alertDialog = new androidx.appcompat.app.AlertDialog.Builder(SellFloat.this).create();
+                alertDialog.setTitle(getString(R.string.scan_error));
+                alertDialog.setMessage(getString(R.string.val_scan_error_content));
+                alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
             }
+            return;
 
-
-        } catch (Exception e) {
-
-            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-
-            e.printStackTrace();
         }
 
+
+        if (requestCode == REQUEST_CODE_QR_SCAN) {
+
+            if (data == null)
+                return;
+            //Getting the passed result
+            String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
+            Log.d("LOGTAG", "Have scan result in your app activity :" + result);
+
+            String[] date=result.split(":");
+
+            callwalletOwnerDetailsQR(date[0]);
+
+
+
+        }
     }
+
+    public void callwalletOwnerDetailsQR(String Code){
+
+        API.GET("ewallet/api/v1/walletOwner/"+Code, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+
+                    try {
+
+                        // walletOwner
+
+                        if (jsonObject.has("walletOwner")) {
+
+                            JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+
+                            if (jsonObject_walletOwner.has("mobileNumber")) {
+
+                               String select_insitute_code_temp = jsonObject_walletOwner.getString("mobileNumber");
+
+                                    for (int i = 0; i < arrayList_instititueCode.size(); i++) {
+                                        if (select_insitute_code_temp.equalsIgnoreCase(arrayList_instititueCode.get(i)))
+                                        {
+                                            spinner_insititue.setSelection(i);
+                                        }
+                                    }
+
+                            }
+
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+
+                    }
+
+
+
+
+                    //  callwalletOwnerCountryCurrency();
+                }else{
+
+                    MyApplication.showToast(SellFloat.this,jsonObject.optString("resultDescription"));
+
+
+                }
+
+            }
+
+            @Override
+            public void failure(String aFalse) {
+                MyApplication.showToast(SellFloat.this,aFalse);
+            }
+        });
+    }
+
+
+
+
+    private static final int REQUEST_CODE_QR_SCAN = 101;
 
     @Override
     public void onBackPressed() {
@@ -1871,7 +1929,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 select_insitute_code = arrayList_instititueCode.get(i);
 
 
-                Toast.makeText(SellFloat.this, ""+select_insitute_name+"("+select_insitute_code+")", Toast.LENGTH_SHORT).show();
             }
             break;
 

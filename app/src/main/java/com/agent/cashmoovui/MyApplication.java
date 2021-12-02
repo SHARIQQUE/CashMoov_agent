@@ -20,8 +20,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
@@ -31,7 +29,6 @@ import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.androidnetworking.interfaces.ConnectionQualityChangeListener;
 import com.agent.cashmoovui.login.PhoneNumberRegistrationScreen;
 import com.github.florent37.viewtooltip.ViewTooltip;
-import com.google.firebase.FirebaseApp;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONArray;
@@ -72,6 +69,7 @@ public class MyApplication extends Application {
     public static String OutletCode = "100012";
     public static String SubscriberCode = "100010";
     public static String channelTypeCode = "100000";
+
     public static ArrayList<CurrencyModel> currencyModelArrayList=new ArrayList<>();
 
 
