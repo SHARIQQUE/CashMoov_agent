@@ -720,5 +720,7 @@
     <string name="range_value_not_available"><![CDATA[Aucune plage et valeur disponibles]]></string>
     <string name="mobile_recharge">Recharge mobile</string>
 
+    <string name="wallet_owner_name">Nom du propriétaire du portefeuille</string>
+
 </resources>
 

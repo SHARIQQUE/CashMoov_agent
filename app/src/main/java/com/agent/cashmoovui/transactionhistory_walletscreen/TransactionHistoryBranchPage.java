@@ -582,7 +582,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                             data.optString("currencySymbol"),
                             data.optString("value"),
                             "0.0",
-                            "0.0"
+                            "0.0",
+                            data.optString("walletOwnerName")
                     ));
                 }else{
                     if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
@@ -604,7 +605,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     data.optString("currencySymbol"),
                                     data.optString("value"),
                                     "0.0",
-                                    "0.0"
+                                    "0.0",
+                                    data.optString("walletOwnerName")
                             ));
                         }
 
@@ -628,7 +630,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     data.optString("currencySymbol"),
                                     "0.0",
                                     data.optString("value"),
-                                    "0.0"
+                                    "0.0",
+                                    data.optString("walletOwnerName")
                             ));
                         }
                     }
@@ -651,7 +654,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     data.optString("currencySymbol"),
                                     "0.0",
                                     "0.0",
-                                    data.optString("value")
+                                    data.optString("value"),
+                                    data.optString("walletOwnerName")
                             ));
                         }
                     }

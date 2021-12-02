@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
@@ -33,12 +35,20 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.CommonBaseAdapter;
 import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
+import com.agent.cashmoovui.adapter.CurrencyListTransaction;
+import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
+import com.agent.cashmoovui.adapter.TransferCommisionAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -52,18 +62,30 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CommissionTransfer extends AppCompatActivity implements View.OnClickListener {
+public class CommissionTransfer extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
 
     ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
 
+    RecyclerView recyclerView;
+
+
+
+    String select_currencySymbol="";
+    String select_currencyCode="";
+
     String currencyName_from_currency="";
     String countryCurrencyCode_from_currency="";
 
     boolean  isPasswordVisible;
+    String balanceString="";
 
+    Spinner     spinner_currency;
+
+
+    String walletCode;
 
 
     String  serviceCode_from_allSellFloat ="",serviceCategoryCode_from_allSellFloat="",serviceProviderCode_from_allSellFloat="",srcCurrencyCode_from_allSellFloat="",desCurrencyCode_from_allSellFloat="",srcWalletOwnerCode_from_allSellFloat="",desWalletOwnerCode_from_allSellFloat="";
@@ -77,7 +99,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage,linearLayout_record;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -146,6 +168,9 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
 
+            recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+            linearLayout_record = (LinearLayout) findViewById(R.id.linearLayout_record);
+
 
             //     First page
 
@@ -153,6 +178,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+            spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
+            spinner_currency.setOnItemSelectedListener(this);
 
             //    Reveiw page
 
@@ -210,11 +237,9 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
             available_balance = (TextView)(findViewById(R.id.available_balance));
-            available_balance.setText("Available balance in Commision Wallet (Fr)");
 
 
             mainbalance_textview = (TextView)(findViewById(R.id.mainbalance_textview));
-            mainbalance_textview.setText("");
 
             tvContinue = (TextView)(findViewById(R.id.tvContinue));
 
@@ -263,6 +288,16 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             });
 
 
+            if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+
+              //  MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
+
+                callApiFromCurrency(MyApplication.getSaveString("userCountryCode",CommissionTransfer.this));
+
+
+            } else {
+                Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+            }
 
         }
         catch (Exception e)
@@ -272,6 +307,279 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
         }
 
     }
+
+    String currencyCode;
+    private void callApiFromCurrency(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+                                    currencyCode = jsonObject.optJSONObject("country").optString("currencyCode");
+                                    //fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
+
+                                    api_wallet_walletOwner();
+
+                                } else {
+                                    MyApplication.showToast(CommissionTransfer.this,jsonObject.optString("resultDescription", "  "));
+                                }
+                            }
+
+                            // callApiBenefiCurrency();
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void api_wallet_walletOwner() {
+
+        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", CommissionTransfer.this);
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/wallet/walletOwner/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
+
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+
+
+
+
+                        createList(jsonObject);
+
+
+
+
+
+                    }
+
+
+
+
+
+
+                    else {
+
+
+                        Toast.makeText(CommissionTransfer.this, resultDescription, Toast.LENGTH_LONG).show();
+                        recyclerView.setVisibility(View.GONE);
+                        linearLayout_record.setVisibility(View.GONE);
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(CommissionTransfer.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CommissionTransfer.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+
+
+    ArrayList arrayList=new ArrayList();
+    public void createList(JSONObject jsonObject){
+
+        arrayList.clear();
+        MyApplication.currencyModelArrayList.clear();
+
+        JSONArray jsonArray=jsonObject.optJSONArray("walletList");
+        if(jsonArray.length()>0){
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject data=jsonArray.optJSONObject(i);
+                if(i==0){
+                    arrayList.add(data.optString("currencyName"));
+
+
+                    MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                            data.optString("code"),
+                            data.optString("code"),
+                            data.optString("code"),
+                            data.optString("currencyCode"),
+                            data.optString("currencyName"),
+                            data.optString("currencySymbol"),
+                            data.optString("value"),
+                            "0.0",
+                            "0.0",
+                            data.optString("walletOwnerName")
+                    ));
+
+
+
+                }else{
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
+                        if(arrayList.contains(data.optString("currencyName"))){
+                            for(int j=0;j<MyApplication.currencyModelArrayList.size();j++){
+                                if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
+                                    MyApplication.currencyModelArrayList.get(j).setCommisionWalletValue(data.optString("value"));
+                                    MyApplication.currencyModelArrayList.get(j).setCcode(data.optString("code"));
+                                }
+                            }
+                        }else{
+                            arrayList.add(data.optString("currencyName"));
+                            MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                    "",
+                                    data.optString("code"),
+                                    "",
+                                    data.optString("currencyCode"),
+                                    data.optString("currencyName"),
+                                    data.optString("currencySymbol"),
+                                    data.optString("value"),
+                                    "0.0",
+                                    "0.0",
+                                    data.optString("walletOwnerName")
+                            ));
+                        }
+
+                    }
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100011")){//Overdraft Wallet
+                        if(arrayList.contains(data.optString("currencyName"))){
+                            for(int j=0;j<MyApplication.currencyModelArrayList.size();j++){
+                                if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
+                                    MyApplication.currencyModelArrayList.get(j).setOverdraftWalletValue(data.optString("value"));
+                                    MyApplication.currencyModelArrayList.get(j).setOcode(data.optString("code"));
+                                }
+                            }
+                        }else{
+                            arrayList.add(data.optString("currencyName"));
+                            MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                    "",
+                                    "",
+                                    data.optString("code"),
+                                    data.optString("currencyCode"),
+                                    data.optString("currencyName"),
+                                    data.optString("currencySymbol"),
+                                    "0.0",
+                                    data.optString("value"),
+                                    "0.0",
+                                    data.optString("walletOwnerName")
+                            ));
+                        }
+                    }
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){//Main Wallet
+                        if(arrayList.contains(data.optString("currencyName"))){
+                            for(int j=0;j<MyApplication.currencyModelArrayList.size();j++){
+
+                                if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
+
+                                    MyApplication.currencyModelArrayList.get(j).setMainWalletValue(data.optString("value"));
+                                    MyApplication.currencyModelArrayList.get(j).setCode(data.optString("code"));
+                                }
+                            }
+                        }else{
+                            arrayList.add(data.optString("currencyName"));
+                            MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                    data.optString("code"),
+                                    "",
+                                    "",
+                                    data.optString("currencyCode"),
+                                    data.optString("currencyName"),
+                                    data.optString("currencySymbol"),
+                                    "0.0",
+                                    "0.0",
+                                    data.optString("value"),
+                                    data.optString("walletOwnerName")
+                            ));
+                        }
+                    }
+
+                }
+
+            }
+            // JSONArray j=new JSONArray(MyApplication.currencyModelArrayList);
+            Gson gson = new GsonBuilder().create();
+            JsonArray myCustomArray = gson.toJsonTree(MyApplication.currencyModelArrayList).getAsJsonArray();
+            System.out.println("Array List"+myCustomArray.toString());
+
+
+
+        }
+
+        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList);
+        spinner_currency.setAdapter(arraadapter2);
+
+
+
+        recyclerView.removeAllViewsInLayout();
+        recyclerView.setVisibility(View.VISIBLE);
+        linearLayout_record.setVisibility(View.VISIBLE);
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(CommissionTransfer.this));
+        TransferCommisionAdapter adpter3 = new TransferCommisionAdapter(CommissionTransfer.this, MyApplication.currencyModelArrayList);
+        recyclerView.setAdapter(adpter3);
+
+
+
+
+
+        //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
+        String currencyName_mssis_agent = currencyCode;  // no currency tag is comming in MSSID
+
+        for (int i = 0; i < MyApplication.currencyModelArrayList.size(); i++) {
+            if (currencyName_mssis_agent.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyName()))
+            {
+                walletCode = MyApplication.currencyModelArrayList.get(i).code;
+                spinner_currency.setSelection(i);
+            }
+        }
+
+
+
+        // MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
+
+        //  api_transactionHistory_all();
+
+        // getTransactionList();
+
+        // callApiMiniStatementTrans(walletCode,"100008");
+
+    }
+
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -418,7 +726,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             jsonObject.put("transactionType","113093"); // Hard code
             jsonObject.put("srcWalletOwnerCode",MyApplication.getSaveString("USERCODE", CommissionTransfer.this));
-            jsonObject.put("srcCurrencyCode","100062");
+            jsonObject.put("srcCurrencyCode",select_currencyCode);
             jsonObject.put("value",amountstr);
             jsonObject.put("channelTypeCode","100000");
 
@@ -747,6 +1055,43 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     }
                 }).create().show();
     }
+    int SpinnerPos;
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (adapterView.getId()) {
 
+            case R.id.spinner_currency:
+            {
+
+                try {
+
+                     SpinnerPos = i;
+                     walletCode = MyApplication.currencyModelArrayList.get(i).code;
+                     select_currencySymbol = MyApplication.currencyModelArrayList.get(i).currencySymbol;
+                     select_currencyCode = MyApplication.currencyModelArrayList.get(i).currencyCode;
+                     mainbalance_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+                     available_balance.setText("Available balance in Commision Wallet ("+select_currencySymbol+" "+MyApplication.currencyModelArrayList.get(i).commisionWalletValue+" )");
+
+
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Toast.makeText(CommissionTransfer.this, e.toString(), Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            break;
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 
 }

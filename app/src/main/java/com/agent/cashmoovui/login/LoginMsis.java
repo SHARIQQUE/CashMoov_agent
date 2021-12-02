@@ -626,6 +626,92 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             }
 
 
+                            sender_currency_api(walletOwner.getString("registerCountryCode"));
+
+
+                        }
+
+
+
+
+                        else
+                        {
+                            selectButtonType = "0";
+
+                            Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
+
+
+                        }
+
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+                    MyApplication.showToast(LoginMsis.this,aFalse);
+
+                }
+            });
+
+        }catch (Exception e){
+
+            MyApplication.hideLoader();
+            MyApplication.showToast(LoginMsis.this,e.toString());
+        }
+
+    }
+
+    private void sender_currency_api(String countryName) {
+        try{
+
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+countryName,new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+
+                        String resultCode =  jsonObject.getString("resultCode");
+                        String resultDescription =  jsonObject.getString("resultDescription");
+
+                        if(resultCode.equalsIgnoreCase("0")) {
+
+
+                            JSONObject jsonObject_country = jsonObject.getJSONObject("country");
+
+
+                            if(jsonObject_country.has("currencySymbol")){
+                                MyApplication.saveString("currencySymbol_Loginpage", jsonObject_country.getString("currencySymbol"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("currencySymbol_Loginpage", "", LoginMsis.this);
+                            }
+
+
+                         if(jsonObject_country.has("currencyCode")){
+                                MyApplication.saveString("currencyCode_Loginpage", jsonObject_country.getString("currencyCode"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("ccurrencyCode_Loginpage", "", LoginMsis.this);
+                            }
+
+
+
+
+
+
                             Intent i = new Intent(LoginMsis.this, MainActivity.class);
                             startActivity(i);
                             finish();
@@ -673,6 +759,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         }
 
     }
+
 
     private void token_api() {
         try{

@@ -11,8 +11,17 @@ public class CurrencyModel {
     public String commisionWalletValue;
     public String overdraftWalletValue;
     public String mainWalletValue;
+    public String walletOwnerName;
 
-    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue) {
+    public String getWalletOwnerName() {
+        return walletOwnerName;
+    }
+
+    public void setWalletOwnerName(String walletOwnerName) {
+        this.walletOwnerName = walletOwnerName;
+    }
+
+    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName) {
         this.code = code;
         Ccode = ccode;
         Ocode = ocode;
@@ -22,6 +31,7 @@ public class CurrencyModel {
         this.commisionWalletValue = commisionWalletValue;
         this.overdraftWalletValue = overdraftWalletValue;
         this.mainWalletValue = mainWalletValue;
+        this.walletOwnerName = walletOwnerName;
     }
 
     @Override
@@ -36,6 +46,7 @@ public class CurrencyModel {
                 ", commisionWalletValue='" + commisionWalletValue + '\'' +
                 ", overdraftWalletValue='" + overdraftWalletValue + '\'' +
                 ", mainWalletValue='" + mainWalletValue + '\'' +
+                ", walletOwnerName='" + walletOwnerName + '\'' +
                 '}';
     }
 
