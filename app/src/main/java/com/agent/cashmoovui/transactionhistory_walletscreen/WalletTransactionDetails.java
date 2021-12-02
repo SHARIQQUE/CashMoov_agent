@@ -77,16 +77,18 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String status = (getIntent().getStringExtra("STATUS"));
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
             String walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
+            String fromWalletOwnerMsisdn = (getIntent().getStringExtra("FROMMSISDN"));
+            String toWalletOwnerMsisdn = (getIntent().getStringExtra("TOMSISDN"));
+            String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
 
-
-            txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
-            txt_from_owner_name.setText("From"+" : "+fromOwnerName+" , "+"To"+" : "+toOwnerName);
+            txt_trans_type_name.setText(transType);
+            txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);
             }else{
                 txt_commission_amount.setText(fromAmount);
             }
-            txt_from_amount.setText(fromAmount);
+            txt_from_amount.setText(getString(R.string.transaction_amount_receiptPage)+" : "+transactionAmount);
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));

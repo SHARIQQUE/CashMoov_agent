@@ -17,8 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
             android:orientation="vertical">
 
@@ -29,6 +27,8 @@
                 android:lineSpacingExtra="3sp"
                 android:text="@string/transaction_details"
                 android:textColor="#29304d"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:textSize="@dimen/_15sdp" />
 
             <LinearLayout
@@ -36,34 +36,27 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:padding="@dimen/_10sdp"
+                android:padding="@dimen/_15sdp"
                 android:background="@color/white"
                 android:layout_marginTop="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/txt_trans_type_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="N/A"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/_10sdp"
-                    android:gravity="center_vertical"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="1"
                     android:layout_marginTop="@dimen/_2sdp">
-                    <TextView
-                        android:id="@+id/txt_from_owner_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="N/A"
-                        android:textColor="@color/textColorBlack"
-                        android:textSize="@dimen/_13sdp"
-                        android:layout_weight="0.6"
-                        android:textStyle="bold"
-                        android:gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/txt_trans_type_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:text="N/A"
+                    android:fontFamily="@font/aileron_regular"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center_vertical"/>
+
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
@@ -73,12 +66,33 @@
                     <TextView
                         android:id="@+id/txt_commission_amount"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="0.4"
                         android:text="N/A"
-                        android:textColor="@color/textColorBlack"
-                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/_13sdp"
+                        android:fontFamily="@font/aileron_bold"
                         android:gravity="center_vertical|end" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginTop="@dimen/_2sdp">
+                    <TextView
+                        android:id="@+id/txt_from_owner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="N/A"
+                        android:textColor="@color/textcolorheading"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_weight="0.6"
+                        android:fontFamily="@font/aileron_semibold"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_3sdp"/>
+
                     <TextView
                         android:visibility="gone"
                         android:id="@+id/txt_status"
@@ -90,20 +104,42 @@
                         android:textSize="@dimen/_10sdp"
                         android:gravity="center_vertical|end" />
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_trans_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_weight="0.3"
+                    android:gravity="center_vertical"
+                    android:text="N/A"
+                    android:fontFamily="@font/aileron_regular"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/_10sdp" />
+                <TextView
+                    android:id="@+id/txt_creation_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:textColor="@color/textColorBlack"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_weight="0.3"
+                    android:fontFamily="@font/aileron_regular"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_2sdp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="1"
-                    android:layout_marginTop="@dimen/_5sdp">
+                    android:layout_marginTop="@dimen/_2sdp">
                     <TextView
                         android:id="@+id/txt_from_amount"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="N/A"
                         android:textColor="@color/textColorBlack"
                         android:textSize="@dimen/_10sdp"
-                        android:layout_weight="0.3"
+                        android:fontFamily="@font/aileron_regular"
                         android:gravity="center_vertical"/>
                     <View
                         android:layout_width="1dp"
@@ -124,26 +160,7 @@
                         android:gravity="center_vertical|end" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txt_trans_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_weight="0.3"
-                    android:gravity="center_vertical"
-                    android:text="N/A"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/_10sdp" />
-                <TextView
-                    android:id="@+id/txt_creation_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="N/A"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/_10sdp"
-                    android:layout_weight="0.3"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_2sdp"/>
+
             </LinearLayout>
 
 

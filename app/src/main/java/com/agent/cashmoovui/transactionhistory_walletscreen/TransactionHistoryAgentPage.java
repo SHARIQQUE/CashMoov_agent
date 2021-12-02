@@ -120,6 +120,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         cardCommissionWallet.setOnClickListener(this);
         cardOverdraftWallet.setOnClickListener(this);
 
+        cardMainWallet.setEnabled(false);
+        cardCommissionWallet.setEnabled(false);
+        cardOverdraftWallet.setEnabled(false);
+
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
 
@@ -825,7 +829,11 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String toWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status, double commissionAmount) {
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName,
+                                             String toWalletOwnerName, String fromWalletOwnerMsisdn,
+                                             String currencySymbol, double fromAmount, String transactionId,
+                                             String creationDate, String status,
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
@@ -842,6 +850,9 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         intent.putExtra("STATUS",status);
         intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
         intent.putExtra("WALLETTYPECODE",wallettypecode);
+        intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
+        intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("TRANSACTIONAMOUNT",currencySymbol+" "+transactionAmount);
         startActivity(intent);
     }
 

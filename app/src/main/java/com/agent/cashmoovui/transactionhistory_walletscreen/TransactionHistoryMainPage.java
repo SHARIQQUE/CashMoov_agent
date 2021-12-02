@@ -127,8 +127,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         cardCommissionWallet.setOnClickListener(this);
         cardOverdraftWallet.setOnClickListener(this);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        cardMainWallet.setEnabled(false);
+        cardCommissionWallet.setEnabled(false);
+        cardOverdraftWallet.setEnabled(false);
 
+
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
         spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
         spinner_currency.setOnItemSelectedListener(this);
@@ -847,7 +851,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String toWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status, double commissionAmount) {
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName,
+                                             String toWalletOwnerName, String fromWalletOwnerMsisdn,
+                                             String currencySymbol, double fromAmount, String transactionId,
+                                             String creationDate, String status,
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
@@ -864,7 +872,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("STATUS",status);
         intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
         intent.putExtra("WALLETTYPECODE",wallettypecode);
+        intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
+        intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("TRANSACTIONAMOUNT",currencySymbol+" "+transactionAmount);
         startActivity(intent);
     }
+
+
+
 
 }

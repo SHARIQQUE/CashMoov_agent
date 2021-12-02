@@ -665,8 +665,8 @@
     <string name="gnf_fixed">GNF Fixed</string>
     <string name="on_the_transaction">on the transaction</string>
     <string name="gnf_transaction">GNF / transaction</string>
-    <string name="recharge_mobile">Recharge Mobile:</string>
-    <string name="recharge_tv">Recharge TV:</string>
+    <string name="recharge_mobile">Recharge Mobile</string>
+    <string name="recharge_tv">Recharge TV</string>
     <string name="international_colon">International:</string>
     <string name="send_remittance_colon">Send Remittance:</string>
     <string name="receive_remittance_colon">Receive Remittance:</string>
@@ -718,6 +718,9 @@
     <string name="notification">Notification</string>
     <string name="range">Range</string>
     <string name="value">Value</string>
+    <string name="send_remittance">Send Remittance</string>
+    <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
+    <string name="mobile_recharge">Mobile Recharge</string>
 
 
 </resources>

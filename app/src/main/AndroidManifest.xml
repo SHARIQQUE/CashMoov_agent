@@ -99,6 +99,8 @@ x
             android:screenOrientation="portrait"></activity>
         <activity android:name=".servicecharge.ServiceCharge"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".servicecharge.ServiceChargeDetails"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.MobilePrepaid"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".payments.Payments"

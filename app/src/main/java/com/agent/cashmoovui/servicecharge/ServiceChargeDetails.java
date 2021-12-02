@@ -61,7 +61,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             tvName.setText(checkIntent);
         }
 
-        if(checkIntent.equalsIgnoreCase("Subscriber")){
+        if(checkIntent.equalsIgnoreCase("Send Remittance")){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -72,43 +72,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100024")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
-                                        childData.optString("percentFeeValue")
-                                ));
-                            }else{
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
-                        }
-                     }
-
-                    }
-
-                    setData(feeDetailModelArrayList);
-                        //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
-
-                }
-        }
-
-        if(checkIntent.equalsIgnoreCase("Non Subscriber")){
-            feeDetailModelArrayList.clear();
-            if (ServiceCharge.jsonObjectTestMain != null) {
-                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
-                for (int i = 0; i < FeeListArr.length(); i++) {
-                    JSONObject feeData = FeeListArr.optJSONObject(i);
-
-                    JSONArray ChildListArr = feeData.optJSONArray("child");
-                    for (int j = 0; j < ChildListArr.length(); j++) {
-                        JSONObject childData = ChildListArr.optJSONObject(j);
-
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("NONSUB")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100001")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         childData.optString("minValue")+"  -  "+
@@ -133,7 +97,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("International")){
+        if(checkIntent.equalsIgnoreCase("Receive Remittance")){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -144,7 +108,43 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("INTREM")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100018")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        childData.optString("minValue")+"  -  "+
+                                                childData.optString("maxValue"),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        childData.optString("minValue")+"  -  "+
+                                                childData.optString("maxValue"),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
+        if(checkIntent.equalsIgnoreCase("Cash to Wallet")){
+            feeDetailModelArrayList.clear();
+            if (ServiceCharge.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100061")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         childData.optString("minValue")+"  -  "+
@@ -241,7 +241,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Pay")){
+        if(checkIntent.equalsIgnoreCase("Sell Float")){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -252,7 +252,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100057")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100016")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         childData.optString("minValue")+"  -  "+
@@ -277,7 +277,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Cash Withdrawal")){
+        if(checkIntent.equalsIgnoreCase("Transfer Float")){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -288,7 +288,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("CSHPIC")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100017")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         childData.optString("minValue")+"  -  "+
@@ -313,7 +313,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Receive Remittance")){
+        if(checkIntent.equalsIgnoreCase("Cash In")){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -324,7 +324,43 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("REMON")){
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100011")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        childData.optString("minValue")+"  -  "+
+                                                childData.optString("maxValue"),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        childData.optString("minValue")+"  -  "+
+                                                childData.optString("maxValue"),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
+        if(checkIntent.equalsIgnoreCase("Cash Out")){
+            feeDetailModelArrayList.clear();
+            if (ServiceCharge.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100012")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         childData.optString("minValue")+"  -  "+
