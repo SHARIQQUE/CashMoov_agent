@@ -52,6 +52,7 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class CashIn  extends AppCompatActivity implements View.OnClickListener {
@@ -1088,9 +1089,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.exportReceipt_textview: {
-
+                close_receiptPage_textview.setVisibility(View.GONE);
+                exportReceipt_textview.setVisibility(View.GONE);
                 Bitmap bitmap = getScreenShot(rootView);
-                store(bitmap, "test.jpg");
+                createImageFile(bitmap);
+                //store(bitmap, "test.jpg");
             }
 
             break;
@@ -1243,22 +1246,54 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         return bitmap;
     }
 
-    public  void store(Bitmap bm, String fileName){
-        final  String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
-        File dir = new File(dirPath);
-        if(!dir.exists())
-            dir.mkdirs();
-        File file = new File(dirPath, fileName);
+    public  void createImageFile(Bitmap bm)  {
         try {
-            FileOutputStream fOut = new FileOutputStream(file);
-            bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
-            fOut.flush();
-            fOut.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Create an image file name
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+                    .format(System.currentTimeMillis());
+            File storageDir = new File(Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
+            if (!storageDir.exists())
+                storageDir.mkdirs();
+            File image = File.createTempFile(
+                    timeStamp,
+                    ".jpeg",
+                    storageDir
+            );
+
+            System.out.println(image.getAbsolutePath());
+            if (image.exists()) image.delete();
+            //   Log.i("LOAD", root + fname);
+            try {
+                FileOutputStream out = new FileOutputStream(image);
+                bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            shareImage(image);
+        }catch (Exception e){
+
         }
-        shareImage(file);
     }
+
+//    public  void store(Bitmap bm, String fileName){
+//        final  String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+//        File dir = new File(dirPath);
+//        if(!dir.exists())
+//            dir.mkdirs();
+//        File file = new File(dirPath, fileName);
+//        try {
+//            FileOutputStream fOut = new FileOutputStream(file);
+//            bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
+//            fOut.flush();
+//            fOut.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        shareImage(file);
+//    }
 
     private void shareImage(File file){
         Uri uri = Uri.fromFile(file);

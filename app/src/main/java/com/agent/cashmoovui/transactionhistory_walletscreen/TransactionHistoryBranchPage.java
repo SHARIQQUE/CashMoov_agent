@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.adapter.CurrencyListTransaction;
 import com.agent.cashmoovui.adapter.MiniStatementTransAdapter;
 import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
@@ -378,10 +377,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
   /*  ///////////-----code by Abhay-----////////////*/
 
+    String wallettypecode;
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode) {
         try {
+            wallettypecode = walletTypeCode;
             miniStatementTransList.clear();
-            setData(miniStatementTransList);
+            setData(miniStatementTransList,walletTypeCode);
             //MyApplication.showloader(TransactionHistoryMainPage.this,"Please wait!");
             API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&selectedCategory="+walletTypeCode,
                     new Api_Responce_Handler() {
@@ -440,7 +441,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                                     data.optBoolean("isReverse")));
                                         }
 
-                                        setData(miniStatementTransList);
+                                        setData(miniStatementTransList,walletTypeCode);
 
                                     }
 
@@ -464,8 +465,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
     }
 
-    private void setData(List<MiniStatementTrans> miniStatementTransList){
-        MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryBranchPage.this,miniStatementTransList);
+    private void setData(List<MiniStatementTrans> miniStatementTransList,String walletTypeCode){
+        MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryBranchPage.this,miniStatementTransList, walletTypeCode);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(miniStatementTransAdapter);
@@ -818,22 +819,26 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
-        String name="";
-        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
-            name = walletOwnerMsisdn;
-        }else{
-            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
-        }
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String toWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status, double commissionAmount) {
+//        String name="";
+//        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
+//            name = walletOwnerMsisdn;
+//        }else{
+//            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
+//        }
         Intent intent = new Intent(TransactionHistoryBranchPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
-        intent.putExtra("FROMWALLETOWNERNAME",name);
+        intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
+        intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
         intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
+        intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
+        intent.putExtra("WALLETTYPECODE",wallettypecode);
         startActivity(intent);
     }
+
 
 
 }

@@ -18,9 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_15sdp">
+            android:orientation="vertical">
 
 
         <!--    First Page-->
@@ -30,13 +28,20 @@
             android:id="@+id/ll_page_1"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:padding="10dp"
             android:layout_height="match_parent"
             android:visibility="visible">
 
             <include layout="@layout/toolbar_active"></include>
 
 
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
@@ -302,6 +307,7 @@
                 />
 
 
+        </LinearLayout>
         </LinearLayout>
 
 
@@ -1773,7 +1779,7 @@ android:visibility="gone"
             <TextView
 
                 android:id="@+id/exportReceipt_textview"
-android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 android:gravity="center"
@@ -1791,8 +1797,8 @@ android:visibility="gone"
 
         </LinearLayout>
 
-
     </LinearLayout>
+
 
     </LinearLayout>
     </ScrollView>

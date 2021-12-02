@@ -24,9 +24,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_15sdp">
+            android:orientation="vertical">
 
 
 
@@ -134,7 +132,6 @@
         <LinearLayout
 
             android:id="@+id/ll_page_1"
-            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
@@ -143,6 +140,14 @@
             <include layout="@layout/toolbar_active"></include>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +160,7 @@
                     android:lineSpacingExtra="3sp"
                     android:text="@string/airtime_purchase"
                     android:textColor="#29304d"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/_15sdp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -256,6 +261,7 @@
 
         </LinearLayout>
 
+        </LinearLayout>
 
         <!--    Reveiw Page-->
 
@@ -1689,14 +1695,12 @@
             <TextView
 
                 android:id="@+id/exportReceipt_textview"
-android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@drawable/round_blue"
-
-
                 android:padding="10dp"
                 android:text="@string/export_receipt"
                 android:layout_marginLeft="20dp"
@@ -1712,6 +1716,7 @@ android:visibility="gone"
     </LinearLayout>
 
     </LinearLayout>
+
 
     </ScrollView>
 

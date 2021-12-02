@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.activity;
+package com.agent.cashmoovui.servicecharge;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -22,7 +22,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     public static ServiceCharge feeC;
     ImageView imgBack,imgHome;
     JSONObject feeData;
-    JSONObject jsonObjectTestMain=null;
+    public static JSONObject jsonObjectTestMain=null;
     LinearLayout linRemittance,linCreditPurchase,linBillPay,linMoneyTransfer,linCashIn,linCashOut;
     TextView tvRemittance,tvFeeRemittance,tvCreditPurchase,tvFeeCreditPurchase,tvBillPayment,tvFeeBillPayment,
             tvMoneyTransfer,tvFeeMoneyTransfer,tvCashIn,tvFeeCashIn,tvCashOut,tvFeeCashOut;

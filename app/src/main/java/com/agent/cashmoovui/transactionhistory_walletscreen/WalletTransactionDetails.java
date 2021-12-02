@@ -16,7 +16,8 @@ import java.util.Date;
 public class WalletTransactionDetails extends AppCompatActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
-    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_creation_date,txt_status,txt_success;
+    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,
+            txt_creation_date,txt_status,txt_success,txt_commission_amount;
 
 
     @Override
@@ -64,16 +65,27 @@ public class WalletTransactionDetails extends AppCompatActivity {
         txt_creation_date = findViewById(R.id.txt_creation_date);
         txt_status = findViewById(R.id.txt_status);
         txt_success = findViewById(R.id.txt_success);
+        txt_commission_amount = findViewById(R.id.txt_commission_amount);
 
         if (getIntent().getExtras() != null) {
             String transType = (getIntent().getStringExtra("TRANSTYPE"));
             String fromOwnerName = (getIntent().getStringExtra("FROMWALLETOWNERNAME"));
+            String toOwnerName = (getIntent().getStringExtra("TOWALLETOWNERNAME"));
             String fromAmount = (getIntent().getStringExtra("FROMAMOUNT"));
             String transId = (getIntent().getStringExtra("TRANSID"));
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
+            String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
+            String walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
+
+
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
-            txt_from_owner_name.setText(fromOwnerName);
+            txt_from_owner_name.setText("From"+" : "+fromOwnerName+" , "+"To"+" : "+toOwnerName);
+            if(walletTypeCode.equalsIgnoreCase("100009")){
+                txt_commission_amount.setText(commissionAmount);
+            }else{
+                txt_commission_amount.setText(fromAmount);
+            }
             txt_from_amount.setText(fromAmount);
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);

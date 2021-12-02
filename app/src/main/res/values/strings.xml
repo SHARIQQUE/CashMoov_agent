@@ -716,6 +716,8 @@
     <string name="sender_info_colon">Sender info:</string>
     <string name="receiver_info_colon">Receiver info:</string>
     <string name="notification">Notification</string>
+    <string name="range">Range</string>
+    <string name="value">Value</string>
 
 
 </resources>

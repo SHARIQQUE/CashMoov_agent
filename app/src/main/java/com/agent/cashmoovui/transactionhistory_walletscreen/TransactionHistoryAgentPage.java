@@ -53,7 +53,7 @@ import java.util.Locale;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class TransactionHistoryAgentPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisners, AgentMiniStatemetListners {
+public class TransactionHistoryAgentPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisners, MiniStatemetListners {
 
     String searchStr="";
     EditText edittext_search;
@@ -384,10 +384,11 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
   /*  ///////////-----code by Abhay-----////////////*/
 
+    String wallettypecode;
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode) {
         try {
             miniStatementTransList.clear();
-            setData(miniStatementTransList);
+            setData(miniStatementTransList,walletTypeCode);
             //MyApplication.showloader(TransactionHistoryMainPage.this,"Please wait!");
             API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&selectedCategory="+walletTypeCode,
                     new Api_Responce_Handler() {
@@ -446,7 +447,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                     data.optBoolean("isReverse")));
                                         }
 
-                                        setData(miniStatementTransList);
+                                        setData(miniStatementTransList,walletTypeCode);
 
                                     }
 
@@ -470,8 +471,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
     }
 
-    private void setData(List<MiniStatementTrans> miniStatementTransList){
-        MiniStatementAgentTransAdapter miniStatementTransAdapter = new MiniStatementAgentTransAdapter(TransactionHistoryAgentPage.this,miniStatementTransList);
+    private void setData(List<MiniStatementTrans> miniStatementTransList,String walletTypeCode){
+        MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryAgentPage.this,miniStatementTransList, walletTypeCode);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(miniStatementTransAdapter);
@@ -824,20 +825,23 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
 
     @Override
-    public void onAgentMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
-        String name="";
-        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
-            name = walletOwnerMsisdn;
-        }else{
-            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
-        }
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String toWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status, double commissionAmount) {
+//        String name="";
+//        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
+//            name = walletOwnerMsisdn;
+//        }else{
+//            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
+//        }
         Intent intent = new Intent(TransactionHistoryAgentPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
-        intent.putExtra("FROMWALLETOWNERNAME",name);
+        intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
+        intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
         intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
+        intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
+        intent.putExtra("WALLETTYPECODE",wallettypecode);
         startActivity(intent);
     }
 

@@ -97,7 +97,7 @@ x
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.ListUsers"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".activity.ServiceCharge"
+        <activity android:name=".servicecharge.ServiceCharge"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.MobilePrepaid"
             android:screenOrientation="portrait"></activity>

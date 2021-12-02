@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agent.cashmoovui.activity.NotificationList;
-import com.agent.cashmoovui.activity.ServiceCharge;
+import com.agent.cashmoovui.servicecharge.ServiceCharge;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.payments.Payments;

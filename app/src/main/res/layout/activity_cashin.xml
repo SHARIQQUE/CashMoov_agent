@@ -10,7 +10,6 @@
     tools:context=".activity.About">
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,10 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/_5sdp"
-
-        android:layout_marginBottom="@dimen/_15sdp">
+        android:orientation="vertical">
 
 
 
@@ -32,7 +28,6 @@
             android:id="@+id/ll_page_1"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/_10sdp"
             android:layout_height="match_parent"
             android:visibility="visible">
 
@@ -41,6 +36,14 @@
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,8 +71,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
@@ -221,7 +224,7 @@
 
 
         </LinearLayout>
-
+        </LinearLayout>
 
         <!--    Reveiw Page-->
 
@@ -1449,16 +1452,13 @@
 
 
             <TextView
-
                 android:id="@+id/exportReceipt_textview"
-android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:background="@drawable/round_blue"
-
-
                 android:padding="10dp"
                 android:text="@string/export_receipt"
                 android:layout_marginLeft="20dp"
@@ -1474,6 +1474,7 @@ android:visibility="gone"
     </LinearLayout>
 
     </LinearLayout>
+
 
     </ScrollView>
 

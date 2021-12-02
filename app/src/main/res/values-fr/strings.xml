@@ -714,6 +714,8 @@
     <string name="sender_info_colon">Informations sur l\'expéditeur:</string>
     <string name="receiver_info_colon">Informations sur le récepteur:</string>
     <string name="notification">Notification</string>
+    <string name="range">Varier</string>
+    <string name="value">Valeur</string>
 
 </resources>
 

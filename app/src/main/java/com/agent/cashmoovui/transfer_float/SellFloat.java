@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -71,7 +73,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     String[] strArray={"10","25","50","100"};
 
     String recordString="10";
-
+    ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
 
@@ -170,7 +172,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
             setContentView(R.layout.sellfloat);
-
+            setBackMenu();
 
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
@@ -313,6 +315,33 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
 
         }
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -1635,9 +1664,11 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             break;
 
             case R.id.exportReceipt_textview: {
-
+                close_receiptPage_textview.setVisibility(View.GONE);
+                exportReceipt_textview.setVisibility(View.GONE);
                 Bitmap bitmap = getScreenShot(rootView);
-                store(bitmap, "test.jpg");
+                createImageFile(bitmap);
+                //store(bitmap, "test.jpg");
             }
 
             break;
@@ -1761,22 +1792,54 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         return bitmap;
     }
 
-    public  void store(Bitmap bm, String fileName){
-        final  String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
-        File dir = new File(dirPath);
-        if(!dir.exists())
-            dir.mkdirs();
-        File file = new File(dirPath, fileName);
+    public  void createImageFile(Bitmap bm)  {
         try {
-            FileOutputStream fOut = new FileOutputStream(file);
-            bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
-            fOut.flush();
-            fOut.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Create an image file name
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+                    .format(System.currentTimeMillis());
+            File storageDir = new File(Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
+            if (!storageDir.exists())
+                storageDir.mkdirs();
+            File image = File.createTempFile(
+                    timeStamp,
+                    ".jpeg",
+                    storageDir
+            );
+
+            System.out.println(image.getAbsolutePath());
+            if (image.exists()) image.delete();
+            //   Log.i("LOAD", root + fname);
+            try {
+                FileOutputStream out = new FileOutputStream(image);
+                bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            shareImage(image);
+        }catch (Exception e){
+
         }
-        shareImage(file);
     }
+
+//    public  void store(Bitmap bm, String fileName){
+//        final  String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+//        File dir = new File(dirPath);
+//        if(!dir.exists())
+//            dir.mkdirs();
+//        File file = new File(dirPath, fileName);
+//        try {
+//            FileOutputStream fOut = new FileOutputStream(file);
+//            bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
+//            fOut.flush();
+//            fOut.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        shareImage(file);
+//    }
 
     private void shareImage(File file){
         Uri uri = Uri.fromFile(file);

@@ -14,6 +14,8 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.listeners.MiniStatemetListners;
 import com.agent.cashmoovui.model.MiniStatementTrans;
+import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -27,10 +29,12 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
     private Context context;
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     private MiniStatemetListners miniStatemetListners;
+    private String walletTypeCode;
 
-    public MiniStatementTransAdapter(Context context, List<MiniStatementTrans> miniStatementTransList) {
+    public MiniStatementTransAdapter(Context context, List<MiniStatementTrans> miniStatementTransList, String walletTypeCode) {
         this.context = context;
         this.miniStatementTransList = miniStatementTransList;
+        this.walletTypeCode = walletTypeCode;
         miniStatemetListners = (MiniStatemetListners) context;
     }
     @Override
@@ -48,6 +52,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         df.setMaximumFractionDigits(2);
         df.setRoundingMode(RoundingMode.DOWN);
         final MiniStatementTrans miniStatementTrans = miniStatementTransList.get(position);
+
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash-in")){
             holder.imgLogo.setImageResource(R.drawable.ic_cashin);
         }
@@ -80,22 +85,6 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         }
 
         holder.tvTransType.setText(miniStatementTrans.getTransactionTypeName());
-
-        if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-            holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-            holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
-            holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
-        }
-        if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
-            holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
-            holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
-            holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
-        }
-
-        if(holder.tvMsisdn.getText().toString().isEmpty()){
-            holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
-        }
-
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -107,29 +96,204 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             e.printStackTrace();
         }
 
+        if(walletTypeCode.equalsIgnoreCase("100009")){
+            if(miniStatementTrans.isReverse()){
+            }else {
+                if(MyApplication.getSaveString("walletOwnerCategoryCode",context).equalsIgnoreCase(MyApplication.InstituteCode)){
+                    if(miniStatementTrans.getFromWalletTypeCode().equalsIgnoreCase("100009")){
+                        holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        return;
+                    }
+                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute())+" "+miniStatementTrans.getFromCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+                        return;
+                    }
+                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute())+" "+miniStatementTrans.getToCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        return;
+                    }
+
+                    if(holder.tvMsisdn.getText().toString().isEmpty()){
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
+                        return;
+                    }
+                }
+                if(MyApplication.getSaveString("walletOwnerCategoryCode",context).equalsIgnoreCase(MyApplication.AgentCode)){
+                    if(miniStatementTrans.getFromWalletTypeCode().equalsIgnoreCase("100009")){
+                        holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        return;
+                    }
+                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForAgent())+" "+miniStatementTrans.getFromCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+                        return;
+                    }
+                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForAgent())+" "+miniStatementTrans.getToCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        return;
+                    }
+
+                    if(holder.tvMsisdn.getText().toString().isEmpty()){
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
+                        return;
+                    }
+                }
+                if(MyApplication.getSaveString("walletOwnerCategoryCode",context).equalsIgnoreCase(MyApplication.BranchCode)){
+                    if(miniStatementTrans.getFromWalletTypeCode().equalsIgnoreCase("100009")){
+                        holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        return;
+                    }
+                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForBranch())+" "+miniStatementTrans.getFromCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+                        return;
+                    }
+                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForBranch())+" "+miniStatementTrans.getToCurrencySymbol());
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        return;
+                    }
+
+                    if(holder.tvMsisdn.getText().toString().isEmpty()){
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
+                        return;
+                    }
+
+                }
+            }
+        }else{
+            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+                return;
+            }
+            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                return;
+            }
+
+            if(holder.tvMsisdn.getText().toString().isEmpty()){
+                holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
+                return;
+            }
+
+        }
+
+
+
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(miniStatementTrans.getCode()!=null)
+              //  if(miniStatementTrans.getCode()!=null)
+                if(walletTypeCode.equalsIgnoreCase("100009")){
+                    if(miniStatementTrans.isReverse()){
+
+                    }else{
+                        if(MyApplication.getSaveString("walletOwnerCategoryCode", context).equalsIgnoreCase(MyApplication.InstituteCode)){
+                            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                        miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForInstitute());
+                                return;
+                            }
+                            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                        miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForInstitute());
+                                return;
+                            }
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForInstitute());
+                                return;
+                        }
+                        if(MyApplication.getSaveString("walletOwnerCategoryCode",context).equalsIgnoreCase(MyApplication.AgentCode)){
+                            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                        miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForAgent());
+                                return;
+                            }
+                            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                        miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForAgent());
+                                return;
+                            }
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForAgent());
+                                return;
+                        }
+                        if(MyApplication.getSaveString("walletOwnerCategoryCode",context).equalsIgnoreCase(MyApplication.BranchCode)){
+                            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                        miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForBranch());
+                                return;
+                            }
+                            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                                miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                        miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForBranch());
+                                return;
+                            }
+                            miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
+                                    miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                    miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
+                                    miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),miniStatementTrans.getCommissionAmountForBranch());
+
+                                return;
+                        }
+
+                    }
+                    return;
+                }
 
                     if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                                miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
+                                miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getFromCurrencySymbol(),
                                 miniStatementTrans.getFromAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),0.0);
                         return;
                     }
                     if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                                miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                                miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
                                 miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
-                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+                                miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),0.0);
                         return;
                     }
                 miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
-                        miniStatementTrans.getFromWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
+                        miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),holder.tvMsisdn.getText().toString().trim(),miniStatementTrans.getToCurrencySymbol(),
                         miniStatementTrans.getToAmount(),miniStatementTrans.getTransactionId(),
-                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus());
+                        miniStatementTrans.getCreationDate(), miniStatementTrans.getStatus(),0.0);
 
 
             }

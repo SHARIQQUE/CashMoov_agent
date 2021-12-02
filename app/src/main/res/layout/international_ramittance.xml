@@ -20,9 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_15sdp">
+            android:orientation="vertical">
 
 
         <!--    First Page-->
@@ -32,19 +30,24 @@
             android:id="@+id/ll_page_1"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/_10sdp"
             android:layout_height="match_parent"
             android:visibility="visible">
 
             <include layout="@layout/toolbar_active"></include>
 
 
-
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp">
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="#29304d"
                 android:textStyle="bold"
 
@@ -551,6 +554,7 @@
 
 
         </LinearLayout>
+        </LinearLayout>
 
         <!--    Reveiw Page-->
 
@@ -612,6 +616,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -652,6 +657,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -695,6 +701,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -773,6 +780,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -813,6 +821,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -854,6 +863,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -894,6 +904,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -935,6 +946,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -975,6 +987,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -1015,6 +1028,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -1055,6 +1069,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -1095,6 +1110,7 @@
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -1141,7 +1157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:padding="@dimen/_12sdp"
                     android:hint="@string/please_enter_4_digit_mpin"
                     android:layout_gravity="center_vertical"
@@ -1340,6 +1356,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:textColor="#000"
+                android:layout_marginEnd="@dimen/_10sdp"
                 />
 
 
@@ -2197,7 +2214,7 @@
             <TextView
 
                 android:id="@+id/exportReceipt_textview"
-android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 android:gravity="center"
@@ -2216,10 +2233,7 @@ android:visibility="gone"
 
         </LinearLayout>
 
-
-    </LinearLayout>
-
-
+        </LinearLayout>
 
     </LinearLayout>
 

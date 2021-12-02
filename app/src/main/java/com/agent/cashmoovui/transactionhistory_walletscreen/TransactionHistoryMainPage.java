@@ -401,10 +401,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
   /*  ///////////-----code by Abhay-----////////////*/
 
+    String wallettypecode;
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode) {
         try {
+            wallettypecode = walletTypeCode;
             miniStatementTransList.clear();
-            setData(miniStatementTransList);
+            setData(miniStatementTransList,walletTypeCode);
             //MyApplication.showloader(TransactionHistoryMainPage.this,"Please wait!");
             API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&selectedCategory="+walletTypeCode,
                     new Api_Responce_Handler() {
@@ -463,7 +465,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                     data.optBoolean("isReverse")));
                                         }
 
-                                        setData(miniStatementTransList);
+                                        setData(miniStatementTransList,walletTypeCode);
 
                                     }
 
@@ -487,8 +489,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     }
 
-    private void setData(List<MiniStatementTrans> miniStatementTransList){
-        MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryMainPage.this,miniStatementTransList);
+    private void setData(List<MiniStatementTrans> miniStatementTransList,String walletTypeCode){
+        MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryMainPage.this,miniStatementTransList,walletTypeCode);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(miniStatementTransAdapter);
@@ -845,22 +847,24 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
     @Override
-    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status) {
-        String name="";
-        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
-            name = walletOwnerMsisdn;
-        }else{
-            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
-        }
+    public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName, String toWalletOwnerName, String walletOwnerMsisdn, String currencySymbol, double fromAmount, String transactionId, String creationDate, String status, double commissionAmount) {
+//        String name="";
+//        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
+//            name = walletOwnerMsisdn;
+//        }else{
+//            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
+//        }
         Intent intent = new Intent(TransactionHistoryMainPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
-        intent.putExtra("FROMWALLETOWNERNAME",name);
+        intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
+        intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
         intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
+        intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
+        intent.putExtra("WALLETTYPECODE",wallettypecode);
         startActivity(intent);
     }
-
 
 }
