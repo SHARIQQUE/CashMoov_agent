@@ -164,11 +164,11 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
                     return;
                 }
 
-                if(!isOtherUpload){
-                    MyApplication.showTipError(this,"Please upload other Image",btnOtherDocUpload);
-                    MyApplication.hideKeyboard(branchkycattachedC);
-                    return;
-                }
+//                if(!isOtherUpload){
+//                    MyApplication.showTipError(this,"Please upload other Image",btnOtherDocUpload);
+//                    MyApplication.hideKeyboard(branchkycattachedC);
+//                    return;
+//                }
 
                 intent = new Intent(branchkycattachedC, BranchSignature.class);
                 //intent.putExtra("CHECKINTENTSETPIN","BranchKYC");

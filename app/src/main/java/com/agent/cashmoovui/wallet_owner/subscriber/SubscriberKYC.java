@@ -253,7 +253,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     jsonObject.put("ownerName",etFname.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
                     jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-                    jsonObject.put("idExpiryDate","2021-11-09");
+                    jsonObject.put("idExpiryDate","2025-12-12T00:00:00.000Z");
                     jsonObject.put("email",etEmail.getText().toString().trim());
                     jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
@@ -265,9 +265,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 //                    jsonObject.put("city",etCity.getText().toString().trim());
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", subscriberkycC));
                     jsonObject.put("notificationTypeCode","100002");
+                    jsonObject.put("profileTypeCode","100000");
                     jsonObject.put("occupationTypeCode","100001");
                     jsonObject.put("state","U");
-                    jsonObject.put("status","Y");
+                    jsonObject.put("status","N");
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.SubscriberCode);
 
                 } catch (JSONException e) {

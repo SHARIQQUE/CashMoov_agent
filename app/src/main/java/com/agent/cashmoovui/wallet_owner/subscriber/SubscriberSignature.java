@@ -78,6 +78,7 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
             }
         });
 
+
         setOnCLickListener();
 
 
@@ -225,7 +226,7 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
 
-                                callApiAddBranchDataApproval();
+                                callWalletOwnerBasicInfo();
 
                             } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                                 MyApplication.showToast(subscribersignatureC,getString(R.string.technical_failure));
@@ -244,8 +245,35 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                 });
     }
 
+    private void callApiSubmitSubscriberData(JSONObject jsonObjectSubscriber) {
 
-    private void callApiAddBranchDataApproval() {
+            MyApplication.showloader(subscribersignatureC,"Please wait!");
+            API.PUT("ewallet/api/v1/walletOwner/subscriber/"+SubscriberKYC.subscriberWalletOwnerCode, jsonObjectSubscriber, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
+                    if (jsonObject != null) {
+                        if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                            callApiAddSubscriberDataApproval();
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                            MyApplication.showToast(subscribersignatureC,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(subscribersignatureC,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+
+    }
+
+
+    private void callApiAddSubscriberDataApproval() {
         try {
             JSONObject jsonObjectn = new JSONObject();
             JSONArray jsonArray = new JSONArray();
@@ -294,6 +322,81 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
 
                 }
             });
+
+        }catch (Exception e){
+
+        }
+
+    }
+
+    private void callWalletOwnerBasicInfo() {
+        try{
+            MyApplication.showloader(subscribersignatureC,"Please wait!");
+            API.GET("ewallet/api/v1/walletOwner/"+ SubscriberKYC.subscriberWalletOwnerCode,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            if(jsonObject!=null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                JSONObject jsonObjectWalletOwner = jsonObject.optJSONObject("walletOwner");
+                                try {
+                                    JSONObject jsonObjectSubscriber = new JSONObject();
+
+                                    jsonObjectSubscriber.put("id",jsonObjectWalletOwner.optString("id"));
+                                    jsonObjectSubscriber.put("code", jsonObjectWalletOwner.optString("code"));
+                                    jsonObjectSubscriber.put("walletOwnerCategoryCode", jsonObjectWalletOwner.optString("walletOwnerCategoryCode"));
+                                    jsonObjectSubscriber.put("ownerName", jsonObjectWalletOwner.optString("ownerName"));
+                                    jsonObjectSubscriber.put("mobileNumber",  jsonObjectWalletOwner.optString("mobileNumber"));
+                                    jsonObjectSubscriber.put("idProofNumber",  jsonObjectWalletOwner.optString("idProofNumber"));
+                                    jsonObjectSubscriber.put("email",  jsonObjectWalletOwner.optString("email"));
+                                    jsonObjectSubscriber.put("status", "Y");
+                                    jsonObjectSubscriber.put("state", "U");
+                                    jsonObjectSubscriber.put("stage",  jsonObjectWalletOwner.optString("stage"));
+                                    jsonObjectSubscriber.put("idProofTypeCode", jsonObjectWalletOwner.optString("idProofTypeCode"));
+                                    jsonObjectSubscriber.put("idProofTypeName",  jsonObjectWalletOwner.optString("idProofTypeName"));
+                                    jsonObjectSubscriber.put("idExpiryDate",  jsonObjectWalletOwner.optString("idExpiryDate"));
+                                    jsonObjectSubscriber.put("notificationLanguage",  jsonObjectWalletOwner.optString("notificationLanguage"));
+                                    jsonObjectSubscriber.put("notificationTypeCode",  jsonObjectWalletOwner.optString("notificationTypeCode"));
+                                    jsonObjectSubscriber.put("notificationName",  jsonObjectWalletOwner.optString("notificationName"));
+                                    jsonObjectSubscriber.put("gender",jsonObjectWalletOwner.optString("gender"));
+                                    jsonObjectSubscriber.put("dateOfBirth",  jsonObjectWalletOwner.optString("dateOfBirth"));
+                                    jsonObjectSubscriber.put("lastName",  jsonObjectWalletOwner.optString("lastName"));
+                                    jsonObjectSubscriber.put("issuingCountryCode",  jsonObjectWalletOwner.optString("issuingCountryCode"));
+                                    jsonObjectSubscriber.put("issuingCountryName",  jsonObjectWalletOwner.optString("issuingCountryName"));
+                                    jsonObjectSubscriber.put("registerCountryCode", jsonObjectWalletOwner.optString("registerCountryCode"));
+                                    jsonObjectSubscriber.put("registerCountryName",  jsonObjectWalletOwner.optString("registerCountryName"));
+                                    jsonObjectSubscriber.put("createdBy",  jsonObjectWalletOwner.optString("createdBy"));
+                                    jsonObjectSubscriber.put("creationDate", jsonObjectWalletOwner.optString("creationDate"));
+                                    jsonObjectSubscriber.put("walletExists", jsonObjectWalletOwner.optString("walletExists"));
+                                    jsonObjectSubscriber.put("profileTypeCode", jsonObjectWalletOwner.optString("profileTypeCode"));
+                                    jsonObjectSubscriber.put("profileTypeName", jsonObjectWalletOwner.optString("profileTypeName"));
+                                    jsonObjectSubscriber.put("walletOwnerCatName", jsonObjectWalletOwner.optString("walletOwnerCatName"));
+                                    jsonObjectSubscriber.put("occupationTypeCode", jsonObjectWalletOwner.optString("occupationTypeCode"));
+                                    jsonObjectSubscriber.put("occupationTypeName", jsonObjectWalletOwner.optString("occupationTypeName"));
+                                    jsonObjectSubscriber.put("requestedSource", jsonObjectWalletOwner.optString("requestedSource"));
+                                    jsonObjectSubscriber.put("regesterCountryDialCode", jsonObjectWalletOwner.optString("regesterCountryDialCode"));
+                                    jsonObjectSubscriber.put("issuingCountryDialCode", jsonObjectWalletOwner.optString("issuingCountryDialCode"));
+                                    jsonObjectSubscriber.put("walletOwnerCode", jsonObjectWalletOwner.optString("walletOwnerCode"));
+                                    jsonObjectSubscriber.put("hasChild", jsonObjectWalletOwner.optString("hasChild"));
+                                    jsonObjectSubscriber.put("passwordSetBy", "Self");
+
+
+                                    System.out.println("AddSubscriber==" + jsonObjectSubscriber.toString());
+
+                                    callApiSubmitSubscriberData(jsonObjectSubscriber);
+                                }catch (Exception e){}
+
+                                }else{
+                                MyApplication.showToast(subscribersignatureC,jsonObject.optString("resultDescription"));
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
 
         }catch (Exception e){
 

@@ -160,10 +160,10 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
                     return;
                 }
 
-                if(!isOtherUpload){
-                    MyApplication.showErrorToast(agentkycattachedC,"please upload other doc Image");
-                    return;
-                }
+//                if(!isOtherUpload){
+//                    MyApplication.showErrorToast(agentkycattachedC,"please upload other doc Image");
+//                    return;
+//                }
 
                 intent = new Intent(agentkycattachedC, AgentSignature.class);
                 //intent.putExtra("CHECKINTENTSETPIN","AgentKYC");
