@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -80,7 +81,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     TextView tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
-            receiptPage_tv_sender_phoneNo,
+            receiptPage_tv_sender_phoneNo,receiptPage_tv_amount_to_be_charged,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
     LinearLayout ll_successPage,ll_page_1,ll_reviewPage,ll_receiptPage,main_layout;
 
@@ -202,6 +203,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             receiptPage_tv_amount_to_be_credit = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_credit);
             receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
             receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
+            receiptPage_tv_amount_to_be_charged = findViewById(R.id.receiptPage_tv_amount_to_be_charged);
             receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
             receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
             receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
@@ -235,7 +237,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
            // in api currency Code is a country code
+
+            //-------comment for testing uncomment this and comment to next sendCurrencyCode string----------
+
             currencyCode_agent = MyApplication.getSaveString("countryCode_Loginpage", TransferFloats.this);
+
+
 
           //  Toast.makeText(TransferFloats.this, currencyCode_agent, Toast.LENGTH_LONG).show();
 
@@ -693,7 +700,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                                 String  currencyName_agent_temp = jsonObject2.getString("currencyName");
                                 if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
-                                  //  currencyCode_agent = jsonObject2.getString("currencyCode");
+                                    //currencyCode_agent = jsonObject2.getString("currencyCode");
                                     currencyName_agent = jsonObject2.getString("currencyName");
 
                                 } else {
@@ -749,8 +756,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
 
-                API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
-                        "&receiveCurrencyCode="+currencyCode_subscriber+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+""+
+                API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + selectCurrecnyCode +
+                        "&receiveCurrencyCode="+selectCurrecnyCode+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+""+
                         "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" +
                         serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
                         serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
@@ -1117,7 +1124,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             jsonObject.put("srcWalletOwnerCode",walletOwnerCode_destination); // walletOwnerCode_source // acording to portal
             jsonObject.put("desWalletOwnerCode",walletOwnerCode_source); //walletOwnerCode_destination // acording to portal
-            jsonObject.put("srcCurrencyCode",currencyCode_agent);
+            jsonObject.put("srcCurrencyCode",selectCurrecnyCode);
             jsonObject.put("desCurrencyCode",selectCurrecnyCode);
             jsonObject.put("mobileNumber",mobileNoStr);
             jsonObject.put("value",amountstr);
@@ -1150,6 +1157,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_receiptPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ll_page_1.setVisibility(View.GONE);
+                                    ll_reviewPage.setVisibility(View.GONE);
+                                    ll_successPage.setVisibility(View.GONE);
+                                    ll_receiptPage.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
 
 
 
@@ -1157,7 +1173,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +amountstr);
                             receiptPage_tv_fee.setText(currencySymbol_receiver+" " +fees_amount);
                             receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +tax_financial);
-
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver+" " +totalAmount_str);
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
