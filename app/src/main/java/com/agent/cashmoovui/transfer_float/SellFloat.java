@@ -999,11 +999,11 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     private void api_exchange_rate() {
 
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + select_currecnyCode +
                 "&receiveCurrencyCode="+select_currecnyCode+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_subscriber+
                 "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
                 serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
-                walletOwnerCode_mssis_agent + "&payAgentCode="+walletOwnerCode_mssis_agent,languageToUse, new Api_Responce_Handler() {
+                walletOwnerCode_mssis_agent + "&payAgentCode="+instituteListModelArrayList.get(pos).getWalletOwnerCode(),languageToUse, new Api_Responce_Handler() {
 
 
             @Override
@@ -1544,8 +1544,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             //  Toast.makeText(SellFloat.this, "---------desWalletOwnerCode---------"+desWalletOwnerCode_from_allSellFloat, Toast.LENGTH_LONG).show();
 
 
-            jsonObject.put("srcCurrencyCode",currencyCode_agent);
-            jsonObject.put("desCurrencyCode",currencyCode_subscriber);
+            jsonObject.put("srcCurrencyCode",select_currecnyCode);
+            jsonObject.put("desCurrencyCode",select_currecnyCode);
 
 
             jsonObject.put("value",amountstr);

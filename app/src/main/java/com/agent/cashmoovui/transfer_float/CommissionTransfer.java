@@ -545,6 +545,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 if(!MyApplication.currencyModelArrayList.get(i).getCommisionWalletValue().equalsIgnoreCase("0.0"))
                 {
                //  MyApplication.currencyModelArrayList_temp=MyApplication.currencyModelArrayList.get(i);
+
+                    if(Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getCommisionWalletValue())>0.0)
                          MyApplication.currencyModelArrayList_temp.add(MyApplication.currencyModelArrayList.get(i));
                 }
             }
