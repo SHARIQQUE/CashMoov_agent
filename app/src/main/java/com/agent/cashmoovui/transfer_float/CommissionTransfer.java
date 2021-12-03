@@ -558,7 +558,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
         }
 
-        CurrencyListCommisionTransaction arraadapter2 = new CurrencyListCommisionTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList);
+        CurrencyListCommisionTransaction arraadapter2 = new CurrencyListCommisionTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList_temp);
         spinner_currency.setAdapter(arraadapter2);
 
 
@@ -579,13 +579,13 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
         //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
         String currencyName_mssis_agent = currencyCode;  // no currency tag is comming in MSSID
 
-        for (int i = 0; i < MyApplication.currencyModelArrayList.size(); i++) {
+       /* for (int i = 0; i < MyApplication.currencyModelArrayList.size(); i++) {
             if (currencyName_mssis_agent.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyName()))
             {
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
                 spinner_currency.setSelection(i);
             }
-        }
+        }*/
 
 
 

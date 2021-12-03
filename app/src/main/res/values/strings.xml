@@ -362,6 +362,7 @@
     <string name="please_enter_4_digit_mpin">Please enter pin</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="enter_otp_details">Enter the 6-digit OTP code we sent to +224 621 123 123</string>
+
     <string name="session_expire_60">Session expires in 60 seconds</string>
     <string name="havenot_receive">Haven\'t received a code? Send it back</string>
     <string name="please_enter_otp_code">Please enter otp code</string>

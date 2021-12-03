@@ -144,8 +144,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                     getBaseContext().getResources().getDisplayMetrics());
 
             super.onCreate(savedInstanceState);
-
-
             setContentView(R.layout.transfer_flaots);
             setBackMenu();
 

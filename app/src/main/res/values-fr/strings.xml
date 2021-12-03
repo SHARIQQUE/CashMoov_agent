@@ -350,6 +350,7 @@
     <string name="please_enter_4_digit_mpin">Veuillez saisir chiffres</string>
     <string name="otp_verification">Vérification OTP</string>
     <string name="enter_otp_details">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123</string>
+
     <string name="session_expire_60">La session expire dans 60 secondes</string>
     <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>
     <string name="please_enter_otp_code">Veuillez entrer le code OTP</string>

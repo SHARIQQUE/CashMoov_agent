@@ -475,7 +475,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             String USERCODE = walletOwnerUser.getString("userCode");
                             String CODE_AGENT = walletOwnerUser.getString("code");
                             String NTTYPECODE = walletOwnerUser.getString("notificationTypeCode");
-                            String firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+                            String firstLoginStatus="Y";
+                            if(walletOwnerUser.has("pinLoginStatus")) {
+                                 firstLoginStatus = walletOwnerUser.getString("pinLoginStatus");
+                            }else{
+                                 firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+                            }
 
                             //  String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                             // String countryName_agent = walletOwnerUser.getString("issuingCountryName");
