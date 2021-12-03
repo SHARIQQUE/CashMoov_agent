@@ -108,7 +108,7 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                 addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                 if(photoSend!=null){
-                    callupload(photoSend,SubscriberKYC.idProofTypeCode,SubscriberKYC.subscriberWalletOwnerCode);
+                    callupload(photoSend,"100039",SubscriberKYC.subscriberWalletOwnerCode);
                 }
 
             }

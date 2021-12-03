@@ -111,7 +111,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
                 addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                 if(photoSend!=null){
-                    callupload(photoSend, AgentKYC.idProofTypeCode,AgentKYC.agentWalletOwnerCode);
+                    callupload(photoSend, "100039",AgentKYC.agentWalletOwnerCode);
                 }
 
             }
@@ -219,7 +219,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
 
         MyApplication.showloader(agentsignatureC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
-        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file,idProofTypeCode,subscriberWalletOwnerCode,
+        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file,"idProofTypeCode",subscriberWalletOwnerCode,
                  new Api_Responce_Handler() {
 
                     @Override

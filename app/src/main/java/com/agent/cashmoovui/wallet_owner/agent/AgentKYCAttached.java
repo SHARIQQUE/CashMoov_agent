@@ -300,7 +300,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
         if (file_size <= 100){
             isFrontUpload=true;
 
-            callupload(file);
+            callupload(file,"100012");
         }else {
             MyApplication.showErrorToast(agentkycattachedC,"File size exceeds");
         }
@@ -312,7 +312,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isBackUpload=true;
-            callupload(file);
+            callupload(file,"100013");
         }else {
             MyApplication.showErrorToast(agentkycattachedC,"File size exceeds");
         }
@@ -324,7 +324,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isOtherUpload=true;
-            callupload(file);
+            callupload(file,AgentKYC.idProofTypeCode);
         }else {
             MyApplication.showErrorToast(agentkycattachedC,"File size exceeds");
         }
@@ -391,11 +391,11 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
 //    }
 
     JSONObject documentUploadJsonObj;
-    private void callupload(File file) {
+    private void callupload(File file,String idProofTypeCode) {
 
         MyApplication.showloader(agentkycattachedC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
-        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file, AgentKYC.idProofTypeCode,AgentKYC.agentWalletOwnerCode,
+        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file, idProofTypeCode,AgentKYC.agentWalletOwnerCode,
                 new Api_Responce_Handler() {
 
                     @Override

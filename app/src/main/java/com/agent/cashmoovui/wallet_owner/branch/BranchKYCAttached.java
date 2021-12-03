@@ -305,7 +305,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
         if (file_size <= 100){
             isFrontUpload=true;
 
-            callupload(file);
+            callupload(file,"100012");
         }else {
             MyApplication.showErrorToast(branchkycattachedC,"File size exceeds");
         }
@@ -317,7 +317,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isBackUpload=true;
-            callupload(file);
+            callupload(file,"100013");
         }else {
             MyApplication.showErrorToast(branchkycattachedC,"File size exceeds");
         }
@@ -329,7 +329,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isOtherUpload=true;
-            callupload(file);
+            callupload(file,BranchKYC.idProofTypeCode);
         }else {
             MyApplication.showErrorToast(branchkycattachedC,"File size exceeds");
         }
@@ -396,11 +396,11 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
 //    }
 
     JSONObject documentUploadJsonObj;
-    private void callupload(File file) {
+    private void callupload(File file,String idProofTypeCode) {
 
         MyApplication.showloader(branchkycattachedC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
-        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file, BranchKYC.idProofTypeCode,
+        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file, idProofTypeCode,
                 BranchKYC.branchWalletOwnerCode,
                 new Api_Responce_Handler() {
 

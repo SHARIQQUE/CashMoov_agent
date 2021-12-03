@@ -251,7 +251,7 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
         if (file_size <= 100){
             isFrontUpload=true;
 
-            callupload(file);
+            callupload(file,"100012");
         }else {
             MyApplication.showErrorToast(subscriberkycattachedC,"File size exceeds");
         }
@@ -263,7 +263,7 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isBackUpload=true;
-            callupload(file);
+            callupload(file,"100013");
         }else {
             MyApplication.showErrorToast(subscriberkycattachedC,"File size exceeds");
         }
@@ -330,11 +330,11 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
 //    }
 
     JSONObject documentUploadJsonObj;
-    private void callupload(File file) {
+    private void callupload(File file,String idProofTypeCode) {
 
         MyApplication.showloader(subscriberkycattachedC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
-        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file,SubscriberKYC.idProofTypeCode,SubscriberKYC.subscriberWalletOwnerCode,
+        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file,idProofTypeCode,SubscriberKYC.subscriberWalletOwnerCode,
                 new Api_Responce_Handler() {
 
                     @Override

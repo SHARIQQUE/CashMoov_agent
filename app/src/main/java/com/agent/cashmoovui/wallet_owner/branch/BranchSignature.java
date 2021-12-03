@@ -107,7 +107,7 @@ public class BranchSignature extends AppCompatActivity implements View.OnClickLi
                 addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                 if(photoSend!=null){
-                    callupload(photoSend, BranchKYC.idProofTypeCode,BranchKYC.branchWalletOwnerCode);
+                    callupload(photoSend, "100039",BranchKYC.branchWalletOwnerCode);
                 }
 
             }
