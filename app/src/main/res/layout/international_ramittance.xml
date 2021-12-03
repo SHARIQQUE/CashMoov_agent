@@ -83,13 +83,11 @@
             <Spinner
                 android:id="@+id/spinner_provider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
 
@@ -99,13 +97,11 @@
             <Spinner
                 android:id="@+id/spinner_senderCountry"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
 
@@ -113,13 +109,11 @@
             <Spinner
                 android:id="@+id/spinner_senderCurrency"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
 
@@ -127,13 +121,11 @@
             <Spinner
                 android:id="@+id/spinner_receiverCountry"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
 
@@ -141,13 +133,11 @@
             <Spinner
                 android:id="@+id/spinner_receiverCurrency"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
 
@@ -411,13 +401,11 @@
             <Spinner
                 android:id="@+id/spinner_gender"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
 

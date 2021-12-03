@@ -71,6 +71,7 @@ public class MyApplication extends Application {
     public static String channelTypeCode = "100000";
 
     public static ArrayList<CurrencyModel> currencyModelArrayList=new ArrayList<>();
+    public static ArrayList<CurrencyModel> currencyModelArrayList_temp=new ArrayList<>();
 
 
     public SharedPreferences getmSharedPreferences() {

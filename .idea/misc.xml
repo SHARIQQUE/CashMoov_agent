@@ -136,7 +136,7 @@
         <entry key="app/src/main/res/layout/activity_paiements.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/activity_register_abonne_one.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_register_abonne_one.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register_abonne_two.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_register_agent.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_register_agent_or_branch_doc.xml" value="0.19583333333333333" />
@@ -177,7 +177,7 @@
         <entry key="app/src/main/res/layout/item_transaction_list_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_transaction_list_new_agent.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/language_choose.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.22" />
         <entry key="app/src/main/res/layout/login_msis.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_with_pin.xml" value="0.22" />

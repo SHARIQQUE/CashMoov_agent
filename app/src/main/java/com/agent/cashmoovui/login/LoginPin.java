@@ -437,6 +437,14 @@ public class LoginPin extends AppCompatActivity {
                         startActivity(i);*/
                     }
 
+                   else if(aFalse.contains("Failed to connect")){
+                         Toast.makeText(loginpinC, "Please try again later", Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                        // com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ConnectException: Failed to connect to /202.131.144.130:8081
+
                    // Toast.makeText(loginpinC, aFalse, Toast.LENGTH_LONG).show();
 
 
@@ -592,6 +600,12 @@ public class LoginPin extends AppCompatActivity {
                     if(aFalse.equalsIgnoreCase("1251")){
                         Intent i = new Intent(loginpinC, VerifyLoginAccountScreen.class);
                         startActivity(i);
+
+                    }
+
+
+                    else if(aFalse.contains("Failed to connect")){
+                        Toast.makeText(loginpinC, "Please try again later", Toast.LENGTH_LONG).show();
 
                     }
 

@@ -80,15 +80,12 @@
             <Spinner
                 android:id="@+id/spinner_provider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:textColor="#323232"
-                />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
+                android:textColor="#323232" />
 
 
             <EditText
@@ -368,15 +365,12 @@
             <Spinner
                 android:id="@+id/spinner_gender"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_42sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:textColor="#323232"
-                />
+                android:paddingLeft="@dimen/_30sdp"
+
+                android:background="@drawable/spinner_background"
+                android:textColor="#323232" />
 
             <EditText
                 android:id="@+id/et_fp_reason_sending"

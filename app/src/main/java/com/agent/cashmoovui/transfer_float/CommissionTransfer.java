@@ -35,6 +35,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.CommonBaseAdapter;
 import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
+import com.agent.cashmoovui.adapter.CurrencyListCommisionTransaction;
 import com.agent.cashmoovui.adapter.CurrencyListTransaction;
 import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.adapter.TransferCommisionAdapter;
@@ -419,6 +420,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
     ArrayList arrayList=new ArrayList();
+    ArrayList arrayList_temp=new ArrayList();
+
     public void createList(JSONObject jsonObject){
 
         arrayList.clear();
@@ -530,13 +533,31 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             // JSONArray j=new JSONArray(MyApplication.currencyModelArrayList);
             Gson gson = new GsonBuilder().create();
             JsonArray myCustomArray = gson.toJsonTree(MyApplication.currencyModelArrayList).getAsJsonArray();
+
             System.out.println("Array List"+myCustomArray.toString());
+
+
+            MyApplication.currencyModelArrayList_temp.clear();
+
+            for(int i=0;i<MyApplication.currencyModelArrayList.size();i++)
+            {
+                if(!MyApplication.currencyModelArrayList.get(i).getCommisionWalletValue().equalsIgnoreCase("0.0"))
+                {
+               //  MyApplication.currencyModelArrayList_temp=MyApplication.currencyModelArrayList.get(i);
+                         MyApplication.currencyModelArrayList_temp.add(MyApplication.currencyModelArrayList.get(i));
+                }
+            }
+
+
+            System.out.println("-------------Array List---------------------"+ MyApplication.currencyModelArrayList_temp.toString());
+
+
 
 
 
         }
 
-        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList);
+        CurrencyListCommisionTransaction arraadapter2 = new CurrencyListCommisionTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList);
         spinner_currency.setAdapter(arraadapter2);
 
 

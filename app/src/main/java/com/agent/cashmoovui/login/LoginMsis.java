@@ -704,8 +704,16 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                          if(jsonObject_country.has("currencyCode")){
                                 MyApplication.saveString("currencyCode_Loginpage", jsonObject_country.getString("currencyCode"), LoginMsis.this);
                             }else{
-                                MyApplication.saveString("ccurrencyCode_Loginpage", "", LoginMsis.this);
+                                MyApplication.saveString("currencyCode_Loginpage", "", LoginMsis.this);
                             }
+
+                            if(jsonObject_country.has("currencyRefCode")){
+                                MyApplication.saveString("countryCode_Loginpage", jsonObject_country.getString("currencyRefCode"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("countryCode_Loginpage", "", LoginMsis.this);
+                            }
+
+
 
 
 

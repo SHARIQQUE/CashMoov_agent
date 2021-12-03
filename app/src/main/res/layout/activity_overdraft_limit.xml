@@ -92,13 +92,11 @@
                 <Spinner
                     android:id="@+id/spinner_currency"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_42sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="#999999"
-                    android:inputType="textEmailAddress"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="37.5dp"
+                    android:paddingLeft="@dimen/_30sdp"
+
+                    android:background="@drawable/spinner_background"
                     android:textColor="#323232"
                     />
 

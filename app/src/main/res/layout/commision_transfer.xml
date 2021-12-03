@@ -209,45 +209,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_weight="2">
-
-
-                    <TextView
-
-
-                        android:layout_width="11dp"
-
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="@string/main_Wallet"
-                        android:textSize="@dimen/_14sdp"
-                        />
-
-
-                    <TextView
-
-                        android:id="@+id/mainbalance_textview"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:textSize="@dimen/_14sdp"
-                        />
-
-
-                </LinearLayout>
 
 
 
@@ -280,6 +241,45 @@
                 </LinearLayout>
 
 
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+
+           android:layout_marginTop="@dimen/_10sdp"
+           android:layout_weight="2">
+
+
+           <TextView
+
+
+               android:layout_width="11dp"
+
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginLeft="@dimen/_10sdp"
+               android:layout_weight="1"
+               android:gravity="left"
+               android:text="@string/main_Wallet"
+               android:textSize="@dimen/_14sdp"
+               />
+
+
+           <TextView
+
+               android:id="@+id/mainbalance_textview"
+
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_marginLeft="@dimen/_10sdp"
+               android:layout_weight="1"
+               android:gravity="left"
+               android:textSize="@dimen/_14sdp"
+               />
+
+
+       </LinearLayout>
 
 
 
