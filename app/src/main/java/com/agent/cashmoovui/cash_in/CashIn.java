@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -760,6 +761,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         ll_receiptPage.setVisibility(View.GONE);
 
 
+
                     }
 
                     else {
@@ -893,6 +895,16 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 ll_reviewPage.setVisibility(View.GONE);
                                 ll_successPage.setVisibility(View.VISIBLE);
                                 ll_receiptPage.setVisibility(View.GONE);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ll_page_1.setVisibility(View.GONE);
+                                        ll_reviewPage.setVisibility(View.GONE);
+                                        ll_successPage.setVisibility(View.GONE);
+                                        ll_receiptPage.setVisibility(View.VISIBLE);
+                                    }
+                                }, 2000);
+
                             }
 
 

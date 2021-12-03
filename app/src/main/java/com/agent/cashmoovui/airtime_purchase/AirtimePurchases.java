@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -1239,7 +1240,15 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_receiptPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
-
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ll_page_1.setVisibility(View.GONE);
+                                    ll_reviewPage.setVisibility(View.GONE);
+                                    ll_successPage.setVisibility(View.GONE);
+                                    ll_receiptPage.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
 
 
                             receiptPage_tv_stransactionType.setText("Airtime Purchase");

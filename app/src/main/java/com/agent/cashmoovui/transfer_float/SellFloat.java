@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -1436,7 +1437,15 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
 
+                                    alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
+
+
+                                }
+                            }, 2000);
 
 
                         } else {

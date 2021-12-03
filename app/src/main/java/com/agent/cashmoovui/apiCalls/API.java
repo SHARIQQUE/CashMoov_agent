@@ -39,6 +39,8 @@ public class API {
 
      public static String BASEURL="http://202.131.144.130:8081/";          // ##### QA ######
    //  public static String BASEURL="http://202.131.144.129:8081/";    // ##### UAT ######
+     public static String BASEURL="http://202.131.144.130:8081/";          // ##### QA ######
+    // public static String BASEURL="http://202.131.144.129:8081/";    // ##### UAT ######
 
     //###############################################################
 

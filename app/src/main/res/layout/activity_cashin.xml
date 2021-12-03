@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <include layout="@layout/toolbar_active"></include>
 
@@ -824,7 +824,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             >
 
             <RelativeLayout
@@ -863,6 +863,7 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tvContinue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

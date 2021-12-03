@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -876,6 +877,15 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_receiptPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ll_page_1.setVisibility(View.GONE);
+                                    ll_reviewPage.setVisibility(View.GONE);
+                                    ll_successPage.setVisibility(View.GONE);
+                                    ll_receiptPage.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
 
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
 
