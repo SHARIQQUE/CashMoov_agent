@@ -62,9 +62,9 @@
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_wallet_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.25" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/airtime_purchases.xml" value="0.16" />
-        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.25" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_to_wallet.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/cashout_agent.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/cashout_agent.xml" value="0.2" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/change_pin.xml" value="0.22" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/commision_transfer.xml" value="0.17" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/layout/dialog_view_trans_details_agent.xml" value="0.16302083333333334" />
@@ -142,7 +142,7 @@
         <entry key="app/src/main/res/layout/activity_paiements.xml" value="0.15052083333333333" />
         <entry key="app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/activity_register_abonne_one.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_abonne_one.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_register_abonne_two.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_register_agent.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_register_agent_or_branch_doc.xml" value="0.19583333333333333" />
@@ -182,7 +182,7 @@
         <entry key="app/src/main/res/layout/item_transaction_list_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_transaction_list_new_agent.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/language_choose.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/local_ramittance.xml" value="0.2" />
         <entry key="app/src/main/res/layout/login_msis.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_pin.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_with_pin.xml" value="0.22" />

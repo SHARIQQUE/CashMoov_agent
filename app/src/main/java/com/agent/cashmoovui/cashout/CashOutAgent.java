@@ -74,7 +74,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
     TextView tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
-            receiptPage_tv_amount_to_be_paid, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
+            receiptPage_tv_amount_to_be_paid, receiptPage_tv_fee, receiptPage_tv_financialtax,receipt_tv_amount_to_be_charge,
+            receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
@@ -154,6 +155,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             rp_tv_businessType = (TextView) findViewById(R.id.rp_tv_businessType);
             rp_tv_email = (TextView) findViewById(R.id.rp_tv_email);
             rp_tv_country = (TextView) findViewById(R.id.rp_tv_country);
+            rp_tv_country.setVisibility(View.GONE);
             rp_tv_receiverName = (TextView) findViewById(R.id.rp_tv_receiverName);
             rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
@@ -178,6 +180,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             receiptPage_tv_amount_to_be_paid = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_paid);
             receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
             receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
+            receipt_tv_amount_to_be_charge = findViewById(R.id.receipt_tv_amount_to_be_charge);
             receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
             receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
             receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
@@ -837,6 +840,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender +" "+ amountstr);
                             receiptPage_tv_fee.setText(currencySymbol_sender +" " + fees_amount);
                             receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ tax_financial);
+                            receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
 

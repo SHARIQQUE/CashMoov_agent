@@ -430,6 +430,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:gravity="left"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -763,6 +764,7 @@
                             android:hint="@string/please_enter_4_digit_mpin"
                             android:layout_gravity="center_vertical"
                             android:textColor="#323232"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:drawableRight="@drawable/ic_visibility_off_black_24dp"
 
                             android:background="@drawable/rect_lightcolor_outline"
@@ -821,6 +823,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
                             android:padding="@dimen/_12sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
                             android:hint="@string/plz_enter_6_digit_otp_code"
                             android:layout_gravity="center_vertical"
                             android:textColor="#323232"
@@ -842,12 +845,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_weight="2">
+                        android:layout_marginRight="@dimen/_10sdp">
 
 
                         <TextView
 
-                            android:layout_width="294dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
@@ -855,20 +858,20 @@
                             android:gravity="right"
                             android:text="@string/didnot_get_the_Code"
                             android:textColor="@android:color/darker_gray"
-                            android:textSize="16dp"
+                            android:textSize="@dimen/_11sdp"
                             android:textStyle="bold" />
 
                         <TextView
-
-                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:gravity="right"
                             android:textStyle="bold"
                             android:text="@string/resend_it"
+                            android:layout_marginStart="@dimen/_5sdp"
                             android:textColor="@color/blue_colour_review"
-                            android:textSize="16dp" />
+                            android:textSize="@dimen/_11sdp"
+                     />
 
 
                     </LinearLayout>
@@ -1316,7 +1319,45 @@
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:gravity="left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_5sdp">
 
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+
+                            app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/amount_to_be_charged_reveiewPage"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:textSize="@dimen/_13sdp"
+                            />
+
+                        <TextView
+                            android:id="@+id/receipt_tv_amount_to_be_charge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_13sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:textColor="#000"
+                            />
+
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

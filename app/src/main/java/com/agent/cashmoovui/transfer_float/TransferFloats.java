@@ -350,8 +350,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         agentName_from_walletOwner = jsonObject_walletOwner.getString("ownerName");
                         sender_emailId_str = jsonObject_walletOwner.getString("email");
-                        sender_country_str = jsonObject_walletOwner.getString("issuingCountryName");
-
+                        sender_country_str = jsonObject_walletOwner.getString("registerCountryName");
+                        businessTypeName_walletOwnerCategoryCode = jsonObject_walletOwner.getString("businessTypeName");
                         rp_tv_country.setText(sender_country_str);
                         rp_tv_email.setText(sender_emailId_str);
 
@@ -407,7 +407,11 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
                         receiver_name_str = jsonObject_walletOwner.getString("ownerName");
-                        receiver_emailId_str = jsonObject_walletOwner.getString("email");
+
+                        if(jsonObject_walletOwner.has("email")){
+                            receiver_emailId_str = jsonObject_walletOwner.getString("email");
+                        }
+
                         receiver_country_str = jsonObject_walletOwner.getString("registerCountryName");
 
                         walletOwnerCode_source = jsonObject_walletOwner.getString("code");
@@ -806,14 +810,10 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" " +totalAmount_str);
 
 
-
-
                         ll_page_1.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
                         ll_successPage.setVisibility(View.GONE);
-
-
 
 
                     }
@@ -948,16 +948,18 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                        //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
-                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        //countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
 
+                        String  issuingCountryName = MyApplication.getSaveString("COUNTRYNAME_AGENT",TransferFloats.this);
+                        countryCode_agent = MyApplication.getSaveString("COUNTRYCODE_AGENT",TransferFloats.this);
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);
                         rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", TransferFloats.this));
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
-                       rp_tv_receiverName.setText(receiver_name_str);
+                        rp_tv_receiverName.setText(receiver_name_str);
                         rp_tv_transactionAmount.setText(currencySymbol_receiver+" " +amountstr);
 
 

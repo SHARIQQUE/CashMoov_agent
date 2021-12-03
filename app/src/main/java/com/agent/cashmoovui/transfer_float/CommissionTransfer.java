@@ -698,12 +698,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                      String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                      //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);
                         rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", CommissionTransfer.this));
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
-                        rp_tv_country.setText(issuingCountryName);
+                        rp_tv_country.setText(MyApplication.getSaveString("COUNTRYNAME_AGENT", CommissionTransfer.this));
 
                         rp_tv_receiverName.setText(selectInstititueName);
                         rp_tv_transactionAmount.setText(amountstr);

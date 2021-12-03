@@ -591,6 +591,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 //
                             if(walletOwner.has("registerCountryName")){
                                 MyApplication.saveString("COUNTRY_NAME_USERINFO", walletOwner.getString("registerCountryName"), LoginMsis.this);
+                                MyApplication.saveString("COUNTRYNAME_AGENT",walletOwner.getString("registerCountryName"),LoginMsis.this);
                             }else{
                                 MyApplication.saveString("COUNTRY_NAME_USERINFO", "", LoginMsis.this);
                             }
@@ -598,10 +599,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             if(walletOwner.has("registerCountryCode")){
                                 MyApplication.saveString("COUNTRY_CODE_USERINFO", walletOwner.getString("registerCountryCode"), LoginMsis.this);
+                                MyApplication.saveString("COUNTRYCODE_AGENT",walletOwner.getString("registerCountryCode"),LoginMsis.this);
                             }else{
                                 MyApplication.saveString("COUNTRY_CODE_USERINFO", "", LoginMsis.this);
                             }
-//
+
+
 //
 //                            MyApplication.saveString("USERNAME", strPhoneNo, LoginMsis.this);
 //                            MyApplication.saveString("PASSWORD", strPasword, LoginMsis.this);

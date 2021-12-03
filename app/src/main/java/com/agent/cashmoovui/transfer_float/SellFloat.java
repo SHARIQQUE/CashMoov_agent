@@ -51,6 +51,7 @@ import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.InstituteListModel;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
@@ -351,6 +352,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    ArrayList<InstituteListModel>instituteListModelArrayList = new ArrayList<>();
     private void api_insititute() {
 
 
@@ -383,11 +385,24 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         String ownerNameTemp="";
                         String mobileNumberTemp="";
 
+                        instituteListModelArrayList.clear();
+
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
                         for(int i=0;i<jsonArray.length();i++)
                         {
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+                            instituteListModelArrayList.add(new InstituteListModel(
+                                    jsonObject3.optString("code"),
+                                    jsonObject3.optString("walletOwnerCategoryCode"),
+                                    jsonObject3.optString("ownerName"),
+                                    jsonObject3.optString("mobileNumber"),
+                                    jsonObject3.optString("email"),
+                                    jsonObject3.optString("dateOfBirth"),
+                                    jsonObject3.optString("registerCountryCode"),
+                                    jsonObject3.optString("registerCountryName"),
+                                    jsonObject3.optString("walletOwnerCode")
+                            ));
 
 
                             if(jsonObject3.has("walletOwnerCode"))
@@ -445,7 +460,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        api_currency_spinner_details();
+                        //api_currency_spinner_details();
 
 
                     } else {
@@ -576,9 +591,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-    private void api_currency_spinner_details() {
+    private void api_currency_spinner_details(String userCode_agentCode_from_mssid) {
 
-        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",SellFloat.this);
+       // String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE",SellFloat.this);
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+userCode_agentCode_from_mssid,languageToUse,new Api_Responce_Handler() {
 
@@ -593,14 +608,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     String resultCode =  jsonObject.getString("resultCode");
                     String resultDescription =  jsonObject.getString("resultDescription");
 
+                    arrayList_currecnyName.clear();
+                    arrayList_currecnyCode.clear();
+                    arrayList_currencySymbol.clear();
+
                     if(resultCode.equalsIgnoreCase("0")) {
 
 
                         arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
                         arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
                         arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
-
-
 
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
                         for(int i=0;i<jsonArray.length();i++)
@@ -630,7 +647,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     else {
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
+                        //finish();
                     }
 
 
@@ -649,7 +666,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                 MyApplication.hideLoader();
                 Toast.makeText(SellFloat.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
+                //finish();
 
             }
         });
@@ -751,6 +768,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             if(jsonObject2.has("currencyName")) {
 
                                 String  currencyName_agent_temp = jsonObject2.getString("currencyName");
+                               // if(data.optString("currencyCode").equalsIgnoreCase(MyApplication.getSaveString("countryCode_Loginpage",MainActivity.this)))
                                 if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
                                     currencyCode_agent = jsonObject2.getString("currencyCode");
                                     currencyName_agent = jsonObject2.getString("currencyName");
@@ -947,7 +965,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     }
 
                     else {
-                        Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                         recyclerView.setVisibility(View.GONE);
                         linearLayout_record.setVisibility(View.GONE);
 
@@ -1176,16 +1194,18 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                        //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
-                        countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
-                        countryName_agent = walletOwnerUser.getString("issuingCountryName");
+                        //countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                        //countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
+                        countryName_agent = MyApplication.getSaveString("COUNTRYNAME_AGENT",SellFloat.this);
+                        countryCode_agent = MyApplication.getSaveString("COUNTRYCODE_AGENT",SellFloat.this);
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);
                         rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME",SellFloat.this));
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
-                        rp_tv_country.setText(issuingCountryName);
+                        rp_tv_country.setText(countryName_agent);
 
                         rp_tv_receiverName.setText(select_insitute_name);
                         rp_tv_transactionAmount.setText(amountstr);
@@ -1517,7 +1537,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             //   jsonObject.put("desWalletOwnerCode",select_insitute_code);   // Not working
 
-            jsonObject.put("desWalletOwnerCode",desWalletOwnerCode_from_allSellFloat);
+            jsonObject.put("desWalletOwnerCode",instituteListModelArrayList.get(pos).getWalletOwnerCode());
 
 
             //  Toast.makeText(SellFloat.this, "----srcWalletOwnerCode--------------"+walletOwnerCode_mssis_agent, Toast.LENGTH_LONG).show();
@@ -1925,6 +1945,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    int pos;
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
@@ -1933,10 +1955,11 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             case R.id.spinner_insititue:
             {
 
-
                 select_insitute_name = arrayList_instititueName.get(i);
                 select_insitute_code = arrayList_instititueCode.get(i);
-
+                if(i>0)
+                api_currency_spinner_details(instituteListModelArrayList.get(i).getWalletOwnerCode());
+                pos = i;
 
             }
             break;

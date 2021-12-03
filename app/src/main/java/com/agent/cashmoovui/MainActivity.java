@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance;
-    LinearLayout ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_serviceCharge;
+    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_serviceCharge;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -102,11 +102,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgProfile = findViewById(R.id.imgProfile);
         imgProfile.setOnClickListener(this);
 
+        linClick = findViewById(R.id.linClickn);
+        linClick.setOnClickListener(this);
         tvClick = findViewById(R.id.tvClick);
-        tvClick.setOnClickListener(this);
+       // tvClick.setOnClickListener(this);
 
         tvBalance = findViewById(R.id.tvBalance);
-        tvBalance.setOnClickListener(this);
+        //tvBalance.setOnClickListener(this);
 
         ll_cashIn = (LinearLayout) findViewById(R.id.ll_cashIn);
         ll_cashIn.setOnClickListener(this);
@@ -219,13 +221,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i = new Intent(MainActivity.this, Profile.class);
                 startActivity(i);
                 break;
-            case R.id.tvClick:
-                tvClick.setVisibility(View.GONE);
-                tvBalance.setVisibility(View.VISIBLE);
-                break;
-            case R.id.tvBalance:
-                tvClick.setVisibility(View.VISIBLE);
-                tvBalance.setVisibility(View.GONE);
+            case R.id.linClickn:
+                if(tvClick.isShown()) {
+                    tvClick.setVisibility(View.GONE);
+                    tvBalance.setVisibility(View.VISIBLE);
+                }
+                else{
+                    tvClick.setVisibility(View.VISIBLE);
+                    tvBalance.setVisibility(View.GONE);
+                }
                 break;
             case R.id.ll_cashIn:
                 i = new Intent(MainActivity.this, CashIn.class);
@@ -293,7 +297,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
-                                                if(data.optString("currencyCode").equalsIgnoreCase("100062")) {
+                                                if(data.optString("currencyCode").equalsIgnoreCase(MyApplication.getSaveString("countryCode_Loginpage",MainActivity.this))) {
                                                     tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
                                                 }
                                             }
