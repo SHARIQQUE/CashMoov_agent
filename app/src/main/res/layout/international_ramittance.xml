@@ -10,8 +10,6 @@
     tools:context=".activity.About">
 
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -284,6 +282,42 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/amount_paid_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+                    android:id="@+id/amountTobePaid_first_page"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -304,7 +338,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-
                     android:id="@+id/amountTobeCharged_first_page"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
@@ -729,7 +762,6 @@
                     android:gravity="left"
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />
-
 
             </LinearLayout>
 
@@ -1262,6 +1294,7 @@
 
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tvContinue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

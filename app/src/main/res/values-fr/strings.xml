@@ -521,8 +521,8 @@
     <string name="receive_country">Pays d\'accueil*</string>
 
 
-    <string name="plz_select_receive_country">Pays d\'accueil*</string>
-    <string name="plz_select_receive_currency">Devise de réception*</string>
+    <string name="plz_select_receive_country">Pays d\'accueil</string>
+    <string name="plz_select_receive_currency">Devise de réception</string>
     <string name="receive_courency">Devise de réception*</string>
 
 

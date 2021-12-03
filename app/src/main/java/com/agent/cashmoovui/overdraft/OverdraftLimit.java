@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -689,6 +690,15 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                       ll_firstPage.setVisibility(View.GONE);
                       ll_successPage.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                alert_dialogue_sh("Your overdraft request created successfully and send for approval");
+
+
+                            }
+                        }, 2000);
 
                     } else {
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();

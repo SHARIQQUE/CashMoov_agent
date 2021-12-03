@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -780,6 +781,14 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                             ll_successPage.setVisibility(View.VISIBLE);
                             ll_receiptPage.setVisibility(View.GONE);
 
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    alert_dialogue_sh("Commission transfer successfully to main wallet");
+
+                                }
+                            }, 2000);
 
 
                         } else {

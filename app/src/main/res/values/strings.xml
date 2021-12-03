@@ -529,8 +529,8 @@
 
     <string name="genderSelect_fixed">Please select gender</string>
 
-    <string name="plz_select_receive_country">Please select Receiving Country*</string>
-    <string name="plz_select_receive_currency"> Please select receiving currency*</string>
+    <string name="plz_select_receive_country">Please select Receiving Country</string>
+    <string name="plz_select_receive_currency"> Please select receiving currency</string>
 
 
     <string name="receive_country">Receiving Country*</string>

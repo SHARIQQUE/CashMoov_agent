@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -57,6 +58,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -129,7 +131,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     TextView receiptPage_tv_receiverCountry,receiptPage_tv_senderCountry,receiptPage_tv_amount_to_be_paid,tvContinue,fees_first_page,convertionRate_first_page,amountTobeCharged_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionRate, convertionRate_receiptPage,tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_charged, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,
+            rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid,
+            previous_reviewClick_textview, confirm_reviewClick_textview,amountTobePaid_first_page;
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
@@ -202,8 +206,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             et_fp_reason_sending = (EditText) findViewById(R.id.et_fp_reason_sending);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
-
+            amountTobePaid_first_page = findViewById(R.id.amountTobePaid_first_page);
             edittext_amount_pay = (EditText) findViewById(R.id.edittext_amount_pay);
+
 
             spinner_gender = (Spinner) findViewById(R.id.spinner_gender);
             spinner_provider = (Spinner) findViewById(R.id.spinner_provider);
@@ -458,15 +463,23 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 if (new InternetCheck().isConnected(InternationalRemittance.this)) {
 
                     amountstr = edittext_amount.getText().toString().trim();
-
-                    if (amountstr.length()>1) {
+//                    if (spinner_receiverCurrency.getSelectedItem()==null||spinner_receiverCurrency.getSelectedItem().toString().isEmpty()||spinner_receiverCurrency.getSelectedItem().toString().equals("Receiving Currency")) {
+//                        MyApplication.showErrorToast(InternationalRemittance.this, getString(R.string.plz_select_receive_currency));
+//                        return;
+//                    }
+                    if (s.length()>1) {
 
                         api_exchangeRate();
 
                     }
 
                     else {
-                        edittext_amount_pay.setText(getString(R.string.amount_to_pay));;
+                        convertionRate_first_page.setText("");
+                        fees_first_page.setText("");
+                        tax_first_page.setText("");
+                        amountTobePaid_first_page.setText("");
+                        amountTobeCharged_first_page.setText("");
+                        //edittext_amount_pay.setText(getString(R.string.amount_to_pay));;
                     }
 
                 } else {
@@ -475,8 +488,49 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             }
         });
 
+//        edittext_amount_pay.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//                if (new InternetCheck().isConnected(InternationalRemittance.this)) {
+//
+//                  //  amountToPayStr = edittext_amount_pay.getText().toString().trim();
+//
+//                    if (s.length()>1) {
+//
+//                        api_exchangeRateNew();
+//
+//                    }
+//
+//                    else {
+//                        convertionRate_first_page.setText("");
+//                        fees_first_page.setText("");
+//                        tax_first_page.setText("");
+//                        amountTobePaid_first_page.setText("");
+//                        amountTobeCharged_first_page.setText("");
+//                        edittext_amount.setText(getString(R.string.amount));;
+//                    }
+//
+//                } else {
+//                    Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
+
 
     }
+
 
     private void api_subscriber_details() {
 
@@ -1774,6 +1828,15 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             ll_reviewPage.setVisibility(View.GONE);
                             ll_receiptPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ll_page_1.setVisibility(View.GONE);
+                                    ll_reviewPage.setVisibility(View.GONE);
+                                    ll_successPage.setVisibility(View.GONE);
+                                    ll_receiptPage.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
 
 
                             receiptPage_tv_stransactionType.setText("SEND REMITTANCE");
@@ -1913,10 +1976,13 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-//                        if(exchangeRate.has("currencyValue")) {
-//                            amountToPayStr=exchangeRate.getString("currencyValue");
-//                            edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
-//                        }
+                        if(exchangeRate.has("currencyValue")) {
+                            amountToPayStr=exchangeRate.getString("currencyValue");
+                            //.setText(amountToPayStr);
+                           edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+                            //amountTobePaid_first_page.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+
+                        }
 
 
                         if(exchangeRate.has("code")) {
@@ -1966,13 +2032,13 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-                        amountToPayStr=amountstr;
+                       // amountToPayStr=amountstr;
 
                         rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
                         receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
 
-                        edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
-
+                        //edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+                       // edittext_amount_pay.setText(amountToPayStr);
 
 
 
@@ -2003,6 +2069,161 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             }
         });
+
+
+    }
+
+    DecimalFormat df = new DecimalFormat("0.000");
+    private void api_exchangeRateNew() {
+
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
+                        select_sender_currencyCode+"&receiveCurrencyCode="+select_receiver_currencyCode+"&sendCountryCode="+
+                        select_sender_CountryCode+"&receiveCountryCode="+select_receiver_CountryCode+"&currencyValue="
+                        + edittext_amount_pay.getText().toString() + "&channelTypeCode=10000&serviceCode=" + serviceCode_from_serviceCategory +
+                        "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode="
+                        + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent
+                ,languageToUse, new Api_Responce_Handler() {
+
+                    @Override
+                    public void success(JSONObject jsonObject) {
+
+                        MyApplication.hideLoader();
+
+                        try {
+
+                            // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1853221\",\"requestTime\":\"Tue Oct 26 22:34:47 IST 2021\",\"responseTime\":\"Tue Oct 26 22:34:47 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"exchangeRate\":{\"value\":\"0.0\",\"currencyValue\":\"1500\",\"fee\":1500,\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":195,\"taxAvailBy\":\"Fee Amount\"}]}}");
+
+                            String resultCode = jsonObject.getString("resultCode");
+                            String resultDescription = jsonObject.getString("resultDescription");
+
+                            if (resultCode.equalsIgnoreCase("0")) {
+
+                                // Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                                //JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
+
+                                JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+
+                                try {
+                                    double currValue = Double.parseDouble(edittext_amount_pay.getText().toString());
+                                    double value = jsonObjectAmountDetails.optDouble("value");
+                                    if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
+                                        edittext_amount.setText(String.valueOf(currValue));
+                                    }else{
+                                        String finalValue = df.format(currValue / value);
+                                        edittext_amount.setText(finalValue);
+                                    }
+
+                                }catch (Exception e){}
+
+//                                fees_amount = exchangeRate.getString("fee");
+//                                rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
+
+                                // edittext_amount_pay.setEnabled(false);
+
+//                                if(exchangeRate.has("value")) {
+//
+//                                    converstionRate_fromApi =exchangeRate.getString("value");
+//                                    convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+//                                }
+//                                else {
+//
+//                                    converstionRate_fromApi="0.0";
+//                                    convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+//                                }
+
+
+
+//                        if(exchangeRate.has("currencyValue")) {
+//                            amountToPayStr=exchangeRate.getString("currencyValue");
+//                            edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+//                        }
+
+
+//                                if(exchangeRate.has("code")) {
+//                                    exchangeRateCode_from_tax_api=exchangeRate.getString("code");
+//                                }
+//
+//                                if(exchangeRate.has("taxConfigurationList"))
+//                                {
+//                                    JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+//                                    for(int i=0;i<jsonArray.length();i++) {
+//                                        JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+//                                        tax_financial = jsonObject2.getString("value");
+//                                    }
+//                                }
+//                                else {
+//                                    tax_financial = exchangeRate.getString("value");
+//                                }
+//
+//                                tax_first_page.setText(select_sender_currencySymbol+ " "+tax_financial);
+//
+//                                fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
+//
+//                                rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
+//
+//                                tax_financial_double = Double.parseDouble(tax_financial);
+//                                //  credit_amount_double = Double.parseDouble(credit_amount);
+//                                fees_amount_double = Double.parseDouble(fees_amount);
+//                                amountstr_double = Double.parseDouble(amountstr);
+//
+//                                convertionFeesStr = String.valueOf(fees_amount_double);
+//
+//
+//
+//
+//                                totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
+//                                totalAmount_str = String.valueOf(totalAmount_double);
+//                                rp_tv_amount_to_be_charge.setText(select_sender_currencySymbol+ " "+totalAmount_str);
+//
+//                                amountstr = String.valueOf(amountstr_double);
+//                                rp_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
+//
+//
+//
+//                                amountTobeCharged_first_page.setText(select_sender_currencySymbol+ " "+totalAmount_str);
+//                                rp_tv_convertionRate.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+//                                convertionRate_receiptPage.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+//
+//
+//
+//                                amountToPayStr=amountstr;
+//
+//                                rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+//                                receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+//
+//                                //edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+//                                edittext_amount_pay.setText(amountToPayStr);
+//
+//
+
+
+                            } else {
+
+                                edittext_amount.setText("");
+                                edittext_amount_pay.setText("");
+                                Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                                // finish();
+                            }
+
+
+                        } catch (Exception e) {
+                            Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+                    @Override
+                    public void failure(String aFalse) {
+
+                        MyApplication.hideLoader();
+                        Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+                });
 
 
     }

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -1520,7 +1521,15 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                             ll_receiptPage.setVisibility(View.GONE);
                             ll_successPage.setVisibility(View.VISIBLE);
 
-
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ll_page_1.setVisibility(View.GONE);
+                                    ll_reviewPage.setVisibility(View.GONE);
+                                    ll_successPage.setVisibility(View.GONE);
+                                    ll_receiptPage.setVisibility(View.VISIBLE);
+                                }
+                            }, 2000);
 
                             receiptPage_tv_stransactionType.setText("SEND REMITTANCE");
 
@@ -1658,6 +1667,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         fees_first_page.setText(currencySymbol_sender+" "+fees_amount);
 
                         edittext_amount_pay.setEnabled(false);
+                        amountToPayStr=exchangeRate.getString("currencyValue");
+                        edittext_amount_pay.setText(currencySymbol_sender+ " "+amountToPayStr);
 
                         convertionRate_first_page.setText(currencySymbol_sender+" "+exchangeRate.getString("value"));
 
@@ -1666,7 +1677,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                         amountToPayStr=amountstr;
 
 
-                        edittext_amount_pay.setText(currencySymbol_sender+" "+amountstr);
+                        //edittext_amount_pay.setText(currencySymbol_sender+" "+amountstr);
 
 
                         if(exchangeRate.has("taxConfigurationList"))
