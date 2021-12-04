@@ -1959,7 +1959,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 select_insitute_code = arrayList_instititueCode.get(i);
                 if(i>0)
                 api_currency_spinner_details(instituteListModelArrayList.get(i).getWalletOwnerCode());
-                pos = i;
+                pos = i-1;
 
             }
             break;

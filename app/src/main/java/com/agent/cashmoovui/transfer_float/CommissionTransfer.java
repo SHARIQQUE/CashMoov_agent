@@ -1098,11 +1098,11 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 try {
 
                      SpinnerPos = i;
-                     walletCode = MyApplication.currencyModelArrayList.get(i).code;
-                     select_currencySymbol = MyApplication.currencyModelArrayList.get(i).currencySymbol;
-                     select_currencyCode = MyApplication.currencyModelArrayList.get(i).currencyCode;
-                     mainbalance_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
-                     available_balance.setText("Available balance in Commision Wallet ("+select_currencySymbol+" "+MyApplication.currencyModelArrayList.get(i).commisionWalletValue+" )");
+                     walletCode = MyApplication.currencyModelArrayList_temp.get(i).code;
+                     select_currencySymbol = MyApplication.currencyModelArrayList_temp.get(i).currencySymbol;
+                     select_currencyCode = MyApplication.currencyModelArrayList_temp.get(i).currencyCode;
+                     mainbalance_textview.setText(MyApplication.currencyModelArrayList_temp.get(i).mainWalletValue);
+                     available_balance.setText("Available balance in Commision Wallet ("+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
 
 
 

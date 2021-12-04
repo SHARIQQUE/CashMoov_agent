@@ -1530,11 +1530,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             case R.id.spinner_currency:
             {
-                selectCurrecnyName = arrayList_currecnyName.get(i);
-                selectCurrecnyCode = arrayList_currecnyCode.get(i);
 
-                currencySymbol_receiver = arrayList_currencySymbol.get(i);
-                walletOwnerCode_destination = arrayList_desWalletOwnerCode.get(i);
+                    selectCurrecnyName = arrayList_currecnyName.get(i );
+                    selectCurrecnyCode = arrayList_currecnyCode.get(i );
+
+                    currencySymbol_receiver = arrayList_currencySymbol.get(i );
+                    walletOwnerCode_destination = arrayList_desWalletOwnerCode.get(i );
 
 
 
