@@ -722,6 +722,18 @@
     <string name="mobile_recharge">Recharge mobile</string>
 
     <string name="wallet_owner_name">Nom du propriétaire du portefeuille</string>
+    <string name="hint_otp">Entrez OTP*</string>
+    <string name="generate_credential_via">Générer des informations d\'identification via</string>
+    <string name="self">Soi</string>
+    <string name="gen_pin">Générer une épingle</string>
+    <string name="save">sauvegarder</string>
+    <string name="hint_new_pin">Nouvelle épingle*</string>
+    <string name="hint_conf_pin">Confirmer la nouvelle épingle*</string>
+    <string name="otp_verified_msg">OTP a été vérifié avec succès</string>
+    <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
+    <string name="val_conf_pin">Veuillez saisir le code PIN de confirmation</string>
+    <string name="val_valid_conf_pin">Le code PIN de confirmation doit comporter au moins 4 chiffres</string>
+    <string name="val_new_conf_pin">La nouvelle broche et la broche de confirmation doivent être identiques</string>
 
 </resources>
 

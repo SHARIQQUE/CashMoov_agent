@@ -723,6 +723,18 @@
     <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
     <string name="mobile_recharge">Mobile Recharge</string>
     <string name="wallet_owner_name">Wallet owner name</string>
+    <string name="hint_otp">Enter OTP*</string>
+    <string name="generate_credential_via">Generate Credential Via</string>
+    <string name="self">Self</string>
+    <string name="gen_pin">Generate Pin</string>
+    <string name="save">Save</string>
+    <string name="hint_new_pin">New Pin*</string>
+    <string name="hint_conf_pin">Confirm New Pin*</string>
+    <string name="otp_verified_msg">OTP has been verified successfully</string>
+    <string name="val_new_pin">Please enter new pin</string>
+    <string name="val_conf_pin">Please enter confirm pin</string>
+    <string name="val_valid_conf_pin">Confirm pin must be atleast 4 digit</string>
+    <string name="val_new_conf_pin">New pin and confirm pin should be same</string>
 
 
 </resources>

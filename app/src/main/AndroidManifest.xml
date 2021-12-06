@@ -81,6 +81,8 @@ x
             android:screenOrientation="portrait"></activity>
         <activity android:name=".wallet_owner.subscriber.SubscriberKYCAttached"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".wallet_owner.subscriber.SubscriberOtpActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".wallet_owner.subscriber.SubscriberSignature"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".wallet_owner.agent.AgentKYC"

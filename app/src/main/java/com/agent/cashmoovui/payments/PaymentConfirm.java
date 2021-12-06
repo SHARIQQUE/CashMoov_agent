@@ -1,6 +1,9 @@
 package com.agent.cashmoovui.payments;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
@@ -26,6 +31,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout;
     CardView cardBearFee;
+    boolean isPasswordVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +110,35 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
         }
 
         tvAmountCharged.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(Double.toString(finalamount)));
+
+        etPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        etPin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (etPin.getRight() - etPin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = etPin.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            etPin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        etPin.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         setOnCLickListener();
 

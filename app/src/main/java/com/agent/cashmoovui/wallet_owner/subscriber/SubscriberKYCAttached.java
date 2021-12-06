@@ -147,7 +147,7 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
                     return;
                 }
 
-                intent = new Intent(subscriberkycattachedC, SubscriberSignature.class);
+                intent = new Intent(subscriberkycattachedC, SubscriberOtpActivity.class);
                 //intent.putExtra("CHECKINTENTSETPIN","SubscriberKYC");
                 startActivity(intent);
                 finish();

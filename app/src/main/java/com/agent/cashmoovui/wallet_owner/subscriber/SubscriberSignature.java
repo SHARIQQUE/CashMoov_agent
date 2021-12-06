@@ -378,7 +378,7 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                                     jsonObjectSubscriber.put("issuingCountryDialCode", jsonObjectWalletOwner.optString("issuingCountryDialCode"));
                                     jsonObjectSubscriber.put("walletOwnerCode", jsonObjectWalletOwner.optString("walletOwnerCode"));
                                     jsonObjectSubscriber.put("hasChild", jsonObjectWalletOwner.optString("hasChild"));
-                                    jsonObjectSubscriber.put("passwordSetBy", "Self");
+                                    jsonObjectSubscriber.put("passwordSetBy", SubscriberOtpActivity.value);
 
 
                                     System.out.println("AddSubscriber==" + jsonObjectSubscriber.toString());
