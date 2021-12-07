@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -296,6 +298,28 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 }
             });
 
+            edittext_mobileNo.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if(s.length()>=3) {
+                        callApiMsisdnPrefix(s.toString());
+                    }
+
+
+                }
+
+            });
 
 
 
@@ -319,6 +343,80 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         }
 
     }
+
+    private void callApiMsisdnPrefix(String s) {
+
+        String firstTwodigits = s.substring(0,2);
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/operator/allByCriteria?msisdnPrefix=224"+firstTwodigits+"&status=Y",languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1947422\",\"requestTime\":\"Thu Nov 04 13:37:44 IST 2021\",\"responseTime\":\"Thu Nov 04 13:37:44 IST 2021\",\"resultCode\":\"1085\",\"resultDescription\":\"Operator Not Found\"}\n");
+
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+
+                        JSONArray jsonArray = jsonObject.optJSONArray("operatorList");
+                        for(int i = 0;i<arrayList_OperatorListCode.size();i++){
+                           // String  operatorCode = jsonObject2.getString("code");
+                            if(arrayList_OperatorListCode.get(i).equalsIgnoreCase(jsonArray.optJSONObject(0).optString("code"))){
+                                spinner_operator.setSelection(i);
+                            }
+                        }
+                        // MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+
+
+                        //mpin_final_api();
+
+                    } else {
+
+                        if(resultDescription.equalsIgnoreCase("Operator Not Found"))
+                        {
+                            // Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+                            MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+
+                            // mpin_final_api();
+                        }
+                        else
+                        {
+                            Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(AirtimePurchases.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(AirtimePurchases.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
 
 
     @Override
@@ -1591,7 +1689,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                  }
                  else
                  {
-
 
                      operator_code_from_operatorList = arrayList_OperatorListCode.get(i);
                      operatorName_from_operatorList = arrayList_OperatorListName.get(i);
