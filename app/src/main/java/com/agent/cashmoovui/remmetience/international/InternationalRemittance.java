@@ -2,6 +2,7 @@ package com.agent.cashmoovui.remmetience.international;
 
 import static com.agent.cashmoovui.settings.EditProfile.RESULT_CODE_FAILURE;
 
+import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,15 +70,18 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     boolean  isPasswordVisible;
 
+    int buttonClickValidaion=0;
+
     String converstionRate_fromApi="";
 
+    LinearLayout  ll_sender_part_1,ll_sender_part_2,ll_destination_part_1;
 
     String FIRSTNAME_USERINFO="";
     String LASTNAME_USERINFO="";
 
     static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
-    ImageButton btnFront,btnBack;
+    ImageButton btnFront;
     ImageView imgBack,imgHome;
     EditText etFront,etBack;
 
@@ -88,17 +93,83 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     Intent Data;
 
+    // ------------------------------ Sender Details-------------------------------------------
 
-   // annu // fees_first_page,convertionRate_first_page,rate_first_page,tax_first_page
+    EditText et_sender_firstName,et_sender_lastname,et_sender_email,et_sender_dob,
+            et_sender_phoneNumber,et_sender_address,et_sender_city,et_sender_idproofNumber,
+            et_sender_idproof_expiry;
+
+
+    Spinner spinner_sender_gender,spinner_sender_region,spinner_sender_idprooftype,spinner_sender_issuingCountry;
+    Button button_sender_dob,button_sender_idproofExpiry;
+
+    String  sender_firstName_string="",sender_lastname_string="",sender_email_string="",
+            sender_dob_string="",sender_phoneNumber_string="",sender_address_string="",
+            sender_city_string="",sender_idproofNumber_string="",
+            sender_idProofexpiry_string="";
+
+    String select_sender_genderName="",select_sender_idproofName="",select_sender_idproofCode="",select_sender_issueingCountry="",select_destination_idproofName="",select_destination_idproofCode="";
+
+
+
+
+
+    ArrayList<String> arrayList_sender_idproofName;
+    ArrayList<String> arrayList_sender_idproofCode;
+    ArrayList<String> arrayList_destination_idproofName;
+    ArrayList<String> arrayList_destination_idproofCode;
+
+
+
+
+
+
+    // ------------------- Destination Details--------------------------------------------------
+
+    EditText et_destination_mobileNumber,et_destination_firstName,et_destination_lastName,edittext_email_destination,
+            et_destination_dob,et_destination_address,et_destination_city,et_destination_idproofNumber,
+            et_destination_idproof_expiry;
+
+    Spinner spinner_destination_gender,spinner_destination_country,spinner_destination_region,spinner_destination_idprooftype,spinner_destination_issuingCountry;
+    Button button_destination_dob,button_destination_idproofExpiry;
+
+    String  destination_destination_string="",destination_lastname_string="",sdestination_email_string="",
+            destination_dob_string="",destination_phoneNumber_string="",destination_address_string="",
+            destination_city_string="",destination_idproofNumber_string="",
+            destination_idProofexpiry_string="";
+
+    String select_destination_genderName="",select_destination_genderCode="",select_sender_genderCode="",select_destination_region="",select_destination_idprofftype="",select_destination_issueingCountry="";
+
+
+
+    // ------------------------------------------------------------------------------------------
 
 
     public static LoginPin loginpinC;
     View rootView;
-    Spinner spinner_gender,spinner_provider,spinner_senderCountry,spinner_senderCurrency,spinner_receiverCountry,spinner_receiverCurrency;
-  Button btnFrontUpload,btnBackUpload;
+    Spinner spinner_provider,spinner_senderCountry,spinner_senderCurrency,spinner_receiverCountry,spinner_receiverCurrency;
+    Button btnFrontUpload;
 
-    ArrayList<String> arrayList_genderName;
-    ArrayList<String> arrayList_genderCode;
+    ArrayList<String> arrayList_destination_genderName;
+    ArrayList<String> arrayList_destination_genderCode;
+
+    ArrayList<String> arrayList_sender_regionName;
+    ArrayList<String> arrayList_sender_regionCode;
+
+    ArrayList<String> arrayList_destination_regionName;
+    ArrayList<String> arrayList_destination_regionCode;
+
+    String select_sender_regionName="";
+    String select_sender_regionCode="";
+    String select_destination_regionName="";
+    String select_destination_regionCode="";
+
+
+
+
+
+    ArrayList<String> arrayList_sender_genderName;
+    ArrayList<String> arrayList_sender_genderCode;
 
     ArrayList<SenderCountryModal> arrayList_senderCountryDetails;
     ArrayList<ReceiverCountryModal> arrayList_receiverCountryDetails;
@@ -121,9 +192,6 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-
-
-
     EditText etPin;
 
 
@@ -139,18 +207,18 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    EditText edittext_email_destination,edittext_mobileNuber, edittext_amount, et_mpin,edittext_amount_pay,et_fp_desinationName,et_fp_firstNameDestination;
+    EditText  edittext_amount, et_mpin,edittext_amount_pay;
 
 
 
-    String mobileNoStr = "", amountstr = "",genderSelect_name = "",provider_select_name = "", genderSelect_code = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
+    String mobileNumber_destination_string = "", amountstr = "",provider_select_name = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
     String lastname_destinationStr="",amountToPayStr="",tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "", convertionFeesStr="",reasonOfSending="",receivercode_from_receiverAPi="",senderCode_from_senderApi="";
 
 
-    String name_destinationStr ="",serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
+    String firstname_destination_string ="",serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
 
 
     @Override
@@ -192,6 +260,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             tvContinue.setOnClickListener(this);
 
 
+            ll_sender_part_1=(LinearLayout)findViewById(R.id.ll_sender_part_1);
+            ll_sender_part_2=(LinearLayout)findViewById(R.id.ll_sender_part_2);
+            ll_destination_part_1=(LinearLayout)findViewById(R.id.ll_destination_part_1);
 
 
             fees_first_page = (TextView) findViewById(R.id.fees_first_page);
@@ -200,7 +271,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             tax_first_page = (TextView) findViewById(R.id.tax_first_page);
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
-            edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
+            et_destination_mobileNumber = (EditText) findViewById(R.id.et_destination_mobileNumber);
 
             edittext_email_destination = (EditText) findViewById(R.id.edittext_email_destination);
 
@@ -210,10 +281,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             edittext_amount_pay = (EditText) findViewById(R.id.edittext_amount_pay);
 
 
-            spinner_gender = (Spinner) findViewById(R.id.spinner_gender);
             spinner_provider = (Spinner) findViewById(R.id.spinner_provider);
-
-            spinner_gender.setOnItemSelectedListener(this);
             spinner_provider.setOnItemSelectedListener(this);
 
 
@@ -254,8 +322,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             rp_tv_amount_to_be_paid = (TextView) findViewById(R.id.rp_tv_amount_to_be_paid);
             rp_tv_comment = (TextView) findViewById(R.id.rp_tv_comment);
 
-            et_fp_desinationName = (EditText) findViewById(R.id.et_fp_desinationName);
-            et_fp_firstNameDestination = (EditText) findViewById(R.id.et_fp_firstNameDestination);
+            et_destination_firstName = (EditText) findViewById(R.id.et_destination_firstName);
+            et_destination_lastName = (EditText) findViewById(R.id.et_destination_lastName);
 
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
@@ -301,11 +369,10 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             confirm_reviewClick_textview.setOnClickListener(this);
             close_receiptPage_textview.setOnClickListener(this);
 
-            edittext_mobileNuber.setEnabled(true);
+            et_destination_mobileNumber.setEnabled(true);
 
 
             btnFrontUpload = (Button) findViewById(R.id.btnFrontUpload);
-            btnBackUpload = (Button) findViewById(R.id.btnBackUpload);
 
 
             etFront = (EditText)findViewById(R.id.etFront);
@@ -313,18 +380,79 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             btnFront = (ImageButton)findViewById(R.id.btnFront);
-            btnBack = (ImageButton)findViewById(R.id.btnBack);
 
 
             btnFrontUpload.setOnClickListener(this);
-            btnBackUpload.setOnClickListener(this);
 
             btnFront.setOnClickListener(this);
-            btnBack.setOnClickListener(this);
 
 
             SenderCurrencyModal senderCurrencyModal_temp = new SenderCurrencyModal();
 
+            // ------------------------------ Sender Details-------------------------------------------
+
+            et_sender_firstName = (EditText) findViewById(R.id.et_sender_firstName);
+            et_sender_lastname = (EditText) findViewById(R.id.et_sender_lastname);
+            et_sender_email = (EditText) findViewById(R.id.et_sender_email);
+            et_sender_dob = (EditText) findViewById(R.id.et_sender_dob);
+            et_sender_phoneNumber = (EditText) findViewById(R.id.et_sender_phoneNumber);
+            et_sender_address = (EditText) findViewById(R.id.et_sender_address);
+            et_sender_city = (EditText) findViewById(R.id.et_sender_city);
+            et_sender_idproofNumber = (EditText) findViewById(R.id.et_sender_idproofNumber);
+            et_sender_idproof_expiry = (EditText) findViewById(R.id.et_sender_idproof_expiry);
+
+            spinner_sender_gender = (Spinner) findViewById(R.id.spinner_sender_gender);
+            spinner_sender_region = (Spinner) findViewById(R.id.spinner_sender_region);
+            spinner_sender_idprooftype = (Spinner) findViewById(R.id.spinner_sender_idprooftype);
+            spinner_sender_issuingCountry = (Spinner) findViewById(R.id.spinner_sender_issuingCountry);
+
+            spinner_sender_gender.setOnItemSelectedListener(this);
+            spinner_sender_region.setOnItemSelectedListener(this);
+            spinner_sender_idprooftype.setOnItemSelectedListener(this);
+            spinner_sender_issuingCountry.setOnItemSelectedListener(this);
+
+            button_sender_dob = (Button) findViewById(R.id.button_sender_dob);
+            button_sender_idproofExpiry = (Button) findViewById(R.id.button_sender_idproofExpiry);
+
+
+            button_sender_dob.setOnClickListener(this);
+            button_sender_idproofExpiry.setOnClickListener(this);
+
+
+            // ------------------- Destination Details--------------------------------------------------
+
+
+
+            et_destination_mobileNumber = (EditText) findViewById(R.id.et_destination_mobileNumber);
+            et_destination_firstName = (EditText) findViewById(R.id.et_destination_firstName);
+            et_destination_lastName = (EditText) findViewById(R.id.et_destination_lastName);
+            edittext_email_destination = (EditText) findViewById(R.id.edittext_email_destination);
+            et_destination_address = (EditText) findViewById(R.id.et_destination_address);
+            et_destination_city = (EditText) findViewById(R.id.et_destination_city);
+            et_destination_idproofNumber = (EditText) findViewById(R.id.et_destination_idproofNumber);
+            et_destination_idproof_expiry = (EditText) findViewById(R.id.et_destination_idproof_expiry);
+            et_destination_dob = (EditText) findViewById(R.id.et_destination_dob);
+
+            spinner_destination_gender = (Spinner) findViewById(R.id.spinner_destination_gender);
+            spinner_destination_country = (Spinner) findViewById(R.id.spinner_destination_country);
+            spinner_destination_region = (Spinner) findViewById(R.id.spinner_destination_region);
+            spinner_destination_idprooftype = (Spinner) findViewById(R.id.spinner_destination_idprooftype);
+            spinner_destination_issuingCountry = (Spinner) findViewById(R.id.spinner_destination_issuingCountry);
+
+            spinner_destination_gender.setOnItemSelectedListener(this);
+            spinner_destination_country.setOnItemSelectedListener(this);
+            spinner_destination_region.setOnItemSelectedListener(this);
+            spinner_destination_idprooftype.setOnItemSelectedListener(this);
+            spinner_destination_issuingCountry.setOnItemSelectedListener(this);
+
+            button_destination_dob = (Button) findViewById(R.id.button_destination_dob);
+            button_destination_idproofExpiry = (Button) findViewById(R.id.button_destination_idproofExpiry);
+
+            button_destination_dob.setOnClickListener(this);
+            button_destination_idproofExpiry.setOnClickListener(this);
+
+
+            // ------------------------------------------------------------------------------------------
 
 
 
@@ -359,6 +487,11 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             COUNTRY_CODE_USERINFO = MyApplication.getSaveString("COUNTRY_CODE_USERINFO", InternationalRemittance.this);
 
 
+            et_sender_dob.setEnabled(false);
+            et_sender_idproof_expiry.setEnabled(false);
+
+            et_destination_dob.setEnabled(false);
+            et_destination_idproof_expiry.setEnabled(false);
 
 
             if (new InternetCheck().isConnected(InternationalRemittance.this)) {
@@ -401,7 +534,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 }
             });
 
-            edittext_mobileNuber.addTextChangedListener(new TextWatcher() {
+            et_destination_mobileNumber.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -418,16 +551,16 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                     if (new InternetCheck().isConnected(InternationalRemittance.this)) {
 
-                        mobileNoStr = edittext_mobileNuber.getText().toString().trim();
+                        mobileNumber_destination_string = et_destination_mobileNumber.getText().toString().trim();
 
-                        if (mobileNoStr.length()>7) {
+                        if (mobileNumber_destination_string.length()>7) {
 
                             api_subscriber_details();
 
                         }
 
                         else {
-                            edittext_mobileNuber.setHint(getString(R.string.please_enter_mobileno));;
+                            et_destination_mobileNumber.setHint(getString(R.string.please_enter_mobileno));;
                         }
 
                     } else {
@@ -435,6 +568,42 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                     }
                 }
             });
+
+            et_sender_phoneNumber.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(InternationalRemittance.this)) {
+
+                        sender_phoneNumber_string= et_sender_phoneNumber.getText().toString().trim();
+
+                        if (sender_phoneNumber_string.length()>7) {
+
+                            //   searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+
+                        }
+
+                        else {
+                            et_sender_phoneNumber.setHint(getString(R.string.please_enter_mobileno));;
+                        }
+
+                    } else {
+                        Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
 
 
 
@@ -529,6 +698,13 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 //        });
 
 
+
+
+        api_gender_sender_list();
+        api_sender_idProof();
+        api_destination_idProof();
+
+
     }
 
 
@@ -539,7 +715,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         walletOwnerCategoryCode ="100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+mobileNoStr+"&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+mobileNumber_destination_string+"&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -565,28 +741,28 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                             if(jsonObject2.has("ownerName"))
                             {
-                                name_destinationStr = jsonObject2.getString("ownerName");
-                                et_fp_desinationName.setText(name_destinationStr);
+                                firstname_destination_string = jsonObject2.getString("ownerName");
+                                et_destination_firstName.setText(firstname_destination_string);
                             }
 
                             if(jsonObject2.has("lastName"))
                             {
                                 lastname_destinationStr = jsonObject2.getString("lastName");
-                                et_fp_firstNameDestination.setText(lastname_destinationStr);
+                                et_destination_lastName.setText(lastname_destinationStr);
                             }
 
 
 
 
-                            genderSelect_name = jsonObject2.getString("gender");
-                            if(genderSelect_name.equalsIgnoreCase("M"))
+                            select_destination_genderName = jsonObject2.getString("gender");
+                            if(select_destination_genderName.equalsIgnoreCase("M"))
                             {
-                                genderSelect_name = "Male";
-                                genderSelect_code = "M";
+                                select_destination_genderName = "Male";
+                                select_destination_genderCode = "M";
                             }
                             else {
-                                genderSelect_name = "Female";
-                                genderSelect_code = "F";
+                                select_destination_genderName = "Female";
+                                select_destination_genderCode = "F";
                             }
 
                         }
@@ -596,7 +772,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                     else {
 
-                      //  Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         //  finish();
                     }
@@ -705,7 +881,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 senderCountryModal.setCountryCode_sender("");
                             }
 
-                         arrayList_senderCountryDetails.add(senderCountryModal);
+                            arrayList_senderCountryDetails.add(senderCountryModal);
 
                         }
 
@@ -720,9 +896,14 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 spinner_senderCountry.setSelection(i);
                                 spinner_senderCountry.setEnabled(false);
 
+                                // ##############  for sender issue country ############
+                                SenderCountryNameAdapter annutemp= new SenderCountryNameAdapter(InternationalRemittance.this,arrayList_senderCountryDetails);
+                                spinner_sender_issuingCountry.setAdapter(annutemp);
+                                spinner_sender_issuingCountry.setSelection(i);
+                                spinner_sender_issuingCountry.setEnabled(false);
+
                             }
                         }
-
 
 
                         api_country_destination();
@@ -816,7 +997,20 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         ReceiverCountryDetailsAdapter adapter5= new ReceiverCountryDetailsAdapter(InternationalRemittance.this,arrayList_receiverCountryDetails);
                         spinner_receiverCountry.setAdapter(adapter5);
 
-                        api_gender_list();
+
+
+
+
+
+
+
+
+                        String provided_array[] = getResources().getStringArray(R.array.Spinner_provider);
+                        CustomeBaseAdapterProvided recordAdapter2 = new CustomeBaseAdapterProvided(InternationalRemittance.this, provided_array);
+                        spinner_provider.setAdapter(recordAdapter2);
+
+                        api_serviceProvider();
+
 
 
                     } else {
@@ -957,7 +1151,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     }
 
 
-    private void api_region() {
+    private void api_sender_region() {
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/region/country/" + select_sender_CountryCode, languageToUse, new Api_Responce_Handler() {
             @Override
@@ -967,22 +1161,217 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                 try {
 
-
                     // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1840636\",\"requestTime\":\"Tue Oct 26 00:17:34 IST 2021\",\"responseTime\":\"Tue Oct 26 00:17:34 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"country\":{\"id\":93,\"code\":\"100092\",\"isoCode\":\"GIN\",\"name\":\"Guinea\",\"countryCode\":\"GN\",\"status\":\"Active\",\"dialCode\":\"+224\",\"mobileLength\":\"9\",\"currencyCode\":\"GNF\",\"currencySymbol\":\"Fr\",\"subscriberAllowed\":true,\"creationDate\":\"2020-08-11T15:04:42.459+0530\",\"regionList\":[{\"id\":75,\"code\":\"100068\",\"name\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2021-01-15T21:29:26.094+0530\",\"modificationDate\":\"2021-10-25T22:39:12.974+0530\"},{\"id\":4,\"code\":\"100003\",\"name\":\"Conakry\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":9,\"code\":\"100004\",\"name\":\"Faranah\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":10,\"code\":\"100005\",\"name\":\"Kankan\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":11,\"code\":\"100006\",\"name\":\"Kindia\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":13,\"code\":\"100007\",\"name\":\"Mamou\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"}],\"nameFr\":\"Guinée\"}}");
-
 
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
-
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                        api_walletOwnerUser();
+                        JSONObject jsonObject_country = jsonObject.getJSONObject("country");
+
+                        JSONArray jsonArray_regionList = jsonObject_country.getJSONArray("regionList");
+
+                        arrayList_sender_regionName = new ArrayList<>();
+                        arrayList_sender_regionCode = new ArrayList<>();
+
+                        arrayList_sender_regionName.add(0,getString(R.string.val_select_region));
+                        arrayList_sender_regionCode.add(0,getString(R.string.val_select_region));
+
+                        for (int i = 0; i < jsonArray_regionList.length(); i++) {
+
+                            JSONObject jsonObject2 = jsonArray_regionList.getJSONObject(i);
+
+                            int regionNameId = jsonObject2.getInt("id");
+                            String regionNametemp = jsonObject2.getString("name");
+
+                            String  genderSelect_code_temp = String.valueOf(regionNameId);
+
+                            arrayList_sender_regionCode.add(genderSelect_code_temp);
+                            arrayList_sender_regionName.add(regionNametemp);
+                        }
+
+
+                        CustomeBaseAdapterGender recordAdapter6 = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_sender_regionName);
+                        spinner_sender_region.setAdapter(recordAdapter6);
+
+
+
+                        ReceiverCountryDetailsAdapter adapter_temp3= new ReceiverCountryDetailsAdapter(InternationalRemittance.this,arrayList_receiverCountryDetails);
+                        spinner_destination_issuingCountry.setAdapter(adapter_temp3);
+
+                        for (int i = 0; i < arrayList_receiverCountryDetails.size(); i++) {
+
+                            if (select_receiver_CountryName.equalsIgnoreCase(arrayList_receiverCountryDetails.get(i).getCountryName_receiver()))
+                            {
+                                spinner_destination_country.setSelection(i);
+                                spinner_destination_country.setEnabled(false);
+
+                                // ##############  for destination country display ############
+                                ReceiverCountryDetailsAdapter adapter_temp= new ReceiverCountryDetailsAdapter(InternationalRemittance.this,arrayList_receiverCountryDetails);
+                                spinner_destination_country.setAdapter(adapter_temp);
+                                spinner_destination_country.setSelection(i);
+                                spinner_destination_country.setEnabled(false);
+
+                            }
+                        }
+
+
 
                     } else {
                         Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
 
+                } catch (Exception e) {
+                    Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void api_destination_region() {
+
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/region/country/" + select_receiver_CountryCode, languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1840636\",\"requestTime\":\"Tue Oct 26 00:17:34 IST 2021\",\"responseTime\":\"Tue Oct 26 00:17:34 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"country\":{\"id\":93,\"code\":\"100092\",\"isoCode\":\"GIN\",\"name\":\"Guinea\",\"countryCode\":\"GN\",\"status\":\"Active\",\"dialCode\":\"+224\",\"mobileLength\":\"9\",\"currencyCode\":\"GNF\",\"currencySymbol\":\"Fr\",\"subscriberAllowed\":true,\"creationDate\":\"2020-08-11T15:04:42.459+0530\",\"regionList\":[{\"id\":75,\"code\":\"100068\",\"name\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2021-01-15T21:29:26.094+0530\",\"modificationDate\":\"2021-10-25T22:39:12.974+0530\"},{\"id\":4,\"code\":\"100003\",\"name\":\"Conakry\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":9,\"code\":\"100004\",\"name\":\"Faranah\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":10,\"code\":\"100005\",\"name\":\"Kankan\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":11,\"code\":\"100006\",\"name\":\"Kindia\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"},{\"id\":13,\"code\":\"100007\",\"name\":\"Mamou\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"status\":\"Active\",\"state\":\"Created\",\"creationDate\":\"2020-06-30T18:39:22.000+0530\"}],\"nameFr\":\"Guinée\"}}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONObject jsonObject_country = jsonObject.getJSONObject("country");
+                        JSONArray jsonArray_regionList = jsonObject_country.getJSONArray("regionList");
+
+                        arrayList_destination_regionName = new ArrayList<>();
+                        arrayList_destination_regionCode = new ArrayList<>();
+
+                        arrayList_destination_regionName.add(0,getString(R.string.val_select_region));
+                        arrayList_destination_regionCode.add(0,getString(R.string.val_select_region));
+
+                        for (int i = 0; i < jsonArray_regionList.length(); i++) {
+
+                            JSONObject jsonObject2 = jsonArray_regionList.getJSONObject(i);
+
+                            int regionNameId = jsonObject2.getInt("id");
+                            String regionNametemp = jsonObject2.getString("name");
+
+                            String  genderSelect_code_temp = String.valueOf(regionNameId);
+
+                            arrayList_destination_regionCode.add(genderSelect_code_temp);
+                            arrayList_destination_regionName.add(regionNametemp);
+                        }
+
+
+                        CustomeBaseAdapterGender recordAdapter6 = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_destination_regionName);
+                        spinner_destination_region.setAdapter(recordAdapter6);
+
+
+                    } else {
+                        Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (Exception e) {
+                    Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void api_gender_sender_list() {
+
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/master/GENDERTYPE", languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"6050\",\"requestedBy\":\"101917\",\"requestTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"responseTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"genderTypeList\":[{\"id\":2,\"code\":\"F\",\"type\":\"Female\",\"status\":\"Active\",\"creationDate\":\"1597748977410\"},{\"id\":1,\"code\":\"M\",\"type\":\"Male\",\"status\":\"Active\",\"creationDate\":\"1597748959156\"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        // Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                        JSONArray jsonArray_genderTypeList = jsonObject.getJSONArray("genderTypeList");
+
+                        arrayList_sender_genderName = new ArrayList<>();
+                        arrayList_sender_genderCode = new ArrayList<>();
+
+                        arrayList_sender_genderName.add(0,getString(R.string.select_gender));
+                        arrayList_sender_genderCode.add(0,getString(R.string.select_gender));
+
+                        for (int i = 0; i < jsonArray_genderTypeList.length(); i++) {
+
+                            JSONObject jsonObject2 = jsonArray_genderTypeList.getJSONObject(i);
+
+                            int gender_id = jsonObject2.getInt("id");
+                            String gender_name = jsonObject2.getString("type");
+
+                            String  genderSelect_code_temp = String.valueOf(gender_id);
+
+                            arrayList_sender_genderCode.add(genderSelect_code_temp);
+                            arrayList_sender_genderName.add(gender_name);
+                        }
+
+
+                        CustomeBaseAdapterGender recordAdapter = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_sender_genderName);
+                        spinner_sender_gender.setAdapter(recordAdapter);
+
+//                        for (int i = 0; i < arrayList_genderCode.size(); i++) {
+//                            if (genderSelect_code.equalsIgnoreCase(arrayList_genderCode.get(i)))
+//                            {
+//                                spinner_sender_gender.setSelection(i);
+//                                //  spinner_gender.setEnabled(false);
+//                            }
+//                        }
+
+
+                        api_gender_destination_list();
+
+
+                    } else {
+                        Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  finish();
+                    }
 
 
                 } catch (Exception e) {
@@ -1007,10 +1396,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     }
 
 
-
-    private void api_gender_list() {
-
-        MyApplication.showloader(InternationalRemittance.this, getString(R.string.getting_user_info));
+    private void api_gender_destination_list() {
 
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/master/GENDERTYPE", languageToUse, new Api_Responce_Handler() {
@@ -1022,22 +1408,22 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 try {
 
 
-                   // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"6050\",\"requestedBy\":\"101917\",\"requestTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"responseTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"genderTypeList\":[{\"id\":2,\"code\":\"F\",\"type\":\"Female\",\"status\":\"Active\",\"creationDate\":\"1597748977410\"},{\"id\":1,\"code\":\"M\",\"type\":\"Male\",\"status\":\"Active\",\"creationDate\":\"1597748959156\"}]}");
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"6050\",\"requestedBy\":\"101917\",\"requestTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"responseTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"genderTypeList\":[{\"id\":2,\"code\":\"F\",\"type\":\"Female\",\"status\":\"Active\",\"creationDate\":\"1597748977410\"},{\"id\":1,\"code\":\"M\",\"type\":\"Male\",\"status\":\"Active\",\"creationDate\":\"1597748959156\"}]}");
 
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                       // Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                        // Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         JSONArray jsonArray_genderTypeList = jsonObject.getJSONArray("genderTypeList");
 
-                        arrayList_genderName = new ArrayList<>();
-                        arrayList_genderCode = new ArrayList<>();
+                        arrayList_destination_genderName = new ArrayList<>();
+                        arrayList_destination_genderCode = new ArrayList<>();
 
-                        arrayList_genderName.add(0,getString(R.string.genderSelect_fixed));
-                        arrayList_genderCode.add(0,getString(R.string.genderSelect_fixed));
+                        arrayList_destination_genderName.add(0,getString(R.string.select_gender));
+                        arrayList_destination_genderCode.add(0,getString(R.string.select_gender));
 
                         for (int i = 0; i < jsonArray_genderTypeList.length(); i++) {
 
@@ -1047,35 +1433,23 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             String gender_name = jsonObject2.getString("type");
 
 
-                             genderSelect_code = String.valueOf(gender_id);
+                            String  genderSelect_code_temp = String.valueOf(gender_id);
 
-                            arrayList_genderCode.add(genderSelect_code);
-                            arrayList_genderName.add(gender_name);
+                            arrayList_destination_genderCode.add(genderSelect_code_temp);
+                            arrayList_destination_genderName.add(gender_name);
                         }
 
 
-                        CustomeBaseAdapterGender recordAdapter = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_genderName);
-                        spinner_gender.setAdapter(recordAdapter);
+                        CustomeBaseAdapterGender recordAdapter2 = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_destination_genderName);
+                        spinner_destination_gender.setAdapter(recordAdapter2);
 
-                        for (int i = 0; i < arrayList_genderCode.size(); i++) {
-                            if (genderSelect_code.equalsIgnoreCase(arrayList_genderCode.get(i)))
-                            {
-                                spinner_gender.setSelection(i);
-
-                                //  spinner_gender.setEnabled(false);
-
-                            }
-                        }
-
-
-                        String provided_array[] = getResources().getStringArray(R.array.Spinner_provider);
-                        CustomeBaseAdapterProvided recordAdapter2 = new CustomeBaseAdapterProvided(InternationalRemittance.this, provided_array);
-                        spinner_provider.setAdapter(recordAdapter2);
-
-
-
-
-                        api_serviceProvider();
+//                        for (int i = 0; i < arrayList_genderCode.size(); i++) {
+//                            if (genderSelect_code.equalsIgnoreCase(arrayList_genderCode.get(i)))
+//                            {
+//                                spinner_sender_gender.setSelection(i);
+//                                //  spinner_gender.setEnabled(false);
+//                            }
+//                        }
 
 
 
@@ -1106,7 +1480,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     }
 
-    private void api_idProof() {
+
+
+    private void api_sender_idProof() {
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/master/IDPROOFTYPE", languageToUse, new Api_Responce_Handler() {
             @Override
@@ -1121,9 +1497,18 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
+                    //  ID Proof Type
+
+                    arrayList_sender_idproofName = new ArrayList<>();
+                    arrayList_sender_idproofCode = new ArrayList<>();
+
+                    arrayList_sender_idproofName.add("ID Proof Type ");
+                    arrayList_sender_idproofCode.add("ID Proof Type");
+
+
                     if (resultCode.equalsIgnoreCase("0")) {
 
-                      //  Toast.makeText(LocalRemittance.this,"-----api_idProof--------" +resultDescription, Toast.LENGTH_LONG).show();
+                        //  Toast.makeText(LocalRemittance.this,"-----api_idProof--------" +resultDescription, Toast.LENGTH_LONG).show();
 
                         JSONArray jsonArray_idProffTypeList = jsonObject.getJSONArray("idProffTypeList");
                         for (int i = 0; i < jsonArray_idProffTypeList.length(); i++) {
@@ -1134,10 +1519,15 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             String idproof_type = jsonObject2.getString("type");
                             String idproof_status = jsonObject2.getString("status");
                             String idproof_creationDate = jsonObject2.getString("creationDate");
+
+                            arrayList_sender_idproofName.add(idproof_type);
+                            String  idproof_id_temp = String.valueOf(idproof_id);
+                            arrayList_sender_idproofCode.add(idproof_id_temp);
                         }
 
+                        CustomeBaseAdapterGender recordAdapter3 = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_sender_idproofName);
+                        spinner_sender_idprooftype.setAdapter(recordAdapter3);
 
-                       api_region();
 
                     } else {
                         Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -1167,55 +1557,122 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     }
 
 
+    private void api_destination_idProof() {
 
-    boolean validation_mobile_Details() {
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/master/IDPROOFTYPE", languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"6050\",\"requestedBy\":\"101917\",\"requestTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"responseTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"idProffTypeList\":[{\"id\":6,\"code\":\"100005\",\"type\":\"COMPANY REGISTRATION NUMBER\",\"status\":\"Active\",\"creationDate\":\"1609835141414\"},{\"id\":5,\"code\":\"100004\",\"type\":\"MILITARY ID CARD\",\"status\":\"Active\",\"creationDate\":\"1609835141414\"},{\"id\":2,\"code\":\"100001\",\"type\":\"NATIONAL IDENTITY CARD\",\"status\":\"Active\",\"creationDate\":\"1609835141414\"},{\"id\":7,\"code\":\"100006\",\"type\":\"OTHER\",\"status\":\"Active\",\"creationDate\":\"1609835141414\"},{\"id\":1,\"code\":\"100000\",\"type\":\"PASSPORT\",\"status\":\"Active\",\"creationDate\":\"1597749171481\"},{\"id\":4,\"code\":\"100003\",\"type\":\"RESIDENCE CARD\",\"status\":\"Active\",\"creationDate\":\"1609835141414\"},{\"id\":3,\"code\":\"100002\",\"type\":\"VOTER CARD\",\"status\":\"Active\",\"creationDate\":\"1609835141414\"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+
+                    arrayList_destination_idproofName = new ArrayList<>();
+                    arrayList_destination_idproofCode = new ArrayList<>();
+                    //  ID Proof Type
+
+                    arrayList_destination_idproofName.add("ID Proof Type ");
+                    arrayList_destination_idproofCode.add("ID Proof Type");
+
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        //  Toast.makeText(LocalRemittance.this,"-----api_idProof--------" +resultDescription, Toast.LENGTH_LONG).show();
+
+                        JSONArray jsonArray_idProffTypeList = jsonObject.getJSONArray("idProffTypeList");
+                        for (int i = 0; i < jsonArray_idProffTypeList.length(); i++) {
+                            JSONObject jsonObject2 = jsonArray_idProffTypeList.getJSONObject(i);
+
+                            int idproof_id = jsonObject2.getInt("id");
+                            String idproof_code = jsonObject2.getString("code");
+                            String idproof_type = jsonObject2.getString("type");
+                            String idproof_status = jsonObject2.getString("status");
+                            String idproof_creationDate = jsonObject2.getString("creationDate");
+
+                            arrayList_destination_idproofName.add(idproof_type);
+                            String  idproof_id_temp = String.valueOf(idproof_id);
+                            arrayList_destination_idproofCode.add(idproof_id_temp);
+                        }
+
+                        CustomeBaseAdapterGender recordAdapter4 = new CustomeBaseAdapterGender(InternationalRemittance.this, arrayList_destination_idproofName);
+                        spinner_destination_idprooftype.setAdapter(recordAdapter4);
+
+
+                    } else {
+                        Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  finish();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+
+    boolean validation_sender_i() {
 
 
         amountstr = edittext_amount.getText().toString().trim();
         amountToPayStr = edittext_amount_pay.getText().toString().trim();
-        name_destinationStr = et_fp_desinationName.getText().toString().trim();
-        lastname_destinationStr = et_fp_firstNameDestination.getText().toString().trim();
-        mobileNoStr = edittext_mobileNuber.getText().toString().trim();
-        email_destination = edittext_email_destination.getText().toString().trim();
 
-        reasonOfSending = et_fp_reason_sending.getText().toString().trim();
 
-  
+        if(spinner_provider.getSelectedItemPosition()==0)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.plz_select_provider));
 
-       if(spinner_provider.getSelectedItemPosition()==0)
-       {
-           MyApplication.showErrorToast(this, getString(R.string.plz_select_provider));
+            return false;
+        }
 
-           return false;
-       }
+        else if (spinner_senderCountry.getSelectedItemPosition()==0) {
 
-       else if (spinner_senderCountry.getSelectedItemPosition()==0) {
+            MyApplication.showErrorToast(this, getString(R.string.sending_country));
 
-           MyApplication.showErrorToast(this, getString(R.string.sending_country));
+            return false;
+        }
 
-           return false;
-       }
+        else if (spinner_senderCurrency.getSelectedItemPosition()==0) {
 
-       else if (spinner_senderCurrency.getSelectedItemPosition()==0) {
+            MyApplication.showErrorToast(this, getString(R.string.sending_currencey));
 
-           MyApplication.showErrorToast(this, getString(R.string.sending_currencey));
+            return false;
+        }
 
-           return false;
-       }
+        else if (spinner_receiverCountry.getSelectedItemPosition()==0) {
 
-       else if (spinner_receiverCountry.getSelectedItemPosition()==0) {
+            MyApplication.showErrorToast(this, getString(R.string.receive_country));
 
-           MyApplication.showErrorToast(this, getString(R.string.receive_country));
+            return false;
+        }
 
-           return false;
-       }
+        else if (spinner_receiverCurrency.getSelectedItemPosition()==0) {
 
-       else if (spinner_receiverCurrency.getSelectedItemPosition()==0) {
+            MyApplication.showErrorToast(this, getString(R.string.receive_courency));
 
-           MyApplication.showErrorToast(this, getString(R.string.receive_courency));
-
-           return false;
-       }
+            return false;
+        }
 
 
         else if (amountstr.isEmpty()) {
@@ -1242,32 +1699,6 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         }
 
 
-       else if(mobileNoStr.isEmpty()) {
-
-           MyApplication.showErrorToast(this,getString(R.string.please_enter_mobileno));
-
-           return false;
-       }
-
-
-
-
-       else if (name_destinationStr.trim().length() < 2) {
-
-            MyApplication.showErrorToast(this, getString(R.string.plz_enter_name));
-
-            return false;
-        }
-
-
-        else if (lastname_destinationStr.trim().length() < 2) {
-
-            MyApplication.showErrorToast(this, getString(R.string.plz_enter_firstName));
-
-            return false;
-        }
-
-
         else if (amountToPayStr.trim().length() < 2) {
 
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount_to_pay));
@@ -1275,14 +1706,176 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             return false;
         }
 
+        return true;
+    }
 
 
-        else if(mobileNoStr.length() < 9) {
+
+
+    boolean validation_sender_ii() {
+
+        sender_firstName_string = et_sender_firstName.getText().toString().trim();
+        sender_lastname_string = et_sender_lastname.getText().toString().trim();
+        sender_email_string = et_sender_email.getText().toString().trim();
+        sender_dob_string= et_sender_dob.getText().toString().trim();
+        sender_phoneNumber_string= et_sender_phoneNumber.getText().toString().trim();
+        sender_address_string= et_sender_address.getText().toString().trim();
+        sender_city_string= et_sender_city.getText().toString().trim();
+        sender_idproofNumber_string= et_sender_idproofNumber.getText().toString().trim();
+        sender_idProofexpiry_string= et_sender_idproof_expiry.getText().toString().trim();
+
+
+
+        if(sender_phoneNumber_string.length() < 9) {
+
+            MyApplication.showErrorToast(this,getString(R.string.phoneNumber));
+
+            return false;
+        }
+
+
+
+        else if (sender_firstName_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.plz_enter_firstName));
+
+            return false;
+        }
+
+
+        else if (sender_lastname_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.last_name));
+
+            return false;
+        }
+
+        else if(sender_email_string.isEmpty()) {
+
+            MyApplication.showErrorToast(this,getString(R.string.val_email));
+
+            return false;
+        }
+
+        if(!MyApplication.email_validation(sender_email_string)){
+
+            MyApplication.showErrorToast(this,getString(R.string.val_email_valid));
+
+            return false;
+        }
+
+
+        else if (spinner_sender_gender.getSelectedItemPosition()==0)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.select_gender));
+
+            return false;
+        }
+
+        else if (sender_dob_string.equalsIgnoreCase(""))
+        {
+            MyApplication.showErrorToast(this, getString(R.string.val_dob));
+            return false;
+        }
+
+
+
+        else if (sender_address_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.val_address));
+
+            return false;
+        }
+
+        else if (spinner_sender_region.getSelectedItemPosition()==0)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.val_select_region));
+
+            return false;
+        }
+
+
+        else if (sender_city_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.val_city));
+
+            return false;
+        }
+
+        else if (spinner_sender_idprooftype.getSelectedItemPosition()==0)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.val_select_id_proof));
+
+            return false;
+        }
+
+
+        else if (sender_idproofNumber_string.trim().length() < 2)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.vaild_id_proof_no));
+
+            return false;
+        }
+
+
+        else if (sender_idProofexpiry_string.equalsIgnoreCase(""))
+        {
+            MyApplication.showErrorToast(this, getString(R.string.id_proof_expiryDate));
+            return false;
+        }
+
+
+        else if(!isFrontUpload){
+            MyApplication.showErrorToast(this,"please upload front Image");
+            return false;
+        }
+
+
+
+        return true;
+    }
+
+
+    boolean validation_destination_i() {
+
+        mobileNumber_destination_string = et_destination_mobileNumber.getText().toString().trim();
+        firstname_destination_string = et_destination_firstName.getText().toString().trim();
+        lastname_destinationStr = et_destination_lastName.getText().toString().trim();
+        email_destination = edittext_email_destination.getText().toString().trim();
+        destination_dob_string= et_destination_dob.getText().toString().trim();
+        destination_address_string= et_destination_address.getText().toString().trim();
+        destination_city_string= et_destination_city.getText().toString().trim();
+        destination_idproofNumber_string= et_destination_idproofNumber.getText().toString().trim();
+        destination_idProofexpiry_string= et_destination_idproof_expiry.getText().toString().trim();
+
+
+
+
+
+        reasonOfSending = et_fp_reason_sending.getText().toString().trim();
+
+        if(mobileNumber_destination_string.isEmpty()) {
 
             MyApplication.showErrorToast(this,getString(R.string.please_enter_mobileno));
 
             return false;
         }
+
+        else if (firstname_destination_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.plz_enter_firstName));
+
+            return false;
+        }
+
+
+        else if (spinner_destination_gender.getSelectedItemPosition()==0)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.genderSelect_fixed));
+            return false;
+        }
+
+
 
 
         else if(email_destination.isEmpty()) {
@@ -1292,39 +1885,21 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             return false;
         }
 
-
-
         if(!MyApplication.email_validation(email_destination)){
 
             MyApplication.showErrorToast(this,getString(R.string.val_email_valid));
 
-
             return false;
         }
 
-       else if (genderSelect_name.equalsIgnoreCase("Please select gender") || (provider_select_name.equalsIgnoreCase("Veuillez sélectionner le sexe")))
-        {
-
-            MyApplication.showErrorToast(this, getString(R.string.genderSelect_fixed));
-
-            return false;
-        }
-
-        else if(!isFrontUpload){
-            MyApplication.showErrorToast(this,"please upload front Image");
-            return false;
-        }
-
-        if(!isBackUpload){
-
-            MyApplication.showErrorToast(this,"please upload back Image");
-            return false;
-        }
 
 
 
         return true;
     }
+
+
+
 
 
 
@@ -1389,7 +1964,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                 try {
 
-                   // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1840591\",\"requestTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"responseTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"country\":{\"id\":93,\"code\":\"100092\",\"isoCode\":\"GIN\",\"name\":\"Guinea\",\"currencyRefCode\":\"100062\",\"countryCode\":\"GN\",\"status\":\"Active\",\"dialCode\":\"+224\",\"mobileLength\":\"9\",\"currencyCode\":\"GNF\",\"currencySymbol\":\"Fr\",\"subscriberAllowed\":true,\"creationDate\":\"2020-08-11T15:04:42.459+0530\",\"countryCurrencyList\":[{\"id\":101,\"code\":\"100103\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bangladeshi taka\",\"currencySymbol\":\"৳\",\"currencyCode\":\"100014\",\"currCode\":\"BDT\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:18:01.725+0530\",\"modificationDate\":\"2021-07-08T15:51:09.738+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":102,\"code\":\"100104\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bahraini dinar\",\"currencySymbol\":\".د.ب\",\"currencyCode\":\"100013\",\"currCode\":\"BHD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:18:18.165+0530\",\"modificationDate\":\"2021-07-08T15:51:09.740+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":103,\"code\":\"100105\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bahamian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100012\",\"currCode\":\"BSD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:15.804+0530\",\"modificationDate\":\"2021-07-08T15:51:09.741+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":104,\"code\":\"100106\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Australian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100007\",\"currCode\":\"AUD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:24.443+0530\",\"modificationDate\":\"2021-07-08T15:51:09.743+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":105,\"code\":\"100107\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Aruban florin\",\"currencySymbol\":\"ƒ\",\"currencyCode\":\"100010\",\"currCode\":\"AWG\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:34.842+0530\",\"modificationDate\":\"2021-07-08T15:51:09.744+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":106,\"code\":\"100108\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Argentine peso\",\"currencySymbol\":\"$\",\"currencyCode\":\"100008\",\"currCode\":\"ARS\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:43.323+0530\",\"modificationDate\":\"2021-07-08T15:51:09.745+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":107,\"code\":\"100109\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Angolan kwanza\",\"currencySymbol\":\"Kz\",\"currencyCode\":\"100005\",\"currCode\":\"AOA\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:51.322+0530\",\"modificationDate\":\"2021-07-08T15:51:09.745+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":108,\"code\":\"100110\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Algerian dinar\",\"currencySymbol\":\"د.ج\",\"currencyCode\":\"100002\",\"currCode\":\"DZD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:59.246+0530\",\"modificationDate\":\"2021-07-08T15:51:09.746+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":109,\"code\":\"100111\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Albanian lek\",\"currencySymbol\":\"L\",\"currencyCode\":\"100001\",\"currCode\":\"ALL\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:20:07.762+0530\",\"modificationDate\":\"2021-07-08T15:51:09.747+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":72,\"code\":\"100074\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"United State Dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100003\",\"currCode\":\"USD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2020-12-17T10:22:08.733+0530\",\"modificationDate\":\"2021-07-08T15:51:09.748+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":73,\"code\":\"100075\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Indian rupee\",\"currencySymbol\":\"₹\",\"currencyCode\":\"100069\",\"currCode\":\"INR\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2020-12-17T10:22:08.735+0530\",\"modificationDate\":\"2021-07-08T15:51:09.749+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":74,\"code\":\"100076\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Guinean franc\",\"currencySymbol\":\"Fr\",\"currencyCode\":\"100062\",\"currCode\":\"GNF\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2020-12-17T11:00:52.889+0530\",\"modificationDate\":\"2021-07-08T15:51:09.749+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":88,\"code\":\"100090\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Euro\",\"currencySymbol\":\"€\",\"currencyCode\":\"100004\",\"currCode\":\"EUR\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-01-07T22:40:02.078+0530\",\"modificationDate\":\"2021-07-08T15:51:09.750+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":91,\"code\":\"100093\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Afghan afghani\",\"currencySymbol\":\"؋\",\"currencyCode\":\"100000\",\"currCode\":\"AFN\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:03:41.743+0530\",\"modificationDate\":\"2021-07-08T15:51:09.750+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":92,\"code\":\"100094\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bulgarian lev\",\"currencySymbol\":\"лв\",\"currencyCode\":\"100028\",\"currCode\":\"BGN\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:24.328+0530\",\"modificationDate\":\"2021-07-08T15:51:09.751+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":93,\"code\":\"100095\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Brunei dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100027\",\"currCode\":\"BND\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:34.285+0530\",\"modificationDate\":\"2021-07-08T15:51:09.752+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":94,\"code\":\"100096\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Brazilian real\",\"currencySymbol\":\"R$\",\"currencyCode\":\"100026\",\"currCode\":\"BRL\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:45.645+0530\",\"modificationDate\":\"2021-07-08T15:51:09.752+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":95,\"code\":\"100097\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Botswana pula\",\"currencySymbol\":\"P\",\"currencyCode\":\"100024\",\"currCode\":\"BWP\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:58.606+0530\",\"modificationDate\":\"2021-07-08T15:51:09.771+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":96,\"code\":\"100098\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bolivian boliviano\",\"currencySymbol\":\"Bs.\",\"currencyCode\":\"100021\",\"currCode\":\"BOB\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:09.484+0530\",\"modificationDate\":\"2021-07-08T15:51:09.772+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":97,\"code\":\"100099\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bhutanese ngultrum\",\"currencySymbol\":\"Nu.\",\"currencyCode\":\"100020\",\"currCode\":\"BTN\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:20.045+0530\",\"modificationDate\":\"2021-07-08T15:51:09.773+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":98,\"code\":\"100100\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bermudian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100019\",\"currCode\":\"BMD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:29.885+0530\",\"modificationDate\":\"2021-07-08T15:51:09.773+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":99,\"code\":\"100101\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Belize dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100017\",\"currCode\":\"BZD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:40.964+0530\",\"modificationDate\":\"2021-07-08T15:51:09.774+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":100,\"code\":\"100102\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Barbadian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100015\",\"currCode\":\"BBD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:50.609+0530\",\"modificationDate\":\"2021-07-08T15:51:09.775+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":112,\"code\":\"100114\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"West African CFA franc\",\"currencySymbol\":\"CFA\",\"currencyCode\":\"100018\",\"currCode\":\"XOF\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100375\",\"creationDate\":\"2021-07-08T15:51:09.781+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":130,\"code\":\"100132\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Ghanaian cedi\",\"currencySymbol\":\"₵\",\"currencyCode\":\"100058\",\"currCode\":\"GHS\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100322\",\"creationDate\":\"2021-09-07T18:45:06.765+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"}],\"nameFr\":\"Guinée\"}}");
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1840591\",\"requestTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"responseTime\":\"Tue Oct 26 00:13:31 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"country\":{\"id\":93,\"code\":\"100092\",\"isoCode\":\"GIN\",\"name\":\"Guinea\",\"currencyRefCode\":\"100062\",\"countryCode\":\"GN\",\"status\":\"Active\",\"dialCode\":\"+224\",\"mobileLength\":\"9\",\"currencyCode\":\"GNF\",\"currencySymbol\":\"Fr\",\"subscriberAllowed\":true,\"creationDate\":\"2020-08-11T15:04:42.459+0530\",\"countryCurrencyList\":[{\"id\":101,\"code\":\"100103\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bangladeshi taka\",\"currencySymbol\":\"৳\",\"currencyCode\":\"100014\",\"currCode\":\"BDT\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:18:01.725+0530\",\"modificationDate\":\"2021-07-08T15:51:09.738+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":102,\"code\":\"100104\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bahraini dinar\",\"currencySymbol\":\".د.ب\",\"currencyCode\":\"100013\",\"currCode\":\"BHD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:18:18.165+0530\",\"modificationDate\":\"2021-07-08T15:51:09.740+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":103,\"code\":\"100105\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bahamian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100012\",\"currCode\":\"BSD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:15.804+0530\",\"modificationDate\":\"2021-07-08T15:51:09.741+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":104,\"code\":\"100106\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Australian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100007\",\"currCode\":\"AUD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:24.443+0530\",\"modificationDate\":\"2021-07-08T15:51:09.743+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":105,\"code\":\"100107\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Aruban florin\",\"currencySymbol\":\"ƒ\",\"currencyCode\":\"100010\",\"currCode\":\"AWG\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:34.842+0530\",\"modificationDate\":\"2021-07-08T15:51:09.744+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":106,\"code\":\"100108\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Argentine peso\",\"currencySymbol\":\"$\",\"currencyCode\":\"100008\",\"currCode\":\"ARS\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:43.323+0530\",\"modificationDate\":\"2021-07-08T15:51:09.745+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":107,\"code\":\"100109\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Angolan kwanza\",\"currencySymbol\":\"Kz\",\"currencyCode\":\"100005\",\"currCode\":\"AOA\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:51.322+0530\",\"modificationDate\":\"2021-07-08T15:51:09.745+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":108,\"code\":\"100110\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Algerian dinar\",\"currencySymbol\":\"د.ج\",\"currencyCode\":\"100002\",\"currCode\":\"DZD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:19:59.246+0530\",\"modificationDate\":\"2021-07-08T15:51:09.746+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":109,\"code\":\"100111\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Albanian lek\",\"currencySymbol\":\"L\",\"currencyCode\":\"100001\",\"currCode\":\"ALL\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:20:07.762+0530\",\"modificationDate\":\"2021-07-08T15:51:09.747+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":72,\"code\":\"100074\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"United State Dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100003\",\"currCode\":\"USD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2020-12-17T10:22:08.733+0530\",\"modificationDate\":\"2021-07-08T15:51:09.748+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":73,\"code\":\"100075\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Indian rupee\",\"currencySymbol\":\"₹\",\"currencyCode\":\"100069\",\"currCode\":\"INR\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2020-12-17T10:22:08.735+0530\",\"modificationDate\":\"2021-07-08T15:51:09.749+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":74,\"code\":\"100076\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Guinean franc\",\"currencySymbol\":\"Fr\",\"currencyCode\":\"100062\",\"currCode\":\"GNF\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2020-12-17T11:00:52.889+0530\",\"modificationDate\":\"2021-07-08T15:51:09.749+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":88,\"code\":\"100090\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Euro\",\"currencySymbol\":\"€\",\"currencyCode\":\"100004\",\"currCode\":\"EUR\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100321\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-01-07T22:40:02.078+0530\",\"modificationDate\":\"2021-07-08T15:51:09.750+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":91,\"code\":\"100093\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Afghan afghani\",\"currencySymbol\":\"؋\",\"currencyCode\":\"100000\",\"currCode\":\"AFN\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:03:41.743+0530\",\"modificationDate\":\"2021-07-08T15:51:09.750+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":92,\"code\":\"100094\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bulgarian lev\",\"currencySymbol\":\"лв\",\"currencyCode\":\"100028\",\"currCode\":\"BGN\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:24.328+0530\",\"modificationDate\":\"2021-07-08T15:51:09.751+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":93,\"code\":\"100095\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Brunei dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100027\",\"currCode\":\"BND\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:34.285+0530\",\"modificationDate\":\"2021-07-08T15:51:09.752+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":94,\"code\":\"100096\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Brazilian real\",\"currencySymbol\":\"R$\",\"currencyCode\":\"100026\",\"currCode\":\"BRL\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:45.645+0530\",\"modificationDate\":\"2021-07-08T15:51:09.752+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":95,\"code\":\"100097\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Botswana pula\",\"currencySymbol\":\"P\",\"currencyCode\":\"100024\",\"currCode\":\"BWP\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:16:58.606+0530\",\"modificationDate\":\"2021-07-08T15:51:09.771+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":96,\"code\":\"100098\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bolivian boliviano\",\"currencySymbol\":\"Bs.\",\"currencyCode\":\"100021\",\"currCode\":\"BOB\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:09.484+0530\",\"modificationDate\":\"2021-07-08T15:51:09.772+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":97,\"code\":\"100099\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bhutanese ngultrum\",\"currencySymbol\":\"Nu.\",\"currencyCode\":\"100020\",\"currCode\":\"BTN\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:20.045+0530\",\"modificationDate\":\"2021-07-08T15:51:09.773+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":98,\"code\":\"100100\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Bermudian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100019\",\"currCode\":\"BMD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:29.885+0530\",\"modificationDate\":\"2021-07-08T15:51:09.773+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":99,\"code\":\"100101\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Belize dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100017\",\"currCode\":\"BZD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:40.964+0530\",\"modificationDate\":\"2021-07-08T15:51:09.774+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":100,\"code\":\"100102\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Barbadian dollar\",\"currencySymbol\":\"$\",\"currencyCode\":\"100015\",\"currCode\":\"BBD\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100250\",\"modifiedBy\":\"100375\",\"creationDate\":\"2021-02-11T04:17:50.609+0530\",\"modificationDate\":\"2021-07-08T15:51:09.775+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":112,\"code\":\"100114\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"West African CFA franc\",\"currencySymbol\":\"CFA\",\"currencyCode\":\"100018\",\"currCode\":\"XOF\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Created\",\"createdBy\":\"100375\",\"creationDate\":\"2021-07-08T15:51:09.781+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"},{\"id\":130,\"code\":\"100132\",\"countryName\":\"Guinea\",\"countryCode\":\"100092\",\"currencyName\":\"Ghanaian cedi\",\"currencySymbol\":\"₵\",\"currencyCode\":\"100058\",\"currCode\":\"GHS\",\"inBound\":true,\"outBound\":true,\"status\":\"Active\",\"state\":\"Approved\",\"createdBy\":\"100322\",\"creationDate\":\"2021-09-07T18:45:06.765+0530\",\"dialCode\":\"+224\",\"mobileLength\":\"9\"}],\"nameFr\":\"Guinée\"}}");
 
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
@@ -1671,9 +2246,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     }
 
-    private void api_allByCriteria() {
+    private void searchData_sender_mobileNumber() {
 
-        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?firstName="+name_destinationStr+"%20&countryCode=" + "100092", languageToUse, new Api_Responce_Handler() {
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?mobileNumber="+sender_phoneNumber_string+"&countryCode=" + select_sender_CountryCode, languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1681,7 +2256,65 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                 try {
 
-                  //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1853328\",\"requestTime\":\"Tue Oct 26 23:03:18 IST 2021\",\"responseTime\":\"Tue Oct 26 23:03:18 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"customerList\":[{\"id\":1702,\"code\":\"1000001705\",\"firstName\":\"sharique \",\"lastName\":\"anwar\",\"mobileNumber\":\"9878787878\",\"gender\":\"M\",\"idProofTypeCode\":\"100000\",\"idProofTypeName\":\"PASSPORT\",\"idProofNumber\":\"id12345\",\"idExpiryDate\":\"2021-10-30\",\"dateOfBirth\":\"2003-10-24\",\"email\":\"sharique@gmail.com\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"city\":\"new delhi\",\"address\":\"delhi okhla\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"status\":\"Active\",\"creationDate\":\"2021-10-26T22:59:39.323+0530\",\"createdBy\":\"102068\"},{\"id\":1681,\"code\":\"1000001684\",\"firstName\":\"sharique \",\"lastName\":\"anwar\",\"mobileNumber\":\"9878787878\",\"gender\":\"M\",\"idProofTypeCode\":\"100000\",\"idProofTypeName\":\"PASSPORT\",\"idProofNumber\":\"id12345\",\"idExpiryDate\":\"2021-10-29\",\"dateOfBirth\":\"2003-10-16\",\"email\":\"sharique@gmail.com\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"city\":\"new delhi\",\"address\":\"delhi okhla\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"idProofUrl\":\"Paspost_size_demo.jpg\",\"status\":\"Active\",\"creationDate\":\"2021-10-26T00:20:05.401+0530\",\"createdBy\":\"101917\",\"modificationDate\":\"2021-10-26T12:21:16.418+0530\",\"modifiedBy\":\"102068\"}]}");
+
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+
+
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+
+                    } else {
+
+                        if(resultDescription.equalsIgnoreCase("Customer Not Found"))
+                        {
+
+
+                        }
+                        else
+                        {
+                            Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+
+    private void api_allByCriteria() {
+
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?firstName="+firstname_destination_string+"%20&countryCode=" + select_receiver_CountryCode, languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1853328\",\"requestTime\":\"Tue Oct 26 23:03:18 IST 2021\",\"responseTime\":\"Tue Oct 26 23:03:18 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"customerList\":[{\"id\":1702,\"code\":\"1000001705\",\"firstName\":\"sharique \",\"lastName\":\"anwar\",\"mobileNumber\":\"9878787878\",\"gender\":\"M\",\"idProofTypeCode\":\"100000\",\"idProofTypeName\":\"PASSPORT\",\"idProofNumber\":\"id12345\",\"idExpiryDate\":\"2021-10-30\",\"dateOfBirth\":\"2003-10-24\",\"email\":\"sharique@gmail.com\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"city\":\"new delhi\",\"address\":\"delhi okhla\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"status\":\"Active\",\"creationDate\":\"2021-10-26T22:59:39.323+0530\",\"createdBy\":\"102068\"},{\"id\":1681,\"code\":\"1000001684\",\"firstName\":\"sharique \",\"lastName\":\"anwar\",\"mobileNumber\":\"9878787878\",\"gender\":\"M\",\"idProofTypeCode\":\"100000\",\"idProofTypeName\":\"PASSPORT\",\"idProofNumber\":\"id12345\",\"idExpiryDate\":\"2021-10-29\",\"dateOfBirth\":\"2003-10-16\",\"email\":\"sharique@gmail.com\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"city\":\"new delhi\",\"address\":\"delhi okhla\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"idProofUrl\":\"Paspost_size_demo.jpg\",\"status\":\"Active\",\"creationDate\":\"2021-10-26T00:20:05.401+0530\",\"createdBy\":\"101917\",\"modificationDate\":\"2021-10-26T12:21:16.418+0530\",\"modifiedBy\":\"102068\"}]}");
 
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
@@ -1692,7 +2325,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                     rp_tv_sender_id.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
 
-                    rp_tv_benificicaryCode.setText(mobileNoStr);
+                    rp_tv_benificicaryCode.setText(mobileNumber_destination_string);
                     rp_tv_senderDocument.setText("on image available");     // Temporary hard code no Option on First Page
 
                     rp_tv_sending_currency.setText(select_sender_currencyName);
@@ -1709,7 +2342,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         if(resultDescription.equalsIgnoreCase("Customer Not Found"))
                         {
-                           // Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                            // Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.VISIBLE);
@@ -1777,8 +2410,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             jsonObject.put("walletOwnerCode", walletOwnerCode_mssis_agent);
             jsonObject.put("transactionType", "SENDREMITTANCE");
 
-          //  jsonObject.put("senderCode", "1000001684");
-          //  jsonObject.put("receiverCode", "1000001220");
+            //  jsonObject.put("senderCode", "1000001684");
+            //  jsonObject.put("receiverCode", "1000001220");
 
             jsonObject.put("senderCode", senderCode_from_senderApi);
             jsonObject.put("receiverCode", receivercode_from_receiverAPi);
@@ -1806,7 +2439,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             jsonObject.put("fromCurrencyCode", select_sender_currencyCode);  // Hard Code according  to Deepak
             jsonObject.put("receiveCountryCode",select_receiver_CountryCode);
             jsonObject.put("toCurrencyCode", select_receiver_currencyCode); // Hard Code according  to Deepak
-         //   jsonObject.put("toCurrencyCode", selectReceiverCountryCode);
+            //   jsonObject.put("toCurrencyCode", selectReceiverCountryCode);
 
 
             API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObject, languageToUse, new Api_Responce_Handler() {
@@ -1817,7 +2450,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                     try {
 
-                       // JSONObject jsonObject = new JSONObject("{"transactionId":"117334","requestTime":"Wed Oct 27 00:22:01 IST 2021","responseTime":"Wed Oct 27 00:22:01 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000002102","walletOwnerCode":"1000002785","transactionType":"SEND REMITTANCE","senderCode":"1000001684","receiverCode":"1000001220","fromCurrencyCode":"100062","fromCurrencyName":"GNF","fromCurrencySymbol":"Fr","toCurrencyCode":"100062","toCurrencyName":"GNF","toCurrencySymbol":"Fr","comments":"cbcbd","amount":1500,"amountToPaid":1500,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MM*********","transactionReferenceNo":"117334","transactionDateTime":"2021-10-27 00:22:01","sender":{"id":1681,"code":"1000001684","firstName":"sharique ","lastName":"anwar","mobileNumber":"9878787878","gender":"M","idProofTypeCode":"100000","idProofTypeName":"PASSPORT","idProofNumber":"id12345","idExpiryDate":"2021-10-29","dateOfBirth":"2003-10-16","email":"sharique@gmail.com","countryCode":"100092","countryName":"Guinea","regionCode":"100068","regionName":"Boke","city":"new delhi","address":"delhi okhla","issuingCountryCode":"100092","issuingCountryName":"Guinea","idProofUrl":"Paspost_size_demo.jpg","status":"Active","creationDate":"2021-10-26 00:20:05","createdBy":"101917","modificationDate":"2021-10-26 12:21:16","modifiedBy":"102068","dialCode":"+224"},"receiver":{"id":1217,"code":"1000001220","firstName":"sameer","lastName":"khan","mobileNumber":"989898989","gender":"F","idProofTypeCode":"100004","idProofTypeName":"MILITARY ID CARD","idProofNumber":"87676789","idExpiryDate":"2021-10-29","dateOfBirth":"2003-06-03","countryCode":"100092","countryName":"Guinea","regionCode":"100068","regionName":"Boke","city":"Guinea city","address":"hghbjbhjbh","issuingCountryCode":"100092","issuingCountryName":"Guinea","idProofUrl":"LIC premium receipt Feb2021.pdf","status":"Active","creationDate":"2021-06-17 15:35:34","createdBy":"101487","modificationDate":"2021-10-26 00:20:05","modifiedBy":"101917","dialCode":"+224"},"sendCountryCode":"100092","receiveCountryCode":"100092","sendCountryName":"Guinea","receiveCountryName":"Guinea","walletToCash":false}}");
+                        // JSONObject jsonObject = new JSONObject("{"transactionId":"117334","requestTime":"Wed Oct 27 00:22:01 IST 2021","responseTime":"Wed Oct 27 00:22:01 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000002102","walletOwnerCode":"1000002785","transactionType":"SEND REMITTANCE","senderCode":"1000001684","receiverCode":"1000001220","fromCurrencyCode":"100062","fromCurrencyName":"GNF","fromCurrencySymbol":"Fr","toCurrencyCode":"100062","toCurrencyName":"GNF","toCurrencySymbol":"Fr","comments":"cbcbd","amount":1500,"amountToPaid":1500,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MM*********","transactionReferenceNo":"117334","transactionDateTime":"2021-10-27 00:22:01","sender":{"id":1681,"code":"1000001684","firstName":"sharique ","lastName":"anwar","mobileNumber":"9878787878","gender":"M","idProofTypeCode":"100000","idProofTypeName":"PASSPORT","idProofNumber":"id12345","idExpiryDate":"2021-10-29","dateOfBirth":"2003-10-16","email":"sharique@gmail.com","countryCode":"100092","countryName":"Guinea","regionCode":"100068","regionName":"Boke","city":"new delhi","address":"delhi okhla","issuingCountryCode":"100092","issuingCountryName":"Guinea","idProofUrl":"Paspost_size_demo.jpg","status":"Active","creationDate":"2021-10-26 00:20:05","createdBy":"101917","modificationDate":"2021-10-26 12:21:16","modifiedBy":"102068","dialCode":"+224"},"receiver":{"id":1217,"code":"1000001220","firstName":"sameer","lastName":"khan","mobileNumber":"989898989","gender":"F","idProofTypeCode":"100004","idProofTypeName":"MILITARY ID CARD","idProofNumber":"87676789","idExpiryDate":"2021-10-29","dateOfBirth":"2003-06-03","countryCode":"100092","countryName":"Guinea","regionCode":"100068","regionName":"Boke","city":"Guinea city","address":"hghbjbhjbh","issuingCountryCode":"100092","issuingCountryName":"Guinea","idProofUrl":"LIC premium receipt Feb2021.pdf","status":"Active","creationDate":"2021-06-17 15:35:34","createdBy":"101487","modificationDate":"2021-10-26 00:20:05","modifiedBy":"101917","dialCode":"+224"},"sendCountryCode":"100092","receiveCountryCode":"100092","sendCountryName":"Guinea","receiveCountryName":"Guinea","walletToCash":false}}");
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
@@ -1843,7 +2476,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-                           JSONObject jsonObject_remittance = jsonObject.getJSONObject("remittance");
+                            JSONObject jsonObject_remittance = jsonObject.getJSONObject("remittance");
 
                             receiptPage_tv_confirmation_code.setText(jsonObject_remittance.getString("confirmationCode"));
                             receiptPage_tv_senderCurrency.setText(select_sender_currencyName);
@@ -1883,9 +2516,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_sender_name.setText(FIRSTNAME_USERINFO +" "+LASTNAME_USERINFO);
 
 
-                            receiptPage_tv_receiver_name.setText( name_destinationStr +" "+lastname_destinationStr);
+                            receiptPage_tv_receiver_name.setText( firstname_destination_string +" "+lastname_destinationStr);
 
-                            receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
+                            receiptPage_tv_receiver_phoneNo.setText(mobileNumber_destination_string);
 
 
                         } else {
@@ -1929,146 +2562,146 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
-                select_sender_currencyCode+"&receiveCurrencyCode="+select_receiver_currencyCode+"&sendCountryCode="+
-                select_sender_CountryCode+"&receiveCountryCode="+select_receiver_CountryCode+"&currencyValue="
-                + amountstr + "&channelTypeCode=10000&serviceCode=" + serviceCode_from_serviceCategory +
-                "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode="
-                + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent
+                        select_sender_currencyCode+"&receiveCurrencyCode="+select_receiver_currencyCode+"&sendCountryCode="+
+                        select_sender_CountryCode+"&receiveCountryCode="+select_receiver_CountryCode+"&currencyValue="
+                        + amountstr + "&channelTypeCode=10000&serviceCode=" + serviceCode_from_serviceCategory +
+                        "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode="
+                        + serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent
                 ,languageToUse, new Api_Responce_Handler() {
 
 
 
-            @Override
-            public void success(JSONObject jsonObject) {
+                    @Override
+                    public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+                        MyApplication.hideLoader();
 
-                try {
+                        try {
 
-                   // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1853221\",\"requestTime\":\"Tue Oct 26 22:34:47 IST 2021\",\"responseTime\":\"Tue Oct 26 22:34:47 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"exchangeRate\":{\"value\":\"0.0\",\"currencyValue\":\"1500\",\"fee\":1500,\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":195,\"taxAvailBy\":\"Fee Amount\"}]}}");
+                            // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1853221\",\"requestTime\":\"Tue Oct 26 22:34:47 IST 2021\",\"responseTime\":\"Tue Oct 26 22:34:47 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"exchangeRate\":{\"value\":\"0.0\",\"currencyValue\":\"1500\",\"fee\":1500,\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":195,\"taxAvailBy\":\"Fee Amount\"}]}}");
 
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
+                            String resultCode = jsonObject.getString("resultCode");
+                            String resultDescription = jsonObject.getString("resultDescription");
 
-                    if (resultCode.equalsIgnoreCase("0")) {
+                            if (resultCode.equalsIgnoreCase("0")) {
 
-                       // Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                                // Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
 
-                        JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
+                                JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
-                        fees_amount = exchangeRate.getString("fee");
-                        rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
+                                fees_amount = exchangeRate.getString("fee");
+                                rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
 
-                        edittext_amount_pay.setEnabled(false);
-
-
-
-                        if(exchangeRate.has("value")) {
-
-                            converstionRate_fromApi =exchangeRate.getString("value");
-                            convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
-                        }
-                        else {
-
-                            converstionRate_fromApi="0.0";
-                            convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
-                        }
+                                edittext_amount_pay.setEnabled(false);
 
 
 
-                        if(exchangeRate.has("currencyValue")) {
-                            amountToPayStr=exchangeRate.getString("currencyValue");
-                            //.setText(amountToPayStr);
-                           edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
-                            //amountTobePaid_first_page.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+                                if(exchangeRate.has("value")) {
 
-                        }
+                                    converstionRate_fromApi =exchangeRate.getString("value");
+                                    convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+                                }
+                                else {
+
+                                    converstionRate_fromApi="0.0";
+                                    convertionRate_first_page.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+                                }
 
 
-                        if(exchangeRate.has("code")) {
-                            exchangeRateCode_from_tax_api=exchangeRate.getString("code");
-                        }
 
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
+                                if(exchangeRate.has("currencyValue")) {
+                                    amountToPayStr=exchangeRate.getString("currencyValue");
+                                    //.setText(amountToPayStr);
+                                    edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+                                    //amountTobePaid_first_page.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+
+                                }
+
+
+                                if(exchangeRate.has("code")) {
+                                    exchangeRateCode_from_tax_api=exchangeRate.getString("code");
+                                }
+
+                                if(exchangeRate.has("taxConfigurationList"))
+                                {
+                                    JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                    for(int i=0;i<jsonArray.length();i++) {
+                                        JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                        tax_financial = jsonObject2.getString("value");
+                                    }
+                                }
+                                else {
+                                    tax_financial = exchangeRate.getString("value");
+                                }
+
+                                tax_first_page.setText(select_sender_currencySymbol+ " "+tax_financial);
+
+                                fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
+
+                                rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
+
+                                tax_financial_double = Double.parseDouble(tax_financial);
+                                //  credit_amount_double = Double.parseDouble(credit_amount);
+                                fees_amount_double = Double.parseDouble(fees_amount);
+                                amountstr_double = Double.parseDouble(amountstr);
+
+                                convertionFeesStr = String.valueOf(fees_amount_double);
+
+
+
+
+                                totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
+                                totalAmount_str = String.valueOf(totalAmount_double);
+                                rp_tv_amount_to_be_charge.setText(select_sender_currencySymbol+ " "+totalAmount_str);
+
+                                amountstr = String.valueOf(amountstr_double);
+                                rp_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
+
+
+
+                                amountTobeCharged_first_page.setText(select_sender_currencySymbol+ " "+totalAmount_str);
+                                rp_tv_convertionRate.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+                                convertionRate_receiptPage.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
+
+
+
+                                // amountToPayStr=amountstr;
+
+                                rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+                                receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+
+                                //edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
+                                // edittext_amount_pay.setText(amountToPayStr);
+
+
+
+
+                            } else {
+
+                                edittext_amount.setText("");
+                                edittext_amount_pay.setText("");
+                                Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                                // finish();
                             }
+
+
+                        } catch (Exception e) {
+                            Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
                         }
-                        else {
-                            tax_financial = exchangeRate.getString("value");
-                        }
 
-                        tax_first_page.setText(select_sender_currencySymbol+ " "+tax_financial);
-
-                        fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
-
-                        rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
-
-                        tax_financial_double = Double.parseDouble(tax_financial);
-                        //  credit_amount_double = Double.parseDouble(credit_amount);
-                        fees_amount_double = Double.parseDouble(fees_amount);
-                        amountstr_double = Double.parseDouble(amountstr);
-
-                         convertionFeesStr = String.valueOf(fees_amount_double);
-
-
-
-
-                        totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
-                        totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(select_sender_currencySymbol+ " "+totalAmount_str);
-
-                        amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
-
-
-
-                        amountTobeCharged_first_page.setText(select_sender_currencySymbol+ " "+totalAmount_str);
-                        rp_tv_convertionRate.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
-                        convertionRate_receiptPage.setText(select_sender_currencySymbol+ " "+converstionRate_fromApi);
-
-
-
-                       // amountToPayStr=amountstr;
-
-                        rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
-                        receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
-
-                        //edittext_amount_pay.setText(select_receiver_currencySymbol+ " "+amountToPayStr);
-                       // edittext_amount_pay.setText(amountToPayStr);
-
-
-
-
-                    } else {
-
-                        edittext_amount.setText("");
-                        edittext_amount_pay.setText("");
-                        Toast.makeText(InternationalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
-                       // finish();
                     }
 
 
-                } catch (Exception e) {
-                    Toast.makeText(InternationalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
+                    @Override
+                    public void failure(String aFalse) {
 
-            }
+                        MyApplication.hideLoader();
+                        Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                        finish();
 
-
-            @Override
-            public void failure(String aFalse) {
-
-                MyApplication.hideLoader();
-                Toast.makeText(InternationalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        });
+                    }
+                });
 
 
     }
@@ -2228,31 +2861,226 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     }
 
+    void datePicker_sender_dob() {
+
+        int mYear, mMonth, mDay, mHour, mMinute;
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(InternationalRemittance.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        //  et_sender_dob.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        //  sender_dob_string=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+
+                        et_sender_dob.setText(year + "-" +dayOfMonth + "-" + (monthOfYear + 1));
+                        sender_dob_string=year + "-" + dayOfMonth  + "-" + (monthOfYear + 1);
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+
+    }
+
+    void datePicker_sender_idproofExpire() {
+
+        int mYear, mMonth, mDay, mHour, mMinute;
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(InternationalRemittance.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        //  et_sender_idproof_expiry.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        //  sender_idProofexpiry_string=dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+
+                        et_sender_idproof_expiry.setText(year + "-" +dayOfMonth + "-" + (monthOfYear + 1));
+                        sender_idProofexpiry_string=year + "-" + dayOfMonth  + "-" + (monthOfYear + 1);
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+
+    }
+
+    void datePicker_destination_dob() {
+
+        int mYear, mMonth, mDay, mHour, mMinute;
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(InternationalRemittance.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        //  et_destination_dob.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        //    destination_dob_string=dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+
+                        et_destination_dob.setText(year + "-" +dayOfMonth + "-" + (monthOfYear + 1));
+                        destination_dob_string=year + "-" + dayOfMonth  + "-" + (monthOfYear + 1);
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+
+    }
+    void datePicker_destination_idproofExpire() {
+
+        int mYear, mMonth, mDay, mHour, mMinute;
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(InternationalRemittance.this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // et_destination_idproof_expiry.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                        //   destination_idProofexpiry_string=dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+
+                        et_destination_idproof_expiry.setText(year + "-" +dayOfMonth + "-" + (monthOfYear + 1));
+                        destination_idProofexpiry_string=year + "-" + dayOfMonth  + "-" + (monthOfYear + 1);
+
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+
+    }
+
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
 
             case R.id.tv_nextClick: {
 
+                if (buttonClickValidaion==0)
+                {
 
-                if (validation_mobile_Details()) {
+                    api_sender_region();
+                    api_destination_region();
 
+                    if (validation_sender_i()) {
 
-                    if (new InternetCheck().isConnected(InternationalRemittance.this)) {
+                        if (new InternetCheck().isConnected(InternationalRemittance.this)) {
 
-                        MyApplication.showloader(InternationalRemittance.this, getString(R.string.getting_user_info));
+                            ll_sender_part_1.setVisibility(View.GONE);
+                            ll_sender_part_2.setVisibility(View.VISIBLE);
+                            ll_destination_part_1.setVisibility(View.GONE);
 
+                            buttonClickValidaion=1;
 
-                        api_idProof();
-
-
-                    } else {
-                        Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
-            }
 
+
+
+                else if (buttonClickValidaion==1)
+                {
+                    if (validation_sender_ii()) {
+
+                        if (new InternetCheck().isConnected(InternationalRemittance.this)) {
+
+                            ll_sender_part_1.setVisibility(View.GONE);
+                            ll_sender_part_2.setVisibility(View.GONE);
+                            ll_destination_part_1.setVisibility(View.VISIBLE);
+
+                            buttonClickValidaion=2;
+
+
+                        } else {
+                            Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                }
+
+                else if (buttonClickValidaion==2)
+                {
+                    if (validation_destination_i()) {
+
+                        if (new InternetCheck().isConnected(InternationalRemittance.this)) {
+
+
+                            ll_page_1.setVisibility(View.GONE);
+                            ll_successPage.setVisibility(View.GONE);
+                            ll_receiptPage.setVisibility(View.GONE);
+                            ll_reviewPage.setVisibility(View.VISIBLE);
+
+                            api_walletOwnerUser();
+
+
+                            buttonClickValidaion=3;
+
+
+
+
+                        } else {
+                            Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                }
+
+
+
+            }
             break;
+
+            case R.id.button_sender_dob: {
+
+                datePicker_sender_dob();
+
+            }
+            break;
+
+            case R.id.button_sender_idproofExpiry: {
+
+                datePicker_sender_idproofExpire();
+
+            }
+            break;
+
+            case R.id.button_destination_dob: {
+
+                datePicker_destination_dob();
+
+            }
+            break;
+
+            case R.id.button_destination_idproofExpiry: {
+
+                datePicker_destination_idproofExpire();
+
+            }
+            break;
+
+
 
             case R.id.confirm_reviewClick_textview: {
 
@@ -2263,7 +3091,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         MyApplication.showloader(InternationalRemittance.this, getString(R.string.getting_user_info));
 
 
-                       api_mpin_final();
+                        api_mpin_final();
 
 
 
@@ -2298,7 +3126,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 receiptPage_tv_amount_to_be_paid.setText("");
 
                 //  rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
-               // receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+                // receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
 
 
 
@@ -2315,7 +3143,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             case R.id.btnFront: {
 
-               Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 try {
                     startActivityForResult(intent, REQUEST_IMAGE_CAPTURE_ONE);
                 } catch (ActivityNotFoundException e) {
@@ -2323,11 +3151,11 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 }
             }
 
-                break;
+            break;
 
             case R.id.btnFrontUpload: {
 
-               // EditText etFront,etBack;
+                // EditText etFront,etBack;
 
 
                 if(frontImageSet.equalsIgnoreCase("YES"))
@@ -2343,18 +3171,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 }
             }
 
-                break;
+            break;
 
-            case R.id.btnBack: {
 
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                try {
-                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE_TWO);
-                } catch (ActivityNotFoundException e) {
-                    // display error state to the user
-                }
-            }
-                break;
 
             case R.id.tvContinue: {
 
@@ -2366,18 +3185,6 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             }
             break;
 
-            case R.id.btnBackUpload: {
-
-                if (backImageSet.equalsIgnoreCase("YES")) {
-                    filesUploadBack();
-
-                } else {
-
-                    MyApplication.showErrorToast(this, "please upload back Image");
-
-                }
-            }
-                break;
 
 
             case R.id.close_receiptPage_textview: {
@@ -2423,23 +3230,22 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 //            }
 
 
-            jsonObject.put("firstName", name_destinationStr);
-            jsonObject.put("lastName", lastname_destinationStr); // No in UI
 
 
-            jsonObject.put("email", email_destination);    // No in UI
-            jsonObject.put("mobileNumber", mobileNoStr);    // No in UI
-            jsonObject.put("idProofTypeCode", "");    // No in UI
-            jsonObject.put("idProofNumber", "");    // No in UI By Defualt
-            jsonObject.put("idExpiryDate", "");    // No in UI
-            jsonObject.put("dateOfBirth", "");    // No in UI
-           // jsonObject.put("countryCode","100092");  // Hard Code according  to Deepak
-            jsonObject.put("countryCode",select_receiver_CountryCode);  // Hard Code according  to Deepak
-            jsonObject.put("regionCode",""); // No in UI
-            jsonObject.put("city","");   // No in UI
-            jsonObject.put("address","");   // No in UI
-            jsonObject.put("issuingCountryCode",select_receiver_CountryCode);  // Hard Code according  to Deepak
-            jsonObject.put("gender",genderSelect_name);
+            jsonObject.put("firstName", firstname_destination_string);
+            jsonObject.put("lastName", lastname_destinationStr);
+            jsonObject.put("email", email_destination);
+            jsonObject.put("mobileNumber", mobileNumber_destination_string);
+            jsonObject.put("idProofTypeCode", "");
+            jsonObject.put("idProofNumber", destination_idproofNumber_string);
+            jsonObject.put("idExpiryDate", destination_idProofexpiry_string);
+            jsonObject.put("dateOfBirth", destination_dob_string);
+            jsonObject.put("countryCode",select_receiver_CountryCode);
+            jsonObject.put("regionCode","");
+            jsonObject.put("city",destination_city_string);
+            jsonObject.put("address",destination_address_string);
+            jsonObject.put("issuingCountryCode",select_receiver_CountryCode);
+            jsonObject.put("gender",select_destination_genderName);
 
 
 
@@ -2526,27 +3332,45 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 //            }
 
 
-            jsonObject.put("firstName", firstName_sender_from_walletOwnerUser);
-            jsonObject.put("lastName", lastName_sender_from_walletOwnerUser);
-            jsonObject.put("email", email_sender_from_walletOwnerUser);
-            jsonObject.put("mobileNumber", mobileNumber_sender_from_walletOwnerUser);
+//            jsonObject.put("firstName", firstName_sender_from_walletOwnerUser);
+//            jsonObject.put("lastName", lastName_sender_from_walletOwnerUser);
+//            jsonObject.put("email", email_sender_from_walletOwnerUser);
+//            jsonObject.put("mobileNumber", mobileNumber_sender_from_walletOwnerUser);
+//            jsonObject.put("idProofTypeCode", idProofTypeCode_sender_from_walletOwnerUser);
+//            jsonObject.put("idProofNumber", idProofTypeCode_sender_from_walletOwnerUser);
+//            jsonObject.put("idExpiryDate", idExpiryDate_sender_from_walletOwnerUser);
+//            jsonObject.put("dateOfBirth", dateOfBirth_sender_from_walletOwnerUser);
+//            jsonObject.put("countryCode",select_sender_CountryCode);
+//            jsonObject.put("regionCode",regionCode_sender_from_walletOwnerUser);
+//            jsonObject.put("city",city_sender_from_walletOwnerUser);
+//            jsonObject.put("address",address_sender_from_walletOwnerUser);
+//            jsonObject.put("issuingCountryCode",select_sender_CountryCode);
+
+
+            jsonObject.put("firstName", sender_firstName_string);
+            jsonObject.put("lastName", sender_lastname_string);
+            jsonObject.put("email", sender_email_string);
+            jsonObject.put("mobileNumber", sender_phoneNumber_string);
             jsonObject.put("idProofTypeCode", idProofTypeCode_sender_from_walletOwnerUser);
-            jsonObject.put("idProofNumber", idProofTypeCode_sender_from_walletOwnerUser);
-            jsonObject.put("idExpiryDate", idExpiryDate_sender_from_walletOwnerUser);
-            jsonObject.put("dateOfBirth", dateOfBirth_sender_from_walletOwnerUser);
+            // jsonObject.put("idProofTypeCode", select_sender_idproofCode);
+            jsonObject.put("idProofNumber", sender_idproofNumber_string);
+            jsonObject.put("idExpiryDate", sender_idProofexpiry_string);
+            jsonObject.put("dateOfBirth", sender_dob_string);
             jsonObject.put("countryCode",select_sender_CountryCode);
+            //  jsonObject.put("regionCode",select_sender_regionCode);
             jsonObject.put("regionCode",regionCode_sender_from_walletOwnerUser);
-            jsonObject.put("city",city_sender_from_walletOwnerUser);
-            jsonObject.put("address",address_sender_from_walletOwnerUser);
+            jsonObject.put("city",sender_city_string);
+            jsonObject.put("address",sender_address_string);
             jsonObject.put("issuingCountryCode",select_sender_CountryCode);
 
-            if(gender_sender_from_allByCriteria.equalsIgnoreCase("")) // If Not Coming From Server Then Send M (It mandatory )
+
+
+            if(select_sender_genderName.equalsIgnoreCase("")) // If Not Coming From Server Then Send M (It mandatory )
             {
                 jsonObject.put("gender","M");
             }
             else {
-                jsonObject.put("gender",gender_sender_from_allByCriteria);
-
+                jsonObject.put("gender",select_sender_genderName);
             }
 
 
@@ -2663,8 +3487,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     }
 
 
-  String frontImageSet="";
-  String backImageSet="";
+    String frontImageSet="";
+    String backImageSet="";
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -2825,16 +3649,49 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
 
-            case R.id.spinner_gender:
-                {
+            case R.id.spinner_sender_gender:
+            {
+                select_sender_genderName = arrayList_sender_genderName.get(i);
+                select_sender_genderCode = arrayList_sender_genderCode.get(i);
+            }
+            break;
 
-                     genderSelect_name = arrayList_genderName.get(i);
-                     genderSelect_code = arrayList_genderCode.get(i);
 
-                 //  Toast.makeText(LocalRemittance.this, genderSelect_name, Toast.LENGTH_SHORT).show();
-                }
+            case R.id.spinner_destination_gender:
+            {
+                select_destination_genderName = arrayList_destination_genderName.get(i);
+                select_destination_genderCode = arrayList_destination_genderCode.get(i);
+            }
 
-                break;
+            break;
+
+            case R.id.spinner_sender_region:
+            {
+                select_sender_regionName = arrayList_sender_regionName.get(i);
+                select_sender_regionCode = arrayList_sender_regionCode.get(i);
+            }
+            break;
+
+            case R.id.spinner_destination_region:
+            {
+                select_destination_regionName = arrayList_destination_regionName.get(i);
+                select_destination_regionCode = arrayList_destination_regionCode.get(i);
+            }
+            break;
+
+            case R.id.spinner_sender_idprooftype:
+            {
+                select_sender_idproofName = arrayList_sender_idproofName.get(i);
+                select_sender_idproofCode = arrayList_sender_idproofCode.get(i);
+            }
+            break;
+
+            case R.id.spinner_destination_idprooftype:
+            {
+                select_destination_idproofName = arrayList_destination_idproofName.get(i);
+                select_destination_idproofName = arrayList_destination_idproofCode.get(i);
+            }
+            break;
 
             case R.id.spinner_senderCountry:
             {
@@ -2852,7 +3709,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 }
 
 
-             }
+            }
             break;
 
             case R.id.spinner_senderCurrency: {
@@ -2867,7 +3724,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             }
-                break;
+            break;
 
 
             case R.id.spinner_receiverCountry:
@@ -2875,6 +3732,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                 select_receiver_CountryName = arrayList_receiverCountryDetails.get(i).getCountryName_receiver();
                 select_receiver_CountryCode = arrayList_receiverCountryDetails.get(i).getCountryCode_receiver();
+
 
 
 
@@ -2903,9 +3761,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                     amountToPayStr="";
                     edittext_amount_pay.setText(""+ " "+amountToPayStr);
 
-                     rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
-                     receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
-
+                    rp_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
+                    receiptPage_tv_amount_to_be_paid.setText(select_receiver_currencySymbol+" "+amountToPayStr);
 
                 }
                 else
@@ -2920,19 +3777,19 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             }
-                break;
+            break;
 
             case R.id.spinner_provider:
-                {
+            {
 
-                    String provided_array[] = getResources().getStringArray(R.array.Spinner_provider);
-                    provider_select_name = provided_array[i];
+                String provided_array[] = getResources().getStringArray(R.array.Spinner_provider);
+                provider_select_name = provided_array[i];
 
-                  //  Toast.makeText(this,provider_select_name, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(this,provider_select_name, Toast.LENGTH_SHORT).show();
 
-                }
+            }
 
-                break;
+            break;
         }
 
     }

@@ -734,6 +734,8 @@
     <string name="val_conf_pin">Veuillez saisir le code PIN de confirmation</string>
     <string name="val_valid_conf_pin">Le code PIN de confirmation doit comporter au moins 4 chiffres</string>
     <string name="val_new_conf_pin">La nouvelle broche et la broche de confirmation doivent être identiques</string>
+    <string name="last_name">Nom de famille</string>
+    <string name="remit_details">Détails de la remise</string>
 
 </resources>
 

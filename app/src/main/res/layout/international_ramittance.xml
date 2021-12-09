@@ -75,8 +75,21 @@
 
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/transaction_details"
+                android:text="@string/remit_details"
                 />
+
+
+            <!-- Sender  Details Part 1 -->
+
+            <LinearLayout
+
+                android:id="@+id/ll_sender_part_1"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+
+                >
 
             <Spinner
                 android:id="@+id/spinner_provider"
@@ -88,10 +101,6 @@
                 android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
-
-
-
-
             <Spinner
                 android:id="@+id/spinner_senderCountry"
                 android:layout_width="match_parent"
@@ -102,8 +111,6 @@
                 android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
-
-
             <Spinner
                 android:id="@+id/spinner_senderCurrency"
                 android:layout_width="match_parent"
@@ -114,8 +121,6 @@
                 android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
-
-
             <Spinner
                 android:id="@+id/spinner_receiverCountry"
                 android:layout_width="match_parent"
@@ -126,8 +131,6 @@
                 android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
-
-
             <Spinner
                 android:id="@+id/spinner_receiverCurrency"
                 android:layout_width="match_parent"
@@ -138,7 +141,6 @@
                 android:background="@drawable/spinner_background"
                 android:textColor="#323232"
                 />
-
             <EditText
                 android:id="@+id/edittext_amount"
                 android:layout_width="match_parent"
@@ -155,10 +157,6 @@
                 android:hint="@string/amount"
                 android:textColor="#323232"
                 android:textSize="15sp" />
-
-
-
-
             <EditText
                 android:id="@+id/edittext_amount_pay"
                 android:layout_width="match_parent"
@@ -209,8 +207,6 @@
 
 
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -244,9 +240,6 @@
 
 
             </LinearLayout>
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -280,7 +273,6 @@
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -316,7 +308,6 @@
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -350,7 +341,383 @@
 
             </LinearLayout>
 
+        </LinearLayout>
 
+            <!-- Sender  Details Part 2 -->
+
+            <LinearLayout
+
+                android:id="@+id/ll_sender_part_2"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:textColor="#29304d"
+                    android:textStyle="bold"
+
+                    android:fontFamily="@font/aileron_semibold"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/sender_details"
+                    />
+
+
+                <EditText
+                    android:id="@+id/et_sender_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="number"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/phoneNumber"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_sender_firstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/first_name"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_sender_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/last_name"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_sender_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/email"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_sender_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+
+                    <EditText
+                        android:id="@+id/et_sender_dob"
+                        android:layout_width="298dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:hint="@string/Date_OF_Birth"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:layout_weight="1"
+
+                        android:paddingBottom="16dp"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/button_sender_dob"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_7sdp"
+
+                        android:background="@drawable/calnder_black" />
+
+
+                </LinearLayout>
+
+
+
+                <EditText
+                    android:id="@+id/et_sender_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/address"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_sender_region"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+                <EditText
+                    android:id="@+id/et_sender_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/city"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_sender_idprooftype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+                <EditText
+                    android:id="@+id/et_sender_idproofNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/id_proof_no"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+
+                    <EditText
+                        android:id="@+id/et_sender_idproof_expiry"
+                        android:layout_width="298dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:hint="@string/id_proof_expiryDate"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:layout_weight="1"
+
+                        android:paddingBottom="16dp"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/button_sender_idproofExpiry"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@drawable/calnder_black" />
+
+
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnFront"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_horizontal"
+                        android:background="@drawable/btn_blue"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        app:srcCompat="@drawable/ic_baseline_photo_bl" />
+
+                    <EditText
+                        android:id="@+id/etFront"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="@color/bgColorHint"
+                        android:hint="@string/front"
+                        android:inputType="textEmailAddress"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:enabled="false"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <Button
+                        android:id="@+id/btnFrontUpload"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:visibility="gone"
+                        android:clickable="true"
+                        android:textSize="@dimen/_11sdp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/btn_jaune" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_horizontal"
+                        android:background="@drawable/btn_blue"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        app:srcCompat="@drawable/ic_baseline_photo_bl" />
+
+                    <EditText
+                        android:id="@+id/etBack"
+                        android:hint="@string/ex_verso"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="@color/bgColorHint"
+                        android:inputType="textEmailAddress"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_width="wrap_content"
+                        android:enabled="false"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnBackUpload"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/upload"
+                        android:visibility="gone"
+
+                        android:clickable="true"
+                        android:textSize="@dimen/_11sdp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/btn_jaune" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_sender_issuingCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+
+            </LinearLayout>
+
+
+            <!-- Destination Details Part 1 -->
+
+
+            <LinearLayout
+
+                android:id="@+id/ll_destination_part_1"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
 
             <TextView
                 android:layout_width="match_parent"
@@ -362,11 +729,11 @@
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_semibold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/destination_details"
+                android:text="@string/beneficiary_details"
                 />
 
             <EditText
-                android:id="@+id/edittext_mobileNuber"
+                android:id="@+id/et_destination_mobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -382,23 +749,7 @@
                 android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/et_fp_desinationName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textPersonName"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:hint="@string/name"
-                android:textColor="#323232"
-                android:textSize="15sp" />
-
-            <EditText
-                android:id="@+id/et_fp_firstNameDestination"
+                android:id="@+id/et_destination_firstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -412,6 +763,34 @@
                 android:hint="@string/first_name"
                 android:textColor="#323232"
                 android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/et_destination_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_edittextname"
+                android:backgroundTint="#999999"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="10sp"
+                android:paddingLeft="37.5dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:hint="@string/last_name"
+                android:textColor="#323232"
+                android:textSize="15sp" />
+
+
+                <Spinner
+                    android:id="@+id/spinner_destination_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
 
 
 
@@ -431,18 +810,178 @@
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
-            <Spinner
-                android:id="@+id/spinner_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
 
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
 
-            <EditText
+                    <EditText
+                        android:id="@+id/et_destination_dob"
+                        android:layout_width="298dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:hint="@string/Date_OF_Birth"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:layout_weight="1"
+
+                        android:paddingBottom="16dp"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/button_destination_dob"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@drawable/calnder_black" />
+
+
+                </LinearLayout>
+
+
+                <Spinner
+                    android:id="@+id/spinner_destination_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/et_destination_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/address"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_destination_region"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+                <EditText
+                    android:id="@+id/et_destination_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/city"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_destination_idprooftype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+                <EditText
+                    android:id="@+id/et_destination_idproofNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="37.5dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:hint="@string/id_proof_no"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+
+                    <EditText
+                        android:id="@+id/et_destination_idproof_expiry"
+                        android:layout_width="298dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:hint="@string/id_proof_expiryDate"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="37.5dp"
+                        android:paddingTop="16dp"
+                        android:layout_weight="1"
+
+                        android:paddingBottom="16dp"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/button_destination_idproofExpiry"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@drawable/calnder_black" />
+
+
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_destination_issuingCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/_30sdp"
+
+                    android:background="@drawable/spinner_background"
+                    android:textColor="#323232"
+                    />
+
+
+                <EditText
                 android:id="@+id/et_fp_reason_sending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -458,99 +997,12 @@
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btnFront"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="clip_horizontal"
-                    android:background="@drawable/btn_blue"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    app:srcCompat="@drawable/ic_baseline_photo_bl" />
-
-                <EditText
-                    android:id="@+id/etFront"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="@color/bgColorHint"
-                    android:hint="@string/front"
-                    android:inputType="textEmailAddress"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:enabled="false"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
-
-                <Button
-                    android:id="@+id/btnFrontUpload"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/upload"
-                    android:visibility="gone"
-                    android:clickable="true"
-                    android:textSize="@dimen/_11sdp"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_jaune" />
 
             </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/btnBack"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="clip_horizontal"
-                    android:background="@drawable/btn_blue"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    app:srcCompat="@drawable/ic_baseline_photo_bl" />
 
-                <EditText
-                    android:id="@+id/etBack"
-                    android:hint="@string/ex_verso"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="@color/bgColorHint"
-                    android:inputType="textEmailAddress"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_width="wrap_content"
-                    android:enabled="false"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btnBackUpload"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/upload"
-                    android:visibility="gone"
-
-                    android:clickable="true"
-                    android:textSize="@dimen/_11sdp"
-                    android:textAllCaps="false"
-                    android:background="@drawable/btn_jaune" />
-
-            </LinearLayout>
+            <!-- Destination Details End  -->
 
 
 
@@ -574,7 +1026,9 @@
                 />
 
 
+
         </LinearLayout>
+
         </LinearLayout>
 
         <!--    Reveiw Page-->

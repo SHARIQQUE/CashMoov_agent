@@ -735,6 +735,8 @@
     <string name="val_conf_pin">Please enter confirm pin</string>
     <string name="val_valid_conf_pin">Confirm pin must be atleast 4 digit</string>
     <string name="val_new_conf_pin">New pin and confirm pin should be same</string>
+    <string name="last_name">Last name</string>
+    <string name="remit_details">Remit Details</string>
 
 
 </resources>
