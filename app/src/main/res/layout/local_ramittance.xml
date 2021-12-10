@@ -1445,6 +1445,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/rp_tv_financialTax_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/financialTax_reveiewPage"
@@ -2420,6 +2421,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/receiptPage_tv_financialtax_Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/financialTax_receiptPage"

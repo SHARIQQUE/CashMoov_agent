@@ -197,9 +197,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
     TextView receiptPage_tv_receiverCountry,receiptPage_tv_senderCountry,receiptPage_tv_amount_to_be_paid,tvContinue,fees_first_page,convertionRate_first_page,amountTobeCharged_first_page,tax_first_page,receiptPage_tv_senderCurrency,receiptPage_tv_senderCode,receiptPage_tv_benificiary_no,receiptPage_tv_BenificiaryCurrency,receiptPage_tv_confirmation_code,et_fp_reason_sending,exportReceipt_textview, rp_tv_comment, rp_tv_convertionRate, convertionRate_receiptPage,tv_nextClick, rp_tv_benificicaryCode, rp_tv_sender_id, rp_tv_agentCode, rp_tv_senderDocument, rp_tv_sending_currency, rp_tv_beneficiaryCurrency, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
-            receiptPage_tv_amount_to_be_charged, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
+            receiptPage_tv_amount_to_be_charged, receiptPage_tv_fee, receiptPage_tv_financialtax_Name,receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_financialTax_name,
             rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid,
             previous_reviewClick_textview, confirm_reviewClick_textview,amountTobePaid_first_page;
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout,ll_successPage;
@@ -212,7 +212,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
     String mobileNumber_destination_string = "", amountstr = "",provider_select_name = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
-    String lastname_destinationStr="",amountToPayStr="",tax_financial = "", tax_amount, fees_amount, totalAmount_str, receivernameStr = "";
+    String lastname_destinationStr="",amountToPayStr="",tax_financial_name = "",tax_financial = "", tax_amount, fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "", convertionFeesStr="",reasonOfSending="",receivercode_from_receiverAPi="",senderCode_from_senderApi="";
@@ -317,6 +317,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             rp_tv_convertionRate = (TextView) findViewById(R.id.rp_tv_convertionRate);
             convertionRate_receiptPage = (TextView) findViewById(R.id.convertionRate_receiptPage);
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
+            rp_tv_financialTax_name = findViewById(R.id.rp_tv_financialTax_name);
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_paid = (TextView) findViewById(R.id.rp_tv_amount_to_be_paid);
@@ -357,6 +358,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             receiptPage_tv_senderCountry = (TextView) findViewById(R.id.receiptPage_tv_senderCountry);
             receiptPage_tv_receiverCountry = (TextView) findViewById(R.id.receiptPage_tv_receiverCountry);
             receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
+            receiptPage_tv_financialtax_Name = findViewById(R.id.receiptPage_tv_financialtax_Name);
             receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
             receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
             receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
@@ -2491,6 +2493,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
                             receiptPage_tv_fee.setText(select_sender_currencySymbol+ " "+fees_amount);
                             receiptPage_tv_financialtax.setText(select_sender_currencySymbol+ " "+tax_financial);
+                            receiptPage_tv_financialtax_Name.setText(tax_financial_name);
 
 
 
@@ -2629,17 +2632,20 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                     JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                                     for(int i=0;i<jsonArray.length();i++) {
                                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                        tax_financial_name = jsonObject2.getString("taxTypeName");
                                         tax_financial = jsonObject2.getString("value");
                                     }
                                 }
                                 else {
-                                    tax_financial = exchangeRate.getString("value");
+                                   // rp_tv_financialTax_name.setVisibility(View.GONE);
+                                   // rp_tv_financialTax.setVisibility(View.GONE);
+                                    tax_financial = "0.00";
                                 }
 
                                 tax_first_page.setText(select_sender_currencySymbol+ " "+tax_amount);
 
                                 fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
-
+                                rp_tv_financialTax_name.setText(tax_financial_name);
                                 rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
 
                                 tax_financial_double = Double.parseDouble(tax_financial);
