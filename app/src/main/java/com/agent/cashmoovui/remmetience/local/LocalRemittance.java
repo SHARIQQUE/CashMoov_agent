@@ -2506,7 +2506,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                             receiptPage_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
                             receiptPage_tv_fee.setText(select_sender_currencySymbol+ " "+fees_amount);
                             receiptPage_tv_financialtax.setText(select_sender_currencySymbol+ " "+tax_financial);
-                            receiptPage_tv_financialtax_Name.setText(tax_financial_name);
+                            receiptPage_tv_financialtax_Name.setText(tax_financial_name+":");
 
 
 
@@ -2659,7 +2659,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                                 tax_first_page.setText(select_sender_currencySymbol+ " "+tax_amount);
 
                                 fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
-                                rp_tv_financialTax_name.setText(tax_financial_name);
+                                rp_tv_financialTax_name.setText(tax_financial_name+":");
                                 rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
 
                                 tax_financial_double = Double.parseDouble(tax_financial);

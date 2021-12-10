@@ -754,7 +754,9 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             }
 
 
-
+//                            if(arrayList_sender_genderName.get(i).equalsIgnoreCase(jsonArray.optJSONObject(0).optString("code"))){
+//                                spinner_destination_gender.setSelection(i);
+//                            }
 
                             select_destination_genderName = jsonObject2.getString("gender");
                             if(select_destination_genderName.equalsIgnoreCase("M"))
@@ -2493,7 +2495,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_transactionAmount.setText(select_sender_currencySymbol+ " "+amountstr);
                             receiptPage_tv_fee.setText(select_sender_currencySymbol+ " "+fees_amount);
                             receiptPage_tv_financialtax.setText(select_sender_currencySymbol+ " "+tax_financial);
-                            receiptPage_tv_financialtax_Name.setText(tax_financial_name);
+                            receiptPage_tv_financialtax_Name.setText(tax_financial_name+":");
 
 
 
@@ -2645,7 +2647,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 tax_first_page.setText(select_sender_currencySymbol+ " "+tax_amount);
 
                                 fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
-                                rp_tv_financialTax_name.setText(tax_financial_name);
+                                rp_tv_financialTax_name.setText(tax_financial_name+":");
                                 rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
 
                                 tax_financial_double = Double.parseDouble(tax_financial);
