@@ -42,7 +42,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginBottom="@dimen/_25sdp"
-                        android:text="John Deo"
+                        android:text="N/A"
                         android:textColor="#fff"
                         android:textSize="@dimen/_15sdp"
                         android:fontFamily="@font/aileron_semibold" />
@@ -81,7 +81,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/_5sdp"
-                                android:text="Conakry,Guinee"
+                                android:text="N/A"
                                 android:textColor="#000"
                                 android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold" />
@@ -105,7 +105,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/_5sdp"
-                                android:text="621 788 789"
+                                android:text="N/A"
                                 android:textColor="#000"
                                 android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold" />
@@ -129,7 +129,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/_5sdp"
-                                android:text="GNF"
+                                android:text="N/A"
                                 android:textColor="#000"
                                 android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold" />
@@ -174,7 +174,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="Guinee"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
 
@@ -205,7 +205,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="English"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
 
@@ -236,7 +236,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="mlblamarbalde@gmail.com"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -266,7 +266,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="Passeport"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -296,7 +296,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="O00123123"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -326,7 +326,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="060666"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -356,7 +356,7 @@
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/bleu_cashmoov"
                         android:textSize="@dimen/_13sdp"
-                        android:text="Approved"/>
+                        android:text="N/A"/>
 
                 </LinearLayout>
 

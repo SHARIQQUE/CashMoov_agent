@@ -187,7 +187,7 @@
                                                 android:textSize="@dimen/_13sdp"
                                                 android:textColor="#ffffff"
                                                 android:lineSpacingExtra="3sp"
-                                                android:text="15,000 GNF"
+                                                android:text="N/A"
                                                 />
 
                                         </LinearLayout>
@@ -288,7 +288,7 @@
                                                 android:textSize="@dimen/_13sdp"
                                                 android:textColor="@color/bleu_cashmoov"
                                                 android:lineSpacingExtra="3sp"
-                                                android:text="15,000 GNF"
+                                                android:text="N/A"
                                                 />
 
                                         </LinearLayout>
@@ -352,7 +352,7 @@
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
-                                android:text="+224 621 788 789"
+                                android:text="N/A"
                                 android:textColor="#3a3a3a"
                                 android:textSize="@dimen/_13sdp" />
 
@@ -379,7 +379,7 @@
                                     android:gravity="center_horizontal"
                                     android:lineSpacingExtra="10sp"
                                     android:layout_marginLeft="7dp"
-                                    android:text="2000 GNF"
+                                    android:text="N/A"
                                     android:textColor="#3a3a3a"
                                     android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
@@ -443,7 +443,7 @@
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
-                                android:text="+224 621 788 789"
+                                android:text="N/A"
                                 android:textColor="#3a3a3a"
                                 android:textSize="@dimen/_13sdp" />
 
@@ -470,7 +470,7 @@
                                     android:gravity="center_horizontal"
                                     android:lineSpacingExtra="10sp"
                                     android:layout_marginLeft="7dp"
-                                    android:text="3000 GNF"
+                                    android:text="N/A"
                                     android:textColor="#3a3a3a"
                                     android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
@@ -534,7 +534,7 @@
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
-                                android:text="+224 621 788 789"
+                                android:text="N/A"
                                 android:textColor="#3a3a3a"
                                 android:textSize="@dimen/_13sdp" />
 
@@ -561,7 +561,7 @@
                                     android:gravity="center_horizontal"
                                     android:lineSpacingExtra="10sp"
                                     android:layout_marginLeft="7dp"
-                                    android:text="2000 GNF"
+                                    android:text="N/A"
                                     android:textColor="#3a3a3a"
                                     android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
@@ -625,7 +625,7 @@
                                 android:fontFamily="@font/aileron_semibold"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingExtra="10sp"
-                                android:text="+224 621 788 789"
+                                android:text="N/A"
                                 android:textColor="#3a3a3a"
                                 android:textSize="@dimen/_13sdp" />
 
@@ -652,7 +652,7 @@
                                     android:gravity="center_horizontal"
                                     android:lineSpacingExtra="10sp"
                                     android:layout_marginLeft="7dp"
-                                    android:text="2000 GNF"
+                                    android:text="N/A"
                                     android:textColor="#3a3a3a"
                                     android:textSize="@dimen/_10sdp" />
                             </LinearLayout>

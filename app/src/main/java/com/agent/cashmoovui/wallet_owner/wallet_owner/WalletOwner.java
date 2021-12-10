@@ -13,13 +13,19 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import org.json.JSONObject;
 import java.util.Locale;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class WalletOwner extends AppCompatActivity {
     public static WalletOwner walletownerC;
     ImageView imgBack,imgHome;
     MyApplication applicationComponentClass;
+    CircleImageView profile_img;
     String languageToUse = "";
     TextView tvName,tvAddress,tvPhone,tvCurrency,tvCountry,tvLanguage,tvEmail,tvIdProofType,tvIdProofNo,tvCashmoovId,tvState;
 
@@ -59,7 +65,23 @@ public class WalletOwner extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.profil)
+                .error(R.drawable.profil);
+        String ImageName=MyApplication.getSaveString("ImageName", WalletOwner.this);
+        if(ImageName!=null&&ImageName.length()>1) {
+            Glide.with(this).load(ImageName).apply(options).into(profile_img);
+
+        }
+    }
+
     private void getIds() {
+        profile_img= findViewById(R.id.profile_img);
         tvName = findViewById(R.id.tvName);
         tvAddress = findViewById(R.id.tvAddress);
         tvPhone = findViewById(R.id.tvPhone);

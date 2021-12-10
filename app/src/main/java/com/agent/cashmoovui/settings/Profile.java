@@ -102,11 +102,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 .error(R.drawable.profil);
         String ImageName=MyApplication.getSaveString("ImageName", profileC);
         if(ImageName!=null&&ImageName.length()>1) {
-            String[] url = ImageName.split(":");
-            if (url[0].equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", Profile.this))) {
-                String image_url = MyApplication.ImageURL + url[1];
-                Glide.with(this).load(image_url).apply(options).into(profile_img);
-            }
+            Glide.with(this).load(ImageName).apply(options).into(profile_img);
+
         }
     }
 

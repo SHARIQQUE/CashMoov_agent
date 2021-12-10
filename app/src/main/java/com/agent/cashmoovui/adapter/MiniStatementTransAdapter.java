@@ -177,6 +177,25 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 //                }
 //            }
 //        }else{
+
+        if(walletTypeCode.equalsIgnoreCase("100009")){
+            if(miniStatementTrans.getFromWalletTypeCode().equalsIgnoreCase("100009")){
+                holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+            }else{
+                holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                }else {
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + miniStatementTrans.getToCurrencySymbol());
+                }
+                holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+
+            }
+        }
+
+        if(walletTypeCode.equalsIgnoreCase("100008")){
             if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                 holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
                 holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
@@ -185,15 +204,22 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             }
             if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                 holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
-                holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
+                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                }else {
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
+                }
                 holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
 
             }
 
-            if(holder.tvMsisdn.getText().toString().isEmpty()){
-                holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
 
-            }
+
+        }
+        if(holder.tvMsisdn.getText().toString().isEmpty()){
+            holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
+
+        }
 
         //}
 

@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +41,8 @@ import com.agent.cashmoovui.settings.Profile;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.skhugh.simplepulltorefresh.PullToRefreshLayout;
+import com.skhugh.simplepulltorefresh.PullToRefreshListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -229,19 +232,34 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
         if (new InternetCheck().isConnected(TransactionHistoryMainPage.this)) {
-
             MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
+            callApiFromCurrency(MyApplication.getSaveString("userCountryCode", TransactionHistoryMainPage.this));
 
-            callApiFromCurrency(MyApplication.getSaveString("userCountryCode",TransactionHistoryMainPage.this));
 
+
+           /* if( MyApplication.currencyModelArrayList.size()<1) {
+                MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
+                callApiFromCurrency(MyApplication.getSaveString("userCountryCode", TransactionHistoryMainPage.this));
+            }else{
+                createList();
+            }*/
 
         } else {
             Toast.makeText(TransactionHistoryMainPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
         }
 
+        /* pullToRefreshLayout = (PullToRefreshLayout) findViewById(R.id.pulltorefresh);
+        pullToRefreshLayout.setPullToRefreshListener(new PullToRefreshListener() {
+            // Start refreshing stuff
+            @Override
+            public void onStartRefresh(@Nullable View view) {
+                //callApiFromCurrency(MyApplication.getSaveString("userCountryCode", TransactionHistoryMainPage.this));
+            }
+        });*/
+
     }
 
-
+    PullToRefreshLayout pullToRefreshLayout;
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -426,6 +444,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
+
                                             miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
@@ -717,7 +736,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             }
         }
 
-
+      //  pullToRefreshLayout.refreshDone();
 
        // MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
 
@@ -730,6 +749,22 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     }
 
 
+    public void createList(){
+        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
+        spinner_currency.setAdapter(arraadapter2);
+
+
+        //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
+        String currencyName_mssis_agent = currencyCode;  // no currency tag is comming in MSSID
+
+        for (int i = 0; i < MyApplication.currencyModelArrayList.size(); i++) {
+            if (currencyName_mssis_agent.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyName()))
+            {
+                walletCode = MyApplication.currencyModelArrayList.get(i).code;
+                spinner_currency.setSelection(i);
+            }
+        }
+    }
 
     int SpinnerPos;
     @Override

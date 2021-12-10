@@ -1,11 +1,19 @@
 package com.agent.cashmoovui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agent.cashmoovui.activity.NotificationList;
+import com.agent.cashmoovui.location.Constants;
+import com.agent.cashmoovui.location.FetchAddressIntentServices;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.servicecharge.ServiceCharge;
 import com.agent.cashmoovui.apiCalls.API;
@@ -35,6 +45,10 @@ import org.json.JSONObject;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -57,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        resultReceiver = new AddressResultReceiver(new Handler());
         applicationComponentClass = (MyApplication) getApplicationContext();
 
 
@@ -188,13 +202,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .error(R.drawable.profil);
         String ImageName=MyApplication.getSaveString("ImageName", MainActivity.this);
         if(ImageName!=null&&ImageName.length()>1) {
-            String[] url = ImageName.split(":");
+            Glide.with(this).load(ImageName).apply(options).into(imgProfile);
+           /* String[] url = ImageName.split(":");
             if (url[0].equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode", MainActivity.this))) {
                 String image_url = MyApplication.ImageURL + url[1];
                 Glide.with(this).load(image_url).apply(options).into(imgProfile);
-            }
+            }*/
         }
         callApiWalletList();
+
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            getCurrentLocation();
+        }
     }
 
     @Override
@@ -344,6 +370,111 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (Exception e) {
 
         }
+
+    }
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+    ResultReceiver resultReceiver;
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation();
+            } else {
+                Toast.makeText(this, "Permission is denied!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public static String transactionCoordinate;
+    public static String transactionArea;
+    private void getCurrentLocation() {
+        // progressBar.setVisibility(View.VISIBLE);
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        LocationServices.getFusedLocationProviderClient(MainActivity.this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(getApplicationContext())
+                                .removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestlocIndex = locationResult.getLocations().size() - 1;
+                            double lati = locationResult.getLocations().get(latestlocIndex).getLatitude();
+                            double longi = locationResult.getLocations().get(latestlocIndex).getLongitude();
+                            System.out.println("loc========="+ lati+""+ longi);
+
+                            transactionCoordinate=lati+","+longi;
+                            Location location = new Location("providerNA");
+                            location.setLongitude(longi);
+                            location.setLatitude(lati);
+                            fetchaddressfromlocation(location);
+
+                        } else {
+                            //progressBar.setVisibility(View.GONE);
+
+                        }
+                    }
+                }, Looper.getMainLooper());
+
+    }
+    String textLatLong, address, postcode, locaity, state, district, country;
+    private class AddressResultReceiver extends ResultReceiver {
+        public AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                address=(resultData.getString(Constants.ADDRESS));
+                locaity=(resultData.getString(Constants.LOCAITY));
+                state=(resultData.getString(Constants.STATE));
+                district=(resultData.getString(Constants.DISTRICT));
+                country=(resultData.getString(Constants.COUNTRY));
+                postcode=(resultData.getString(Constants.POST_CODE));
+
+                System.out.println("loc========="+address);
+                System.out.println("loc=========locaity"+locaity);
+                System.out.println("loc=========state"+state);
+                System.out.println("loc=========district"+district);
+                System.out.println("loc=========country"+country);
+                System.out.println("loc=========postcode"+postcode);
+                transactionArea=district+","+state+","+country+","+postcode;
+
+            } else {
+                Toast.makeText(MainActivity.this, resultData.getString(Constants.RESULT_DATA_KEY), Toast.LENGTH_SHORT).show();
+            }
+            //  progressBar.setVisibility(View.GONE);
+        }
+
+
+    }
+
+    private void fetchaddressfromlocation(Location location) {
+        Intent intent = new Intent(this, FetchAddressIntentServices.class);
+        intent.putExtra(Constants.RECEVIER, resultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, location);
+        startService(intent);
+
 
     }
 

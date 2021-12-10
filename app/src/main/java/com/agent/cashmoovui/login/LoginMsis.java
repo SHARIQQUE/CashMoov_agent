@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -567,12 +568,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
     private void userInfo_api(String userCode) {
         try{
 
-
+            MyApplication.currencyModelArrayList.clear();
             API.GET("ewallet/api/v1/walletOwner/"+userCode,new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
@@ -594,6 +595,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 //
 //
 //
+
+                            if (walletOwner.has("profileImageName")){
+                                MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
+                                        userCode+"/"+
+                                        walletOwner.optString("profileImageName"),LoginMsis.this);
+                            }
                             if(walletOwner.has("registerCountryName")){
                                 MyApplication.saveString("COUNTRY_NAME_USERINFO", walletOwner.getString("registerCountryName"), LoginMsis.this);
                                 MyApplication.saveString("COUNTRYNAME_AGENT",walletOwner.getString("registerCountryName"),LoginMsis.this);
@@ -644,6 +651,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                         else
                         {
+                            MyApplication.hideLoader();
                             selectButtonType = "0";
 
                             Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
@@ -656,6 +664,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
                         Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -797,7 +806,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+                    //MyApplication.hideLoader();
 
                     try {
 
@@ -805,6 +814,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                         if (jsonObject.has("error")) {
 
+                            MyApplication.hideLoader();
                             //  String error_message = jsonObject.getString("error_message");
                             //  Toast.makeText(LoginMsis.this, error_message, Toast.LENGTH_LONG).show();
 
@@ -1180,6 +1190,24 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
     ///////////////////////////////////////////////////////////////////////////////
 
+    int doubleBackToExitPressed = 1;
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressed == 2) {
+            finishAffinity();
+            System.exit(0);
+        }
+        else {
+            doubleBackToExitPressed++;
+            Toast.makeText(this, "Please press Back again to exit", Toast.LENGTH_SHORT).show();
+        }
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressed=1;
+            }
+        }, 2000);
+    }
 
 }

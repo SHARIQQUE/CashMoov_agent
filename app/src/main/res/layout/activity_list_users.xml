@@ -53,7 +53,7 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="10sp"
-                    android:text="+224 621 788 789"
+                    android:text="N/A"
                     android:textColor="#3a3a3a"
                     android:textSize="20sp" />
 
@@ -145,7 +145,7 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="10sp"
-                    android:text="+224 621 788 789"
+                    android:text="N/A"
                     android:textColor="#3a3a3a"
                     android:textSize="20sp" />
 
@@ -237,7 +237,7 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="10sp"
-                    android:text="+224 621 788 789"
+                    android:text="N/A"
                     android:textColor="#3a3a3a"
                     android:textSize="20sp" />
 
@@ -329,7 +329,7 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:gravity="center_horizontal"
                     android:lineSpacingExtra="10sp"
-                    android:text="+224 621 788 789"
+                    android:text="N/A"
                     android:textColor="#3a3a3a"
                     android:textSize="20sp" />
 
