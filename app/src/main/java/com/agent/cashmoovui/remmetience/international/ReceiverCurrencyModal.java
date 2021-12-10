@@ -4,9 +4,9 @@ public class ReceiverCurrencyModal {
 
 
 
-    String currencyName_reciver="";
-    String currencyCode_reciver="";
-    String currencySymbol_reciver="";
+    public String currencyName_reciver="";
+    public String currencyCode_reciver="";
+    public String currencySymbol_reciver="";
 
 
 

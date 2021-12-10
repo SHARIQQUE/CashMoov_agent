@@ -5,9 +5,9 @@ public class SenderCurrencyModal {
 
     String select_currency_hardcode="Sender Currency";
 
-    String currencyName_sender="";
-    String currencyCode_sender="";
-    String currencySymbol_sender="";
+    public String currencyName_sender="";
+    public String currencyCode_sender="";
+    public String currencySymbol_sender="";
 
     public String getSelect_currency_hardcode() {
         return select_currency_hardcode;

@@ -212,7 +212,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
     String mobileNumber_destination_string = "", amountstr = "",provider_select_name = "",walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, agentCodeStr = "", senderIdStr = "", benificicaryCodeStr;
-    String lastname_destinationStr="",amountToPayStr="",tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
+    String lastname_destinationStr="",amountToPayStr="",tax_financial = "", tax_amount, fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "", convertionFeesStr="",reasonOfSending="",receivercode_from_receiverAPi="",senderCode_from_senderApi="";
@@ -2323,7 +2323,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-                    rp_tv_sender_id.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
+                    //rp_tv_sender_id.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
+                    rp_tv_sender_id.setText(sender_phoneNumber_string);
 
                     rp_tv_benificicaryCode.setText(mobileNumber_destination_string);
                     rp_tv_senderDocument.setText("on image available");     // Temporary hard code no Option on First Page
@@ -2506,17 +2507,17 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             receiptPage_tv_senderCountry.setText(select_sender_CountryName);
                             receiptPage_tv_receiverCountry.setText(select_receiver_CountryName);
 
-                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
+                            //receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
 
-                            receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", InternationalRemittance.this));
+                            receiptPage_tv_sender_phoneNo.setText(sender_phoneNumber_string);
 
 
                             FIRSTNAME_USERINFO = MyApplication.getSaveString("FIRSTNAME_USERINFO", InternationalRemittance.this);
                             LASTNAME_USERINFO = MyApplication.getSaveString("LASTNAME_USERINFO", InternationalRemittance.this);
-                            receiptPage_tv_sender_name.setText(FIRSTNAME_USERINFO +" "+LASTNAME_USERINFO);
+                            receiptPage_tv_sender_name.setText(sender_firstName_string +" "+sender_lastname_string);
 
 
-                            receiptPage_tv_receiver_name.setText( firstname_destination_string +" "+lastname_destinationStr);
+                            receiptPage_tv_receiver_name.setText(firstname_destination_string +" "+lastname_destinationStr);
 
                             receiptPage_tv_receiver_phoneNo.setText(mobileNumber_destination_string);
 
@@ -2590,6 +2591,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                                 fees_amount = exchangeRate.getString("fee");
+                                tax_amount = exchangeRate.getString("receiverFee");
                                 rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
 
                                 edittext_amount_pay.setEnabled(false);
@@ -2634,7 +2636,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                     tax_financial = exchangeRate.getString("value");
                                 }
 
-                                tax_first_page.setText(select_sender_currencySymbol+ " "+tax_financial);
+                                tax_first_page.setText(select_sender_currencySymbol+ " "+tax_amount);
 
                                 fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
 
@@ -2883,7 +2885,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         sender_dob_string=year + "-" + dayOfMonth  + "-" + (monthOfYear + 1);
 
                     }
-                }, mYear, mMonth, mDay);
+                }, 1960, 01, 00);
         datePickerDialog.show();
 
     }
@@ -2937,7 +2939,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                         destination_dob_string=year + "-" + dayOfMonth  + "-" + (monthOfYear + 1);
 
                     }
-                }, mYear, mMonth, mDay);
+                }, 1960, 01, 00);
         datePickerDialog.show();
 
     }
