@@ -975,27 +975,26 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             ReceiverCountryModal receiverCountryModal = new ReceiverCountryModal();
 
                             JSONObject jsonObject2 = jsonArray_countryList.getJSONObject(i);
+                            if (!MyApplication.getSaveString("COUNTRYCODE_AGENT", InternationalRemittance.this).equalsIgnoreCase(jsonObject2.getString("countryCode"))) {
 
-                            if(jsonObject2.has("countryName"))
-                            {
-                                String countryName = jsonObject2.getString("countryName");
-                                receiverCountryModal.setCountryName_receiver(countryName);
-                            }
-                            else {
-                                receiverCountryModal.setCountryName_receiver("");
-                            }
 
-                            if(jsonObject2.has("countryCode"))
-                            {
-                                String countryCode = jsonObject2.getString("countryCode");
-                                receiverCountryModal.setCountryCode_receiver(countryCode);
-                            }
-                            else {
-                                receiverCountryModal.setCountryCode_receiver("");
-                            }
+                                if (jsonObject2.has("countryName")) {
+                                    String countryName = jsonObject2.getString("countryName");
+                                    receiverCountryModal.setCountryName_receiver(countryName);
+                                } else {
+                                    receiverCountryModal.setCountryName_receiver("");
+                                }
 
-                            arrayList_receiverCountryDetails.add(receiverCountryModal);
+                                if (jsonObject2.has("countryCode")) {
+                                    String countryCode = jsonObject2.getString("countryCode");
+                                    receiverCountryModal.setCountryCode_receiver(countryCode);
+                                } else {
+                                    receiverCountryModal.setCountryCode_receiver("");
+                                }
 
+                                arrayList_receiverCountryDetails.add(receiverCountryModal);
+
+                            }
                         }
 
                         ReceiverCountryDetailsAdapter adapter5= new ReceiverCountryDetailsAdapter(InternationalRemittance.this,arrayList_receiverCountryDetails);

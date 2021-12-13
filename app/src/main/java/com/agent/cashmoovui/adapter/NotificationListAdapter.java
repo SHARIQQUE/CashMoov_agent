@@ -46,18 +46,18 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         holder.tvSubject.setText(notificationModel.getSubject());
 
         holder.tvMessage.setText(Html.fromHtml(notificationModel.getMessage()));
-        holder.tvCreationDate.setText(notificationModel.getCreationDate());
+        //holder.tvCreationDate.setText(notificationModel.getCreationDate());
 
-//        try {
-//            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
-//            Date date = null;
-//            date = inputFormat.parse(notificationModel.getCreationDate());
-//            String formattedDate = outputFormat.format(date);
-//            holder.tvCreationDate.setText(formattedDate);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
+            date = inputFormat.parse(notificationModel.getCreationDate());
+            String formattedDate = outputFormat.format(date);
+            holder.tvCreationDate.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
     }

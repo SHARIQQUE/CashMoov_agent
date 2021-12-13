@@ -42,7 +42,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     public static EditProfile editprofileC;
     Button btnCancel,btnConfirm;
     ImageButton btnChoose;
-    ImageView imgBack;
+    ImageView imgBack,imgHome;
     CircleImageView profile_img;
     TextView profilname;
 
@@ -78,7 +78,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
             editprofileC = this;
 
-            // setBackMenu();
+            setBackMenu();
 
             getIds();
             isSelect = false;
@@ -89,21 +89,32 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-        @Override
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
 
-//    private void setBackMenu() {
-//        imgBack = findViewById(R.id.imgBack);
-//        imgBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onSupportNavigateUp();
-//            }
-//        });
-//    }
+    private void setBackMenu() {
+        imgBack = findViewById(R.id.imgBack);
+        imgHome = findViewById(R.id.imgHome);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSupportNavigateUp();
+            }
+        });
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+    }
 
 
     private void getIds() {
