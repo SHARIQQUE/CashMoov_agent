@@ -1,6 +1,6 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nested_scroll_view"
+    android:id="@+id/nestedSV"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
@@ -496,6 +496,11 @@
                     android:layout_marginBottom="@dimen/_100sdp"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -503,29 +508,34 @@
                         android:lineSpacingExtra="3sp"
                         android:text="@string/transaction_details"
                         android:textColor="#3a3a3a"
+                        android:layout_gravity="center_vertical"
                         android:textSize="@dimen/_13sdp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="#ffffff"
-                        android:orientation="horizontal">
-
+                        <TextView
+                            android:id="@+id/tvRefresh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical|end"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:drawableEnd="@drawable/ic_refresh"
+                            android:layout_gravity="center_vertical"
+                            android:padding="@dimen/_2sdp"/>
+                    </LinearLayout>
 
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:nestedScrollingEnabled="false"
                             />
-
-
-                    </LinearLayout>
-
-
-
-
+                        <ProgressBar
+                            android:id="@+id/loadingPB"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible"
+                            android:layout_marginBottom="@dimen/_10sdp"/>
 
                 </LinearLayout>
             </LinearLayout>
