@@ -373,8 +373,8 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                             spCountry.setTag(position);
                                             //  callApiRegions();
 
-                                            callApiCurrencyList(countryModelList.get(position).getCode());
-
+                                            //callApiCurrencyList(countryModelList.get(position).getCode());
+                                            callApiCurrencyList(MyApplication.getSaveString("COUNTRYCODE_AGENT",agentkycC));
 
                                         }
                                     });

@@ -373,7 +373,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                             spCountry.setText(item);
                                             spCountry.setTag(position);
                                             //  callApiRegions();
-                                            callApiCurrencyList(countryModelList.get(position).getCode());
+                                           // callApiCurrencyList(countryModelList.get(position).getCode());
+                                            callApiCurrencyList(MyApplication.getSaveString("COUNTRYCODE_AGENT",branchkycC));
 
 
 
