@@ -501,17 +501,39 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/aileron_bold"
-                        android:lineSpacingExtra="3sp"
-                        android:text="@string/transaction_details"
-                        android:textColor="#3a3a3a"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/_13sdp" />
+                        <TextView
+                            android:id="@+id/tvView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/view_transaction_history"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/_13sdp"
+                            android:background="@drawable/btn_shape"
+                            android:padding="@dimen/_7sdp"
+                            android:drawableBottom="@drawable/ic_baseline_keyboard_arrow_down_24"
+                            android:drawablePadding="@dimen/_5sdp"/>
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/tvViewHide"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/aileron_semibold"
+                            android:lineSpacingExtra="3sp"
+                            android:text="@string/hide_transaction_history"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="@dimen/_13sdp"
+                            android:background="@drawable/btn_shape"
+                            android:padding="@dimen/_7sdp"
+                            android:drawableBottom="@drawable/ic_baseline_keyboard_arrow_up_24"
+                            android:drawablePadding="@dimen/_5sdp"/>
+
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/tvRefresh"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -521,9 +543,27 @@
                             android:layout_gravity="center_vertical"
                             android:padding="@dimen/_2sdp"/>
                     </LinearLayout>
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/_50sdp"-->
+<!--                        android:layout_marginStart="@dimen/_20sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_20sdp"-->
+<!--                        android:layout_marginBottom="@dimen/_10sdp"-->
+<!--                        android:background="@drawable/btn_shape"-->
+<!--                        android:fontFamily="@font/aileron_regular"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:lineSpacingExtra="3sp"-->
+<!--                        android:paddingTop="@dimen/_15sdp"-->
+<!--                        android:paddingBottom="@dimen/_15sdp"-->
+<!--                        android:text="@string/view_transaction_history"-->
+<!--                        android:textColor="@color/colorPrimary"-->
+<!--                        android:textSize="@dimen/_13sdp" />-->
 
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:visibility="gone"
                             android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -534,7 +574,7 @@
                             android:id="@+id/loadingPB"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:layout_marginBottom="@dimen/_10sdp"/>
 
                 </LinearLayout>

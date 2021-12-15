@@ -88,7 +88,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     SearchAdapterTransactionDetails adpter;
     String walletCode;
-    TextView tvRefresh;
+    TextView tvRefresh,tvView,tvViewHide;
     private NestedScrollView nestedSV;
     private ProgressBar loadingPB;
     int page = 0, limit = 20;
@@ -138,6 +138,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         tvRefresh = findViewById(R.id.tvRefresh);
         tvRefresh.setOnClickListener(this);
+        tvView = findViewById(R.id.tvView);
+        tvView.setOnClickListener(this);
+        tvViewHide = findViewById(R.id.tvViewHide);
+        tvViewHide.setOnClickListener(this);
         loadingPB = findViewById(R.id.loadingPB);
         nestedSV = findViewById(R.id.nestedSV);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -284,6 +288,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         super.onRestart();
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        tvView.setVisibility(View.VISIBLE);
+        tvViewHide.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
+        loadingPB.setVisibility(View.GONE);
+        tvRefresh.setVisibility(View.GONE);
     }
 
 
@@ -446,7 +455,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode, int page, int limit) {
         try {
             wallettypecode = walletTypeCode;
-
+            //miniStatementTransList.clear();
             //setData(miniStatementTransList,walletTypeCode);
             //MyApplication.showloader(TransactionHistoryMainPage.this,"Please wait!");
             API.GET("ewallet/api/v1/miniStatement/allByCriteria?"+"walletCode="+walletCode+"&selectedCategory="+walletTypeCode+"&offset="+page+"&limit="+limit,
@@ -555,8 +564,29 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         switch (view.getId()) {
             case R.id.tvRefresh:
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
-                callApiMiniStatementTrans(walletCode,"100008", 0, 20);
+                page = 0;
+                limit = 20;
+                loadingPB.setVisibility(View.VISIBLE);
+                callApiMiniStatementTrans(walletCode,"100008", page, limit);
                 break;
+            case R.id.tvView:
+                tvViewHide.setVisibility(View.VISIBLE);
+                tvView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                tvRefresh.setVisibility(View.VISIBLE);
+                loadingPB.setVisibility(View.VISIBLE);
+                callApiMiniStatementTrans(walletCode,"100008", page, limit);
+                break;
+            case R.id.tvViewHide:
+                page=0;
+                limit=20;
+                tvView.setVisibility(View.VISIBLE);
+                tvViewHide.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                tvRefresh.setVisibility(View.GONE);
+                loadingPB.setVisibility(View.GONE);
+                break;
+
             case R.id.cardMainWallet:
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
                 callApiMiniStatementTrans(walletCode,"100008", page, limit);
@@ -822,7 +852,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                     mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
                     commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
                     overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
-                    callApiMiniStatementTrans(walletCode,"100008", page, limit);
+                   // callApiMiniStatementTrans(walletCode,"100008", page, limit);
 
 //                    select_currency_name = arrayList_currecnyName.get(i);
 //                    select_currency_code = arrayList_currecnyCode.get(i);

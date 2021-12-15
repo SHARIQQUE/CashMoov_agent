@@ -737,6 +737,8 @@
     <string name="val_new_conf_pin">New pin and confirm pin should be same</string>
     <string name="last_name">Last name</string>
     <string name="remit_details">Remit Details</string>
+    <string name="view_transaction_history">View transaction history</string>
+    <string name="hide_transaction_history">Hide transaction history</string>
 
 
 </resources>
