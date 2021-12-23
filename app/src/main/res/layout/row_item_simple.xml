@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
     android:id="@+id/textViewName"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_24sdp"
     android:padding="4dp"
+    android:maxLength="40"
+    android:ellipsize="marquee"
     android:text="Item Name"
     android:textColor="@color/black"
-    android:textSize="@dimen/_14sdp" />
+    android:textSize="@dimen/_12sdp" />
     <!--<View--><!--android:layout_below="@+id/textViewName"--><!--android:layout_width="match_parent"--><!--android:layout_height="1dp"--><!--android:background="@color/gray"/>-->
 

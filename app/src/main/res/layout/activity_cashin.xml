@@ -179,6 +179,7 @@
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
                 android:inputType="number"
+
                 android:lineSpacingExtra="10sp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"

@@ -100,7 +100,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
         ll_password = (LinearLayout) findViewById(R.id.ll_password);
 
-        et_password.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        et_password.setTransformationMethod(hiddenPassTransformationMethod);
 
         et_password.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -113,7 +114,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             // set drawable image
                             et_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_password.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible = false;
                         } else  {
                             // set drawable image

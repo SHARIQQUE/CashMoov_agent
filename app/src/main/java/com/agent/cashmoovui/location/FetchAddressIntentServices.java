@@ -55,6 +55,7 @@ public class FetchAddressIntentServices extends IntentService {
                 String str_district = address.getSubAdminArea();
                 String str_locality = address.getLocality();
                 String str_address = address.getFeatureName();
+
                 devliverResultToRecevier(Constants.SUCCESS_RESULT, str_address, str_locality, str_district, str_state, str_Country, str_postcode);
             }
         }
@@ -73,6 +74,8 @@ public class FetchAddressIntentServices extends IntentService {
     }
 
 }
+
+
 
 /* List<Address> addresses = null;
             try {

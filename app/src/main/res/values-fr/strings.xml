@@ -738,6 +738,9 @@
     <string name="remit_details">Détails de la remise</string>
     <string name="view_transaction_history">Afficher l\'historique des transactions</string>
     <string name="hide_transaction_history">Masquer l\'historique des transactions</string>
+    <string name="Contacts">Contacts</string>
+    <string name="search_here">Cherche ici...</string>
+    <string name="go">Aller</string>
 
 </resources>
 

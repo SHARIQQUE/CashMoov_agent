@@ -207,7 +207,8 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
 
-            et_mpin.setTransformationMethod(new HiddenPassTransformationMethod());
+            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+            et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -219,7 +220,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                                 // set drawable image
                                 et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                                 // hide Password
-                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
                                 isPasswordVisible = false;
                             } else  {
                                 // set drawable image
@@ -236,7 +237,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                 }
             });
 
-            et_otp.setTransformationMethod(new HiddenPassTransformationMethod());
+            et_otp.setTransformationMethod(hiddenPassTransformationMethod);
             et_otp.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -248,7 +249,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                                 // set drawable image
                                 et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                                 // hide Password
-                                et_otp.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                et_otp.setTransformationMethod(hiddenPassTransformationMethod);
                                 isPasswordVisible2 = false;
                             } else  {
                                 // set drawable image

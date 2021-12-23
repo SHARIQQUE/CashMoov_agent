@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -102,6 +103,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
 
+    public static final int REQUEST_CODE = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -146,6 +150,32 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
+/*
+            edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_LEFT = 0;
+                    final int DRAWABLE_TOP = 1;
+                    final int DRAWABLE_RIGHT = 2;
+                    final int DRAWABLE_BOTTOM = 3;
+
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        if(event.getRawX() >= (edittext_mobileNuber.getRight() - edittext_mobileNuber.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            // your action here
+
+
+                            Intent intent = new Intent(CashIn.this,
+                                    AddContact.class);
+                            startActivityForResult(intent , REQUEST_CODE);
+
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });*/
+
+
             //    Reveiw page
 
             ll_reviewPage = (LinearLayout) findViewById(R.id.ll_reviewPage);
@@ -164,8 +194,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
-
-            et_mpin.setTransformationMethod(new HiddenPassTransformationMethod());
+            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+            et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -177,7 +207,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 // set drawable image
                                 et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                                 // hide Password
-                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
                                 isPasswordVisible = false;
                             } else  {
                                 // set drawable image
@@ -1161,6 +1191,14 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+            String requiredValue = data.getStringExtra("PHONE");
+            edittext_mobileNuber.setText(requiredValue);
+
+        }
+
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)

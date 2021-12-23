@@ -81,7 +81,8 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
 
        // lin_resend.setVisibility(View.GONE);
 
-        et_new_pin.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        et_new_pin.setTransformationMethod(hiddenPassTransformationMethod);
         et_new_pin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -93,7 +94,7 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
                             // set drawable image
                             et_new_pin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_new_pin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_new_pin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible = false;
                         } else  {
                             // set drawable image
@@ -110,7 +111,8 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
             }
         });
 
-        et_conf_new_pin.setTransformationMethod(new HiddenPassTransformationMethod());
+
+        et_conf_new_pin.setTransformationMethod(hiddenPassTransformationMethod);
         et_conf_new_pin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -122,7 +124,7 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
                             // set drawable image
                             et_conf_new_pin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_conf_new_pin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_conf_new_pin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisibleOther = false;
                         } else  {
                             // set drawable image

@@ -72,7 +72,8 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
 
         tv_continue.setOnClickListener(this);
 
-        et_Pin.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        et_Pin.setTransformationMethod(hiddenPassTransformationMethod);
         et_Pin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -84,7 +85,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
                             // set drawable image
                             et_Pin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_Pin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_Pin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible = false;
                         } else  {
                             // set drawable image
@@ -101,7 +102,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        et_reEnterPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        et_reEnterPin.setTransformationMethod(hiddenPassTransformationMethod);
         et_reEnterPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -113,7 +114,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
                             // set drawable image
                             et_reEnterPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_reEnterPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_reEnterPin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible2 = false;
                         } else  {
                             // set drawable image

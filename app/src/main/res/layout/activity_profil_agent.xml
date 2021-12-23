@@ -37,7 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lamar Balde"
+                android:text=""
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="21sp"/>
@@ -67,7 +67,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Conakry,Guinee"
+                        android:text="N/A"
                         android:textStyle="bold"
                         android:textSize="16dp"
                         android:paddingTop="10dp"
@@ -89,7 +89,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="621 788 789"
+                        android:text="N/A"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:paddingTop="10dp"
@@ -111,7 +111,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="GNF"
+                        android:text="N/A"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:paddingTop="10dp"

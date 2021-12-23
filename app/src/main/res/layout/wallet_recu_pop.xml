@@ -86,7 +86,7 @@ android:layout_height="wrap_content">
                                 android:fontFamily="@font/aileron_bold"
                                 android:letterSpacing="-0.02"
                                 android:lineSpacingExtra="7sp"
-                                android:text="Lamar"
+                                android:text="N/A"
                                 android:textColor="#000"
                                 android:textSize="28sp" />
 
@@ -97,7 +97,7 @@ android:layout_height="wrap_content">
                                 android:fontFamily="@font/aileron_bold"
                                 android:letterSpacing="-0.02"
                                 android:lineSpacingExtra="7sp"
-                                android:text="Baldé"
+                                android:text="N/A"
                                 android:textColor="@color/bleu_cashmoov"
                                 android:textSize="28sp" />
 

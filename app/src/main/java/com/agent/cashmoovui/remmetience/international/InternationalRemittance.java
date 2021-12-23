@@ -507,7 +507,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                 Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
 
-            et_mpin.setTransformationMethod(new HiddenPassTransformationMethod());
+            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+            et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -519,7 +520,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 // set drawable image
                                 et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                                 // hide Password
-                                et_mpin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                                et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
                                 isPasswordVisible = false;
                             } else  {
                                 // set drawable image
@@ -2594,8 +2595,15 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                                 JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
-                                fees_amount = exchangeRate.getString("fee");
-                                tax_amount = exchangeRate.getString("receiverFee");
+                                fees_amount="0.00";
+                                tax_amount="0.00";
+                                if(exchangeRate.has("fee")) {
+                                    fees_amount = exchangeRate.getString("fee");
+                                }
+                                if(exchangeRate.has("receiverFee")) {
+                                    tax_amount = exchangeRate.getString("receiverFee");
+                                }
+
                                 rp_tv_fees_reveiewPage.setText(select_sender_currencySymbol+ " "+fees_amount);
 
                                 edittext_amount_pay.setEnabled(false);

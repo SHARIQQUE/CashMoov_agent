@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
 
     <application
@@ -181,6 +182,7 @@ x
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryBranchPage"></activity>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryAgentRecycleClick"></activity>
         <activity android:name=".activity.NotificationList"></activity>
+        <activity android:name=".AddContact"></activity>
 
 
         <meta-data

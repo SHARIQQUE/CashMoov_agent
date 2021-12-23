@@ -70,8 +70,8 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
 
         tv_continue.setOnClickListener(this);
-
-        et_oldPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        et_oldPin.setTransformationMethod(hiddenPassTransformationMethod);
         et_oldPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -83,7 +83,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                             // set drawable image
                             et_oldPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_oldPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_oldPin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible = false;
                         } else  {
                             // set drawable image
@@ -100,7 +100,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             }
         });
 
-        et_newPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        et_newPin.setTransformationMethod(hiddenPassTransformationMethod);
         et_newPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -112,7 +112,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                             // set drawable image
                             et_newPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_newPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_newPin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible2 = false;
                         } else  {
                             // set drawable image
@@ -129,7 +129,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             }
         });
 
-        et_confirmPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        et_confirmPin.setTransformationMethod(hiddenPassTransformationMethod);
         et_confirmPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -141,7 +141,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                             // set drawable image
                             et_confirmPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            et_confirmPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            et_confirmPin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible3 = false;
                         } else  {
                             // set drawable image

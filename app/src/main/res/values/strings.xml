@@ -739,6 +739,9 @@
     <string name="remit_details">Remit Details</string>
     <string name="view_transaction_history">View transaction history</string>
     <string name="hide_transaction_history">Hide transaction history</string>
+    <string name="Contacts">Contacts</string>
+    <string name="search_here">Search here...</string>
+    <string name="go">Go</string>
 
 
 </resources>

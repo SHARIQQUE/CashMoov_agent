@@ -81,7 +81,8 @@ public class LoginPin extends AppCompatActivity {
         loginpinC = this;
         getIds();
 
-        etPin.setTransformationMethod(new HiddenPassTransformationMethod());
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        etPin.setTransformationMethod(hiddenPassTransformationMethod);
         etPin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -93,7 +94,7 @@ public class LoginPin extends AppCompatActivity {
                             // set drawable image
                             etPin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
                             // hide Password
-                            etPin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            etPin.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible = false;
                         } else  {
                             // set drawable image

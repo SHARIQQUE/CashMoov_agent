@@ -2,6 +2,7 @@ package com.agent.cashmoovui.splash;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
@@ -135,7 +136,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
                         .setPermissionListener(permissionlistener)
                         .setDeniedMessage("If you reject permission, you can not use this service.\n\nPlease turn on permissions at [Setting] > [Permission]")
                         .setGotoSettingButtonText("Go to settings")
-                        .setPermissions(CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE,ACCESS_FINE_LOCATION)
+                        .setPermissions(CAMERA, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE,ACCESS_FINE_LOCATION,READ_CONTACTS)
                         .check();
 
                 // This method will be executed once the timer is over
