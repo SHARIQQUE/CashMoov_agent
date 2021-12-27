@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -47,6 +48,7 @@ import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -148,6 +150,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
 
+    public static final int REQUEST_CODE = 1;
+
 
 
 
@@ -191,6 +195,29 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
+            edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_LEFT = 0;
+                    final int DRAWABLE_TOP = 1;
+                    final int DRAWABLE_RIGHT = 2;
+                    final int DRAWABLE_BOTTOM = 3;
+
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        if(event.getRawX() >= (edittext_mobileNo.getRight() - edittext_mobileNo.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            // your action here
+
+
+                            Intent intent = new Intent(AirtimePurchases.this,
+                                    AddContact.class);
+                            startActivityForResult(intent , REQUEST_CODE);
+
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
 
             //    Reveiw page
 
@@ -1535,6 +1562,13 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
         try {
 
+            if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+                String requiredValue = data.getStringExtra("PHONE");
+                edittext_mobileNo.setText(requiredValue);
+
+            }
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
             if (result != null) {

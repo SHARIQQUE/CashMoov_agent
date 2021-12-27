@@ -10,13 +10,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -58,6 +63,20 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     public static String idProofTypeCode,subscriberWalletOwnerCode;
 
+    public static final int REQUEST_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+            String requiredValue = data.getStringExtra("PHONE");
+            etPhone.setText(requiredValue);
+
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +100,31 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spIdProof = findViewById(R.id.spIdProof);
         etProofNo = findViewById(R.id.etProofNo);
         tvNext = findViewById(R.id.tvNext);
+
+        etPhone.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (etPhone.getRight() - etPhone.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+
+                        Intent intent = new Intent(SubscriberKYC.this,
+                                AddContact.class);
+                        startActivityForResult(intent , REQUEST_CODE);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
 
         etDob.setInputType(InputType.TYPE_NULL);
         etDob.setOnClickListener(new View.OnClickListener() {

@@ -158,6 +158,8 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:inputType="phone"
+                    android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                    android:drawablePadding="@dimen/_10sdp"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"

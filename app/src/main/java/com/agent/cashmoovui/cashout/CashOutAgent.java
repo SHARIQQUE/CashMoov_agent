@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -144,6 +145,30 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             tvContinue.setOnClickListener(this);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+
+            edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_LEFT = 0;
+                    final int DRAWABLE_TOP = 1;
+                    final int DRAWABLE_RIGHT = 2;
+                    final int DRAWABLE_BOTTOM = 3;
+
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        if(event.getRawX() >= (edittext_mobileNuber.getRight() - edittext_mobileNuber.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            // your action here
+
+
+                            Intent intent = new Intent(CashOutAgent.this,
+                                    AddContact.class);
+                            startActivityForResult(intent , REQUEST_CODE);
+
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
 
             //    Reveiw page
 
@@ -1240,12 +1265,21 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         startActivityForResult( i,REQUEST_CODE_QR_SCAN);
     }
 
-
+    public static final int REQUEST_CODE = 1;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+            String requiredValue = data.getStringExtra("PHONE");
+            edittext_mobileNuber.setText(requiredValue);
+
+        }
         if (resultCode != Activity.RESULT_OK) {
+
+
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)
                 return;

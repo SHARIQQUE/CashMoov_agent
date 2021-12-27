@@ -532,6 +532,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 } else {
                                     loadingPB.setVisibility(View.GONE);
+                                    setData(miniStatementTransList,walletTypeCode);
                                     MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
                                 }
 
@@ -852,7 +853,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                     mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
                     commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
                     overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
-                   // callApiMiniStatementTrans(walletCode,"100008", page, limit);
+
+
+                    page = 0;
+                    limit = 20;
+                    loadingPB.setVisibility(View.VISIBLE);
+                    callApiMiniStatementTrans(walletCode,"100008", page, limit);
 
 //                    select_currency_name = arrayList_currecnyName.get(i);
 //                    select_currency_code = arrayList_currecnyCode.get(i);

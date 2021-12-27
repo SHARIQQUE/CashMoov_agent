@@ -111,7 +111,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
             overdraft_value_heding_textview = (TextView) findViewById(R.id.overdraft_value_heding_textview);
 
 
-            /*edittext_search = (EditText) findViewById(R.id.edittext_search);
+            edittext_search = (EditText) findViewById(R.id.edittext_search);
             edittext_search.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -131,7 +131,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
                         searchStr = edittext_search.getText().toString().trim();
 
-                       // adpter.filter(s.toString());
+                        adpter.filter(s.toString());
 
 
                     } else {
@@ -139,7 +139,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
                     }
                 }
             });
-*/
+
 
             if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
 

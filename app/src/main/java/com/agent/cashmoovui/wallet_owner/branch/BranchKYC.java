@@ -2,10 +2,15 @@ package com.agent.cashmoovui.wallet_owner.branch;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -15,6 +20,7 @@ import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
 
 import org.json.JSONArray;
@@ -42,6 +48,22 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private SpinnerDialog spinnerDialogBusinessType,spinnerDialogIdProofType,spinnerDialogCountry,
             spinnerDialogRegion,spinnerDialogCity;
     public static String idProofTypeCode,branchWalletOwnerCode;
+
+
+    public static final int REQUEST_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+            String requiredValue = data.getStringExtra("PHONE");
+            etPhone.setText(requiredValue);
+
+        }
+    }
+
 
 
     @Override
@@ -105,7 +127,29 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
             }
         });
+        etPhone.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
 
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (etPhone.getRight() - etPhone.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+
+
+                        Intent intent = new Intent(BranchKYC.this,
+                                AddContact.class);
+                        startActivityForResult(intent , REQUEST_CODE);
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         spIdProof.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -344,28 +388,36 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                        countryModelList.add(new CountryInfoModel.Country(
-                                                data.optInt("id"),
-                                                data.optString("code"),
-                                                data.optString("isoCode"),
-                                                data.optString("name"),
-                                                data.optString("countryCode"),
-                                                data.optString("status"),
-                                                data.optString("dialCode"),
-                                                data.optString("currencyCode"),
-                                                data.optString("currencySymbol"),
-                                                data.optString("creationDate"),
-                                                data.optBoolean("subscriberAllowed")
+                                        if(data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT",branchkycC))) {
 
-                                        ));
+                                            countryModelList.add(new CountryInfoModel.Country(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("isoCode"),
+                                                    data.optString("name"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("status"),
+                                                    data.optString("dialCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("creationDate"),
+                                                    data.optBoolean("subscriberAllowed")
 
-                                        countryList.add(data.optString("name").trim());
+                                            ));
 
+                                            countryList.add(data.optString("name").trim());
+                                        }
                                     }
 
                                     spinnerDialogCountry= new SpinnerDialog(branchkycC,countryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogCountry.setCancellable(true); // for cancellable
                                     spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
+
+                                    if(countryList.size()==1){
+                                        spCountry.setText(countryModelList.get(0).name);
+                                        spCountry.setTag(0);
+                                        callApiCurrencyList(MyApplication.getSaveString("COUNTRYCODE_AGENT",branchkycC));
+                                    }
                                     spinnerDialogCountry.bindOnSpinerListener(new OnSpinerItemClick() {
                                         @Override
                                         public void onClick(String item, int position) {

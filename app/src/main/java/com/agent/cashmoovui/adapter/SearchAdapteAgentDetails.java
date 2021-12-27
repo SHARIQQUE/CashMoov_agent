@@ -44,7 +44,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder,  int i) {
 
         viewHolder.agentName_textview.setText(arrayList_modalUserData.get(i).getOwnerName());
         viewHolder.agent_mobileNumber.setText(arrayList_modalUserData.get(i).getMobileNumber());

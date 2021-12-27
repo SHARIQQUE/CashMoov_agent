@@ -76,7 +76,11 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
-            String walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
+            String walletTypeCode="100008";
+           if((getIntent().getStringExtra("WALLETTYPECODE")!=null) ){
+                 walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
+            }
+
             String fromWalletOwnerMsisdn = (getIntent().getStringExtra("FROMMSISDN"));
             String toWalletOwnerMsisdn = (getIntent().getStringExtra("TOMSISDN"));
             String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));

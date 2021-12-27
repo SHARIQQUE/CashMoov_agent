@@ -150,7 +150,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
-/*
+
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -173,7 +173,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
                     return false;
                 }
-            });*/
+            });
 
 
             //    Reveiw page
