@@ -75,14 +75,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100001")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -111,14 +111,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100018")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -147,14 +147,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100061")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -183,14 +183,16 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue"))+
+                                        "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -219,14 +221,16 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100028")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue"))+
+                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -255,14 +259,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100016")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -291,14 +295,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100017")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -327,14 +331,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100011")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -363,14 +367,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100012")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        childData.optString("minValue")+"  -  "+
-                                                childData.optString("maxValue"),
+                                        callf(childData.optDouble("minValue"))+"  -  "+
+                                                callf(childData.optDouble("maxValue")),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -410,6 +414,10 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
         rvFeeDetail.setHasFixedSize(true);
         rvFeeDetail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         rvFeeDetail.setAdapter(feeDetailsAdapter);
+    }
+
+    public String callf(Double data){
+        return String.format("%.2f",data);
     }
 
 
