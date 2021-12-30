@@ -74,6 +74,8 @@
         <item>Carte de sejour</item>
 
     </string-array>
+
+    <string name="use_finger_to_transaction">Utilisez votre empreinte digitale pour effectuer une transaction</string>
     <string name="title_activity_overdraft_limit">OverdraftLimit</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

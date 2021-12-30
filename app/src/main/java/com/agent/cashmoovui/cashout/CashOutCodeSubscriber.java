@@ -34,6 +34,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -161,6 +162,51 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
+
+            TextView tvFinger =findViewById(R.id.tvFinger);
+            if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+                if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                    tvFinger.setVisibility(View.VISIBLE);
+                } else {
+                    tvFinger.setVisibility(View.GONE);
+                }
+            }else{
+                tvFinger.setVisibility(View.VISIBLE);
+            }
+            tvFinger.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyApplication.biometricAuth(CashOutCodeSubscriber.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+
+                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+
+                                if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
+
+                                    MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.getting_user_info));
+
+
+                                    mpin_final_api();
+
+
+                                } else {
+                                    Toast.makeText(CashOutCodeSubscriber.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(CashOutCodeSubscriber.this,failure);
+                        }
+                    });
+                }
+            });
 
             //    Receipt page
 

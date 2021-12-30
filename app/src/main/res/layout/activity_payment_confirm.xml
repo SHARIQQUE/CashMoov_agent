@@ -592,7 +592,11 @@
                     android:maxLength="4"/>
 
             </LinearLayout>
+            <TextView
 
+                android:id="@+id/tvFinger"
+                style="@style/TextViewFinger"
+                />
 
             <LinearLayout
                 android:gravity="center_horizontal"
@@ -627,6 +631,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>

@@ -18,6 +18,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -141,6 +142,43 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+
+
+        TextView tvFinger =findViewById(R.id.tvFinger);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                tvFinger.setVisibility(View.VISIBLE);
+            } else {
+                tvFinger.setVisibility(View.GONE);
+            }
+        }else{
+            tvFinger.setVisibility(View.VISIBLE);
+        }
+        tvFinger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication.biometricAuth(PaymentConfirm.this, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            PaymentDetails.dataToSend.put( "pin",encryptionDatanew);
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(PaymentConfirm.this,failure);
+                    }
+                });
+            }
+        });
+
+
         setOnCLickListener();
 
     }
@@ -186,7 +224,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(paymentconfirmC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/mobile-prepaid", PaymentDetails.dataToSend,
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/recharge/payment", PaymentDetails.dataToSend,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.suke.widget.SwitchButton;
 
 import java.util.Locale;
 
@@ -18,7 +19,7 @@ import java.util.Locale;
 public class Confidentiality extends AppCompatActivity implements View.OnClickListener {
     public static Confidentiality confidentialityC;
     Button btnCancel;
-
+    SwitchButton btnSwich;
     MyApplication applicationComponentClass;
     String languageToUse = "";
     @Override
@@ -79,7 +80,36 @@ public class Confidentiality extends AppCompatActivity implements View.OnClickLi
     private void getIds() {
         btnCancel = findViewById(R.id.btnCancel);
 
+        btnSwich = findViewById(R.id.btnSwich);
+
+        MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", confidentialityC);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                btnSwich.setChecked(true);
+            }else {
+                btnSwich.setChecked(false);
+            }
+        }else{
+            btnSwich.setChecked(true);
+        }
+
+
+        btnSwich.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                if (isChecked) {
+                    MyApplication.saveString("ACTIVATEPROTECTION", "Activate", confidentialityC);
+                    MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", confidentialityC);
+                } else {
+                    MyApplication.saveString("ACTIVATEPROTECTION", "Deactivate", confidentialityC);
+                    MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", confidentialityC);
+
+                }
+            }
+        });
+
         setOnCLickListener();
+
 
     }
 

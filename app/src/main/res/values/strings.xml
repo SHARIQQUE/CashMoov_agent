@@ -83,6 +83,8 @@
 
     </string-array>
 
+
+    <string name="use_finger_to_transaction">Use your fingerprint to Transaction</string>
     <string name="title_activity_overdraft_limit">OverdraftLimit</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

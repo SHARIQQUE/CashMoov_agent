@@ -42,6 +42,7 @@ import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.adapter.TransferCommisionAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
@@ -204,6 +205,54 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             et_mpin = (EditText) findViewById(R.id.et_mpin);
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
             confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
+
+
+            TextView tvFinger =findViewById(R.id.tvFinger);
+            if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+                if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                    tvFinger.setVisibility(View.VISIBLE);
+                } else {
+                    tvFinger.setVisibility(View.GONE);
+                }
+            }else{
+                tvFinger.setVisibility(View.VISIBLE);
+            }
+            tvFinger.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyApplication.biometricAuth(CommissionTransfer.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+
+                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+
+                                if (validation_mobile_Detailsf()) {
+
+
+                                    if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+
+                                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
+
+                                        mpin_final_api();
+
+                                    } else {
+                                        Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(CommissionTransfer.this,failure);
+                        }
+                    });
+                }
+            });
 
             //    Receipt page
 
@@ -667,7 +716,23 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
     }
 
+    boolean validation_mobile_Detailsf() {
 
+        amountstr = edittext_amount.getText().toString().trim();
+
+
+        if (amountstr.isEmpty()) {
+
+            MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
+
+            return false;
+        }
+
+
+
+      return true;
+
+    }
 
 
 

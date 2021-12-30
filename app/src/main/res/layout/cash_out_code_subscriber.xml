@@ -286,6 +286,11 @@
 
             </LinearLayout>
 
+    <TextView
+
+        android:id="@+id/tvFinger"
+        style="@style/TextViewFinger"
+        />
 
 
             <TextView

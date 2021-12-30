@@ -25,6 +25,7 @@
         <!--    First Page-->
 
         <LinearLayout
+
             android:id="@+id/ll_page_1"
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -766,6 +767,12 @@
 
 
             </LinearLayout>
+
+            <TextView
+
+                android:id="@+id/tvFinger"
+                style="@style/TextViewFinger"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
