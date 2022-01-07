@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -48,6 +49,7 @@ import com.agent.cashmoovui.adapter.International.SenderCountryNameAdapter;
 import com.agent.cashmoovui.adapter.International.SenderCurrenyDetailsAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -67,10 +69,13 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.Locale;
 
 public class LocalRemittance extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
+    public static final int REQUEST_CODE = 1;
+    public static final int REQUEST_CODEN = 2;
     boolean  isPasswordVisible;
 
     int buttonClickValidaion=0;
@@ -82,8 +87,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     String FIRSTNAME_USERINFO="";
     String LASTNAME_USERINFO="";
 
-    static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
-    static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
+    static final int REQUEST_IMAGE_CAPTURE_ONE = 3;
+    static final int REQUEST_IMAGE_CAPTURE_TWO = 4;
     ImageButton btnFront;
     ImageView imgBack,imgHome;
     EditText etFront,etBack;
@@ -222,6 +227,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
     String firstname_destination_string ="",serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
+
+
 
 
     @Override
@@ -429,6 +436,30 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
             et_destination_mobileNumber = (EditText) findViewById(R.id.et_destination_mobileNumber);
+            et_destination_mobileNumber.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_LEFT = 0;
+                    final int DRAWABLE_TOP = 1;
+                    final int DRAWABLE_RIGHT = 2;
+                    final int DRAWABLE_BOTTOM = 3;
+
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        if(event.getRawX() >= (et_destination_mobileNumber.getRight() - et_destination_mobileNumber.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            // your action here
+
+
+                            Intent intent = new Intent(LocalRemittance.this,
+                                    AddContact.class);
+                            startActivityForResult(intent , REQUEST_CODEN);
+
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
             et_destination_firstName = (EditText) findViewById(R.id.et_destination_firstName);
             et_destination_lastName = (EditText) findViewById(R.id.et_destination_lastName);
             edittext_email_destination = (EditText) findViewById(R.id.edittext_email_destination);
@@ -540,38 +571,30 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                 }
             });
 
-            et_destination_mobileNumber.addTextChangedListener(new TextWatcher() {
+
+
+
+            et_sender_phoneNumber.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int DRAWABLE_LEFT = 0;
+                    final int DRAWABLE_TOP = 1;
+                    final int DRAWABLE_RIGHT = 2;
+                    final int DRAWABLE_BOTTOM = 3;
+
+                    if(event.getAction() == MotionEvent.ACTION_UP) {
+                        if(event.getRawX() >= (et_sender_phoneNumber.getRight() - et_sender_phoneNumber.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                            // your action here
 
 
-                }
+                            Intent intent = new Intent(LocalRemittance.this,
+                                    AddContact.class);
+                            startActivityForResult(intent , REQUEST_CODE);
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                    if (new InternetCheck().isConnected(LocalRemittance.this)) {
-
-                        mobileNumber_destination_string = et_destination_mobileNumber.getText().toString().trim();
-
-                        if (mobileNumber_destination_string.length()>7) {
-
-                            api_subscriber_details();
-
+                            return true;
                         }
-
-                        else {
-                            et_destination_mobileNumber.setHint(getString(R.string.please_enter_mobileno));;
-                        }
-
-                    } else {
-                        Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                     }
+                    return false;
                 }
             });
 
@@ -596,12 +619,47 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         if (sender_phoneNumber_string.length()>7) {
 
-                            //   searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+                              // searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
 
                         }
 
                         else {
                             et_sender_phoneNumber.setHint(getString(R.string.please_enter_mobileno));;
+                        }
+
+                    } else {
+                        Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+            et_destination_mobileNumber.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (new InternetCheck().isConnected(LocalRemittance.this)) {
+
+                        destination_phoneNumber_string= et_destination_mobileNumber.getText().toString().trim();
+
+                        if (et_destination_mobileNumber.length()>7) {
+
+                           // searchData_des_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+
+                        }
+
+                        else {
+                            et_destination_mobileNumber.setHint(getString(R.string.please_enter_mobileno));;
                         }
 
                     } else {
@@ -2276,18 +2334,325 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
-
-
-
-
                     if (resultCode.equalsIgnoreCase("0")) {
+                        JSONArray walletOwnerListArr = jsonObject.optJSONArray("customerList");
+
+                        int pcount=0;
+                        int index=0;
+                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                            JSONObject jsonObjectSubscriber = walletOwnerListArr.optJSONObject(i);
+                            Iterator<?> keys = jsonObjectSubscriber.keys();
+                            JSONObject countObj=new JSONObject();
+                            int count=0;
+                            while( keys.hasNext() ) {
+                                count++;
+                                String key = (String) keys.next();
+
+                            }
+                            if(count>pcount){
+                                index=i;
+                                pcount=count;
+                            }
+
+
+
+                        }
+                        System.out.println("Key: " + index+""+pcount);
+                        JSONObject jsonObjectSubscriber = walletOwnerListArr.optJSONObject(index);
+                        if(jsonObjectSubscriber.has("firstName")){
+                            sender_firstName_string=jsonObjectSubscriber.optString("firstName");
+                            et_sender_firstName.setText(jsonObjectSubscriber.optString("firstName"));
+                        }
+                        if(jsonObjectSubscriber.has("lastName")){
+                            sender_lastname_string=jsonObjectSubscriber.optString("lastName");
+                            et_sender_lastname.setText(jsonObjectSubscriber.optString("lastName"));
+                        }
+                        if(jsonObjectSubscriber.has("mobileNumber")){
+
+                        }
+                        if(jsonObjectSubscriber.has("email")){
+                            sender_email_string=jsonObjectSubscriber.optString("email");
+                            et_sender_email.setText(jsonObjectSubscriber.optString("email"));
+
+                        }
+                        if(jsonObjectSubscriber.has("dateOfBirth")){
+                            sender_dob_string=jsonObjectSubscriber.optString("dateOfBirth");
+                            et_sender_dob.setText(jsonObjectSubscriber.optString("dateOfBirth"));
+                        }
+                        if(jsonObjectSubscriber.has("gender")){
+                            select_sender_genderName = jsonObjectSubscriber.optString("gender");
+                            if(select_sender_genderName.equalsIgnoreCase("M"))
+                            {
+                                select_sender_genderName = "Male";
+                                select_sender_genderCode = "M";
+                            }
+                            else {
+                                select_sender_genderName = "Female";
+                                select_sender_genderCode = "F";
+                            }
+                            spinner_sender_gender.setSelection(arrayList_sender_genderName.indexOf(select_sender_genderName));
+                        }
+                        if(jsonObjectSubscriber.has("city")){
+                            sender_city_string=jsonObjectSubscriber.optString("city");
+                            et_sender_city.setText(jsonObjectSubscriber.optString("city"));
+                        }
+                        if(jsonObjectSubscriber.has("address")){
+                            sender_address_string=jsonObjectSubscriber.optString("address");
+                            et_sender_address.setText(jsonObjectSubscriber.optString("address"));
+                        }
+                        if(jsonObjectSubscriber.has("regionCode")){
+
+                            select_sender_regionCode = jsonObjectSubscriber.optString("regionCode");
+                        }
+                        if(jsonObjectSubscriber.has("regionName")){
+                            select_sender_regionName = jsonObjectSubscriber.optString("regionName");
+
+                            spinner_sender_region.setSelection(arrayList_sender_regionName.indexOf(select_sender_regionName));
+                           // spinner_sender_region.setText(jsonObjectSubscriber.optString("regionName"));
+                        }
+                        if(jsonObjectSubscriber.has("idProofTypeCode")){
+                            select_sender_idproofCode = jsonObjectSubscriber.optString("idProofTypeCode");
+                            //spinner_sender_idprooftype.setText(jsonObjectSubscriber.optString("idProofTypeCode"));
+                        }
+                        if(jsonObjectSubscriber.has("idProofTypeName")){
+                            select_sender_idproofName = jsonObjectSubscriber.optString("idProofTypeName");
+
+                            spinner_sender_idprooftype.setSelection(arrayList_sender_idproofName.indexOf(select_sender_idproofName));
+                           // spinner_sender_idprooftype.setText(jsonObjectSubscriber.optString("idProofTypeName"));
+                        }
+                        if(jsonObjectSubscriber.has("idProofNumber")){
+                            sender_idproofNumber_string=jsonObjectSubscriber.optString("idProofNumber");
+                            et_sender_idproofNumber.setText(jsonObjectSubscriber.optString("idProofNumber"));
+                        }
+                        if(jsonObjectSubscriber.has("idExpiryDate")){
+                            sender_idProofexpiry_string=jsonObjectSubscriber.optString("idExpiryDate");
+                            et_sender_idproof_expiry.setText(jsonObjectSubscriber.optString("idExpiryDate"));
+                        }
+
+
+                        if(jsonObjectSubscriber.has("countryCode")){
+
+                        }
+                        if(jsonObjectSubscriber.has("countryName")){
+
+                        }
+
+
+                        if(jsonObjectSubscriber.has("issuingCountryCode")){
+
+                        }
+                        if(jsonObjectSubscriber.has("issuingCountryName")){
+
+                        }
+                        if(jsonObjectSubscriber.has("idProofUrl")){
+
+                        }
+                        if(jsonObjectSubscriber.has("toCurrencyCode")){
+
+                        }
+                        if(jsonObjectSubscriber.has("toCurrencyName")){
+
+                        }
+
 
 
                     } else {
 
                         if(resultDescription.equalsIgnoreCase("Customer Not Found"))
                         {
+                            et_sender_firstName.setText("");
+                            et_sender_lastname.setText("");
+                            et_sender_email.setText("");
+                            et_sender_dob.setText("");
+                            spinner_sender_gender.setSelection(0);
+                            et_sender_city.setText("");
+                            et_sender_address.setText("");
+                            spinner_sender_region.setSelection(0);
+                            spinner_sender_idprooftype.setSelection(0);
+                            et_sender_idproofNumber.setText("");
+                            et_sender_idproof_expiry.setText("");
 
+                        }
+                        else
+                        {
+                            Toast.makeText(LocalRemittance.this, resultDescription, Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(LocalRemittance.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(LocalRemittance.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+    private void searchData_des_mobileNumber() {
+
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?mobileNumber="+destination_phoneNumber_string+"&countryCode=" + select_sender_CountryCode, languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+                    if (resultCode.equalsIgnoreCase("0")) {
+                        JSONArray walletOwnerListArr = jsonObject.optJSONArray("customerList");
+
+                        int pcount=0;
+                        int index=0;
+                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                            JSONObject jsonObjectSubscriber = walletOwnerListArr.optJSONObject(i);
+                            Iterator<?> keys = jsonObjectSubscriber.keys();
+                            JSONObject countObj=new JSONObject();
+                            int count=0;
+                            while( keys.hasNext() ) {
+                                count++;
+                                String key = (String) keys.next();
+
+                            }
+                            if(count>pcount){
+                                index=i;
+                                pcount=count;
+                            }
+
+
+
+                        }
+                        System.out.println("Key: " + index+""+pcount);
+                        JSONObject jsonObjectSubscriber = walletOwnerListArr.optJSONObject(index);
+                        if(jsonObjectSubscriber.has("firstName")){
+                            firstname_destination_string=jsonObjectSubscriber.optString("firstName");
+                            et_destination_firstName.setText(jsonObjectSubscriber.optString("firstName"));
+                        }
+                        if(jsonObjectSubscriber.has("lastName")){
+                            lastname_destinationStr=jsonObjectSubscriber.optString("lastName");
+                            et_destination_lastName.setText(jsonObjectSubscriber.optString("lastName"));
+                        }
+                        if(jsonObjectSubscriber.has("mobileNumber")){
+
+                        }
+                        if(jsonObjectSubscriber.has("email")){
+                            email_destination=jsonObjectSubscriber.optString("email");
+                            edittext_email_destination.setText(jsonObjectSubscriber.optString("email"));
+
+                        }
+                        if(jsonObjectSubscriber.has("dateOfBirth")){
+                            destination_dob_string=jsonObjectSubscriber.optString("dateOfBirth");
+                            et_destination_dob.setText(jsonObjectSubscriber.optString("dateOfBirth"));
+                        }
+                        if(jsonObjectSubscriber.has("gender")){
+                            select_destination_genderName = jsonObjectSubscriber.optString("gender");
+                            if(select_destination_genderName.equalsIgnoreCase("M"))
+                            {
+                                select_destination_genderName = "Male";
+                                select_destination_genderCode = "M";
+                            }
+                            else {
+                                select_destination_genderName = "Female";
+                                select_destination_genderCode = "F";
+                            }
+                            spinner_destination_gender.setSelection(arrayList_destination_genderName.indexOf(select_destination_genderName));
+                        }
+                        if(jsonObjectSubscriber.has("city")){
+                            destination_city_string=jsonObjectSubscriber.optString("city");
+                            et_destination_city.setText(jsonObjectSubscriber.optString("city"));
+                        }
+                        if(jsonObjectSubscriber.has("address")){
+                            destination_address_string=jsonObjectSubscriber.optString("address");
+                            et_destination_address.setText(jsonObjectSubscriber.optString("address"));
+                        }
+                        if(jsonObjectSubscriber.has("regionCode")){
+
+                            select_destination_regionCode = jsonObjectSubscriber.optString("regionCode");
+                        }
+                        if(jsonObjectSubscriber.has("regionName")){
+                            select_destination_regionName = jsonObjectSubscriber.optString("regionName");
+
+                            spinner_destination_region.setSelection(arrayList_destination_regionName.indexOf(select_destination_regionName));
+                            // spinner_sender_region.setText(jsonObjectSubscriber.optString("regionName"));
+                        }
+                        if(jsonObjectSubscriber.has("idProofTypeCode")){
+                            select_destination_idproofCode = jsonObjectSubscriber.optString("idProofTypeCode");
+                            //spinner_sender_idprooftype.setText(jsonObjectSubscriber.optString("idProofTypeCode"));
+                        }
+                        if(jsonObjectSubscriber.has("idProofTypeName")){
+                            select_destination_idproofName = jsonObjectSubscriber.optString("idProofTypeName");
+
+                            spinner_destination_idprooftype.setSelection(arrayList_destination_idproofName.indexOf(select_destination_idproofName));
+                            // spinner_sender_idprooftype.setText(jsonObjectSubscriber.optString("idProofTypeName"));
+                        }
+                        if(jsonObjectSubscriber.has("idProofNumber")){
+                            destination_idproofNumber_string=jsonObjectSubscriber.optString("idProofNumber");
+                            et_destination_idproofNumber.setText(jsonObjectSubscriber.optString("idProofNumber"));
+                        }
+                        if(jsonObjectSubscriber.has("idExpiryDate")){
+                            destination_idProofexpiry_string=jsonObjectSubscriber.optString("idExpiryDate");
+                            et_destination_idproof_expiry.setText(jsonObjectSubscriber.optString("idExpiryDate"));
+                        }
+
+
+                        if(jsonObjectSubscriber.has("countryCode")){
+
+                        }
+                        if(jsonObjectSubscriber.has("countryName")){
+
+                        }
+
+
+                        if(jsonObjectSubscriber.has("issuingCountryCode")){
+
+                        }
+                        if(jsonObjectSubscriber.has("issuingCountryName")){
+
+                        }
+                        if(jsonObjectSubscriber.has("idProofUrl")){
+
+                        }
+                        if(jsonObjectSubscriber.has("toCurrencyCode")){
+
+                        }
+                        if(jsonObjectSubscriber.has("toCurrencyName")){
+
+                        }
+
+
+
+                    } else {
+
+                        if(resultDescription.equalsIgnoreCase("Customer Not Found"))
+                        {
+                            et_destination_firstName.setText("");
+                            et_destination_lastName.setText("");
+                            edittext_email_destination.setText("");
+                            et_destination_dob.setText("");
+                            spinner_destination_gender.setSelection(0);
+                            et_destination_city.setText("");
+                            et_destination_address.setText("");
+                            spinner_destination_region.setSelection(0);
+                            spinner_destination_idprooftype.setSelection(0);
+                            et_destination_idproofNumber.setText("");
+                            et_destination_idproof_expiry.setText("");
 
                         }
                         else
@@ -3523,6 +3888,18 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+            et_sender_phoneNumber.setText(requiredValue);
+
+            // MyApplication.showKeyboard(CashIn.this,edittext_amount);
+        }
+        if (requestCode == REQUEST_CODEN && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+            et_destination_mobileNumber.setText(requiredValue);
+
+            // MyApplication.showKeyboard(CashIn.this,edittext_amount);
+        }
         if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {
 
             if (resultCode == RESULT_OK) {

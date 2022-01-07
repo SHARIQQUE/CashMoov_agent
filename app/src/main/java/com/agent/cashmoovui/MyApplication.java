@@ -12,15 +12,18 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.StrictMode;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
@@ -28,6 +31,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
 import com.androidnetworking.AndroidNetworking;
@@ -56,6 +60,16 @@ import okhttp3.Route;
 
 
 public class MyApplication extends Application {
+
+    public static String currencySymbol;
+    public static boolean AgentPage=false;
+    public static boolean InstPage=false;
+    public static boolean BranchPage=false;
+    public static String Amount="0.00";
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
     private static final String TAG = MyApplication.class.getSimpleName();
     public static String UserMobile;
     private static KProgressHUD hud;
@@ -96,7 +110,7 @@ public class MyApplication extends Application {
 
     public  void callLogin() {
         saveBool("isLogin",false,getInstance());
-        Intent intent = new Intent(getInstance(), PhoneNumberRegistrationScreen.class);
+        Intent intent = new Intent(getInstance(), LoginMsis.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -175,6 +189,11 @@ public class MyApplication extends Application {
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static void showKeyboard(Activity activity, EditText editText) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
     }
 
     public static void showTipError(Activity activity,String msg,View v){

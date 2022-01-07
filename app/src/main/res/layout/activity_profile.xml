@@ -95,7 +95,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/_5sdp"
-                                android:text="Conakry,Guinee"
+                                android:text="N/A"
                                 android:textColor="#000"
                                 android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold" />

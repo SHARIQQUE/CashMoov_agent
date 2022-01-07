@@ -137,7 +137,7 @@
                                 android:textColor="#565656"
                                 android:fontFamily="@font/aileron_bold"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Cash moov Agence1 "
+                                android:text="N/A"
                                 />
 
                             <TextView
@@ -147,7 +147,7 @@
                                 android:fontFamily="@font/aileron_regular"
                                 android:textColor="#c5c5c5"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Kaloum, Conakry Guinée"
+                                android:text="N/A"
                                 />
 
 
@@ -183,7 +183,7 @@
                                 android:textColor="#565656"
                                 android:fontFamily="@font/aileron_bold"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Cash moov Agence2"
+                                android:text="N/A"
                                 />
 
                             <TextView
@@ -193,7 +193,7 @@
                                 android:fontFamily="@font/aileron_regular"
                                 android:textColor="#c5c5c5"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Kaloum, Conakry Guinée"
+                                android:text="N/A"
                                 />
 
 
@@ -229,7 +229,7 @@
                                 android:textColor="#565656"
                                 android:fontFamily="@font/aileron_bold"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Cash moov Agence3"
+                                android:text="N/A"
                                 />
 
                             <TextView
@@ -239,7 +239,7 @@
                                 android:fontFamily="@font/aileron_regular"
                                 android:textColor="#c5c5c5"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Kaloum, Conakry Guinée"
+                                android:text="N/A"
                                 />
 
 
@@ -275,7 +275,7 @@
                                 android:textColor="#565656"
                                 android:fontFamily="@font/aileron_bold"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Cash moov Agence4"
+                                android:text="N/A"
                                 />
 
                             <TextView
@@ -285,7 +285,7 @@
                                 android:fontFamily="@font/aileron_regular"
                                 android:textColor="#c5c5c5"
                                 android:lineSpacingExtra="3sp"
-                                android:text="Kaloum, Conakry Guinée"
+                                android:text="N/A"
                                 />
 
 

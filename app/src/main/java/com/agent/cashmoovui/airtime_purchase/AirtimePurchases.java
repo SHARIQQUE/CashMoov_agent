@@ -446,6 +446,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                            // String  operatorCode = jsonObject2.getString("code");
                             if(arrayList_OperatorListCode.get(i).equalsIgnoreCase(jsonArray.optJSONObject(0).optString("code"))){
                                 spinner_operator.setSelection(i);
+                                edittext_amount.requestFocus();
                             }
                         }
                         // MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));

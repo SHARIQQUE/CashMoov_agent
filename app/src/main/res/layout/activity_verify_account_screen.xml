@@ -46,7 +46,7 @@ android:layout_height="wrap_content">
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_regular"
                     android:lineSpacingExtra="10sp"
-                    android:text="@string/verification_register_otp"
+                    android:text="@string/verification_register_otpback"
                     />
 
                 <LinearLayout

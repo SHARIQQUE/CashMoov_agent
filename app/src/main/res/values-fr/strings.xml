@@ -384,7 +384,7 @@
     <string name="scan_details">Vous pouvez scanner le</string>
     <string name="qr_code_of_the">Code Qr de abonné</string>
 
-
+    <string name="verification_register_otpback">Veuillez contacter votre service client pour générer l\'OTP et veuillez entrer l\'OTP pour vérifier votre compte.</string>
     <string name="otp_verify">Vérification OTP</string>
     <string name="verify_subscriber_pin">Vérifier le code PIN d abonné</string>
     <string name="subscriber_pin">Épingle d abonné</string>

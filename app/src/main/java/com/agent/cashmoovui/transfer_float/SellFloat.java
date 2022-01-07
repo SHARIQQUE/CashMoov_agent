@@ -34,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -83,6 +84,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
+    ImageView contact;
 
     RecyclerView recyclerView;
 
@@ -153,6 +155,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -191,6 +195,17 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+            contact = (ImageView) findViewById(R.id.contact);
+            contact.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(SellFloat.this,
+                            AddContact.class);
+                    startActivityForResult(intent , REQUEST_CODE);
+                }
+            });
+
+
 
             //    Reveiw page
 
@@ -389,10 +404,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         instituteListModelArrayList.clear();
 
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
-                        for(int i=0;i<jsonArray.length();i++)
-                        {
+                        for(int i=0;i<jsonArray.length();i++) {
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+                            if (jsonObject3.optString("state").equalsIgnoreCase("Approved")) {
+
+
                             instituteListModelArrayList.add(new InstituteListModel(
                                     jsonObject3.optString("code"),
                                     jsonObject3.optString("walletOwnerCategoryCode"),
@@ -406,47 +423,47 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             ));
 
 
-                            if(jsonObject3.has("walletOwnerCode"))
-                            {
+                            if (jsonObject3.has("walletOwnerCode")) {
                                 walletOwnerCode_subs = jsonObject3.getString("walletOwnerCode");
                             }
 
 
-                            if(jsonObject3.has("registerCountryCode"))
-                            {
+                            if (jsonObject3.has("registerCountryCode")) {
                                 countryCode_subscriber = jsonObject3.getString("registerCountryCode");
                             }
 
-                            if(jsonObject3.has("ownerName"))
-                            {
+                            if (jsonObject3.has("ownerName")) {
                                 ownerNameTemp = jsonObject3.getString("ownerName");
+                                String mobileNumber_temp;
 
-                                String mobileNumber_temp = jsonObject3.getString("mobileNumber");
+                                if (jsonObject3.has("mobileNumber")) {
+                                    mobileNumber_temp = jsonObject3.getString("mobileNumber");
+                                    arrayList_instititueName.add(ownerNameTemp + "(" + mobileNumber_temp + ")");
+                                } else {
+                                    arrayList_instititueName.add(ownerNameTemp);
+                                }
 
-                                arrayList_instititueName.add(ownerNameTemp +"("+ mobileNumber_temp+")");
+
                             }
 
-                            if(jsonObject3.has("mobileNumber"))
-                            {
+                            if (jsonObject3.has("mobileNumber")) {
                                 mobileNumberTemp = jsonObject3.getString("mobileNumber");
                                 arrayList_instititueCode.add(mobileNumberTemp);
                             }
 
 
-                            if(jsonObject3.has("issuingCountryCode"))
-                            {
+                            if (jsonObject3.has("issuingCountryCode")) {
                                 String countryCode_insititute = jsonObject3.getString("issuingCountryCode");
                                 arrayList_instititue_countryCode.add(countryCode_insititute);
                             }
 
-                            if(jsonObject3.has("businessTypeName"))
-                            {
+                            if (jsonObject3.has("businessTypeName")) {
                                 businessTypeName_walletOwnerCategoryCode = jsonObject3.getString("businessTypeName");
                             }
 
 
                             // countryName_walletOwnerCategoryCode = jsonObject3.getString("issuingCountryName");
-
+                        }
 
                         }
 
@@ -1753,10 +1770,25 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         startActivityForResult( i,REQUEST_CODE_QR_SCAN);
     }
 
+    public static final int REQUEST_CODE = 1;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+
+            String requiredValue = data.getStringExtra("PHONE");
+            for (int i = 0; i < arrayList_instititueCode.size(); i++) {
+                if (requiredValue.equalsIgnoreCase(arrayList_instititueCode.get(i)))
+                {
+                    spinner_insititue.setSelection(i);
+
+                }
+            }
+
+
+        }
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)
@@ -1859,7 +1891,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     private static final int REQUEST_CODE_QR_SCAN = 101;
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -1869,7 +1901,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
-    }
+    }*/
 
 
     public static Bitmap getScreenShot(View view) {
@@ -2013,6 +2045,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 select_currecnyName = arrayList_currecnyName.get(i);
                 select_currecnyCode = arrayList_currecnyCode.get(i);
                 currencySymbol_receiver = arrayList_currencySymbol.get(i);
+                edittext_amount.requestFocus();
 
             }
 

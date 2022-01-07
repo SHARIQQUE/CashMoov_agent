@@ -836,6 +836,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                                 Toast.makeText(LoginMsis.this, "User Not Found", Toast.LENGTH_LONG).show();
 
+                            }else{
+                                Toast.makeText(LoginMsis.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -987,6 +989,9 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                                 Toast.makeText(LoginMsis.this, "Invalid pin", Toast.LENGTH_LONG).show();
 
+                            }
+                            else{
+                                Toast.makeText(LoginMsis.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
                         }
 

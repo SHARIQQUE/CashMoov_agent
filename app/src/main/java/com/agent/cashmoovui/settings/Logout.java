@@ -126,7 +126,17 @@ public class Logout extends AppCompatActivity implements View.OnClickListener {
                                 finish();
 
                             } else {
-                                MyApplication.showToast(LogoutC,jsonObject.optString("resultDescription", "N/A"));
+                                MyApplication.saveBool("FirstLogin",false,LogoutC);
+                                // MyApplication.saveString("ImageName", "1", LogoutC);
+
+
+
+                                applicationComponentClass.getmSharedPreferences().edit().putString("isFirstRun", "YES").commit();
+
+                                Intent i = new Intent(LogoutC, LoginMsis.class);
+                                startActivity(i);
+                                finish();
+                               // MyApplication.showToast(LogoutC,jsonObject.optString("resultDescription", "N/A"));
                             }
                         }
                     }
@@ -134,6 +144,16 @@ public class Logout extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void failure(String aFalse) {
                         MyApplication.hideLoader();
+                        MyApplication.saveBool("FirstLogin",false,LogoutC);
+                        // MyApplication.saveString("ImageName", "1", LogoutC);
+
+
+
+                        applicationComponentClass.getmSharedPreferences().edit().putString("isFirstRun", "YES").commit();
+
+                        Intent i = new Intent(LogoutC, LoginMsis.class);
+                        startActivity(i);
+                        finish();
                     }
                 });
 

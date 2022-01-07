@@ -7,6 +7,7 @@
     <color name="black">#000000</color>
     <color name="red">#E74A3B</color>
     <color name="light_grey">#e6e6e6</color>
+    <color name="spinner_color">#323232</color>
     <color name="bg_home">#F8F7FB</color>
     <color name="white">#ffffff</color>
     <color name="textColorBlue">#2573d5</color>

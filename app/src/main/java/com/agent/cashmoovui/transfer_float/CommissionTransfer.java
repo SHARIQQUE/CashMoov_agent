@@ -1041,7 +1041,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -1051,7 +1051,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
-    }
+    }*/
 
 
     public static Bitmap getScreenShot(View view) {

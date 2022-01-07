@@ -14,6 +14,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.listeners.MiniStatemetListners;
 import com.agent.cashmoovui.model.MiniStatementTrans;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import java.math.RoundingMode;
@@ -181,14 +182,31 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         if(walletTypeCode.equalsIgnoreCase("100009")){
             if(miniStatementTrans.getFromWalletTypeCode().equalsIgnoreCase("100009")){
                 holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-                holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+
+                holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+ MyApplication.currencySymbol);
+              //  holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
                 holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
             }else{
                 holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
                 if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
-                    holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
+                    MyApplication.Amount=df.format(miniStatementTrans.getFromAmount());
+                   // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
                 }else {
-                    holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + miniStatementTrans.getToCurrencySymbol());
+                    if(MyApplication.AgentPage){
+                        MyApplication.Amount=df.format(miniStatementTrans.getCommissionAmountForAgent());
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForAgent()) + " " + MyApplication.currencySymbol);
+                    }
+                    if(MyApplication.InstPage){
+                        MyApplication.Amount=df.format(miniStatementTrans.getCommissionAmountForInstitute());
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + MyApplication.currencySymbol);
+                    }
+                    if(MyApplication.BranchPage){
+                        MyApplication.Amount=df.format(miniStatementTrans.getCommissionAmountForBranch());
+                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForBranch()) + " " + MyApplication.currencySymbol);
+                    }
+
+                    //holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + miniStatementTrans.getToCurrencySymbol());
                 }
                 holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
 
@@ -198,16 +216,21 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         if(walletTypeCode.equalsIgnoreCase("100008")){
             if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                 holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-                holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
                 holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
-
+                MyApplication.Amount=df.format(miniStatementTrans.getFromAmount());
             }
             if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
                 holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
                 if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
-                    holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
+                    MyApplication.Amount=df.format(miniStatementTrans.getFromAmount());
+                    // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
                 }else {
-                    holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
+                    holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + MyApplication.currencySymbol);
+                    MyApplication.Amount=df.format(miniStatementTrans.getToAmount());
+                    // holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
                 }
                 holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
 

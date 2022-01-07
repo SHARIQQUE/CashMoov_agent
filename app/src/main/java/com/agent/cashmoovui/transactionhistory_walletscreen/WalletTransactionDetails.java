@@ -2,9 +2,12 @@ package com.agent.cashmoovui.transactionhistory_walletscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.R;
@@ -29,11 +32,15 @@ public class WalletTransactionDetails extends AppCompatActivity {
         getIds();
     }
 
+
+
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
 
     private void setBackMenu() {
         imgBack = findViewById(R.id.imgBack);

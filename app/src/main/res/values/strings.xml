@@ -395,6 +395,7 @@
     <string name="pin">Pin</string>
     <string name="please_enter_pin">Please enter pin</string>
     <string name="verification_register_otp">Please enter the OTP (one time password) to verify your account. Code has been sent to registered email id &amp; mobile number</string>
+    <string name="verification_register_otpback">Kindly contact your customer care for generate OTP and please enter the OTP to verify your account.</string>
 
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u></string>
 

@@ -64,6 +64,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     ArrayList<UserDetail> arrayList_modalDetails;
     CardView cardMainWallet,cardCommissionWallet,cardOverdraftWallet;
     String walletOwnerCode,registerCountryCode;
+    String wallettypeCode="100008";
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     TransactionListAdapterNew transactionListAdapterNew;
 
@@ -93,6 +94,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         applicationComponentClass = (MyApplication) getApplicationContext();
 
         languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
@@ -120,8 +122,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         cardCommissionWallet.setOnClickListener(this);
         cardOverdraftWallet.setOnClickListener(this);
 
-        cardMainWallet.setEnabled(false);
-        cardCommissionWallet.setEnabled(false);
+        cardMainWallet.setEnabled(true);
+        cardCommissionWallet.setEnabled(true);
         cardOverdraftWallet.setEnabled(false);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -209,6 +211,14 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        MyApplication.AgentPage=true;
+        MyApplication.BranchPage=false;
+        MyApplication.InstPage=false;
     }
 
     private void setBackMenu() {
@@ -388,7 +398,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
   /*  ///////////-----code by Abhay-----////////////*/
 
-    String wallettypecode;
+    String wallettypecodee;
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode) {
         try {
             miniStatementTransList.clear();
@@ -486,16 +496,19 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cardMainWallet:
+                wallettypeCode="100008";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
-                callApiMiniStatementTrans(walletCode,"100008");
+                callApiMiniStatementTrans(walletCode,wallettypeCode);
                 break;
             case R.id.cardCommissionWallet:
+                wallettypeCode="100009";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ccode;
-                callApiMiniStatementTrans(walletCode,"100009");
+                callApiMiniStatementTrans(walletCode,wallettypeCode);
                 break;
             case R.id.cardOverdraftWallet:
+                wallettypeCode="100011";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ocode;
-                callApiMiniStatementTrans(walletCode,"100011");
+                callApiMiniStatementTrans(walletCode,wallettypeCode);
                 break;
 //            case R.id.imgQR:
 //                Intent intent = new Intent(TransactionHistoryAgentPage.this, ShowProfileQr.class);
@@ -690,6 +703,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
             {
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
                 spinner_currency.setSelection(i);
+                MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
             }
         }
 
@@ -721,12 +735,12 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 //                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
 //                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
 //                    ;
-
+                    MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
                     walletCode = MyApplication.currencyModelArrayList.get(i).code;
                     mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
                     commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
                     overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
-                    callApiMiniStatementTrans(walletCode,"100008");
+                    callApiMiniStatementTrans(walletCode,wallettypeCode);
 
 //                    select_currency_name = arrayList_currecnyName.get(i);
 //                    select_currency_code = arrayList_currecnyCode.get(i);
@@ -848,15 +862,15 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.Amount);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
         intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
-        intent.putExtra("WALLETTYPECODE",wallettypecode);
+        intent.putExtra("WALLETTYPECODE",wallettypecodee);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
-        intent.putExtra("TRANSACTIONAMOUNT",currencySymbol+" "+transactionAmount);
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+transactionAmount);
         startActivity(intent);
     }
 

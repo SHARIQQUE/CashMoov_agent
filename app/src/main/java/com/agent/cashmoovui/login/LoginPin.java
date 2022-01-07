@@ -336,6 +336,9 @@ public class LoginPin extends AppCompatActivity {
                                 MyApplication.saveString("pin", pin, loginpinC);
 
                             }
+                            else{
+                                Toast.makeText(LoginPin.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         else {
@@ -418,7 +421,7 @@ public class LoginPin extends AppCompatActivity {
 
                     catch (Exception e)
                     {
-                        Toast.makeText(loginpinC, e.toString(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(loginpinC, e.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -439,7 +442,9 @@ public class LoginPin extends AppCompatActivity {
                          Toast.makeText(loginpinC, "Please try again later", Toast.LENGTH_LONG).show();
 
                     }
-
+                    else{
+                        Toast.makeText(LoginPin.this,aFalse, Toast.LENGTH_LONG).show();
+                    }
 
                         // com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ConnectException: Failed to connect to /202.131.144.130:8081
 
@@ -494,6 +499,8 @@ public class LoginPin extends AppCompatActivity {
 
                                 MyApplication.saveString("pin", pin, loginpinC);
 
+                            }else{
+                                Toast.makeText(LoginPin.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
 
 

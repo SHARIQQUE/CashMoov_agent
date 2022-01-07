@@ -93,54 +93,19 @@
 
             <Spinner
                 android:id="@+id/spinner_provider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew"/>
             <Spinner
                 android:id="@+id/spinner_senderCountry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew"/>
             <Spinner
                 android:id="@+id/spinner_senderCurrency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew"/>
             <Spinner
                 android:id="@+id/spinner_receiverCountry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew" />
             <Spinner
                 android:id="@+id/spinner_receiverCurrency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew"/>
             <EditText
                 android:id="@+id/edittext_amount"
                 android:layout_width="match_parent"
@@ -378,6 +343,9 @@
                     android:backgroundTint="#999999"
                     android:inputType="number"
                     android:lineSpacingExtra="10sp"
+                    android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
                     android:paddingLeft="37.5dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
@@ -436,13 +404,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_sender_gender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew" />
 
 
                 <LinearLayout
@@ -504,13 +466,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_sender_region"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew" />
 
                 <EditText
                     android:id="@+id/et_sender_city"
@@ -530,13 +486,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_sender_idprooftype"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew"/>
 
                 <EditText
                     android:id="@+id/et_sender_idproofNumber"
@@ -694,14 +644,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_sender_issuingCountry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew"/>
 
 
             </LinearLayout>
@@ -741,6 +684,9 @@
                 android:backgroundTint="#999999"
                 android:inputType="number"
                 android:lineSpacingExtra="10sp"
+                android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
                 android:paddingLeft="37.5dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
@@ -783,14 +729,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_destination_gender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew"/>
 
 
 
@@ -851,14 +790,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_destination_country"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew"/>
 
 
 
@@ -880,13 +812,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_destination_region"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew"/>
 
                 <EditText
                     android:id="@+id/et_destination_city"
@@ -906,13 +832,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_destination_idprooftype"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew"/>
 
                 <EditText
                     android:id="@+id/et_destination_idproofNumber"
@@ -971,14 +891,7 @@
 
                 <Spinner
                     android:id="@+id/spinner_destination_issuingCountry"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="@dimen/_30sdp"
-
-                    android:background="@drawable/spinner_background"
-                    android:textColor="#323232"
-                    />
+                    style="@style/SpinnerStyleNew" />
 
 
                 <EditText

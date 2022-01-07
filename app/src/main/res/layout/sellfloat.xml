@@ -22,6 +22,11 @@
 
 
 
+
+
+
+
+
         <!--    First Page-->
 
         <LinearLayout
@@ -181,34 +186,41 @@
         </LinearLayout>
 
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:orientation="horizontal">
             <Spinner
+                android:layout_weight=".15"
                 android:id="@+id/spinner_insititue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
+                style="@style/SpinnerStyleNew"
+                android:paddingLeft="@dimen/_10sdp"/>
 
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+        <ImageView
+            android:id="@+id/contact"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/corner"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_weight=".85"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_width="match_parent"
+            android:src="@drawable/ic_baseline_phone_android_24"/>
+    </LinearLayout>
 
 
 
 
             <Spinner
+                android:paddingLeft="@dimen/_10sdp"
                 android:id="@+id/spinner_currency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew" />
 
 
 
             <EditText
+
                 android:id="@+id/edittext_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -217,7 +229,7 @@
                 android:backgroundTint="#999999"
                 android:inputType="number"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_16sdp"
                 android:paddingTop="16dp"
                 android:maxLength="10"
                 android:paddingBottom="16dp"

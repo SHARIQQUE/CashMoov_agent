@@ -196,14 +196,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_currency"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:paddingLeft="@dimen/_30sdp"
-
-                        android:background="@drawable/spinner_background"
-                        android:textColor="#323232"
-                        />
+                        style="@style/SpinnerStyleNew" />
 
 
 

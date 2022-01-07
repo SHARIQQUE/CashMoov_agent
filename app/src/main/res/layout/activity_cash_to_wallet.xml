@@ -70,17 +70,7 @@
                 />
             <Spinner
                 android:id="@+id/Spinnerprovider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:textColor="#323232"
+                style="@style/SpinnerStyleNew"
                 android:entries="@array/Spinner_provider"/>
 
             <EditText
@@ -99,17 +89,7 @@
                 android:textSize="15sp" />
             <Spinner
                 android:id="@+id/Spinnertypedevise"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_edittextname"
-                android:backgroundTint="#999999"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:textColor="#323232"
+                style="@style/SpinnerStyleNew" android:textColor="#323232"
                 android:entries="@array/Spinner_devise"/>
 
             <EditText

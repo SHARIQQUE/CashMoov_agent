@@ -1441,6 +1441,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             String requiredValue = data.getStringExtra("PHONE");
             edittext_mobileNo.setText(requiredValue);
 
+
         }
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
@@ -1515,7 +1516,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -1525,7 +1526,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
-    }
+    }*/
 
 
     public static Bitmap getScreenShot(View view) {

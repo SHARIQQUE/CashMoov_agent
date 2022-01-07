@@ -39,15 +39,7 @@
                 android:textSize="@dimen/_20sdp" />
             <Spinner
                 android:id="@+id/spinner_currency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:backgroundTint="#999999"
-                android:lineSpacingExtra="10sp"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_5sdp"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew"/>
 
 
             <HorizontalScrollView

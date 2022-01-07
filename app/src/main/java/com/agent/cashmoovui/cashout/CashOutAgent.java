@@ -1323,6 +1323,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             String requiredValue = data.getStringExtra("PHONE");
             edittext_mobileNuber.setText(requiredValue);
+            edittext_amount.requestFocus();
 
         }
         if (resultCode != Activity.RESULT_OK) {

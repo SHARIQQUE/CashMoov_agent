@@ -205,23 +205,10 @@
                 android:textSize="15sp" />
             <Spinner
                 android:id="@+id/spinner_operator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
-                />
+                style="@style/SpinnerStyleNew" />
             <Spinner
                 android:id="@+id/spinner_senderCountry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="@dimen/_30sdp"
-
-                android:background="@drawable/spinner_background"
-                android:textColor="#323232"
+                style="@style/SpinnerStyleNew"
                 />
 
             <EditText

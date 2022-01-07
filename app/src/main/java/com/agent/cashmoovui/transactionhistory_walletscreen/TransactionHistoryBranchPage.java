@@ -78,6 +78,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
     SearchAdapterTransactionDetails adpter;
     String walletCode;
+    String walletTypeCode="100008";
 
 
     @Override
@@ -113,8 +114,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         cardCommissionWallet.setOnClickListener(this);
         cardOverdraftWallet.setOnClickListener(this);
 
-        cardMainWallet.setEnabled(false);
-        cardCommissionWallet.setEnabled(false);
+        cardMainWallet.setEnabled(true);
+        cardCommissionWallet.setEnabled(true);
         cardOverdraftWallet.setEnabled(false);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -198,6 +199,13 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        MyApplication.AgentPage=false;
+        MyApplication.BranchPage=true;
+        MyApplication.InstPage=false;
+    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -480,16 +488,19 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cardMainWallet:
+                walletTypeCode="100008";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
-                callApiMiniStatementTrans(walletCode,"100008");
+                callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
             case R.id.cardCommissionWallet:
+                walletTypeCode="100009";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ccode;
-                callApiMiniStatementTrans(walletCode,"100009");
+                callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
             case R.id.cardOverdraftWallet:
+                walletTypeCode="100011";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ocode;
-                callApiMiniStatementTrans(walletCode,"100011");
+                callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
 //            case R.id.imgQR:
 //                Intent intent = new Intent(TransactionHistoryBranchPage.this, ShowProfileQr.class);
@@ -684,6 +695,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
             {
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
                 spinner_currency.setSelection(i);
+                MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
             }
         }
 
@@ -715,12 +727,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 //                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
 //                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
 //                    ;
-
+                    MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
                     walletCode = MyApplication.currencyModelArrayList.get(i).code;
                     mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
                     commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
                     overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
-                    callApiMiniStatementTrans(walletCode,"100008");
+                    callApiMiniStatementTrans(walletCode,walletTypeCode);
 
 //                    select_currency_name = arrayList_currecnyName.get(i);
 //                    select_currency_code = arrayList_currecnyCode.get(i);
@@ -842,7 +854,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",currencySymbol+" "+fromAmount);
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.Amount);
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -850,7 +862,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("WALLETTYPECODE",wallettypecode);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
-        intent.putExtra("TRANSACTIONAMOUNT",currencySymbol+" "+transactionAmount);
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+transactionAmount);
         startActivity(intent);
     }
 
