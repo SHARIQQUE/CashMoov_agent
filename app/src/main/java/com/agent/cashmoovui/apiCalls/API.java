@@ -107,6 +107,7 @@ public class API {
                //.addHeaders("Accept-Language",MyApplication.getLang())
 
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -180,6 +181,12 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            responce_handler.failure(error.getErrorDetail());
+                           /* if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }*/
                         }
                     }
                 });
@@ -196,6 +203,8 @@ public class API {
 
                 .addHeaders("Authorization","Bearer "+MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+
                 .addJSONObjectBody(jsonObject)
                 .setOkHttpClient(okHttpClient)
 
@@ -237,6 +246,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -252,8 +266,9 @@ public class API {
                 .addHeaders("channel","APP")
                 //.addHeaders("Authorization","Bearer b1b80862-17b3-48f0-83a3-b4d27ddd09e2")
 
-                .addHeaders("Authorization","bearer "+MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("Authorization","Bearer "+MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addJSONObjectBody(jsonObject)
                 .setOkHttpClient(okHttpClient)
 
@@ -295,6 +310,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -313,6 +333,7 @@ public class API {
                 .addHeaders("source","AGENT")
                 // .addHeaders("Accept-Language",MyApplication.getLang())
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
                 .setOkHttpClient(okHttpClient)
@@ -371,6 +392,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -389,7 +415,8 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ACCESS_TOKEN)
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ACCESS_TOKEN)
               // .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("ACCESS_TOKEN",MyApplication.getInstance()))
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -463,6 +490,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         }
@@ -482,6 +514,7 @@ public class API {
                 .addHeaders("source","AGENT")
                 //.addHeaders("Accept-Language",MyApplication.getLang())
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -555,6 +588,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -570,6 +608,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
                 //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
@@ -621,6 +660,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -638,6 +682,7 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -676,6 +721,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -697,6 +747,7 @@ public class API {
                .setOkHttpClient(okClientfileUpload)
                .setContentType("multipart/form-data")
                .addHeaders("mac",MyApplication.getUniqueId())
+               .addHeaders("deviceId",MyApplication.getUniqueId())
                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                .addHeaders("source","AGENT")
                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
@@ -740,6 +791,11 @@ public class API {
                        } else {
                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                           if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                               //MyApplication.showToast("Unauthorized Request......");
+                               MyApplication.getInstance().callLogin();
+
+                           }
                        }
                    }
                });
@@ -751,12 +807,14 @@ public class API {
         AndroidNetworking.upload(BASEURL+URL)
                 .addHeaders("channel","APP")
                 .addMultipartFile("file",file)
-                .addHeaders("mac",MyApplication.getUniqueId())
+
                 .addMultipartParameter("docTypeCode",docTypeCode)
                 .addMultipartParameter("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode",MyApplication.getInstance()))
                 .setTag("uploadTest")
                 .setPriority(Priority.HIGH)
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setOkHttpClient(okClientfileUpload)
                 .setContentType("multipart/form-data")
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
@@ -802,6 +860,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -828,7 +891,8 @@ public class API {
                 .setContentType("multipart/form-data")
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("source","AGENT")
-                .addHeaders("mac",MyApplication.getUniqueId())
+
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .build()
                 // setting an executor to get response or completion on that executor thread
@@ -873,6 +937,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -886,6 +955,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addMultipartFile("file",file)
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addMultipartParameter("docTypeCode",docTypeCode)
                 .addMultipartParameter("walletOwnerCode",walletOwnerCode)
                 .setTag("uploadTest")
@@ -935,6 +1005,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -949,6 +1024,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
@@ -995,6 +1071,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1009,6 +1090,7 @@ public class API {
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .addHeaders("channel","APP")
@@ -1061,6 +1143,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1075,6 +1162,7 @@ public class API {
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .addHeaders("channel","APP")
@@ -1127,6 +1215,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1142,6 +1235,7 @@ public class API {
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                .setTag("test")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -1187,6 +1281,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1201,8 +1300,9 @@ public class API {
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1250,6 +1350,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1265,8 +1370,9 @@ public class API {
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1314,6 +1420,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1325,8 +1436,9 @@ public class API {
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1374,6 +1486,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1386,8 +1503,9 @@ public class API {
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1435,6 +1553,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1448,8 +1571,9 @@ public class API {
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1497,6 +1621,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1511,6 +1640,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("User","Agent")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1558,6 +1688,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -1578,7 +1713,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -1635,14 +1771,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -1663,7 +1807,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -1720,14 +1865,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -1749,7 +1902,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -1806,14 +1960,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -1834,7 +1996,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -1891,14 +2054,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -1919,7 +2090,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -1976,14 +2148,21 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
 
+                            }
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -2006,7 +2185,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -2063,14 +2243,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -2091,7 +2279,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -2148,14 +2337,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -2176,7 +2373,8 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("mac",MyApplication.getUniqueId())
-                .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
@@ -2233,14 +2431,22 @@ public class API {
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
-                            responce_handler.failure(error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         }
                     }
@@ -2257,6 +2463,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("User","Agent")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2300,10 +2507,19 @@ public class API {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2318,6 +2534,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setPriority(Priority.MEDIUM)
@@ -2359,11 +2576,19 @@ public class API {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
 
+                            }
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2378,6 +2603,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
              //   .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
 
                 .setPriority(Priority.MEDIUM)
@@ -2419,11 +2645,19 @@ public class API {
                             Log.d(TAG, "onError errorCode : " + error.getErrorCode());
                             Log.d(TAG, "onError errorBody : " + error.getErrorBody());
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
 
+                            }
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2439,6 +2673,7 @@ public class API {
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -2482,7 +2717,11 @@ public class API {
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2498,6 +2737,8 @@ public class API {
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+
                 .addHeaders("channel","APP")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -2547,6 +2788,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2562,6 +2808,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("type","LOGINOTP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addJSONObjectBody(jsonObject)
                 .setOkHttpClient(okHttpClient)
 
@@ -2603,6 +2850,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2622,6 +2874,7 @@ public class API {
                // .addHeaders("type","LOGINOTP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
                 .setOkHttpClient(client)
                 .setTag("test")
@@ -2673,6 +2926,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2690,6 +2948,7 @@ public class API {
                 .addHeaders("type","LOGINOTP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
                 .setOkHttpClient(okHttpClient)
@@ -2748,6 +3007,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2766,6 +3030,7 @@ public class API {
                 .addHeaders("source","AGENT")
                 // .addHeaders("Accept-Language",MyApplication.getLang())
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
 
                 .setOkHttpClient(okHttpClient)
@@ -2818,6 +3083,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2835,6 +3105,7 @@ public class API {
                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                // .addHeaders("Authorization", "Basic Y2FzaG1vb3Y6MTIzNDU2")
                 .addHeaders("source","AGENT")
                 .addHeaders("type", "LOGINOTP")
@@ -2885,6 +3156,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2900,6 +3176,7 @@ public class API {
                 .addHeaders("source","AGENT")
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("type", "LOGINOTP")
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
@@ -2948,6 +3225,11 @@ public class API {
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });
@@ -2965,6 +3247,7 @@ public class API {
                 .addHeaders("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
                 .setTag("test")
                 .addHeaders("channel","APP")
+                .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("mac",MyApplication.getUniqueId())
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -3014,7 +3297,17 @@ public class API {
 
                         } else {
                             // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                             Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
                         }
                     }
                 });

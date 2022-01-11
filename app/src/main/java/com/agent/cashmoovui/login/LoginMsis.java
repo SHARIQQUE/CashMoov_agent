@@ -32,6 +32,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.transfer_float.CommissionTransfer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -494,6 +495,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             // MyApplication.getSaveString("COUNTRYCODE_AGENT"
                             MyApplication.saveString("COUNTRYNAME_AGENT","",LoginMsis.this);
                             MyApplication.saveString("COUNTRYCODE_AGENT","",LoginMsis.this);
+
+
                             MyApplication.saveString("USERNAME",strPhoneNo,LoginMsis.this);
                             MyApplication.saveString("PASSWORD",strPasword,LoginMsis.this);
                             MyApplication.saveString("CODE_AGENT",CODE_AGENT,LoginMsis.this);
@@ -738,10 +741,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
 
 
-                            Intent i = new Intent(LoginMsis.this, MainActivity.class);
-                            startActivity(i);
-                            finish();
-
+                           api_walletOwnerUser();
 
                         }
 
@@ -789,7 +789,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
     private void token_api() {
         try{
-
+            strPhoneNo = et_phoneNo.getText().toString();
             JSONObject jsonObject=new JSONObject();
 
             //  jsonObject.put("scope","read write");
@@ -799,6 +799,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("scope","read write");
             jsonObject.put("fcmToken",FCM_TOKEN);
 
+
+            MyApplication.saveString("USERNAME",strPhoneNo,LoginMsis.this);
 
 
 
@@ -1214,6 +1216,61 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 doubleBackToExitPressed=1;
             }
         }, 2000);
+    }
+
+
+
+    private void api_walletOwnerUser() {
+
+        String USER_CODE_FROM_TOKEN_AGENTDETAILS = MyApplication.getSaveString("userCode", LoginMsis.this);
+
+
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/loginSecurity" , languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
+
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+                        Intent i = new Intent(LoginMsis.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+
+
+                    } else {
+                        Toast.makeText(LoginMsis.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(LoginMsis.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
     }
 
 }

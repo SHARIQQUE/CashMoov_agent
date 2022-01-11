@@ -43,6 +43,9 @@ import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,9 +85,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     ArrayList<String> arrayList_walletTypeName = new ArrayList<String>();
     ArrayList<String> arrayList_wallet_value = new ArrayList<String>();
 
-    TextView insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
+    TextView t1,insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
     Spinner spinner_currency;
+
 
     SearchAdapterTransactionDetails adpter;
     String walletCode;
@@ -139,7 +143,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
         agent_textview =(TextView)findViewById(R.id.agent_textview);
         agent_textview.setOnClickListener(this);
-
+        t1=findViewById(R.id.t1);
         mainwallet_textview =(TextView)findViewById(R.id.mainwallet_textview);
         commision_wallet_textview =(TextView)findViewById(R.id.commision_wallet_textview);
         search_imageView =(ImageView) findViewById(R.id.search_imageView);
@@ -413,9 +417,17 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                             if (jsonObject != null) {
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                    if(walletTypeCode.equalsIgnoreCase("100008")){
+                                        t1.setText("Main Wallet transaction history");
+                                    }
+                                    if(walletTypeCode.equalsIgnoreCase("100009")){
+                                        t1.setText("Commission Wallet transaction history");
+                                    }
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
+
+
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
                                             miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
@@ -858,11 +870,15 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 //        }else{
 //            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
 //        }
+        NumberFormat df = DecimalFormat.getInstance();
+        df.setMinimumFractionDigits(2);
+        df.setMaximumFractionDigits(2);
+        df.setRoundingMode(RoundingMode.DOWN);
         Intent intent = new Intent(TransactionHistoryAgentPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.Amount);
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+df.format(fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -870,7 +886,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         intent.putExtra("WALLETTYPECODE",wallettypecodee);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
-        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+transactionAmount);
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));
         startActivity(intent);
     }
 

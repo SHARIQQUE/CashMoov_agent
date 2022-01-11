@@ -110,6 +110,14 @@ public class MyApplication extends Application {
 
     public  void callLogin() {
         saveBool("isLogin",false,getInstance());
+        MyApplication.saveBool("FirstLogin",false,getInstance());
+        // MyApplication.saveString("ImageName", "1", LogoutC);
+
+
+
+        getmSharedPreferences().edit().putString("isFirstRun", "YES").commit();
+
+
         Intent intent = new Intent(getInstance(), LoginMsis.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

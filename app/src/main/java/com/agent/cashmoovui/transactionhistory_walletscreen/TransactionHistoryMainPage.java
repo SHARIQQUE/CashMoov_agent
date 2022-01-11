@@ -45,6 +45,9 @@ import com.skhugh.simplepulltorefresh.PullToRefreshLayout;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -334,7 +337,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     private void api_wallet_walletOwner() {
 
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
+        String usercode_from_msis =  MyApplication.getSaveString("walletOwnerCode", TransactionHistoryMainPage.this);
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/wallet/walletOwner/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
 
@@ -1036,11 +1039,15 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 //        }else{
 //            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
 //        }
+        NumberFormat df = DecimalFormat.getInstance();
+        df.setMinimumFractionDigits(2);
+        df.setMaximumFractionDigits(2);
+        df.setRoundingMode(RoundingMode.DOWN);
         Intent intent = new Intent(TransactionHistoryMainPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.Amount);
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+df.format(fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -1048,7 +1055,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("WALLETTYPECODE",wallettypecode);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
-        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+transactionAmount);
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));
         startActivity(intent);
     }
 

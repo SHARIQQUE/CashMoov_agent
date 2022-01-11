@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +28,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
     ImageView imgBack,imgHome;
     MyApplication applicationComponentClass;
     String languageToUse = "";
+    TextView addtext;
 
     LinearLayout ll_walletowner,ll_subscriber,ll_addAgentBranch;
 
@@ -53,7 +55,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_owner_option);
 
         setBackMenu();
-
+        addtext=findViewById(R.id.addtext);
         ll_walletowner = (LinearLayout) findViewById(R.id.ll_walletowner);
         ll_subscriber = (LinearLayout) findViewById(R.id.ll_subscriber);
         ll_addAgentBranch = (LinearLayout) findViewById(R.id.ll_addAgentBranch);
@@ -68,6 +70,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.AgentCode)){
             ll_addAgentBranch.setVisibility(View.VISIBLE);
+            addtext.setText("Add Branch");
         }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.BranchCode)){
             ll_addAgentBranch.setVisibility(View.GONE);

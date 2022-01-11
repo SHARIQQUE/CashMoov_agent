@@ -39,6 +39,9 @@ import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,7 +75,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     ArrayList<String> arrayList_walletTypeName = new ArrayList<String>();
     ArrayList<String> arrayList_wallet_value = new ArrayList<String>();
 
-    TextView insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
+    TextView t1,insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
     Spinner spinner_currency;
 
@@ -124,7 +127,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
         spinner_currency.setOnItemSelectedListener(this);
 
-
+        t1 =(TextView)findViewById(R.id.t1);
         insitute_textview =(TextView)findViewById(R.id.insitute_textview);
         insitute_branch =(TextView)findViewById(R.id.insitute_branch);
         insitute_branch.setOnClickListener(this);
@@ -405,6 +408,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                             if (jsonObject != null) {
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                    if(walletTypeCode.equalsIgnoreCase("100008")){
+                                        t1.setText("Main Wallet transaction history");
+                                    }
+                                    if(walletTypeCode.equalsIgnoreCase("100009")){
+                                        t1.setText("Commission Wallet transaction history");
+                                    }
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
@@ -850,11 +859,15 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 //        }else{
 //            name = fromWalletOwnerName+" ("+walletOwnerMsisdn+")";
 //        }
+        NumberFormat df = DecimalFormat.getInstance();
+        df.setMinimumFractionDigits(2);
+        df.setMaximumFractionDigits(2);
+        df.setRoundingMode(RoundingMode.DOWN);
         Intent intent = new Intent(TransactionHistoryBranchPage.this, WalletTransactionDetails.class);
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.Amount);
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+df.format(fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -862,7 +875,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("WALLETTYPECODE",wallettypecode);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
-        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+transactionAmount);
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));
         startActivity(intent);
     }
 
