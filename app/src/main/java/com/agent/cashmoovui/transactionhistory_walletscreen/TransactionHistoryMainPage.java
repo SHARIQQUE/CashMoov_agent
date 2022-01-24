@@ -37,6 +37,7 @@ import com.agent.cashmoovui.model.MiniStatementTrans;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.settings.Profile;
+import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -44,6 +45,7 @@ import com.skhugh.simplepulltorefresh.PullToRefreshLayout;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -55,6 +57,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -67,6 +71,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     TextView main_wallet_value_textview;
     ArrayList<UserDetail> arrayList_modalDetails;
     CardView cardMainWallet,cardCommissionWallet,cardOverdraftWallet;
+
+    private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
 
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     TransactionListAdapterNew transactionListAdapterNew;
@@ -87,7 +93,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     TextView insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
-    Spinner spinner_currency;
+    TextView spinner_currency;
 
     SearchAdapterTransactionDetails adpter;
     String walletCode;
@@ -150,9 +156,15 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         nestedSV = findViewById(R.id.nestedSV);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
-        spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
-        spinner_currency.setOnItemSelectedListener(this);
-
+        spinner_currency= findViewById(R.id.spinner_currency);
+        spinner_currency.setText("Select Currency");
+        spinner_currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (spinnerDialogCurrency!=null)
+                    spinnerDialogCurrency.showSpinerDialog();
+            }
+        });
 
         insitute_textview =(TextView)findViewById(R.id.insitute_textview);
         insitute_branch =(TextView)findViewById(R.id.insitute_branch);
@@ -505,7 +517,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                             if (jsonObject != null) {
                                 miniStatementTransList.clear();
-                                String name,msisdn;
+                                String name,msisdn,toName,tomssisdn;
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                     if(walletTypeCode.equalsIgnoreCase("100008")){
@@ -520,11 +532,20 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
                                             if(data.has("receiverCustomer")){
-                                                msisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
-                                                name = data.optJSONObject("receiverCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
+                                                tomssisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
+                                                toName = data.optJSONObject("receiverCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
                                             }else{
-                                                msisdn = data.optString("toWalletOwnerMsisdn").trim();
-                                                name =  data.optString("toWalletOwnerName").trim();
+                                                tomssisdn = data.optString("toWalletOwnerMsisdn").trim();
+                                                toName =  data.optString("toWalletOwnerName").trim();
+
+                                            }
+
+                                            if(data.has("senderCustomer")){
+                                                msisdn = data.optJSONObject("senderCustomer").optString("mobileNumber");
+                                                name = data.optJSONObject("senderCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
+                                            }else{
+                                                msisdn = data.optString("fromWalletOwnerMsisdn").trim();
+                                                name =  data.optString("fromWalletOwnerName").trim();
 
                                             }
 
@@ -533,10 +554,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                     data.optString("transactionId"),
                                                     data.optString("fromWalletOwnerCode").trim(),
                                                     data.optString("toWalletOwnerCode").trim(),
-                                                    data.optString("fromWalletOwnerName").trim(),
                                                     name,
-                                                    data.optString("fromWalletOwnerMsisdn").trim(),
+                                                    toName,
                                                     msisdn,
+                                                    tomssisdn,
                                                     data.optString("fromWalletCode").trim(),
                                                     data.optString("fromWalletName").trim(),
                                                     data.optString("fromCurrencyCode").trim(),
@@ -845,10 +866,24 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         }
 
-        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
+       /* CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
         spinner_currency.setAdapter(arraadapter2);
+*/
 
 
+        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryMainPage.this, arrayList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+        spinnerDialogCurrency.setCancellable(true); // for cancellable
+        spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
+        spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
+            @Override
+            public void onClick(String item, int position) {
+                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                setSelctionCurrency(position);
+                // spBusinessType.setTag(position);
+
+            }
+        });
 
      //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
        String currencyName_mssis_agent = currencyCode;  // no currency tag is comming in MSSID
@@ -858,7 +893,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             {
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
                 System.out.println("currency Symbol"+MyApplication.currencyModelArrayList.get(i).currencySymbol);
-                spinner_currency.setSelection(i);
+                setSelctionCurrency(i);
                 MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
             }
         }
@@ -876,11 +911,29 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     }
 
 
+    public void setSelctionCurrency(int i){
+
+        SpinnerPos = i;
+        MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
+        walletCode = MyApplication.currencyModelArrayList.get(i).code;
+        mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
+        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
+        spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
+
+        page = 0;
+        limit = 20;
+        loadingPB.setVisibility(View.VISIBLE);
+        callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
 
 
-    public void createList(){
-        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
-        spinner_currency.setAdapter(arraadapter2);
+
+
+    }
+
+   /* public void createList(){
+        *//*CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);
+        spinner_currency.setAdapter(arraadapter2);*//*
 
 
         //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
@@ -893,7 +946,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 spinner_currency.setSelection(i);
             }
         }
-    }
+    }*/
 
     int SpinnerPos;
     @Override
@@ -905,23 +958,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 try {
 
-                    SpinnerPos = i;
+
 
 //                 //   Toast.makeText(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList.get(i).mainWalletValue.toString()+"---commisiiom---"
 //                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
 //                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
 //                    ;
-                    MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
-                    walletCode = MyApplication.currencyModelArrayList.get(i).code;
-                    mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
-                    commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
-                    overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
-
-
-                    page = 0;
-                    limit = 20;
-                    loadingPB.setVisibility(View.VISIBLE);
-                    callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
 
 //                    select_currency_name = arrayList_currecnyName.get(i);
 //                    select_currency_code = arrayList_currecnyCode.get(i);

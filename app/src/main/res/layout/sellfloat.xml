@@ -192,10 +192,13 @@
         android:layout_height="wrap_content"
         android:weightSum="1"
         android:orientation="horizontal">
-            <Spinner
+
+
+            <TextView
+                android:visibility="visible"
                 android:layout_weight=".15"
-                android:id="@+id/spinner_insititue"
-                style="@style/SpinnerStyleNew"
+                android:id="@+id/spinner_insitituet"
+                style="@style/SpinnerStyleNew1"
                 android:paddingLeft="@dimen/_10sdp"/>
 
         <ImageView
@@ -212,10 +215,10 @@
 
 
 
-            <Spinner
+            <TextView
                 android:paddingLeft="@dimen/_10sdp"
                 android:id="@+id/spinner_currency"
-                style="@style/SpinnerStyleNew" />
+                style="@style/SpinnerStyleNew1" />
 
 
 

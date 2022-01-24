@@ -66,6 +66,7 @@ public class CommonBaseAdapter extends BaseAdapter {
 
         names.setText(list.get(i));
 
+
         return view;
     }
 }

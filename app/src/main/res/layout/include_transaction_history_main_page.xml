@@ -40,12 +40,12 @@
                     android:textSize="@dimen/_20sdp" />
 
 
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_currency"
 
 
                     android:inputType="textEmailAddress"
-                    style="@style/SpinnerStyleNew"
+                    style="@style/SpinnerStyleNew1"
                     />
 
 

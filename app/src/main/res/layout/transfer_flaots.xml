@@ -196,20 +196,19 @@
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
                 android:drawableRight="@drawable/ic_baseline_phone_android_24"
-                android:drawablePadding="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:inputType="number"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_15sdp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:hint="@string/please_enter_mobileno"
                 android:textColor="#323232"
                 android:textSize="15sp" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/spinner_currency"
-                style="@style/SpinnerStyleNew"/>
+                style="@style/SpinnerStyleNew1"/>
 
 
 
@@ -222,7 +221,7 @@
                 android:backgroundTint="#999999"
                 android:inputType="number"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
+                android:paddingLeft="@dimen/_15sdp"
                 android:paddingTop="16dp"
                 android:maxLength="10"
                 android:paddingBottom="16dp"

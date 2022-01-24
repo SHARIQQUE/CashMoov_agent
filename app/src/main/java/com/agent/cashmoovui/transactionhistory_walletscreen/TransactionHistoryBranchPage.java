@@ -404,7 +404,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                         @Override
                         public void success(JSONObject jsonObject) {
                             MyApplication.hideLoader();
-
+                            String name,msisdn,toName,tomssisdn;
                             if (jsonObject != null) {
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
@@ -419,15 +419,33 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
+                                            if(data.has("receiverCustomer")){
+                                                tomssisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
+                                                toName = data.optJSONObject("receiverCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
+                                            }else{
+                                                tomssisdn = data.optString("toWalletOwnerMsisdn").trim();
+                                                toName =  data.optString("toWalletOwnerName").trim();
+
+                                            }
+
+                                            if(data.has("senderCustomer")){
+                                                msisdn = data.optJSONObject("senderCustomer").optString("mobileNumber");
+                                                name = data.optJSONObject("senderCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
+                                            }else{
+                                                msisdn = data.optString("fromWalletOwnerMsisdn").trim();
+                                                name =  data.optString("fromWalletOwnerName").trim();
+
+                                            }
+
                                             miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
                                                     data.optString("fromWalletOwnerCode").trim(),
                                                     data.optString("toWalletOwnerCode").trim(),
-                                                    data.optString("fromWalletOwnerName").trim(),
-                                                    data.optString("toWalletOwnerName").trim(),
-                                                    data.optString("fromWalletOwnerMsisdn").trim(),
-                                                    data.optString("toWalletOwnerMsisdn").trim(),
+                                                    name,
+                                                    toName,
+                                                    msisdn,
+                                                    tomssisdn,
                                                     data.optString("fromWalletCode").trim(),
                                                     data.optString("fromWalletName").trim(),
                                                     data.optString("fromCurrencyCode").trim(),

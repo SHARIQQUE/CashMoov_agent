@@ -60,8 +60,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
+
 public class TransferFloats extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
+    private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
     String currencySymbol_receiver="";
     ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
@@ -76,11 +80,11 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     boolean  isPasswordVisible;
 
-    Spinner  spinner_insititue,spinner_currency;
+    Spinner  spinner_insititue;
     View rootView;
 
     EditText etPin;
-    TextView tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView spinner_currency,tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,receiptPage_tv_amount_to_be_charged,
@@ -302,8 +306,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             spinner_insititue.setOnItemSelectedListener(this);
 
 
-            spinner_currency= (Spinner) findViewById(R.id.spinner_currency);
-            spinner_currency.setOnItemSelectedListener(this);
+            spinner_currency= findViewById(R.id.spinner_currency);
+            spinner_currency.setText("Select Currency");
+            spinner_currency.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (spinnerDialogCurrency!=null)
+                        spinnerDialogCurrency.showSpinerDialog();
+                }
+            });
 
 
 
@@ -424,10 +435,30 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         walletOwnerCategoryCodeTemp = jsonObject_walletOwner.getString("walletOwnerCategoryCode");
 
-                        agentName_from_walletOwner = jsonObject_walletOwner.getString("ownerName");
-                        sender_emailId_str = jsonObject_walletOwner.getString("email");
-                        sender_country_str = jsonObject_walletOwner.getString("registerCountryName");
-                        businessTypeName_walletOwnerCategoryCode = jsonObject_walletOwner.getString("businessTypeName");
+                        if(jsonObject_walletOwner.has("ownerName")){
+                            agentName_from_walletOwner = jsonObject_walletOwner.getString("ownerName");
+                        }else{
+                            agentName_from_walletOwner = "N/A";
+                        }
+
+                        if(jsonObject_walletOwner.has("email")){
+                            sender_emailId_str = jsonObject_walletOwner.getString("email");
+                        }else{
+                            sender_emailId_str = "N/A";
+                        }
+                        if(jsonObject_walletOwner.has("registerCountryName")){
+                            sender_country_str = jsonObject_walletOwner.getString("registerCountryName");
+                        }else{
+                            sender_country_str = "N/A";
+                        }
+
+                        if(jsonObject_walletOwner.has("businessTypeName")){
+                            businessTypeName_walletOwnerCategoryCode = jsonObject_walletOwner.getString("businessTypeName");
+                        }else{
+                            businessTypeName_walletOwnerCategoryCode = "N/A";
+                        }
+
+
                         rp_tv_country.setText(sender_country_str);
                         rp_tv_email.setText(sender_emailId_str);
 
@@ -552,7 +583,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             return false;
         }
 
-       else if(spinner_currency.getSelectedItemPosition()==0)
+       else if(spinner_currency.getText().equals("Select Currency"))
         {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
 
@@ -588,12 +619,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                    if(resultCode.equalsIgnoreCase("0")) {
 
 
-                        arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
+                      /*  arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
                         arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
                        arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
                        arrayList_desWalletOwnerCode.add(0,getString(R.string.select_currency_star));
 
-
+*/
 
                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
                         for(int i=0;i<jsonArray.length();i++)
@@ -634,10 +665,23 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
 
 
-                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(TransferFloats.this, arrayList_currecnyName);
+                      /*  CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(TransferFloats.this, arrayList_currecnyName);
                         spinner_currency.setAdapter(arraadapter2);
+*/
 
+                       spinnerDialogCurrency = new SpinnerDialog(TransferFloats.this, arrayList_currecnyName, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
+                       spinnerDialogCurrency.setCancellable(true); // for cancellable
+                       spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
+                       spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
+                           @Override
+                           public void onClick(String item, int position) {
+                               //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                               setSelctionCurrency(position);
+                               // spBusinessType.setTag(position);
+
+                           }
+                       });
                         api_walletOwner();
                     }
 
@@ -1603,6 +1647,17 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    public void setSelctionCurrency(int pos){
+
+        selectCurrecnyName = arrayList_currecnyName.get(pos );
+        selectCurrecnyCode = arrayList_currecnyCode.get(pos );
+
+        currencySymbol_receiver = arrayList_currencySymbol.get(pos );
+        walletOwnerCode_destination = arrayList_desWalletOwnerCode.get(pos );
+        spinner_currency.setText(arrayList_currecnyName.get(pos));
+       // edittext_amount.requestFocus();
+
+    }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
@@ -1611,12 +1666,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             case R.id.spinner_currency:
             {
 
-                    selectCurrecnyName = arrayList_currecnyName.get(i );
+                   /* selectCurrecnyName = arrayList_currecnyName.get(i );
                     selectCurrecnyCode = arrayList_currecnyCode.get(i );
 
                     currencySymbol_receiver = arrayList_currencySymbol.get(i );
                     walletOwnerCode_destination = arrayList_desWalletOwnerCode.get(i );
-
+*/
 
 
             }

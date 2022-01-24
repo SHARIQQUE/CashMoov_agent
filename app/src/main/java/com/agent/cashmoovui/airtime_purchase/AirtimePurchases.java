@@ -847,7 +847,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     private void api_country_all() {
 
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+       // MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/country/all", languageToUse, new Api_Responce_Handler() {
@@ -1118,7 +1118,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     private void api_serviceProvider_serviceCategory_serviceCode() {
 
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+        //MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
         // Hard Code Final Deepak
 

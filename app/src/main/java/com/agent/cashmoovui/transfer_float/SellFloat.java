@@ -76,6 +76,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
+
 public class SellFloat extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener, CallBackSellFloatRecycleViewClick {
 
     String[] strArray={"10","25","50","100"};
@@ -103,7 +106,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-    Spinner  spinner_insititue,spinner_currency,spinner_record;
+    Spinner spinner_record;
+    TextView  spinner_insititue,spinner_currency;
 
     View rootView;
 
@@ -119,7 +123,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     String languageToUse = "";
 
     EditText edittext_amount,et_mpin;
-
+    private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
 
     String amountstr="",agentName_from_walletOwner="", businessTypeName_walletOwnerCategoryCode="",email_walletOwnerCategoryCode="";
 
@@ -162,7 +166,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         applicationComponentClass = (MyApplication) getApplicationContext();
 
-        try {
+
 
             languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
 
@@ -269,19 +273,33 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", SellFloat.this);
 
 
-            spinner_insititue= (Spinner) findViewById(R.id.spinner_insititue);
-            spinner_insititue.setOnItemSelectedListener(this);
+            spinner_insititue=  findViewById(R.id.spinner_insitituet);
+            spinner_insititue.setText("Select Institute");
+            spinner_insititue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (spinnerDialogImstitute!=null)
+                        spinnerDialogImstitute.showSpinerDialog();
+                }
+            });
 
             spinner_record= (Spinner) findViewById(R.id.spinner_record);
             spinner_record.setOnItemSelectedListener(this);
 
 
 
-            spinner_currency= (Spinner) findViewById(R.id.spinner_currency);
-            spinner_currency.setOnItemSelectedListener(this);
+            spinner_currency= findViewById(R.id.spinner_currency);
+        spinner_currency.setText("Select Currency");
+            spinner_currency.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (spinnerDialogCurrency!=null)
+                        spinnerDialogCurrency.showSpinerDialog();
+                }
+            });
 
 
-            api_insititute();
+
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
@@ -319,8 +337,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             if (new InternetCheck().isConnected(SellFloat.this)) {
 
 
+                api_insititute();
 
-                api_allSellFloat_featureCode(recordString);
 
 
 
@@ -332,12 +350,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             spinner_record.setAdapter(recordAdapter);
 
 
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
 
-        }
 
     }
 
@@ -392,9 +405,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        arrayList_instititueName.add(0,getString(R.string.select_institute_star));
-                        arrayList_instititueCode.add(0,getString(R.string.select_institute_star));
-                        arrayList_instititue_countryCode.add(0,getString(R.string.select_institute_star));
+                       // arrayList_instititueName.add(0,getString(R.string.select_institute_star));
+                       // arrayList_instititueCode.add(0,getString(R.string.select_institute_star));
+                       // arrayList_instititue_countryCode.add(0,getString(R.string.select_institute_star));
 
 
 
@@ -438,7 +451,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                                 if (jsonObject3.has("mobileNumber")) {
                                     mobileNumber_temp = jsonObject3.getString("mobileNumber");
-                                    arrayList_instititueName.add(ownerNameTemp + "(" + mobileNumber_temp + ")");
+                                    arrayList_instititueName.add(mobileNumber_temp + "(" + ownerNameTemp + ")");
                                 } else {
                                     arrayList_instititueName.add(ownerNameTemp);
                                 }
@@ -473,10 +486,21 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        CommonBaseAdapter aaaaaa = new CommonBaseAdapter(SellFloat.this, arrayList_instititueName);
-                        spinner_insititue.setAdapter(aaaaaa);
 
+                        spinnerDialogImstitute = new SpinnerDialog(SellFloat.this, arrayList_instititueName, "Select Institute Type", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
+                        spinnerDialogImstitute.setCancellable(true); // for cancellable
+                        spinnerDialogImstitute.setShowKeyboard(false);// for open keyboard by default
+                        spinnerDialogImstitute.bindOnSpinerListener(new OnSpinerItemClick() {
+                            @Override
+                            public void onClick(String item, int position) {
+                                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                setSelction(position);
+                               // spBusinessType.setTag(position);
+
+                            }
+                        });
+                        api_allSellFloat_featureCode(recordString);
 
                         //api_currency_spinner_details();
 
@@ -577,14 +601,14 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         amountstr = edittext_amount.getText().toString().trim();
 
-        if (spinner_insititue.getSelectedItemPosition()==0) {
+        if (spinner_insititue.getText().equals("Select Institute")) {
 
             MyApplication.showErrorToast(this, getString(R.string.select_institute));
 
             return false;
         }
 
-        else if (spinner_currency.getSelectedItemPosition()==0) {
+        else if (spinner_currency.getText().equals("Select Currency")) {
 
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
 
@@ -633,10 +657,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     if(resultCode.equalsIgnoreCase("0")) {
 
 
-                        arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
+                       /* arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
                         arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
                         arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
-
+*/
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
                         for(int i=0;i<jsonArray.length();i++)
                         {
@@ -656,8 +680,22 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(SellFloat.this, arrayList_currecnyName);
-                        spinner_currency.setAdapter(arraadapter2);
+
+
+                        spinnerDialogCurrency = new SpinnerDialog(SellFloat.this, arrayList_currecnyName, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+                        spinnerDialogCurrency.setCancellable(true); // for cancellable
+                        spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
+                        spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
+                            @Override
+                            public void onClick(String item, int position) {
+                                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                setSelctionCurrency(position);
+                                // spBusinessType.setTag(position);
+
+                            }
+                        });
+
 
 
                         api_walletOwner();
@@ -1779,13 +1817,14 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
             String requiredValue = data.getStringExtra("PHONE");
-            for (int i = 0; i < arrayList_instititueCode.size(); i++) {
-                if (requiredValue.equalsIgnoreCase(arrayList_instititueCode.get(i)))
-                {
-                    spinner_insititue.setSelection(i);
 
-                }
+            int position = arrayList_instititueCode.indexOf(requiredValue);
+            if (position == -1) {
+               MyApplication.showToast(SellFloat.this,"Institute not found!");
+            } else {
+                setSelction(position);
             }
+
 
 
         }
@@ -1852,7 +1891,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                     for (int i = 0; i < arrayList_instititueCode.size(); i++) {
                                         if (select_insitute_code_temp.equalsIgnoreCase(arrayList_instititueCode.get(i)))
                                         {
-                                            spinner_insititue.setSelection(i);
+                                           setSelction(i);
                                         }
                                     }
 
@@ -1902,6 +1941,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         startActivity(intent);
         finish();
     }*/
+
+
 
 
     public static Bitmap getScreenShot(View view) {
@@ -1980,6 +2021,27 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     int pos;
 
+
+
+    public void setSelction(int pos){
+        spinner_insititue.setText(arrayList_instititueName.get(pos));
+        select_insitute_name = arrayList_instititueName.get(pos);
+        select_insitute_code = arrayList_instititueCode.get(pos);
+
+            api_currency_spinner_details(instituteListModelArrayList.get(pos).getWalletOwnerCode());
+        this.pos = pos;
+    }
+
+    public void setSelctionCurrency(int pos){
+
+        select_currecnyName = arrayList_currecnyName.get(pos);
+        select_currecnyCode = arrayList_currecnyCode.get(pos);
+        currencySymbol_receiver = arrayList_currencySymbol.get(pos);
+
+        spinner_currency.setText(arrayList_currecnyName.get(pos));
+        edittext_amount.requestFocus();
+
+    }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
@@ -1988,11 +2050,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             case R.id.spinner_insititue:
             {
 
-                select_insitute_name = arrayList_instititueName.get(i);
-                select_insitute_code = arrayList_instititueCode.get(i);
-                if(i>0)
-                api_currency_spinner_details(instituteListModelArrayList.get(i).getWalletOwnerCode());
-                pos = i-1;
+
 
             }
             break;
@@ -2042,10 +2100,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             case R.id.spinner_currency:
             {
-                select_currecnyName = arrayList_currecnyName.get(i);
-                select_currecnyCode = arrayList_currecnyCode.get(i);
-                currencySymbol_receiver = arrayList_currencySymbol.get(i);
-                edittext_amount.requestFocus();
+
 
             }
 
