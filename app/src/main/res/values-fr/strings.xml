@@ -633,7 +633,7 @@
     <string name="val_valid_amount">Veuillez saisir un montant valide</string>
 
 
-    <string name="country_star">Pays</string>
+    <string name="country_star">Pays*</string>
     <string name="mobileNumber_star">Numéro de portable*</string>
     <string name="confirmation_code_star">code de confirmation*</string>
 
@@ -743,6 +743,7 @@
     <string name="Contacts">Contacts</string>
     <string name="search_here">Cherche ici...</string>
     <string name="go">Aller</string>
+    <string name="first_name_star">Prénom*</string>
 
 </resources>
 

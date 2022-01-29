@@ -1,9 +1,12 @@
 package com.agent.cashmoovui.wallet_owner.agent;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,13 +29,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class AgentKYC extends AppCompatActivity implements View.OnClickListener {
     public static AgentKYC agentkycC;
+    DatePickerDialog picker;
     TextView spAccType,spBusinessType,spCountry,spRegion,spCity,spIdProof,tvNext;
-    public static EditText etAgentName,etLname,etEmail,etPhone,etAddress,etProofNo;
+    public static EditText etAgentName,etLname,etEmail,etPhone,etAddress,etDob,etProofNo;
     private ArrayList<String> businessTypeList = new ArrayList<>();
     private ArrayList<BusinessTypeModel.BusinessType> businessTypeModelList = new ArrayList<>();
     private ArrayList<String> idProofTypeList = new ArrayList<>();
@@ -81,6 +87,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
         spCity = findViewById(R.id.spCity);
         spIdProof = findViewById(R.id.spIdProof);
         etAddress = findViewById(R.id.etAddress);
+        etDob = findViewById(R.id.etDob);
         etAgentName = findViewById(R.id.etAgentName);
         etLname = findViewById(R.id.etLname);
         etEmail = findViewById(R.id.etEmail);
@@ -110,6 +117,27 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     }
                 }
                 return false;
+            }
+        });
+
+
+        etDob.setInputType(InputType.TYPE_NULL);
+        etDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(agentkycC,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                etDob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            }
+                        }, 1960, 01, 00);
+                picker.show();
             }
         });
 
@@ -257,6 +285,12 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
+                if(etDob.getText().toString().trim().isEmpty()) {
+                    // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_dob));
+                    MyApplication.showTipError(this,getString(R.string.val_dob),etDob);
+                    MyApplication.hideKeyboard(agentkycC);
+                    return;
+                }
                 if(spIdProof.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showTipError(this,getString(R.string.val_select_id_proof),spIdProof);
                     MyApplication.hideKeyboard(agentkycC);
@@ -272,7 +306,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     jsonObject.put("code","");
                     jsonObject.put("ownerName",etAgentName.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
-                    jsonObject.put("dateOfBirth","");
+                    jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
                     jsonObject.put("idExpiryDate","");
                     jsonObject.put("email",etEmail.getText().toString().trim());
                     jsonObject.put("gender","");

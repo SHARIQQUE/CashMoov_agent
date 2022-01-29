@@ -385,8 +385,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                 @Override
                 public void afterTextChanged(Editable s) {
-
-                    if(s.length()>=3) {
+                    if(s.length()>=9) {
                         callApiMsisdnPrefix(s.toString());
                     }
 
@@ -417,6 +416,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         }
 
     }
+
 
     private void callApiMsisdnPrefix(String s) {
 
@@ -455,19 +455,20 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         //mpin_final_api();
 
                     } else {
-
-                        if(resultDescription.equalsIgnoreCase("Operator Not Found"))
-                        {
-                            // Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
-                            MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
-
-                            // mpin_final_api();
-                        }
-                        else
-                        {
-                            Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
-
-                        }
+                        Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+//
+//                        if(resultDescription.equalsIgnoreCase("Operator Not Found"))
+//                        {
+//                            // Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+//                            MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+//
+//                            // mpin_final_api();
+//                        }
+//                        else
+//                        {
+//                            Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+//
+//                        }
                     }
 
 
@@ -1188,9 +1189,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/operator/allByCriteria?msisdnPrefix=224"+firstTwodigits+"&status=Y",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
-
-
-
                 MyApplication.hideLoader();
 
                 try {

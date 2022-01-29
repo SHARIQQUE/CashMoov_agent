@@ -636,7 +636,7 @@
     <string name="val_valid_amount">Please enter valid amount</string>
 
 
-    <string name="country_star">Country</string>
+    <string name="country_star">Country*</string>
     <string name="mobileNumber_star">Mobile number*</string>
     <string name="firstname_star">First name</string>
     <string name="Date_OF_Birth">Date of Birth</string>
@@ -745,6 +745,7 @@
     <string name="Contacts">Contacts</string>
     <string name="search_here">Search here...</string>
     <string name="go">Go</string>
+    <string name="first_name_star">First Name*</string>
 
 
 </resources>

@@ -29,6 +29,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
+import com.agent.cashmoovui.model.OccupationTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 
@@ -48,8 +49,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     public static SubscriberKYC subscriberkycC;
     DatePickerDialog picker;
     public static EditText etFname,etLname,etPhone,etEmail,etAddress,etDob,etProofNo;
-    TextView tvNext,spGender,spIdProof,spRegion,spCity;
-    SpinnerDialog spinnerDialogRegion,spinnerDialogCity,spinnerDialogGender,spinnerDialogIdProofType;
+    TextView tvNext,spGender,spIdProof,spOccupation,spRegion,spCity;
+    SpinnerDialog spinnerDialogRegion,spinnerDialogCity,spinnerDialogGender,spinnerDialogIdProofType,spinnerDialogOccupation;
 
     private ArrayList<String> regionList = new ArrayList<>();
     private ArrayList<RegionInfoModel.Region> regionModelList = new ArrayList<>();
@@ -62,6 +63,9 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     private ArrayList<String> idProofTypeList = new ArrayList<>();
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     public static String idProofTypeCode,subscriberWalletOwnerCode;
+
+    private ArrayList<String> occupationTypeList = new ArrayList<>();
+    private ArrayList<OccupationTypeModel.OccupationType> occupationTypeModelList=new ArrayList<>();
 
     public static final int REQUEST_CODE = 1;
 
@@ -99,6 +103,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         etDob = findViewById(R.id.etDob);
         spIdProof = findViewById(R.id.spIdProof);
         etProofNo = findViewById(R.id.etProofNo);
+        spOccupation = findViewById(R.id.spOccupation);
         tvNext = findViewById(R.id.tvNext);
 
         etPhone.setOnTouchListener(new View.OnTouchListener() {
@@ -179,6 +184,14 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     spinnerDialogIdProofType.showSpinerDialog();
             }
         });
+        spOccupation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogOccupation!=null)
+                    spinnerDialogOccupation.showSpinerDialog();
+            }
+        });
+
 
         callApiRegions();
 
@@ -292,6 +305,12 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
+                if(spOccupation.getText().toString().equals(getString(R.string.valid_select_occupation))) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_occupation));
+                    MyApplication.showTipError(this,getString(R.string.val_select_occupation),spOccupation);
+                    MyApplication.hideKeyboard(subscriberkycC);
+                    return;
+                }
                 JSONObject jsonObject=new JSONObject();
                 try {
                     jsonObject.put("ownerName",etFname.getText().toString().trim());
@@ -310,7 +329,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", subscriberkycC));
                     jsonObject.put("notificationTypeCode","100002");
                     jsonObject.put("profileTypeCode","100000");
-                    jsonObject.put("occupationTypeCode","100001");
+                    jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
                     jsonObject.put("state","U");
                     jsonObject.put("status","N");
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.SubscriberCode);
@@ -500,6 +519,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                                         }
                                     });
 
+                                    callApiIdProofType();
+
                                 } else {
                                     MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -516,8 +537,6 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         } catch (Exception e) {
 
         }
-
-        callApiIdProofType();
 
 
     }
@@ -562,6 +581,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                                         }
                                     });
 
+                                    callApiOccupationType();
+
                                 } else {
                                     MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription", "N/A"));
                                 }
@@ -575,6 +596,63 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                         }
                     });
 
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void callApiOccupationType() {
+        try {
+            API.GET_PUBLIC("ewallet/public/occupationType/all",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                occupationTypeList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("occupationTypeList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        occupationTypeModelList.add(new OccupationTypeModel.OccupationType(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("type"),
+                                                data.optString("status"),
+                                                data.optString("creationDate")
+
+                                        ));
+
+                                        occupationTypeList.add(data.optString("type").trim());
+
+                                    }
+                                    spinnerDialogOccupation = new SpinnerDialog(subscriberkycC, occupationTypeList, "Select Occupation", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogOccupation.setCancellable(true); // for cancellable
+                                    spinnerDialogOccupation.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogOccupation.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spOccupation.setText(item);
+                                            spOccupation.setTag(position);
+                                        }
+                                    });
+
+                                } else {
+                                    MyApplication.showToast(subscriberkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
 
         } catch (Exception e) {
 

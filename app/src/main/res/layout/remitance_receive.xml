@@ -184,7 +184,7 @@
                 android:paddingTop="16dp"
                 android:maxLength="11"
                 android:paddingBottom="16dp"
-                android:hint="@string/confirmation_code"
+                android:hint="@string/confirmation_code_star"
                 android:textColor="#323232"
                 android:textSize="15sp" />
             <EditText
@@ -222,6 +222,23 @@
                 android:hint="@string/country_star"
                 android:textColor="#323232"
                 android:textSize="15sp" />
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/edittext_currencyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_edittextname"
+        android:backgroundTint="#999999"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="10sp"
+        android:paddingLeft="37.5dp"
+        android:paddingTop="16dp"
+        android:maxLength="20"
+        android:paddingBottom="16dp"
+        android:hint="@string/valid_beneficiary_currency"
+        android:textColor="#323232"
+        android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/edittext_firstName"
@@ -236,7 +253,7 @@
                 android:paddingTop="16dp"
                 android:maxLength="20"
                 android:paddingBottom="16dp"
-                android:hint="@string/first_name"
+                android:hint="@string/first_name_star"
                 android:textColor="#323232"
                 android:textSize="15sp" />
 

@@ -619,7 +619,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         if (sender_phoneNumber_string.length()>7) {
 
-                              // searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+                              searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
 
                         }
 
@@ -654,7 +654,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         if (et_destination_mobileNumber.length()>7) {
 
-                           // searchData_des_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+                            searchData_des_mobileNumber();   // Temporaty Stop Multiple Data record Coming
 
                         }
 
@@ -1941,7 +1941,12 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
             return false;
         }
+        else if (lastname_destinationStr.trim().length() < 2) {
 
+            MyApplication.showErrorToast(this, getString(R.string.last_name));
+
+            return false;
+        }
 
         else if (spinner_destination_gender.getSelectedItemPosition()==0)
         {
@@ -1966,6 +1971,13 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             return false;
         }
 
+
+        else if (destination_address_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.val_address));
+
+            return false;
+        }
 
 
 
@@ -2822,6 +2834,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             jsonObject.put("receiveCountryCode",select_receiver_CountryCode);
             jsonObject.put("toCurrencyCode", select_receiver_currencyCode); // Hard Code according  to Deepak
             //   jsonObject.put("toCurrencyCode", selectReceiverCountryCode);
+            jsonObject.put("remitType","Local Remit");
 
 
             API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObject, languageToUse, new Api_Responce_Handler() {

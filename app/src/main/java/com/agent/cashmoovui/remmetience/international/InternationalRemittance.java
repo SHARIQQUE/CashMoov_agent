@@ -645,7 +645,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         if (sender_phoneNumber_string.length()>7) {
 
-                               //searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+                               searchData_sender_mobileNumber();   // Temporaty Stop Multiple Data record Coming
 
                         }
 
@@ -679,7 +679,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         if (et_destination_mobileNumber.length()>7) {
 
-                           //  searchData_des_mobileNumber();   // Temporaty Stop Multiple Data record Coming
+                             searchData_des_mobileNumber();   // Temporaty Stop Multiple Data record Coming
 
                         }
 
@@ -1956,6 +1956,12 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             return false;
         }
+        else if (lastname_destinationStr.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.last_name));
+
+            return false;
+        }
 
 
         else if (spinner_destination_gender.getSelectedItemPosition()==0)
@@ -1963,7 +1969,6 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             MyApplication.showErrorToast(this, getString(R.string.genderSelect_fixed));
             return false;
         }
-
 
 
 
@@ -1981,6 +1986,20 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             return false;
         }
 
+        else if (spinner_destination_country.getSelectedItemPosition()==0)
+        {
+            MyApplication.showErrorToast(this, getString(R.string.val_select_country));
+
+            return false;
+        }
+
+
+        else if (destination_address_string.trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.val_address));
+
+            return false;
+        }
 
 
 
@@ -2837,6 +2856,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             jsonObject.put("receiveCountryCode",select_receiver_CountryCode);
             jsonObject.put("toCurrencyCode", select_receiver_currencyCode); // Hard Code according  to Deepak
             //   jsonObject.put("toCurrencyCode", selectReceiverCountryCode);
+            jsonObject.put("remitType","International Remit");
 
 
             API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObject, languageToUse, new Api_Responce_Handler() {

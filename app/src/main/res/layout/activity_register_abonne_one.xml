@@ -114,7 +114,7 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:inputType="phone"
-                    android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                    android:drawableRight="@drawable/ic_contact"
                     android:drawablePadding="@dimen/_10sdp"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
@@ -289,7 +289,29 @@
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp" />
 
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_7sdp"
+                    android:paddingBottom="@dimen/_7sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:textColor="@color/textColorLBlack">
+                    <TextView
+                        android:id="@+id/spOccupation"
+                        android:padding="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawableRight="@drawable/ic_arrow_down"
+                        android:text="@string/valid_select_occupation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
                 <TextView
                     android:id="@+id/tvNext"
                     android:layout_width="match_parent"

@@ -735,12 +735,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             }
 
 
-
-
-
-
-
-
                            api_walletOwnerUser();
 
                         }

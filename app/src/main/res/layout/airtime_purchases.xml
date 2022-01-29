@@ -186,7 +186,7 @@
 
             <EditText
                 android:id="@+id/edittext_mobileNo"
-                android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                android:drawableRight="@drawable/ic_contact"
                 android:drawablePadding="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
 

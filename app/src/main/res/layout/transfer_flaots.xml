@@ -195,7 +195,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
-                android:drawableRight="@drawable/ic_baseline_phone_android_24"
+                android:drawableRight="@drawable/ic_contact"
                 android:paddingEnd="@dimen/_10sdp"
                 android:inputType="number"
                 android:lineSpacingExtra="10sp"

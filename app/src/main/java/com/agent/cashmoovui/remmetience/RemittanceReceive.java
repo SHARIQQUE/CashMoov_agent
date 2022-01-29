@@ -78,7 +78,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     ImageView imgBack,imgHome;
 
     TextView exportReceipt_textview;
-    String   countryName_from_confcode="",countryCode_from_confcode="",firstName_from_confcode="",lastName_from_confcode="",gender_from_confcode="",currencyCode_from_confcode="";
+    String countryName_from_confcode="",currencyName_from_confcode="",countryCode_from_confcode="",firstName_from_confcode="",lastName_from_confcode="",gender_from_confcode="",currencyCode_from_confcode="";
     View rootView;
 
     TextView tv_nextClick, rp_tv_senderName,receiptPage_sender_mssidn,receiptPage_sbenificairay_mssidn,receiptPage_conversion_rate, receiptPage_confirmationCode,rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
@@ -88,7 +88,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage,ll_pin,ll_successPage;
     MyApplication applicationComponentClass;
     String languageToUse = "";
-    EditText edittext_email,edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,edittext_firstName,edittext_gender;
+    EditText edittext_email,edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,
+            edittext_currencyName,edittext_firstName,edittext_gender;
     String mobileNoStr = "", amountstr  = "",confirmationCodeStr;
     String walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, senderNameAgent = "";
     String currencyCode_agent = "", countryCode_agent = "", currencyName_agent = "";
@@ -191,6 +192,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
             qrCode_imageButton = (ImageButton) findViewById(R.id.qrCode_imageButton);
             edittext_countryName = (EditText) findViewById(R.id.edittext_countryName);
+            edittext_currencyName = findViewById(R.id.edittext_currencyName);
             edittext_gender = (EditText) findViewById(R.id.edittext_gender);
             edittext_firstName = (EditText) findViewById(R.id.edittext_firstName);
 
@@ -389,6 +391,24 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
        else if (amountstr.trim().length() < 2) {
 
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
+
+            return false;
+        }
+        else if (edittext_countryName.getText().toString().trim().isEmpty()) {
+
+            MyApplication.showErrorToast(this, getString(R.string.val_select_country));
+
+            return false;
+        }
+//        else if (edittext_currencyName.getText().toString().trim().isEmpty()) {
+//
+//            MyApplication.showErrorToast(this, getString(R.string.currency_Name));
+//
+//            return false;
+//        }
+        else if (edittext_firstName.getText().toString().trim().length() < 2) {
+
+            MyApplication.showErrorToast(this, getString(R.string.val_fname));
 
             return false;
         }
@@ -595,6 +615,12 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         } else {
                             countryName_from_confcode = "";
                         }
+//
+//                        if (jsonObject_beneficiaryCustomer.has("currencyName")) {
+//                            currencyName_from_confcode = jsonObject_beneficiaryCustomer.getString("countryName");
+//                        } else {
+//                            currencyName_from_confcode = "";
+//                        }
 
                         if (jsonObject_beneficiaryCustomer.has("gender")) {
                             gender_from_confcode = jsonObject_beneficiaryCustomer.getString("gender");
@@ -632,10 +658,12 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         edittext_firstName.setEnabled(false);
                         edittext_countryName.setEnabled(false);
+                        edittext_currencyName.setEnabled(false);
                         edittext_gender.setEnabled(false);
 
                         edittext_firstName.setText(firstName_from_confcode);
                         edittext_countryName.setText(countryName_from_confcode);
+                        edittext_currencyName.setText(currencyName_from_confcode);
 
 
                         if (jsonObject.has("accountHolding")) {
