@@ -67,7 +67,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         etAmount = findViewById(R.id.etAmount);
         tvSend = findViewById(R.id.tvSend);
 
-        tvOperatorName.setText(Payments.name);
+        tvOperatorName.setText(Payments.operatorName);
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -125,8 +125,8 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
             dataToSend.put("amount", etAmount.getText().toString());
             dataToSend.put("channel", "SELFCARE");
             dataToSend.put("fromCurrencyCode", "100062");
-            dataToSend.put("operator", Payments.code);
-            dataToSend.put("productCode", Payments.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"));
+            dataToSend.put("operator", Payments.operatorCode);
+            dataToSend.put("productCode", PaymentsProduct.productCode);
             dataToSend.put("requestType", "recharge");
             dataToSend.put("serviceCode", Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
             dataToSend.put("serviceCategoryCode", Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
@@ -157,7 +157,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
                             + "&serviceCategoryCode=" + Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode") +
                             "&serviceProviderCode=" + Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode") +
                             "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", paymentdetailsC) +
-                            "&productCode=" + Payments.productCategory.optJSONArray("productList").optJSONObject(0).optString("code"),
+                            "&productCode=" + PaymentsProduct.productCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

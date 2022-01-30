@@ -82,7 +82,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
 
         // tvProvider.setText(Payments.serviceProvider);
         tvAccNo.setText(PaymentDetails.etAccountNo.getText().toString());
-        tvOperatorName.setText(Payments.name);
+        tvOperatorName.setText(Payments.operatorName);
         // tvCurrency.setText(Payments.currency);
 
         tvTransAmount.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentDetails.etAmount.getText().toString()));

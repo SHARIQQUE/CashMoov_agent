@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.agent.cashmoovui.ContactListLisners;
+import com.agent.cashmoovui.listeners.ContactListLisners;
 import com.agent.cashmoovui.R;
 
 import java.util.ArrayList;

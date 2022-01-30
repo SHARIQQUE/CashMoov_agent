@@ -746,6 +746,7 @@
     <string name="search_here">Search here...</string>
     <string name="go">Go</string>
     <string name="first_name_star">First Name*</string>
+    <string name="choose_product">Choose the product</string>
 
 
 </resources>
