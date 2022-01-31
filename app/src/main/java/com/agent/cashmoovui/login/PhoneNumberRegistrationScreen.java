@@ -405,7 +405,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                         MyApplication.saveString("loginPassword",etPass.getText().toString().trim(), phnoregistrationccreenC);
 
-                        if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                        if (jsonObject.optBoolean("loginWithOtpRequired")) {
                             Intent i = new Intent(phnoregistrationccreenC, VerifyLoginOTPScreen.class);
                             startActivity(i);
                             finish();
@@ -421,7 +421,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                         MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
 
-                        if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                        if (jsonObject.optBoolean("loginWithOtpRequired")) {
                             Intent i = new Intent(phnoregistrationccreenC, VerifyLoginOTPScreen.class);
                             startActivity(i);
                             finish();

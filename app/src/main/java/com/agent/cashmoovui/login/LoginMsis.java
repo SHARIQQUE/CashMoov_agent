@@ -899,7 +899,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                                 }
 
-                            if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                            if (jsonObject.optBoolean("loginWithOtpRequired")) {
                                 Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
                                 startActivity(i);
                                 finish();

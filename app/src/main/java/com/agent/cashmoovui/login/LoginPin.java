@@ -414,7 +414,7 @@ public class LoginPin extends AppCompatActivity {
 
                             }
 
-                            if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                            if (jsonObject.optBoolean("loginWithOtpRequired")) {
                                 Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
                                 startActivity(i);
                                 finish();
@@ -587,7 +587,7 @@ public class LoginPin extends AppCompatActivity {
 
                             }
 
-                            if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                            if (jsonObject.optBoolean("loginWithOtpRequired")) {
                                 Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
                                 startActivity(i);
                                 finish();
