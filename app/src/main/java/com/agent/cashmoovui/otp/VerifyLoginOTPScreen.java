@@ -151,7 +151,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnCl
 
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyLoginOTPScreen.this,"Verify OTP");
-            API.POST_REQEST_LoginOTP("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {
+            API.POST_REQEST_GENERATEOTP("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

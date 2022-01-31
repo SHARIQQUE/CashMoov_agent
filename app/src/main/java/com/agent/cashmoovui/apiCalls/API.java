@@ -321,6 +321,89 @@ public class API {
 
     }
 
+    public static void POST_REQEST_GENERATEOTP(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
+
+        AndroidNetworking.post(BASEURL+URL)
+                .addBodyParameter("username",jsonObject.optString("username")) // posting json
+                .addBodyParameter("password",jsonObject.optString("password"))
+                .addBodyParameter("grant_type","password")
+                .addHeaders("Accept-Language","en")
+                .addHeaders("channel","APP")
+                .addHeaders("type","GENERATEOTP")
+                .addHeaders("source","AGENT")
+                // .addHeaders("Accept-Language",MyApplication.getLang())
+                .addHeaders("mac",MyApplication.getUniqueId())
+                .addHeaders("deviceId",MyApplication.getUniqueId())
+                .addHeaders("Authorization", Credentials.basic("cashmoov", "123456"))
+
+                .setOkHttpClient(okHttpClient)
+                .setTag("test")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setAnalyticsListener(new AnalyticsListener() {
+                    @Override
+                    public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                        Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                        Log.d(TAG, " bytesSent : " + bytesSent);
+                        Log.d(TAG, " bytesReceived : " + bytesReceived);
+                        Log.d(TAG, " isFromCache : " + isFromCache);
+                    }
+                })
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        MyApplication.hideLoader();
+
+
+                        responce_handler.success(response);
+
+                        Log.d(TAG, "onResponse object : " + response.toString());
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        MyApplication.hideLoader();
+                        try {
+                            JSONObject error1=new JSONObject(error.getErrorBody());
+                            if(error1.optString("error").equalsIgnoreCase("1251")){
+                                //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                responce_handler.failure("1251");
+                            }else{
+                                JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            }
+
+                        }catch (Exception e)
+                        {
+
+                        }
+
+                        if (error.getErrorCode() != 0) {
+                            if(error.getErrorCode()==401){
+                                MyApplication.showAPIToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
+                            Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                            Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+
+                        } else {
+                            // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                            Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            if(error.getErrorDetail().equalsIgnoreCase("connectionError")){
+                                //MyApplication.showToast("Unauthorized Request......");
+                                MyApplication.getInstance().callLogin();
+
+                            }
+                        }
+                    }
+                });
+
+    }
+
+
     public static void POST_REQEST_LoginOTP(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
 
         AndroidNetworking.post(BASEURL+URL)
