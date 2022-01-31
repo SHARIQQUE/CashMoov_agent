@@ -1,9 +1,12 @@
 package com.agent.cashmoovui.wallet_owner.branch;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.BusinessTypeModel;
 import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
+import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
@@ -28,13 +32,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class BranchKYC extends AppCompatActivity implements View.OnClickListener {
     public static BranchKYC branchkycC;
-    TextView spAccType,spBusinessType,spCountry,spRegion,spCity,spIdProof,tvNext;
-    public static EditText etBranchName,etLname,etEmail,etPhone,etAddress,etProofNo;
+    DatePickerDialog picker;
+    TextView spAccType,spBusinessType,spCountry,spRegion,spCity,spGender,spIdProof,tvNext;
+    public static EditText etBranchName,etLname,etEmail,etPhone,etAddress,etDob,etProofNo;
     private ArrayList<String> businessTypeList = new ArrayList<>();
     private ArrayList<BusinessTypeModel.BusinessType> businessTypeModelList = new ArrayList<>();
     private ArrayList<String> idProofTypeList = new ArrayList<>();
@@ -45,9 +52,11 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private ArrayList<RegionInfoModel.Region> regionModelList = new ArrayList<>();
     private ArrayList<String> cityList = new ArrayList<>();
     private ArrayList<CityInfoModel.City> cityModelList = new ArrayList<>();
+    private ArrayList<String> genderList = new ArrayList<>();
+    private ArrayList<GenderModel.Gender> genderModelList=new ArrayList<>();
 
     private SpinnerDialog spinnerDialogBusinessType,spinnerDialogIdProofType,spinnerDialogCountry,
-            spinnerDialogRegion,spinnerDialogCity;
+            spinnerDialogRegion,spinnerDialogCity,spinnerDialogGender;
     public static String idProofTypeCode,branchWalletOwnerCode;
     private SwitchButton sbLoginwithotp;
     private boolean loginwithOtp=false;
@@ -84,13 +93,14 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         spCountry = findViewById(R.id.spCountry);
         spRegion = findViewById(R.id.spRegion);
         spCity = findViewById(R.id.spCity);
+        spGender = findViewById(R.id.spGender);
         spIdProof = findViewById(R.id.spIdProof);
-        etAddress = findViewById(R.id.etAddress);
         etBranchName = findViewById(R.id.etBranchName);
         etLname = findViewById(R.id.etLname);
         etEmail = findViewById(R.id.etEmail);
         etPhone = findViewById(R.id.etPhone);
         etAddress = findViewById(R.id.etAddress);
+        etDob = findViewById(R.id.etDob);
         etProofNo = findViewById(R.id.etProofNo);
         sbLoginwithotp = findViewById(R.id.sbLoginwithotp);
         tvNext = findViewById(R.id.tvNext);
@@ -106,6 +116,26 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     loginwithOtp = false;
                    // MyApplication.showToast(branchkycC, String.valueOf(loginwithOtp));
                 }
+            }
+        });
+
+        etDob.setInputType(InputType.TYPE_NULL);
+        etDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(branchkycC,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                etDob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            }
+                        }, 1960, 01, 00);
+                picker.show();
             }
         });
 
@@ -144,6 +174,14 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
             }
         });
+        spGender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogGender!=null)
+                    spinnerDialogGender.showSpinerDialog();
+            }
+        });
+
         etPhone.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -275,6 +313,18 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
+                if(spGender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+                    //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_select_gender));
+                    MyApplication.showTipError(this,getString(R.string.val_select_gender),spGender);
+                    MyApplication.hideKeyboard(branchkycC);
+                    return;
+                }
+                if(etDob.getText().toString().trim().isEmpty()) {
+                    // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_dob));
+                    MyApplication.showTipError(this,getString(R.string.val_dob),etDob);
+                    MyApplication.hideKeyboard(branchkycC);
+                    return;
+                }
                 if(spIdProof.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showTipError(this,getString(R.string.val_select_id_proof),spIdProof);
                     MyApplication.hideKeyboard(branchkycC);
@@ -290,10 +340,10 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("code","");
                     jsonObject.put("ownerName",etBranchName.getText().toString().trim());
                     jsonObject.put("lastName",etLname.getText().toString().trim());
-                    jsonObject.put("dateOfBirth","");
+                    jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
                     jsonObject.put("idExpiryDate","");
                     jsonObject.put("email",etEmail.getText().toString().trim());
-                    jsonObject.put("gender","M");
+                    jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
                     jsonObject.put("businessTypeCode",businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
                     jsonObject.put("businessName","");
@@ -587,7 +637,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                         }
                                     });
 
-                                    callApiIdProofType();
+                                    callApiGenderType();
 
                                 } else {
                                     MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
@@ -663,6 +713,66 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    private void callApiGenderType() {
+        try {
+            API.GET_PUBLIC("ewallet/public/gender/all",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                genderList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("genderTypeList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        genderModelList.add(new GenderModel.Gender(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("type"),
+                                                data.optString("status"),
+                                                data.optString("creationDate")
+
+                                        ));
+
+                                        genderList.add(data.optString("type").trim());
+
+                                    }
+
+                                    spinnerDialogGender = new SpinnerDialog(branchkycC, genderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogGender.setCancellable(true); // for cancellable
+                                    spinnerDialogGender.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogGender.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spGender.setText(item);
+                                            spGender.setTag(position);
+                                        }
+                                    });
+
+                                    callApiIdProofType();
+
+                                } else {
+                                    MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
 
     private void callApiIdProofType() {
         try {
