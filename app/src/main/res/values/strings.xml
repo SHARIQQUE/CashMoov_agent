@@ -747,6 +747,8 @@
     <string name="go">Go</string>
     <string name="first_name_star">First Name*</string>
     <string name="choose_product">Choose the product</string>
+    <string name="login_with_otp">Login With Otp</string>
+    <string name="choose_operator">Choose the operator</string>
 
 
 </resources>

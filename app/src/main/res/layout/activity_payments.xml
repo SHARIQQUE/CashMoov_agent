@@ -46,7 +46,7 @@
                     android:textColor="#29304d"
                     android:fontFamily="@font/aileron_semibold"
                     android:lineSpacingExtra="3sp"
-                    android:text="@string/choose_operation" />
+                    android:text="@string/choose_operator" />
 
 
                 <androidx.recyclerview.widget.RecyclerView

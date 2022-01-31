@@ -31,6 +31,7 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.otp.VerifyLoginOTPScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -413,8 +414,13 @@ public class LoginPin extends AppCompatActivity {
 
                             }
 
-                            userInfo_api(jsonObject.optString("walletOwnerCode"));
-
+                            if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                                Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                userInfo_api(jsonObject.optString("walletOwnerCode"));
+                            }
 
                         }
                     }
@@ -581,9 +587,14 @@ public class LoginPin extends AppCompatActivity {
 
                             }
 
-
-                            userInfo_api(jsonObject.optString("walletOwnerCode"));
-                            // ###################################################################################
+                            if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                                Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                userInfo_api(jsonObject.optString("walletOwnerCode"));
+                            }
+                                // ###################################################################################
 
 
 

@@ -32,6 +32,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.otp.VerifyLoginOTPScreen;
 import com.agent.cashmoovui.transfer_float.CommissionTransfer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -837,83 +838,75 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             }
                         }
 
-                        else
+                        else {
 
-                        {
-
-                            MyApplication.saveString("token",jsonObject.optString("access_token"),LoginMsis.this);
+                                MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
 
 
-                            System.out.println("Login response=======" + jsonObject.toString());
+                                System.out.println("Login response=======" + jsonObject.toString());
 
-                            MyApplication.saveString("pin", strPasword, LoginMsis.this);
+                                MyApplication.saveString("pin", strPasword, LoginMsis.this);
 
-                            MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
-                            MyApplication.saveString("firstName", jsonObject.optString("firstName"), LoginMsis.this);
-                            MyApplication.saveString("lastName", jsonObject.optString("lastName"), LoginMsis.this);
-                            MyApplication.saveString("email", jsonObject.optString("email"), LoginMsis.this);
-                            MyApplication.saveString("mobile", jsonObject.optString("mobile"), LoginMsis.this);
-                            MyApplication.saveString("walletOwnerCategoryCode", jsonObject.optString("walletOwnerCategoryCode"), LoginMsis.this);
-                            MyApplication.saveString("walletOwnerCode", jsonObject.optString("walletOwnerCode"), LoginMsis.this);
-                            MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
-                            MyApplication.saveString("userCode", jsonObject.optString("userCode"), LoginMsis.this);
-                            MyApplication.saveString("username", jsonObject.optString("username"), LoginMsis.this);
-                            MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
-                            MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), LoginMsis.this);
+                                MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
+                                MyApplication.saveString("firstName", jsonObject.optString("firstName"), LoginMsis.this);
+                                MyApplication.saveString("lastName", jsonObject.optString("lastName"), LoginMsis.this);
+                                MyApplication.saveString("email", jsonObject.optString("email"), LoginMsis.this);
+                                MyApplication.saveString("mobile", jsonObject.optString("mobile"), LoginMsis.this);
+                                MyApplication.saveString("walletOwnerCategoryCode", jsonObject.optString("walletOwnerCategoryCode"), LoginMsis.this);
+                                MyApplication.saveString("walletOwnerCode", jsonObject.optString("walletOwnerCode"), LoginMsis.this);
+                                MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
+                                MyApplication.saveString("userCode", jsonObject.optString("userCode"), LoginMsis.this);
+                                MyApplication.saveString("username", jsonObject.optString("username"), LoginMsis.this);
+                                MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
+                                MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), LoginMsis.this);
 
-                            // #################### serviceList Add  serviceCategoryList add  serviceCode
+                                // #################### serviceList Add  serviceCategoryList add  serviceCode
 
-                            if(jsonObject.has("serviceList"))
-                            {
-                                JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
+                                if (jsonObject.has("serviceList")) {
+                                    JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
 
-                                for(int i=0;i<jsonArray_serviceList.length();i++)
-                                {
-                                    JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
+                                    for (int i = 0; i < jsonArray_serviceList.length(); i++) {
+                                        JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
 
-                                    if(jsonObject1.has("serviceCategoryList"))
-                                    {
-                                        JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
-                                        for(int j=0;j<jsonArray_serviceCategoryList.length();j++)
-                                        {
-                                            JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
+                                        if (jsonObject1.has("serviceCategoryList")) {
+                                            JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
+                                            for (int j = 0; j < jsonArray_serviceCategoryList.length(); j++) {
+                                                JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
 
-                                            if(jsonObject2.has("serviceName"))
-                                            {
-                                                String serviceName =jsonObject2.getString("serviceName");
+                                                if (jsonObject2.has("serviceName")) {
+                                                    String serviceName = jsonObject2.getString("serviceName");
 
-                                                if(serviceName.equalsIgnoreCase("Money Transfer"))
-                                                {
-                                                    if(jsonObject2.has("serviceCode"))
-                                                    {
-                                                        String serviceCode =jsonObject2.getString("serviceCode");
+                                                    if (serviceName.equalsIgnoreCase("Money Transfer")) {
+                                                        if (jsonObject2.has("serviceCode")) {
+                                                            String serviceCode = jsonObject2.getString("serviceCode");
 
-                                                        MyApplication.saveString("serviceCode_LoginApi", serviceCode, LoginMsis.this);
+                                                            MyApplication.saveString("serviceCode_LoginApi", serviceCode, LoginMsis.this);
+                                                        } else {
+                                                            MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
+
+                                                        }
                                                     }
-                                                    else {
-                                                        MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
 
-                                                    }
                                                 }
-
                                             }
+
                                         }
 
                                     }
 
+                                } else {
+                                    MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
+
                                 }
 
+                            if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                                Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
+                                startActivity(i);
+                                finish();
+                            } else {
+                                userInfo_api(jsonObject.optString("walletOwnerCode"));
                             }
-                            else {
-                                MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
 
-                            }
-
-
-
-                            userInfo_api(jsonObject.optString("walletOwnerCode"));
-
-                            Toast.makeText(LoginMsis.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -1235,6 +1228,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     if (resultCode.equalsIgnoreCase("0")) {
+                        Toast.makeText(LoginMsis.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                         Intent i = new Intent(LoginMsis.this, MainActivity.class);
                         startActivity(i);
                         finish();

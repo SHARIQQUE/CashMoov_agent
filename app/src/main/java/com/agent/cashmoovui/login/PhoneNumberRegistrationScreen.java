@@ -21,6 +21,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.CountryInfoModel;
+import com.agent.cashmoovui.otp.VerifyLoginOTPScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -403,21 +404,34 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                         MyApplication.saveBool("FirstLogin",true,phnoregistrationccreenC);
                         MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                         MyApplication.saveString("loginPassword",etPass.getText().toString().trim(), phnoregistrationccreenC);
-                        Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
-                        startActivity(i);
 
-                        finish();
-                        Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
+                        if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                            Intent i = new Intent(phnoregistrationccreenC, VerifyLoginOTPScreen.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+
+                            Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
+                            startActivity(i);
+                            finish();
+                            Toast.makeText(phnoregistrationccreenC, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                        }
                     }else{
                         MyApplication.saveBool("FirstLogin",true,phnoregistrationccreenC);
                         MyApplication.saveString("loginUsername", etPhoneNo.getText().toString().trim(), phnoregistrationccreenC);
                         MyApplication.saveString("loginPassword", etPass.getText().toString().trim(), phnoregistrationccreenC);
 
-                        Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(phnoregistrationccreenC,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
-                    }
+                        if (jsonObject.optBoolean("loginWithOtpRequired") == true) {
+                            Intent i = new Intent(phnoregistrationccreenC, VerifyLoginOTPScreen.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
+                            startActivity(i);
+                            finish();
+                            Toast.makeText(phnoregistrationccreenC, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            }
+                        }
 
                 }
 

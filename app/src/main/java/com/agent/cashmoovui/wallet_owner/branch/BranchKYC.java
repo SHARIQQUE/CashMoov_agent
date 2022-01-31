@@ -22,6 +22,7 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
+import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +49,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private SpinnerDialog spinnerDialogBusinessType,spinnerDialogIdProofType,spinnerDialogCountry,
             spinnerDialogRegion,spinnerDialogCity;
     public static String idProofTypeCode,branchWalletOwnerCode;
+    private SwitchButton sbLoginwithotp;
+    private boolean loginwithOtp=false;
 
 
     public static final int REQUEST_CODE = 1;
@@ -89,8 +92,22 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         etPhone = findViewById(R.id.etPhone);
         etAddress = findViewById(R.id.etAddress);
         etProofNo = findViewById(R.id.etProofNo);
+        sbLoginwithotp = findViewById(R.id.sbLoginwithotp);
         tvNext = findViewById(R.id.tvNext);
 
+        sbLoginwithotp.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                //TODO do your job
+                if(isChecked){
+                    loginwithOtp = true;
+                   // MyApplication.showToast(branchkycC, String.valueOf(loginwithOtp));
+                }else{
+                    loginwithOtp = false;
+                   // MyApplication.showToast(branchkycC, String.valueOf(loginwithOtp));
+                }
+            }
+        });
 
         spBusinessType.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,7 +293,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("dateOfBirth","");
                     jsonObject.put("idExpiryDate","");
                     jsonObject.put("email",etEmail.getText().toString().trim());
-                    jsonObject.put("gender","");
+                    jsonObject.put("gender","M");
                     jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
                     jsonObject.put("businessTypeCode",businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
                     jsonObject.put("businessName","");
@@ -295,6 +312,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("profileTypeCode","100000");
                     jsonObject.put("walletOwnerParentCode",MyApplication.getSaveString("walletOwnerCode",branchkycC));
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.BranchCode);
+                    jsonObject.put("loginWithOtpRequired",loginwithOtp);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -745,6 +745,8 @@
     <string name="go">Aller</string>
     <string name="first_name_star">Prénom*</string>
     <string name="choose_product">Choisissez le produit</string>
+    <string name="login_with_otp">Se connecter avec OTP</string>
+    <string name="choose_operator">Choisissez l\'opérateur</string>
 
 </resources>
 
