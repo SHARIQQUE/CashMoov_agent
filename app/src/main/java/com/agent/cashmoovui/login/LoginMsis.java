@@ -818,7 +818,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
 
-                                Intent i = new Intent(LoginMsis.this, VerifyLoginAccountScreen.class);
+                                Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
+                                i.putExtra("ERROR1251","1251");
                                 startActivity(i);
                             }
 
@@ -970,7 +971,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
 
-                                Intent i = new Intent(LoginMsis.this, VerifyLoginAccountScreen.class);
+                                Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
+                                i.putExtra("ERROR1251","1251");
                                 startActivity(i);
                             }
 

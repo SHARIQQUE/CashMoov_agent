@@ -327,7 +327,8 @@ public class LoginPin extends AppCompatActivity {
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
 
-                                Intent i = new Intent(LoginPin.this, VerifyLoginAccountScreen.class);
+                                Intent i = new Intent(LoginPin.this, VerifyLoginOTPScreen.class);
+                                i.putExtra("ERROR1251","1251");
                                 startActivity(i);
                             }
 
@@ -437,7 +438,8 @@ public class LoginPin extends AppCompatActivity {
 
                     if(aFalse.equalsIgnoreCase("1251")){
 
-                        Intent i = new Intent(loginpinC, VerifyLoginAccountScreen.class);
+                        Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
+                        i.putExtra("ERROR1251","1251");
                         startActivity(i);
                         // callPostGetLoginOTP();
                        /* Intent i = new Intent(loginpinC, ChangeIpLoginActivity.class);
@@ -496,7 +498,8 @@ public class LoginPin extends AppCompatActivity {
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
 
-                                Intent i = new Intent(LoginPin.this, VerifyLoginAccountScreen.class);
+                                Intent i = new Intent(LoginPin.this, VerifyLoginOTPScreen.class);
+                                i.putExtra("ERROR1251","1251");
                                 startActivity(i);
 
                             } else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
@@ -611,7 +614,8 @@ public class LoginPin extends AppCompatActivity {
                 public void failure(String aFalse) {
 
                     if(aFalse.equalsIgnoreCase("1251")){
-                        Intent i = new Intent(loginpinC, VerifyLoginAccountScreen.class);
+                        Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
+                        i.putExtra("ERROR1251","1251");
                         startActivity(i);
 
                     }

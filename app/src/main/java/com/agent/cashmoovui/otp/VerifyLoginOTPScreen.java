@@ -82,6 +82,13 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnCl
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
         tvContinue = findViewById(R.id.tvContinue);
 
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("ERROR1251")) {
+            tvPhoneNoMsg.setText(getString(R.string.verification_register_otpback));
+        } else {
+            tvPhoneNoMsg.setText(getString(R.string.verification_register_otp));
+        }
         TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
 
         for (TextView currTextView : otpTextViews) {
