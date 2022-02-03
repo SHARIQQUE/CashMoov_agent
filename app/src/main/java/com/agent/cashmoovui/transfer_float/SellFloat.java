@@ -15,6 +15,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -55,6 +57,7 @@ import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.InstituteListModel;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
@@ -299,6 +302,23 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             });
 
 
+
+        et_mpin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(SellFloat.this);            }
+        });
 
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();

@@ -39,6 +39,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remmetience.RemittanceReceive;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -252,6 +253,23 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(CashOutCodeSubscriber.this);            }
+            });
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);

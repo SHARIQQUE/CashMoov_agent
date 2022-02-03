@@ -68,6 +68,24 @@ public class OtpPage extends AppCompatActivity implements View.OnClickListener {
 
         tv_Continue = (TextView) findViewById(R.id.tv_Continue);
 
+        et_six.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 1)
+                    MyApplication.hideKeyboard(OtpPage.this);            }
+        });
+
+
 
         et_One.addTextChangedListener(new TextWatcher() {
 
@@ -406,6 +424,7 @@ public class OtpPage extends AppCompatActivity implements View.OnClickListener {
         str_four = et_Four.getText().toString();
         str_five = et_Five.getText().toString();
         str_six = et_six.getText().toString();
+
 
         if (str_one.isEmpty()) {
 

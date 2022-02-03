@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -42,6 +44,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.agent.cashmoovui.set_pin.SetPin;
 import com.blikoon.qrcodescanner.QrCodeActivity;
@@ -281,6 +284,24 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(CashOutAgent.this);            }
+            });
+
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
             et_mpin.setOnTouchListener(new View.OnTouchListener() {

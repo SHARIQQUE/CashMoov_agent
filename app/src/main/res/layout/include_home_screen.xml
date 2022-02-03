@@ -530,8 +530,9 @@
                         <ImageView
                             android:layout_width="@dimen/_25sdp"
                             android:layout_height="@dimen/_25sdp"
-                            app:srcCompat="@drawable/ic_rechargement"
-                            android:scaleType="centerCrop"/>
+                            app:srcCompat="@drawable/ic_topup"
+                            android:scaleType="centerCrop"
+                            app:tint="@color/colorPrimary"/>
 
                         <TextView
                             android:layout_width="wrap_content"

@@ -14,6 +14,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -46,6 +48,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.blikoon.qrcodescanner.QrCodeActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -328,6 +331,23 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
           //  Toast.makeText(TransferFloats.this, currencyCode_agent, Toast.LENGTH_LONG).show();
 
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(TransferFloats.this);            }
+            });
 
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();

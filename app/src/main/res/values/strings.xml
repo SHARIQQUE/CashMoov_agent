@@ -749,6 +749,7 @@
     <string name="choose_product">Choose the product</string>
     <string name="login_with_otp">Login With Otp</string>
     <string name="choose_operator">Choose the operator</string>
+    <string name="both_msisdn_not_same"><![CDATA[Sender & beneficiary phone number should not be same]]></string>
 
 
 </resources>

@@ -205,8 +205,10 @@
                 android:textSize="15sp" />
             <Spinner
                 android:id="@+id/spinner_operator"
+                android:clickable="false"
                 style="@style/SpinnerStyleNew" />
             <Spinner
+                android:visibility="gone"
                 android:id="@+id/spinner_senderCountry"
                 style="@style/SpinnerStyleNew"
                 />

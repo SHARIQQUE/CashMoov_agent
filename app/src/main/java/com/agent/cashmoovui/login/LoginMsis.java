@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -101,6 +103,24 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         tv_fingurePrint.setOnClickListener(this);
 
         ll_password = (LinearLayout) findViewById(R.id.ll_password);
+
+        et_password.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(LoginMsis.this);            }
+        });
+
 
         HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
         et_password.setTransformationMethod(hiddenPassTransformationMethod);

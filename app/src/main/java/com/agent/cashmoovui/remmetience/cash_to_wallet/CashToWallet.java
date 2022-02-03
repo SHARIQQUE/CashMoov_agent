@@ -71,7 +71,6 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
 
-    EditText etPin;
 
 
 
@@ -306,6 +305,25 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             });
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(CashToWallet.this);            }
+            });
+
+
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);

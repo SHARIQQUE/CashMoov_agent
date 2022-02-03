@@ -37,6 +37,12 @@ public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OperatorModel opearatorModel = operatorList.get(position);
         holder.tvOperatorName.setText(opearatorModel.getName());
+        if(opearatorModel.getCode().equalsIgnoreCase("100055")){
+            holder.ivOperatorLogo.setImageResource(R.drawable.canalplus);
+        }
+        if(opearatorModel.getCode().equalsIgnoreCase("100046")){
+            holder.ivOperatorLogo.setImageResource(R.drawable.startimes);
+        }
         holder.cardOperation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

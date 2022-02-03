@@ -47,6 +47,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.agent.cashmoovui.transfer_float.TransferFloats;
@@ -342,6 +343,25 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             spinner_operator= (Spinner) findViewById(R.id.spinner_operator);
             spinner_operator.setOnItemSelectedListener(this);
+
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(AirtimePurchases.this);            }
+            });
+
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
@@ -625,15 +645,16 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                             String  operatorCode = jsonObject2.getString("code");
                             String  name_from_operatorList = jsonObject2.getString("name");
+                           // String image_from_operatorList = jsonObject2.getString("fileName");
                             String serviceCode_from_operatorList = jsonObject2.getString("serviceCode");
                             String serviceCategoryCode = jsonObject2.getString("serviceCategoryCode");
 
                             String serviceProviderName_from_operatorList = jsonObject2.getString("serviceProviderName");
                             String serviceProviderCode = jsonObject2.getString("serviceProviderCode");
 
-
                             arrayList_OperatorListCode.add(operatorCode);
                             arrayList_OperatorListName.add(name_from_operatorList);
+
                             arrayList_ServiceCode.add(serviceCode_from_operatorList);
                             arrayList_serviceCategoryCode.add(serviceCategoryCode);
                             arrayList_serviceProviderCode.add(serviceProviderCode);

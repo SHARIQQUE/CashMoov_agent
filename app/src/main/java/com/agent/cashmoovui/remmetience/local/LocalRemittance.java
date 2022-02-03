@@ -53,6 +53,8 @@ import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
+import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.remmetience.international.ReceiverCountryModal;
 import com.agent.cashmoovui.remmetience.international.ReceiverCurrencyModal;
 import com.agent.cashmoovui.remmetience.international.SenderCountryModal;
@@ -540,6 +542,23 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             } else {
                 Toast.makeText(LocalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(LocalRemittance.this);            }
+            });
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
@@ -2524,8 +2543,6 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                 try {
 
-
-
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
                     if (resultCode.equalsIgnoreCase("0")) {
@@ -2636,6 +2653,8 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         }
                         if(jsonObjectSubscriber.has("issuingCountryName")){
+//                            select_destination_issueingCountry = jsonObjectSubscriber.optString("issuingCountryName");
+//                            spinner_destination_issuingCountry.setSelection(arrayList_receiverCountryDetails.indexOf(select_destination_issueingCountry));
 
                         }
                         if(jsonObjectSubscriber.has("idProofUrl")){
@@ -2663,6 +2682,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                             et_destination_address.setText("");
                             spinner_destination_region.setSelection(0);
                             spinner_destination_idprooftype.setSelection(0);
+                            spinner_destination_issuingCountry.setSelection(0);
                             et_destination_idproofNumber.setText("");
                             et_destination_idproof_expiry.setText("");
 
@@ -3434,17 +3454,17 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                         if (new InternetCheck().isConnected(LocalRemittance.this)) {
 
+                            if(et_sender_phoneNumber.getText().toString().trim().equalsIgnoreCase(et_destination_mobileNumber.getText().toString().trim())){
+                                MyApplication.showToast(LocalRemittance.this,getString(R.string.both_msisdn_not_same));
+                            }else {
+                                ll_page_1.setVisibility(View.GONE);
+                                ll_successPage.setVisibility(View.GONE);
+                                ll_receiptPage.setVisibility(View.GONE);
+                                ll_reviewPage.setVisibility(View.VISIBLE);
 
-                            ll_page_1.setVisibility(View.GONE);
-                            ll_successPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.GONE);
-                            ll_reviewPage.setVisibility(View.VISIBLE);
-
-                            api_walletOwnerUser();
-
-
-                            buttonClickValidaion=3;
-
+                                api_walletOwnerUser();
+                            }
+                            buttonClickValidaion = 3;
 
 
 
@@ -4109,9 +4129,16 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             case R.id.spinner_destination_idprooftype:
             {
                 select_destination_idproofName = arrayList_destination_idproofName.get(i);
-                select_destination_idproofName = arrayList_destination_idproofCode.get(i);
+                select_destination_idproofCode = arrayList_destination_idproofCode.get(i);
             }
             break;
+
+//            case R.id.spinner_destination_issuingCountry:
+//            {
+//                select_destination_issueingCountry= arrayList_receiverCountryDetails.get(i).getCountryName_receiver();
+//               // select_destination_issueingCountry = arrayList_receiverCountryDetails.get(i).getCountryCode_receiver();
+//            }
+//            break;
 
             case R.id.spinner_senderCountry:
             {

@@ -2,6 +2,8 @@ package com.agent.cashmoovui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -80,6 +82,24 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvContinue = findViewById(R.id.tvContinue);
+
+        etPass.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(phnoregistrationccreenC);            }
+        });
+
 
 
 //        spCountry.setOnClickListener(new View.OnClickListener() {

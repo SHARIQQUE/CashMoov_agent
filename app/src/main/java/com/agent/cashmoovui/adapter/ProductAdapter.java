@@ -28,7 +28,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItem= layoutInflater.inflate(R.layout.item_payments_operator, parent, false);
+        View listItem= layoutInflater.inflate(R.layout.item_product, parent, false);
         ViewHolder viewHolder = new ViewHolder(listItem);
         return viewHolder;
     }
@@ -36,8 +36,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final ProductModel productModel = productList.get(position);
-        holder.tvOperatorName.setText(productModel.getName());
-        holder.cardOperation.setOnClickListener(new View.OnClickListener() {
+        holder.tvProductName.setText(productModel.getName());
+        if(productModel.getOperatorCode().equalsIgnoreCase("100055")){
+            holder.ivProductLogo.setImageResource(R.drawable.canalplus);
+        }
+        if(productModel.getOperatorCode().equalsIgnoreCase("100046")){
+            holder.ivProductLogo.setImageResource(R.drawable.startimes);
+        }
+        holder.cardProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(productModel.getCode()!=null)
@@ -53,14 +59,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardOperation;
-        private ImageView ivOperatorLogo;
-        private TextView tvOperatorName;
+        private CardView cardProduct;
+        private ImageView ivProductLogo;
+        private TextView tvProductName;
         public ViewHolder(View itemView) {
             super(itemView);
-            cardOperation = itemView.findViewById(R.id.cardOperation);
-            ivOperatorLogo = itemView.findViewById(R.id.ivOperatorLogo);
-            tvOperatorName = itemView.findViewById(R.id.tvOperatorName);
+            cardProduct = itemView.findViewById(R.id.cardProduct);
+            ivProductLogo = itemView.findViewById(R.id.ivProductLogo);
+            tvProductName = itemView.findViewById(R.id.tvProductName);
         }
     }
 }

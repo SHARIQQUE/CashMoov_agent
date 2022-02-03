@@ -52,6 +52,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 
@@ -558,6 +559,24 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             } else {
                 Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(InternationalRemittance.this);            }
+            });
+
 
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
@@ -2476,6 +2495,8 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         }
                         if(jsonObjectSubscriber.has("issuingCountryName")){
+                            select_sender_issueingCountry = jsonObjectSubscriber.optString("issuingCountryName");
+                            spinner_sender_issuingCountry.setSelection(arrayList_senderCountryDetails.indexOf(select_sender_issueingCountry));
 
                         }
                         if(jsonObjectSubscriber.has("idProofUrl")){
@@ -2538,7 +2559,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     private void searchData_des_mobileNumber() {
 
-        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?mobileNumber="+destination_phoneNumber_string+"&countryCode=" + select_sender_CountryCode, languageToUse, new Api_Responce_Handler() {
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?mobileNumber="+destination_phoneNumber_string+"&countryCode=" + select_receiver_CountryCode, languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -2655,9 +2676,10 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
                         if(jsonObjectSubscriber.has("issuingCountryCode")){
-
                         }
                         if(jsonObjectSubscriber.has("issuingCountryName")){
+//                            select_destination_issueingCountry = jsonObjectSubscriber.optString("issuingCountryName");
+//                            spinner_destination_issuingCountry.setSelection(arrayList_receiverCountryDetails.indexOf(select_destination_issueingCountry));
 
                         }
                         if(jsonObjectSubscriber.has("idProofUrl")){
@@ -3455,19 +3477,18 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                         if (new InternetCheck().isConnected(InternationalRemittance.this)) {
 
+                            if(et_sender_phoneNumber.getText().toString().trim().equalsIgnoreCase(et_destination_mobileNumber.getText().toString().trim())){
+                                MyApplication.showToast(InternationalRemittance.this,getString(R.string.both_msisdn_not_same));
+                            }else {
+                                ll_page_1.setVisibility(View.GONE);
+                                ll_successPage.setVisibility(View.GONE);
+                                ll_receiptPage.setVisibility(View.GONE);
+                                ll_reviewPage.setVisibility(View.VISIBLE);
 
-                            ll_page_1.setVisibility(View.GONE);
-                            ll_successPage.setVisibility(View.GONE);
-                            ll_receiptPage.setVisibility(View.GONE);
-                            ll_reviewPage.setVisibility(View.VISIBLE);
-
-                            api_walletOwnerUser();
-
+                                api_walletOwnerUser();
+                            }
 
                             buttonClickValidaion=3;
-
-
-
 
                         } else {
                             Toast.makeText(InternationalRemittance.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();

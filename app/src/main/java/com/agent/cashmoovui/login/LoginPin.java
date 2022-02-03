@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -82,6 +84,24 @@ public class LoginPin extends AppCompatActivity {
         loginpinC = this;
         getIds();
 
+        etPin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(loginpinC);            }
+        });
+
+
         HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
         etPin.setTransformationMethod(hiddenPassTransformationMethod);
         etPin.setOnTouchListener(new View.OnTouchListener() {
@@ -143,6 +163,24 @@ public class LoginPin extends AppCompatActivity {
         tvFinger = findViewById(R.id.tvFinger);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
+
+        etPin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(loginpinC);            }
+        });
+
 
         tvregister.setOnClickListener(new View.OnClickListener() {
             @Override

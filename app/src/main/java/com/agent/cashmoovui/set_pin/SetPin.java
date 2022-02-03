@@ -3,6 +3,8 @@ package com.agent.cashmoovui.set_pin;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
@@ -71,6 +73,24 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
         }
 
         tv_continue.setOnClickListener(this);
+
+        et_reEnterPin.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(SetPin.this);            }
+        });
+
 
         HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
         et_Pin.setTransformationMethod(hiddenPassTransformationMethod);

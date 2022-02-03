@@ -66,6 +66,23 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements View.
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
         tvContinue = findViewById(R.id.tvContinue);
 
+        etSix.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 1)
+                    MyApplication.hideKeyboard(verifyaccountscreenC);            }
+        });
+
         TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
 
         for (TextView currTextView : otpTextViews) {

@@ -89,6 +89,24 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnCl
         } else {
             tvPhoneNoMsg.setText(getString(R.string.verification_register_otp));
         }
+
+        etSix.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 1)
+                    MyApplication.hideKeyboard(verifyloginotpscreenC);            }
+        });
+
         TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
 
         for (TextView currTextView : otpTextViews) {
