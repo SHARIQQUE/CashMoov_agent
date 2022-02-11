@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <include layout="@layout/toolbar_active"></include>
+
+            <LinearLayout
+                android:id="@+id/ll_destination_part_1"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:textColor="#29304d"
+                    android:fontFamily="@font/aileron_bold"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/beneficiary_details"
+                    />
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_destination_mobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="number"
+                    android:lineSpacingExtra="10sp"
+                    android:drawableRight="@drawable/ic_contact"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/please_enter_mobileno"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_destination_firstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/first_name_star"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_destination_lastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/last_name"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/spinner_destination_gender"
+                    android:text="@string/valid_select_gender"
+                    style="@style/SpinnerStyleNew1"/>
+
+
+
+                <EditText
+                    android:id="@+id/edittext_email_destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/email"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+
+                    <EditText
+                        android:id="@+id/et_destination_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:hint="@string/valid_dob"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/spinner_destination_country"
+                    android:text="@string/valid_select_country"
+                    style="@style/SpinnerStyleNew1"/>
+
+
+
+                <EditText
+                    android:id="@+id/et_destination_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/address"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/spinner_destination_region"
+                    android:text="@string/select_region"
+                    style="@style/SpinnerStyleNew1"/>
+
+                <EditText
+                    android:id="@+id/et_destination_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/city"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/spinner_destination_idprooftype"
+                    android:text="@string/select_id_proof"
+                    style="@style/SpinnerStyleNew1"/>
+
+                <EditText
+                    android:id="@+id/et_destination_idproofNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/id_proof_no"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+
+                    <EditText
+                        android:id="@+id/et_destination_idproof_expiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="#999999"
+                        android:hint="@string/id_proof_expiryDate"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:textColor="#323232"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/spinner_destination_issuingCountry"
+                    android:text="@string/select_issuing_country"
+                    style="@style/SpinnerStyleNew1" />
+
+
+                <EditText
+                    android:id="@+id/et_fp_reason_sending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/reason_for_sending"
+                    android:textColor="#323232"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="#ffffff"
+                    android:lineSpacingExtra="3sp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/btn_blue"
+                    android:layout_gravity="center"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:gravity="center"
+                    android:text="@string/next" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

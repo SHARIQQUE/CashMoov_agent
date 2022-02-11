@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.setting.Reset">
+    tools:context=".settings.Logout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,36 +38,41 @@
                 android:layout_height="wrap_content"
                 android:text="@string/logout"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textColorDBlack"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_18sdp"
+                android:fontFamily="@font/aileron_bold"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/logout_app"
                 android:textAlignment="center"
-                android:textSize="16dp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textColorDBlack"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/aileron_bold"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Attention!"
                 android:textAlignment="center"
-                android:textSize="16dp"
+                android:textSize="@dimen/_13sdp"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/textColorDBlack"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/aileron_semibold"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/this_action_logout"
                 android:textAlignment="center"
-                android:textSize="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:gravity="center_horizontal" />
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/textColorDBlack"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/aileron_semibold"/>
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->

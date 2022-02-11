@@ -83,20 +83,15 @@ public class CashOutOpt extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.ll_cashout: {
-
+        switch (view.getId()) {
+            case R.id.ll_cashout:
                 Intent i = new Intent(CashOutOpt.this, CashOutAgent.class);
                 startActivity(i);
-            }
             break;
 
             case R.id.ll_cashout_code:
-            {
-                Intent i = new Intent(CashOutOpt.this, CashOutCodeSubscriber.class);
-                startActivity(i);
-            }
+                Intent in = new Intent(CashOutOpt.this, CashOutCodeSubscriber.class);
+                startActivity(in);
             break;
 
 

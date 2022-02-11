@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.payments.PaymentReceipt;
+import com.agent.cashmoovui.remittancebyabhay.InternationalRemittanceReceiptScreen;
+import com.agent.cashmoovui.remittancebyabhay.LocalRemittanceReceiptScreen;
 
 public class TransactionSuccessScreen extends AppCompatActivity implements View.OnClickListener {
     public static TransactionSuccessScreen transSuccessscreenC;
@@ -68,6 +70,16 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                     startActivity(intent);
                     return;
                 }
+                if(checkIntent.equalsIgnoreCase("INTERNATIONAL")) {
+                    intent = new Intent(transSuccessscreenC, InternationalRemittanceReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(checkIntent.equalsIgnoreCase("LOCAL")) {
+                    intent = new Intent(transSuccessscreenC, LocalRemittanceReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
 //                if(checkIntent.equalsIgnoreCase("TOSUB")){
 //                    intent = new Intent(transSuccessscreenC, ToSubscriberReceiptScreen.class);
 //                    startActivity(intent);
@@ -75,11 +87,6 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
 //                }
 //                if(checkIntent.equalsIgnoreCase("TONONSUB")) {
 //                    intent = new Intent(transSuccessscreenC, ToNonSubscriberReceiptScreen.class);
-//                    startActivity(intent);
-//                    return;
-//                }
-//                if(checkIntent.equalsIgnoreCase("INTERNATIONAL")) {
-//                    intent = new Intent(transSuccessscreenC, InternationalReceiptScreen.class);
 //                    startActivity(intent);
 //                    return;
 //                }
@@ -109,6 +116,16 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 Intent intent;
                 if(checkIntent.equalsIgnoreCase("Payments")) {
                     intent = new Intent(transSuccessscreenC, PaymentReceipt.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(checkIntent.equalsIgnoreCase("INTERNATIONAL")) {
+                    intent = new Intent(transSuccessscreenC, InternationalRemittanceReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+                if(checkIntent.equalsIgnoreCase("LOCAL")) {
+                    intent = new Intent(transSuccessscreenC, LocalRemittanceReceiptScreen.class);
                     startActivity(intent);
                     return;
                 }

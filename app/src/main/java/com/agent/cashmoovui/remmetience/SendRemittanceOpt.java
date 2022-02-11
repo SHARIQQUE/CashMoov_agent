@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
-import com.agent.cashmoovui.remmetience.local.LocalRemittance;
+import com.agent.cashmoovui.remittancebyabhay.InternationalRemittanceActivity;
+import com.agent.cashmoovui.remittancebyabhay.LocalRemittanceActivity;
 
 import java.util.Locale;
 
@@ -88,14 +88,14 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
         {
             case R.id.ll_remitence_international: {
 
-                Intent i = new Intent(SendRemittanceOpt.this, InternationalRemittance.class);
+                Intent i = new Intent(SendRemittanceOpt.this, InternationalRemittanceActivity.class);
                 startActivity(i);
             }
             break;
 
             case R.id.ll_remitence_local:
             {
-                Intent i = new Intent(SendRemittanceOpt.this, LocalRemittance.class);
+                Intent i = new Intent(SendRemittanceOpt.this, LocalRemittanceActivity.class);
                 startActivity(i);
             }
             break;

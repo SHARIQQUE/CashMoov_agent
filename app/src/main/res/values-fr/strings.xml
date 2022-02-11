@@ -748,6 +748,26 @@
     <string name="login_with_otp">Se connecter avec OTP</string>
     <string name="choose_operator">Choisissez l\'opérateur</string>
     <string name="both_msisdn_not_same"><![CDATA[Le numéro de téléphone de l\'expéditeur et du bénéficiaire ne doit pas être le même]]></string>
+    <string name="valid_select_issuing_country">Sélectionnez le pays émetteur*</string>
+    <string name="valid_id_proof_expiryDate">Date d\'expiration de la preuve d\'identité*</string>
+    <string name="valid_front">Ex: Recto*</string>
+    <string name="val_id_proof_expiryDate">Veuillez sélectionner la date d\'expiration de la preuve d\'identité</string>
+    <string name="val_select_issuing_country">Veuillez sélectionner le pays émetteur</string>
+    <string name="select_region">Choisissez une région</string>
+    <string name="select_issuing_country">Sélectionnez le pays émetteur</string>
+    <string name="agent_code_colon">Code agent :</string>
+    <string name="sender_code_colon">Code expéditeur :</string>
+    <string name="benefi_code_colon">Code bénéficiaire :</string>
+    <string name="send_curr_colon">Devise d\'envoi :</string>
+    <string name="benefi_curr_colon">Devise du bénéficiaire :</string>
+    <string name="conversion_rate_colon">Taux de conversion :</string>
+    <string name="comment_colon">Commenter :</string>
+    <string name="trans_ref_no_colon">Numéro de référence de la transaction :</string>
+    <string name="sending_country_colon">Pays d\'envoi :</string>
+    <string name="rec_country_colon">Pays de réception :</string>
+    <string name="date_of_transaction_colon">Date de transaction :</string>
+    <string name="name_colon">Nom :</string>
+    <string name="phone_no_colon">Numero de téléphon :</string>
 
 </resources>
 

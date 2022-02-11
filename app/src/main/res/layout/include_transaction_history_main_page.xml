@@ -37,7 +37,7 @@
                     android:lineSpacingExtra="7sp"
                     android:text="@string/my_account"
                     android:textColor="#29304d"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_18sdp" />
 
 
                 <TextView
@@ -76,12 +76,11 @@
                             android:paddingBottom="13dp"
                             android:text="@string/institue"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/aileron_bold"/>
 
                         <TextView
-
                             android:id="@+id/agent_textview"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
@@ -94,7 +93,8 @@
                             android:paddingBottom="13dp"
                             android:text="@string/agent_history"
                             android:textColor="@color/bleu_cashmoov"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/aileron_bold"/>
 
                         <TextView
                             android:id="@+id/insitute_branch"
@@ -110,9 +110,8 @@
                             android:paddingBottom="13dp"
                             android:text="@string/branch"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp" />
-
-
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/aileron_bold"/>
 
 
 
@@ -197,21 +196,20 @@
 
                                         <TextView
                                             android:id="@+id/main_wallet_heding_textview"
-
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
                                             android:text="@string/main_Wallet"
                                             android:textColor="#ffffff"
-                                            android:textSize="@dimen/_11sdp" />
+                                            android:textSize="@dimen/_14sdp" />
 
                                         <TextView
                                             android:id="@+id/mainwallet_textview"
-
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_13sdp"
+                                            android:textSize="@dimen/_14sdp"
+                                            android:fontFamily="@font/aileron_semibold"
                                             android:textColor="#ffffff"
                                             android:lineSpacingExtra="3sp"
                                             />
@@ -294,7 +292,7 @@
                                             android:id="@+id/commisionwallet_heding_textview"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_11sdp"
+                                            android:textSize="@dimen/_14sdp"
                                             android:textColor="#ffffff"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
@@ -305,7 +303,8 @@
                                             android:id="@+id/commision_wallet_textview"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_13sdp"
+                                            android:textSize="@dimen/_14sdp"
+                                            android:fontFamily="@font/aileron_semibold"
                                             android:textColor="#ffffff"
                                             android:lineSpacingExtra="3sp"
                                             />
@@ -389,7 +388,7 @@
                                             android:id="@+id/overdraft_heading_heding_textview"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_11sdp"
+                                            android:textSize="@dimen/_14sdp"
                                             android:textColor="@color/bleu_cashmoov"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
@@ -397,12 +396,11 @@
                                             />
 
                                         <TextView
-
                                             android:id="@+id/overdraft_wallet_textview"
-
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_13sdp"
+                                            android:textSize="@dimen/_14sdp"
+                                            android:fontFamily="@font/aileron_semibold"
                                             android:textColor="@color/bleu_cashmoov"
                                             android:lineSpacingExtra="3sp"
                                             />
@@ -499,7 +497,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="0.9"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:lineSpacingExtra="3sp"
                             android:text="@string/view_transaction_history"
                             android:textColor="@color/colorPrimary"
@@ -519,7 +517,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="0.9"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:lineSpacingExtra="3sp"
                             android:text="@string/hide_transaction_history"
                             android:textColor="@color/colorPrimary"

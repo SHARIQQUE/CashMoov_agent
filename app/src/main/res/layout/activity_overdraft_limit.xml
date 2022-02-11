@@ -46,11 +46,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/overdraft_limit"
                     android:textColor="#29304d"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_16sdp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -82,9 +82,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="#29304d"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/transaction_details"
                     />
@@ -104,10 +104,10 @@
                     android:backgroundTint="#999999"
                     android:inputType="number"
                     android:lineSpacingExtra="10sp"
-                    android:paddingLeft="37.5dp"
-                    android:paddingTop="16dp"
-                    android:maxLength="10"
-                    android:paddingBottom="16dp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/amount"
                     android:textColor="#323232"
                     android:textSize="15sp" />
@@ -123,9 +123,10 @@
                     android:backgroundTint="#999999"
                     android:inputType="textEmailAddress"
                     android:lineSpacingExtra="10sp"
-                    android:paddingLeft="37.5dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/validaty_days"
                     android:textColor="#323232"
                     android:textSize="15sp" />
@@ -223,7 +224,6 @@
                     android:layout_weight="1"
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
-
                     android:layout_height="40dp" />
 
                 <TextView

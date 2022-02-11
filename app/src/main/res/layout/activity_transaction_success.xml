@@ -6,7 +6,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.moneytransfer.TransactionSuccessScreen">
+    tools:context=".activity.TransactionSuccessScreen">
 
         <LinearLayout
             android:layout_width="match_parent"

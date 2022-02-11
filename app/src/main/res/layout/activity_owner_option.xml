@@ -29,11 +29,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/owner_management"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_16sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -53,9 +53,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/choose_the_operation"
                 />
@@ -96,7 +96,7 @@
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/wallet_owner"
                             />
@@ -146,7 +146,7 @@
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/subscriber"
                             />
@@ -188,7 +188,7 @@
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="@dimen/_10sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/add_agent_branch"
                             />

@@ -26,11 +26,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
-                android:text="Send"
+                android:text="@string/send"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_16sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -50,9 +50,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/choose_the_operation"
                 />
@@ -81,7 +81,7 @@
                         android:orientation="vertical"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:padding="@dimen/_10sdp">
+                        android:padding="@dimen/_20sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_35sdp"
@@ -96,7 +96,7 @@
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="15dp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="Receive remittance"
                             />
@@ -128,7 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:padding="@dimen/_10sdp"
+                        android:padding="@dimen/_20sdp"
                         android:layout_gravity="center"
                         android:gravity="center">
 
@@ -145,7 +145,7 @@
                             android:textColor="#3a3a3a"
                             android:lineSpacingExtra="10sp"
                             android:layout_marginTop="15dp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="Send remittance"
                             />

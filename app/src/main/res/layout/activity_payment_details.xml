@@ -24,24 +24,24 @@
                 android:id="@+id/tvOperatorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/recharge"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_16sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="#29304d"
-                    android:fontFamily="@font/aileron_semibold"
+                    android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="3sp"
                     android:text="@string/transaction_details"
                     />
@@ -73,22 +73,42 @@
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp"  />
 
-                <EditText
-                    android:id="@+id/etAmount"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
-                    android:inputType="number"
-                    android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/valid_amount"
-                    android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp"  />
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvAmtCurr"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_16sdp"
+                        android:layout_weight="0.2"
+                        android:textColor="@color/textColorLBlack"
+                        android:lineSpacingExtra="3sp"
+                        android:text="GNF" />
+                    <EditText
+                        android:id="@+id/etAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:inputType="numberDecimal"
+                        android:lineSpacingExtra="10sp"
+                        android:hint="@string/amounts"
+                        android:background="@null"
+                        android:fontFamily="@font/aileron_bold"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_16sdp" />
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tvSend"

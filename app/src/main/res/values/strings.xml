@@ -295,7 +295,7 @@
     <string name="ex_1234">Ex: 1234</string>
     <string name="transaction_success">Transaction\nsuccess!</string>
     <string name="details_of_transaction">Details of your transaction</string>
-    <string name="transaction_type_colon">Transaction type:</string>
+    <string name="transaction_type_colon">Transaction Type :</string>
     <string name="transaction_id_colon">Transaction ID :</string>
     <string name="change_pin_caps">Change PIN</string>
     <string name="change_pin_message">Please enter your old secret code:</string>
@@ -585,7 +585,7 @@
     <string name="select_institute">Select institute</string>
     <string name="select_currency_star">Select currency*</string>
     <string name="select_currency">Select currency</string>
-    <string name="amount_to_paid_star">Amount to be paid *</string>
+    <string name="amount_to_paid_star">Amount to be paid*</string>
     <string name="amount_to_paid_without_star">Amount to be paid </string>
 
     <string name="commision_Transfer">Commision Transfer</string>
@@ -750,6 +750,26 @@
     <string name="login_with_otp">Login With Otp</string>
     <string name="choose_operator">Choose the operator</string>
     <string name="both_msisdn_not_same"><![CDATA[Sender & beneficiary phone number should not be same]]></string>
+    <string name="valid_select_issuing_country">Select Issuing Country*</string>
+    <string name="valid_id_proof_expiryDate">Id Proof expiry date*</string>
+    <string name="valid_front">Ex: Front*</string>
+    <string name="val_id_proof_expiryDate">Please select id proof expiry date</string>
+    <string name="val_select_issuing_country">Please select issuing country</string>
+    <string name="select_region">Select Region</string>
+    <string name="select_issuing_country">Select Issuing Country</string>
+    <string name="agent_code_colon">Agent Code :</string>
+    <string name="sender_code_colon">Sender Code :</string>
+    <string name="benefi_code_colon">Beneficiary Code :</string>
+    <string name="send_curr_colon">Sending Currency :</string>
+    <string name="benefi_curr_colon">Beneficiary Currency :</string>
+    <string name="conversion_rate_colon">Conversion Rate :</string>
+    <string name="comment_colon">Comment :</string>
+    <string name="trans_ref_no_colon">Transaction Reference No :</string>
+    <string name="sending_country_colon">Sending Country :</string>
+    <string name="rec_country_colon">Receiving Country :</string>
+    <string name="date_of_transaction_colon">Date of Transaction :</string>
+    <string name="name_colon">Name :</string>
+    <string name="phone_no_colon">Phone Number :</string>
 
 
 </resources>

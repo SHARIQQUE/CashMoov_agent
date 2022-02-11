@@ -1340,18 +1340,18 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
 
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
-    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//
+//        Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+//        finish();
+//    }
 
 
     public static Bitmap getScreenShot(View view) {
