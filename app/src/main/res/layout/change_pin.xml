@@ -97,14 +97,13 @@
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                                 android:lineSpacingExtra="10sp"
                                 android:hint="@string/enter_old_pin"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
-                                android:textStyle="bold"
+                                android:textSize="@dimen/_15sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
                         </LinearLayout>
@@ -158,12 +157,11 @@
                                 android:lineSpacingExtra="10sp"
                                 android:hint="@string/enter_new_pin"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
-                                android:textStyle="bold"
+                                android:textSize="@dimen/_15sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
                         </LinearLayout>
@@ -222,10 +220,9 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
-                                android:textStyle="bold"
+                                android:textSize="@dimen/_15sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
                         </LinearLayout>

@@ -75,8 +75,10 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
@@ -2198,7 +2200,17 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             tax_textview.setText(strArray[8]);
             exchangeRate_textview.setText(strArray[9]);
             final_amount_textview.setText(strArray[10]);
-            create_on_textview.setText(strArray[11]);
+            try {
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+                Date date = null;
+                date = inputFormat.parse(strArray[11]);
+                String formattedDate = outputFormat.format(date);
+                create_on_textview.setText(formattedDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             status_textview.setText(strArray[12]);
 
 

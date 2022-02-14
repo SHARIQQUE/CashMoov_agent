@@ -152,7 +152,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Montant*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,7 +167,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Code à payer*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -181,7 +183,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Numero mobile*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <TextView
                 android:id="@+id/tvSend"

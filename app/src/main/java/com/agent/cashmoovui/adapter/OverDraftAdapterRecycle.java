@@ -15,7 +15,10 @@ import com.agent.cashmoovui.overdraft.OverDraftModal;
 import com.agent.cashmoovui.transfer_float.CallBackSellFloatRecycleViewClick;
 import com.agent.cashmoovui.transfer_float.SellFloatModal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapterRecycle.ViewHolder> {
@@ -35,7 +38,17 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
         viewHolder.currencyName.setText(arrayList_modalUserData.get(i).getCurrencyName());
         viewHolder.amount.setText(arrayList_modalUserData.get(i).getCurrencySymbol()+" "+arrayList_modalUserData.get(i).getAmount());
         viewHolder.status_textview.setText(arrayList_modalUserData.get(i).getStatus());
-        viewHolder.datetime_textview.setText(arrayList_modalUserData.get(i).getCreationDate());
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
+            date = inputFormat.parse(arrayList_modalUserData.get(i).getCreationDate());
+            String formattedDate = outputFormat.format(date);
+            viewHolder.datetime_textview.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

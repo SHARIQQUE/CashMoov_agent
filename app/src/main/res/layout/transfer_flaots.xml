@@ -77,109 +77,77 @@
 
         </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="@dimen/_20sdp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".75"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14sdp"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/receiver_details"
-                />
+                android:text="@string/receiver_details" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:fontFamily="@font/aileron_bold"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="7sp"
+                android:text="@string/scan_details"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="#000"
+                android:textSize="@dimen/_16sdp" />
 
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_gravity="center_vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/aileron_bold"
-                            android:letterSpacing="-0.02"
-                            android:lineSpacingExtra="7sp"
-                            android:text="@string/scan_details"
-                            android:paddingBottom="10dp"
-                            android:textColor="#000"
-                            android:textSize="@dimen/_16sdp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/aileron_bold"
-                            android:letterSpacing="-0.02"
-                            android:lineSpacingExtra="7sp"
-                            android:text="@string/qr_code_of_the"
-                            android:textColor="#000"
-                            android:textSize="@dimen/_20sdp" />
-
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/qrCode_imageButton"
-                        android:layout_width="85dp"
-                        android:layout_height="85dp"
-                        android:layout_weight="1"
-                        android:scaleType="centerCrop"
-                        android:background="@color/white"
-                        app:srcCompat="@drawable/ic_baseline_qr_code_bl"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="#29304d"
-                        android:fontFamily="@font/aileron_semibold"
-                        android:lineSpacingExtra="3sp"
-                        android:text="Scanner"
-                        android:gravity="center_horizontal" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aileron_bold"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="7sp"
+                android:text="@string/qr_code_of_the"
+                android:textColor="#000"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textSize="@dimen/_20sdp" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".25"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/qrCode_imageButton"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:background="@color/white"
+                app:srcCompat="@drawable/ic_baseline_qr_code_bl" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/aileron_bold"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#29304d"
+                android:lineSpacingExtra="3sp"
+                android:text="@string/scanner"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 
             <Spinner
@@ -205,7 +173,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/please_enter_mobileno"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <TextView
                 android:id="@+id/spinner_currency"
@@ -231,6 +200,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/aileron_semibold"
             android:layout_weight="0.2"
             android:textColor="@color/textColorLBlack"
             android:lineSpacingExtra="3sp"
@@ -835,14 +805,11 @@
                      />
 
                 <EditText
-
-
                     android:id="@+id/et_mpin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                     android:padding="@dimen/_12sdp"
                     android:hint="@string/please_enter_4_digit_mpin"
                     android:layout_gravity="center_vertical"
@@ -850,8 +817,8 @@
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
                     android:backgroundTint="#999999"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     android:inputType="numberPassword" />
 
 

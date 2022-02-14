@@ -59,7 +59,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/please_enter_mobileno"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
                     android:id="@+id/et_destination_firstName"
@@ -76,7 +77,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/first_name_star"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
                     android:id="@+id/et_destination_lastName"
@@ -93,7 +95,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/last_name"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
 
                 <TextView
@@ -118,7 +121,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/email"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -144,7 +148,8 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:textColor="#323232"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"  />
 
                 </LinearLayout>
 
@@ -171,7 +176,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/address"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <TextView
                     android:id="@+id/spinner_destination_region"
@@ -193,7 +199,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/city"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <TextView
                     android:id="@+id/spinner_destination_idprooftype"
@@ -215,7 +222,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/id_proof_no"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,7 +249,8 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:layout_weight="1"
                         android:textColor="#323232"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
 
                 </LinearLayout>
 
@@ -266,7 +275,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/reason_for_sending"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
                 <TextView
                     android:id="@+id/tvNext"

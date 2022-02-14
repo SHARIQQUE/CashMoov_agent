@@ -110,7 +110,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/amount"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
 
 
@@ -129,7 +130,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/validaty_days"
                     android:textColor="#323232"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <LinearLayout
                     android:gravity="center_horizontal"

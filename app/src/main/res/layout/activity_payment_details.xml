@@ -71,7 +71,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_acc_number"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp"  />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,6 +92,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/_16sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_weight="0.2"
                         android:textColor="@color/textColorLBlack"
                         android:lineSpacingExtra="3sp"

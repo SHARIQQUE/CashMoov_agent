@@ -185,7 +185,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/confirmation_code_star"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold"/>
 
             <EditText
                 android:id="@+id/edittext_mobileNuber"
@@ -202,7 +203,8 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/mobileNumber_star"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
 
     <LinearLayout
@@ -223,6 +225,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/aileron_semibold"
             android:layout_weight="0.2"
             android:textColor="@color/textColorLBlack"
             android:lineSpacingExtra="3sp"
@@ -275,15 +278,12 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:gravity="left"
-
                     android:text="@string/login_user_pin"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/aileron_bold" />
 
                 <EditText
-
-
                     android:id="@+id/et_mpin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -295,9 +295,9 @@
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
                     android:backgroundTint="#999999"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                     android:inputType="numberPassword" />
 
 

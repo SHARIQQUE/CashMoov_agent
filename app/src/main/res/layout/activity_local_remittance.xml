@@ -121,6 +121,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:textSize="@dimen/_16sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:layout_weight="0.2"
                                 android:textColor="@color/textColorLBlack"
                                 android:lineSpacingExtra="3sp"
@@ -182,7 +183,6 @@
 
 
                             <TextView
-
                                 android:layout_width="16dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
@@ -191,8 +191,8 @@
                                 android:gravity="left"
                                 android:text="@string/conversion_rate"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_bold"/>
 
                             <TextView
                                 android:id="@+id/convertionRate_first_page"
@@ -202,7 +202,8 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="left"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold" />
 
 
                         </LinearLayout>
@@ -223,8 +224,8 @@
                                 android:gravity="left"
                                 android:text="@string/fee_receiptPage"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_bold" />
 
                             <TextView
 
@@ -235,7 +236,8 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="left"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold"/>
 
 
                         </LinearLayout>
@@ -256,8 +258,8 @@
                                 android:gravity="left"
                                 android:text="@string/tax"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_bold" />
 
                             <TextView
 
@@ -268,7 +270,8 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="left"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold" />
 
 
                         </LinearLayout>
@@ -323,8 +326,8 @@
                                 android:gravity="left"
                                 android:text="@string/amount_to_be_charged_receiptpage"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_bold" />
 
                             <TextView
                                 android:id="@+id/amountTobeCharged_first_page"
@@ -334,7 +337,8 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="left"
                                 android:textColor="@android:color/black"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/_13sdp"
+                                android:fontFamily="@font/aileron_semibold" />
 
 
                         </LinearLayout>

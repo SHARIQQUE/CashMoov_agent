@@ -94,7 +94,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
 
 
@@ -113,7 +114,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_branch_name"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
 
                 <EditText
@@ -131,7 +133,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_lname"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
                     android:id="@+id/etEmail"
@@ -148,7 +151,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_email"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
                 <EditText
                     android:id="@+id/etPhone"
@@ -167,7 +171,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_phone_number"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,7 +194,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -213,7 +219,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"  />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -236,7 +243,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"  />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -259,7 +267,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"  />
                 </LinearLayout>
                 <EditText
                     android:id="@+id/etAddress"
@@ -276,7 +285,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_address"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -315,7 +325,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_dob"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -337,7 +348,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
 
                 <EditText
@@ -355,7 +367,8 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/vaild_id_proof_no"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -377,7 +390,8 @@
                         android:text="@string/login_with_otp"
                         android:layout_gravity="center"
                         android:textColor="#000"
-                        android:textSize="@dimen/_13sdp"/>
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
 
                 <TextView

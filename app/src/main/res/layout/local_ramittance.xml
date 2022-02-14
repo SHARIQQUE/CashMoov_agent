@@ -1540,8 +1540,6 @@
                         />
 
                     <EditText
-
-
                         android:id="@+id/et_mpin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1555,8 +1553,8 @@
                         android:background="@drawable/rect_lightcolor_outline"
                         android:maxLength="4"
                         android:backgroundTint="#999999"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:inputType="numberPassword" />
 
 

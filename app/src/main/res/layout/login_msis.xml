@@ -76,23 +76,20 @@
                                 android:textSize="17sp" />
 
                             <EditText
-
-
                                 android:id="@+id/et_phoneNo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:lineSpacingExtra="10sp"
                                 android:padding="@dimen/_12sdp"
                                 android:layout_marginTop="@dimen/_10sdp"
-
                                 android:hint="@string/phoneNumber"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:background="@drawable/rect_lightcolor_outline"
- android:maxLength="15"
+                                android:maxLength="15"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
-                                android:textStyle="bold"
+                                android:textSize="@dimen/_15sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:inputType="phone" />
                         </LinearLayout>
 

@@ -29,11 +29,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="Cash to Wallet"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_16sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -62,9 +62,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="Transaction détails"
                 />
@@ -86,7 +86,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Montant*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
             <Spinner
                 android:id="@+id/Spinnertypedevise"
                 style="@style/SpinnerStyleNew" android:textColor="#323232"
@@ -105,7 +106,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Montant à payer"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <LinearLayout
                 android:gravity="left"
@@ -129,6 +131,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
                 <TextView
@@ -142,6 +146,8 @@
                     android:paddingBottom="5dp"
                     android:layout_marginRight="10dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,6 +157,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
                 <TextView
@@ -164,6 +172,8 @@
                     android:layout_marginRight="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
             </LinearLayout>
@@ -189,6 +199,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
                 <TextView
@@ -202,6 +214,8 @@
                     android:paddingBottom="5dp"
                     android:layout_marginRight="10dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -211,6 +225,8 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
                 <TextView
@@ -224,6 +240,8 @@
                     android:layout_marginRight="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     />
 
             </LinearLayout>
@@ -231,10 +249,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="@dimen/_14sdp"
                 android:layout_marginTop="10dp"
                 android:textColor="#29304d"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="Details du destinataire"
                 />
@@ -252,7 +270,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Numero mobile*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,7 +285,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Nom*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -280,7 +300,8 @@
                 android:paddingBottom="16dp"
                 android:hint="Prenom*"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

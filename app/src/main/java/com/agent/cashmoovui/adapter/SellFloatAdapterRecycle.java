@@ -16,7 +16,10 @@ import com.agent.cashmoovui.transfer_float.CallBackSellFloatRecycleViewClick;
 import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.agent.cashmoovui.transfer_float.SellFloatModal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -59,7 +62,17 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
         viewHolder.finalAmount_textview.setText(tfinalAmount_str);
 
         viewHolder.status_textview.setText(arrayList_modalUserData.get(i).getSellFloat_status());
-        viewHolder.datetime_textview.setText(arrayList_modalUserData.get(i).getSellFloat_creationDate());
+
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            Date date = null;
+            date = inputFormat.parse(arrayList_modalUserData.get(i).getSellFloat_creationDate());
+            String formattedDate = outputFormat.format(date);
+            viewHolder.datetime_textview.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         viewHolder.action_click.setId(i);

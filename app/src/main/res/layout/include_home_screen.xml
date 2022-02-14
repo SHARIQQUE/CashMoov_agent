@@ -622,7 +622,7 @@
                             android:textColor="@color/textColorBlack"
                             android:lineSpacingExtra="3sp"
                             android:layout_marginTop="@dimen/_5sdp"
-                            android:fontFamily="@font/aileron_semibold"
+                            android:fontFamily="@font/aileron_bold"
                             android:gravity="center_horizontal"
                             android:text="@string/service_charge"
                             />

@@ -68,7 +68,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             holder.imgLogo.setImageResource(R.drawable.ic_lewallet);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Airtime Purchase")){
-            holder.imgLogo.setImageResource(R.drawable.ic_rechargement);
+            holder.imgLogo.setImageResource(R.drawable.ic_airtime);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Remit Send Reversal")){
             holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
@@ -80,7 +80,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             holder.imgLogo.setImageResource(R.drawable.ic_cashpickup24);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Pay")){
-            holder.imgLogo.setImageResource(R.drawable.ic_paimentfacture);
+            holder.imgLogo.setImageResource(R.drawable.icon_merchant);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Withdrawal")){
             holder.imgLogo.setImageResource(R.drawable.ic_paymane24);

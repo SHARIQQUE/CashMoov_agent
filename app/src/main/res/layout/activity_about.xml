@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_cashmoov_app"
             android:textAlignment="center"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_16sdp"
             android:textColor="@color/textColorDBlack"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center_horizontal"
@@ -47,9 +47,10 @@
             android:text="@string/version"
             android:textAlignment="center"
             android:textSize="@dimen/_13sdp"
+            android:textColor="@color/textcolor"
             android:layout_marginTop="@dimen/_10sdp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/aileron_bold"/>
 
         <TextView
             android:layout_width="match_parent"

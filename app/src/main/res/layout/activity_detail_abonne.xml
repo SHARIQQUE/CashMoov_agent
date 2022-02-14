@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"
@@ -218,7 +218,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"
@@ -248,7 +248,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"
@@ -278,7 +278,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"
@@ -308,7 +308,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"
@@ -338,7 +338,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/aileron_semibold"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
                         android:layout_weight="0.7"

@@ -124,7 +124,8 @@
                         android:enabled="false"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"  />
 
                     <Button
                         android:id="@+id/btnFrontUpload"
@@ -166,7 +167,8 @@
                         android:paddingBottom="@dimen/_12sdp"
                         android:paddingEnd="@dimen/_15sdp"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_width="wrap_content"
                         android:enabled="false"
                         android:layout_height="wrap_content" />
@@ -186,7 +188,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textColor="#29304d"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_bold"
@@ -225,7 +227,8 @@
                         android:paddingBottom="@dimen/_12sdp"
                         android:paddingEnd="@dimen/_15sdp"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:layout_width="wrap_content"
                         android:enabled="false"
                         android:layout_height="wrap_content" />

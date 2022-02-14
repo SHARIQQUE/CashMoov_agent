@@ -57,11 +57,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/aileron_bold"
                         android:lineSpacingExtra="3sp"
                         android:text="@string/enter_pin"
                         android:textColor="#29304d"
                         android:textSize="@dimen/_13sdp"
+                        android:fontFamily="@font/aileron_bold"
                         android:layout_marginBottom="@dimen/_10sdp"/>
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -101,10 +101,9 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
-                                android:textStyle="bold"
+                                android:textSize="@dimen/_15sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
                         </LinearLayout>

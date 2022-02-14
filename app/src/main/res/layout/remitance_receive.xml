@@ -176,17 +176,18 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
-
                 android:textAllCaps="true"
-
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:maxLength="11"
-                android:paddingBottom="16dp"
                 android:hint="@string/confirmation_code_star"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold"/>
             <EditText
                 android:id="@+id/edittext_amount"
                 android:layout_width="match_parent"
@@ -194,15 +195,18 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_edittextname"
                 android:backgroundTint="#999999"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:maxLength="10"
-                android:paddingBottom="16dp"
                 android:hint="@string/amount"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
 
 
@@ -215,13 +219,16 @@
                 android:backgroundTint="#999999"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:maxLength="20"
-                android:paddingBottom="16dp"
                 android:hint="@string/country_star"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
     <EditText
         android:visibility="gone"
         android:id="@+id/edittext_currencyName"
@@ -249,13 +256,16 @@
                 android:backgroundTint="#999999"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:maxLength="20"
-                android:paddingBottom="16dp"
                 android:hint="@string/first_name_star"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <EditText
                 android:id="@+id/edittext_mobileNuber"
@@ -266,12 +276,15 @@
                 android:backgroundTint="#999999"
                 android:inputType="number"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/please_enter_mobileno"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <EditText
                 android:id="@+id/edittext_gender"
@@ -282,13 +295,16 @@
                 android:backgroundTint="#999999"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:maxLength="20"
-                android:paddingBottom="16dp"
                 android:hint="@string/gender"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <EditText
                 android:id="@+id/edittext_email"
@@ -299,12 +315,14 @@
                 android:backgroundTint="#999999"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
-                android:paddingLeft="37.5dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/email"
                 android:textColor="#323232"
-                android:textSize="15sp" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/aileron_semibold" />
 
             <LinearLayout
 
@@ -313,34 +331,28 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="gone"
-
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="4">
 
 
                 <TextView
-
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:gravity="left"
-
                     android:text="@string/pin"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/aileron_bold" />
 
                 <EditText
-
-
                     android:id="@+id/et_mpin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                     android:padding="@dimen/_12sdp"
                     android:hint="@string/please_enter_4_digit_mpin"
                     android:layout_gravity="center_vertical"
@@ -348,8 +360,8 @@
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
                     android:backgroundTint="#999999"
-                    android:textSize="@dimen/_13sdp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold"
                     android:inputType="numberPassword" />
 
 

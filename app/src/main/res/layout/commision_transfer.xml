@@ -295,6 +295,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/aileron_semibold"
             android:layout_weight="0.2"
             android:textColor="@color/textColorLBlack"
             android:lineSpacingExtra="3sp"
@@ -346,15 +347,12 @@
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:gravity="left"
-
                         android:text="@string/pin_capital"
                         android:textColor="@android:color/black"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
 
                     <EditText
-
-
                         android:id="@+id/et_mpin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -366,10 +364,9 @@
                         android:background="@drawable/rect_lightcolor_outline"
                         android:maxLength="4"
                         android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
                         android:backgroundTint="#999999"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:inputType="numberPassword" />
 
 

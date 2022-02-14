@@ -68,7 +68,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/valid_phone_number"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold"  />
 
 
     <EditText
@@ -86,7 +87,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/first_name_star"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold" />
 
     <EditText
         android:id="@+id/et_sender_lastname"
@@ -103,7 +105,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/last_name"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold" />
 
     <EditText
         android:id="@+id/et_sender_email"
@@ -120,7 +123,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/email"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold"  />
 
     <TextView
         android:id="@+id/spinner_sender_gender"
@@ -142,7 +146,8 @@
             android:paddingBottom="@dimen/_12sdp"
             android:paddingEnd="@dimen/_15sdp"
             android:textColor="#323232"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/aileron_semibold"  />
 
 
     <EditText
@@ -160,7 +165,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/valid_address"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold"  />
 
     <TextView
         android:id="@+id/spinner_sender_region"
@@ -182,7 +188,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/valid_city"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold" />
 
     <TextView
         android:id="@+id/spinner_sender_idprooftype"
@@ -204,7 +211,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/vaild_id_proof_no"
         android:textColor="#323232"
-        android:textSize="15sp" />
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/aileron_semibold"  />
 
         <EditText
             android:id="@+id/et_sender_idproof_expiry"
@@ -221,7 +229,8 @@
             android:paddingBottom="@dimen/_12sdp"
             android:paddingEnd="@dimen/_15sdp"
             android:textColor="#323232"
-            android:textSize="15sp" />
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/aileron_semibold"  />
 
     <LinearLayout
         android:gravity="center_horizontal"
@@ -256,7 +265,8 @@
             android:paddingEnd="@dimen/_15sdp"
             android:enabled="false"
             android:textColor="@color/textColorLBlack"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/aileron_semibold" />
 
         <Button
             android:id="@+id/btnFrontUpload"
@@ -301,7 +311,8 @@
             android:paddingBottom="@dimen/_12sdp"
             android:paddingEnd="@dimen/_15sdp"
             android:textColor="@color/textColorLBlack"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/aileron_semibold"
             android:layout_width="wrap_content"
             android:enabled="false"
             android:layout_height="wrap_content" />

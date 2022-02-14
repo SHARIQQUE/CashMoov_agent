@@ -65,7 +65,7 @@ public class MiniStatementAgentTransAdapter extends RecyclerView.Adapter<MiniSta
             holder.imgLogo.setImageResource(R.drawable.ic_lewallet);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Airtime Purchase")){
-            holder.imgLogo.setImageResource(R.drawable.ic_rechargement);
+            holder.imgLogo.setImageResource(R.drawable.ic_airtime);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Remit Send Reversal")){
             holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
@@ -77,7 +77,7 @@ public class MiniStatementAgentTransAdapter extends RecyclerView.Adapter<MiniSta
             holder.imgLogo.setImageResource(R.drawable.ic_cashpickup24);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Pay")){
-            holder.imgLogo.setImageResource(R.drawable.ic_paimentfacture);
+            holder.imgLogo.setImageResource(R.drawable.icon_merchant);
         }
         if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Withdrawal")){
             holder.imgLogo.setImageResource(R.drawable.ic_paymane24);
