@@ -55,8 +55,7 @@
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/choose_the_operation"
-                />
+                android:text="@string/choose_the_operation" />
 
 
             <LinearLayout

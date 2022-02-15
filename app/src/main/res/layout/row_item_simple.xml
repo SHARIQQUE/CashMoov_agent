@@ -11,6 +11,7 @@
     android:ellipsize="marquee"
     android:text="Item Name"
     android:textColor="@color/black"
-    android:textSize="@dimen/_12sdp" />
+    android:fontFamily="@font/aileron_semibold"
+    android:textSize="@dimen/_15sdp" />
     <!--<View--><!--android:layout_below="@+id/textViewName"--><!--android:layout_width="match_parent"--><!--android:layout_height="1dp"--><!--android:background="@color/gray"/>-->
 

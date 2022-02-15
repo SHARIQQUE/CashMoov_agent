@@ -14,16 +14,18 @@
             android:text="@string/range"
             android:textColor="#000"
             android:gravity="start|center_vertical"
-            android:textSize="@dimen/_11sdp" />
+            android:textSize="@dimen/_13sdp"
+            android:fontFamily="@font/aileron_semibold"/>
 
-        <TextView
-            android:id="@+id/tvValue"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:text="@string/value"
-            android:gravity="end|center_vertical"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:textColor="#000"
-            android:textSize="@dimen/_11sdp" />
+    <TextView
+        android:id="@+id/tvValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_weight="0.3"
+        android:gravity="end|center_vertical"
+        android:text="@string/value"
+        android:textColor="#000"
+        android:textSize="@dimen/_13sdp"
+        android:fontFamily="@font/aileron_semibold"/>
     </LinearLayout>
