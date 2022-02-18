@@ -46,7 +46,6 @@
            android:layout_marginLeft="@dimen/_5sdp"
            android:layout_marginTop="@dimen/_10sdp"
            android:layout_weight="1"
-
            android:orientation="vertical">
 
            <TextView
@@ -209,8 +208,6 @@
            android:layout_weight="1"
            android:layout_marginBottom="@dimen/_10sdp"
            android:layout_marginTop="@dimen/_10sdp"
-
-
            android:orientation="vertical">
 
            <TextView

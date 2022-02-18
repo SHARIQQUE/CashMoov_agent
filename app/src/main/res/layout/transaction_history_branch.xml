@@ -448,23 +448,22 @@ android:id="@+id/commisionwallet_heding_textview"
 
                         <EditText
                             android:id="@+id/edittext_search"
-
                             android:layout_weight="1"
-
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_40sdp"
                             android:background="@drawable/btn_edittextname"
                             android:backgroundTint="#999999"
                             android:inputType="textPersonName"
                             android:lineSpacingExtra="10sp"
-                            android:paddingLeft="37.5dp"
-                            android:paddingTop="16dp"
+                            android:paddingLeft="@dimen/_15sdp"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:paddingBottom="@dimen/_12sdp"
+                            android:paddingEnd="@dimen/_15sdp"
                             android:maxLength="11"
                             android:hint="@string/find_a_transaction"
-
-                            android:paddingBottom="16dp"
                             android:textColor="#323232"
-                            android:textSize="15sp" />
+                            android:textSize="@dimen/_15sdp"
+                            android:fontFamily="@font/aileron_semibold" />
 
 
 

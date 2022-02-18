@@ -110,7 +110,7 @@
     <string name="continu">Continuer</string>
     <string name="beneficiary_management">Gestion des bénéficiaires</string>
     <string name="add_contact">Ajouter un contact</string>
-    <string name="hello">Bonjour</string>
+    <string name="hello">Bonjour,</string>
     <string name="dashboard">Tableau de bord</string>
     <string name="pay">Solde</string>
     <string name="balance">Solde</string>
@@ -358,7 +358,7 @@
     <string name="please_enter_otp_code">Veuillez entrer le code OTP</string>
     <string name="plz_enter_6_digit_otp_code">Veuillez entrer le code OTP à 6 chiffres</string>
 
-    <string name="cash_In">cash In</string>
+    <string name="cash_In">Cash In</string>
     <string name="cash_Out">Cash Out</string>
     <string name="remittance">Remittance</string>
     <string name="payments">Paiements</string>

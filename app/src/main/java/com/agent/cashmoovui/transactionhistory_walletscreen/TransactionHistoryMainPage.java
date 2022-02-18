@@ -11,22 +11,18 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.NotificationList;
 import com.agent.cashmoovui.activity.ShowProfileQr;
-import com.agent.cashmoovui.adapter.CurrencyListTransaction;
 import com.agent.cashmoovui.adapter.MiniStatementTransAdapter;
 import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
 import com.agent.cashmoovui.apiCalls.API;
@@ -37,16 +33,12 @@ import com.agent.cashmoovui.model.MiniStatementTrans;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.settings.Profile;
-import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.skhugh.simplepulltorefresh.PullToRefreshLayout;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -56,7 +48,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import me.ibrahimsn.lib.OnItemSelectedListener;

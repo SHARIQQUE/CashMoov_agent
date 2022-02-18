@@ -3,29 +3,22 @@ package com.agent.cashmoovui.otp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.set_pin.SetPin;
-
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
 import org.json.JSONObject;
-
 import java.util.Locale;
 
-public class VerifyLoginAccountScreen extends AppCompatActivity implements View.OnClickListener {
+public class VerifyLoginAccountScreen extends AppCompatActivity implements OnOtpCompletionListener {
     public static VerifyLoginAccountScreen verifyaccountscreenC;
-    EditText etOne,etTwo,etThree,etFour,etFive,etSix;
-    TextView tvPhoneNoMsg,tvContinue;
+    OtpView otp_view;
+    TextView tvPhoneNoMsg;
     MyApplication applicationComponentClass;
     String  languageToUse;
 
@@ -57,95 +50,34 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements View.
     }
 
     private void getIds() {
-        etOne = findViewById(R.id.etOne);
-        etTwo = findViewById(R.id.etTwo);
-        etThree = findViewById(R.id.etThree);
-        etFour = findViewById(R.id.etFour);
-        etFive = findViewById(R.id.etFive);
-        etSix = findViewById(R.id.etSix);
+        otp_view = findViewById(R.id.otp_view);
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
-        tvContinue = findViewById(R.id.tvContinue);
-
-        etSix.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() >= 1)
-                    MyApplication.hideKeyboard(verifyaccountscreenC);            }
-        });
-
-        TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
-
-        for (TextView currTextView : otpTextViews) {
-            currTextView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    nextTextView().requestFocus();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-
-                public TextView nextTextView() {
-
-                    int i;
-                    for (i = 0; i < otpTextViews.length - 1; i++) {
-                        if (otpTextViews[i] == currTextView)
-                            return otpTextViews[i + 1];
-                    }
-                    return otpTextViews[i];
-                }
-            });
-        }
-
 
         setOnCLickListener();
 
     }
 
-    public String getEditTextString(EditText editText){
-        return editText.getText().toString().trim();
-    }
-    String pass;
     private void setOnCLickListener() {
-        tvContinue.setOnClickListener(verifyaccountscreenC);
+        otp_view.setOtpCompletionListener(verifyaccountscreenC);
     }
 
     @Override
-    public void onClick(View view) {
-
-        pass=getEditTextString(etOne)+getEditTextString(etTwo)+getEditTextString(etThree)+
-                getEditTextString(etFour)+getEditTextString(etFive)+getEditTextString(etSix);
-        if(pass.length()==6){
-            callApiLoginPass();
+    public void onOtpCompleted(String otp) {
+        if(otp.length()==6){
+            callApiLoginPass(otp);
         }else{
-            MyApplication.showToast(verifyaccountscreenC,"Please enter otp");
+            MyApplication.showToast(verifyaccountscreenC,getString(R.string.please_enter_otp_code));
         }
-      //  callApiLoginPass();
     }
 
 
-    private void callApiLoginPass() {
+    private void callApiLoginPass(String otp) {
         try{
 
             JSONObject loginJson=new JSONObject();
             
             loginJson.put("username",MyApplication.getSaveString("USERNAME",VerifyLoginAccountScreen.this));
-            loginJson.put("password",pass);
+            loginJson.put("password",otp);
             loginJson.put("grant_type","password");
             // loginJson.put("scope","read write");
 

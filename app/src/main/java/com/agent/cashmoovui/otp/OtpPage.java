@@ -3,38 +3,25 @@ package com.agent.cashmoovui.otp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.internet.InternetCheck;
-import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.set_pin.SetPin;
-
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
 import org.json.JSONObject;
-
 import java.util.Locale;
 
-
-public class OtpPage extends AppCompatActivity implements View.OnClickListener {
+public class OtpPage extends AppCompatActivity implements OnOtpCompletionListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
+    OtpView otp_view;
 
-    EditText et_One, et_Two, et_Three, et_Four,et_Five,et_six;
-    String str_one, str_two, str_three, str_four,str_five,str_six;
-
-    TextView tv_Continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,186 +46,20 @@ public class OtpPage extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.otp_page);
 
 
-        et_One = (EditText) findViewById(R.id.et_One);
-        et_Two = (EditText) findViewById(R.id.et_Two);
-        et_Three = (EditText) findViewById(R.id.et_Three);
-        et_Four = (EditText) findViewById(R.id.et_Four);
-        et_Five = (EditText) findViewById(R.id.et_Five);
-        et_six = (EditText) findViewById(R.id.et_six);
+        otp_view = findViewById(R.id.otp_view);
 
-        tv_Continue = (TextView) findViewById(R.id.tv_Continue);
-
-        et_six.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() >= 1)
-                    MyApplication.hideKeyboard(OtpPage.this);            }
-        });
-
-
-
-        et_One.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (et_One.getText().toString().length() == 1)     //size as per your requirement
-                {
-                    et_Two.requestFocus();
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
-        et_Two.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (et_Two.getText().toString().length() == 1)     //size as per your requirement
-                {
-                    et_Three.requestFocus();
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
-        et_Three.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (et_Three.getText().toString().length() == 1)     //size as per your requirement
-                {
-
-                    et_Four.requestFocus();
-
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
-
-        et_Four.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (et_Four.getText().toString().length() == 1)     //size as per your requirement
-                {
-                    et_Five.requestFocus();
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
-        et_Five.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (et_Five.getText().toString().length() == 1)     //size as per your requirement
-                {
-
-                    et_six.requestFocus();
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
-
-
-
-        et_six.addTextChangedListener(new TextWatcher() {
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (et_six.getText().toString().length() == 1)     //size as per your requirement
-                {
-
-//                    if (validation_Details()) {
-//                        if (new InternetCheck().isConnected(OtpPage.this)) {
-//
-//                            otp_verify_api();
-//
-//                        } else {
-//                            Toast.makeText(OtpPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-                }
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-                // TODO Auto-generated method stub
-
-            }
-
-            public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
-            }
-
-        });
-
-        tv_Continue.setOnClickListener(this);
-
-
+        otp_view.setOtpCompletionListener(this);
     }
+
+    @Override
+    public void onOtpCompleted(String otp) {
+        if(otp.length()==6){
+            callApiLoginPass(otp);
+        }else{
+            MyApplication.showToast(OtpPage.this,getString(R.string.please_enter_otp_code));
+        }
+    }
+
 
  /*
     private void otp_verify_api() {
@@ -324,44 +145,14 @@ public class OtpPage extends AppCompatActivity implements View.OnClickListener {
     
     */
 
-
-
-    @Override
-    public void onClick(View view) {
-
-        switch (view.getId()) {
-
-            case R.id.tv_Continue: {
-
-                if (validation_Details()) {
-
-                    if (new InternetCheck().isConnected(OtpPage.this)) {
-
-
-                        callApiLoginPass();
-
-
-                        // otp_verify_api();
-
-                    } else {
-                        Toast.makeText(OtpPage.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                    }
-                }
-
-            }
-            break;
-
-        }
-    }
-
-    private void callApiLoginPass() {
+    private void callApiLoginPass(String otp) {
 
         try{
 
             JSONObject loginJson=new JSONObject();
             
             loginJson.put("username",MyApplication.getSaveString("USERNAME",OtpPage.this));
-            loginJson.put("password",str_one+str_two+str_three+str_four+str_five+str_six);
+            loginJson.put("password",otp);
             loginJson.put("grant_type","password");
 
             System.out.println("Login request"+loginJson.toString());
@@ -414,90 +205,6 @@ public class OtpPage extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-
-    boolean validation_Details() {
-
-
-        str_one = et_One.getText().toString();
-        str_two = et_Two.getText().toString();
-        str_three = et_Three.getText().toString();
-        str_four = et_Four.getText().toString();
-        str_five = et_Five.getText().toString();
-        str_six = et_six.getText().toString();
-
-
-        if (str_one.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        }
-        else if (str_one.length() < 0) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_two.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_two.length() < 0) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_three.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_three.length() < 0) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        }
-
-        else if (str_four.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_four.length() < 0) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        }
-
-        else if (str_five.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_five.length() < 0) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        }
-
-        else if (str_six.isEmpty()) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        } else if (str_six.length() < 0) {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_otp_code));
-
-            return false;
-        }
-
-
-        return true;
-    }
 
 
 }

@@ -261,7 +261,7 @@ public class MyApplication extends Application {
 
     public static void showloader(Activity activity, String message){
         hud = KProgressHUD.create(activity)
-                .setStyle(KProgressHUD.Style.PIE_DETERMINATE)
+                .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
                 .setLabel(message)
                 // .setDetailsLabel("Downloading data")
                 .setCancellable(false)

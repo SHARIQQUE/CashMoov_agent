@@ -23,55 +23,51 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/linMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="1.5"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="4sp"
-                    android:text="Hello"
+                    android:text="@string/hello"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/aileron_bold"
-                        android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="7sp"
-                        android:text="Cash"
-                        android:src="@drawable/logo200x70b"
-                        android:textColor="#000"
-                        android:textSize="28sp" />
-                </LinearLayout>
-
-
+                <ImageView
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/logo200x70b" />
             </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgProfile"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop"
-                android:src="@drawable/souarecashmoov"
-                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight=".5"
+                android:gravity="end">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profil"
+                    android:layout_gravity="end"/>
+            </LinearLayout>
+
 
 
         </LinearLayout>
@@ -119,14 +115,14 @@
         <LinearLayout
             android:id="@+id/linClickn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/blue"
                 app:cardCornerRadius="@dimen/_10sdp"
                 app:cardElevation="0dp">
@@ -154,16 +150,12 @@
                                 android:layout_height="wrap_content">
 
                                 <ImageView
-                                    android:layout_width="@dimen/_40sdp"
-                                    android:layout_height="@dimen/_40sdp"
-                                    android:textSize="15sp"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/aileron_bold"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:lineSpacingExtra="10sp"
-                                    app:srcCompat="@drawable/ic_baseline_account_balance_wallet_24"
-                                    />
+                                    app:srcCompat="@drawable/ic_view"
+                                    app:tint="@color/white" />
 
                             </FrameLayout>
 
@@ -186,8 +178,9 @@
                                     android:id="@+id/tvBalance"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="@dimen/_15sdp"
+                                    android:textSize="@dimen/_14sdp"
                                     android:textColor="@color/white"
+                                    android:fontFamily="@font/aileron_bold"
                                     android:lineSpacingExtra="3sp"
                                     android:text="15,000 GNF"
                                     android:visibility="gone"/>

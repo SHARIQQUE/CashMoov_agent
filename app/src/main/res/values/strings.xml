@@ -116,7 +116,7 @@
     <string name="continu">Continue</string>
     <string name="beneficiary_management">Beneficiary Management</string>
     <string name="add_contact">Add a contact</string>
-    <string name="hello">Hello</string>
+    <string name="hello">Hello,</string>
     <string name="dashboard">Dashboard</string>
     <string name="pay">Pay</string>
     <string name="balance">Balance</string>
@@ -378,7 +378,7 @@
 
 
 
-    <string name="cash_In">cash In</string>
+    <string name="cash_In">Cash In</string>
     <string name="cash_Out">Cash Out</string>
     <string name="remittance">Remittance</string>
     <string name="payments">Payments</string>

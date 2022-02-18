@@ -37,7 +37,7 @@
                     android:lineSpacingExtra="7sp"
                     android:text="@string/my_account"
                     android:textColor="#29304d"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_18sdp" />
 
 
                 <Spinner
@@ -72,7 +72,8 @@
                             android:paddingBottom="13dp"
                             android:text="@string/institue"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/aileron_bold"/>
 
                         <TextView
 
@@ -90,7 +91,8 @@
                             android:paddingBottom="13dp"
                             android:text="@string/agent_history"
                             android:textColor="@color/bleu_cashmoov"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/aileron_bold" />
 
                         <TextView
                             android:id="@+id/insitute_branch"
@@ -106,7 +108,8 @@
                             android:paddingBottom="13dp"
                             android:text="@string/branch"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/_13sdp"
+                            android:fontFamily="@font/aileron_bold" />
 
 
 
@@ -193,21 +196,20 @@
 
                                         <TextView
                                             android:id="@+id/main_wallet_heding_textview"
-
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
                                             android:text="@string/main_Wallet"
                                             android:textColor="#ffffff"
-                                            android:textSize="@dimen/_11sdp" />
+                                            android:textSize="@dimen/_14sdp" />
 
                                         <TextView
                                             android:id="@+id/mainwallet_textview"
-
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_13sdp"
+                                            android:textSize="@dimen/_14sdp"
+                                            android:fontFamily="@font/aileron_semibold"
                                             android:textColor="#ffffff"
                                             android:lineSpacingExtra="3sp"
                                             />
@@ -290,7 +292,7 @@
                                             android:id="@+id/commisionwallet_heding_textview"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_11sdp"
+                                            android:textSize="@dimen/_14sdp"
                                             android:textColor="#ffffff"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
@@ -301,7 +303,8 @@
                                             android:id="@+id/commision_wallet_textview"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_13sdp"
+                                            android:textSize="@dimen/_14sdp"
+                                            android:fontFamily="@font/aileron_semibold"
                                             android:textColor="#ffffff"
                                             android:lineSpacingExtra="3sp"
                                             />
@@ -381,24 +384,21 @@
                                         android:orientation="vertical">
 
                                         <TextView
-
                                             android:id="@+id/overdraft_heading_heding_textview"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_11sdp"
+                                            android:textSize="@dimen/_14sdp"
                                             android:textColor="@color/bleu_cashmoov"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
-                                            android:text="@string/over_draft"
-                                            />
+                                            android:text="@string/over_draft" />
 
                                         <TextView
-
                                             android:id="@+id/overdraft_wallet_textview"
-
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:textSize="@dimen/_13sdp"
+                                            android:textSize="@dimen/_14sdp"
+                                            android:fontFamily="@font/aileron_semibold"
                                             android:textColor="@color/bleu_cashmoov"
                                             android:lineSpacingExtra="3sp"
                                             />
@@ -495,7 +495,7 @@
                         android:lineSpacingExtra="3sp"
                         android:text="@string/transaction_details"
                         android:textColor="#3a3a3a"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

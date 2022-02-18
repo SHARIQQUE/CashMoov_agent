@@ -3,11 +3,7 @@ package com.agent.cashmoovui.otp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -21,14 +17,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.mukesh.OnOtpCompletionListener;
+import com.mukesh.OtpView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Locale;
 
-public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnClickListener {
+public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpCompletionListener {
     public static VerifyLoginOTPScreen verifyloginotpscreenC;
-    EditText etOne,etTwo,etThree,etFour,etSix,etFive;
-    TextView tvPhoneNoMsg,tvContinue;
+    OtpView otp_view;
+    TextView tvPhoneNoMsg;
     String FCM_TOKEN;
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -73,14 +71,8 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnCl
 
 
     private void getIds() {
-        etOne = findViewById(R.id.etOne);
-        etTwo = findViewById(R.id.etTwo);
-        etThree = findViewById(R.id.etThree);
-        etFour = findViewById(R.id.etFour);
-        etFive = findViewById(R.id.etFive);
-        etSix = findViewById(R.id.etSix);
+        otp_view = findViewById(R.id.otp_view);
         tvPhoneNoMsg = findViewById(R.id.tvPhoneNoMsg);
-        tvContinue = findViewById(R.id.tvContinue);
 
         Intent intent = getIntent();
 
@@ -90,52 +82,6 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnCl
             tvPhoneNoMsg.setText(getString(R.string.verification_register_otp));
         }
 
-        etSix.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() >= 1)
-                    MyApplication.hideKeyboard(verifyloginotpscreenC);            }
-        });
-
-        TextView[] otpTextViews = {etOne, etTwo, etThree, etFour,etFive,etSix};
-
-        for (TextView currTextView : otpTextViews) {
-            currTextView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    nextTextView().requestFocus();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-
-                public TextView nextTextView() {
-
-                    int i;
-                    for (i = 0; i < otpTextViews.length - 1; i++) {
-                        if (otpTextViews[i] == currTextView)
-                            return otpTextViews[i + 1];
-                    }
-                    return otpTextViews[i];
-                }
-            });
-        }
-
 
         setOnCLickListener();
 
@@ -143,33 +89,26 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements View.OnCl
     }
 
     private void setOnCLickListener() {
-        tvContinue.setOnClickListener(verifyloginotpscreenC);
+        otp_view.setOtpCompletionListener(verifyloginotpscreenC);
     }
 
-    public String getEditTextString(EditText editText){
-        return editText.getText().toString().trim();
-    }
-    String pass;
     @Override
-    public void onClick(View view) {
-         pass=getEditTextString(etOne)+getEditTextString(etTwo)+getEditTextString(etThree)+
-                 getEditTextString(etFour)+getEditTextString(etFive)+getEditTextString(etSix);
-         if(pass.length()==6){
-             callApiLoginPass();
-         }else{
-
-         }
-
+    public void onOtpCompleted(String otp) {
+        if(otp.length()==6){
+            callApiLoginPass(otp);
+        }else{
+            MyApplication.showToast(verifyloginotpscreenC,getString(R.string.please_enter_otp_code));
+        }
     }
 
 
-    private void callApiLoginPass() {
+    private void callApiLoginPass(String otp) {
         try{
 
             JSONObject loginJson=new JSONObject();
 
             loginJson.put("username",MyApplication.getSaveString("USERNAME",VerifyLoginOTPScreen.this));
-            loginJson.put("password",pass);
+            loginJson.put("password",otp);
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             // loginJson.put("scope","read write");
