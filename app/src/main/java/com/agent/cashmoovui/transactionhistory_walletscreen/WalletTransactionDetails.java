@@ -92,7 +92,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String toWalletOwnerMsisdn = (getIntent().getStringExtra("TOMSISDN"));
             String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
 
-            txt_trans_type_name.setText(transType);
+            txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);

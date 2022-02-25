@@ -20,7 +20,8 @@
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
-        <item name="android:textSize">@dimen/_13sdp</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:fontFamily">@font/aileron_bold</item>
         <item name="android:textColorHint">@color/bgColorHint</item>
     </style>
 

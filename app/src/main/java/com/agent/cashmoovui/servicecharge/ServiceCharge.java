@@ -19,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ServiceCharge extends AppCompatActivity implements View.OnClickListener {
-    public static ServiceCharge feeC;
+    public static ServiceCharge servicechargeC;
     ImageView imgBack,imgHome;
     JSONObject feeData;
     public static JSONObject jsonObjectTestMain=null;
@@ -31,7 +31,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_charge);
-        feeC=this;
+        servicechargeC=this;
         setBackMenu();
         getIds();
     }
@@ -93,12 +93,12 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     private void setOnCLickListener() {
-        linRemittance.setOnClickListener(feeC);
-        linCreditPurchase.setOnClickListener(feeC);
-        linBillPay.setOnClickListener(feeC);
-        linMoneyTransfer.setOnClickListener(feeC);
-        linCashIn.setOnClickListener(feeC);
-        linCashOut.setOnClickListener(feeC);
+        linRemittance.setOnClickListener(servicechargeC);
+        linCreditPurchase.setOnClickListener(servicechargeC);
+        linBillPay.setOnClickListener(servicechargeC);
+        linMoneyTransfer.setOnClickListener(servicechargeC);
+        linCashIn.setOnClickListener(servicechargeC);
+        linCashOut.setOnClickListener(servicechargeC);
     }
 
     @Override
@@ -113,42 +113,42 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.linRemittance:
                 if(tvFeeRemittance.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
-                    MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+                    MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
                     showFeePopup(getString(R.string.remittance));
                 }
                 break;
             case R.id.linCreditPurchase:
                 if(tvFeeCreditPurchase.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
-                    MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+                    MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
                     showAirtimePurchasePopup(getString(R.string.credit_purchase));
                 }
                 break;
             case R.id.linBillPay:
                 if(tvFeeBillPayment.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
-                    MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+                    MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
                     showBillPayPopup(getString(R.string.bill_payment));
                 }
                 break;
             case R.id.linMoneyTransfer:
                 if(tvFeeMoneyTransfer.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
-                    MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+                    MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
                     showTransferPopup(getString(R.string.money_transfer));
                 }
                 break;
             case R.id.linCashIn:
                 if(tvFeeCashIn.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
-                    MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+                    MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
                     showCashInPopup(getString(R.string.cash_In));
                 }
                 break;
             case R.id.linCashOut:
                 if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
-                    MyApplication.showToast(feeC,getString(R.string.range_value_not_available));
+                    MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
                     showCashOutPopup(getString(R.string.cash_Out));
                 }
@@ -158,7 +158,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     public void showFeePopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
+        Dialog feeDialog = new Dialog(servicechargeC);
         feeDialog.setContentView(R.layout.popup_money_transfer);
 
         Button btnClose;
@@ -214,7 +214,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Send Remittance");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -224,7 +224,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Receive Remittance");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -234,7 +234,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Cash to Wallet");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -258,16 +258,30 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
 
 
     public void showAirtimePurchasePopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
+        Dialog feeDialog = new Dialog(servicechargeC);
         feeDialog.setContentView(R.layout.popup_airtime_purchase);
 
         Button btnClose;
-        TextView tvServiceName, txt1, txt1_value;
+        TextView tvServiceName, txt1, txt2, txt3, txt4, txt1_value, txt2_value, txt3_value, txt4_value;
         tvServiceName = feeDialog.findViewById(R.id.tvServiceName);
         tvServiceName.setText(serviceName);
         txt1 = feeDialog.findViewById(R.id.txt1);
-        txt1.setText(getString(R.string.mobile_recharge));
+        txt2 = feeDialog.findViewById(R.id.txt2);
+        txt3 = feeDialog.findViewById(R.id.txt3);
+        txt4 = feeDialog.findViewById(R.id.txt4);
+//        txt1.setText(getString(R.string.recharge_mobile));
+//        txt1.setVisibility(View.VISIBLE);
         txt1_value = feeDialog.findViewById(R.id.txt1_value);
+        txt2_value = feeDialog.findViewById(R.id.txt2_value);
+        txt3_value = feeDialog.findViewById(R.id.txt3_value);
+        txt4_value = feeDialog.findViewById(R.id.txt4_value);
+
+        LinearLayout lin1=feeDialog.findViewById(R.id.lin1);
+        LinearLayout lin2=feeDialog.findViewById(R.id.lin2);
+        LinearLayout lin3=feeDialog.findViewById(R.id.lin3);
+        LinearLayout lin4=feeDialog.findViewById(R.id.lin4);
+        lin1.setVisibility(View.GONE);
+
 
         if (jsonObjectTestMain != null) {
             JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
@@ -279,29 +293,137 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                     JSONObject childData = ChildListArr.optJSONObject(j);
 
                     if (feeData.optString("ServiceName").equalsIgnoreCase("Airtime Purchase")) {
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                       /* if (childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")) {
+                            System.out.println("productName==="+childData.optString("productName"));
+                            TextView textView1 = new TextView(this);
+                            textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT));
+                            textView1.setText(childData.optString("productName"));
+                            textView1.setPadding(5,5,5,5);
+                            textView1.setTextColor(Color.parseColor("#000000"));
+                            textView1.setCompoundDrawablePadding(20);
+                            textView1.setTextSize(16);
+                            textView1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_check_circle_outline_24,0,0,0);
+                            textView1.setTag("" + j);
+                            textView1.setClickable(true);//make your TextView Clickable
+                            textView1.setOnClickListener(btnClickListener);
 
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
-                                txt1_value.setText(childData.optString("percentFeeValue"));
+                            linearLayout.addView(textView1);
+                        }*/
+
+                        if (childData.optString("productCode").equalsIgnoreCase("100029")) {
+                            lin1.setVisibility(View.VISIBLE);
+                            txt1.setText(childData.optString("productName"));
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt1_value.setText(childData.optString("percentFeeValue"));
+                                }
+
                             }
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt1_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+                                }
 
-                        }
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
-                                txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
                             }
-
                         }
+
+                        if (childData.optString("productCode").equalsIgnoreCase("100030")) {
+                            lin2.setVisibility(View.VISIBLE);
+                            txt2.setText(childData.optString("productName"));
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt2_value.setText(childData.optString("percentFeeValue"));
+                                }
+
+                            }
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt2_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+                                }
+
+                            }
+                        }
+
+                        if (childData.optString("productCode").equalsIgnoreCase("100031")) {
+                            lin3.setVisibility(View.VISIBLE);
+                            txt3.setText(childData.optString("productName"));
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt3_value.setText(childData.optString("percentFeeValue"));
+                                }
+
+                            }
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt3_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+                                }
+
+                            }
+                        }
+
+                        if (childData.optString("productCode").equalsIgnoreCase("ALLPRO")) {
+                            lin4.setVisibility(View.VISIBLE);
+                            txt4.setText(childData.optString("productName"));
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt4_value.setText(childData.optString("percentFeeValue"));
+                                }
+
+                            }
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
+                                if (childData.optString("serviceCategoryName").equalsIgnoreCase("Mobile Prepaid")) {
+                                    txt4_value.setText(childData.optString("fixedFeeValue") + " " + getString(R.string.gnf_fixed));
+                                }
+
+                            }
+                        }
+
+
+
+
                     }
                 }
             }
         }
 
+
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("PRODUCTCODE","100029");
+                startActivity(i);
+                feeDialog.dismiss();
+            }
+        });
+        txt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
+                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("PRODUCTCODE","100030");
+                startActivity(i);
+                feeDialog.dismiss();
+            }
+        });
+        txt3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
+                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("PRODUCTCODE","100031");
+                startActivity(i);
+                feeDialog.dismiss();
+            }
+        });
+        txt4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
+                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("PRODUCTCODE","ALLPRO");
                 startActivity(i);
                 feeDialog.dismiss();
             }
@@ -323,7 +445,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     public void showBillPayPopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
+        Dialog feeDialog = new Dialog(servicechargeC);
         feeDialog.setContentView(R.layout.popup_airtime_purchase);
 
         Button btnClose;
@@ -365,7 +487,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Bill Payment");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -387,7 +509,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     public void showTransferPopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
+        Dialog feeDialog = new Dialog(servicechargeC);
         feeDialog.setContentView(R.layout.popup_transfer);
 
         Button btnClose;
@@ -438,7 +560,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Sell Float");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -448,7 +570,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Transfer Float");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -470,7 +592,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     public void showCashInPopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
+        Dialog feeDialog = new Dialog(servicechargeC);
         feeDialog.setContentView(R.layout.popup_airtime_purchase);
 
         Button btnClose;
@@ -512,7 +634,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Cash In");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -535,7 +657,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     public void showCashOutPopup(String serviceName) {
-        Dialog feeDialog = new Dialog(feeC);
+        Dialog feeDialog = new Dialog(servicechargeC);
         feeDialog.setContentView(R.layout.popup_airtime_purchase);
 
         Button btnClose;
@@ -577,7 +699,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(feeC,ServiceChargeDetails.class);
+                Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
                 i.putExtra("FEEINTENT","Cash Out");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -610,8 +732,8 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             receiveRemmitanceFee=new JSONObject();
             cashOutFee=new JSONObject();
             INTREMFee=new JSONObject();
-            MyApplication.showloader(feeC,"Please wait!");
-            API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+ MyApplication.getSaveString("walletOwnerCode", feeC),
+            MyApplication.showloader(servicechargeC,"Please wait!");
+            API.GET("ewallet/api/v1/walletOwnerTemplate/walletOwnerCode/fee/"+ MyApplication.getSaveString("walletOwnerCode", servicechargeC),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -868,14 +990,14 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
 
 
                                     }else{
-                                        MyApplication.showToast(feeC,"Fee not assign");
+                                        MyApplication.showToast(servicechargeC,"Fee not assign");
                                     }
 
 
 
                                 }
                                 else {
-                                    MyApplication.showToast(feeC,jsonObject.optString("resultDescription"));
+                                    MyApplication.showToast(servicechargeC,jsonObject.optString("resultDescription"));
                                 }
                             }
                         }

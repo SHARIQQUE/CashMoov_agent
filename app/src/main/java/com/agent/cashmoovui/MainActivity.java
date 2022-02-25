@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
-    TextView tvClick,tvBalance;
-    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_serviceCharge;
+    TextView tvClick,tvBalance,tvName;
+    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         imgProfile = findViewById(R.id.imgProfile);
         imgProfile.setOnClickListener(this);
+        tvName = findViewById(R.id.tvName);
 
         linClick = findViewById(R.id.linClickn);
         linClick.setOnClickListener(this);
@@ -147,9 +148,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_overdraft.setOnClickListener(this);
 
 
-        ll_serviceCharge= (LinearLayout) findViewById(R.id.ll_serviceCharge);
-        ll_serviceCharge.setOnClickListener(this);
-
         ll_walletowner= (LinearLayout) findViewById(R.id.ll_walletowner);
         ll_walletowner.setOnClickListener(this);
 
@@ -168,9 +166,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    finish();
                 }
                 if (bottomId == 1) {
-
-
-
                     Intent i = new Intent(MainActivity.this, TransactionHistoryMainPage.class);
                     startActivity(i);
 
@@ -299,10 +294,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
 
-            case R.id.ll_serviceCharge:
-                i = new Intent(MainActivity.this, ServiceCharge.class);
-                startActivity(i);
-                break;
 
         }
     }
@@ -344,6 +335,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 if(data.optString("currencyCode").equalsIgnoreCase(MyApplication.getSaveString("countryCode_Loginpage",MainActivity.this))) {
+                                                    tvName.setText(data.optString("walletOwnerName"));
                                                     tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
                                                 }
                                             }

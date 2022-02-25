@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,9 +42,9 @@ public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHo
             holder.ivOperatorLogo.setImageResource(R.drawable.canalplus);
         }
         if(opearatorModel.getCode().equalsIgnoreCase("100046")){
-            holder.ivOperatorLogo.setImageResource(R.drawable.startimes);
+            holder.ivOperatorLogo.setImageResource(R.drawable.startimeslogo);
         }
-        holder.cardOperation.setOnClickListener(new View.OnClickListener() {
+        holder.linOperator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(opearatorModel.getCode()!=null)
@@ -59,12 +60,12 @@ public class OperatorAdapter extends RecyclerView.Adapter<OperatorAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardOperation;
+        private LinearLayout linOperator;
         private ImageView ivOperatorLogo;
         private TextView tvOperatorName;
         public ViewHolder(View itemView) {
             super(itemView);
-            cardOperation = itemView.findViewById(R.id.cardOperation);
+            linOperator = itemView.findViewById(R.id.linOperator);
             ivOperatorLogo = itemView.findViewById(R.id.ivOperatorLogo);
             tvOperatorName = itemView.findViewById(R.id.tvOperatorName);
         }

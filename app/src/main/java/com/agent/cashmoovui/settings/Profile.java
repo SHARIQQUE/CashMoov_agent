@@ -23,6 +23,7 @@ import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.pin_change.ChangePin;
+import com.agent.cashmoovui.servicecharge.ServiceCharge;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
 import com.bumptech.glide.BuildConfig;
@@ -42,7 +43,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;
     SmoothBottomBar bottomBar;
-    LinearLayout linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
+    LinearLayout linServiceCharge,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
 
     TextView currency,number,etAddress,name;
@@ -148,6 +149,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         imgQR = findViewById(R.id.imgQR);
 
         bottomBar = findViewById(R.id.bottomBar);
+        linServiceCharge = findViewById(R.id.linServiceCharge);
         linBeneficiary = findViewById(R.id.linBeneficiary);
         linChangeLang = findViewById(R.id.linChangeLang);
         linConfidentiality = findViewById(R.id.linConfidentiality);
@@ -229,6 +231,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private void setOnCLickListener() {
         imgNotification.setOnClickListener(profileC);
         imgQR.setOnClickListener(profileC);
+        linServiceCharge.setOnClickListener(profileC);
         linBeneficiary.setOnClickListener(profileC);
         linChangeLang.setOnClickListener(profileC);
         linConfidentiality.setOnClickListener(profileC);
@@ -249,8 +252,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 intent = new Intent(profileC, NotificationList.class);
                 startActivity(intent);
                 break;
+
             case R.id.imgQR:
                 intent = new Intent(profileC, ShowProfileQr.class);
+                startActivity(intent);
+                break;
+
+            case R.id.linServiceCharge:
+                intent = new Intent(profileC, ServiceCharge.class);
                 startActivity(intent);
                 break;
 
@@ -258,19 +267,18 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 //                intent = new Intent(profileC, AddBeneficiary.class);
 //                startActivity(intent);
                 Toast.makeText(profileC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-
                 break;
+
             case R.id.linChangeLang:
-
-
                 intent = new Intent(profileC, ChangeLanguage.class);
                 startActivity(intent);
-
                 break;
+
             case R.id.linConfidentiality:
                 intent = new Intent(profileC, Confidentiality.class);
                 startActivity(intent);
                 break;
+
             case R.id.linShareApp:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
@@ -282,11 +290,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.linTermCondition:
                 Toast.makeText(profileC,"Coming Soon.....", Toast.LENGTH_SHORT).show();
-
                 break;
 
             case R.id.linAbout:
-
                 intent = new Intent(profileC, About.class);
                 startActivity(intent);
                 break;
@@ -295,7 +301,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             case R.id.linChangePin:
                 intent = new Intent(profileC, ChangePin.class);
                 startActivity(intent);
-
                 break;
 
             case R.id.linEditProfile:

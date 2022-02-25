@@ -17,81 +17,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aileron_semibold"
+                android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/transaction_details"
                 android:textColor="#29304d"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:textSize="@dimen/_15sdp" />
-
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_6sdp"
+                app:cardElevation="@dimen/_4sdp"
+                android:background="@color/white"
+                android:layout_margin="@dimen/_5sdp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:padding="@dimen/_15sdp"
                 android:background="@color/white"
-                android:layout_marginTop="@dimen/_10sdp">
+                android:padding="@dimen/_10sdp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:layout_marginTop="@dimen/_2sdp">
                 <TextView
                     android:id="@+id/txt_trans_type_name"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.6"
                     android:text="N/A"
-                    android:fontFamily="@font/aileron_regular"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/aileron_bold"
                     android:gravity="center_vertical"/>
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/view_color_light"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"/>
-                    <TextView
-                        android:id="@+id/txt_commission_amount"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:text="N/A"
-                        android:textColor="@color/textcolor"
-                        android:textSize="@dimen/_13sdp"
-                        android:fontFamily="@font/aileron_bold"
-                        android:gravity="center_vertical|end" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:layout_marginTop="@dimen/_2sdp">
                     <TextView
                         android:id="@+id/txt_from_owner_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="N/A"
-                        android:textColor="@color/textcolorheading"
-                        android:textSize="@dimen/_13sdp"
-                        android:layout_weight="0.6"
+                        android:textColor="@color/textColorDBlack"
+                        android:textSize="@dimen/_16sdp"
                         android:fontFamily="@font/aileron_semibold"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="@dimen/_3sdp"/>
+                        android:layout_marginTop="@dimen/_10sdp"/>
 
                     <TextView
                         android:visibility="gone"
@@ -100,68 +75,64 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.4"
                         android:text="N/A"
-                        android:textColor="@color/textColorBlack"
-                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/textcolor"
+                        android:textSize="@dimen/_13sdp"
+                        android:fontFamily="@font/aileron_semibold"
                         android:gravity="center_vertical|end" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_commission_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:textColor="@color/textColorDBlack"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"
+                    android:layout_marginTop="@dimen/_10sdp"/>
                 <TextView
                     android:id="@+id/txt_trans_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_weight="0.3"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:gravity="center_vertical"
                     android:text="N/A"
-                    android:fontFamily="@font/aileron_regular"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/_10sdp" />
+                    android:fontFamily="@font/aileron_semibold"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_13sdp" />
+                <TextView
+                    android:id="@+id/txt_from_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/txt_success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:textColor="@color/textColorLBlack"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
                 <TextView
                     android:id="@+id/txt_creation_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="N/A"
-                    android:textColor="@color/textColorBlack"
-                    android:textSize="@dimen/_10sdp"
                     android:layout_weight="0.3"
-                    android:fontFamily="@font/aileron_regular"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:textColor="@color/green_700"
+                    android:textSize="@dimen/_11sdp"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_2sdp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:layout_marginTop="@dimen/_2sdp">
-                    <TextView
-                        android:id="@+id/txt_from_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="N/A"
-                        android:textColor="@color/textColorBlack"
-                        android:textSize="@dimen/_10sdp"
-                        android:fontFamily="@font/aileron_regular"
-                        android:gravity="center_vertical"/>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="1dp"
-                        android:background="@color/view_color_light"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"/>
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/txt_success"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.7"
-                        android:text="N/A"
-                        android:textColor="@color/textColorBlack"
-                        android:textSize="@dimen/_10sdp"
-                        android:textStyle="bold"
-                        android:gravity="center_vertical|end" />
-                </LinearLayout>
-
+                    android:layout_marginTop="@dimen/_5sdp"/>
 
             </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,9 +42,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             holder.ivProductLogo.setImageResource(R.drawable.canalplus);
         }
         if(productModel.getOperatorCode().equalsIgnoreCase("100046")){
-            holder.ivProductLogo.setImageResource(R.drawable.startimes);
+            holder.ivProductLogo.setImageResource(R.drawable.startimeslogo);
         }
-        holder.cardProduct.setOnClickListener(new View.OnClickListener() {
+        holder.linProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(productModel.getCode()!=null)
@@ -59,12 +60,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private CardView cardProduct;
+        private LinearLayout linProduct;
         private ImageView ivProductLogo;
         private TextView tvProductName;
         public ViewHolder(View itemView) {
             super(itemView);
-            cardProduct = itemView.findViewById(R.id.cardProduct);
+            linProduct = itemView.findViewById(R.id.linProduct);
             ivProductLogo = itemView.findViewById(R.id.ivProductLogo);
             tvProductName = itemView.findViewById(R.id.tvProductName);
         }
