@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
 import com.agent.cashmoovui.adapter.OverDraftAdapterRecycle;
 import com.agent.cashmoovui.adapter.RecordAdapter;
@@ -142,8 +143,6 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     private void setBackMenu() {
 
-
-
         imgBack = findViewById(R.id.imgBack);
         imgHome = findViewById(R.id.imgHome);
         edittext_amount = findViewById(R.id.edittext_amount);
@@ -158,6 +157,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(OverdraftLimit.this);
                 onSupportNavigateUp();
             }
         });
@@ -166,6 +166,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(OverdraftLimit.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

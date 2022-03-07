@@ -8,9 +8,11 @@ public class ProductModel {
     public int maxValue;
     public int minValue;
     public int value;
+    public String modificationDate;
     public String name;
     public String operatorCode;
     public String operatorName;
+    public String productMasterCode;
     public String productTypeCode;
     public String productTypeName;
     public String serviceCategoryCode;
@@ -19,7 +21,7 @@ public class ProductModel {
     public String status;
     public String vendorProductCode;
 
-    public ProductModel(int id, String code, String creationDate, String description, int maxValue, int minValue, int value, String name, String operatorCode, String operatorName, String productTypeCode, String productTypeName, String serviceCategoryCode, String serviceCategoryName, String state, String status, String vendorProductCode) {
+    public ProductModel(int id, String code, String creationDate, String description, int maxValue, int minValue, int value, String modificationDate, String name, String operatorCode, String operatorName, String productMasterCode, String productTypeCode, String productTypeName, String serviceCategoryCode, String serviceCategoryName, String state, String status, String vendorProductCode) {
         this.id = id;
         this.code = code;
         this.creationDate = creationDate;
@@ -27,9 +29,11 @@ public class ProductModel {
         this.maxValue = maxValue;
         this.minValue = minValue;
         this.value = value;
+        this.modificationDate = modificationDate;
         this.name = name;
         this.operatorCode = operatorCode;
         this.operatorName = operatorName;
+        this.productMasterCode = productMasterCode;
         this.productTypeCode = productTypeCode;
         this.productTypeName = productTypeName;
         this.serviceCategoryCode = serviceCategoryCode;
@@ -95,6 +99,14 @@ public class ProductModel {
         this.value = value;
     }
 
+    public String getModificationDate() {
+        return modificationDate;
+    }
+
+    public void setModificationDate(String modificationDate) {
+        this.modificationDate = modificationDate;
+    }
+
     public String getName() {
         return name;
     }
@@ -117,6 +129,14 @@ public class ProductModel {
 
     public void setOperatorName(String operatorName) {
         this.operatorName = operatorName;
+    }
+
+    public String getProductMasterCode() {
+        return productMasterCode;
+    }
+
+    public void setProductMasterCode(String productMasterCode) {
+        this.productMasterCode = productMasterCode;
     }
 
     public String getProductTypeCode() {

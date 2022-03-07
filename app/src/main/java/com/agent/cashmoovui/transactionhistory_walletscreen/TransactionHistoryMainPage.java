@@ -115,7 +115,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 getBaseContext().getResources().getDisplayMetrics());
 
         setContentView(R.layout.transaction_history_mainpage);
-
+        MyApplication.hideKeyboard(this);
         bottomBar = findViewById(R.id.bottomBar);
         imgNotification = findViewById(R.id.imgNotification);
         imgNotification.setOnClickListener(this);
@@ -300,6 +300,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     @Override
     protected void onRestart() {
         super.onRestart();
+        MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 

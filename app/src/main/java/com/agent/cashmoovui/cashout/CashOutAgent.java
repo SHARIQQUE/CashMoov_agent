@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,20 +35,15 @@ import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
-import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.AESEncryption;
-import com.agent.cashmoovui.set_pin.SetPin;
 import com.blikoon.qrcodescanner.QrCodeActivity;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -441,12 +435,14 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(CashOutAgent.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(CashOutAgent.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

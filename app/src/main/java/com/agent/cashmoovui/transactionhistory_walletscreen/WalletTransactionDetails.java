@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,12 +52,14 @@ public class WalletTransactionDetails extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(WalletTransactionDetails.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(WalletTransactionDetails.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

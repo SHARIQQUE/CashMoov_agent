@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remittancebyabhay;
+package com.agent.cashmoovui.remittancebyabhay.local;
 
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
@@ -28,6 +28,7 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -101,12 +102,14 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(localremitsenderkycC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(localremitsenderkycC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -962,11 +965,6 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
             senderJson.put("countryCode",LocalRemittanceActivity.sendCountryCode);
-            if(spinner_sender_idprooftype.getTag()!=null){
-                senderJson.put("idProofTypeCode",idProofTypeModelList.get((Integer) spinner_sender_idprooftype.getTag()).getCode());
-            }else{
-                senderJson.put("idProofTypeCode",idprooftypecode);
-            }
             if(spinner_sender_region.getTag()!=null){
                 senderJson.put("regionCode",regionModelList.get((Integer) spinner_sender_region.getTag()).getCode());
             }else{

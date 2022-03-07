@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remmetience.cash_to_wallet;
+package com.agent.cashmoovui.remmetience;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,16 +26,14 @@ import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterGender;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterProvided;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
-import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -383,12 +380,14 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(CashToWallet.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(CashToWallet.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

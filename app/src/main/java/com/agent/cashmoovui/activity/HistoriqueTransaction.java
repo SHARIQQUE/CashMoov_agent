@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.agent.cashmoovui.MainActivity;
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 
 public class HistoriqueTransaction extends AppCompatActivity {
@@ -32,12 +33,14 @@ public class HistoriqueTransaction extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(HistoriqueTransaction.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(HistoriqueTransaction.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

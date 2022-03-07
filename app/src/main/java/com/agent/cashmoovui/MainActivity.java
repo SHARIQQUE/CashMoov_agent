@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,12 +19,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.agent.cashmoovui.activity.MoreActivity;
 import com.agent.cashmoovui.activity.NotificationList;
 import com.agent.cashmoovui.location.Constants;
 import com.agent.cashmoovui.location.FetchAddressIntentServices;
-import com.agent.cashmoovui.login.LoginMsis;
-import com.agent.cashmoovui.servicecharge.ServiceCharge;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.payments.Payments;
@@ -33,23 +30,17 @@ import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.cashout.CashOutOpt;
-import com.agent.cashmoovui.overdraft.OverdraftLimit;
-import com.agent.cashmoovui.remmetience.RemittanceOption;
+import com.agent.cashmoovui.remittancebyabhay.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
-import com.agent.cashmoovui.transfer_float.TransferOption;
-import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -61,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imgNotification,imgQR;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance,tvName;
-    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_walletowner,ll_transfer,ll_credit,ll_overdraft;
+    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,
+            ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_more;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -70,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        MyApplication.hideKeyboard(this);
         resultReceiver = new AddressResultReceiver(new Handler());
         applicationComponentClass = (MyApplication) getApplicationContext();
 
@@ -138,18 +130,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_payment= (LinearLayout) findViewById(R.id.ll_payment);
         ll_payment.setOnClickListener(this);
 
-        ll_transfer= (LinearLayout) findViewById(R.id.ll_transfer);
-        ll_transfer.setOnClickListener(this);
+//        ll_transfer= (LinearLayout) findViewById(R.id.ll_transfer);
+//        ll_transfer.setOnClickListener(this);
 
         ll_credit= (LinearLayout) findViewById(R.id.ll_credit);
         ll_credit.setOnClickListener(this);
 
-        ll_overdraft= (LinearLayout) findViewById(R.id.ll_overdraft);
-        ll_overdraft.setOnClickListener(this);
+//        ll_overdraft= (LinearLayout) findViewById(R.id.ll_overdraft);
+//        ll_overdraft.setOnClickListener(this);
 
 
-        ll_walletowner= (LinearLayout) findViewById(R.id.ll_walletowner);
-        ll_walletowner.setOnClickListener(this);
+//        ll_walletowner= (LinearLayout) findViewById(R.id.ll_walletowner);
+//        ll_walletowner.setOnClickListener(this);
+
+         ll_more= (LinearLayout) findViewById(R.id.ll_more);
+         ll_more.setOnClickListener(this);
 
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -190,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-
+        MyApplication.hideKeyboard(this);
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.profil)
@@ -221,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestart() {
         super.onRestart();
+        MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         tvClick.setVisibility(View.VISIBLE);
@@ -274,23 +270,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
 
-            case R.id.ll_walletowner:
-                i = new Intent(MainActivity.this, WalletOwnerMenu.class);
-                startActivity(i);
-                break;
+//            case R.id.ll_walletowner:
+//                i = new Intent(MainActivity.this, WalletOwnerMenu.class);
+//                startActivity(i);
+//                break;
 
-            case R.id.ll_transfer:
-                i = new Intent(MainActivity.this, TransferOption.class);
-                startActivity(i);
-                break;
+//            case R.id.ll_transfer:
+//                i = new Intent(MainActivity.this, TransferOption.class);
+//                startActivity(i);
+//                break;
 
             case R.id.ll_credit:
                 i = new Intent(MainActivity.this, AirtimePurchases.class);
                 startActivity(i);
                 break;
 
-            case R.id.ll_overdraft:
-                i = new Intent(MainActivity.this, OverdraftLimit.class);
+//            case R.id.ll_overdraft:
+//                i = new Intent(MainActivity.this, OverdraftLimit.class);
+//                startActivity(i);
+//                break;
+            case R.id.ll_more:
+                i = new Intent(MainActivity.this, MoreActivity.class);
                 startActivity(i);
                 break;
 

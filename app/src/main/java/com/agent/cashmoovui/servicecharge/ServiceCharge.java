@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
@@ -46,17 +47,17 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         imgBack = findViewById(R.id.imgBack);
         imgHome = findViewById(R.id.imgHome);
 
-
-
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(servicechargeC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(servicechargeC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -115,42 +116,54 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                 if(tvFeeRemittance.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
-                    showFeePopup(getString(R.string.remittance));
+                    intent = new Intent(servicechargeC, RemittanceFeeActivity.class);
+                    startActivity(intent);
+                    //showFeePopup(getString(R.string.remittance));
                 }
                 break;
             case R.id.linCreditPurchase:
                 if(tvFeeCreditPurchase.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
-                    showAirtimePurchasePopup(getString(R.string.credit_purchase));
+                    intent = new Intent(servicechargeC, AirtimeFeeActivity.class);
+                    startActivity(intent);
+                    //showAirtimePurchasePopup(getString(R.string.credit_purchase));
                 }
                 break;
             case R.id.linBillPay:
                 if(tvFeeBillPayment.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
-                    showBillPayPopup(getString(R.string.bill_payment));
+                    intent = new Intent(servicechargeC, BillPayFeeActivity.class);
+                    startActivity(intent);
+                    //showBillPayPopup(getString(R.string.bill_payment));
                 }
                 break;
             case R.id.linMoneyTransfer:
                 if(tvFeeMoneyTransfer.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
-                    showTransferPopup(getString(R.string.money_transfer));
+                    intent = new Intent(servicechargeC, MoneyTransferFeeActivity.class);
+                    startActivity(intent);
+                    //showTransferPopup(getString(R.string.money_transfer));
                 }
                 break;
             case R.id.linCashIn:
                 if(tvFeeCashIn.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
-                    showCashInPopup(getString(R.string.cash_In));
+                    intent = new Intent(servicechargeC, CashInFeeActivity.class);
+                    startActivity(intent);
+                    //showCashInPopup(getString(R.string.cash_In));
                 }
                 break;
             case R.id.linCashOut:
                 if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
-                    showCashOutPopup(getString(R.string.cash_Out));
+                    intent = new Intent(servicechargeC, CashOutFeeActivity.class);
+                    startActivity(intent);
+                    //showCashOutPopup(getString(R.string.cash_Out));
                 }
                 break;
 
@@ -770,6 +783,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                                                     }else{
                                                         dataObject.put("fixedFeeValue", fee.optString("fixedFeeValue"));
                                                     }
+                                                    dataObject.put("calculationTypeCode", fee.optString("calculationTypeCode"));
                                                     dataObject.put("calculationTypeName", fee.optString("calculationTypeName"));
                                                     dataObject.put("minValue", fee.optString("minValue"));
                                                     dataObject.put("maxValue", fee.optString("maxValue"));
@@ -822,6 +836,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                                                     jsonArrayMain.optJSONObject(pos).optJSONArray("child").put(dataObject);
 
                                                 }else{
+                                                    t.put("serviceCode", fee.optString("serviceCode"));
                                                     t.put("ServiceName", fee.optString("serviceName"));
                                                     t.put("serviceCategoryCode", fee.optString("serviceCategoryCode"));
                                                     t.put("serviceCategoryName", fee.optString("serviceCategoryName"));
@@ -834,6 +849,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                                                     }else{
                                                         dataObject.put("fixedFeeValue", fee.optString("fixedFeeValue"));
                                                     }
+                                                    dataObject.put("calculationTypeCode", fee.optString("calculationTypeCode"));
                                                     dataObject.put("calculationTypeName", fee.optString("calculationTypeName"));
                                                     dataObject.put("minValue", fee.optString("minValue"));
                                                     dataObject.put("maxValue", fee.optString("maxValue"));
@@ -888,65 +904,65 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                                             JSONArray FeeListArr = jsonObjectTestMain.optJSONArray("data");
                                             for (int i = 0; i < FeeListArr.length(); i++) {
                                                 JSONObject feeData = FeeListArr.optJSONObject(i);
-                                                if(feeData.optString("ServiceName").equalsIgnoreCase("Remittance")){
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")){
-                                                        tvFeeRemittance.setText("Paid Service");
+                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100002")){
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                                        tvFeeRemittance.setText(getString(R.string.paid_service));
                                                         //tvFeeRemittance.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
                                                     }
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")){
-                                                        tvFeeRemittance.setText("Paid Service");
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")){
+                                                        tvFeeRemittance.setText(getString(R.string.paid_service));
                                                         //tvFeeRemittance.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                     }
                                                 }
-                                                if(feeData.optString("ServiceName").equalsIgnoreCase("Airtime Purchase")){
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")){
-                                                        tvFeeCreditPurchase.setText("Paid Service");
+                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100009")){
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                                        tvFeeCreditPurchase.setText(getString(R.string.paid_service));
                                                        // tvFeeCreditPurchase.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
                                                     }
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")){
-                                                        tvFeeCreditPurchase.setText("Paid Service");
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")){
+                                                        tvFeeCreditPurchase.setText(getString(R.string.paid_service));
                                                         //tvFeeCreditPurchase.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                     }
                                                 }
-                                                if(feeData.optString("ServiceName").equalsIgnoreCase("Recharge & Payment")){
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")){
-                                                        tvFeeBillPayment.setText("Paid Service");
+                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100001")){
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                                        tvFeeBillPayment.setText(getString(R.string.paid_service));
                                                        // tvFeeBillPayment.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
                                                     }
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")){
-                                                        tvFeeBillPayment.setText("Paid Service");
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")){
+                                                        tvFeeBillPayment.setText(getString(R.string.paid_service));
                                                        // tvFeeBillPayment.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                     }
                                                 }
-                                                if(feeData.optString("ServiceName").equalsIgnoreCase("Money Transfer")){
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")){
-                                                        tvFeeMoneyTransfer.setText("Paid Service");
+                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100017")){
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")){
+                                                        tvFeeMoneyTransfer.setText(getString(R.string.paid_service));
                                                        // tvFeeMoneyTransfer.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));
                                                     }
-                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")){
-                                                        tvFeeMoneyTransfer.setText("Paid Service");
+                                                    if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")){
+                                                        tvFeeMoneyTransfer.setText(getString(R.string.paid_service));
                                                         //tvFeeMoneyTransfer.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                     }
                                                 }
-                                                if(feeData.optString("ServiceName").equalsIgnoreCase("Cash")){
+                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100003")){
                                                     if(feeData.optJSONArray("child").length()==1) {
-                                                        if (feeData.optJSONArray("child").optJSONObject(0).optString("serviceCategoryName").equalsIgnoreCase("Cash In")) {
-                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                                                tvFeeCashIn.setText("Paid Service");
+                                                        if (feeData.optJSONArray("child").optJSONObject(0).optString("serviceCategoryCode").equalsIgnoreCase("100011")) {
+                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")) {
+                                                                tvFeeCashIn.setText(getString(R.string.paid_service));
                                                                // tvFeeCashIn.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue") + " " + getString(R.string.on_the_transaction));
                                                             }
-                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                                                                tvFeeCashIn.setText("Paid Service");
+                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")) {
+                                                                tvFeeCashIn.setText(getString(R.string.paid_service));
                                                                // tvFeeCashIn.setText(getString(R.string.fee_colon) + " " + feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue") + " " + getString(R.string.gnf_transaction));
                                                             }
                                                         }
-                                                        if (feeData.optJSONArray("child").optJSONObject(0).optString("serviceCategoryName").equalsIgnoreCase("Cash Out")) {
-                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                                                tvFeeCashOut.setText("Paid Service");
+                                                        if (feeData.optJSONArray("child").optJSONObject(0).optString("serviceCategoryCode").equalsIgnoreCase("100012")) {
+                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")) {
+                                                                tvFeeCashOut.setText(getString(R.string.paid_service));
                                                                // tvFeeCashOut.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue") + " " + getString(R.string.on_the_transaction));
                                                             }
-                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                                                                tvFeeCashOut.setText("Paid Service");
+                                                            if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100001")) {
+                                                                tvFeeCashOut.setText(getString(R.string.paid_service));
                                                                // tvFeeCashOut.setText(getString(R.string.fee_colon) + " " + feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue") + " " + getString(R.string.gnf_transaction));
                                                             }
                                                         }
@@ -954,20 +970,20 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
 
                                                     if(feeData.optJSONArray("child").length()==2) {
                                                             if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                                                tvFeeCashOut.setText("Paid Service");
+                                                                tvFeeCashOut.setText(getString(R.string.paid_service));
                                                                // tvFeeCashOut.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue") + " " + getString(R.string.on_the_transaction));
                                                             }
                                                             if (feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                                                                tvFeeCashOut.setText("Paid Service");
+                                                                tvFeeCashOut.setText(getString(R.string.paid_service));
                                                                 //tvFeeCashOut.setText(getString(R.string.fee_colon) + " " + feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue") + " " + getString(R.string.gnf_transaction));
                                                             }
 
                                                             if (feeData.optJSONArray("child").optJSONObject(1).optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                                                tvFeeCashIn.setText("Paid Service");
+                                                                tvFeeCashIn.setText(getString(R.string.paid_service));
                                                                 //tvFeeCashIn.setText(feeData.optJSONArray("child").optJSONObject(1).optString("percentFeeValue") + " " + getString(R.string.on_the_transaction));
                                                             }
                                                             if (feeData.optJSONArray("child").optJSONObject(1).optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                                                                tvFeeCashIn.setText("Paid Service");
+                                                                tvFeeCashIn.setText(getString(R.string.paid_service));
                                                                // tvFeeCashIn.setText(getString(R.string.fee_colon) + " " + feeData.optJSONArray("child").optJSONObject(1).optString("fixedFeeValue") + " " + getString(R.string.gnf_transaction));
                                                             }
 

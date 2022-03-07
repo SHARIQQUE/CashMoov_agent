@@ -1,8 +1,5 @@
 package com.agent.cashmoovui.transfer_float;
 
-import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_allSellFloat_featureCode;
-import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_walletOwnerCategoryCode;
-
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -16,7 +13,6 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,11 +32,8 @@ import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.adapter.CommonBaseAdapter;
-import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.CurrencyListCommisionTransaction;
-import com.agent.cashmoovui.adapter.CurrencyListTransaction;
-import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.adapter.TransferCommisionAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
@@ -49,9 +42,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
 import com.agent.cashmoovui.set_pin.AESEncryption;
-import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -60,7 +51,6 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -687,12 +677,14 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(CommissionTransfer.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(CommissionTransfer.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remmetience;
+package com.agent.cashmoovui.remittancebyabhay;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,16 +12,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
+import com.agent.cashmoovui.activity.OtherOption;
+import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceActivity;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 
 import java.util.Locale;
 
-public class RemittanceOption extends AppCompatActivity implements View.OnClickListener {
+public class SendRemittanceOpt extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    LinearLayout ll_receiveRemitance, ll_sendRemitance,ll_cashToWallet;
+    LinearLayout ll_remitence_international,ll_remitence_local;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +45,16 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
 
-        setContentView(R.layout.activity_remittance_option);
+        setContentView(R.layout.activity_send_remittance_opt);
         setBackMenu();
 
-        ll_receiveRemitance = (LinearLayout) findViewById(R.id.ll_receiveRemitance);
-        ll_sendRemitance = (LinearLayout) findViewById(R.id.ll_sendRemitance);
-        ll_cashToWallet = (LinearLayout) findViewById(R.id.ll_cashToWallet);
+        ll_remitence_international = (LinearLayout) findViewById(R.id.ll_remitence_international);
+        ll_remitence_local = (LinearLayout) findViewById(R.id.ll_remitence_local);
 
-
-        ll_receiveRemitance.setOnClickListener(this);
-        ll_sendRemitance.setOnClickListener(this);
-        ll_cashToWallet.setOnClickListener(this);
+        ll_remitence_international.setOnClickListener(this);
+        ll_remitence_local.setOnClickListener(this);
 
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -70,12 +68,14 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(SendRemittanceOpt.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(SendRemittanceOpt.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -89,26 +89,21 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId())
         {
-            case R.id.ll_receiveRemitance: {
+            case R.id.ll_remitence_international: {
 
-                Intent i = new Intent(RemittanceOption.this, RemittanceReceive.class);
+                Intent i = new Intent(SendRemittanceOpt.this, InternationalRemittanceActivity.class);
                 startActivity(i);
             }
             break;
 
-            case R.id.ll_sendRemitance:
+            case R.id.ll_remitence_local:
             {
-                Intent i = new Intent(RemittanceOption.this, SendRemittanceOpt.class);
+                Intent i = new Intent(SendRemittanceOpt.this, LocalRemittanceActivity.class);
                 startActivity(i);
             }
             break;
 
-            case R.id.ll_cashToWallet: {
 
-                Intent i = new Intent(RemittanceOption.this, CashToWallet.class);
-                startActivity(i);
-            }
-            break;
 
 
         }

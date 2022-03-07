@@ -482,8 +482,8 @@
     <string name="benificiary_currency_receiptpage">Beneficiary Currency</string>
     <string name="senderCode_receiptpage">Sender Code</string>
     <string name="benificiary_no_receiptpage">Beneficiary No</string>
-    <string name="receiver_currency_reviewPage"> Receiver Currency: </string>
-    <string name="receiver_msisdn_reviewPage"> Receiver MSISDN:</string>
+    <string name="receiver_currency_reviewPage"> Receiver Currency : </string>
+    <string name="receiver_msisdn_reviewPage"> Receiver MSISDN :</string>
 
     <string name="email_receiptPage">Email</string>
 
@@ -770,6 +770,16 @@
     <string name="date_of_transaction_colon">Date of Transaction :</string>
     <string name="name_colon">Name :</string>
     <string name="phone_no_colon">Phone Number :</string>
+    <string name="more">More</string>
+    <string name="choose_the_plan">Choose the plan</string>
+    <string name="receive">Receive</string>
+    <string name="subscriber_number_star">Subscriber Number*</string>
+    <string name="receiver_msisdn_colon">Receiver MSISDN :</string>
+    <string name="sender_mssidn_colon">Sender MSISDN :</string>
+    <string name="transfer_of_mode_colon">Transfer of Mode :</string>
+    <string name="paid_service">Paid Service</string>
+    <string name="view_transaction">View transaction</string>
+    <string name="hide_transaction">Hide transaction</string>
 
 
 </resources>

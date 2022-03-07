@@ -42,12 +42,14 @@ public class ShowProfileQr extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(showprofileqrcodeC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(showprofileqrcodeC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -73,7 +75,7 @@ public class ShowProfileQr extends AppCompatActivity {
         if (lName != null && !lName.isEmpty() && !lName.equals("null")) {
             name=fName+" "+lName;
         }
-        tvName.setText(getString(R.string.hello)+", "+name);
+        tvName.setText(getString(R.string.hello)+" "+name);
 
 //        if (mobile != null && !mobile.isEmpty() && !mobile.equals("null")) {
 //            txt_mobile.setText(mobile);

@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remittancebyabhay;
+package com.agent.cashmoovui.remittancebyabhay.international;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -32,7 +33,6 @@ import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
-import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,12 +95,14 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(internationalremitbenefikycC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(internationalremitbenefikycC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

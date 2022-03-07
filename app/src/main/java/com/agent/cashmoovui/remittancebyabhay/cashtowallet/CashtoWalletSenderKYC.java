@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remittancebyabhay;
+package com.agent.cashmoovui.remittancebyabhay.cashtowallet;
 
 import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
@@ -28,19 +28,24 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.CityInfoModel;
+import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
+import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
+import com.agent.cashmoovui.model.ServiceProviderModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
+import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceActivity;
+import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceBenefiKYC;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -51,18 +56,32 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class InternationalRemittanceSenderKYC extends AppCompatActivity implements View.OnClickListener {
-    public static InternationalRemittanceSenderKYC internationalremitsenderkycC;
+public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnClickListener {
+    public static CashtoWalletSenderKYC cashtowalletsenderkycC;
     ImageView imgBack,imgHome;
     boolean isCustomerData;
     public static final int REQUEST_CODE = 1;
-    private TextView spinner_sender_gender,spinner_sender_region,spinner_sender_idprooftype,
-            spinner_sender_issuingCountry,tvNext;
+    private TextView spinner_provider,spinner_sender_gender,spinner_senderCountry,spinner_sender_region,spinner_sender_idprooftype,
+            spinner_issuingCountry,tvNext;
     public static AutoCompleteTextView et_sender_phoneNumber;
-    private EditText et_sender_firstName,et_sender_lastname,et_sender_email,
+    public static EditText et_sender_firstName,et_sender_lastname,et_sender_email,
             et_sender_dob,et_sender_address,et_sender_city,et_sender_idproofNumber,et_sender_idproof_expiry,etFront,etBack;
     private ImageButton btnFront,btnBack;
 
+    private ArrayList<String> serviceProviderList = new ArrayList<>();
+    private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
+
+    private ArrayList<String> sendingCountryList = new ArrayList<>();
+    private ArrayList<CountryInfoModel.Country> sendCountryModelList = new ArrayList<>();
+
+    private ArrayList<String> sendCurrencyList = new ArrayList<>();
+    private ArrayList<CountryCurrencyInfoModel.CountryCurrency> sendCurrencyModelList = new ArrayList<>();
+
+    private ArrayList<String> recCountryList = new ArrayList<>();
+    private ArrayList<CountryInfoModel.Country> recCountryModelList = new ArrayList<>();
+
+    private ArrayList<String> recCurrencyList = new ArrayList<>();
+    private ArrayList<CountryCurrencyInfoModel.CountryCurrency> recCurrencyModelList = new ArrayList<>();
     private ArrayList<String> senderGenderList = new ArrayList<>();
     private ArrayList<GenderModel.Gender> senderGenderModelList=new ArrayList<>();
     private ArrayList<String> regionList = new ArrayList<>();
@@ -71,8 +90,8 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
     private ArrayList<CityInfoModel.City> cityModelList = new ArrayList<>();
     private ArrayList<String> idProofTypeList = new ArrayList<>();
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
-    private SpinnerDialog spinnerDialogSenderGender,spinnerDialogSenderRegion,
-            spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType;
+    private SpinnerDialog spinnerDialogSerProvider,spinnerDialogSenderGender,spinnerDialogSendingCountry,
+            spinnerDialogSenderRegion, spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType;
     static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
     public static final int RESULT_CODE_FAILURE = 10;
@@ -84,8 +103,8 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_international_remittance_sender_kyc);
-        internationalremitsenderkycC=this;
+        setContentView(R.layout.activity_cash_to_wallet_sender_kyc);
+        cashtowalletsenderkycC=this;
         setBackMenu();
         getIds();
     }
@@ -102,12 +121,14 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(cashtowalletsenderkycC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(cashtowalletsenderkycC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -116,14 +137,20 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
     }
 
+    public static String serviceProvider,sendCountryCode,sendCountryName,recCountryCode,recCountryName;
+    public static int receiverFee,receiverTax;
     public boolean isSet=false;
     public static JSONObject walletOwner = new JSONObject();
+    public static JSONObject serviceCategory = new JSONObject();
+
 
     private void getIds() {
+        spinner_provider = findViewById(R.id.spinner_provider);
         spinner_sender_gender = findViewById(R.id.spinner_sender_gender);
+        spinner_senderCountry = findViewById(R.id.spinner_senderCountry);
         spinner_sender_region = findViewById(R.id.spinner_sender_region);
         spinner_sender_idprooftype = findViewById(R.id.spinner_sender_idprooftype);
-        spinner_sender_issuingCountry = findViewById(R.id.spinner_sender_issuingCountry);
+        spinner_issuingCountry = findViewById(R.id.spinner_sender_issuingCountry);
         et_sender_phoneNumber = findViewById(R.id.et_sender_phoneNumber);
         et_sender_firstName = findViewById(R.id.et_sender_firstName);
         et_sender_lastname = findViewById(R.id.et_sender_lastname);
@@ -139,6 +166,21 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         btnBack = findViewById(R.id.btnBack);
         tvNext = findViewById(R.id.tvNext);
 
+        spinner_provider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogSerProvider!=null)
+                    spinnerDialogSerProvider.showSpinerDialog();
+            }
+        });
+
+        spinner_senderCountry.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                if (spinnerDialogSendingCountry!=null)
+                    spinnerDialogSendingCountry.showSpinerDialog();
+           }
+       });
 
         spinner_sender_gender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,8 +198,15 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             }
         });
 
+        spinner_issuingCountry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogIssuingCountry!=null)
+                    spinnerDialogIssuingCountry.showSpinerDialog();
+            }
+        });
 
-        spinner_sender_issuingCountry.setText(InternationalRemittanceActivity.sendCountryName);
+        //spinner_sender_issuingCountry.setText(InternationalRemittanceActivity.sendCountryName);
 
         spinner_sender_idprooftype.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,7 +229,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                         // your action here
 
 
-                        Intent intent = new Intent(internationalremitsenderkycC, AddContact.class);
+                        Intent intent = new Intent(cashtowalletsenderkycC, AddContact.class);
                         startActivityForResult(intent , REQUEST_CODE);
 
                         return true;
@@ -247,7 +296,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (new InternetCheck().isConnected(internationalremitsenderkycC)) {
+                if (new InternetCheck().isConnected(cashtowalletsenderkycC)) {
 
                     Matcher m = p.matcher(s);
                     if(s.length()>=9 && m.matches()){
@@ -282,7 +331,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     }
 
                 } else {
-                    Toast.makeText(internationalremitsenderkycC, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    Toast.makeText(cashtowalletsenderkycC, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -296,7 +345,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                picker = new DatePickerDialog(internationalremitsenderkycC,
+                picker = new DatePickerDialog(cashtowalletsenderkycC,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -318,7 +367,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
 
-                picker = new DatePickerDialog(internationalremitsenderkycC,
+                picker = new DatePickerDialog(cashtowalletsenderkycC,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -330,15 +379,16 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             }
         });
 
-        callApigenderType();
+        callApiserviceProvider();
+        //callApigenderType();
 
         setOnCLickListener();
 
     }
 
     private void setOnCLickListener() {
-        btnFront.setOnClickListener(internationalremitsenderkycC);
-        tvNext.setOnClickListener(internationalremitsenderkycC);
+        btnFront.setOnClickListener(cashtowalletsenderkycC);
+        tvNext.setOnClickListener(cashtowalletsenderkycC);
     }
 
     @Override
@@ -353,73 +403,80 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 }
                 break;
             case R.id.tvNext:
-
+                if (spinner_provider.getText().toString().equals(getString(R.string.valid_select_provider))) {
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.plz_select_provider));
+                    return;
+                }
                 if (et_sender_phoneNumber.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_phone));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_phone));
                     return;
                 }
                 if (et_sender_phoneNumber.getText().toString().trim().length() < 9) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.enter_phone_no_val));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.enter_phone_no_val));
                     return;
                 }
                 if (et_sender_firstName.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_fname));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_fname));
                     return;
                 }
                 if (et_sender_firstName.getText().toString().trim().length() < 3) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_fname_len));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_fname_len));
                     return;
                 }
                 if (!et_sender_lastname.getText().toString().trim().isEmpty()&&et_sender_lastname.getText().toString().trim().length() < 3) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_lname_len));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_lname_len));
                     return;
                 }
 //        if(et_sender_email.getText().toString().trim().isEmpty()) {
-//            MyApplication.showErrorToast(internationalremitsenderkycC,getString(R.string.val_email));
+//            MyApplication.showErrorToast(cashtowalletsenderkycC,getString(R.string.val_email));
 //            return;
 //        }
                 if (!et_sender_email.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(et_sender_email.getText().toString()))) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_email_valid));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_email_valid));
                     return;
                 }
                 if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_gender));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_gender));
                     return;
                 }
                 if (et_sender_dob.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_dob));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_dob));
                     return;
                 }
                 if (et_sender_address.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_address));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_address));
+                    return;
+                }
+                if (spinner_senderCountry.getText().toString().equals(getString(R.string.sending_country_star))) {
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_country));
                     return;
                 }
                 if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_region));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_region));
                     return;
                 }
                 if (et_sender_city.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_city));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_city));
                     return;
                 }
                 if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_id_proof));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_id_proof));
                     return;
                 }
                 if (et_sender_idproofNumber.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_proof_no));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_proof_no));
                     return;
                 }
                 if (et_sender_idproof_expiry.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_id_proof_expiryDate));
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_id_proof_expiryDate));
                     return;
                 }
                 if (!isFrontUpload) {
                     MyApplication.showErrorToast(this, "please upload front Image");
                     return;
                 }
-                if (spinner_sender_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_issuing_country));
+                if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
+                    MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_issuing_country));
                     return;
                 }
 
@@ -430,7 +487,467 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         }
     }
 
+    private void callApiserviceProvider() {
+        try {
 
+            API.GET("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100002&serviceCategoryCode=100061&status=Y",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                serviceProviderList.clear();
+                                serviceProviderModelList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    serviceCategory = jsonObject;
+                                    serviceProvider = serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("name");
+
+                                    JSONArray walletOwnerListArr = serviceCategory.optJSONArray("serviceProviderList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        serviceProviderModelList.add(new ServiceProviderModel.ServiceProvider(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("name"),
+                                                data.optString("serviceCategoryCode"),
+                                                data.optString("serviceCategoryName"),
+                                                data.optString("serviceCode"),
+                                                data.optString("serviceName"),
+                                                data.optString("serviceProviderMasterCode"),
+                                                data.optString("status")
+
+                                        ));
+                                        serviceProviderList.add(data.optString("name").trim());
+                                        spinner_provider.setText(data.optString("name"));
+
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogSerProvider = new SpinnerDialog(cashtowalletsenderkycC, serviceProviderList, "Select Service Provider", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+
+                                    spinnerDialogSerProvider.setCancellable(true); // for cancellable
+                                    spinnerDialogSerProvider.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogSerProvider.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spinner_provider.setText(item);
+                                            spinner_provider.setTag(position);
+
+                                        }
+                                    });
+
+                                    callApigenderType();
+
+                                } else {
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+
+    }
+
+    private void callApiCountry() {
+        try {
+
+            API.GET("ewallet/api/v1/country/all",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            if (jsonObject != null) {
+                                sendingCountryList.clear();
+                                sendCountryModelList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                      //  if (data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC))) {
+                                            sendCountryModelList.add(new CountryInfoModel.Country(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("isoCode"),
+                                                    data.optString("name"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("status"),
+                                                    data.optString("dialCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("creationDate"),
+                                                    data.optBoolean("subscriberAllowed")
+                                            ));
+
+                                            sendingCountryList.add(data.optString("name").trim());
+
+                                        }
+                                    //}
+
+                                    for(int i=0;i<sendCountryModelList.size();i++){
+                                        if(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(
+                                                sendCountryModelList.get(i).getCode()
+                                        )){
+                                            spinner_senderCountry.setText(sendCountryModelList.get(i).getName() );
+                                            spinner_senderCountry.setTag(i);
+                                            sendCountryCode = sendCountryModelList.get(i).getCode();
+                                            sendCountryName = sendCountryModelList.get(i).getName();
+                                            //  spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
+                                            //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            //callApiSendCurrency(sendCountryModelList.get(i).getCode());
+
+                                        }
+                                    }
+
+                                    spinnerDialogSendingCountry= new SpinnerDialog(cashtowalletsenderkycC, sendingCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSendingCountry.setCancellable(true); // for cancellable
+                                    spinnerDialogSendingCountry.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogSendingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spinner_senderCountry.setText(item);
+                                            spinner_senderCountry.setTag(position);
+                                            sendCountryCode = sendCountryModelList.get(position).getCode();
+                                            sendCountryName = sendCountryModelList.get(position).getName();
+                                          //  spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
+                                            //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            //callApiSendCurrency(sendCountryModelList.get(position).getCode());
+                                        }
+                                    });
+
+                                    callApiRegions(sendCountryCode);
+                                    // callApiSendCurrency(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC));
+
+                                } else {
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+        
+    }
+
+//    private void callApiSendCurrency(String code) {
+//        try {
+//
+//            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+//                    new Api_Responce_Handler() {
+//                        @Override
+//                        public void success(JSONObject jsonObject) {
+//                            MyApplication.hideLoader();
+//
+//                            if (jsonObject != null) {
+//                                sendCurrencyList.clear();
+//                                sendCurrencyModelList.clear();
+//                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+//                                    JSONObject countryCurrObj = jsonObject.optJSONObject("country");
+//                                    JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
+//                                    for (int i = 0; i < countryCurrencyListArr.length(); i++) {
+//                                        JSONObject data = countryCurrencyListArr.optJSONObject(i);
+//                                        sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+//                                                data.optInt("id"),
+//                                                data.optString("code"),
+//                                                data.optString("countryCode"),
+//                                                data.optString("countryName"),
+//                                                data.optString("createdBy"),
+//                                                data.optString("creationDate"),
+//                                                data.optString("currCode"),
+//                                                data.optString("currencyCode"),
+//                                                data.optString("currencyName"),
+//                                                data.optString("currencySymbol"),
+//                                                data.optString("dialCode"),
+//                                                data.optInt("mobileLength"),
+//                                                data.optString("modificationDate"),
+//                                                data.optString("modifiedBy"),
+//                                                data.optString("state"),
+//                                                data.optString("status"),
+//                                                data.optBoolean("inBound"),
+//                                                data.optBoolean("outBound")
+//
+//                                        ));
+//
+//                                        sendCurrencyList.add(data.optString("currCode").trim());
+//
+//                                    }
+//
+//                                   // tvAmtCurr.setText("");
+//                                    for(int i=0;i<sendCurrencyModelList.size();i++){
+//                                        if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+//                                                sendCurrencyModelList.get(i).getCurrencySymbol()
+//                                        )){
+//                                            //spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrCode() );
+//                                            //spinner_senderCurrency.setTag(i);
+//                                            fromCurrency = sendCurrencyModelList.get(i).getCurrCode();
+//                                            fromCurrencySymbol = sendCurrencyModelList.get(i).getCurrencySymbol();
+//                                            fromCurrencyCode = sendCurrencyModelList.get(i).getCurrencyCode();
+//                                           // tvAmtCurr.setText(fromCurrencySymbol);
+//                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+//                                            //edittext_amount.getText().clear();
+//                                            //edittext_amount_pay.getText().clear();
+//
+//                                        }
+//                                    }
+//
+////                                    spinnerDialogSendingCurr = new SpinnerDialog(cashtowalletsenderkycC, sendCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+////                                    spinnerDialogSendingCurr.setCancellable(true); // for cancellable
+////                                    spinnerDialogSendingCurr.setShowKeyboard(false);// for open keyboard by default
+////                                    spinnerDialogSendingCurr.bindOnSpinerListener(new OnSpinerItemClick() {
+////                                        @Override
+////                                        public void onClick(String item, int position) {
+////                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+////                                            spinner_senderCurrency.setText(item);
+////                                            spinner_senderCurrency.setTag(position);
+////                                            fromCurrency = sendCurrencyModelList.get(position).getCurrCode();
+////                                            fromCurrencySymbol = sendCurrencyModelList.get(position).getCurrencySymbol();
+////                                            fromCurrencyCode = sendCurrencyModelList.get(position).getCurrencyCode();
+////                                            tvAmtCurr.setText(fromCurrencySymbol);
+////                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+////                                            edittext_amount.getText().clear();
+////                                            edittext_amount_pay.getText().clear();
+////                                        }
+////                                    });
+//
+//                                    callApiRecCountry();
+//
+//                                } else {
+//                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "  "));
+//                                }
+//                            }
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void failure(String aFalse) {
+//                            MyApplication.hideLoader();
+//
+//                        }
+//                    });
+//
+//        } catch (Exception e) {
+//
+//        }
+//
+//    }
+
+    private void callApiRecCountry() {
+        try {
+
+            API.GET("ewallet/api/v1/country/all",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            if (jsonObject != null) {
+                                recCountryList.clear();
+                                recCountryModelList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                       // if (!MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(data.optString("countryCode"))) {
+                                            recCountryModelList.add(new CountryInfoModel.Country(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("isoCode"),
+                                                    data.optString("name"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("status"),
+                                                    data.optString("dialCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("creationDate"),
+                                                    data.optBoolean("subscriberAllowed")
+                                            ));
+
+                                            recCountryList.add(data.optString("name").trim());
+
+                                        }
+
+                                   // }
+
+                                    for(int i=0;i<recCountryModelList.size();i++){
+                                        if(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(
+                                                recCountryModelList.get(i).getCode()
+                                        )){
+                                            spinner_issuingCountry.setText(recCountryModelList.get(i).getName() );
+                                            spinner_issuingCountry.setTag(i);
+                                            //spinner_issuingCountry.setText(getString(R.string.valid_beneficiary_currency));
+                                            //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            recCountryCode = recCountryModelList.get(i).getCode();
+                                            recCountryName = recCountryModelList.get(i).getName();
+                                           // callApiRecCurrency(recCountryCode);
+
+                                        }
+                                    }
+
+                                    spinnerDialogIssuingCountry= new SpinnerDialog(cashtowalletsenderkycC, recCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIssuingCountry.setCancellable(true); // for cancellable
+                                    spinnerDialogIssuingCountry.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogIssuingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spinner_issuingCountry.setText(item);
+                                            spinner_issuingCountry.setTag(position);
+                                            //spinner_issuingCountry.setText(getString(R.string.valid_beneficiary_currency));
+                                            //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
+                                            recCountryCode = recCountryModelList.get(position).getCode();
+                                            recCountryName = recCountryModelList.get(position).getName();
+                                          //  callApiRecCurrency(recCountryCode);
+                                        }
+                                    });
+
+
+                                } else {
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
+
+//    private void callApiRecCurrency(String code) {
+//        try {
+//
+//            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+//                    new Api_Responce_Handler() {
+//                        @Override
+//                        public void success(JSONObject jsonObject) {
+//                            MyApplication.hideLoader();
+//
+//                            if (jsonObject != null) {
+//                                recCurrencyList.clear();
+//                                recCurrencyModelList.clear();
+//                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+//                                    JSONObject countryCurrObj = jsonObject.optJSONObject("country");
+//                                    JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
+//                                    for (int i = 0; i < countryCurrencyListArr.length(); i++) {
+//                                        JSONObject data = countryCurrencyListArr.optJSONObject(i);
+//                                        recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+//                                                data.optInt("id"),
+//                                                data.optString("code"),
+//                                                data.optString("countryCode"),
+//                                                data.optString("countryName"),
+//                                                data.optString("createdBy"),
+//                                                data.optString("creationDate"),
+//                                                data.optString("currCode"),
+//                                                data.optString("currencyCode"),
+//                                                data.optString("currencyName"),
+//                                                data.optString("currencySymbol"),
+//                                                data.optString("dialCode"),
+//                                                data.optInt("mobileLength"),
+//                                                data.optString("modificationDate"),
+//                                                data.optString("modifiedBy"),
+//                                                data.optString("state"),
+//                                                data.optString("status"),
+//                                                data.optBoolean("inBound"),
+//                                                data.optBoolean("outBound")
+//
+//                                        ));
+//
+//                                        recCurrencyList.add(data.optString("currCode").trim());
+//
+//                                    }
+//
+//                                    //tvAmtPaidCurr.setText("");
+//                                    for(int i=0;i<recCurrencyModelList.size();i++){
+//                                        if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+//                                                recCurrencyModelList.get(i).getCurrencySymbol()
+//                                        )){
+//                                            //spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
+//                                            //spinner_receiverCurrency.setTag(i);
+//                                            toCurrency = recCurrencyModelList.get(i).getCurrCode();
+//                                            toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
+//                                            toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
+//                                            //tvAmtPaidCurr.setText(toCurrencySymbol);
+//                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+//                                           // edittext_amount.getText().clear();
+//                                            //edittext_amount_pay.getText().clear();
+//
+//                                        }
+//                                    }
+//
+////                                    spinnerDialogRecCurr = new SpinnerDialog(cashtowalletsenderkycC, recCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+////                                    spinnerDialogRecCurr.setCancellable(true); // for cancellable
+////                                    spinnerDialogRecCurr.setShowKeyboard(false);// for open keyboard by default
+////                                    spinnerDialogRecCurr.bindOnSpinerListener(new OnSpinerItemClick() {
+////                                        @Override
+////                                        public void onClick(String item, int position) {
+////                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+////                                            spinner_receiverCurrency.setText(item);
+////                                            spinner_receiverCurrency.setTag(position);
+////                                            toCurrency = recCurrencyModelList.get(position).getCurrCode();
+////                                            toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
+////                                            toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();
+////                                            tvAmtPaidCurr.setText(toCurrencySymbol);
+////                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+////                                            edittext_amount.getText().clear();
+////                                            edittext_amount_pay.getText().clear();
+////                                        }
+////                                    });
+//
+//                                  //  callApiRecCountry();
+//                                    callApiRegions();
+//
+//                                } else {
+//                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "  "));
+//                                }
+//                            }
+//
+//
+//                        }
+//
+//                        @Override
+//                        public void failure(String aFalse) {
+//                            MyApplication.hideLoader();
+//
+//                        }
+//                    });
+//
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
     private void callApigenderType() {
         try {
@@ -460,7 +977,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                                     }
 
-                                    spinnerDialogSenderGender = new SpinnerDialog(internationalremitsenderkycC, senderGenderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderGender = new SpinnerDialog(cashtowalletsenderkycC, senderGenderList, "Select Gender", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                     spinnerDialogSenderGender.setCancellable(true); // for cancellable
                                     spinnerDialogSenderGender.setShowKeyboard(false);// for open keyboard by default
@@ -473,10 +990,11 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                         }
                                     });
 
-                                    callApiRegions();
+                                    callApiCountry();
+
 
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
                         }
@@ -494,9 +1012,9 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
     }
 
-    private void callApiRegions() {
+    private void callApiRegions(String countryCode) {
         try {
-            API.GET_PUBLIC("ewallet/public/region/country/"+InternationalRemittanceActivity.sendCountryCode,
+            API.GET_PUBLIC("ewallet/public/region/country/"+ countryCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -526,7 +1044,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogSenderRegion = new SpinnerDialog(internationalremitsenderkycC, regionList, "Select Region", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderRegion = new SpinnerDialog(cashtowalletsenderkycC, regionList, "Select Region", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogSenderRegion.setCancellable(true); // for cancellable
                                     spinnerDialogSenderRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSenderRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -544,7 +1062,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                     callApiIdproofType();
 
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
                         }
@@ -590,7 +1108,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                         idProofTypeList.add(data.optString("type").trim());
                                     }
 
-                                    spinnerDialogSenderIdProofType = new SpinnerDialog(internationalremitsenderkycC, idProofTypeList, "Select Id Proof", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderIdProofType = new SpinnerDialog(cashtowalletsenderkycC, idProofTypeList, "Select Id Proof", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                     spinnerDialogSenderIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogSenderIdProofType.setShowKeyboard(false);// for open keyboard by default
@@ -603,9 +1121,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                         }
                                     });
 
+                                    callApiRecCountry();
 
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
                         }
@@ -628,7 +1147,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
             // MyApplication.showloader(TransferToAccountActivity.this, "Please wait!");
             API.GET("ewallet/api/v1/customer/allByCriteria?mobileNumber="+et_sender_phoneNumber.getText().toString()+"&countryCode="+
-                            InternationalRemittanceActivity.sendCountryCode,
+                            sendCountryCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -735,7 +1254,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         subscriberList.clear();
 
         subscriberList.add(""+""+subscriberInfoModel+""+"");
-        adapter = new ArrayAdapter<String>(internationalremitsenderkycC,R.layout.item_select, subscriberList);
+        adapter = new ArrayAdapter<String>(cashtowalletsenderkycC,R.layout.item_select, subscriberList);
         et_sender_phoneNumber.setAdapter(adapter);
 //        et_sender_phoneNumber.setThreshold(9);
 //        et_sender_phoneNumber.showDropDown();
@@ -760,7 +1279,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         SubscriberInfoModel.Customer data = subscriberInfoModel.getCustomer();
 
         subscriberList.add(data.getMobileNumber() + "," + data.getFirstName() + "," + data.getLastName());
-        adapter = new ArrayAdapter<String>(internationalremitsenderkycC, R.layout.item_select, subscriberList);
+        adapter = new ArrayAdapter<String>(cashtowalletsenderkycC, R.layout.item_select, subscriberList);
         et_sender_phoneNumber.setAdapter(adapter);
 //        et_sender_phoneNumber.setThreshold(9);
 //        et_sender_phoneNumber.showDropDown();
@@ -786,7 +1305,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         spinner_sender_idprooftype.setText(data.getIdProofTypeName());
         et_sender_idproofNumber.setText(data.getIdProofNumber());
         et_sender_idproof_expiry.setText(data.getIdExpiryDate());
-        spinner_sender_issuingCountry.setText(data.getIssuingCountryName());
+        spinner_issuingCountry.setText(data.getIssuingCountryName());
         idprooftypecode = data.getIdProofTypeCode();
         regioncode = data.getRegionCode();
         code = data.getCode();
@@ -814,7 +1333,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 if (file_size <= 100){
                     isFrontUpload=true;
                 }else {
-                    MyApplication.showErrorToast(internationalremitsenderkycC,"File size exceeds");
+                    MyApplication.showErrorToast(cashtowalletsenderkycC,"File size exceeds");
                 }
                 //  btnFrontUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
@@ -822,9 +1341,9 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 //                System.out.println(file);
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(internationalremitsenderkycC,"User Canceled");
+                MyApplication.showToast(cashtowalletsenderkycC,"User Canceled");
             } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(internationalremitsenderkycC,"Failed");
+                MyApplication.showToast(cashtowalletsenderkycC,"Failed");
             }
 
         }
@@ -843,16 +1362,16 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 if (file_size <= 100){
                     isBackUpload=true;
                 }else {
-                    MyApplication.showErrorToast(internationalremitsenderkycC,"File size exceeds");
+                    MyApplication.showErrorToast(cashtowalletsenderkycC,"File size exceeds");
                 }
                 //btnBackUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
                 // File file = new File(getRealPathFromURI(tempUri));
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(internationalremitsenderkycC,"User Canceled");
+                MyApplication.showToast(cashtowalletsenderkycC,"User Canceled");
             } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(internationalremitsenderkycC,"Failed");
+                MyApplication.showToast(cashtowalletsenderkycC,"Failed");
             }
 
         }
@@ -889,7 +1408,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
             callupload(file,"100012");
         }else {
-            MyApplication.showErrorToast(internationalremitsenderkycC,"File size exceeds");
+            MyApplication.showErrorToast(cashtowalletsenderkycC,"File size exceeds");
         }
         return file;
     }
@@ -901,7 +1420,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             isBackUpload=true;
             callupload(file,"100013");
         }else {
-            MyApplication.showErrorToast(internationalremitsenderkycC,"File size exceeds");
+            MyApplication.showErrorToast(cashtowalletsenderkycC,"File size exceeds");
         }
         return file;
     }
@@ -915,7 +1434,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         }else{
             idprooftypecodefile = idprooftypecode;
         }
-        MyApplication.showloader(internationalremitsenderkycC, "uploading file...");
+        MyApplication.showloader(cashtowalletsenderkycC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
         API.Upload_REQUEST_WH("ewallet/api/v1/customer/fileUpload",fileFront,idprooftypecodefile,
                 sendorCustomerJsonObj.optJSONObject("customer").optString("code"), new Api_Responce_Handler() {
@@ -926,15 +1445,15 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                 if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                     //MyApplication.showToast(getString(R.string.document_upload_msg));
                                     documentUploadJsonObj=jsonObject;
-                                    MyApplication.showToast(internationalremitsenderkycC,"upload success");
+                                    MyApplication.showToast(cashtowalletsenderkycC,"upload success");
                                     // callApiUpdateDataApproval();
-                                    Intent i = new Intent(internationalremitsenderkycC, InternationalRemittanceBenefiKYC.class);
+                                    Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
                                     startActivity(i);
 
                                 } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
-                                    MyApplication.showToast(internationalremitsenderkycC,getString(R.string.technical_failure));
+                                    MyApplication.showToast(cashtowalletsenderkycC,getString(R.string.technical_failure));
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
 
@@ -968,12 +1487,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             senderJson.put("idProofNumber",et_sender_idproofNumber.getText().toString().trim());
             senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
-            senderJson.put("countryCode",InternationalRemittanceActivity.sendCountryCode);
-            if(spinner_sender_idprooftype.getTag()!=null){
-                senderJson.put("idProofTypeCode",idProofTypeModelList.get((Integer) spinner_sender_idprooftype.getTag()).getCode());
-            }else{
-                senderJson.put("idProofTypeCode",idprooftypecode);
-            }
+            senderJson.put("countryCode",sendCountryCode);
             if(spinner_sender_region.getTag()!=null){
                 senderJson.put("regionCode",regionModelList.get((Integer) spinner_sender_region.getTag()).getCode());
             }else{
@@ -982,7 +1496,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
             senderJson.put("city",et_sender_city.getText().toString().trim());
             senderJson.put("address",et_sender_address.getText().toString().trim());
-            senderJson.put("issuingCountryCode",InternationalRemittanceActivity.sendCountryCode);
+            senderJson.put("issuingCountryCode",recCountryCode);
             if(spinner_sender_gender.getTag()!=null){
                 senderJson.put("gender",senderGenderModelList.get((Integer) spinner_sender_gender.getTag()).getCode());
             }else{
@@ -998,7 +1512,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             e.printStackTrace();
         }
         if(isCustomerData) {
-            MyApplication.showloader(internationalremitsenderkycC,"Please Wait...");
+            MyApplication.showloader(cashtowalletsenderkycC,"Please Wait...");
             API.PUT("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
@@ -1008,7 +1522,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                 sendorCustomerJsonObj = jsonObject;
                                 filesUploadFront();
                             }else{
-                                MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription"));
+                                MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription"));
                             }
                         }
 
@@ -1020,7 +1534,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     });
 
         }else{
-            MyApplication.showloader(internationalremitsenderkycC,"Please Wait...");
+            MyApplication.showloader(cashtowalletsenderkycC,"Please Wait...");
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
@@ -1030,7 +1544,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                 sendorCustomerJsonObj = jsonObject;
                                 filesUploadFront();
                             }else{
-                                MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription"));
+                                MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription"));
                             }
                         }
 

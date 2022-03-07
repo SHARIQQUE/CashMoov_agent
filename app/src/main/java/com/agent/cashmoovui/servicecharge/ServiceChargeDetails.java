@@ -170,155 +170,31 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("100029")){
+        if(checkIntent.equalsIgnoreCase("Airtime Purchase")){
             feeDetailModelArrayList.clear();
-            if (ServiceCharge.jsonObjectTestMain != null) {
-                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
+            if (AirtimeFeeActivity.mainJsonObject != null) {
+                JSONArray FeeListArr = AirtimeFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
                 for (int i = 0; i < FeeListArr.length(); i++) {
                     JSONObject feeData = FeeListArr.optJSONObject(i);
 
-                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    JSONArray ChildListArr = feeData.optJSONArray("feeTemplateList");
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("100029")){
-                            /*if(pos==j) {*/
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("percentFeeValue")
-                                ));
-                            } else {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
-                            //}
-                        }
-                    }
-
-                }
-
-                setData(feeDetailModelArrayList);
-                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
-
-            }
-        }
-
-        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("100030")){
-            feeDetailModelArrayList.clear();
-            if (ServiceCharge.jsonObjectTestMain != null) {
-                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
-                for (int i = 0; i < FeeListArr.length(); i++) {
-                    JSONObject feeData = FeeListArr.optJSONObject(i);
-
-                    JSONArray ChildListArr = feeData.optJSONArray("child");
-                    for (int j = 0; j < ChildListArr.length(); j++) {
-                        JSONObject childData = ChildListArr.optJSONObject(j);
-
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("100030")){
-                            /*if(pos==j) {*/
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("percentFeeValue")
-                                ));
-                            } else {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
-                            //}
-                        }
-                    }
-
-                }
-
-                setData(feeDetailModelArrayList);
-                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
-
-            }
-        }
-
-        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("100031")){
-            feeDetailModelArrayList.clear();
-            if (ServiceCharge.jsonObjectTestMain != null) {
-                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
-                for (int i = 0; i < FeeListArr.length(); i++) {
-                    JSONObject feeData = FeeListArr.optJSONObject(i);
-
-                    JSONArray ChildListArr = feeData.optJSONArray("child");
-                    for (int j = 0; j < ChildListArr.length(); j++) {
-                        JSONObject childData = ChildListArr.optJSONObject(j);
-
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("100031")){
-                            /*if(pos==j) {*/
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("percentFeeValue")
-                                ));
-                            } else {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
-                            //}
-                        }
-                    }
-
-                }
-
-                setData(feeDetailModelArrayList);
-                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
-
-            }
-        }
-
-        if(checkIntent.equalsIgnoreCase("Airtime Purchase")&&checkProductCodeIntent.equalsIgnoreCase("ALLPRO")){
-            feeDetailModelArrayList.clear();
-            if (ServiceCharge.jsonObjectTestMain != null) {
-                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
-                for (int i = 0; i < FeeListArr.length(); i++) {
-                    JSONObject feeData = FeeListArr.optJSONObject(i);
-
-                    JSONArray ChildListArr = feeData.optJSONArray("child");
-                    for (int j = 0; j < ChildListArr.length(); j++) {
-                        JSONObject childData = ChildListArr.optJSONObject(j);
-
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100021")&&childData.optString("productCode").equalsIgnoreCase("ALLPRO")){
-                            /*if(pos==j) {*/
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("percentFeeValue")
-                                ));
-                            } else {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                                String.format("%.2f", childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
-                            //}
+                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            feeDetailModelArrayList.add(new FeeDetailModel(
+                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                            "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
+                                    childData.optString("percentFeeValue")
+                            ));
+                        } else {
+                            feeDetailModelArrayList.add(new FeeDetailModel(
+                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                            "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
+                                    childData.optString("fixedFeeValue")
+                            ));
                         }
                     }
 
@@ -333,31 +209,29 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
 
         if(checkIntent.equalsIgnoreCase("Bill Payment")){
             feeDetailModelArrayList.clear();
-            if (ServiceCharge.jsonObjectTestMain != null) {
-                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
+            if (BillPayFeeActivity.mainJsonObject != null) {
+                JSONArray FeeListArr = BillPayFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
                 for (int i = 0; i < FeeListArr.length(); i++) {
                     JSONObject feeData = FeeListArr.optJSONObject(i);
 
-                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    JSONArray ChildListArr = feeData.optJSONArray("feeTemplateList");
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100028")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("percentFeeValue")
-                                ));
-                            }else{
-                                feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue"))+
-                                                "   ("+childData.optString("productName").replaceAll("Recharge ","")+")",
-                                        childData.optString("fixedFeeValue")
-                                ));
-                            }
+                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            feeDetailModelArrayList.add(new FeeDetailModel(
+                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                            "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
+                                    childData.optString("percentFeeValue")
+                            ));
+                        } else {
+                            feeDetailModelArrayList.add(new FeeDetailModel(
+                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
+                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                            "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
+                                    childData.optString("fixedFeeValue")
+                            ));
                         }
                     }
 
@@ -368,6 +242,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
 
             }
         }
+
 
         if(checkIntent.equalsIgnoreCase("Sell Float")){
             feeDetailModelArrayList.clear();

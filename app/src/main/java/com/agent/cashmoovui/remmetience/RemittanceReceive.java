@@ -11,18 +11,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,19 +29,13 @@ import androidx.core.content.ContextCompat;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
-import com.agent.cashmoovui.MyFirebaseMessagingService;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterAllCountry;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterGender;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterGenderArray;
-import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
-import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -56,7 +46,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class RemittanceReceive extends AppCompatActivity implements View.OnClickListener{
@@ -333,12 +322,14 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(RemittanceReceive.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(RemittanceReceive.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

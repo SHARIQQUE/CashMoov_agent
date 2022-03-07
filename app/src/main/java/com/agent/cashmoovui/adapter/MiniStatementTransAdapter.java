@@ -55,35 +55,32 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         df.setRoundingMode(RoundingMode.DOWN);
         miniStatementTrans = miniStatementTransList.get(position);
 
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash-in")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100000")){
             holder.imgLogo.setImageResource(R.drawable.ic_cashin);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash-out")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100001")){
             holder.imgLogo.setImageResource(R.drawable.ic_cashout);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Remit Send")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101441")){
             holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Wallet Transfer")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106449")){
+            holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
+        }
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("104591")){
             holder.imgLogo.setImageResource(R.drawable.ic_lewallet);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Airtime Purchase")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("101777")){
             holder.imgLogo.setImageResource(R.drawable.ic_airtime);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Remit Send Reversal")){
-            holder.imgLogo.setImageResource(R.drawable.ic_moneytransfert);
-        }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Recharge & Payment")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("100005")){
             holder.imgLogo.setImageResource(R.drawable.ic_baseline_payment_24);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Cash PickUp")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106443")){
             holder.imgLogo.setImageResource(R.drawable.ic_cashpickup24);
         }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Pay")){
+        if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("105068")){
             holder.imgLogo.setImageResource(R.drawable.icon_merchant);
-        }
-        if(miniStatementTrans.getTransactionTypeName().equalsIgnoreCase("Withdrawal")){
-            holder.imgLogo.setImageResource(R.drawable.ic_paymane24);
         }
 
         holder.tvTransType.setText(miniStatementTrans.getTransactionTypeName());

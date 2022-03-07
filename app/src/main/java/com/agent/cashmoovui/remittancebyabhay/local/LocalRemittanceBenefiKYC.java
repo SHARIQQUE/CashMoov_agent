@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remittancebyabhay;
+package com.agent.cashmoovui.remittancebyabhay.local;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -93,12 +94,14 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(localremitbenefikycC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(localremitbenefikycC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

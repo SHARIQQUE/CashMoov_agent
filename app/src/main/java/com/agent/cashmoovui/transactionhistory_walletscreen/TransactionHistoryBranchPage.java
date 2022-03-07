@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.CurrencyListTransaction;
 import com.agent.cashmoovui.adapter.MiniStatementTransAdapter;
 import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
@@ -222,12 +223,14 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(TransactionHistoryBranchPage.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(TransactionHistoryBranchPage.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

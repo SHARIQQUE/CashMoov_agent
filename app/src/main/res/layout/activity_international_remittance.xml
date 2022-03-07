@@ -80,38 +80,29 @@
                     <!-- Sender  Details Part 1 -->
 
                     <LinearLayout
-
                         android:id="@+id/ll_sender_part_1"
                         android:layout_width="match_parent"
                         android:orientation="vertical"
                         android:layout_height="match_parent"
-                        android:visibility="visible"
-
-                        >
-
+                        android:visibility="visible">
                         <TextView
                             android:id="@+id/spinner_provider"
-                            android:paddingLeft="@dimen/_10sdp"
                             android:text="@string/valid_select_provider"
                             style="@style/SpinnerStyleNew1"/>
                         <TextView
                             android:id="@+id/spinner_senderCountry"
-                            android:paddingLeft="@dimen/_10sdp"
                             android:text="@string/sending_country_star"
                             style="@style/SpinnerStyleNew1"/>
                         <TextView
                             android:id="@+id/spinner_senderCurrency"
-                            android:paddingLeft="@dimen/_10sdp"
                             android:text="@string/sending_currencey_star"
                             style="@style/SpinnerStyleNew1"/>
                         <TextView
                             android:id="@+id/spinner_receiverCountry"
-                            android:paddingLeft="@dimen/_10sdp"
                             android:text="@string/receive_country"
                             style="@style/SpinnerStyleNew1" />
                         <TextView
                             android:id="@+id/spinner_receiverCurrency"
-                            android:paddingLeft="@dimen/_10sdp"
                             android:text="@string/valid_beneficiary_currency"
                             style="@style/SpinnerStyleNew1"/>
                         <LinearLayout
@@ -168,6 +159,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:textSize="@dimen/_16sdp"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:layout_weight="0.2"
                                 android:textColor="@color/textColorLBlack"
                                 android:lineSpacingExtra="3sp"

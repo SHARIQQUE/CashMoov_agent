@@ -17,7 +17,6 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,23 +37,18 @@ import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterAllCurrency;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterGender;
 import com.agent.cashmoovui.adapter.CustomeBaseAdapterProvided;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterReceiveCurrency;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterReceiverCountry;
 import com.agent.cashmoovui.adapter.International.ReceiverCountryDetailsAdapter;
 import com.agent.cashmoovui.adapter.International.ReceiverCurrenyDetailsAdapter;
 import com.agent.cashmoovui.adapter.International.SenderCountryNameAdapter;
 import com.agent.cashmoovui.adapter.International.SenderCurrenyDetailsAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
-import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
 import com.agent.cashmoovui.remmetience.international.ReceiverCountryModal;
 import com.agent.cashmoovui.remmetience.international.ReceiverCurrencyModal;
 import com.agent.cashmoovui.remmetience.international.SenderCountryModal;
@@ -898,12 +892,14 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(LocalRemittance.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(LocalRemittance.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

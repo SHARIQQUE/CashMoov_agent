@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import org.json.JSONArray;
@@ -46,12 +47,14 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(paymentdetailsC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(paymentdetailsC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -60,7 +63,6 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
     private void getIds() {
         tvOperatorName = findViewById(R.id.tvOperatorName);
         etAccountNo = findViewById(R.id.etAccountNo);
@@ -68,6 +70,15 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
         tvSend = findViewById(R.id.tvSend);
 
         tvOperatorName.setText(Payments.operatorName);
+
+
+        if(PaymentPlanList.productTypeCode.equalsIgnoreCase("100001")){
+            etAmount.setEnabled(true);
+        } else{
+            etAmount.setEnabled(false);
+            etAmount.setText(String.valueOf(PaymentPlanList.productValue));
+            callApiAmountDetails();
+        }
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -126,7 +137,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
             dataToSend.put("channel", "SELFCARE");
             dataToSend.put("fromCurrencyCode", "100062");
             dataToSend.put("operator", Payments.operatorCode);
-            dataToSend.put("productCode", PaymentsProduct.productCode);
+            dataToSend.put("productCode", PaymentPlanList.productCode);
             dataToSend.put("requestType", "recharge");
             dataToSend.put("serviceCode", Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCode"));
             dataToSend.put("serviceCategoryCode", Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode"));
@@ -157,7 +168,7 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
                             + "&serviceCategoryCode=" + Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceCategoryCode") +
                             "&serviceProviderCode=" + Payments.serviceCategory.optJSONArray("operatorList").optJSONObject(0).optString("serviceProviderCode") +
                             "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", paymentdetailsC) +
-                            "&productCode=" + PaymentsProduct.productCode,
+                            "&productCode=" + PaymentPlanList.productCode,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

@@ -83,6 +83,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
             profileC = this;
+            MyApplication.hideKeyboard(profileC);
             //  setBackMenu();
 
 
@@ -97,6 +98,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.hideKeyboard(profileC);
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.profil)
@@ -139,6 +141,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onRestart() {
         super.onRestart();
+        MyApplication.hideKeyboard(profileC);
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
     }

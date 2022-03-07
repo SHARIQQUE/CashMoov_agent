@@ -76,7 +76,6 @@
                     <!-- Sender  Details Part 1 -->
 
                     <LinearLayout
-
                         android:id="@+id/ll_sender_part_1"
                         android:layout_width="match_parent"
                         android:orientation="vertical"
@@ -85,7 +84,7 @@
 
                         <TextView
                             android:id="@+id/spinner_provider"
-                            android:text="@string/service_provider_colon"
+                            android:text="@string/valid_select_provider"
                             style="@style/SpinnerStyleNew1"/>
                         <TextView
                             android:id="@+id/spinner_senderCountry"
@@ -158,6 +157,7 @@
                                 android:layout_height="match_parent"
                                 android:textSize="@dimen/_16sdp"
                                 android:layout_weight="0.2"
+                                android:fontFamily="@font/aileron_semibold"
                                 android:textColor="@color/textColorLBlack"
                                 android:lineSpacingExtra="3sp"
                                 android:text="" />

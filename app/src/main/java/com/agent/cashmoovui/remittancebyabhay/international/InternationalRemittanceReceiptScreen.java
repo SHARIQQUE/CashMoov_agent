@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remittancebyabhay;
+package com.agent.cashmoovui.remittancebyabhay.international;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -20,10 +20,10 @@ import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
-public class LocalRemittanceReceiptScreen extends AppCompatActivity implements View.OnClickListener {
-    public static LocalRemittanceReceiptScreen localremitreceiptscreenC;
+public class InternationalRemittanceReceiptScreen extends AppCompatActivity implements View.OnClickListener {
+    public static InternationalRemittanceReceiptScreen internationalremitreceiptscreenC;
     private TextView tvTransRefNo,tvConfCode,tvTransType,tvDateOfTrans,tvSendCurrency,tvBenefiCurrency,
-            tvRecCountry,tvSendCountry,tvTransAmount,tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,
+            tvSendCountry,tvRecCountry,tvTransAmount,tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,
             tvSendName,tvSendPhoneNo,tvBenefiName,tvBenefiPhoneNo,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     private LinearLayout linConfCode,tax1_layout,tax2_layout;
@@ -34,8 +34,8 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_local_remittance_receipt_screen);
-        localremitreceiptscreenC=this;
+        setContentView(R.layout.activity_international_remittance_receipt_screen);
+        internationalremitreceiptscreenC=this;
         rootView = getWindow().getDecorView().findViewById(R.id.lin);
         getIds();
     }
@@ -144,44 +144,44 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
 
 
         DecimalFormat df = new DecimalFormat("0.000");
-        tvTransRefNo.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionReferenceNo"));
-        tvConfCode.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
-        tvTransType.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
-        tvDateOfTrans.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionDateTime"));
-        tvSendCurrency.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencyName"));
-        tvBenefiCurrency.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
-        tvSendCountry.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("countryName"));
-        tvRecCountry.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("countryName"));
-        tvSendName.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("firstName")+" "+
-                LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("lastName"));
-        tvSendPhoneNo.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
-        tvBenefiName.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("firstName")+" "+
-                LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("lastName"));
-        tvBenefiPhoneNo.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
+        tvTransRefNo.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionReferenceNo"));
+        tvConfCode.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
+        tvTransType.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
+        tvDateOfTrans.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionDateTime"));
+        tvSendCurrency.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencyName"));
+        tvBenefiCurrency.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
+        tvSendCountry.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("countryName"));
+        tvRecCountry.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("countryName"));
+        tvSendName.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("firstName")+" "+
+                InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("lastName"));
+        tvSendPhoneNo.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("mobileNumber"));
+        tvBenefiName.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("firstName")+" "+
+                InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("lastName"));
+        tvBenefiPhoneNo.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
 
-        tvTransAmount.setText(MyApplication.addDecimal(LocalRemittanceConfirmScreen.tvTransAmount.getText().toString()));
-        tvConvRate.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate"));
-        tvFee.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
-                + df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
-        tvAmountPaid.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
-        tvAmountCharged.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
+        tvTransAmount.setText(MyApplication.addDecimal(InternationalRemittanceConfirmScreen.tvTransAmount.getText().toString()));
+        tvConvRate.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate"));
+        tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "
+                + df.format(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
+        tvAmountPaid.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol")+" "+df.format(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
+        tvAmountCharged.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
 
 
-        if(LocalRemittanceConfirmScreen.taxConfigList!=null){
-            if(LocalRemittanceConfirmScreen.taxConfigList.length()==1){
+        if(InternationalRemittanceConfirmScreen.taxConfigList!=null){
+            if(InternationalRemittanceConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax1_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_lable.setText(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
-            if(LocalRemittanceConfirmScreen.taxConfigList.length()==2){
+            if(InternationalRemittanceConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax1_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                tax1_lable.setText(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")+" :");
+                tax1_value.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
-                tax2_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
+                tax2_lable.setText(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")+" :");
+                tax2_value.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol")+" "+df.format(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
         }
@@ -192,8 +192,8 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
     }
 
     private void setOnCLickListener() {
-        btnCloseReceipt.setOnClickListener(localremitreceiptscreenC);
-        btnShareReceipt.setOnClickListener(localremitreceiptscreenC);
+        btnCloseReceipt.setOnClickListener(internationalremitreceiptscreenC);
+        btnShareReceipt.setOnClickListener(internationalremitreceiptscreenC);
 
     }
 

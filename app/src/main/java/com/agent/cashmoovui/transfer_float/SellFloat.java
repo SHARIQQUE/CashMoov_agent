@@ -1,6 +1,5 @@
 package com.agent.cashmoovui.transfer_float;
 
-import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_allSellFloat_featureCode;
 import static com.agent.cashmoovui.apiCalls.CommonData.sellfloat_walletOwnerCategoryCode;
 
 import android.app.Activity;
@@ -18,7 +17,6 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,34 +39,17 @@ import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.adapter.CommonBaseAdapter;
-import com.agent.cashmoovui.adapter.CommonBaseAdapterSecond;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterProvided;
-import com.agent.cashmoovui.adapter.CustomeBaseAdapterReceiveCurrency;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.RecordAdapter;
-import com.agent.cashmoovui.adapter.SearchAdapterTransactionDetails;
 import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
-import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.InstituteListModel;
-import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.remmetience.cash_to_wallet.CashToWallet;
-import com.agent.cashmoovui.remmetience.international.InternationalRemittance;
-import com.agent.cashmoovui.remmetience.local.LocalRemittance;
 import com.agent.cashmoovui.set_pin.AESEncryption;
-import com.agent.cashmoovui.transactionhistory_walletscreen.CallBackRecycleViewClick;
-import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
-import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
-import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.blikoon.qrcodescanner.QrCodeActivity;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -389,12 +370,14 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(SellFloat.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(SellFloat.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -1,4 +1,4 @@
-package com.agent.cashmoovui.remittancebyabhay;
+package com.agent.cashmoovui.remittancebyabhay.local;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -79,12 +80,14 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(localC);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(localC);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -181,15 +184,13 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
                     callApiExchangeRate();
 
-                }
-
-                else {
+                } else {
                     convertionRate_first_page.setText("");
                     fees_first_page.setText("");
                     tax_first_page.setText("");
                     //amountTobePaid_first_page.setText("");
                     amountTobeCharged_first_page.setText("");
-                    //edittext_amount_pay.setText(getString(R.string.amount_to_pay));;
+                    edittext_amount_pay.getText().clear();
                 }
 
             } else {
@@ -468,6 +469,24 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
                                     }
 
+                                    tvAmtCurr.setText("");
+                                    for(int i=0;i<sendCurrencyModelList.size();i++){
+                                        if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+                                                sendCurrencyModelList.get(i).getCurrencySymbol()
+                                        )){
+                                            spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrCode());
+                                            spinner_senderCurrency.setTag(i);
+                                            fromCurrency = sendCurrencyModelList.get(i).getCurrCode();
+                                            fromCurrencySymbol = sendCurrencyModelList.get(i).getCurrencySymbol();
+                                            fromCurrencyCode = sendCurrencyModelList.get(i).getCurrencyCode();
+                                            tvAmtCurr.setText(fromCurrencySymbol);
+                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                            edittext_amount.getText().clear();
+                                            edittext_amount_pay.getText().clear();
+
+                                        }
+                                    }
+
                                     spinnerDialogSendingCurr = new SpinnerDialog(localC, sendCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogSendingCurr.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCurr.setShowKeyboard(false);// for open keyboard by default
@@ -486,6 +505,24 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                             edittext_amount_pay.getText().clear();
                                         }
                                     });
+
+                                    tvAmtPaidCurr.setText("");
+                                    for(int i=0;i<recCurrencyModelList.size();i++){
+                                        if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+                                                recCurrencyModelList.get(i).getCurrencySymbol()
+                                        )){
+                                            spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
+                                            spinner_receiverCurrency.setTag(i);
+                                            toCurrency = recCurrencyModelList.get(i).getCurrCode();
+                                            toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
+                                            toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
+                                            tvAmtPaidCurr.setText(toCurrencySymbol);
+                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                            edittext_amount.getText().clear();
+                                            edittext_amount_pay.getText().clear();
+
+                                        }
+                                    }
 
                                     spinnerDialogRecCurr = new SpinnerDialog(localC, recCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogRecCurr.setCancellable(true); // for cancellable
@@ -718,20 +755,20 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+                                    if(edittext_amount.getText().toString().trim().length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
-                                    currencyValue= df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                    fee= df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                    rate = jsonObjectAmountDetails.optString("value");
-                                    exRateCode = jsonObjectAmountDetails.optString("code");
-                                    //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                    //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                    //etAmountNew.setText(currencyValue);
-                                    convertionRate_first_page.setText(rate);
-                                    fees_first_page.setText(fee);
-                                    edittext_amount_pay.setText(currencyValue);
-                                    amount = edittext_amount.getText().toString().trim();
-
+                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        rate = jsonObjectAmountDetails.optString("value");
+                                        exRateCode = jsonObjectAmountDetails.optString("code");
+                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        convertionRate_first_page.setText(rate);
+                                        fees_first_page.setText(fee);
+                                        edittext_amount_pay.setText(currencyValue);
+                                        amount = edittext_amount.getText().toString().trim();
 
 
 //                                    int tax = receiverFee+receiverTax;
@@ -742,20 +779,21 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
-                                    if(jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                        taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                        tax_first_page.setText(df.format(taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                        amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim())+taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                            tax_first_page.setText(df.format(taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim()) + taxConfigurationList.optJSONObject(0).optDouble("value")));
 
-                                    }else{
-                                        taxConfigurationList=null;
-                                        tax_first_page.setText("0.00");
-                                        amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim())));
+                                        } else {
+                                            taxConfigurationList = null;
+                                            tax_first_page.setText("0.00");
+                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim())));
 
+                                        }
+
+
+                                        tvNext.setEnabled(true);
                                     }
-
-
-                                    tvNext.setEnabled(true);
                                 } else {
                                     tvNext.setEnabled(false);
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));

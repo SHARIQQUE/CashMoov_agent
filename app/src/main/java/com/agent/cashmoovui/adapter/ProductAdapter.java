@@ -7,21 +7,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.listeners.ProductListeners;
-import com.agent.cashmoovui.model.ProductModel;
+import com.agent.cashmoovui.model.ProductMasterModel;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
     private Context context;
-    private List<ProductModel> productList = new ArrayList<>();
+    private List<ProductMasterModel> productList = new ArrayList<>();
     private ProductListeners productListeners;
 
-    public ProductAdapter(Context context, List<ProductModel> productList) {
+    public ProductAdapter(Context context, List<ProductMasterModel> productList) {
         this.context = context;
         this.productList = productList;
         productListeners = (ProductListeners) context;
@@ -36,19 +35,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final ProductModel productModel = productList.get(position);
-        holder.tvProductName.setText(productModel.getName());
-        if(productModel.getOperatorCode().equalsIgnoreCase("100055")){
+        final ProductMasterModel productMasterModel = productList.get(position);
+        holder.tvProductName.setText(productMasterModel.getProductName());
+        if(productMasterModel.getOperatorCode().equalsIgnoreCase("100055")){
             holder.ivProductLogo.setImageResource(R.drawable.canalplus);
         }
-        if(productModel.getOperatorCode().equalsIgnoreCase("100046")){
+        if(productMasterModel.getOperatorCode().equalsIgnoreCase("100046")){
             holder.ivProductLogo.setImageResource(R.drawable.startimeslogo);
         }
         holder.linProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(productModel.getCode()!=null)
-                 productListeners.onProductListItemClick(productModel.getCode(),productModel.getName());
+                if(productMasterModel.getCode()!=null)
+                 productListeners.onProductListItemClick(productMasterModel.getCode(),productMasterModel.getOperatorCode());
             }
         });
     }

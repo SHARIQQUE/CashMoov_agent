@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
@@ -92,12 +93,14 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(WalletOwnerMenu.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(WalletOwnerMenu.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

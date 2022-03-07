@@ -443,11 +443,11 @@
     <string name="sender_currency_receiptpage">Devise de l\'expéditeur</string>
     <string name="senderCode_receiptpage">Code expéditeur</string>
     <string name="benificiary_no_receiptpage">Bénéficiaire Non:</string>
-    <string name="receiver_currency_reviewPage"> Devise du destinataire:</string>
-    <string name="receiver_msisdn_reviewPage"> Récepteur MSISDN:</string>
-    <string name="agentName_reveiewPage">Nom d\'agent:</string>
-    <string name="excise_tax_reveiewPage">Taxe d\'accise:</string>
-    <string name="total_amount_reveiewPage">Montant total:</string>
+    <string name="receiver_currency_reviewPage"> Devise du destinataire :</string>
+    <string name="receiver_msisdn_reviewPage"> Récepteur MSISDN :</string>
+    <string name="agentName_reveiewPage">Nom d\'agent :</string>
+    <string name="excise_tax_reveiewPage">Taxe d\'accise :</string>
+    <string name="total_amount_reveiewPage">Montant total :</string>
 
 
 
@@ -681,7 +681,7 @@
     <string name="transfer_float_colon">Flotteur de transfert :</string>
     <string name="transaction_amount_receiptPage">Amount transaction</string>
 
-    <string name="vendor_transaction_id_receipt">Vendor Transaction id </string>
+    <string name="vendor_transaction_id_receipt">Identifiant de la trasaction </string>
 
    <string name="receiverName_receiptPage_without_coln">Nom du destinataire</string>
     <string name="final_amount">Le montant final </string>
@@ -768,6 +768,16 @@
     <string name="date_of_transaction_colon">Date de transaction :</string>
     <string name="name_colon">Nom :</string>
     <string name="phone_no_colon">Numero de téléphon :</string>
+    <string name="more">Suite</string>
+    <string name="choose_the_plan">Choisissez le forfait</string>
+    <string name="receive">Recevoir</string>
+    <string name="subscriber_number_star">Abonné non*</string>
+    <string name="receiver_msisdn_colon">Récepteur MSISDN :</string>
+    <string name="sender_mssidn_colon">Expéditeur MSISDN :</string>
+    <string name="transfer_of_mode_colon">Transfert de mode :</string>
+    <string name="paid_service">Service payant</string>
+    <string name="view_transaction">Afficher la transaction</string>
+    <string name="hide_transaction">Masquer la transaction</string>
 
 </resources>
 

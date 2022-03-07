@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.SearchAdapteAgentDetails;
 import com.agent.cashmoovui.adapter.SearchAdapteBranchDetails;
 import com.agent.cashmoovui.apiCalls.API;
@@ -171,12 +172,14 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(TransactionHistoryBranch.this);
                 onSupportNavigateUp();
             }
         });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.hideKeyboard(TransactionHistoryBranch.this);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
