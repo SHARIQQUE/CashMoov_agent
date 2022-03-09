@@ -778,6 +778,8 @@
     <string name="paid_service">Service payant</string>
     <string name="view_transaction">Afficher la transaction</string>
     <string name="hide_transaction">Masquer la transaction</string>
+    <string name="take_photo">Prendre une photo</string>
+    <string name="choose_image">Choisissez l\'image</string>
 
 </resources>
 
