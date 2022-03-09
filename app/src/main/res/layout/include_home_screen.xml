@@ -562,7 +562,8 @@
                         <ImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            app:srcCompat="@drawable/ic_baseline_person_add"
+                            app:srcCompat="@drawable/more"
+                            app:tint="@color/colorPrimary"
                             android:scaleType="centerCrop"/>
 
                         <TextView

@@ -185,7 +185,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                             public void onGalleryClick() {
                                 Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                try {
                                 startActivityForResult(pickPhoto , REQUEST_IMAGE_CAPTURE_GALARY);//one can be replaced with any action code
+                                } catch (ActivityNotFoundException e) {
+                                    // display error state to the user
+                                }
                                 Toast.makeText(editprofileC, "Gallery Click!", Toast.LENGTH_LONG).show();
                                 dialog.dismiss();
 
