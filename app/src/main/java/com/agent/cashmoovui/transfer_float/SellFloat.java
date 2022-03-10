@@ -1713,7 +1713,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     if (new InternetCheck().isConnected(SellFloat.this)) {
 
-                        MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
 
 
@@ -1747,7 +1747,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     if (new InternetCheck().isConnected(SellFloat.this)) {
 
-                        MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
                         mpin_verify();
 
@@ -2069,7 +2069,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 if(recordString.equalsIgnoreCase("10"))
                 {
 
-                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+                    MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
 
                     api_allSellFloat_featureCode(recordString);
@@ -2077,14 +2077,14 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                 else if(recordString.equalsIgnoreCase("25"))
                 {
-                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+                    MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
                     api_allSellFloat_featureCode(recordString);
                 }
 
                 else if(recordString.equalsIgnoreCase("50"))
                 {
-                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+                    MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
                     api_allSellFloat_featureCode(recordString);
                 }
@@ -2092,7 +2092,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                 else if(recordString.equalsIgnoreCase("100"))
                 {
-                    MyApplication.showloader(SellFloat.this, getString(R.string.getting_user_info));
+                    MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
 
                     api_allSellFloat_featureCode(recordString);

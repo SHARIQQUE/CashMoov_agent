@@ -234,7 +234,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                                 if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                                    MyApplication.showloader(TransferFloats.this, getString(R.string.getting_user_info));
+                                    MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                                     mpin_verify();
 
@@ -983,7 +983,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     private void api_serviceProvider() {
 
-        MyApplication.showloader(TransferFloats.this, getString(R.string.getting_user_info));
+        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
         String serviceCategoryCode_hardcode="100017";   // 100017 is hard code according to praveen 19 Nov
 
@@ -1384,7 +1384,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                     if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                        MyApplication.showloader(TransferFloats.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
 
                         api_walletOwner_msisdn();
@@ -1416,7 +1416,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                     if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                        MyApplication.showloader(TransferFloats.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                         mpin_verify();
 

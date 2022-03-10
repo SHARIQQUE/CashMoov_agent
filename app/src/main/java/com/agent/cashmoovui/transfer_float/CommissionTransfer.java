@@ -226,7 +226,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                                     if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-                                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
+                                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 
                                         mpin_final_api();
 
@@ -292,7 +292,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-                MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 
                 api_walletOwnerUser();
 
@@ -923,7 +923,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                     if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 
                         mpin_final_api();
 

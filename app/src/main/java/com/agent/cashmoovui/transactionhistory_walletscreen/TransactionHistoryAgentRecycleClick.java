@@ -136,7 +136,7 @@ public class TransactionHistoryAgentRecycleClick extends AppCompatActivity imple
 
         if (new InternetCheck().isConnected(TransactionHistoryAgentRecycleClick.this)) {
 
-            MyApplication.showloader(TransactionHistoryAgentRecycleClick.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(TransactionHistoryAgentRecycleClick.this, getString(R.string.please_wait));
 
             api_transactionHistory_agent();
 

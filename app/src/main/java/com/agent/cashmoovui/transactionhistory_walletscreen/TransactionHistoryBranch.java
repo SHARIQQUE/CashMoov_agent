@@ -140,7 +140,7 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
         if (new InternetCheck().isConnected(TransactionHistoryBranch.this)) {
 
-            MyApplication.showloader(TransactionHistoryBranch.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(TransactionHistoryBranch.this, getString(R.string.please_wait));
 
             api_transactionHistory_agent();
 

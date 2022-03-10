@@ -184,7 +184,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                                 if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
 
-                                    MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.getting_user_info));
+                                    MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
 
 
                                     mpin_final_api();
@@ -1056,7 +1056,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                     if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
 
-                        MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
 
 
                         service_Provider_api();
@@ -1087,7 +1087,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                     if (validation_otp_detail()) {
                         if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
-                            MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
 
                            otp_verify_api();
 
@@ -1100,7 +1100,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
                 else if (selectClickType.equalsIgnoreCase("select_mpin")) {
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
-                            MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
 
 
                             mpin_final_api();
@@ -1177,7 +1177,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                 if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
 
-                    MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.getting_user_info));
+                    MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
 
                     otp_generate_api();
 

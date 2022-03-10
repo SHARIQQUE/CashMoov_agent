@@ -201,7 +201,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
         if (new InternetCheck().isConnected(TransactionHistoryAgentPage.this)) {
 
-            MyApplication.showloader(TransactionHistoryAgentPage.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(TransactionHistoryAgentPage.this, getString(R.string.please_wait));
 
             callApiFromCurrency(registerCountryCode);
 

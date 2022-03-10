@@ -11,15 +11,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:orientation="vertical">
 
 
         <!--    First Page-->
@@ -933,7 +930,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_150sdp">
 
             <ImageView
                 android:layout_width="@dimen/_120sdp"

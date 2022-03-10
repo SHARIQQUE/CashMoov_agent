@@ -63,7 +63,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
-    ImageButton qrCode_imageButton;
 
     String selectOperatorList="";
     boolean  isPasswordVisible;
@@ -260,7 +259,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                                 if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-                                    MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+                                    MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
                                     api_allByCriteria_msisdnPrefix();
 
@@ -316,10 +315,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             receiptPage_tv_receiver_country = (TextView) findViewById(R.id.receiptPage_tv_receiver_country);
             close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
-            qrCode_imageButton = (ImageButton) findViewById(R.id.qrCode_imageButton);
 
-
-            qrCode_imageButton.setOnClickListener(this);
             tv_nextClick.setOnClickListener(this);
             previous_reviewClick_textview.setOnClickListener(this);
             confirm_reviewClick_textview.setOnClickListener(this);
@@ -787,7 +783,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     private void currency_api() {
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE", AirtimePurchases.this);
 
@@ -1217,7 +1213,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     if (resultCode.equalsIgnoreCase("0")) {
 
 
-                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
 
                         mpin_final_api();
@@ -1227,7 +1223,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         if(resultDescription.equalsIgnoreCase("Operator Not Found"))
                         {
                            // Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
-                            MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
                             mpin_final_api();
                         }
@@ -1264,7 +1260,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     private void api_walletOwnerUser() {
 
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
         String USER_CODE_FROM_TOKEN_AGENTDETAILS = MyApplication.getSaveString("userCode", AirtimePurchases.this);
 
@@ -1542,7 +1538,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                     if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
                         api_allByCriteria_msisdnPrefix();
 
@@ -1581,19 +1577,6 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 ll_receiptPage.setVisibility(View.VISIBLE);
 
             }
-            break;
-
-            case R.id.qrCode_imageButton: {
-
-
-                IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-                intentIntegrator.setPrompt("Scan a barcode or QR Code");
-                intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.initiateScan();
-
-
-            }
-
             break;
 
             case R.id.close_receiptPage_textview:
@@ -1791,7 +1774,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                      serviceProviderCode_from_operatorList = arrayList_serviceProviderCode.get(i);
 
 
-                     MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+                     MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
 
 

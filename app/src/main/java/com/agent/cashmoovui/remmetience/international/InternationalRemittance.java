@@ -546,7 +546,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
             if (new InternetCheck().isConnected(InternationalRemittance.this)) {
 
-                MyApplication.showloader(InternationalRemittance.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(InternationalRemittance.this, getString(R.string.please_wait));
 
                 api_country_sender();
 
@@ -3536,7 +3536,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
                     if (new InternetCheck().isConnected(InternationalRemittance.this)) {
 
-                        MyApplication.showloader(InternationalRemittance.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(InternationalRemittance.this, getString(R.string.please_wait));
 
 
                         api_mpin_final();

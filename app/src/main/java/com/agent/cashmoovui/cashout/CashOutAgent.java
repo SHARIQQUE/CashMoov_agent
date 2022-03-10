@@ -215,7 +215,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                 if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
                                     mpin_final_api();
@@ -358,7 +358,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
                 api_walletOwner_agent();
 
@@ -1002,7 +1002,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                     if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                        MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
                         service_Provider_api();
@@ -1022,7 +1022,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                     if (validation_otp_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
-                            MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
                            otp_verify_api();
 
@@ -1035,7 +1035,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 else if (selectClickType.equalsIgnoreCase("select_subscriber_mpin")) {
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
-                            MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
                            api_mpin_subscriber();
@@ -1049,7 +1049,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 else if (selectClickType.equalsIgnoreCase("select_mpin")) {
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
-                            MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
                             mpin_final_api();
@@ -1121,7 +1121,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                 if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                    MyApplication.showloader(CashOutAgent.this, getString(R.string.getting_user_info));
+                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
                     otp_generate_api();
 

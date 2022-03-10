@@ -263,7 +263,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
         if (new InternetCheck().isConnected(TransactionHistoryMainPage.this)) {
-            MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(TransactionHistoryMainPage.this, getString(R.string.please_wait));
             callApiFromCurrency(MyApplication.getSaveString("userCountryCode", TransactionHistoryMainPage.this));
 
 

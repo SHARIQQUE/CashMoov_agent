@@ -256,7 +256,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 if (new InternetCheck().isConnected(CashIn.this)) {
 
-                                    MyApplication.showloader(CashIn.this, getString(R.string.getting_user_info));
+                                    MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
                                     mpin_final_api();
 
@@ -313,7 +313,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             if (new InternetCheck().isConnected(CashIn.this)) {
 
-                MyApplication.showloader(CashIn.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
                 api_walletOwner_agent();
 
@@ -1141,7 +1141,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if (new InternetCheck().isConnected(CashIn.this)) {
 
-                        MyApplication.showloader(CashIn.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
                         service_Provider_api();
 
                     } else {
@@ -1158,7 +1158,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if (new InternetCheck().isConnected(CashIn.this)) {
 
-                        MyApplication.showloader(CashIn.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
                         mpin_final_api();
 

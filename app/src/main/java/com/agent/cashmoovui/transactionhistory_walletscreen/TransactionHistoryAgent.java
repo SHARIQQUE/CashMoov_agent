@@ -144,7 +144,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
 
             if (new InternetCheck().isConnected(TransactionHistoryAgent.this)) {
 
-                MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(TransactionHistoryAgent.this, getString(R.string.please_wait));
 
                 api_transactionHistory_agent();
 

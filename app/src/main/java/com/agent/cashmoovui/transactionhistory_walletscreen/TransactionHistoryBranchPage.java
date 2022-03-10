@@ -192,7 +192,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
         if (new InternetCheck().isConnected(TransactionHistoryBranchPage.this)) {
 
-            MyApplication.showloader(TransactionHistoryBranchPage.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(TransactionHistoryBranchPage.this, getString(R.string.please_wait));
 
             callApiFromCurrency(registerCountryCode);
 

@@ -1097,7 +1097,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         if (new InternetCheck().isConnected(RemittanceReceive.this)) {
 
-                            MyApplication.showloader(RemittanceReceive.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(RemittanceReceive.this, getString(R.string.please_wait));
 
                             api_remittance_getCustomer();
 
@@ -1115,7 +1115,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         if (new InternetCheck().isConnected(RemittanceReceive.this)) {
 
-                            MyApplication.showloader(RemittanceReceive.this, getString(R.string.getting_user_info));
+                            MyApplication.showloader(RemittanceReceive.this, getString(R.string.please_wait));
 
                             mpin_final_api();
 

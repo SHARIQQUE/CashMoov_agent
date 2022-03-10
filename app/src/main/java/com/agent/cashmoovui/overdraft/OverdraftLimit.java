@@ -120,7 +120,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
         if (new InternetCheck().isConnected(OverdraftLimit.this)) {
 
-            MyApplication.showloader(OverdraftLimit.this, getString(R.string.getting_user_info));
+            MyApplication.showloader(OverdraftLimit.this, getString(R.string.please_wait));
 
 
             api_currency();
@@ -181,7 +181,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                     if (new InternetCheck().isConnected(OverdraftLimit.this)) {
 
-                        MyApplication.showloader(OverdraftLimit.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(OverdraftLimit.this, getString(R.string.please_wait));
 
 
 

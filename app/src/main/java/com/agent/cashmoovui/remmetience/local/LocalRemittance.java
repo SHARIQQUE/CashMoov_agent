@@ -528,7 +528,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
             if (new InternetCheck().isConnected(LocalRemittance.this)) {
 
-                MyApplication.showloader(LocalRemittance.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(LocalRemittance.this, getString(R.string.please_wait));
 
                 api_country_sender();
 
@@ -3512,7 +3512,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                     if (new InternetCheck().isConnected(LocalRemittance.this)) {
 
-                        MyApplication.showloader(LocalRemittance.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(LocalRemittance.this, getString(R.string.please_wait));
 
 
                         api_mpin_final();

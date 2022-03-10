@@ -220,7 +220,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
             if (new InternetCheck().isConnected(CashToWallet.this)) {
 
-                MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(CashToWallet.this, getString(R.string.please_wait));
 
                 api_country_all();
 
@@ -471,7 +471,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
     private void api_gender_list() {
 
-        MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
+        MyApplication.showloader(CashToWallet.this, getString(R.string.please_wait));
 
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/master/GENDERTYPE", languageToUse, new Api_Responce_Handler() {
@@ -1775,7 +1775,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                     if (new InternetCheck().isConnected(CashToWallet.this)) {
 
-                        MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CashToWallet.this, getString(R.string.please_wait));
 
 
                         api_idProof();
@@ -1794,7 +1794,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
                     if (new InternetCheck().isConnected(CashToWallet.this)) {
 
-                        MyApplication.showloader(CashToWallet.this, getString(R.string.getting_user_info));
+                        MyApplication.showloader(CashToWallet.this, getString(R.string.please_wait));
 
                        api_mpin_final();
 
