@@ -58,7 +58,7 @@ public class CashInFeeActivity extends AppCompatActivity implements View.OnClick
     private void getIds() {
         cardCashIn = findViewById(R.id.cardCashIn);
         tvServiceName = findViewById(R.id.tvServiceName);
-        tvServiceName.setText(getString(R.string.cash_Out));
+        tvServiceName.setText(getString(R.string.cash_In));
         btnClose = findViewById(R.id.btnClose);
 
         setOnCLickListener();
