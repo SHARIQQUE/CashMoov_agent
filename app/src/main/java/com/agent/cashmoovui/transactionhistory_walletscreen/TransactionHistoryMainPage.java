@@ -513,10 +513,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                     if(walletTypeCode.equalsIgnoreCase("100008")){
-                                        tvViewHide.setText("Main Wallet transaction history");
+                                        //tvViewHide.setText("Main Wallet transaction history");
                                     }
                                     if(walletTypeCode.equalsIgnoreCase("100009")){
-                                        tvViewHide.setText("Commission Wallet transaction history");
+                                        //tvViewHide.setText("Commission Wallet transaction history");
                                     }
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");

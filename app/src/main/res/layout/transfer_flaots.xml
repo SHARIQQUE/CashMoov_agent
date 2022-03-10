@@ -7,16 +7,19 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:id="@+id/main_layout"
-    tools:context=".activity.About">
+    tools:context=".transfer_float.TransferFloats">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
 
 
 
@@ -25,14 +28,11 @@
         <!--    First Page-->
 
         <LinearLayout
-
             android:id="@+id/ll_page_1"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="visible"
-
-            >
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -886,29 +886,27 @@
         <!--    success  Receive -->
 
         <LinearLayout
-
             android:id="@+id/ll_successPage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
-                android:background="@color/colorPrimary">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_50sdp"-->
+<!--                android:background="@color/colorPrimary">-->
 
-                <ImageView
-                    android:layout_width="@dimen/_35sdp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/check"
-                    android:backgroundTint="@color/colorPrimaryDark" />
+<!--                <ImageView-->
+<!--                    android:layout_width="@dimen/_35sdp"-->
+<!--                    android:layout_height="@dimen/_35sdp"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:background="@drawable/check"-->
+<!--                    android:backgroundTint="@color/colorPrimaryDark" />-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
 
             <ImageView

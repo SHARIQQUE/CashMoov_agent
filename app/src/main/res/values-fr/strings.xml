@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">cash Move agent</string>
-
-
+    <string name="app_name">Agent Cashmoov</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>

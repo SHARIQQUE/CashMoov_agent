@@ -308,7 +308,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"
-                        android:textSize="@dimen/_13sdp" />
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
                 <EditText
                     android:id="@+id/etDob"

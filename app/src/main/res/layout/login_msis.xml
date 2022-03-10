@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
                     android:layout_marginTop="@dimen/_25sdp"
                     android:fontFamily="@font/aileron_bold"
                     android:lineSpacingExtra="7sp"
-                    android:text="@string/to_login"
+                    android:text="@string/login"
                     android:textColor="#29304d"
                     android:textSize="@dimen/_25sdp" />
 
@@ -36,12 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/aileron_regular"
+                    android:fontFamily="@font/aileron_semibold"
                     android:lineSpacingExtra="10sp"
                     android:text="@string/please_enter_username_password"
                     android:textColor="#323232"
-                    android:textAlignment="textStart"
-                    android:textSize="@dimen/_13sdp" />
+                    android:gravity="center"
+                    android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,92 +55,87 @@
 
                         <LinearLayout
                             android:id="@+id/ll_username"
-
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:orientation="vertical"
-
-                            android:layout_marginStart="@dimen/_15sdp"
-                            android:layout_marginEnd="@dimen/_15sdp"
-                           >
+                            android:orientation="vertical">
 
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aileron_bold"
-                                android:lineSpacingExtra="3sp"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                android:text="@string/phoneNumber"
-                                android:textColor="#29304d"
-                                android:textSize="17sp" />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/aileron_bold"-->
+<!--                                android:lineSpacingExtra="3sp"-->
+<!--                                android:layout_marginLeft="@dimen/_5sdp"-->
+<!--                                android:text="@string/phoneNumber"-->
+<!--                                android:textColor="#29304d"-->
+<!--                                android:textSize="17sp" />-->
 
                             <EditText
                                 android:id="@+id/et_phoneNo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:lineSpacingExtra="10sp"
-                                android:padding="@dimen/_12sdp"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:hint="@string/phoneNumber"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="#323232"
                                 android:background="@drawable/rect_lightcolor_outline"
-                                android:maxLength="15"
+                                android:lineSpacingExtra="10sp"
+                                android:paddingStart="@dimen/_15sdp"
+                                android:paddingEnd="@dimen/_15sdp"
+                                android:paddingTop="@dimen/_12sdp"
+                                android:paddingBottom="@dimen/_12sdp"
+                                android:hint="@string/phoneNumber"
+                                android:textColor="#323232"
                                 android:backgroundTint="#999999"
+                                android:drawableStart="@drawable/ic_baseline_phone_android_24"
+                                android:drawableTint="@color/colorPrimary"
+                                android:drawablePadding="@dimen/_10sdp"
                                 android:textSize="@dimen/_15sdp"
                                 android:fontFamily="@font/aileron_semibold"
-                                android:inputType="phone" />
+                                android:textStyle="bold"
+                                android:inputType="phone"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_1sdp"/>
+
                         </LinearLayout>
 
-
-
-                        <LinearLayout
-
-                            android:id="@+id/ll_password"
-                            android:layout_width="match_parent"
-                            android:visibility="gone"
+                    <LinearLayout
+                        android:id="@+id/ll_password"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/rect_lightcolor_outline"
+                        android:backgroundTint="#999999"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_10sdp">
+                        <ImageView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:orientation="vertical"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_marginStart="@dimen/_15sdp"
-                            android:layout_marginEnd="@dimen/_15sdp"
-                            >
+                            android:layout_marginStart="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_baseline_fiber_pin_24" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aileron_bold"
-                                android:lineSpacingExtra="3sp"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                android:text="@string/pin"
-                                android:textColor="#29304d"
-                                android:textSize="17sp" />
-
-
-
-                            <EditText
-                                android:id="@+id/et_password"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:lineSpacingExtra="10sp"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:padding="@dimen/_12sdp"
-                                android:hint="@string/pin"
-                                android:layout_gravity="center_vertical"
-                                android:textColor="#323232"
-                                android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-
-                                android:background="@drawable/rect_lightcolor_outline"
-                                 android:maxLength="4"
-                                android:backgroundTint="#999999"
-                                android:textSize="@dimen/_13sdp"
-                                android:textStyle="bold"
-                                android:inputType="numberPassword"
-                                />
-                        </LinearLayout>
+                        <EditText
+                            android:id="@+id/et_password"
+                            android:visibility="visible"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="0000"
+                            android:paddingStart="@dimen/_15sdp"
+                            android:paddingEnd="@dimen/_15sdp"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:paddingBottom="@dimen/_12sdp"
+                            android:inputType="numberPassword"
+                            android:background="@null"
+                            android:lineSpacingExtra="10sp"
+                            android:paddingLeft="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_15sdp"
+                            android:textColor="#323232"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:textSize="@dimen/_15sdp"
+                            android:textStyle="bold"
+                            android:maxLength="4"
+                            android:drawableEnd="@drawable/ic_visibility_off_black_24dp" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_continue"
