@@ -29,11 +29,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/choose_the_operation"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:fontFamily="@font/aileron_bold"
             android:gravity="center_horizontal" />
 
             <Button
@@ -44,8 +44,11 @@
                 android:layout_marginTop="@dimen/_30sdp"
                 android:background="@drawable/btn_blue"
                 android:text="@string/add_agent"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
+                android:fontFamily="@font/aileron_semibold"
                 android:textColor="@color/white"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:textAllCaps="false"/>
 
             <Button
@@ -57,7 +60,10 @@
                 android:layout_marginBottom="@dimen/_20sdp"
                 android:background="@drawable/btn_blue"
                 android:text="@string/add_branch"
-                android:textSize="@dimen/_10sdp"
+                android:textSize="@dimen/_11sdp"
+                android:fontFamily="@font/aileron_semibold"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_15sdp"
                 android:textColor="@color/white"
                 android:textAllCaps="false"/>
 

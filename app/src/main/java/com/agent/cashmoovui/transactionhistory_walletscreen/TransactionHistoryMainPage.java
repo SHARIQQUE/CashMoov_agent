@@ -115,13 +115,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 getBaseContext().getResources().getDisplayMetrics());
 
         setContentView(R.layout.transaction_history_mainpage);
-        MyApplication.hideKeyboard(this);
+
         bottomBar = findViewById(R.id.bottomBar);
         imgNotification = findViewById(R.id.imgNotification);
         imgNotification.setOnClickListener(this);
         imgQR = findViewById(R.id.imgQR);
         imgQR.setOnClickListener(this);
-
+        MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
@@ -307,8 +307,25 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MyApplication.hideKeyboard(this);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.hideKeyboard(this);
         if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
             insitute_textview.setClickable(false);
             insitute_textview.setVisibility(View.GONE);
@@ -904,7 +921,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
     public void setSelctionCurrency(int i){
-
         SpinnerPos = i;
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;

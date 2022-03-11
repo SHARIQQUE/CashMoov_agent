@@ -2682,7 +2682,7 @@ public class API {
 
         AndroidNetworking.get(BASEURL+URL)
                .setOkHttpClient(okClient)
-                .addHeaders("Accept-Language","en")
+                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())

@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        MyApplication.hideKeyboard(this);
+
         resultReceiver = new AddressResultReceiver(new Handler());
         applicationComponentClass = (MyApplication) getApplicationContext();
 
@@ -145,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          ll_more= (LinearLayout) findViewById(R.id.ll_more);
          ll_more.setOnClickListener(this);
-
+        MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
@@ -221,6 +220,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MyApplication.hideKeyboard(this);
     }
 
     @Override

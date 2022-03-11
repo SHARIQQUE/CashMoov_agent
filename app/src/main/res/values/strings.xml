@@ -311,7 +311,7 @@
     <string name="select_gender">Select Gender</string>
     <string name="select_occupation">Select Occupation</string>
     <string name="select_id_proof">Select Id Proof</string>
-    <string name="enter_pin">Enter your pin</string>
+    <string name="enter_pin">Enter pin</string>
     <string name="login_message">Please enter your phone number &amp; password to login the account.</string>
     <string name="login">Login</string>
     <string name="login_fingerprint">Login with Fingerprint?</string>
@@ -465,7 +465,7 @@
     <string name="mobileNo_receiptPage">Mobile Number:</string>
     <string name="country_receiptPage">Country:</string>
     <string name="pin_capital">PIN</string>
-    <string name="transaction_receiptNo_receiptPage">Transaction Reference Number:</string>
+    <string name="transaction_receiptNo_receiptPage">Transaction Number:</string>
     <string name="amount_to_paid_receiptpage">Amount to Paid:</string>
     <string name="amount_to_be_charged_receiptpage">Amount to be charged:</string>
     <string name="upload_success">Profile image uploaded successfully</string>

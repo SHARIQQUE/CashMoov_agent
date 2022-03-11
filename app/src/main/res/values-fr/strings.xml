@@ -303,7 +303,7 @@
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
     <string name="select_id_proof">Sélectionnez la preuve d\'identité</string>
-    <string name="enter_pin">Entrez votre code PIN</string>
+    <string name="enter_pin">Entrer le code</string>
     <string name="login_message">Veuillez entrer votre numéro de téléphone et votre mot de passe pour vous connecter au compte</string>
     <string name="login">Connexion</string>
     <string name="login_fingerprint">Connexion avec empreinte digitale ?</string>
@@ -401,7 +401,7 @@
     <string name="minimum_amount_1000">Le montant minimum est de 1000</string>
     <string name="maximum_amount_10000">Le montant maximm est de is 10000</string>
 
-    <string name="transaction_receiptNo_receiptPage">Numéro de référence de la transaction</string>
+    <string name="transaction_receiptNo_receiptPage">Numéro de transaction</string>
     <string name="otp_has_send_sucessfully_subscriber_register">OTP a été envoyé à l identifiant de courrier électronique enregistré de l abonné ou au numéro de téléphone portable</string>
     <string name="cash_out_code">Cash Out Code</string>
 

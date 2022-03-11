@@ -83,7 +83,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
             profileC = this;
-            MyApplication.hideKeyboard(profileC);
             //  setBackMenu();
 
 
@@ -146,6 +145,22 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MyApplication.hideKeyboard(this);
+    }
+
 
     private void getIds() {
         imgNotification = findViewById(R.id.imgNotification);
@@ -199,7 +214,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 //
 //        etAddress.setText(add);
 
-
+        MyApplication.hideKeyboard(profileC);
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 

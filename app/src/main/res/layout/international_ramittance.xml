@@ -1542,7 +1542,7 @@
                     android:drawableRight="@drawable/ic_visibility_off_black_24dp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:padding="@dimen/_12sdp"
-                    android:hint="@string/please_enter_4_digit_mpin"
+                    android:hint="@string/enter_pin"
                     android:layout_gravity="center_vertical"
                     android:textColor="#323232"
                     android:background="@drawable/rect_lightcolor_outline"

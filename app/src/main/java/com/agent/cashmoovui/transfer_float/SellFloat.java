@@ -91,9 +91,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-
     Spinner spinner_record;
-    TextView  spinner_insititue,spinner_currency;
+    TextView  spinner_insititue,spinner_currency,tvAmtCurr;
 
     View rootView;
 
@@ -273,7 +272,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             spinner_record.setOnItemSelectedListener(this);
 
 
-
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
             spinner_currency= findViewById(R.id.spinner_currency);
         spinner_currency.setText("Select Currency");
             spinner_currency.setOnClickListener(new View.OnClickListener() {
@@ -2038,7 +2037,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     }
 
     public void setSelctionCurrency(int pos){
-
+        tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
         select_currecnyName = arrayList_currecnyName.get(pos);
         select_currecnyCode = arrayList_currecnyCode.get(pos);
         currencySymbol_receiver = arrayList_currencySymbol.get(pos);

@@ -68,7 +68,8 @@
                             android:drawablePadding="@dimen/_10sdp"
                             android:inputType="numberPassword"
                             android:maxLength="6"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_15sdp"
+                            android:fontFamily="@font/aileron_semibold"/>
 
 <!--                    <LinearLayout-->
 <!--                        android:id="@+id/lin_resend"-->

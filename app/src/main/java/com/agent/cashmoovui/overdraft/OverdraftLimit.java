@@ -43,7 +43,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     ImageView imgBack,imgHome;
     EditText edittext_amount,edittext_validity;
-    TextView send_textview,tvContinue;
+    TextView  tvAmtCurr,send_textview,tvContinue;
     String profileTypeCode_fromServer="",profileTypeName_fromServer="",walletOwnerName_fromServer="",entityCode_from_creditLimitAllocation="";
 
     RecyclerView recyclerView;
@@ -62,6 +62,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
+    ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
 
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
@@ -69,6 +70,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     String currencyName_from_currency="";
     String countryCurrencyCode_from_currency="";
+    String currencySymbol_from_currency="";
 
 
 
@@ -147,6 +149,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         imgHome = findViewById(R.id.imgHome);
         edittext_amount = findViewById(R.id.edittext_amount);
         edittext_validity = findViewById(R.id.edittext_validity);
+        tvAmtCurr = findViewById(R.id.tvAmtCurr);
         send_textview = findViewById(R.id.send_textview);
 
         spinner_currency =(Spinner)findViewById(R.id.spinner_currency);
@@ -243,6 +246,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                     if(resultCode.equalsIgnoreCase("0")) {
 
                         arrayList_currecnyName.clear();
+                        arrayList_currencySymbol.clear();
 
                         arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
 
@@ -255,7 +259,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                             currencyName_from_currency = jsonObject3.getString("currencyName");
                             countryCurrencyCode_from_currency = jsonObject3.getString("countryCurrencyCode");
-
+                            currencySymbol_from_currency =jsonObject3.getString("currencySymbol");
 
                             currencyName_agent = jsonObject3.getString("currencyName");
                             countryCode_agent = jsonObject3.getString("countryCurrencyCode");
@@ -263,6 +267,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                             arrayList_currecnyName.add(currencyName_from_currency);
+                            arrayList_currencySymbol.add(currencySymbol_from_currency);
 
                         }
 
@@ -373,7 +378,6 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                 if (spinner_currency.getSelectedItemPosition()==0)
                 {
-
                     amountstr="100000";
                     validityDaysStr="90";
 
@@ -382,6 +386,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                     edittext_amount.setText(amountstr);
                     edittext_validity.setText(validityDaysStr);
+                    //arrayList_currencySymbol.clear();
+                    tvAmtCurr.setText("GNF");
 
                 }
 
@@ -397,6 +403,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                     edittext_amount.setText(amountstr);
                     edittext_validity.setText(validityDaysStr);
 
+                    tvAmtCurr.setText(arrayList_currencySymbol.get(i-1));
                     selectCurrecnyName = arrayList_currecnyName.get(i);
                     selectCurrecnyCode = arrayList_currecnyCode.get(i);
 

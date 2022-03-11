@@ -39,9 +39,8 @@
 x
         </activity>
 
-
         <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".otp.VerifyLoginOTPScreen"
@@ -266,7 +265,7 @@ x
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.Profil"
-            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".activity.Showpopup"
@@ -410,7 +409,7 @@ x
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".transactionhistory_walletscreen.TransactionHistoryMainPage"
-            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
         <activity android:name=".transactionhistory_walletscreen.WalletTransactionDetails"
