@@ -39,11 +39,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
+
 public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ImageView imgBack,imgHome;
     EditText edittext_amount,edittext_validity;
-    TextView  tvAmtCurr,send_textview,tvContinue;
+    TextView  spinner_currency,tvAmtCurr,send_textview,tvContinue;
     String profileTypeCode_fromServer="",profileTypeName_fromServer="",walletOwnerName_fromServer="",entityCode_from_creditLimitAllocation="";
 
     RecyclerView recyclerView;
@@ -56,7 +59,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
     MyApplication applicationComponentClass;
     String languageToUse = "";
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",validityDaysStr;
-    Spinner spinner_currency,spinner_record;
+    Spinner spinner_record;
+    SpinnerDialog spinnerDialogCurrency;
 
     LinearLayout ll_firstPage,ll_successPage,linearLayout_record;
 
@@ -152,8 +156,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         send_textview = findViewById(R.id.send_textview);
 
-        spinner_currency =(Spinner)findViewById(R.id.spinner_currency);
-        spinner_currency.setOnItemSelectedListener(this);
+        spinner_currency =findViewById(R.id.spinner_currency);
+        spinner_currency.setText("Select Currency");
 
         imgBack.setOnClickListener(new View.OnClickListener() {
 
@@ -173,6 +177,14 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+            }
+        });
+
+        spinner_currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (spinnerDialogCurrency!=null)
+                    spinnerDialogCurrency.showSpinerDialog();
             }
         });
 
@@ -248,7 +260,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         arrayList_currecnyName.clear();
                         arrayList_currencySymbol.clear();
 
-                        arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
+                       // arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
 
 
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
@@ -272,8 +284,22 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         }
 
 
-                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(OverdraftLimit.this, arrayList_currecnyName);
-                        spinner_currency.setAdapter(arraadapter2);
+//                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(OverdraftLimit.this, arrayList_currecnyName);
+//                        spinner_currency.setAdapter(arraadapter2);
+
+                        spinnerDialogCurrency = new SpinnerDialog(OverdraftLimit.this, arrayList_currecnyName, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+                        spinnerDialogCurrency.setCancellable(true); // for cancellable
+                        spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
+                        spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
+                            @Override
+                            public void onClick(String item, int position) {
+                                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                setSelction(position);
+                                // spBusinessType.setTag(position);
+
+                            }
+                        });
 
                         api_walletOwnerUser();
 
@@ -309,6 +335,49 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
     }
+
+    public void setSelction(int pos){
+
+//        spinner_insititue.setText(arrayList_instititueName.get(pos));
+//        select_insitute_name = arrayList_instititueName.get(pos);
+//        select_insitute_code = arrayList_instititueCode.get(pos);
+//
+//        api_currency_spinner_details(instituteListModelArrayList.get(pos).getWalletOwnerCode());
+//        this.pos = pos;
+//        if (pos==0)
+//        {
+//            amountstr="100000";
+//            validityDaysStr="90";
+//
+//            //   edittext_amount.setEnabled(false);
+//            edittext_validity.setEnabled(false);
+//
+//            edittext_amount.setText(amountstr);
+//            edittext_validity.setText(validityDaysStr);
+//            //arrayList_currencySymbol.clear();
+//            tvAmtCurr.setText("GNF");
+//
+//        }
+//
+//
+//        else
+//        {
+            amountstr="100000";
+            validityDaysStr="90";
+
+            //   edittext_amount.setEnabled(false);
+            edittext_validity.setEnabled(false);
+
+            edittext_amount.setText(amountstr);
+            edittext_validity.setText(validityDaysStr);
+
+            tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
+            selectCurrecnyName = arrayList_currecnyName.get(pos);
+            selectCurrecnyCode = arrayList_currecnyCode.get(pos);
+            spinner_currency.setText(selectCurrecnyName);
+
+        }
+    //}
 
 
     private void api_walletOwnerUser() {
@@ -375,41 +444,41 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             {
 
 
-
-                if (spinner_currency.getSelectedItemPosition()==0)
-                {
-                    amountstr="100000";
-                    validityDaysStr="90";
-
-                 //   edittext_amount.setEnabled(false);
-                    edittext_validity.setEnabled(false);
-
-                    edittext_amount.setText(amountstr);
-                    edittext_validity.setText(validityDaysStr);
-                    //arrayList_currencySymbol.clear();
-                    tvAmtCurr.setText("GNF");
-
-                }
-
-
-                else
-                {
-                    amountstr="100000";
-                    validityDaysStr="90";
-
-                 //   edittext_amount.setEnabled(false);
-                    edittext_validity.setEnabled(false);
-
-                    edittext_amount.setText(amountstr);
-                    edittext_validity.setText(validityDaysStr);
-
-                    tvAmtCurr.setText(arrayList_currencySymbol.get(i-1));
-                    selectCurrecnyName = arrayList_currecnyName.get(i);
-                    selectCurrecnyCode = arrayList_currecnyCode.get(i);
-
-
-
-                }
+//
+//                if (spinner_currency.getSelectedItemPosition()==0)
+//                {
+//                    amountstr="100000";
+//                    validityDaysStr="90";
+//
+//                 //   edittext_amount.setEnabled(false);
+//                    edittext_validity.setEnabled(false);
+//
+//                    edittext_amount.setText(amountstr);
+//                    edittext_validity.setText(validityDaysStr);
+//                    //arrayList_currencySymbol.clear();
+//                    tvAmtCurr.setText("GNF");
+//
+//                }
+//
+//
+//                else
+//                {
+//                    amountstr="100000";
+//                    validityDaysStr="90";
+//
+//                 //   edittext_amount.setEnabled(false);
+//                    edittext_validity.setEnabled(false);
+//
+//                    edittext_amount.setText(amountstr);
+//                    edittext_validity.setText(validityDaysStr);
+//
+//                    tvAmtCurr.setText(arrayList_currencySymbol.get(i-1));
+//                    selectCurrecnyName = arrayList_currecnyName.get(i);
+//                    selectCurrecnyCode = arrayList_currecnyCode.get(i);
+//
+//
+//
+//                }
 
 
 
@@ -894,14 +963,12 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         amountstr = edittext_amount.getText().toString().trim();
         validityDaysStr = edittext_validity.getText().toString().trim();
 
-       if (spinner_currency.getSelectedItemPosition()==0) {
+        if (spinner_currency.getText().equals("Select Currency")) {
 
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
 
             return false;
         }
-
-
 
         else if (amountstr.isEmpty()) {
 

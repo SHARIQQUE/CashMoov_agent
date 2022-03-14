@@ -40,9 +40,9 @@
                     android:textSize="@dimen/_18sdp" />
 
 
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_currency"
-                    style="@style/SpinnerStyleNew" />
+                    style="@style/SpinnerStyleNew1" />
 
 
                 <HorizontalScrollView

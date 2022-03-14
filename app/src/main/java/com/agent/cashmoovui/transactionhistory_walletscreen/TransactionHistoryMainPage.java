@@ -934,9 +934,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         loadingPB.setVisibility(View.VISIBLE);
         callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
 
-
-
-
     }
 
    /* public void createList(){

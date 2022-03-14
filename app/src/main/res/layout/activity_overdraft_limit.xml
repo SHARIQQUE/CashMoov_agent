@@ -82,9 +82,9 @@
                     android:text="@string/transaction_details"
                     />
 
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_currency"
-                    style="@style/SpinnerStyleNew"
+                    style="@style/SpinnerStyleNew1"
                     />
 
                 <LinearLayout

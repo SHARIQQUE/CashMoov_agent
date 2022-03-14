@@ -16,23 +16,24 @@
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:layout_alignParentStart="true"
             app:srcCompat="@drawable/ic_notifications"
             app:tint="@color/colorPrimary" />
+
         <TextView
             android:id="@+id/tvSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aileron_semibold"
-            android:text="@string/deposit"
-            android:textColor="@color/textcolorheading"
-            android:textSize="@dimen/_12sdp"
-            android:textAlignment="textStart"
-            android:layout_toEndOf="@+id/imgLogo"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/_5sdp"/>
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/imgLogo"
+            android:fontFamily="@font/aileron_bold"
+            android:text="@string/deposit"
+            android:textAlignment="textStart"
+            android:textColor="@color/textcolorheading"
+            android:textSize="@dimen/_15sdp" />
     </RelativeLayout>
 
 
@@ -48,10 +49,10 @@
             android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aileron_regular"
+            android:fontFamily="@font/aileron_semibold"
             android:text="@string/deposit"
             android:textColor="@color/textColorBlack"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:textAlignment="textStart"/>
         <TextView
@@ -59,10 +60,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aileron_semibold"
-            android:text="11/07/2015"
+            android:text=""
             android:textColor="@color/green_700"
             android:layout_marginTop="@dimen/_5sdp"
-            android:textSize="@dimen/_9sdp"
+            android:textSize="@dimen/_11sdp"
             android:textAlignment="textEnd"/>
 
 

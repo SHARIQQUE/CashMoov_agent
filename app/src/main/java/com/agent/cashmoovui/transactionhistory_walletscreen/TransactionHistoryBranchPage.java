@@ -50,6 +50,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
+
 public class TransactionHistoryBranchPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,TransactionListLisners, MiniStatemetListners {
 
     String searchStr="";
@@ -78,7 +81,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
     TextView t1,insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
-    Spinner spinner_currency;
+    TextView spinner_currency;
+    private SpinnerDialog spinnerDialogCurrency;
 
     SearchAdapterTransactionDetails adpter;
     String walletCode;
@@ -110,6 +114,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 //        imgQR = findViewById(R.id.imgQR);
 //        imgQR.setOnClickListener(this);
 
+        MyApplication.hideKeyboard(this);
 
         cardMainWallet = findViewById(R.id.cardMainWallet);
         cardCommissionWallet = findViewById(R.id.cardCommissionWallet);
@@ -125,8 +130,15 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
 
-        spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
-        spinner_currency.setOnItemSelectedListener(this);
+        spinner_currency= findViewById(R.id.spinner_currency);
+        spinner_currency.setText("Select Currency");
+        spinner_currency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (spinnerDialogCurrency!=null)
+                    spinnerDialogCurrency.showSpinerDialog();
+            }
+        });
 
         t1 =(TextView)findViewById(R.id.t1);
         insitute_textview =(TextView)findViewById(R.id.insitute_textview);
@@ -206,10 +218,28 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.hideKeyboard(this);
         MyApplication.AgentPage=false;
         MyApplication.BranchPage=true;
         MyApplication.InstPage=false;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.hideKeyboard(this);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MyApplication.hideKeyboard(this);
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -713,8 +743,22 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
         }
 
-        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryBranchPage.this, MyApplication.currencyModelArrayList);
-        spinner_currency.setAdapter(arraadapter2);
+//        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryBranchPage.this, MyApplication.currencyModelArrayList);
+//        spinner_currency.setAdapter(arraadapter2);
+
+        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryBranchPage.this, arrayList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+        spinnerDialogCurrency.setCancellable(true); // for cancellable
+        spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
+        spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
+            @Override
+            public void onClick(String item, int position) {
+                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                setSelctionCurrency(position);
+                // spBusinessType.setTag(position);
+
+            }
+        });
 
 
      //  String currencyName_mssis_agent = MyApplication.getSaveString("CURRENCYNAME_AGENT", TransactionHistoryMainPage.this);
@@ -724,7 +768,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
             if (currencyName_mssis_agent.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyName()))
             {
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
-                spinner_currency.setSelection(i);
+                setSelctionCurrency(i);
                 MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
             }
         }
@@ -742,6 +786,20 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     }
 
     int SpinnerPos;
+    public void setSelctionCurrency(int i){
+        SpinnerPos = i;
+        MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
+        walletCode = MyApplication.currencyModelArrayList.get(i).code;
+        mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
+        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
+        spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
+
+        callApiMiniStatementTrans(walletCode,walletTypeCode);
+
+
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
@@ -751,18 +809,18 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
                 try {
 
-                    SpinnerPos = i;
-
-//                 //   Toast.makeText(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList.get(i).mainWalletValue.toString()+"---commisiiom---"
-//                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
-//                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
-//                    ;
-                    MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
-                    walletCode = MyApplication.currencyModelArrayList.get(i).code;
-                    mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
-                    commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
-                    overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
-                    callApiMiniStatementTrans(walletCode,walletTypeCode);
+//                    SpinnerPos = i;
+//
+////                 //   Toast.makeText(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList.get(i).mainWalletValue.toString()+"---commisiiom---"
+////                            +MyApplication.currencyModelArrayList.get(i).commisionWalletValue.toString()+
+////                            "----overdraft"+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue.toString(), Toast.LENGTH_SHORT).show()
+////                    ;
+//                    MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
+//                    walletCode = MyApplication.currencyModelArrayList.get(i).code;
+//                    mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+//                    commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
+//                    overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
+//                    callApiMiniStatementTrans(walletCode,walletTypeCode);
 
 //                    select_currency_name = arrayList_currecnyName.get(i);
 //                    select_currency_code = arrayList_currecnyCode.get(i);

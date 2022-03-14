@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/_10sdp"
                 android:textColor="@color/textColorDBlack"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_bold"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
