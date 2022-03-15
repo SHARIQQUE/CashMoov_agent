@@ -362,8 +362,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //
 //        else
 //        {
-            amountstr="100000";
-            validityDaysStr="90";
+            amountstr="200000";
+            validityDaysStr="270";
 
             //   edittext_amount.setEnabled(false);
             edittext_validity.setEnabled(false);

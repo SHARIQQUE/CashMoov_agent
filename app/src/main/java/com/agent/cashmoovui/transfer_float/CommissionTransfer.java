@@ -78,7 +78,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     boolean  isPasswordVisible;
     String balanceString="";
 
-    Spinner     spinner_currency;
+    Spinner spinner_currency;
 
 
     String walletCode;
@@ -421,32 +421,16 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                 try {
 
-
-
                     String resultCode =  jsonObject.getString("resultCode");
                     String resultDescription =  jsonObject.getString("resultDescription");
 
                     if(resultCode.equalsIgnoreCase("0")) {
 
-
-
-
-
                         createList(jsonObject);
-
-
-
-
 
                     }
 
-
-
-
-
-
                     else {
-
 
                         Toast.makeText(CommissionTransfer.this, resultDescription, Toast.LENGTH_LONG).show();
                         recyclerView.setVisibility(View.GONE);
