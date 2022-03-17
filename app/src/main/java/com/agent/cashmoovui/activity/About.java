@@ -16,7 +16,7 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
 
-// test by abhay
+// test by abhay for dev vranch
         //  test to commit by rahul
         //  test to commit by abhay
         //  test to commit by Sharique
