@@ -67,6 +67,8 @@ public class MyApplication extends Application {
     public static boolean InstPage=false;
     public static boolean BranchPage=false;
     public static String Amount="0.00";
+    public static boolean isNotification=false;
+
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);

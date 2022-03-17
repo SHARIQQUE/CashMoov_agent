@@ -59,6 +59,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     String searchStr="";
     EditText edittext_search;
     ImageView imgNotification,imgQR,search_imageView;
+    TextView tvBadge;
     TextView main_wallet_value_textview;
     ArrayList<UserDetail> arrayList_modalDetails;
     CardView cardMainWallet,cardCommissionWallet,cardOverdraftWallet;
@@ -119,11 +120,19 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         bottomBar = findViewById(R.id.bottomBar);
         imgNotification = findViewById(R.id.imgNotification);
         imgNotification.setOnClickListener(this);
+        tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
         imgQR.setOnClickListener(this);
         MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",TransactionHistoryMainPage.this)!=0){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",TransactionHistoryMainPage.this)));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
 
 
         cardMainWallet = findViewById(R.id.cardMainWallet);
@@ -172,6 +181,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         main_wallet_value_textview =(TextView)findViewById(R.id.main_wallet_value_textview);
         commisionwallet_value_textview =(TextView)findViewById(R.id.commisionwallet_value_textview);
         overdraft_value_heding_textview =(TextView)findViewById(R.id.overdraft_value_heding_textview);
+
 
         if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
             insitute_textview.setClickable(false);
@@ -303,7 +313,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(1);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",TransactionHistoryMainPage.this)!=0){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",TransactionHistoryMainPage.this)));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
     }
 
     @Override

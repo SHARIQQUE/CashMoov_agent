@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     SmoothBottomBar bottomBar;
     ImageView imgNotification,imgQR;
+    TextView tvBadge;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance,tvName;
     LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
+    int notificationCountCurrent=0;
+    int notificationCountPrevious=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar = findViewById(R.id.bottomBar);
         imgNotification = findViewById(R.id.imgNotification);
         imgNotification.setOnClickListener(this);
+        tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
         imgQR.setOnClickListener(this);
 
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-
+        callApiNotificationList();
 
     }
 
@@ -220,6 +224,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         tvClick.setVisibility(View.VISIBLE);
         tvBalance.setVisibility(View.GONE);
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",MainActivity.this)!=0){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",MainActivity.this)));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -485,6 +495,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void callApiNotificationList() {
+        try {
+            API.GET_PUBLIC("ewallet/api/v1/inappholding/"+ MyApplication.getSaveString("walletOwnerCode",MainActivity.this),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("appHoldinglist");
+                                    int apiCount = walletOwnerListArr.length();
+                                    notificationCountPrevious = MyApplication.getSaveInt("NOTIFICATIONCOUNTPREV",MainActivity.this);
+                                    notificationCountCurrent = MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",MainActivity.this);
+                                    if(notificationCountPrevious<=apiCount){
+                                        notificationCountCurrent = (apiCount-notificationCountPrevious);
+                                        notificationCountPrevious = apiCount;
+                                        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",MainActivity.this)!=0){
+                                            tvBadge.setVisibility(View.VISIBLE);
+                                            tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                        }else{
+                                            tvBadge.setVisibility(View.GONE);
+                                        }
+                                        MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,MainActivity.this);
+                                        MyApplication.saveInt("NOTIFICATIONCOUNTPREV",notificationCountPrevious,MainActivity.this);
+                                    }
+
+//                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+//                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+
+                                } else {
+                                    //MyApplication.showToast(notificationlistC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
 
 

@@ -42,6 +42,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public static Profile profileC;
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;
+    TextView tvBadge;
     SmoothBottomBar bottomBar;
     LinearLayout linServiceCharge,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
@@ -143,6 +144,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         MyApplication.hideKeyboard(profileC);
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -164,6 +171,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     private void getIds() {
         imgNotification = findViewById(R.id.imgNotification);
+        tvBadge = findViewById(R.id.tvBadge);
         imgQR = findViewById(R.id.imgQR);
 
         bottomBar = findViewById(R.id.bottomBar);
@@ -217,6 +225,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         MyApplication.hideKeyboard(profileC);
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
+            tvBadge.setVisibility(View.VISIBLE);
+            tvBadge.setText(String.valueOf(MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)));
+        }else{
+            tvBadge.setVisibility(View.GONE);
+        }
 
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
