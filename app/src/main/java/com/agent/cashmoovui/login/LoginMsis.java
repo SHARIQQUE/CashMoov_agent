@@ -883,13 +883,13 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                                 // #################### serviceList Add  serviceCategoryList add  serviceCode
 
-                                if (jsonObject.has("serviceList")) {
+                                if (jsonObject.has("serviceList") &&jsonObject.optJSONArray("serviceList")!=null) {
                                     JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
 
                                     for (int i = 0; i < jsonArray_serviceList.length(); i++) {
                                         JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
 
-                                        if (jsonObject1.has("serviceCategoryList")) {
+                                        if (jsonObject1.has("serviceCategoryList")&&jsonObject1.optJSONArray("serviceCategoryList")!=null) {
                                             JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
                                             for (int j = 0; j < jsonArray_serviceCategoryList.length(); j++) {
                                                 JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
