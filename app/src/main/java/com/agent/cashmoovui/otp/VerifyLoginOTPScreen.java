@@ -13,6 +13,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.login.LoginPin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -111,6 +112,8 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
             loginJson.put("password",otp);
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
+//            loginJson.put("country",MyApplication.getSaveString("COUNTRY", VerifyLoginOTPScreen.this));
+//            loginJson.put("cc",MyApplication.getSaveString("CC",VerifyLoginOTPScreen.this));
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());

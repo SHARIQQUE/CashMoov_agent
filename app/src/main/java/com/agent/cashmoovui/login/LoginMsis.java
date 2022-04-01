@@ -813,6 +813,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("grant_type","password");
             jsonObject.put("scope","read write");
             jsonObject.put("fcmToken",FCM_TOKEN);
+            jsonObject.put("country",MyApplication.getSaveString("COUNTRY",LoginMsis.this));
+            jsonObject.put("cc",MyApplication.getSaveString("CC",LoginMsis.this));
 
 
             MyApplication.saveString("USERNAME",strPhoneNo,LoginMsis.this);
@@ -966,7 +968,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("password",strPasword);
             jsonObject.put("grant_type","password");
             jsonObject.put("scope","read write");
-
+            jsonObject.put("country",MyApplication.getSaveString("COUNTRY",LoginMsis.this));
+            jsonObject.put("cc",MyApplication.getSaveString("CC",LoginMsis.this));
 
             //  applicationComponentClass.getmSharedPreferences().edit().putString("USERNAME", strPhoneNo).commit();
             //  applicationComponentClass.getmSharedPreferences().edit().putString("PASSWORD", strPasword).commit();

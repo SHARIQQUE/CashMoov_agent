@@ -156,7 +156,7 @@
                 android:paddingTop="@dimen/_12sdp"
                 android:paddingBottom="@dimen/_12sdp"
                 android:paddingEnd="@dimen/_15sdp"
-                android:hint="@string/please_enter_mobileno"
+                android:hint="@string/subscriber_number_new"
                 android:textColor="#323232"
                 android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_semibold" />

@@ -22,12 +22,15 @@ import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.CountryRemittanceInfoModel;
 import com.agent.cashmoovui.model.ServiceProviderModel;
+import com.aldoapps.autoformatedittext.AutoFormatUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
@@ -179,13 +182,15 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 //                        MyApplication.showErrorToast(InternationalRemittance.this, getString(R.string.plz_select_receive_currency));
 //                        return;
 //                    }
-                    if (s.length()>1) {
-
-                        callApiExchangeRate();
-
+                    if (isFormatting) {
+                        return;
                     }
 
-                    else {
+                    if (s.length()>1) {
+                        formatInput(edittext_amount, s, s.length(), s.length());
+                        callApiExchangeRate();
+
+                    }else {
                         convertionRate_first_page.setText("");
                         fees_first_page.setText("");
                         tax_first_page.setText("");
@@ -193,6 +198,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                         amountTobeCharged_first_page.setText("");
                         edittext_amount_pay.getText().clear();
                     }
+
+                    isFormatting = false;
+
 
                 } else {
                     Toast.makeText(internationalC, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
@@ -233,12 +241,12 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             MyApplication.showErrorToast(internationalC,getString(R.string.receive_courency));
             return;
         }
-        if(edittext_amount.getText().toString().trim().isEmpty()) {
+        if(edittext_amount.getText().toString().trim().replace(",","").isEmpty()) {
             MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
             return;
         }
-        if(edittext_amount.getText().toString().trim().equals("0")||edittext_amount.getText().toString().trim().equals(".")||edittext_amount.getText().toString().trim().equals(".0")||
-                edittext_amount.getText().toString().trim().equals("0.")||edittext_amount.getText().toString().trim().equals("0.0")||edittext_amount.getText().toString().trim().equals("0.00")){
+        if(edittext_amount.getText().toString().trim().replace(",","").equals("0")||edittext_amount.getText().toString().trim().replace(",","").equals(".")||edittext_amount.getText().toString().trim().replace(",","").equals(".0")||
+                edittext_amount.getText().toString().trim().replace(",","").equals("0.")||edittext_amount.getText().toString().trim().replace(",","").equals("0.0")||edittext_amount.getText().toString().trim().replace(",","").equals("0.00")){
             MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
             return;
         }
@@ -697,7 +705,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                             +"&receiveCurrencyCode="+recCurrencyModelList.get((Integer) spinner_receiverCurrency.getTag()).getCurrencyCode()
                             +"&sendCountryCode="+ sendCountryCode+
                             "&receiveCountryCode="+recCountryCode
-                            +"&currencyValue="+ edittext_amount.getText().toString() + "&channelTypeCode="+MyApplication.channelTypeCode+
+                            +"&currencyValue="+ edittext_amount.getText().toString().replace(",","") + "&channelTypeCode="+MyApplication.channelTypeCode+
                             "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
                             + "&serviceProviderCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
@@ -710,7 +718,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    if(edittext_amount.getText().toString().trim().length()>0) {
+                                    if(edittext_amount.getText().toString().trim().replace(",","").length()>0) {
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
                                         currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
@@ -723,7 +731,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         convertionRate_first_page.setText(rate);
                                         fees_first_page.setText(fee);
                                         edittext_amount_pay.setText(currencyValue);
-                                        amount = edittext_amount.getText().toString().trim();
+                                        amount = edittext_amount.getText().toString().trim().replace(",","");
 
 
 //                                    int tax = receiverFee+receiverTax;
@@ -737,12 +745,12 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(df.format(taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim()) + taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",","")) + taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText("0.00");
-                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim())));
+                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
                                         }
 
@@ -769,7 +777,107 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
     }
 
+    private boolean isFormatting;
+    private int prevCommaAmount;
+    private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        isFormatting = true;
 
+        StringBuilder sbResult = new StringBuilder();
+        String result;
+        int newStart = start;
+
+        try {
+            // Extract value without its comma
+            String digitAndDotText = s.toString().replace(",", "");
+            int commaAmount = 0;
+
+            // if user press . turn it into 0.
+            if (s.toString().startsWith(".") && s.length() == 1) {
+                editText.setText("0.");
+                editText.setSelection(editText.getText().toString().length());
+                return;
+            }
+
+            // if user press . when number already exist turns it into comma
+            if (s.toString().startsWith(".") && s.length() > 1) {
+                StringTokenizer st = new StringTokenizer(s.toString());
+                String afterDot = st.nextToken(".");
+                editText.setText("0." + AutoFormatUtil.extractDigits(afterDot));
+                editText.setSelection(2);
+                return;
+            }
+
+            if (digitAndDotText.contains(".")) {
+                // escape sequence for .
+                String[] wholeText = digitAndDotText.split("\\.");
+
+                if (wholeText.length == 0) {
+                    return;
+                }
+
+                // in 150,000.45 non decimal is 150,000 and decimal is 45
+                String nonDecimal = wholeText[0];
+                if (nonDecimal.length() == 0) {
+                    return;
+                }
+
+                // only format the non-decimal value
+                result = AutoFormatUtil.formatToStringWithoutDecimal(nonDecimal);
+
+                sbResult
+                        .append(result)
+                        .append(".");
+
+                if (wholeText.length > 1) {
+                    sbResult.append(wholeText[1]);
+                }
+
+            } else {
+                result = AutoFormatUtil.formatWithDecimal(digitAndDotText);
+                sbResult.append(result);
+            }
+
+            // count == 0 indicates users is deleting a text
+            // count == 1 indicates users is entering a text
+            newStart += ((count == 0) ? 0 : 1);
+
+            // calculate comma amount in edit text
+            commaAmount += AutoFormatUtil.getCharOccurance(result, ',');
+
+            // flag to mark whether new comma is added / removed
+            if (commaAmount >= 1 && prevCommaAmount != commaAmount) {
+                newStart += ((count == 0) ? -1 : 1);
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without comma
+            if (commaAmount == 0 && count == 0 && prevCommaAmount != commaAmount) {
+                newStart -= 1;
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without dots
+            if (count == 0 && !sbResult.toString()
+                    .contains(".") && prevCommaAmount != commaAmount) {
+                newStart = start;
+                prevCommaAmount = commaAmount;
+            }
+
+            editText.setText(sbResult.toString());
+
+            // ensure newStart is within result length
+            if (newStart > sbResult.toString().length()) {
+                newStart = sbResult.toString().length();
+            } else if (newStart < 0) {
+                newStart = 0;
+            }
+
+            editText.setSelection(newStart);
+
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

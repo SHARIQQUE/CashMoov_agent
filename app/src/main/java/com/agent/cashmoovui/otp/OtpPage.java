@@ -10,6 +10,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.set_pin.SetPin;
 import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
@@ -154,6 +155,8 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
             loginJson.put("username",MyApplication.getSaveString("USERNAME",OtpPage.this));
             loginJson.put("password",otp);
             loginJson.put("grant_type","password");
+//            loginJson.put("country",MyApplication.getSaveString("COUNTRY", OtpPage.this));
+//            loginJson.put("cc",MyApplication.getSaveString("CC",OtpPage.this));
 
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(OtpPage.this,"Verify OTP");

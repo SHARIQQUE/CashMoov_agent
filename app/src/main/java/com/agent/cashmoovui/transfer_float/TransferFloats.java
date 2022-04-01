@@ -41,6 +41,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.blikoon.qrcodescanner.QrCodeActivity;
 
 import org.json.JSONArray;
@@ -51,6 +52,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -180,6 +182,36 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                     return false;
+                }
+            });
+
+            edittext_amount.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (isFormatting) {
+                        return;
+                    }
+
+                    if (s.length() > 0) {
+                        formatInput(edittext_amount,s, s.length(), s.length());
+
+                    }
+
+                    isFormatting = false;
+
+
+
                 }
             });
 
@@ -569,7 +601,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     boolean validation_mobile_Details() {
 
-        amountstr = edittext_amount.getText().toString().trim();
+        amountstr = edittext_amount.getText().toString().trim().replace(",","");
         mobileNoStr = edittext_mobileNo.getText().toString().trim();
 
         if(mobileNoStr.isEmpty()) {
@@ -1718,6 +1750,108 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         finish();
                     }
                 }).create().show();
+    }
+
+    private boolean isFormatting;
+    private int prevCommaAmount;
+    private void formatInput(EditText editText,CharSequence s, int start, int count) {
+        isFormatting = true;
+
+        StringBuilder sbResult = new StringBuilder();
+        String result;
+        int newStart = start;
+
+        try {
+            // Extract value without its comma
+            String digitAndDotText = s.toString().replace(",", "");
+            int commaAmount = 0;
+
+            // if user press . turn it into 0.
+            if (s.toString().startsWith(".") && s.length() == 1) {
+                editText.setText("0.");
+                editText.setSelection(editText.getText().toString().length());
+                return;
+            }
+
+            // if user press . when number already exist turns it into comma
+            if (s.toString().startsWith(".") && s.length() > 1) {
+                StringTokenizer st = new StringTokenizer(s.toString());
+                String afterDot = st.nextToken(".");
+                editText.setText("0." + AutoFormatUtil.extractDigits(afterDot));
+                editText.setSelection(2);
+                return;
+            }
+
+            if (digitAndDotText.contains(".")) {
+                // escape sequence for .
+                String[] wholeText = digitAndDotText.split("\\.");
+
+                if (wholeText.length == 0) {
+                    return;
+                }
+
+                // in 150,000.45 non decimal is 150,000 and decimal is 45
+                String nonDecimal = wholeText[0];
+                if (nonDecimal.length() == 0) {
+                    return;
+                }
+
+                // only format the non-decimal value
+                result = AutoFormatUtil.formatToStringWithoutDecimal(nonDecimal);
+
+                sbResult
+                        .append(result)
+                        .append(".");
+
+                if (wholeText.length > 1) {
+                    sbResult.append(wholeText[1]);
+                }
+
+            } else {
+                result = AutoFormatUtil.formatWithDecimal(digitAndDotText);
+                sbResult.append(result);
+            }
+
+            // count == 0 indicates users is deleting a text
+            // count == 1 indicates users is entering a text
+            newStart += ((count == 0) ? 0 : 1);
+
+            // calculate comma amount in edit text
+            commaAmount += AutoFormatUtil.getCharOccurance(result, ',');
+
+            // flag to mark whether new comma is added / removed
+            if (commaAmount >= 1 && prevCommaAmount != commaAmount) {
+                newStart += ((count == 0) ? -1 : 1);
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without comma
+            if (commaAmount == 0 && count == 0 && prevCommaAmount != commaAmount) {
+                newStart -= 1;
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without dots
+            if (count == 0 && !sbResult.toString()
+                    .contains(".") && prevCommaAmount != commaAmount) {
+                newStart = start;
+                prevCommaAmount = commaAmount;
+            }
+
+            editText.setText(sbResult.toString());
+
+            // ensure newStart is within result length
+            if (newStart > sbResult.toString().length()) {
+                newStart = sbResult.toString().length();
+            } else if (newStart < 0) {
+                newStart = 0;
+            }
+
+            editText.setSelection(newStart);
+
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
     }
 
 

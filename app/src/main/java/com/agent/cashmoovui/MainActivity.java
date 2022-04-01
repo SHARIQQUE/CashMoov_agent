@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.agent.cashmoovui.activity.MoreActivity;
 import com.agent.cashmoovui.activity.NotificationList;
+import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.location.Constants;
 import com.agent.cashmoovui.location.FetchAddressIntentServices;
 import com.agent.cashmoovui.apiCalls.API;
@@ -280,7 +281,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_cashout:
-                i = new Intent(MainActivity.this, CashOutOpt.class);
+                //i = new Intent(MainActivity.this, CashOutOpt.class);
+                i = new Intent(MainActivity.this, CashOutAgent.class);
                 startActivity(i);
                 // finish();
                 break;

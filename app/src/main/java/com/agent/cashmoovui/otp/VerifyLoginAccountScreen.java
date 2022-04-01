@@ -9,6 +9,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.set_pin.SetPin;
 import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
@@ -79,6 +80,8 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements OnOtp
             loginJson.put("username",MyApplication.getSaveString("USERNAME",VerifyLoginAccountScreen.this));
             loginJson.put("password",otp);
             loginJson.put("grant_type","password");
+//            loginJson.put("country",MyApplication.getSaveString("COUNTRY", VerifyLoginAccountScreen.this));
+//            loginJson.put("cc",MyApplication.getSaveString("CC",VerifyLoginAccountScreen.this));
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());

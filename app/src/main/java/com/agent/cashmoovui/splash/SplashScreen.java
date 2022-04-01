@@ -24,6 +24,8 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.LanguageChoose;
+import com.agent.cashmoovui.apiCalls.API;
+import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.CurrencyModel;
@@ -47,9 +49,6 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
     MyApplication applicationComponentClass;
     String languageToUse = "";
     TextView startnow_textview;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,23 +102,27 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
                         if (firstRunApp.trim().length() == 0) {
                             startnow_textview.setVisibility(View.GONE);
-                            loginPage();
+                            callApi();
+                            //loginPage();
                         }
 
                         else if (firstRunApp.equalsIgnoreCase("YES")) {
                             startnow_textview.setVisibility(View.GONE);
-                            loginPage();
+                            callApi();
+                            //loginPage();
                         }
 
                         else if (firstRunApp.equalsIgnoreCase("NO")) {
                             startnow_textview.setVisibility(View.GONE);
-                            loginPage();
+                            callApi();
+                           // loginPage();
                         }
 
                         else if (firstRunApp.equalsIgnoreCase("NO_LOGINPIN"))
                         {
                             startnow_textview.setVisibility(View.GONE);
-                            loginPage();
+                            callApi();
+                            //loginPage();
                         }
                     }
 
@@ -235,6 +238,42 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
     }
     private void requestPermission_camera() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 101);
+    }
+
+
+    private void callApi() {
+        try{
+
+            MyApplication.showloader(SplashScreen.this,"Please wait!");
+            API.GET_PUBLICN("https://api.myip.com/", new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
+                    System.out.println("myip response======="+jsonObject.toString());
+
+                    if (jsonObject != null) {
+                        if(jsonObject.has("country")&&jsonObject.has("cc")){
+                            MyApplication.saveString("COUNTRY",jsonObject.optString("country"),SplashScreen.this);
+                            MyApplication.saveString("CC",jsonObject.optString("cc"),SplashScreen.this);
+                            loginPage();
+//                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+//                            MyApplication.showToast(SplashScreen.this,getString(R.string.technical_failure));
+                        } else {
+                            MyApplication.showToast(SplashScreen.this,jsonObject.optString("resultDescription", "N/A"));
+                        }
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                }
+            });
+
+        }catch (Exception e){
+
+        }
+
     }
 
 
