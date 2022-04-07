@@ -1309,8 +1309,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
 
                         amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " + amountstr);
-                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "  +amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" "+ amountstr);
+                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "+ amountstr);
 
                         allByCriteria_walletOwnerCode_api();
 

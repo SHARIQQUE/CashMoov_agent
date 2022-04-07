@@ -55,7 +55,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     String agentCode_subscriber="";
     private static final int REQUEST_CODE_QR_SCAN = 101;
-
+    String currencySymbol_sender="";
+    String currencySymbol_receiver="";
 
 
     String walletOwnerCode="";
@@ -602,6 +603,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 if (currencyName_subscriber_temp.equalsIgnoreCase("GNF")) {
                                     currencyName_subscriber = jsonObject2.getString("currencyName");
                                     currencyCode_subscriber = jsonObject2.getString("currencyCode");
+                                    currencySymbol_receiver = jsonObject2.getString("currencySymbol");
                                     tvAmtCurr.setText(jsonObject2.getString("currencySymbol"));
 
                                 } else {
@@ -673,7 +675,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 if (currencyName_agent_temp.equalsIgnoreCase("GNF")) {
                                     currencyCode_agent = jsonObject2.getString("currencyCode");
                                     currencyName_agent = jsonObject2.getString("currencyName");
-
+                                    currencySymbol_sender = jsonObject2.getString("currencySymbol");
                                 } else {
 
                                 }
@@ -976,28 +978,28 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
-                            String currencySymbol_sender="";
-                            String currencySymbol_receiver="";
+                            String currencySymbolsender="";
+                            String currencySymbolreceiver="";
 
                             if(jsonObject.has("walletTransfer")) {
 
 
                                 JSONObject jsonObject_walletTransfer = jsonObject.getJSONObject("walletTransfer");
 
-                                currencySymbol_sender = jsonObject_walletTransfer.getString("srcCurrencySymbol");
-                                currencySymbol_receiver = jsonObject_walletTransfer.getString("desCurrencySymbol");
+                                currencySymbolsender = jsonObject_walletTransfer.getString("srcCurrencySymbol");
+                                currencySymbolreceiver = jsonObject_walletTransfer.getString("desCurrencySymbol");
 
 
                                 receiptPage_tv_stransactionType.setText("CASH-IN");
-                                receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" "+amountstr);
-                                receiptPage_tv_fee.setText(currencySymbol_sender+" "+fees_amount);
-                                receiptPage_tv_financialtax.setText(currencySymbol_sender+" "+tax_financial);
+                                receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+amountstr);
+                                receiptPage_tv_fee.setText(currencySymbolsender+" "+fees_amount);
+                                receiptPage_tv_financialtax.setText(currencySymbolsender+" "+tax_financial);
 
 
                                 receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                                 receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
 
-                                receiptPage_tv_amount_to_be_credit.setText(currencySymbol_sender+" "+amountstr);
+                                receiptPage_tv_amount_to_be_credit.setText(currencySymbolreceiver+" "+amountstr);
 
                                 receiptPage_tv_sender_name.setText(senderNameAgent);
                                 receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashIn.this));
@@ -1096,7 +1098,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
-                        rp_tv_fees_reveiewPage.setText(fees_amount);
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  +fees_amount);
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
@@ -1116,7 +1118,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
 
-                        rp_tv_financialTax.setText(tax_financial);
+                        rp_tv_financialTax.setText(currencySymbol_sender+" "  +tax_financial);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble(fees_amount);
@@ -1124,11 +1126,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
 
                         amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText(amountstr);
-                        rp_tv_amount_to_be_credit.setText(amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" "+amountstr);
+                        rp_tv_amount_to_be_credit.setText(currencySymbol_receiver+" "+amountstr);
 
                         allByCriteria_walletOwnerCode_api();
 
