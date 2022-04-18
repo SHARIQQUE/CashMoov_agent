@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.media.MediaMetadataEditor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -68,6 +69,19 @@ public class MyApplication extends Application {
     public static boolean BranchPage=false;
     public static String Amount="0.00";
     public static boolean isNotification=false;
+    public static TinyDB tinyDB;
+    public static boolean showCashIn=false;
+    public static boolean showCashOut=false;
+    public static boolean showPayment=false;
+    public static boolean showRemittance=false;
+    public static boolean showSendRemit=false;
+    public static boolean showReceiveRemit=false;
+    public static boolean showCashtoWallet=false;
+    public static boolean showCreditPurchase=false;
+    public static boolean showTransfer=false;
+    public static boolean showSellFloat=false;
+    public static boolean showTransferFloat=false;
+    public static boolean showTransferCommission=false;
 
 
     static {
@@ -130,7 +144,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appInstance = this;
-
+        tinyDB=new TinyDB(appInstance);
 
         ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
                 getSaveString("walletOwnerCode",appInstance)+"/";

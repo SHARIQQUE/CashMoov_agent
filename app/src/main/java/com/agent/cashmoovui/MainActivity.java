@@ -26,6 +26,7 @@ import com.agent.cashmoovui.location.Constants;
 import com.agent.cashmoovui.location.FetchAddressIntentServices;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.model.ServiceList;
 import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
@@ -42,6 +43,8 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+
+import java.util.ArrayList;
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -152,6 +155,110 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MyApplication.hideKeyboard(this);
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        ServiceList data=MyApplication.tinyDB.getObject("ServiceList", ServiceList.class);
+        ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
+        dataM=data.getServiceListMains();
+
+        for(int i=0;i<dataM.size();i++){
+            for(int j=0;j<dataM.get(i).getServiceCategoryListArrayList().size();j++){
+                ServiceList.serviceCategoryList da=dataM.get(i).getServiceCategoryListArrayList().get(j);
+                if(dataM.get(i).code.equalsIgnoreCase("100003")){
+                    //MyApplication.showCashOut = true;
+                    //Layrecharge.setVisibility(View.VISIBLE);
+                    // recharge_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100011")){
+                        MyApplication.showCashIn = true;
+                        //cardCashOut.setVisibility(View.VISIBLE);
+                    }
+                    if(da.getCode().equalsIgnoreCase("100012")){
+                        MyApplication.showCashOut = true;
+                        // cardCashOut.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                if(dataM.get(i).code.equalsIgnoreCase("100001")){
+                    //cardRechargePayment.setVisibility(View.VISIBLE);
+                    //remittance_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100028")){
+                        MyApplication.showPayment = true;
+                        //cardRechargePayment.setVisibility(View.VISIBLE);
+                    }
+//                    if(da.getCode().equalsIgnoreCase("100001")){
+//                        send_remii_text.setText(da.getName());
+//                        send_remii.setVisibility(View.VISIBLE);
+//                    }
+//                    if(da.getCode().equalsIgnoreCase("100061")){
+//                        cash_to_wallet_text.setText(da.getName());
+//                        cash_to_wallet.setVisibility(View.VISIBLE);
+//                    }
+
+                }
+
+                if(dataM.get(i).code.equalsIgnoreCase("100002")){
+                    MyApplication.showRemittance = true;
+                    //cardMoneyTransfer.setVisibility(View.VISIBLE);
+                    //transfer_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100001")){
+                        MyApplication.showSendRemit = true;
+                    }
+                    if(da.getCode().equalsIgnoreCase("100018")){
+                        MyApplication.showReceiveRemit = true;
+                    }
+
+                    if(da.getCode().equalsIgnoreCase("100061")){
+                        MyApplication.showCashtoWallet = true;
+                    }
+
+                }
+                if(dataM.get(i).code.equalsIgnoreCase("100009")){
+                    //cardAirtimePurchase.setVisibility(View.VISIBLE);
+                    // wallet_owner_head.setText(dataM.get(i).name);
+                    if(da.getCode().equalsIgnoreCase("100021")){
+                        MyApplication.showCreditPurchase = true;
+                        //cardAirtimePurchase.setVisibility(View.VISIBLE);
+                    }
+//                    if(da.getCode().equalsIgnoreCase("SUBS")){
+//                        txt_subscriber.setText(da.getName());
+//                        wallet_subscriber.setVisibility(View.VISIBLE);
+//                    }
+                }
+
+                if(dataM.get(i).code.equalsIgnoreCase("100000")){
+                    MyApplication.showTransfer = true;
+                    //cardPay.setVisibility(View.VISIBLE);
+                    //cash_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("100016")){
+                        MyApplication.showSellFloat = true;
+                       // cardPay.setVisibility(View.VISIBLE);
+                    }
+                    if(da.getCode().equalsIgnoreCase("100017")){
+                        MyApplication.showTransferFloat = true;
+                        // cardPay.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                if(dataM.get(i).code.equalsIgnoreCase("100021")){
+                    //cardPay.setVisibility(View.VISIBLE);
+                    //cash_head.setText(dataM.get(i).name);
+
+                    if(da.getCode().equalsIgnoreCase("COMTRF")){
+                        MyApplication.showTransferCommission = true;
+                        // cardPay.setVisibility(View.VISIBLE);
+                    }
+
+
+                }
+
+
+            }
+        }
 
 
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -276,25 +383,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.ll_cashIn:
-                i = new Intent(MainActivity.this, CashIn.class);
-                startActivity(i);
+                if(!MyApplication.showCashIn){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, CashIn.class);
+                    startActivity(i);
+                }
                 break;
 
             case R.id.ll_cashout:
-                //i = new Intent(MainActivity.this, CashOutOpt.class);
-                i = new Intent(MainActivity.this, CashOutAgent.class);
-                startActivity(i);
-                // finish();
+                if(!MyApplication.showCashOut){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, CashOutAgent.class);
+                    startActivity(i);
+                }
                 break;
 
             case R.id.ll_remitence:
-                i = new Intent(MainActivity.this, RemittanceOption.class);
-                startActivity(i);
+                if(!MyApplication.showRemittance){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, RemittanceOption.class);
+                    startActivity(i);
+                }
                 break;
 
             case R.id.ll_payment:
-                i = new Intent(MainActivity.this, Payments.class);
-                startActivity(i);
+                if(!MyApplication.showPayment){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, Payments.class);
+                    startActivity(i);
+                }
                 break;
 
 //            case R.id.ll_walletowner:
@@ -308,8 +429,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                break;
 
             case R.id.ll_credit:
-                i = new Intent(MainActivity.this, AirtimePurchases.class);
-                startActivity(i);
+                if(!MyApplication.showCreditPurchase){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, AirtimePurchases.class);
+                    startActivity(i);
+                }
                 break;
 
 //            case R.id.ll_overdraft:

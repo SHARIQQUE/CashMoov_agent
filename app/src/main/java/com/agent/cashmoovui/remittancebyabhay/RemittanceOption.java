@@ -91,26 +91,37 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.ll_receiveRemitance: {
-
-                Intent i = new Intent(RemittanceOption.this, RemittanceReceive.class);
-                startActivity(i);
+        switch (view.getId()) {
+            case R.id.ll_receiveRemitance:
+                {
+                if(!MyApplication.showReceiveRemit){
+                    MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
+                }else {
+                    Intent i = new Intent(RemittanceOption.this, RemittanceReceive.class);
+                    startActivity(i);
+                }
             }
             break;
 
             case R.id.ll_sendRemitance:
             {
-                Intent i = new Intent(RemittanceOption.this, SendRemittanceOpt.class);
-                startActivity(i);
+                if(!MyApplication.showSendRemit){
+                    MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
+                }else {
+                    Intent i = new Intent(RemittanceOption.this, SendRemittanceOpt.class);
+                    startActivity(i);
+                }
             }
             break;
 
-            case R.id.ll_cashToWallet: {
-
-                Intent i = new Intent(RemittanceOption.this, CashtoWalletSenderKYC.class);
-                startActivity(i);
+            case R.id.ll_cashToWallet:
+                {
+                    if(!MyApplication.showCashtoWallet){
+                        MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
+                    }else {
+                        Intent i = new Intent(RemittanceOption.this, CashtoWalletSenderKYC.class);
+                        startActivity(i);
+                    }
             }
             break;
 

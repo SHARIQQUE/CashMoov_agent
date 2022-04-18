@@ -10,6 +10,8 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.overdraft.OverdraftLimit;
+import com.agent.cashmoovui.remittancebyabhay.RemittanceOption;
+import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
@@ -78,6 +80,12 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         Intent i;
         switch (v.getId()) {
             case R.id.cardTransfer:
+//                if(!MyApplication.showTransfer){
+//                    MyApplication.showToast(moreC,getString(R.string.service_not_available));
+//                }else {
+//                    i = new Intent(moreC, TransferOption.class);
+//                    startActivity(i);
+//                }
                 i = new Intent(moreC, TransferOption.class);
                 startActivity(i);
                 break;

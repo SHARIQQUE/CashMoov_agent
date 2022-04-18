@@ -13,6 +13,8 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
+import com.agent.cashmoovui.remittancebyabhay.RemittanceOption;
+import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import java.util.Locale;
@@ -111,23 +113,34 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
         switch (view.getId())
         {
             case R.id.ll_sellFloat: {
-
-                Intent i = new Intent(TransferOption.this, SellFloat.class);
-                startActivity(i);
+                if(!MyApplication.showSellFloat){
+                    MyApplication.showToast(TransferOption.this,getString(R.string.service_not_available));
+                }else {
+                    Intent i = new Intent(TransferOption.this, SellFloat.class);
+                    startActivity(i);
+                }
             }
             break;
 
             case R.id.ll_transferFloat:
             {
-                Intent i = new Intent(TransferOption.this, TransferFloats.class);
-                startActivity(i);
+                if(!MyApplication.showTransferFloat){
+                    MyApplication.showToast(TransferOption.this,getString(R.string.service_not_available));
+                }else {
+                    Intent i = new Intent(TransferOption.this, TransferFloats.class);
+                    startActivity(i);
+                }
             }
             break;
 
             case R.id.ll_commissionTransfer:
             {
-                Intent i = new Intent(TransferOption.this, CommissionTransfer.class);
-                startActivity(i);
+                if(!MyApplication.showTransferCommission){
+                    MyApplication.showToast(TransferOption.this,getString(R.string.service_not_available));
+                }else {
+                    Intent i = new Intent(TransferOption.this, CommissionTransfer.class);
+                    startActivity(i);
+                }
             }
             break;
 

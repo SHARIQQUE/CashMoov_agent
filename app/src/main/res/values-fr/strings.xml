@@ -778,6 +778,7 @@
     <string name="hide_transaction">Masquer la transaction</string>
     <string name="take_photo">Prendre une photo</string>
     <string name="choose_image">Choisissez l\'image</string>
+    <string name="service_not_available">Ce service n\'est pas disponible</string>
 
 </resources>
 

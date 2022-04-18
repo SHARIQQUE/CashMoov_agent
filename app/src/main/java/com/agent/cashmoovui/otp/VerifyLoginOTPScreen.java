@@ -14,6 +14,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.ServiceList;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -22,6 +23,8 @@ import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpCompletionListener {
@@ -126,6 +129,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
                     System.out.println("Login response======="+jsonObject.toString());
 
                     try {
+                        ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
                         MyApplication.saveString("token", jsonObject.optString("access_token"), verifyloginotpscreenC);
                         MyApplication.saveString("firstName", jsonObject.optString("firstName"), verifyloginotpscreenC);
                         MyApplication.saveString("lastName", jsonObject.optString("lastName"), verifyloginotpscreenC);
@@ -173,6 +177,54 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
 
                         } else {
                             MyApplication.saveString("serviceCode_LoginApi", "", verifyloginotpscreenC); // not coming from server
+
+                        }
+
+                        try {
+                            JSONArray serviceListResponceArray=jsonObject.optJSONArray("serviceList");
+                            if(serviceListResponceArray!=null&&serviceListResponceArray.length()>0){
+
+                                dataM.clear();
+                                for (int i=0;i<serviceListResponceArray.length();i++){
+
+                                    JSONObject jsonObjectServiceList=serviceListResponceArray.optJSONObject(i);
+                                    JSONArray serviceCategoryListResArray=jsonObjectServiceList.optJSONArray("serviceCategoryList");
+                                    if(serviceCategoryListResArray!=null&&serviceCategoryListResArray.length()>0){
+                                        ArrayList<ServiceList.serviceCategoryList> data=new ArrayList<>();
+                                        data.clear();
+                                        for (int j=0;j<serviceCategoryListResArray.length();j++){
+                                            JSONObject jsonObjectServiceListResponceArray=serviceCategoryListResArray.optJSONObject(j);
+
+                                            data.add(new ServiceList.serviceCategoryList(
+                                                    jsonObjectServiceListResponceArray.optInt("id"),
+                                                    jsonObjectServiceListResponceArray.optString("code"),
+                                                    jsonObjectServiceListResponceArray.optString("serviceCode"),
+                                                    jsonObjectServiceListResponceArray.optString("serviceName"),
+                                                    jsonObjectServiceListResponceArray.optString("name"),
+                                                    jsonObjectServiceListResponceArray.optString("status"),
+                                                    jsonObjectServiceListResponceArray.optString("creationDate"),
+                                                    jsonObjectServiceListResponceArray.optBoolean("productAllowed")
+                                            ));
+
+                                        }
+
+                                        dataM.add(new ServiceList.serviceListMain(
+                                                jsonObjectServiceList.optInt("id"),
+                                                jsonObjectServiceList.optString("code"),
+                                                jsonObjectServiceList.optString("name"),
+                                                jsonObjectServiceList.optString("status"),
+                                                jsonObjectServiceList.optString("creationDate"),
+                                                jsonObjectServiceList.optBoolean("isOverdraftTrans"),
+                                                data
+                                        ));
+
+                                    }
+                                }
+
+                                ServiceList serviceList=new ServiceList(dataM);
+                                MyApplication.tinyDB.putObject("ServiceList",serviceList);
+                            }
+                        }catch (Exception e){
 
                         }
 

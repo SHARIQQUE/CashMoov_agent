@@ -253,8 +253,8 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
                     if (jsonObject != null) {
                         if(jsonObject.has("country")&&jsonObject.has("cc")){
-                            MyApplication.saveString("COUNTRY",jsonObject.optString("country"),SplashScreen.this);
-                            MyApplication.saveString("CC",jsonObject.optString("cc"),SplashScreen.this);
+                            MyApplication.saveString("COUNTRY","Guinea",SplashScreen.this);
+                            MyApplication.saveString("CC","GN",SplashScreen.this);
                             loginPage();
 //                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
 //                            MyApplication.showToast(SplashScreen.this,getString(R.string.technical_failure));
