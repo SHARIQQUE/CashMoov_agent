@@ -145,34 +145,36 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
 
                         if (jsonObject.has("serviceList")) {
                             JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
+                            if(jsonArray_serviceList!=null&&jsonArray_serviceList.length()>0) {
 
-                            for (int i = 0; i < jsonArray_serviceList.length(); i++) {
-                                JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
+                                for (int i = 0; i < jsonArray_serviceList.length(); i++) {
+                                    JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
 
-                                if (jsonObject1.has("serviceCategoryList")) {
-                                    JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
-                                    for (int j = 0; j < jsonArray_serviceCategoryList.length(); j++) {
-                                        JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
+                                    if (jsonObject1.has("serviceCategoryList")) {
+                                        JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
+                                        for (int j = 0; j < jsonArray_serviceCategoryList.length(); j++) {
+                                            JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
 
-                                        if (jsonObject2.has("serviceName")) {
-                                            String serviceName = jsonObject2.getString("serviceName");
+                                            if (jsonObject2.has("serviceName")) {
+                                                String serviceName = jsonObject2.getString("serviceName");
 
-                                            if (serviceName.equalsIgnoreCase("Money Transfer")) {
-                                                if (jsonObject2.has("serviceCode")) {
-                                                    String serviceCode = jsonObject2.getString("serviceCode");
+                                                if (serviceName.equalsIgnoreCase("Money Transfer")) {
+                                                    if (jsonObject2.has("serviceCode")) {
+                                                        String serviceCode = jsonObject2.getString("serviceCode");
 
-                                                    MyApplication.saveString("serviceCode_LoginApi", serviceCode, verifyloginotpscreenC);
-                                                } else {
-                                                    MyApplication.saveString("serviceCode_LoginApi", "", verifyloginotpscreenC); // not coming from server
+                                                        MyApplication.saveString("serviceCode_LoginApi", serviceCode, verifyloginotpscreenC);
+                                                    } else {
+                                                        MyApplication.saveString("serviceCode_LoginApi", "", verifyloginotpscreenC); // not coming from server
 
+                                                    }
                                                 }
-                                            }
 
+                                            }
                                         }
+
                                     }
 
                                 }
-
                             }
 
                         } else {

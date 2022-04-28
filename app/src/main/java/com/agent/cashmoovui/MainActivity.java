@@ -157,36 +157,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
         ServiceList data=MyApplication.tinyDB.getObject("ServiceList", ServiceList.class);
-        ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
-        dataM=data.getServiceListMains();
 
-        for(int i=0;i<dataM.size();i++){
-            for(int j=0;j<dataM.get(i).getServiceCategoryListArrayList().size();j++){
-                ServiceList.serviceCategoryList da=dataM.get(i).getServiceCategoryListArrayList().get(j);
-                if(dataM.get(i).code.equalsIgnoreCase("100003")){
-                    //MyApplication.showCashOut = true;
-                    //Layrecharge.setVisibility(View.VISIBLE);
-                    // recharge_head.setText(dataM.get(i).name);
+            ArrayList<ServiceList.serviceListMain> dataM = new ArrayList<>();
+            dataM = data.getServiceListMains();
 
-                    if(da.getCode().equalsIgnoreCase("100011")){
-                        MyApplication.showCashIn = true;
-                        //cardCashOut.setVisibility(View.VISIBLE);
+            for (int i = 0; i < dataM.size(); i++) {
+                for (int j = 0; j < dataM.get(i).getServiceCategoryListArrayList().size(); j++) {
+                    ServiceList.serviceCategoryList da = dataM.get(i).getServiceCategoryListArrayList().get(j);
+                    if (dataM.get(i).code.equalsIgnoreCase("100003")) {
+                        //MyApplication.showCashOut = true;
+                        //Layrecharge.setVisibility(View.VISIBLE);
+                        // recharge_head.setText(dataM.get(i).name);
+
+                        if (da.getCode().equalsIgnoreCase("100011")) {
+                            MyApplication.showCashIn = true;
+                            //cardCashOut.setVisibility(View.VISIBLE);
+                        }
+                        if (da.getCode().equalsIgnoreCase("100012")) {
+                            MyApplication.showCashOut = true;
+                            // cardCashOut.setVisibility(View.VISIBLE);
+                        }
+
                     }
-                    if(da.getCode().equalsIgnoreCase("100012")){
-                        MyApplication.showCashOut = true;
-                        // cardCashOut.setVisibility(View.VISIBLE);
-                    }
 
-                }
-
-                if(dataM.get(i).code.equalsIgnoreCase("100001")){
-                    //cardRechargePayment.setVisibility(View.VISIBLE);
-                    //remittance_head.setText(dataM.get(i).name);
-
-                    if(da.getCode().equalsIgnoreCase("100028")){
-                        MyApplication.showPayment = true;
+                    if (dataM.get(i).code.equalsIgnoreCase("100001")) {
                         //cardRechargePayment.setVisibility(View.VISIBLE);
-                    }
+                        //remittance_head.setText(dataM.get(i).name);
+
+                        if (da.getCode().equalsIgnoreCase("100028")) {
+                            MyApplication.showPayment = true;
+                            //cardRechargePayment.setVisibility(View.VISIBLE);
+                        }
 //                    if(da.getCode().equalsIgnoreCase("100001")){
 //                        send_remii_text.setText(da.getName());
 //                        send_remii.setVisibility(View.VISIBLE);
@@ -196,69 +197,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        cash_to_wallet.setVisibility(View.VISIBLE);
 //                    }
 
-                }
-
-                if(dataM.get(i).code.equalsIgnoreCase("100002")){
-                    MyApplication.showRemittance = true;
-                    //cardMoneyTransfer.setVisibility(View.VISIBLE);
-                    //transfer_head.setText(dataM.get(i).name);
-
-                    if(da.getCode().equalsIgnoreCase("100001")){
-                        MyApplication.showSendRemit = true;
-                    }
-                    if(da.getCode().equalsIgnoreCase("100018")){
-                        MyApplication.showReceiveRemit = true;
                     }
 
-                    if(da.getCode().equalsIgnoreCase("100061")){
-                        MyApplication.showCashtoWallet = true;
-                    }
+                    if (dataM.get(i).code.equalsIgnoreCase("100002")) {
+                        MyApplication.showRemittance = true;
+                        //cardMoneyTransfer.setVisibility(View.VISIBLE);
+                        //transfer_head.setText(dataM.get(i).name);
 
-                }
-                if(dataM.get(i).code.equalsIgnoreCase("100009")){
-                    //cardAirtimePurchase.setVisibility(View.VISIBLE);
-                    // wallet_owner_head.setText(dataM.get(i).name);
-                    if(da.getCode().equalsIgnoreCase("100021")){
-                        MyApplication.showCreditPurchase = true;
+                        if (da.getCode().equalsIgnoreCase("100001")) {
+                            MyApplication.showSendRemit = true;
+                        }
+                        if (da.getCode().equalsIgnoreCase("100018")) {
+                            MyApplication.showReceiveRemit = true;
+                        }
+
+                        if (da.getCode().equalsIgnoreCase("100061")) {
+                            MyApplication.showCashtoWallet = true;
+                        }
+
+                    }
+                    if (dataM.get(i).code.equalsIgnoreCase("100009")) {
                         //cardAirtimePurchase.setVisibility(View.VISIBLE);
-                    }
+                        // wallet_owner_head.setText(dataM.get(i).name);
+                        if (da.getCode().equalsIgnoreCase("100021")) {
+                            MyApplication.showCreditPurchase = true;
+                            //cardAirtimePurchase.setVisibility(View.VISIBLE);
+                        }
 //                    if(da.getCode().equalsIgnoreCase("SUBS")){
 //                        txt_subscriber.setText(da.getName());
 //                        wallet_subscriber.setVisibility(View.VISIBLE);
 //                    }
-                }
-
-                if(dataM.get(i).code.equalsIgnoreCase("100000")){
-                    MyApplication.showTransfer = true;
-                    //cardPay.setVisibility(View.VISIBLE);
-                    //cash_head.setText(dataM.get(i).name);
-
-                    if(da.getCode().equalsIgnoreCase("100016")){
-                        MyApplication.showSellFloat = true;
-                       // cardPay.setVisibility(View.VISIBLE);
-                    }
-                    if(da.getCode().equalsIgnoreCase("100017")){
-                        MyApplication.showTransferFloat = true;
-                        // cardPay.setVisibility(View.VISIBLE);
                     }
 
-                }
+                    if (dataM.get(i).code.equalsIgnoreCase("100000")) {
+                        MyApplication.showTransfer = true;
+                        //cardPay.setVisibility(View.VISIBLE);
+                        //cash_head.setText(dataM.get(i).name);
 
-                if(dataM.get(i).code.equalsIgnoreCase("100021")){
-                    //cardPay.setVisibility(View.VISIBLE);
-                    //cash_head.setText(dataM.get(i).name);
+                        if (da.getCode().equalsIgnoreCase("100016")) {
+                            MyApplication.showSellFloat = true;
+                            // cardPay.setVisibility(View.VISIBLE);
+                        }
+                        if (da.getCode().equalsIgnoreCase("100017")) {
+                            MyApplication.showTransferFloat = true;
+                            // cardPay.setVisibility(View.VISIBLE);
+                        }
 
-                    if(da.getCode().equalsIgnoreCase("COMTRF")){
-                        MyApplication.showTransferCommission = true;
-                        // cardPay.setVisibility(View.VISIBLE);
+                    }
+
+                    if (dataM.get(i).code.equalsIgnoreCase("100021")) {
+                        //cardPay.setVisibility(View.VISIBLE);
+                        //cash_head.setText(dataM.get(i).name);
+
+                        if (da.getCode().equalsIgnoreCase("COMTRF")) {
+                            MyApplication.showTransferCommission = true;
+                            // cardPay.setVisibility(View.VISIBLE);
+                        }
+
+
                     }
 
 
                 }
-
-
             }
-        }
+
 
 
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
