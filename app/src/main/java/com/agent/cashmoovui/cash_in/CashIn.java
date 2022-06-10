@@ -961,9 +961,16 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
 
 
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
 
+            }
 
-            API.POST_CASHIN_MPIN("ewallet/api/v1/walletTransfer/cashIn", jsonObject, languageToUse, new Api_Responce_Handler() {
+            API.POST_CASHIN_MPIN("ewallet/api/v1/walletTransfer/cashIn", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

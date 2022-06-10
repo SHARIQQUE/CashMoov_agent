@@ -626,7 +626,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void callApiNotificationList() {
         try {
-            API.GET_PUBLIC("ewallet/api/v1/inappholding/"+ MyApplication.getSaveString("walletOwnerCode",MainActivity.this),
+            API.GET_PUBLIC("ewallet/api/v1/inappholding/"+ MyApplication.getSaveString("walletOwnerCode",MainActivity.this)+"/1",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

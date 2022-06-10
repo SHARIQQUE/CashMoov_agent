@@ -1650,10 +1650,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
 
+            }
 
-
-            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/sellFloat/", jsonObject, languageToUse, new Api_Responce_Handler() {
+            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/sellFloat/", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

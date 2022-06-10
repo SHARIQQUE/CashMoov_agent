@@ -1294,7 +1294,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
 
 
-            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/float", jsonObject, languageToUse, new Api_Responce_Handler() {
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/float", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

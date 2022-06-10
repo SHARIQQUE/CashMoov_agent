@@ -1564,7 +1564,16 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             jsonObject.put("firstName",firstname_destinationStr);
             jsonObject.put("mobileNumber",mobileNoStr);
 
-            API.POST_REMMIT_CASHTOWALLET("ewallet/api/v1/remittance/cashToWallet", jsonObject, languageToUse, new Api_Responce_Handler() {
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+
+            API.POST_REMMIT_CASHTOWALLET("ewallet/api/v1/remittance/cashToWallet", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

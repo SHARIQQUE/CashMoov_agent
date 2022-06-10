@@ -1434,8 +1434,15 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
 
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
 
-            API.POST_TRANSFERDETAILS("ewallet/api/v1/recharge/mobile-prepaid", jsonObject, languageToUse, new Api_Responce_Handler() {
+            }
+            API.POST_TRANSFERDETAILS("ewallet/api/v1/recharge/mobile-prepaid", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

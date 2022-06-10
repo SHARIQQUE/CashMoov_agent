@@ -832,8 +832,15 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
 
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
 
-            API.POST_TRANSFER("ewallet/api/v1/remittance/receive", jsonObject, languageToUse, new Api_Responce_Handler() {
+            }
+            API.POST_TRANSFER("ewallet/api/v1/remittance/receive", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

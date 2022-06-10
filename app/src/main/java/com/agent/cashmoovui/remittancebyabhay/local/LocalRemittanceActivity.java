@@ -790,12 +790,16 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(df.format(taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",","")) + taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                            amountTobeCharged_first_page.setText(df.format(
+                                                    Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
+                                                    + taxConfigurationList.optJSONObject(0).optDouble("value")+
+                                                            jsonObjectAmountDetails.optDouble("fee")));
 
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText("0.00");
-                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
+                                            amountTobeCharged_first_page.setText(df.format(
+                                                    Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
                                         }
 

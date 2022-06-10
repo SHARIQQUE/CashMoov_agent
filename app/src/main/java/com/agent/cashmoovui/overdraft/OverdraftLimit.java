@@ -30,6 +30,7 @@ import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
+import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.agent.cashmoovui.transfer_float.SellFloatModal;
 
@@ -648,8 +649,15 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
         }
 
+        String requestNo= AESEncryption.getAESEncryption(jsonObject.toString());
+        JSONObject jsonObjectA=null;
+        try{
+            jsonObjectA=new JSONObject();
+            jsonObjectA.put("request",requestNo);
+        }catch (Exception e){
 
-        API.POST_TRANSFER("ewallet/api/v1/creditLimitAllocation/",jsonObject, languageToUse, new Api_Responce_Handler() {
+        }
+        API.POST_TRANSFER("ewallet/api/v1/creditLimitAllocation/",jsonObjectA, languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

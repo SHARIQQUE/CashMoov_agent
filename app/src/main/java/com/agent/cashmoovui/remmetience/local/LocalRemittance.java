@@ -2852,8 +2852,16 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             //   jsonObject.put("toCurrencyCode", selectReceiverCountryCode);
             jsonObject.put("remitType","Local Remit");
 
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
 
-            API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObject, languageToUse, new Api_Responce_Handler() {
+            }
+
+            API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

@@ -86,10 +86,12 @@ dependencies {
     implementation 'com.skhugh.simplepulltorefresh:simplepulltorefresh:1.0.2'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.github.mudassar1:SearchableSpinner:v1.1'
-
     implementation 'com.balsikandar.android:crashreporter:1.1.0'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
 
     implementation 'com.aldoapps:autoformatedittext:0.9.3'
+
+
+
 
 }

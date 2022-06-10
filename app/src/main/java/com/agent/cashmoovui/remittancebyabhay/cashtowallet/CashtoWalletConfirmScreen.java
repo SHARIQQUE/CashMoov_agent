@@ -224,7 +224,16 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
     public void callPostAPI(){
 
         MyApplication.showloader(cashtowalletconfirmC,"Please Wait...");
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/cashToWallet", remitJson,
+
+        String requestNo=AESEncryption.getAESEncryption(remitJson.toString());
+        JSONObject jsonObjectA=null;
+        try{
+            jsonObjectA=new JSONObject();
+            jsonObjectA.put("request",requestNo);
+        }catch (Exception e){
+
+        }
+        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/cashToWallet", jsonObjectA,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

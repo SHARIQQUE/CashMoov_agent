@@ -242,31 +242,37 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
 
     private void callApi() {
-        try{
+
 
             MyApplication.showloader(SplashScreen.this,"Please wait!");
-            API.GET_PUBLICN("https://api.myip.com/", new Api_Responce_Handler() {
+            try{
+            API.GET_PUBLICN("https://ipapi.co/json/", new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
                     MyApplication.hideLoader();
                     System.out.println("myip response======="+jsonObject.toString());
 
                     if (jsonObject != null) {
-                        if(jsonObject.has("country")&&jsonObject.has("cc")){
-                            MyApplication.saveString("COUNTRY","Guinea",SplashScreen.this);
-                            MyApplication.saveString("CC","GN",SplashScreen.this);
+                        if(jsonObject.has("country_name")&&jsonObject.has("country_code")){
+
+                            MyApplication.saveString("COUNTRY",jsonObject.optString("country_name"),SplashScreen.this);
+                            MyApplication.saveString("CC",jsonObject.optString("country_code"),SplashScreen.this);
+
+                           /* MyApplication.saveString("COUNTRY","Guinea",SplashScreen.this);
+                            MyApplication.saveString("CC","GN",SplashScreen.this);*/
                             loginPage();
 //                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
 //                            MyApplication.showToast(SplashScreen.this,getString(R.string.technical_failure));
                         } else {
-                            MyApplication.showToast(SplashScreen.this,jsonObject.optString("resultDescription", "N/A"));
+                            loginPage();
+                           // MyApplication.showToast(SplashScreen.this,jsonObject.optString("resultDescription", "N/A"));
                         }
                     }
                 }
 
                 @Override
                 public void failure(String aFalse) {
-
+                    loginPage();
                 }
             });
 

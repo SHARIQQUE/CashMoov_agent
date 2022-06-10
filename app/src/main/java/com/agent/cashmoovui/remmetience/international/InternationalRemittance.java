@@ -2878,7 +2878,15 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             jsonObject.put("remitType","International Remit");
 
 
-            API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObject, languageToUse, new Api_Responce_Handler() {
+            String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+            API.POST_REMMIT_LOCAL("ewallet/api/v1/remittance/send", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
