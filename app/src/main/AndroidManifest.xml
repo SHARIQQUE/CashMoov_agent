@@ -51,6 +51,11 @@ x
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
+            <activity android:name=".otp.RESETPINOtpPage"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
         <activity android:name=".set_pin.SetPin"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"

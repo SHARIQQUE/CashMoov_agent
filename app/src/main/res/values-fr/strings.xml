@@ -779,6 +779,7 @@
     <string name="take_photo">Prendre une photo</string>
     <string name="choose_image">Choisissez l\'image</string>
     <string name="service_not_available">Ce service n\'est pas disponible</string>
+    <string name="reset_pin"><u>Réinitialiser l\'épingle ?</u></string>
 
 </resources>
 

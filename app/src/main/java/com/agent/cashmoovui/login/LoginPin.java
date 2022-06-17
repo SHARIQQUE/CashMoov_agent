@@ -33,6 +33,7 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.ServiceList;
 import com.agent.cashmoovui.otp.OtpPage;
+import com.agent.cashmoovui.otp.RESETPINOtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.otp.VerifyLoginOTPScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,7 +51,7 @@ import java.util.concurrent.Executor;
 public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
     EditText etPin;
-    TextView tvContinue,tvFinger,msgText,tvregister;
+    TextView tvContinue,tvFinger,msgText,tvregister,tvFinger1;
     private static final int PERMISSION_REQUEST_CODE = 200,READ_EXTERNAL_STORAGE=201,WRITE_EXTERNAL_STORAGE=202;
 
     boolean  isPasswordVisible;
@@ -163,8 +164,17 @@ public class LoginPin extends AppCompatActivity {
         etPin = findViewById(R.id.etPin);
         tvContinue = findViewById(R.id.tvContinue);
         tvFinger = findViewById(R.id.tvFinger);
+        tvFinger1= findViewById(R.id.tvFinger1);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
+
+        tvFinger1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               mssidn_api();
+
+            }
+        });
 
         etPin.addTextChangedListener(new TextWatcher() {
 
@@ -541,7 +551,7 @@ public class LoginPin extends AppCompatActivity {
 
                     }
                     else{
-                        Toast.makeText(LoginPin.this,aFalse, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(LoginPin.this,aFalse, Toast.LENGTH_LONG).show();
                     }
 
                         // com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ConnectException: Failed to connect to /202.131.144.130:8081
@@ -912,6 +922,123 @@ public class LoginPin extends AppCompatActivity {
 
 
 
+
+                        else
+                        {
+
+
+                            Toast.makeText(LoginPin.this,resultDescription,Toast.LENGTH_LONG).show();
+
+
+                        }
+
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(LoginPin.this,e.toString(),Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+                    MyApplication.showToast(LoginPin.this,aFalse);
+
+                }
+            });
+
+        }catch (Exception e){
+
+            MyApplication.hideLoader();
+            MyApplication.showToast(LoginPin.this,e.toString());
+        }
+
+    }
+
+
+    private void mssidn_api() {
+        try{
+
+
+            API.GET_MSDIN("ewallet/public/walletOwner/msisdn/"+MyApplication.getSaveString("USERNAME",loginpinC),languageToUse,new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+                        //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1725124\",\"requestTime\":\"Mon Oct 11 18:06:30 IST 2021\",\"responseTime\":\"Mon Oct 11 18:06:30 IST 2021\",\"firstLoginStatus\":\"N\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":1728,\"code\":\"101458\",\"firstName\":\"Mahendra\",\"userName\":\"Mahendra2355\",\"mobileNumber\":\"989898899\",\"email\":\"tarun.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002094\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-15\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idProofNumber\":\"1111111111111111\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"idExpiryDate\":\"2021-06-23\",\"creationDate\":\"2021-06-08T14:53:57.853+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-11T16:18:02.389+0530\",\"modifiedBy\":\"100250\",\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
+
+
+                        String resultCode =  jsonObject.getString("resultCode");
+                        String resultDescription =  jsonObject.getString("resultDescription");
+
+                        if(resultCode.equalsIgnoreCase("0"))
+                        {
+
+
+                            JSONObject walletOwnerUser =  jsonObject.getJSONObject("walletOwnerUser");
+
+                            String EMAIL = walletOwnerUser.getString("email");
+                            String USERCODE = walletOwnerUser.getString("userCode");
+                            String CODE_AGENT = walletOwnerUser.getString("code");
+                            String NTTYPECODE = walletOwnerUser.getString("notificationTypeCode");
+                            String firstLoginStatus="Y";
+                            if(walletOwnerUser.has("pinLoginStatus")) {
+                                firstLoginStatus = walletOwnerUser.getString("pinLoginStatus");
+                            }else{
+                                firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+                            }
+
+                            //  String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                            // String countryName_agent = walletOwnerUser.getString("issuingCountryName");
+
+                            MyApplication.saveString("COUNTRYNAME_AGENT","",LoginPin.this);
+                            MyApplication.saveString("COUNTRYCODE_AGENT","",LoginPin.this);
+                           /* String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
+                            String countryName_agent = walletOwnerUser.getString("issuingCountryName");*/
+                            // MyApplication.getSaveString("COUNTRYCODE_AGENT"
+                            MyApplication.saveString("COUNTRYNAME_AGENT","",LoginPin.this);
+                            MyApplication.saveString("COUNTRYCODE_AGENT","",LoginPin.this);
+
+
+                            MyApplication.saveString("USERNAME",MyApplication.getSaveString("USERNAME",loginpinC),LoginPin.this);
+                            MyApplication.saveString("PASSWORD",pin,LoginPin.this);
+                            MyApplication.saveString("CODE_AGENT",CODE_AGENT,LoginPin.this);
+                            MyApplication.saveString("EMAIL",EMAIL,LoginPin.this);
+                            MyApplication.saveString("USERCODE",USERCODE,LoginPin.this);
+                            MyApplication.saveString("NTTYPECODE",NTTYPECODE,LoginPin.this);
+
+                            if(walletOwnerUser.optBoolean("reSetPinCredRequest")) {
+                                Intent i = new Intent(LoginPin.this, RESETPINOtpPage.class);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(LoginPin.this, "Please Contact Admin To Reset Pin", Toast.LENGTH_LONG).show();
+
+                            }
+
+                            if (firstLoginStatus.equalsIgnoreCase("Y"))
+                            {
+                                Intent i = new Intent(LoginPin.this, OtpPage.class);
+                                startActivity(i);
+                                // finish();
+                            }
+
+
+
+
+
+
+
+
+                        }
 
                         else
                         {

@@ -34,6 +34,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.ServiceList;
 import com.agent.cashmoovui.otp.OtpPage;
+import com.agent.cashmoovui.otp.RESETPINOtpPage;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.otp.VerifyLoginOTPScreen;
 import com.agent.cashmoovui.transfer_float.CommissionTransfer;
@@ -527,7 +528,10 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             MyApplication.saveString("USERCODE",USERCODE,LoginMsis.this);
                             MyApplication.saveString("NTTYPECODE",NTTYPECODE,LoginMsis.this);
 
-
+                            if(walletOwnerUser.optBoolean("reSetPinCredRequest")) {
+                                Intent i = new Intent(LoginMsis.this, RESETPINOtpPage.class);
+                                startActivity(i);
+                            }
 
                             if (firstLoginStatus.equalsIgnoreCase("Y"))
                             {

@@ -203,6 +203,19 @@
 
                     <TextView
                         android:visibility="visible"
+                        android:id="@+id/tvFinger1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aileron_bold"
+                        android:lineSpacingExtra="3sp"
+                        android:text="@string/reset_pin"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <TextView
+                        android:visibility="visible"
                         android:id="@+id/tvFinger"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -211,7 +224,7 @@
                         android:text="@string/login_fingerprint"
                         android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
                         android:textSize="@dimen/_15sdp" />
                     <TextView
                         android:visibility="visible"
