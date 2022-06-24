@@ -51,6 +51,8 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
 
         setContentView(R.layout.otp_page);
 
+        TextView otp_text=findViewById(R.id.otp_text);
+        otp_text.setText(getString(R.string.verification_register_otpback));
 
         otp_view = findViewById(R.id.otp_view);
 

@@ -20,7 +20,7 @@ package com.androidnetworking.interfaces;
 import com.androidnetworking.common.ConnectionQuality;
 
 /**
- * Created by amitshekhar on 29/05/16.
+ * Created by rahul singh on 29/05/16.
  */
 public interface ConnectionQualityChangeListener {
 

@@ -41,7 +41,7 @@ import okio.BufferedSource;
 import static okhttp3.internal.platform.Platform.INFO;
 
 /**
- * Created by amitshekhar on 31/01/17.
+ * Created by rahul singh on 31/01/17.
  */
 
 public class HttpLoggingInterceptor implements Interceptor {

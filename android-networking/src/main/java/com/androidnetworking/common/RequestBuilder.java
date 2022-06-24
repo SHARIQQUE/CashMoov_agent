@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
 /**
- * Created by amitshekhar on 26/03/16.
+ * Created by rahul singh on 26/03/16.
  */
 public interface RequestBuilder {
 

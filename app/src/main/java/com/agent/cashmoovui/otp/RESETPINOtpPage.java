@@ -3,6 +3,7 @@ package com.agent.cashmoovui.otp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +52,8 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
 
         setContentView(R.layout.otp_page);
 
+        TextView otp_text=findViewById(R.id.otp_text);
+        otp_text.setText(getString(R.string.verification_register_otpback));
 
         otp_view = findViewById(R.id.otp_view);
 

@@ -33,7 +33,7 @@ import static com.androidnetworking.common.RequestType.MULTIPART;
 import static com.androidnetworking.common.RequestType.SIMPLE;
 
 /**
- * Created by amitshekhar on 22/03/16.
+ * Created by rahul singh on 22/03/16.
  */
 public class InternalRunnable implements Runnable {
 

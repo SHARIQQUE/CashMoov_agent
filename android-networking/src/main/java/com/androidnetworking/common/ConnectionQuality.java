@@ -18,7 +18,7 @@
 package com.androidnetworking.common;
 
 /**
- * Created by amitshekhar on 29/05/16.
+ * Created by rahul singh on 29/05/16.
  */
 public enum ConnectionQuality {
     /**

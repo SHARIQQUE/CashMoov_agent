@@ -406,6 +406,7 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
         //{"userName":"99108591851"}
 
         JSONObject logiJson=new JSONObject();
+        JSONObject jsonObjectA=null;
         try {
 
 
@@ -413,11 +414,20 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
             logiJson.put("walletOwnerCode",SubscriberKYC.subscriberWalletOwnerCode);
 
 
+            String requestNo=AESEncryption.getAESEncryption(logiJson.toString());
+
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
         MyApplication.showloader(subscriberotpC,"Please Wait...");
-        API.PUT_SET_PASS("ewallet/api/v1/walletOwnerUser/setPin",logiJson,
+        API.PUT_SET_PASS("ewallet/api/v1/walletOwnerUser/setPin",jsonObjectA,
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

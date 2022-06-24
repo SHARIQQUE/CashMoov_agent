@@ -18,7 +18,7 @@
 package com.androidnetworking.common;
 
 /**
- * Created by amitshekhar on 04/04/16.
+ * Created by rahul singh on 04/04/16.
  */
 public interface RequestType {
     int SIMPLE = 0;

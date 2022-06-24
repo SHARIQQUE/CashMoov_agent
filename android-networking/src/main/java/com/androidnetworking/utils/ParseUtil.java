@@ -24,7 +24,7 @@ import com.androidnetworking.interfaces.Parser;
 import com.google.gson.Gson;
 
 /**
- * Created by amitshekhar on 15/09/16.
+ * Created by rahul singh on 15/09/16.
  */
 public class ParseUtil {
 

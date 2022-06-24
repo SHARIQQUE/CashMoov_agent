@@ -34,7 +34,7 @@ import static com.androidnetworking.common.RequestType.MULTIPART;
 import static com.androidnetworking.common.RequestType.SIMPLE;
 
 /**
- * Created by amitshekhar on 14/09/16.
+ * Created by rahul singh on 14/09/16.
  */
 @SuppressWarnings("unchecked")
 public final class SynchronousCall {

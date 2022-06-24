@@ -24,7 +24,7 @@ import com.androidnetworking.error.ANError;
 import okhttp3.Response;
 
 /**
- * Created by amitshekhar on 23/05/16.
+ * Created by rahul singh on 23/05/16.
  */
 public interface OkHttpResponseAndStringRequestListener {
 

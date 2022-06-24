@@ -291,7 +291,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        callApiNotificationList();
 
     }
 
@@ -345,6 +344,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        tvBadge.setVisibility(View.GONE);
+        callApiNotificationList();
+
         MyApplication.hideKeyboard(this);
     }
     @Override

@@ -23,7 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by amitshekhar on 28/05/16.
+ * Created by rahul singh on 28/05/16.
  */
 public class LruCache<K, V> {
     private final LinkedHashMap<K, V> map;

@@ -20,7 +20,7 @@ package com.androidnetworking.model;
 import java.io.Serializable;
 
 /**
- * Created by amitshekhar on 24/05/16.
+ * Created by rahul singh on 24/05/16.
  */
 
 public class Progress implements Serializable {

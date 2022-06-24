@@ -26,7 +26,7 @@ import com.androidnetworking.interfaces.UploadProgressListener;
 import com.androidnetworking.model.Progress;
 
 /**
- * Created by amitshekhar on 24/05/16.
+ * Created by rahul singh on 24/05/16.
  */
 public class UploadProgressHandler extends Handler {
 

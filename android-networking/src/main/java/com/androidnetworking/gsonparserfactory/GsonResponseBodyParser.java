@@ -29,7 +29,7 @@ import java.io.IOException;
 import okhttp3.ResponseBody;
 
 /**
- * Created by amitshekhar on 31/07/16.
+ * Created by rahul singh on 31/07/16.
  */
 final class GsonResponseBodyParser<T> implements Parser<ResponseBody, T> {
     private final Gson gson;

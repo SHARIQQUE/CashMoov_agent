@@ -34,7 +34,7 @@ import okhttp3.RequestBody;
 import okio.Buffer;
 
 /**
- * Created by amitshekhar on 31/07/16.
+ * Created by rahul singh on 31/07/16.
  */
 final class GsonRequestBodyParser<T> implements Parser<T, RequestBody> {
     private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");

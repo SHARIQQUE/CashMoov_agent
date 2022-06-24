@@ -22,7 +22,7 @@ import com.androidnetworking.error.ANError;
 import okhttp3.Response;
 
 /**
- * Created by amitshekhar on 22/03/16.
+ * Created by rahul singh on 22/03/16.
  */
 public class ANResponse<T> {
 

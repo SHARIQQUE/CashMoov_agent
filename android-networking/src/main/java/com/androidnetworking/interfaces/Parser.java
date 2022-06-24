@@ -27,7 +27,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
- * Created by amitshekhar on 31/07/16.
+ * Created by rahul singh on 31/07/16.
  */
 public interface Parser<F, T> {
 

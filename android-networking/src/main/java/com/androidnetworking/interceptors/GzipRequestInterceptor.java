@@ -30,7 +30,7 @@ import okio.GzipSink;
 import okio.Okio;
 
 /**
- * Created by amitshekhar on 02/05/16.
+ * Created by rahul singh on 02/05/16.
  */
 public class GzipRequestInterceptor implements Interceptor {
     @Override

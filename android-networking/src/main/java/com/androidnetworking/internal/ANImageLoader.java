@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * Created by amitshekhar on 23/03/16.
+ * Created by rahul singh on 23/03/16.
  */
 public class ANImageLoader {
 

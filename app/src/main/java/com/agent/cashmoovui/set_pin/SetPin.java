@@ -234,8 +234,17 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
             JSONObject setPinJson=new JSONObject();
             setPinJson.put("pin",encryptionDatanew);
 
+            String requestNo=AESEncryption.getAESEncryption(setPinJson.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
+
+            }
+
             MyApplication.showloader(SetPin.this,"Please wait!");
-            API.POST_REQEST_SETPIN("ewallet/api/v1/walletOwnerUser/setPin", setPinJson, new Api_Responce_Handler() {
+            API.POST_REQEST_SETPIN("ewallet/api/v1/walletOwnerUser/setPin", jsonObjectA, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 

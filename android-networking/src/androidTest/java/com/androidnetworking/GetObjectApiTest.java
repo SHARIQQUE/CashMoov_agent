@@ -45,7 +45,7 @@ import okhttp3.mockwebserver.MockWebServer;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
- * Created by amitshekhar on 10/04/17.
+ * Created by rahul singh on 10/04/17.
  */
 
 public class GetObjectApiTest extends ApplicationTestCase<Application> {
