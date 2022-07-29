@@ -531,16 +531,18 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             if(walletOwnerUser.optBoolean("reSetPinCredRequest")) {
                                 Intent i = new Intent(LoginMsis.this, RESETPINOtpPage.class);
                                 startActivity(i);
+                                return;
                             }
 
                             if (firstLoginStatus.equalsIgnoreCase("Y"))
                             {
                                 Intent i = new Intent(LoginMsis.this, OtpPage.class);
                                 startActivity(i);
+                                return;
                                 // finish();
                             }
 
-                            else if (firstLoginStatus.equalsIgnoreCase("N")) {
+                             if (firstLoginStatus.equalsIgnoreCase("N")) {
 
                                 ll_password.setVisibility(View.VISIBLE);
                                 selectButtonType = "1";
@@ -559,7 +561,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                         else
                         {
-                            selectButtonType = "0";
+                          //  selectButtonType = "0";
 
                             Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -849,6 +851,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                 Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
                                 i.putExtra("ERROR1251","1251");
                                 startActivity(i);
+
                             }
 
                             else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
