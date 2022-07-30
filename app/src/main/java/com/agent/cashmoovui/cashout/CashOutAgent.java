@@ -308,7 +308,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             ll_otp = (LinearLayout) findViewById(R.id.ll_otp);
             ll_resendOtp = (LinearLayout) findViewById(R.id.ll_resendOtp);
             ll_resendOtp.setOnClickListener(this);
-
+//nn
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
 
