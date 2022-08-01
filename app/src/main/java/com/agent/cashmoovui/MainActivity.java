@@ -492,7 +492,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 if(data.optString("currencyCode").equalsIgnoreCase(MyApplication.getSaveString("countryCode_Loginpage",MainActivity.this))) {
                                                     tvName.setText(data.optString("walletOwnerName"));
-                                                    tvBalance.setText(data.optString("value") + " " + data.optString("currencySymbol"));
+                                                    tvBalance.setText(data.optInt("value") + " " + data.optString("currencySymbol"));
+                                                    System.out.println("get value"+data.optString("value"));
+
                                                 }
                                             }
 

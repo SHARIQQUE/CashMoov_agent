@@ -238,23 +238,55 @@
                         android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/etDob"
+                <TextView
+                    android:id="@+id/dobText"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:textStyle="bold"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"
+                    android:textSize="@dimen/_15sdp"
+
+                    android:text="Date Of Birth*"></TextView>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
-                    android:inputType="text"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/valid_dob"
-                    android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp"
-                    android:fontFamily="@font/aileron_semibold" />
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+
+                    <EditText
+                        android:id="@+id/etDob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:layout_weight="1"
+
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:background="@null"
+                        android:focusable="false"
+
+
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:hint="@string/valid_dob"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold" />
+                    <ImageView
+                        android:id="@+id/calenderIcon_Image"
+                        android:src="@drawable/cal"
+                        android:layout_width="30dp"
+                        android:layout_gravity="center"
+                        android:paddingRight="10dp"
+                        android:layout_height="30dp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -288,7 +320,9 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
-                    android:inputType="text"
+                    android:inputType="phone"
+                    android:digits="0123456-/"
+
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"

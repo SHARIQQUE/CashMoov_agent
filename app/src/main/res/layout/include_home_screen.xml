@@ -192,7 +192,7 @@
                                     android:textColor="@color/white"
                                     android:fontFamily="@font/aileron_bold"
                                     android:lineSpacingExtra="3sp"
-                                    android:text="15,000 GNF"
+                                    android:text=""
                                     android:visibility="gone"/>
 
                             </LinearLayout>
