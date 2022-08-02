@@ -220,6 +220,8 @@
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
                 android:drawablePadding="@dimen/_10sdp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+
                 android:paddingLeft="@dimen/_15sdp"
                 android:paddingTop="@dimen/_12sdp"
                 android:paddingBottom="@dimen/_12sdp"
@@ -256,6 +258,8 @@
                 android:backgroundTint="#999999"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+
                 android:drawablePadding="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_15sdp"
                 android:paddingTop="@dimen/_12sdp"
@@ -295,6 +299,8 @@
                 android:backgroundTint="#999999"
                 android:inputType="textPersonName"
                 android:lineSpacingExtra="10sp"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+
                 android:drawablePadding="@dimen/_10sdp"
                 android:paddingLeft="@dimen/_15sdp"
                 android:paddingTop="@dimen/_12sdp"

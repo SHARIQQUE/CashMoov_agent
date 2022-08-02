@@ -132,7 +132,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
-                    android:inputType="textEmailAddress"
+                    android:inputType="numberDecimal"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_10sdp"

@@ -40,6 +40,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.2'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.android.volley:volley:1.2.1'
+    implementation project(path: ':autoformatedittext')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -89,7 +90,6 @@ dependencies {
     implementation 'com.balsikandar.android:crashreporter:1.1.0'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
 
-    implementation 'com.aldoapps:autoformatedittext:0.9.3'
 
 
 

@@ -937,8 +937,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
+
+
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
+
         mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
         commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
         overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);

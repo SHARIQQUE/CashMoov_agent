@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'autoformatedittext'
+    bintrayName = 'autoformatedittext'
+
+    publishedGroupId = 'com.aldoapps'
+    libraryName = 'autoformatedittext'
+    artifact = 'autoformatedittext'
+
+    libraryDescription = 'Android Library for auto-formatting money value on edit text '
+
+    siteUrl = 'https://github.com/aldoKelvianto/AutoFormatEditText'
+    gitUrl = 'https://github.com/aldoKelvianto/AutoFormatEditText.git'
+
+    libraryVersion = '0.9.3'
+
+    developerId = 'aldokelvianto'
+    developerName = 'Aldo Kelvianto Wachyudi'
+    developerEmail = 'aldokelvianto@yahoo.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.9.3"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+
+//apply from: 'installv1.gradle'
+//apply from: 'bintrayv1.gradle'

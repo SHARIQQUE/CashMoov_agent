@@ -1,6 +1,8 @@
 package com.agent.cashmoovui.remittancebyabhay.local;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -59,9 +63,10 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             spinner_sender_issuingCountry,tvNext;
     public static AutoCompleteTextView et_sender_phoneNumber;
     private EditText et_sender_firstName,et_sender_lastname,et_sender_email,
-            et_sender_dob,et_sender_address,et_sender_city,et_sender_idproofNumber,et_sender_idproof_expiry,
+            et_sender_address,et_sender_city,et_sender_idproofNumber,et_sender_idproof_expiry,
             etFront,etBack;
     private ImageButton btnFront,btnBack;
+    private static  EditText et_sender_dob;
 
     private ArrayList<String> senderGenderList = new ArrayList<>();
     private ArrayList<GenderModel.Gender> senderGenderModelList=new ArrayList<>();
@@ -79,6 +84,8 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
     private Intent Data;
     Uri tempUriFront,tempUriBack;
     DatePickerDialog picker;
+    public static TextView mDobText;
+    private ImageView mCalenderIcon_Image;
 
 
     @Override
@@ -138,8 +145,23 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         etFront = findViewById(R.id.etFront);
         btnFront = findViewById(R.id.btnFront);
         etBack = findViewById(R.id.etBack);
+        mDobText=findViewById(R.id.dobText);
+
         btnBack = findViewById(R.id.btnBack);
         tvNext = findViewById(R.id.tvNext);
+        mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
+        // etDob.setInputType(InputType.TYPE_NULL);
+        mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogfragment = new DatePickerDialogTheme();
+
+                dialogfragment.show(getSupportFragmentManager(), "");
+
+                // ffffff
+
+            }
+        });
 
    
   spinner_sender_gender.setOnClickListener(new View.OnClickListener() {
@@ -289,26 +311,6 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         }
     });
 
-        et_sender_dob.setInputType(InputType.TYPE_NULL);
-        et_sender_dob.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            final Calendar cldr = Calendar.getInstance();
-            int day = cldr.get(Calendar.DAY_OF_MONTH);
-            int month = cldr.get(Calendar.MONTH);
-            int year = cldr.get(Calendar.YEAR);
-            // date picker dialog
-            picker = new DatePickerDialog(localremitsenderkycC,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            et_sender_dob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                        }
-                    }, 1960, 01, 00);
-            picker.getDatePicker().setMaxDate(System.currentTimeMillis()-568025136000L);
-            picker.show();
-        }
-    });
 
         et_sender_idproof_expiry.setInputType(InputType.TYPE_NULL);
         et_sender_idproof_expiry.setOnClickListener(new View.OnClickListener() {
@@ -1034,6 +1036,33 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         }
 
 
+    }
+    public static class DatePickerDialogTheme extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.add(Calendar.YEAR, -18);
+
+            DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
+                    AlertDialog.THEME_TRADITIONAL, this, year, month, day);
+
+            datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+
+            return datepickerdialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            et_sender_dob.setText(year + "-" + (month+1) + "-" + day);
+            mDobText.setVisibility(View.VISIBLE);
+            // etDob.setText(year + "-" + (month+1) + "-" + day);
+
+        }
     }
 
 

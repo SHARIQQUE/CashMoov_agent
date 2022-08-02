@@ -83,6 +83,8 @@
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/valid_fname"
         android:textColor="#323232"
@@ -98,6 +100,8 @@
         android:backgroundTint="#999999"
         android:inputType="textPersonName"
         android:lineSpacingExtra="10sp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
@@ -132,24 +136,55 @@
         android:textColor="#323232"
         android:textSize="@dimen/_15sdp"
         android:fontFamily="@font/aileron_semibold" />
+                    <TextView
+                        android:id="@+id/dobText"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:visibility="gone"
+                        android:textSize="@dimen/_15sdp"
 
-        <EditText
-            android:id="@+id/et_destination_dob"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/btn_edittextname"
-            android:backgroundTint="#999999"
-            android:hint="@string/valid_dob"
-            android:inputType="textPersonName"
-            android:lineSpacingExtra="10sp"
-            android:paddingLeft="@dimen/_15sdp"
-            android:paddingTop="@dimen/_12sdp"
-            android:paddingBottom="@dimen/_12sdp"
-            android:paddingEnd="@dimen/_15sdp"
-            android:textColor="#323232"
-            android:textSize="@dimen/_15sdp"
-            android:fontFamily="@font/aileron_semibold"  />
+                        android:text="Date Of Birth*"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="@color/bgColorHint"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/et_destination_dob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:layout_weight="1"
+
+                            android:lineSpacingExtra="10sp"
+                            android:paddingLeft="@dimen/_15sdp"
+                            android:paddingTop="@dimen/_12sdp"
+                            android:background="@null"
+                            android:focusable="false"
+
+
+                            android:paddingBottom="@dimen/_12sdp"
+                            android:paddingEnd="@dimen/_15sdp"
+                            android:hint="@string/valid_dob"
+                            android:textColor="@color/textColorLBlack"
+                            android:textSize="@dimen/_15sdp"
+                            android:fontFamily="@font/aileron_semibold" />
+                        <ImageView
+                            android:id="@+id/calenderIcon_Image"
+                            android:src="@drawable/cal"
+                            android:layout_width="30dp"
+                            android:layout_gravity="center"
+                            android:paddingRight="10dp"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
 
     <TextView
         android:id="@+id/spinner_destination_country"
@@ -168,6 +203,8 @@
         android:inputType="textPersonName"
         android:lineSpacingExtra="10sp"
         android:paddingLeft="@dimen/_15sdp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
         android:paddingTop="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
         android:paddingEnd="@dimen/_15sdp"
@@ -192,6 +229,8 @@
         android:lineSpacingExtra="10sp"
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_12sdp"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
         android:paddingBottom="@dimen/_12sdp"
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/city"
@@ -211,7 +250,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@drawable/btn_edittextname"
         android:backgroundTint="#999999"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:lineSpacingExtra="10sp"
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_12sdp"
@@ -219,6 +258,8 @@
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/id_proof_no"
         android:textColor="#323232"
+        android:digits="0123456-/"
+
         android:textSize="@dimen/_15sdp"
         android:fontFamily="@font/aileron_semibold" />
 
@@ -235,6 +276,8 @@
             android:paddingLeft="@dimen/_15sdp"
             android:paddingTop="@dimen/_12sdp"
             android:paddingBottom="@dimen/_12sdp"
+            android:digits="0123456-/"
+
             android:paddingEnd="@dimen/_15sdp"
             android:textColor="#323232"
             android:textSize="@dimen/_15sdp"
@@ -261,6 +304,8 @@
         android:paddingBottom="@dimen/_12sdp"
         android:paddingEnd="@dimen/_15sdp"
         android:hint="@string/reason_for_sending"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
         android:textColor="#323232"
         android:textSize="@dimen/_15sdp"
         android:fontFamily="@font/aileron_semibold"  />

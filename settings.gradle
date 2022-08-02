@@ -1,3 +1,4 @@
 include ':app'
 rootProject.name='WalletAppUIKIT'
 include ':android-networking'
+include ':autoformatedittext'
