@@ -3163,7 +3163,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     private void api_exchangeRateNew() {
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+

@@ -694,7 +694,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
     }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     public static JSONArray taxConfigurationList;
 
     private void callApiExchangeRate() {

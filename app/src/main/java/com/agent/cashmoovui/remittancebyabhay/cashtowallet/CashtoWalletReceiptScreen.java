@@ -143,7 +143,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
         tax2_value = findViewById(R.id.tax2_value);
 
 
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvTransRefNo.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("code"));
        // tvConfCode.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("confirmationCode"));
         tvTransType.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));

@@ -739,7 +739,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 //
 //    }
 
-    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df = new DecimalFormat("0.00");
     public static JSONArray taxConfigurationList;
 
     private void callApiExchangeRate() {

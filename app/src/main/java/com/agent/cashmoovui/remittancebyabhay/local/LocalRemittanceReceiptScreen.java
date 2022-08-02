@@ -143,7 +143,7 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
         tax2_value = findViewById(R.id.tax2_value);
 
 
-        DecimalFormat df = new DecimalFormat("0.000");
+        DecimalFormat df = new DecimalFormat("0.00");
         tvTransRefNo.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionReferenceNo"));
         tvConfCode.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
         tvTransType.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
