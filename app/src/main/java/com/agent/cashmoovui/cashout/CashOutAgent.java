@@ -318,8 +318,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 public void afterTextChanged(Editable s) {}
 
                 @Override
-                public void beforeTextChanged(CharSequence s, int start,
-                                              int count, int after) {
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 }
 
                 @Override
