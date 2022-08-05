@@ -51,6 +51,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.StringTokenizer;
@@ -968,15 +969,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender +" "+ amountstr);
-                            receiptPage_tv_fee.setText(currencySymbol_sender +" " + fees_amount);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_fee.setText(currencySymbol_sender +" " + MyApplication.addDecimal(fees_amount));
                             receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ tax_financial);
-                            receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
+                            receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+MyApplication.addDecimal(totalAmount_str));
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
 
 
-                            receiptPage_tv_amount_to_be_paid.setText(currencySymbol_receiver +" " + amountstr);
+                            receiptPage_tv_amount_to_be_paid.setText(currencySymbol_receiver +" " + MyApplication.addDecimal(amountstr));
 
 
 
@@ -1313,11 +1314,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         totalAmount_double = tax_financial_double + amountstr_double + fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
+
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+MyApplication.addDecimal((totalAmount_str)));
 
                         amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText(currencySymbol_sender+" "+ amountstr);
-                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "+ amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
+                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "+ MyApplication.addDecimal(amountstr));
 
                         allByCriteria_walletOwnerCode_api();
 

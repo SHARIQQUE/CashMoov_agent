@@ -57,7 +57,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="@string/you_make_withdrawal"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_15sdp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -83,7 +83,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_15sdp"
                 android:textColor="#29304d"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
@@ -98,7 +98,7 @@
                     android:text="@string/scan_details"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:textColor="#000"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="@dimen/_15sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                     android:text="@string/qr_code_of_the"
                     android:textColor="#000"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_15sdp" />
             </LinearLayout>
 
                 <LinearLayout
@@ -130,7 +130,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_15sdp"
                         android:layout_gravity="center_horizontal"
                         android:textColor="#29304d"
                         android:fontFamily="@font/aileron_bold"
@@ -177,7 +177,7 @@
                 android:id="@+id/tvAmtCurr"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_semibold"
                 android:layout_weight="0.2"
                 android:textColor="@color/textColorLBlack"
@@ -194,7 +194,7 @@
                 android:background="@null"
                 android:fontFamily="@font/aileron_bold"
                 android:textColor="@color/textColorLBlack"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_15sdp" />
         </LinearLayout>
 
 
@@ -202,7 +202,7 @@
                 android:id="@+id/tv_nextClick"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_15sdp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="3sp"
                 android:layout_marginTop="@dimen/_30sdp"
@@ -230,6 +230,7 @@
             android:layout_height="match_parent"
             android:visibility="gone">
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
@@ -244,8 +245,23 @@
 
             </RelativeLayout>
 
-
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirmation_receipt"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:gravity="center_horizontal" />
+
+            </LinearLayout>
+
+                <LinearLayout
 
                 android:gravity="left"
                 android:layout_width="match_parent"
@@ -253,6 +269,7 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:padding="@dimen/_2sdp"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_20sdp">
 
                 <ImageView
@@ -271,14 +288,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_senderName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -293,6 +310,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
 
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
@@ -335,6 +353,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -356,14 +375,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_businessType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -378,6 +397,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -480,14 +500,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_receiverName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -521,14 +541,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_transactionAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -561,14 +581,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_fees_reveiewPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -583,6 +603,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -602,7 +623,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
@@ -642,14 +663,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_amount_to_be_charge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -682,14 +703,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_amount_to_be_credit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1142,6 +1163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -1273,7 +1295,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
 
@@ -1282,7 +1304,7 @@
                     android:id="@+id/receiptPage_tv_sender_phoneNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1343,7 +1365,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
 
@@ -1352,7 +1374,7 @@
                     android:id="@+id/receiptPage_tv_receiver_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1385,7 +1407,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
 
@@ -1394,7 +1416,7 @@
                     android:id="@+id/receiptPage_tv_receiver_phoneNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"

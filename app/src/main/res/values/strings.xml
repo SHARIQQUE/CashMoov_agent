@@ -584,6 +584,7 @@
     <string name="select_currency">Select currency</string>
     <string name="amount_to_paid_star">Amount to be paid*</string>
     <string name="amount_to_paid_without_star">Amount to be paid </string>
+    <string name="enterinstitute">Please enter institute </string>
 
     <string name="commision_Transfer">Commision Transfer</string>
     <string name="currency_Name">Currency name</string>

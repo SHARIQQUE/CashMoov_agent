@@ -86,6 +86,7 @@
     <string name="language_select">French</string>
     <string name="language_name">French</string>
     <string name="language_code">FR</string>
+    <string name="enterinstitute">Veuillez saisir linstitut</string>
 
     <string name="to_login">Se connecter</string>
     <string name="please_enter_username_password">Veuillez entrer votre identifiant et mot de passen</string>

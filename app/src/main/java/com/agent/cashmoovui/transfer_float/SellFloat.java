@@ -76,6 +76,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
     ImageView contact;
+    public EditText mEnterinstituteEdittext,mInstitutenameEdittext;
 
     RecyclerView recyclerView;
 
@@ -263,7 +264,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
             rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
             exportReceipt_textview.setOnClickListener(this);
-
+        rp_tv_convertionrate.setVisibility(View.GONE);
             receiptPage_tv_transaction_receiptNo = (TextView) findViewById(R.id.receiptPage_tv_transaction_receiptNo);
             receiptPage_tv_stransactionType = (TextView) findViewById(R.id.receiptPage_tv_stransactionType);
             receiptPage_tv_dateOfTransaction = (TextView) findViewById(R.id.receiptPage_tv_dateOfTransaction);
@@ -290,8 +291,49 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", SellFloat.this);
 
 
-            spinner_insititue=  findViewById(R.id.spinner_insitituet);
-            spinner_insititue.setText("Select Institute");
+        mEnterinstituteEdittext=  findViewById(R.id.enterinstituteEdittext);
+        mInstitutenameEdittext=  findViewById(R.id.institutenameEdittext);
+        mEnterinstituteEdittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 9) {
+
+                    for (int i = 0; i < arrayList_instititueCode.size(); i++) {
+                        if (mEnterinstituteEdittext.getText().toString().equalsIgnoreCase(arrayList_instititueCode.get(i))) {
+                            String institutename = arrayList_instititueName.get(i).replaceAll("[0-9]", "");// prints awhefqoakwfn
+                            String institutenamenew = institutename.replaceAll("[(){}]","");
+
+                            mInstitutenameEdittext.setText(institutenamenew);
+                            setSelction(i);
+
+
+                        }
+                    }
+
+                }else {
+                    if(s.length()<=9){
+                        mInstitutenameEdittext.setText("");
+
+                    }
+                }
+
+            }
+        });
+
+
+
+        //  spinner_insititue.setText("Select Institute");
+/*
             spinner_insititue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -299,6 +341,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         spinnerDialogImstitute.showSpinerDialog();
                 }
             });
+*/
 
             spinner_record= (Spinner) findViewById(R.id.spinner_record);
             spinner_record.setOnItemSelectedListener(this);
@@ -517,7 +560,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-                        System.out.println(arrayList_instititueName);
+                        System.out.println("get name list"+arrayList_instititueName);
                         System.out.println(arrayList_instititueCode);
 
 
@@ -637,9 +680,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         amountstr = edittext_amount.getText().toString().trim().replace(",","");
 
-        if (spinner_insititue.getText().equals("Select Institute")) {
+        if (mEnterinstituteEdittext.getText().toString().isEmpty()) {
 
-            MyApplication.showErrorToast(this, getString(R.string.select_institute));
+            MyApplication.showErrorToast(this, "Enter the institute number");
 
             return false;
         }
@@ -1135,18 +1178,17 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-                        rp_tv_convertionrate.setText(currencySymbol_receiver+" "+"0.0");
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" "+fees_amount);
+                      //  rp_tv_convertionrate.setText(MyApplication.addDecimal(currencySymbol_receiver));
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(fees_amount));
                         rp_tv_excise_tax.setText(currencySymbol_receiver+" "+tax_financial);
-                        rp_tv_amount_paid.setText(currencySymbol_receiver+" "+amountstr);
+                        rp_tv_amount_paid.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(amountstr));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
-                        fees_amount_double = Double.parseDouble(fees_amount);
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" "+totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" "+ MyApplication.addDecimal(totalAmount_str));
 
 
 
@@ -1300,7 +1342,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         rp_tv_country.setText(countryName_agent);
 
                         rp_tv_receiverName.setText(select_insitute_name);
-                        rp_tv_transactionAmount.setText(amountstr);
+                        rp_tv_transactionAmount.setText(MyApplication.addDecimal(amountstr));
 
 
 
@@ -2066,7 +2108,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
     public void setSelction(int pos){
-        spinner_insititue.setText(arrayList_instititueName.get(pos));
+       // spinner_insititue.setText(arrayList_instititueName.get(pos));
         select_insitute_name = arrayList_instititueName.get(pos);
         select_insitute_code = arrayList_instititueCode.get(pos);
 
@@ -2189,11 +2231,11 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             operationDialog.setContentView(R.layout.alert_dialogue_sellfloat);
 
             Button closeButton;
-            TextView senderWalletOwnerCode_textview, receiverWalletOwnerCode_textview, senderName_textview, receiverName_textview, currencyName_textview, amount_textview, fee_textview, tax_textview, exchangeRate_textview, final_amount_textview, create_on_textview, status_textview;
+            TextView senderWalletOwnerCode_textview, receiverWalletOwnerCode_textview, senderName_textview, receiverName_textview, currencyName_textview, amount_textview, fee_textview, tax_textview, exchangeRate_textview, receiver_msisdn_textview,final_amount_textview, create_on_textview, status_textview;
             closeButton = operationDialog.findViewById(R.id.closeButton);
 
             String[] strArray = transactionDetails.split("\\|");
-            System.out.println(strArray);
+            System.out.println("get value"+transactionDetails);
             System.out.println(strArray);
 
 
@@ -2209,17 +2251,21 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             final_amount_textview = operationDialog.findViewById(R.id.final_amount_textview);
             create_on_textview = operationDialog.findViewById(R.id.create_on_textview);
             status_textview = operationDialog.findViewById(R.id.status_textview);
+            receiver_msisdn_textview=operationDialog.findViewById(R.id.receiver_msisdn_textview);
 
             senderWalletOwnerCode_textview.setText(strArray[1]);
             receiverWalletOwnerCode_textview.setText(strArray[2]);
             senderName_textview.setText(strArray[3]);
             receiverName_textview.setText(strArray[4]);
             currencyName_textview.setText(strArray[5]);
-            amount_textview.setText(strArray[6]);
-            fee_textview.setText(strArray[7]);
-            tax_textview.setText(strArray[8]);
-            exchangeRate_textview.setText(strArray[9]);
-            final_amount_textview.setText(strArray[10]);
+            amount_textview.setText(MyApplication.addDecimal(strArray[6]));
+            fee_textview.setText(MyApplication.addDecimal(strArray[7]));
+            tax_textview.setText(MyApplication.addDecimal(strArray[8]));
+            exchangeRate_textview.setText(MyApplication.addDecimal(strArray[9]));
+            final_amount_textview.setText(MyApplication.addDecimalthree(strArray[10]));
+
+          //  System.out.println("get value"+strArray[4]);
+
             try {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
@@ -2231,7 +2277,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 e.printStackTrace();
             }
 
+
+
             status_textview.setText(strArray[12]);
+            receiver_msisdn_textview.setText(strArray[13]);
 
 
 

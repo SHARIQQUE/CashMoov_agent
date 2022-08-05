@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.transfer_float.CallBackSellFloatRecycleViewClick;
@@ -42,7 +43,7 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder,  int i) {
 
         viewHolder.receiverName_textview.setText(arrayList_modalUserData.get(i).getSellFloat_desWalletOwnerName());
         viewHolder.receiver_msisdn_textview.setText(arrayList_modalUserData.get(i).getSellFloat_desWalletOwnerNumber());
@@ -50,16 +51,16 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
 
 
         String amount_str=Double.toString(arrayList_modalUserData.get(i).getSellFloat_amount());
-        viewHolder.amount_textview.setText(amount_str);
+        viewHolder.amount_textview.setText(MyApplication.addDecimal(amount_str));
 
         String fee_str=Double.toString(arrayList_modalUserData.get(i).getSellFloat_fee());
-        viewHolder.fee_textview.setText(fee_str);
+        viewHolder.fee_textview.setText(MyApplication.addDecimal(fee_str));
 
         String tax_str=Double.toString(arrayList_modalUserData.get(i).getSellFloat_tax());
-        viewHolder.tax_textview.setText(tax_str);
+        viewHolder.tax_textview.setText(MyApplication.addDecimal(tax_str));
 
         String tfinalAmount_str=Double.toString(arrayList_modalUserData.get(i).getSellFloat_finalAmount());
-        viewHolder.finalAmount_textview.setText(tfinalAmount_str);
+        viewHolder.finalAmount_textview.setText(MyApplication.addDecimalthree(tfinalAmount_str));
 
         viewHolder.status_textview.setText(arrayList_modalUserData.get(i).getSellFloat_status());
 
@@ -95,12 +96,15 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
                String finnalAmount=Double.toString(arrayList_modalUserData.get(i).getSellFloat_finalAmount());
                String date=arrayList_modalUserData.get(i).getSellFloat_creationDate();
                String status=arrayList_modalUserData.get(i).getSellFloat_status();
+                String MSSDN=arrayList_modalUserData.get(i).getSellFloat_desWalletOwnerNumber();
+
+                System.out.println("get fee"+fee_str);
 
                 transationDetails ="|"+srcWalletOwnerCode+"|"+desWalletOwnerCode
                         +"|"+srcWalletOwnerName+"|"+desWalletOwnerName+"|"+currenyName
                         +"|"+amount_str+"|"+fee_str+"|"+tax_tax
                         +"|"+texchangeRate+"|"+finnalAmount+"|"+date
-                        +"|"+status+"|";
+                        +"|"+status+"|"+MSSDN+"|";
 
                    callBackSellFloatRecycleViewClick.callBackSellFloat(transationDetails);
             }

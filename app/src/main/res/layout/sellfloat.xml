@@ -146,31 +146,71 @@
 
 
     <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:background="@drawable/btn_edittextname"
+    android:backgroundTint="@color/bgColorHint"
+    android:paddingLeft="@dimen/_15sdp"
+    android:paddingTop="@dimen/_10sdp"
+    android:paddingBottom="@dimen/_12sdp"
+    android:paddingEnd="@dimen/_15sdp"
+    android:layout_gravity="center_vertical">
+
+    <EditText
+        android:id="@+id/enterinstituteEdittext"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_weight="0.18"
+        android:inputType="numberDecimal"
+        android:lineSpacingExtra="10sp"
+        android:hint="Institute number"
+        android:maxLength="9"
 
-
-            <TextView
-                android:visibility="visible"
-                android:layout_weight=".15"
-                android:id="@+id/spinner_insitituet"
-                style="@style/SpinnerStyleNew1"
-                android:paddingLeft="@dimen/_10sdp"/>
+        android:background="@null"
+        android:fontFamily="@font/aileron_bold"
+        android:textColor="@color/textColorLBlack"
+        android:textSize="@dimen/_16sdp" />
 
         <ImageView
             android:id="@+id/contact"
             android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/corner"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_weight=".85"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="@dimen/_18sdp"
             android:layout_width="match_parent"
-            android:src="@drawable/ic_baseline_phone_android_24"/>
+            android:src="@drawable/ic_contact"/>
+
+
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/btn_edittextname"
+        android:backgroundTint="@color/bgColorHint"
+        android:paddingLeft="@dimen/_15sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:layout_gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/institutenameEdittext"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:inputType="numberDecimal"
+            android:lineSpacingExtra="10sp"
+            android:editable="false"
+            android:background="@null"
+            android:fontFamily="@font/aileron_bold"
+            android:textColor="@color/textColorLBlack"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
 
 
             <TextView
@@ -280,7 +320,7 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                    android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -315,6 +355,21 @@
                     android:backgroundTint="@color/colorPrimaryDark" />
 
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirmation_receipt"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:gravity="center_horizontal" />
+
+            </LinearLayout>
 
 
 
@@ -323,6 +378,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
 
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
@@ -365,6 +421,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -407,6 +464,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -426,7 +484,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
@@ -448,6 +506,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -507,7 +566,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
@@ -549,7 +608,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
@@ -591,7 +650,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
@@ -613,6 +672,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -632,14 +692,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_convertionrate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -674,14 +734,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_fees_reveiewPage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -696,6 +756,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -715,14 +776,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_excise_tax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -756,14 +817,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_amount_to_be_charge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -797,14 +858,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_amount_paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"

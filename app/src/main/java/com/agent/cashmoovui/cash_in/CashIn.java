@@ -43,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.StringTokenizer;
@@ -86,6 +87,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
     String mpinStr="";
+    public Double feeDouble;
 
 
     String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
@@ -996,15 +998,19 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 currencySymbolsender = jsonObject_walletTransfer.getString("srcCurrencySymbol");
                                 currencySymbolreceiver = jsonObject_walletTransfer.getString("desCurrencySymbol");
 
+                                DecimalFormat df = new DecimalFormat("0.00");
 
                                 receiptPage_tv_stransactionType.setText("CASH-IN");
-                                receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+amountstr);
-                                receiptPage_tv_fee.setText(currencySymbolsender+" "+fees_amount);
+                                receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+MyApplication.addDecimal(amountstr));
+                                receiptPage_tv_fee.setText(currencySymbolsender+" "+df.format(feeDouble));
                                 receiptPage_tv_financialtax.setText(currencySymbolsender+" "+tax_financial);
 
 
                                 receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
+
                                 receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
+
+                                System.out.println("get date"+jsonObject.getString("responseTime"));
 
                                 receiptPage_tv_amount_to_be_credit.setText(currencySymbolreceiver+" "+amountstr);
 
@@ -1105,7 +1111,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  +fees_amount);
+                         feeDouble= Double.parseDouble(fees_amount);
+
+                        DecimalFormat df = new DecimalFormat("0.00");
+
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + df.format(feeDouble));
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
@@ -1128,16 +1138,19 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         rp_tv_financialTax.setText(currencySymbol_sender+" "  +tax_financial);
 
                         tax_financial_double = Double.parseDouble(tax_financial);
-                        fees_amount_double = Double.parseDouble(fees_amount);
+                        fees_amount_double = Double.parseDouble((fees_amount));
                         amountstr_double = Double.parseDouble(amountstr);
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ totalAmount_str);
+                        double dtotalAmount_str= Double.parseDouble(totalAmount_str);
+
+
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ df.format(dtotalAmount_str));
 
                         amountstr = String.valueOf(amountstr_double);
-                        rp_tv_transactionAmount.setText(currencySymbol_sender+" "+amountstr);
-                        rp_tv_amount_to_be_credit.setText(currencySymbol_receiver+" "+amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
+                        rp_tv_amount_to_be_credit.setText(currencySymbol_receiver+" "+df.format(amountstr_double));
 
                         allByCriteria_walletOwnerCode_api();
 

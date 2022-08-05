@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_20sdp">
 
@@ -91,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 
@@ -132,6 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 
@@ -197,6 +200,43 @@
 
             <TextView
                 android:id="@+id/receiverName_textview"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/aileron_bold"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            >
+
+            <ImageView
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:text="@string/receiverName_receiptPage_without_coln"
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/aileron_semibold"
+                android:layout_marginLeft="@dimen/_5sdp"/>
+            <TextView
+                android:id="@+id/receiver_msisdn_textview"
                 android:layout_width="0dp"
                 android:layout_weight=".5"
                 android:layout_height="wrap_content"
@@ -340,6 +380,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="visible"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 
@@ -381,6 +422,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 

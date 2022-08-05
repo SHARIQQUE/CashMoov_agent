@@ -1108,9 +1108,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                         rp_tv_convertionrate.setText(currencySymbol_sender+" " +"0.0");
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +fees_amount);
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount));
                         rp_tv_excise_tax.setText(currencySymbol_sender+" " +tax_financial);
-                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " +amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
@@ -1118,7 +1118,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" " +totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" " +MyApplication.addDecimal(totalAmount_str));
 
 
 
@@ -1334,7 +1334,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
                         rp_tv_operator.setText(operatorName_from_operatorList);
-                        rp_tv_totalAmount.setText(currencySymbol_sender+" " +amountstr);
+                        rp_tv_totalAmount.setText(currencySymbol_sender+" " + MyApplication.addDecimal(amountstr));
 
 
                         api_exchange_rate();

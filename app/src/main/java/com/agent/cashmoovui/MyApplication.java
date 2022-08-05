@@ -50,6 +50,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.Executor;
@@ -389,21 +390,32 @@ public class MyApplication extends Application {
         return false;
     }
 
+
+
     public static String addDecimal(String number){
+        DecimalFormat df = new DecimalFormat("0.00");
+        System.out.println(("get datatype"+(Object)number).getClass().getName());
 
-        if(number.contains(".00")){
-            return number;
-        }
-        if(number.contains(".0")){
-            return number+"0";
-        }
-        if(!number.contains(".")){
-            return number+".00";
-        }
+        return df.format(Double.parseDouble(number));
 
 
-        return number;
     }
+    public static String addDecimalthreenew(String number) {
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        return df.format(Double.parseDouble(number));
+    }
+
+    public static String addDecimalthree(String number){
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+
+        return df.format(Double.parseDouble(number));
+    }
+
+
 
     public  static void setrequired(TextView textView,String str){
         TextView fname_label=textView;

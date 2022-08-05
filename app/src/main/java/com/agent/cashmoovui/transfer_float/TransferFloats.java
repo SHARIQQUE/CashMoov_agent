@@ -959,10 +959,10 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
 
 
-                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +"0.0");
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" " +fees_amount);
+                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +"0.00");
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
                         rp_tv_excise_tax.setText(currencySymbol_receiver+" " +tax_financial);
-                        rp_tv_amount_paid.setText(currencySymbol_receiver+" " +amountstr);
+                        rp_tv_amount_paid.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
@@ -970,7 +970,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" " +totalAmount_str);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(totalAmount_str));
 
 
                         ll_page_1.setVisibility(View.GONE);
@@ -1123,7 +1123,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
                         rp_tv_receiverName.setText(receiver_name_str);
-                        rp_tv_transactionAmount.setText(currencySymbol_receiver+" " +amountstr);
+                        rp_tv_transactionAmount.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
 
 
 
@@ -1336,8 +1336,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                             receiptPage_tv_stransactionType.setText(" TRANSFER FLOAT");
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +amountstr);
-                            receiptPage_tv_fee.setText(currencySymbol_receiver+" " +fees_amount);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_fee.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
                             receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +tax_financial);
                             receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver+" " +totalAmount_str);
 
