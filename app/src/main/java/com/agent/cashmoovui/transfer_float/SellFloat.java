@@ -1186,7 +1186,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
 
-                        totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
+                        totalAmount_double = tax_financial_double+amountstr_double+Double.parseDouble(fees_amount);
                         totalAmount_str = String.valueOf(totalAmount_double);
                         rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" "+ MyApplication.addDecimal(totalAmount_str));
 

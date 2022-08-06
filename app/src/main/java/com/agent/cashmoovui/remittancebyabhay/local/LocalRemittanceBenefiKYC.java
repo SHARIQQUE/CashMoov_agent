@@ -774,7 +774,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
     }
 
-    String code,idprooftypecode="",regioncode="",gendercode="",issuingcountrycode="";
+    String code="",idprooftypecode="",regioncode="",gendercode="",issuingcountrycode="";
     private ArrayList<String> subscriberList = new ArrayList<String>();
 
     private ArrayAdapter<String> adapter;
@@ -855,13 +855,13 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
             benefiJson.put("lastName",et_destination_lastName.getText().toString().trim());
             benefiJson.put("email",edittext_email_destination.getText().toString().trim());
             benefiJson.put("mobileNumber",et_destination_mobileNumber.getText().toString().trim());
-            if(spinner_destination_region.getTag()!=null){
+           /* if(spinner_destination_region.getTag()!=null){
                 benefiJson.put("idProofTypeCode",idProofTypeModelList.get((Integer) spinner_destination_idprooftype.getTag()).getCode());
             }else{
                 benefiJson.put("idProofTypeCode",idprooftypecode);
-            }
-            benefiJson.put("idProofNumber",et_destination_idproofNumber.getText().toString().trim());
-            benefiJson.put("idExpiryDate",et_destination_idproof_expiry.getText().toString().trim());
+            }*/
+          //  benefiJson.put("idProofNumber",et_destination_idproofNumber.getText().toString().trim());
+            //benefiJson.put("idExpiryDate",et_destination_idproof_expiry.getText().toString().trim());
             benefiJson.put("dateOfBirth",et_destination_dob.getText().toString().trim());
             benefiJson.put("countryCode",LocalRemittanceActivity.recCountryCode);
             if(spinner_destination_region.getTag()!=null){
@@ -872,11 +872,11 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
             benefiJson.put("city",et_destination_city.getText().toString().trim());
             benefiJson.put("address",et_destination_address.getText().toString().trim());
-            if(spinner_destination_issuingCountry.getTag()!=null){
+           /* if(spinner_destination_issuingCountry.getTag()!=null){
                 benefiJson.put("issuingCountryCode",issuingCountryModelList.get((Integer) spinner_destination_issuingCountry.getTag()).getCountryCode());
             }else{
                 benefiJson.put("issuingCountryCode",issuingcountrycode);
-            }
+            }*/
             if(spinner_destination_gender.getTag()!=null){
                 benefiJson.put("gender",benefiGenderModelList.get((Integer) spinner_destination_gender.getTag()).getCode());
             }else{

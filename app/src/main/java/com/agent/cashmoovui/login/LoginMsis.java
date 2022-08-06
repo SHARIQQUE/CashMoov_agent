@@ -509,6 +509,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                  firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
                             }
 
+                            firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+
                             //  String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                             // String countryName_agent = walletOwnerUser.getString("issuingCountryName");
 

@@ -799,7 +799,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                             data.optString("value"),
                             "0.0",
                             "0.0",
-                            data.optString("walletOwnerName")
+                            data.optString("walletOwnerName"),
+                            data.optString("allocatedValue")
                     ));
                 }else{
                     if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
@@ -822,7 +823,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     data.optString("value"),
                                     "0.0",
                                     "0.0",
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
 
                                     ));
                         }
@@ -848,7 +850,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     "0.0",
                                     data.optString("value"),
                                     "0.0",
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
 
                             ));
                         }
@@ -873,7 +876,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     "0.0",
                                     "0.0",
                                     data.optString("value"),
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
                             ));
                         }
                     }
@@ -942,7 +946,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
 
-        mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+        mainwallet_textview.setText(df.format(Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
+        " / "+df.format(Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
         commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
         overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
@@ -953,6 +958,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
 
     }
+
+    DecimalFormat df = new DecimalFormat("0.00");
 
    /* public void createList(){
         *//*CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);

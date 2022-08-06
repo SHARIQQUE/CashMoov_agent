@@ -585,7 +585,7 @@
     <string name="amount_to_paid_without_star">Montant à payer</string>
     <string name="commision_Transfer">Transfert de commission</string>
     <string name="currency_Name">Nom de la devise</string>
-    <string name="main_Wallet">Portefeuille principal</string>
+    <string name="main_Wallet">Portefeuille principal / Montant de réserve</string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">Etat</string>
     <string name="validaty_days">Jours de validité* </string>
@@ -661,7 +661,7 @@
     <string name="subscriber_added">Abonné ajouté avec succès !</string>
     <string name="transaction_type">Type de transaction</string>
     <string name="agentName">Nom d\'agent</string>
-
+    <string name="agentName_colon">Nom d\'agent :</string>
     <string name="agent_mobileNumber">Agent mobile non</string>
     <string name="agent_details">Détails de l\'agent</string>
     <string name="branch_details">bronc Détails</string>
@@ -772,7 +772,9 @@
     <string name="receive">Recevoir</string>
     <string name="subscriber_number_star">Abonné non*</string>
     <string name="receiver_msisdn_colon">Récepteur MSISDN :</string>
+    <string name="beneficiary_msisdn_colon">Bénéficiaire MSISDN :</string>
     <string name="sender_mssidn_colon">Expéditeur MSISDN :</string>
+    <string name="agent_mssidn_colon">Agent MSISDN :</string>
     <string name="transfer_of_mode_colon">Transfert de mode :</string>
     <string name="paid_service">Service payant</string>
     <string name="view_transaction">Afficher la transaction</string>

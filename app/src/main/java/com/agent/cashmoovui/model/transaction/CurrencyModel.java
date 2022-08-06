@@ -12,25 +12,13 @@ public class CurrencyModel {
     public String overdraftWalletValue;
     public String mainWalletValue;
     public String walletOwnerName;
+    public String allocatedValue;
 
     public String getWalletOwnerName() {
         return walletOwnerName;
     }
 
     public void setWalletOwnerName(String walletOwnerName) {
-        this.walletOwnerName = walletOwnerName;
-    }
-
-    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName) {
-        this.code = code;
-        Ccode = ccode;
-        Ocode = ocode;
-        this.currencyCode = currencyCode;
-        this.currencyName = currencyName;
-        this.currencySymbol = currencySymbol;
-        this.commisionWalletValue = commisionWalletValue;
-        this.overdraftWalletValue = overdraftWalletValue;
-        this.mainWalletValue = mainWalletValue;
         this.walletOwnerName = walletOwnerName;
     }
 
@@ -47,7 +35,30 @@ public class CurrencyModel {
                 ", overdraftWalletValue='" + overdraftWalletValue + '\'' +
                 ", mainWalletValue='" + mainWalletValue + '\'' +
                 ", walletOwnerName='" + walletOwnerName + '\'' +
+                ", allocatedValue='" + allocatedValue + '\'' +
                 '}';
+    }
+
+    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName, String allocatedValue) {
+        this.code = code;
+        Ccode = ccode;
+        Ocode = ocode;
+        this.currencyCode = currencyCode;
+        this.currencyName = currencyName;
+        this.currencySymbol = currencySymbol;
+        this.commisionWalletValue = commisionWalletValue;
+        this.overdraftWalletValue = overdraftWalletValue;
+        this.mainWalletValue = mainWalletValue;
+        this.walletOwnerName = walletOwnerName;
+        this.allocatedValue = allocatedValue;
+    }
+
+    public String getAllocatedValue() {
+        return allocatedValue;
+    }
+
+    public void setAllocatedValue(String allocatedValue) {
+        this.allocatedValue = allocatedValue;
     }
 
     public String getCode() {

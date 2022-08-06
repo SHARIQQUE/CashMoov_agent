@@ -535,7 +535,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                             data.optString("value"),
                             "0.0",
                             "0.0",
-                            data.optString("walletOwnerName")
+                            data.optString("walletOwnerName"),
+                            data.optString("allocatedValue")
                     ));
 
 
@@ -561,7 +562,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     data.optString("value"),
                                     "0.0",
                                     "0.0",
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
                             ));
                         }
 
@@ -586,7 +588,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     data.optString("value"),
                                     "0.0",
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
                             ));
                         }
                     }
@@ -612,7 +615,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     "0.0",
                                     data.optString("value"),
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
                             ));
                         }
                     }

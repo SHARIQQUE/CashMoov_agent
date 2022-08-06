@@ -663,7 +663,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                             data.optString("value"),
                             "0.0",
                             "0.0",
-                            data.optString("walletOwnerName")
+                            data.optString("walletOwnerName"),
+                            data.optString("allocatedValue")
                     ));
                 }else{
                     if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
@@ -686,7 +687,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     data.optString("value"),
                                     "0.0",
                                     "0.0",
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
                             ));
                         }
 
@@ -712,6 +714,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName")
+                                    ,
+                                    data.optString("allocatedValue")
                             ));
                         }
                     }
@@ -735,7 +739,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     "0.0",
                                     data.optString("value"),
-                                    data.optString("walletOwnerName")
+                                    data.optString("walletOwnerName"),
+                                    data.optString("allocatedValue")
                             ));
                         }
                     }
@@ -792,11 +797,16 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
     }
     int SpinnerPos;
+    DecimalFormat df = new DecimalFormat("0.00");
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
-        mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+
+        Double main=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+        Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue);
+        mainwallet_textview.setText(df.format(main)+" / "+
+                df.format(allocate));
         commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
         overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);

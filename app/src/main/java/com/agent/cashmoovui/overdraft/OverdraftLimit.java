@@ -363,8 +363,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //
 //        else
 //        {
-            amountstr="100000";
-            validityDaysStr="90";
+            amountstr="90000";
+            validityDaysStr="5";
 
             //   edittext_amount.setEnabled(false);
             edittext_validity.setEnabled(false);
@@ -632,7 +632,6 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
       //  {"walletOwnerCode":"1000002761","currencyCode":"100008","amount":"100000","validityDays":90}
 
         JSONObject jsonObject = new JSONObject();
-
         String walletOwnerCode_from_mssid =  MyApplication.getSaveString("walletOwnerCode",OverdraftLimit.this);
 
         try {
@@ -641,7 +640,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             jsonObject.put("walletOwnerCode", walletOwnerCode_from_mssid);   // Hard Code acording to Praveen
             jsonObject.put("currencyCode", selectCurrecnyCode);   // Hard Code acording to Praveen
             jsonObject.put("amount", amountstr);   // Hard Code acording to Praveen
-            jsonObject.put("validityDays", 90);   // Hard Code acording to Praveen
+            jsonObject.put("validityDays", 5);   // Hard Code acording to Praveen
 
         }
         catch (Exception e)

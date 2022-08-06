@@ -86,6 +86,7 @@
                         android:layout_height="match_parent"
                         android:visibility="visible">
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/spinner_provider"
                             android:text="@string/valid_select_provider"
                             style="@style/SpinnerStyleNew1"/>

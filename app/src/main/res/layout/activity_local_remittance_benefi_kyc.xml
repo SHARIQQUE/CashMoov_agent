@@ -120,6 +120,7 @@
 
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/edittext_email_destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -187,6 +188,7 @@
                     </LinearLayout>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/spinner_destination_country"
         android:text="@string/valid_select_country"
         style="@style/SpinnerStyleNew1" />
@@ -239,11 +241,13 @@
         android:fontFamily="@font/aileron_semibold" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/spinner_destination_idprooftype"
         android:text="@string/select_id_proof"
         style="@style/SpinnerStyleNew1"/>
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/et_destination_idproofNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -264,6 +268,7 @@
         android:fontFamily="@font/aileron_semibold" />
 
         <EditText
+            android:visibility="gone"
             android:id="@+id/et_destination_idproof_expiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -285,6 +290,7 @@
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/spinner_destination_issuingCountry"
         android:text="@string/select_issuing_country"
         style="@style/SpinnerStyleNew1"  />

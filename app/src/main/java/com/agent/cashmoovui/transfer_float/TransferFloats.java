@@ -1289,11 +1289,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
             jsonObject.put("channelTypeCode","100000"); // Hard code
-            jsonObject.put("serviceCode",serviceCategoryCode_from_serviceCategory);
+            jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
 
 
+            System.out.println("Json transfer float"+jsonObject.toString());
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA=null;
             try{

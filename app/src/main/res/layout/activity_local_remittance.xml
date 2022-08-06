@@ -83,10 +83,12 @@
                         android:visibility="visible">
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/spinner_provider"
                             android:text="@string/valid_select_provider"
                             style="@style/SpinnerStyleNew1"/>
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/spinner_senderCountry"
                             android:text="@string/sending_country_star"
                             style="@style/SpinnerStyleNew1"/>
@@ -95,6 +97,7 @@
                             android:text="@string/sending_currencey_star"
                             style="@style/SpinnerStyleNew1"/>
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/spinner_receiverCountry"
                             android:text="@string/receive_country"
                             style="@style/SpinnerStyleNew1"/>

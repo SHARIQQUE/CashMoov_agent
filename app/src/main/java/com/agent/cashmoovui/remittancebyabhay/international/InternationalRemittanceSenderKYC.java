@@ -78,14 +78,14 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
     private ArrayList<String> idProofTypeList = new ArrayList<>();
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogSenderGender,spinnerDialogSenderRegion,
-            spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType;
+            spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType,spinnerDialogCity;
     static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
     public static final int RESULT_CODE_FAILURE = 10;
     private Intent Data;
     Uri tempUriFront,tempUriBack;
     DatePickerDialog picker;
-    public static TextView mDobText;
+    public static TextView mDobText,spCity;
     private ImageView mCalenderIcon_Image;
 
 
@@ -134,6 +134,18 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         spinner_sender_region = findViewById(R.id.spinner_sender_region);
         spinner_sender_idprooftype = findViewById(R.id.spinner_sender_idprooftype);
         spinner_sender_issuingCountry = findViewById(R.id.spinner_sender_issuingCountry);
+
+        spCity = findViewById(R.id.spCity);
+        spCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCity!=null){
+                    spinnerDialogCity.showSpinerDialog();
+                }
+
+            }
+        });
+
         et_sender_phoneNumber = findViewById(R.id.et_sender_phoneNumber);
         et_sender_firstName = findViewById(R.id.et_sender_firstName);
         et_sender_lastname = findViewById(R.id.et_sender_lastname);
@@ -402,7 +414,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_region));
                     return;
                 }
-                if (et_sender_city.getText().toString().trim().isEmpty()) {
+                if (spCity.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_city));
                     return;
                 }
@@ -448,7 +460,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                             if (jsonObject != null) {
                                 senderGenderList.clear();
                                 senderGenderModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("genderTypeList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
@@ -480,7 +492,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                     callApiRegions();
 
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", " "));
                                 }
                             }
                         }
@@ -508,7 +520,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                             if (jsonObject != null) {
                                 regionList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
                                     JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("regionList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
@@ -541,14 +553,14 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                             spinner_sender_region.setTag(position);
                                           //  spCity.setText(getString(R.string.valid_select_city));
 
-                                            //callApiCity(regionModelList.get(position).getCode());
+                                            callApiCity(regionModelList.get(position).getCode());
                                         }
                                     });
 
                                     callApiIdproofType();
 
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", " "));
                                 }
                             }
                         }
@@ -578,7 +590,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                             if (jsonObject != null) {
                                 idProofTypeList.clear();
                                 idProofTypeModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("idProffTypeList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
@@ -609,7 +621,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
 
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", " "));
                                 }
                             }
                         }
@@ -640,7 +652,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                             if (jsonObject != null) {
                                 subscriberList.clear();
-                                if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+                                if (jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")) {
                                     walletOwner = jsonObject;
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("customerList");
 
@@ -667,40 +679,40 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                         JSONObject jsonObjectSubscriber =  walletOwnerListArr.optJSONObject(index);
                                         SubscriberInfoModel.Customer customer = new SubscriberInfoModel.Customer(
                                                 jsonObjectSubscriber.optInt("id"),
-                                                jsonObjectSubscriber.optString("code", "N/A"),
+                                                jsonObjectSubscriber.optString("code", " "),
                                                 jsonObjectSubscriber.optString("firstName"),
                                                 jsonObjectSubscriber.optString("lastName"),
                                                 jsonObjectSubscriber.optString("email"),
-                                                jsonObjectSubscriber.optString("mobileNumber", "N/A"),
-                                                jsonObjectSubscriber.optString("gender", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofTypeCode", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofTypeName", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofNumber", "N/A"),
-                                                jsonObjectSubscriber.optString("idExpiryDate", "N/A"),
-                                                jsonObjectSubscriber.optString("dateOfBirth", "N/A"),
-                                                jsonObjectSubscriber.optString("countryCode", "N/A"),
-                                                jsonObjectSubscriber.optString("countryName", "N/A"),
-                                                jsonObjectSubscriber.optString("regionCode", "N/A"),
-                                                jsonObjectSubscriber.optString("regionName", "N/A"),
-                                                jsonObjectSubscriber.optString("city", "N/A"),
-                                                jsonObjectSubscriber.optString("address", "N/A"),
-                                                jsonObjectSubscriber.optString("issuingCountryCode", "N/A"),
-                                                jsonObjectSubscriber.optString("issuingCountryName", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofUrl", "N/A"),
-                                                jsonObjectSubscriber.optString("status", "N/A"),
-                                                jsonObjectSubscriber.optString("creationDate", "N/A"),
-                                                jsonObjectSubscriber.optString("createdBy", "N/A"),
-                                                jsonObjectSubscriber.optString("modificationDate", "N/A"),
-                                                jsonObjectSubscriber.optString("modifiedBy", "N/A")
+                                                jsonObjectSubscriber.optString("mobileNumber", " "),
+                                                jsonObjectSubscriber.optString("gender", " "),
+                                                jsonObjectSubscriber.optString("idProofTypeCode", " "),
+                                                jsonObjectSubscriber.optString("idProofTypeName", " "),
+                                                jsonObjectSubscriber.optString("idProofNumber", " "),
+                                                jsonObjectSubscriber.optString("idExpiryDate", " "),
+                                                jsonObjectSubscriber.optString("dateOfBirth", " "),
+                                                jsonObjectSubscriber.optString("countryCode", " "),
+                                                jsonObjectSubscriber.optString("countryName", " "),
+                                                jsonObjectSubscriber.optString("regionCode", " "),
+                                                jsonObjectSubscriber.optString("regionName", " "),
+                                                jsonObjectSubscriber.optString("city", " "),
+                                                jsonObjectSubscriber.optString("address", " "),
+                                                jsonObjectSubscriber.optString("issuingCountryCode", " "),
+                                                jsonObjectSubscriber.optString("issuingCountryName", " "),
+                                                jsonObjectSubscriber.optString("idProofUrl", " "),
+                                                jsonObjectSubscriber.optString("status", " "),
+                                                jsonObjectSubscriber.optString("creationDate", " "),
+                                                jsonObjectSubscriber.optString("createdBy", " "),
+                                                jsonObjectSubscriber.optString("modificationDate", " "),
+                                                jsonObjectSubscriber.optString("modifiedBy", " ")
                                         );
 
 
                                         SubscriberInfoModel subscriberInfoModel = new SubscriberInfoModel(
-                                                jsonObject.optString("transactionId", "N/A"),
-                                                jsonObject.optString("requestTime", "N/A"),
-                                                jsonObject.optString("responseTime", "N/A"),
-                                                jsonObject.optString("resultCode", "N/A"),
-                                                jsonObject.optString("resultDescription", "N/A"),
+                                                jsonObject.optString("transactionId", " "),
+                                                jsonObject.optString("requestTime", " "),
+                                                jsonObject.optString("responseTime", " "),
+                                                jsonObject.optString("resultCode", " "),
+                                                jsonObject.optString("resultDescription", " "),
                                                 customer
                                         );
 
@@ -711,7 +723,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                                 } else {
                                     setSubscriberdataf("No Data");
-                                    // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+                                    // MyApplication.showToast(jsonObject.optString("resultDescription", " "));
                                 }
 
                             }
@@ -786,7 +798,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         et_sender_dob.setText(data.getDateOfBirth());
         et_sender_address.setText(data.getAddress());
         spinner_sender_region.setText(data.getRegionName());
-        et_sender_city.setText(data.getCity());
+        spCity.setText(data.getCity());
         spinner_sender_idprooftype.setText(data.getIdProofTypeName());
         et_sender_idproofNumber.setText(data.getIdProofNumber());
         et_sender_idproof_expiry.setText(data.getIdExpiryDate());
@@ -927,7 +939,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                         public void success(JSONObject jsonObject) {
                             MyApplication.hideLoader();
                             if (jsonObject != null) {
-                                if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+                                if (jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")) {
                                     //MyApplication.showToast(getString(R.string.document_upload_msg));
                                     documentUploadJsonObj=jsonObject;
                                     MyApplication.showToast(internationalremitsenderkycC,"upload success");
@@ -935,10 +947,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                     Intent i = new Intent(internationalremitsenderkycC, InternationalRemittanceBenefiKYC.class);
                                     startActivity(i);
 
-                                } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
+                                } else if (jsonObject.optString("resultCode", " ").equalsIgnoreCase("2001")) {
                                     MyApplication.showToast(internationalremitsenderkycC,getString(R.string.technical_failure));
                                 } else {
-                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", " "));
                                 }
                             }
 
@@ -979,7 +991,8 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 senderJson.put("regionCode",regioncode);
             }
 
-            senderJson.put("city",et_sender_city.getText().toString().trim());
+            //if(spCity.getText().toString().isEmpty())
+            senderJson.put("city",spCity.getText().toString());
             senderJson.put("address",et_sender_address.getText().toString().trim());
             senderJson.put("issuingCountryCode",InternationalRemittanceActivity.sendCountryCode);
             if(spinner_sender_gender.getTag()!=null){
@@ -1069,6 +1082,75 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             // etDob.setText(year + "-" + (month+1) + "-" + day);
 
         }
+    }
+
+
+    private void callApiCity(String code) {
+        try {
+//http://202.131.144.130:8081/ewallet/public/city/region/100068
+            API.GET_PUBLIC("ewallet/public/city/region/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                cityList.clear();
+                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        cityModelList.add(new CityInfoModel.City(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optString("name"),
+                                                data.optString("regionCode"),
+                                                data.optString("regionName"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        cityList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(internationalremitsenderkycC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity.setCancellable(true); // for cancellable
+                                    spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCity.setText(item);
+                                            spCity.setTag(position);
+                                        }
+                                    });
+
+                                  //  callApiGenderType();
+
+                                } else {
+                                    MyApplication.showToast(internationalremitsenderkycC,jsonObject.optString("resultDescription", " "));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 }

@@ -566,7 +566,7 @@
     <string name="transfer_float">Transfer Float</string>
     <string name="transfer_commission">Transfer Commission</string>
     <string name="overdraft_limit">Overdraft Limit</string>
-    <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 100.000 for 180 days</string>
+    <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 90,000.000 for 5 days</string>
     <string name="one_sur_la_transaction">1% on the transa</string>
     <string name="remittance_option">Remittance Option</string>
     <string name="local">Local</string>
@@ -588,7 +588,7 @@
 
     <string name="commision_Transfer">Commision Transfer</string>
     <string name="currency_Name">Currency name</string>
-    <string name="main_Wallet">Main Wallet </string>
+    <string name="main_Wallet">Main Wallet / Reserve Amount </string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">State</string>
     <string name="validaty_days">Validity days* </string>
@@ -659,6 +659,7 @@
     <string name="subscriber_added">Subscriber added successfully!</string>
     <string name="transaction_type">Transaction type</string>
     <string name="agentName">Agent name</string>
+    <string name="agentName_colon">Agent name :</string>
     <string name="agent_mobileNumber">Agent mobile no</string>
     <string name="agent_details">Agent details</string>
     <string name="branch_details">Branch details</string>
@@ -773,7 +774,9 @@
     <string name="receive">Receive</string>
     <string name="subscriber_number_star">Subscriber Number*</string>
     <string name="receiver_msisdn_colon">Receiver MSISDN :</string>
+    <string name="beneficiary_msisdn_colon">Beneficiary MSISDN :</string>
     <string name="sender_mssidn_colon">Sender MSISDN :</string>
+    <string name="agent_mssidn_colon">Agent MSISDN :</string>
     <string name="transfer_of_mode_colon">Transfer of Mode :</string>
     <string name="paid_service">Paid Service</string>
     <string name="view_transaction">View transaction</string>

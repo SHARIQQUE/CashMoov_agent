@@ -104,6 +104,7 @@
                     android:fontFamily="@font/aileron_semibold"  />
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/et_sender_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -178,32 +179,22 @@
 
 
 
-                <EditText
-                    android:id="@+id/et_sender_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="#999999"
-                    android:inputType="textPersonName"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/valid_address"
-                    android:textColor="#323232"
-                    android:textSize="@dimen/_15sdp"
-                    android:fontFamily="@font/aileron_semibold" />
 
                 <TextView
                     android:id="@+id/spinner_sender_region"
                     android:text="@string/valid_select_region"
                     style="@style/SpinnerStyleNew1" />
 
+
+                    <TextView
+                        style="@style/SpinnerStyleNew1"
+                        android:id="@+id/spCity"
+                        android:text="@string/valid_select_city"
+                        />
+
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/et_sender_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -223,6 +214,25 @@
                     android:textSize="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_semibold"  />
 
+                <EditText
+                    android:id="@+id/et_sender_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="#999999"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/valid_address"
+                    android:textColor="#323232"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
                 <TextView
                     android:id="@+id/spinner_sender_idprooftype"
                     android:text="@string/valid_select_id_proof"
@@ -381,6 +391,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/spinner_sender_issuingCountry"
                     android:text="@string/valid_select_issuing_country"
                     style="@style/SpinnerStyleNew1"/>

@@ -67,9 +67,11 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
 
-        tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
-        tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
-        tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+        String nameOwner=MyApplication.getSaveString("FIRSTNAME_USERINFO", internationalremitconfirmC)+
+                MyApplication.getSaveString("LASTNAME_USERINFO", internationalremitconfirmC);
+        tvAgentCode.setText(nameOwner);
+        tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
+        tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
         tvSendCurrency.setText(InternationalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(InternationalRemittanceActivity.toCurrency);
         tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+InternationalRemittanceActivity.amount);
@@ -180,10 +182,10 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
-                        remitJson.put("walletOwnerCode",tvAgentCode.getText().toString());
+                        remitJson.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
                         remitJson.put("transactionType","SENDREMITTANCE");
-                        remitJson.put("senderCode",tvSenderCode.getText().toString());
-                        remitJson.put("receiverCode",tvBenefiCode.getText().toString());
+                        remitJson.put("senderCode",InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                        remitJson.put("receiverCode",InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
                         remitJson.put("fromCurrencyCode",InternationalRemittanceActivity.fromCurrencyCode);
                         remitJson.put("toCurrencyCode",InternationalRemittanceActivity.toCurrencyCode);
                         remitJson.put("amount",InternationalRemittanceActivity.amount);
@@ -199,6 +201,9 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                         remitJson.put("receiveCountryCode",InternationalRemittanceActivity.recCountryCode);
                         remitJson.put("remitType","International Remit");
 
+
+                    tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                    tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
 
                     callPostAPI();
                 } catch (Exception e) {
