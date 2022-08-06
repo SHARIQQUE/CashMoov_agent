@@ -1339,12 +1339,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             receiptPage_tv_stransactionType.setText(" TRANSFER FLOAT");
                             receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
                             receiptPage_tv_fee.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
-                            receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +tax_financial);
-                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver+" " +totalAmount_str);
+                            receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(tax_financial));
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(totalAmount_str));
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount_to_be_credit.setText(currencySymbol_receiver+" " +amountstr);
+                            receiptPage_tv_amount_to_be_credit.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
 
                             receiptPage_tv_sender_name.setText(agentName_from_walletOwner);
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", TransferFloats.this));

@@ -176,6 +176,21 @@
             </RelativeLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirmation_receipt"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:gravity="center_horizontal" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -403,8 +418,84 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/transactionAmount_reveiewPage"
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_tv_transactionAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
 
 
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fee_reveiewPage"
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_tv_fees_reveiewPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:gravity="left"
@@ -484,44 +575,6 @@
 
 
 
-            <LinearLayout
-                android:gravity="left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/_10sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fee_reveiewPage"
-                    android:textColor="#000"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
-                    />
-
-                <TextView
-                    android:id="@+id/rp_tv_fees_reveiewPage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:textColor="#000"
-                    />
-
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -597,44 +650,6 @@
 
 
 
-            <LinearLayout
-                android:gravity="left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/_10sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/transactionAmount_reveiewPage"
-                    android:textColor="#000"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
-                    />
-
-                <TextView
-                    android:id="@+id/rp_tv_transactionAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:textColor="#000"
-                    />
-
-
-            </LinearLayout>
 
 
             <LinearLayout

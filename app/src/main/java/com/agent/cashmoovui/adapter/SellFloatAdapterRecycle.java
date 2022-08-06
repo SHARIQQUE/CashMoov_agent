@@ -98,7 +98,7 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
                String status=arrayList_modalUserData.get(i).getSellFloat_status();
                 String MSSDN=arrayList_modalUserData.get(i).getSellFloat_desWalletOwnerNumber();
 
-                System.out.println("get fee"+fee_str);
+                System.out.println("get fee"+arrayList_modalUserData);
 
                 transationDetails ="|"+srcWalletOwnerCode+"|"+desWalletOwnerCode
                         +"|"+srcWalletOwnerName+"|"+desWalletOwnerName+"|"+currenyName

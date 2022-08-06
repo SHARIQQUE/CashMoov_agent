@@ -69,63 +69,61 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class SellFloat extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener, CallBackSellFloatRecycleViewClick {
 
-    String[] strArray={"10","25","50","100"};
+    String[] strArray = {"10", "25", "50", "100"};
 
-    String recordString="10";
-    ImageView imgBack,imgHome;
+    String recordString = "10";
+    ImageView imgBack, imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
     ImageView contact;
-    public EditText mEnterinstituteEdittext,mInstitutenameEdittext;
+    public EditText mEnterinstituteEdittext, mInstitutenameEdittext;
 
     RecyclerView recyclerView;
 
 
-    String currencyName_from_currency="";
+    String currencyName_from_currency = "";
 
     ArrayList<SellFloatModal> arrayList_sellFloat;
 
 
-    boolean  isPasswordVisible;
+    boolean isPasswordVisible;
 
-    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
+    String currencyCode_agent = "", countryCode_agent = "", currencyName_agent = "", countryName_agent;
 
-    String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",desWalletOwnerCode_from_allSellFloat="";
-
+    String currencyCode_subscriber = "", countryCode_subscriber = "", currencyName_subscriber = "", desWalletOwnerCode_from_allSellFloat = "";
 
 
     Spinner spinner_record;
-    TextView  spinner_insititue,spinner_currency,tvAmtCurr;
+    TextView spinner_insititue, spinner_currency, tvAmtCurr;
 
     View rootView;
 
     EditText etPin;
-    TextView rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
-            ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
-            receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
+    TextView rp_tv_convertionrate, exportReceipt_textview, tv_nextClick, rp_tv_agentName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+            receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,tvContinue,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_amount_paid,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage,linearLayout_record;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, tvContinue, rp_tv_excise_tax, rp_tv_amount_to_be_charge, rp_tv_amount_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
+    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout, ll_successPage, linearLayout_record;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    EditText edittext_amount,et_mpin;
-    private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
+    EditText edittext_amount, et_mpin;
+    private SpinnerDialog spinnerDialogImstitute, spinnerDialogCurrency;
 
-    String amountstr="",agentName_from_walletOwner="", businessTypeName_walletOwnerCategoryCode="",email_walletOwnerCategoryCode="";
+    String amountstr = "", agentName_from_walletOwner = "", businessTypeName_walletOwnerCategoryCode = "", email_walletOwnerCategoryCode = "";
 
-    String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderNameAgent="";
+    String walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, senderNameAgent = "";
 
-    String  select_insitute_name="",select_insitute_code="",select_insitute_currencyCode="",select_insitute_countryCode="";
+    String select_insitute_name = "", select_insitute_code = "", select_insitute_currencyCode = "", select_insitute_countryCode = "";
 
-    String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
-    Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
+    String tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
+    Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
-    String mpinStr="";
+    String mpinStr = "";
 
 
-    String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
+    String serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
 
 
     ArrayList<String> arrayList_instititueName;
@@ -133,20 +131,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     ArrayList<String> arrayList_instititue_countryCode;
 
 
-
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
 
 
-    String select_currecnyName="";
-    String select_currecnyCode="";
+    String select_currecnyName = "";
+    String select_currecnyCode = "";
 
-    String currencySymbol_sender="";
-    String currencySymbol_receiver="";
-
-
-
+    String currencySymbol_sender = "";
+    String currencySymbol_receiver = "";
 
 
     @Override
@@ -155,47 +149,45 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         applicationComponentClass = (MyApplication) getApplicationContext();
 
 
+        languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
 
-            languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
-
-            if (languageToUse.trim().length() == 0) {
-                languageToUse = "en";
-            }
-
-
-            Locale locale = new Locale(languageToUse);
-
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-
-            super.onCreate(savedInstanceState);
+        if (languageToUse.trim().length() == 0) {
+            languageToUse = "en";
+        }
 
 
-            setContentView(R.layout.sellfloat);
-            setBackMenu();
+        Locale locale = new Locale(languageToUse);
 
-            rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
+        super.onCreate(savedInstanceState);
 
 
+        setContentView(R.layout.sellfloat);
+        setBackMenu();
 
-            //     First page
+        rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
 
-            ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
 
-            tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
-            edittext_amount = (EditText) findViewById(R.id.edittext_amount);
-            contact = (ImageView) findViewById(R.id.contact);
-            contact.setOnClickListener(new View.OnClickListener() {
+        //     First page
+
+        ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
+
+        tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
+        edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+        //  contact = (ImageView) findViewById(R.id.contact);
+          /*  contact.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SellFloat.this,
                             AddContact.class);
                     startActivityForResult(intent , REQUEST_CODE);
                 }
-            });
+            });*/
 
         edittext_amount.addTextChangedListener(new TextWatcher() {
             @Override
@@ -216,83 +208,102 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 }
 
                 if (s.length() > 0) {
-                    formatInput(edittext_amount,s, s.length(), s.length());
+                    formatInput(edittext_amount, s, s.length(), s.length());
 
                 }
 
                 isFormatting = false;
 
 
+            }
+        });
 
+
+        //    Reveiw page
+
+        ll_reviewPage = (LinearLayout) findViewById(R.id.ll_reviewPage);
+
+
+        rp_tv_agentName = (TextView) findViewById(R.id.rp_tv_agentName);
+        rp_tv_mobileNumber = (TextView) findViewById(R.id.rp_tv_mobileNumber);
+        rp_tv_businessType = (TextView) findViewById(R.id.rp_tv_businessType);
+        rp_tv_email = (TextView) findViewById(R.id.rp_tv_email);
+        rp_tv_country = (TextView) findViewById(R.id.rp_tv_country);
+        rp_tv_receiverName = (TextView) findViewById(R.id.rp_tv_receiverName);
+        rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
+        rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
+        rp_tv_excise_tax = (TextView) findViewById(R.id.rp_tv_excise_tax);
+        rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
+        rp_tv_amount_paid = (TextView) findViewById(R.id.rp_tv_amount_paid);
+
+
+        et_mpin = (EditText) findViewById(R.id.et_mpin);
+        previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
+        confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
+
+        //    Receipt page
+
+        tvContinue = (TextView) (findViewById(R.id.tvContinue));
+
+        tvContinue.setOnClickListener(this);
+
+        ll_receiptPage = (LinearLayout) findViewById(R.id.ll_receiptPage);
+        main_layout = (LinearLayout) findViewById(R.id.main_layout);
+        ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
+        linearLayout_record = (LinearLayout) findViewById(R.id.linearLayout_record);
+        exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
+        rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
+        exportReceipt_textview.setOnClickListener(this);
+        rp_tv_convertionrate.setVisibility(View.GONE);
+        receiptPage_tv_transaction_receiptNo = (TextView) findViewById(R.id.receiptPage_tv_transaction_receiptNo);
+        receiptPage_tv_stransactionType = (TextView) findViewById(R.id.receiptPage_tv_stransactionType);
+        receiptPage_tv_dateOfTransaction = (TextView) findViewById(R.id.receiptPage_tv_dateOfTransaction);
+        receiptPage_tv_transactionAmount = (TextView) findViewById(R.id.receiptPage_tv_transactionAmount);
+        receiptPage_tv_amount_to_be_credit = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_credit);
+        receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
+        receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
+        receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
+        receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
+        receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
+        receiptPage_tv_receiver_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_receiver_phoneNo);
+        close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
+        qrCode_imageButton = (ImageButton) findViewById(R.id.qrCode_imageButton);
+
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        qrCode_imageButton.setOnClickListener(this);
+        tv_nextClick.setOnClickListener(this);
+        previous_reviewClick_textview.setOnClickListener(this);
+        confirm_reviewClick_textview.setOnClickListener(this);
+        close_receiptPage_textview.setOnClickListener(this);
+
+        walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", SellFloat.this);
+
+
+        mEnterinstituteEdittext = findViewById(R.id.enterinstituteEdittext);
+        mInstitutenameEdittext = findViewById(R.id.institutenameEdittext);
+         mEnterinstituteEdittext.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (mEnterinstituteEdittext.getRight() - mEnterinstituteEdittext.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = mEnterinstituteEdittext.getSelectionEnd();
+                        Intent intent = new Intent(SellFloat.this,
+                                AddContact.class);
+                        startActivityForResult(intent, REQUEST_CODE);
+
+                    }
+                }
+                return false;
             }
         });
 
 
 
-        //    Reveiw page
-
-            ll_reviewPage = (LinearLayout) findViewById(R.id.ll_reviewPage);
 
 
-            rp_tv_agentName = (TextView) findViewById(R.id.rp_tv_agentName);
-            rp_tv_mobileNumber = (TextView) findViewById(R.id.rp_tv_mobileNumber);
-            rp_tv_businessType = (TextView) findViewById(R.id.rp_tv_businessType);
-            rp_tv_email = (TextView) findViewById(R.id.rp_tv_email);
-            rp_tv_country = (TextView) findViewById(R.id.rp_tv_country);
-            rp_tv_receiverName = (TextView) findViewById(R.id.rp_tv_receiverName);
-            rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
-            rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
-            rp_tv_excise_tax = (TextView) findViewById(R.id.rp_tv_excise_tax);
-            rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
-            rp_tv_amount_paid = (TextView) findViewById(R.id.rp_tv_amount_paid);
-
-
-            et_mpin = (EditText) findViewById(R.id.et_mpin);
-            previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
-            confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
-
-            //    Receipt page
-
-            tvContinue = (TextView)(findViewById(R.id.tvContinue));
-
-            tvContinue.setOnClickListener(this);
-
-            ll_receiptPage = (LinearLayout) findViewById(R.id.ll_receiptPage);
-            main_layout = (LinearLayout) findViewById(R.id.main_layout);
-            ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
-            linearLayout_record = (LinearLayout) findViewById(R.id.linearLayout_record);
-            exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
-            rp_tv_convertionrate = (TextView) findViewById(R.id.rp_tv_convertionrate);
-            exportReceipt_textview.setOnClickListener(this);
-        rp_tv_convertionrate.setVisibility(View.GONE);
-            receiptPage_tv_transaction_receiptNo = (TextView) findViewById(R.id.receiptPage_tv_transaction_receiptNo);
-            receiptPage_tv_stransactionType = (TextView) findViewById(R.id.receiptPage_tv_stransactionType);
-            receiptPage_tv_dateOfTransaction = (TextView) findViewById(R.id.receiptPage_tv_dateOfTransaction);
-            receiptPage_tv_transactionAmount = (TextView) findViewById(R.id.receiptPage_tv_transactionAmount);
-            receiptPage_tv_amount_to_be_credit = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_credit);
-            receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
-            receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
-            receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
-            receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
-            receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
-            receiptPage_tv_receiver_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_receiver_phoneNo);
-            close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
-            qrCode_imageButton = (ImageButton) findViewById(R.id.qrCode_imageButton);
-
-
-            recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-
-            qrCode_imageButton.setOnClickListener(this);
-            tv_nextClick.setOnClickListener(this);
-            previous_reviewClick_textview.setOnClickListener(this);
-            confirm_reviewClick_textview.setOnClickListener(this);
-            close_receiptPage_textview.setOnClickListener(this);
-
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", SellFloat.this);
-
-
-        mEnterinstituteEdittext=  findViewById(R.id.enterinstituteEdittext);
-        mInstitutenameEdittext=  findViewById(R.id.institutenameEdittext);
         mEnterinstituteEdittext.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -314,6 +325,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             String institutenamenew = institutename.replaceAll("[(){}]","");
 
                             mInstitutenameEdittext.setText(institutenamenew);
+                            MyApplication.hideKeyboard(SellFloat.this);
                             setSelction(i);
 
 

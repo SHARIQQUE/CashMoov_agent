@@ -1287,7 +1287,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + fees_amount);
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + MyApplication.addDecimal(fees_amount));
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
@@ -1488,7 +1488,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             jsonObject.put("transTypeCode","100001");
            // jsonObject.put("transTypeCode","101813");
-            jsonObject.put("subscriberWalletOwnerCode",USERCODE);
+            jsonObject.put("subscriberWalletOwnerCode",walletOwnerCode_subs);
 
 
             API.POST_GET_OTP("ewallet/api/v1/otp",jsonObject,new Api_Responce_Handler() {

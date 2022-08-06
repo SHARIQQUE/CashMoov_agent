@@ -11,6 +11,7 @@
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/sellfloat.xml" value="0.16621376811594202" />
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/toolbar.xml" value="0.165625" />
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/transaction_history_agentpage.xml" value="0.165625" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.152" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/drawable/spinner_background.xml" value="0.152" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/acticity_subscriber_signature.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_about.xml" value="0.20416666666666666" />
@@ -126,6 +127,7 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_product.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_select.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/local_ramittance.xml" value="0.20416666666666666" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_with_pin.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/remitance_receive.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/search_transaction_agent.xml" value="0.20416666666666666" />
