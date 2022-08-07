@@ -34,6 +34,7 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
+import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
@@ -63,8 +64,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String walletOwnerCode="";
 
     EditText etPin;
-    LinearLayout linear_layout_businessType;
-    TextView tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    LinearLayout taxvalueLinear,linear_layout_businessType;
+    TextView receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
@@ -78,12 +79,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     String mobileNoStr="",amountstr="";
 
-    String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderNameAgent="";
+    String walletOwnerCode_mssis_agent="",walletOwnerCode_subs, senderlastNameAgent,senderNameAgent="";
 
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
     String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",countryName_subscriber;
 
-    String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
+    String tax_financialtypename,tax_financial="",fees_amount,receivermobileNumberStr,totalAmount_str,receivernameStr="",receiverlastnameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
     String mpinStr="";
@@ -131,7 +132,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
             linear_layout_businessType = (LinearLayout) findViewById(R.id.linear_layout_businessType);
-
+            taxvalueLinear=findViewById(R.id.taxvalueLinear);
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
@@ -142,7 +143,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
-
+            taxvalueText=findViewById(R.id.taxvalueText);
 
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -216,7 +217,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
-
+            receiptPage_tv_financialtaxvaluecashin=findViewById(R.id.receiptPage_tv_financialtaxvaluecashin);
             et_mpin = (EditText) findViewById(R.id.et_mpin);
 
             et_mpin.addTextChangedListener(new TextWatcher() {
@@ -534,12 +535,16 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                             countryCode_subscriber = jsonObject2.getString("registerCountryCode");
                             agentCode_subscriber = jsonObject2.getString("code");
 
-                            rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
+                           // rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME",CashIn.this));
                             rp_tv_email.setText(jsonObject2.getString("email"));
                             rp_tv_country.setText(countryName_agent);
 
                             receivernameStr=jsonObject2.getString("ownerName");
-                            rp_tv_receiverName.setText(receivernameStr);
+                            receiverlastnameStr=jsonObject2.getString("lastName");
+                            receivermobileNumberStr=jsonObject2.getString("mobileNumber");
+
+                            rp_tv_receiverName.setText(receivernameStr +" " + receiverlastnameStr);
+                            rp_tv_mobileNumber.setText(receivermobileNumberStr);
                         }
 
                         api_currency_sender();
@@ -808,15 +813,17 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         if(walletOwnerUser.has("issuingCountryCode")){
                             countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                         }else{
-                            countryCode_agent = "";
+                            countryCode_agent=MyApplication.getSaveString("COUNTRYCODE_AGENT", CashIn.this);
                         }
                         if(walletOwnerUser.has("issuingCountryName")){
                             countryName_agent = walletOwnerUser.getString("issuingCountryName");
                         }else{
-                            countryName_agent = "";
+                            countryName_agent=MyApplication.getSaveString("COUNTRYNAME_AGENT", CashIn.this);
+
                         }
                         if(walletOwnerUser.has("firstName")){
                             senderNameAgent = walletOwnerUser.getString("firstName");
+
                         }else{
                             senderNameAgent = "";
                         }
@@ -1003,24 +1010,24 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 receiptPage_tv_stransactionType.setText("CASH-IN");
                                 receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+MyApplication.addDecimal(amountstr));
                                 receiptPage_tv_fee.setText(currencySymbolsender+" "+df.format(feeDouble));
-                                receiptPage_tv_financialtax.setText(currencySymbolsender+" "+tax_financial);
+                                receiptPage_tv_financialtax.setText(currencySymbolsender+" "+MyApplication.addDecimal(tax_financial));
 
 
                                 receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
 
-                                receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
+                                receiptPage_tv_dateOfTransaction.setText((jsonObject.getString("responseTime")));
 
                                 System.out.println("get date"+jsonObject.getString("responseTime"));
 
-                                receiptPage_tv_amount_to_be_credit.setText(currencySymbolreceiver+" "+amountstr);
+                                receiptPage_tv_amount_to_be_credit.setText(currencySymbolreceiver+" "+MyApplication.addDecimal(amountstr));
 
-                                receiptPage_tv_sender_name.setText(senderNameAgent);
+                                receiptPage_tv_sender_name.setText(senderNameAgent+ " "+receiverlastnameStr);
                                 receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashIn.this));
 
                                 receiptPage_tv_sender_name.setText(senderNameAgent);
                                 receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashIn.this));
 
-                                receiptPage_tv_receiver_name.setText(receivernameStr);
+                                receiptPage_tv_receiver_name.setText(receivernameStr+" "+receiverlastnameStr);
                                 receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
 
                                 ll_page_1.setVisibility(View.GONE);
@@ -1086,7 +1093,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
         http://202.131.144.130:8081/ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100011&status=Y
         API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent + "&receiveCurrencyCode="+currencyCode_subscriber+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+ // countryCode_subscriber Blanck Acording to Web
-                "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+                        countryCode_subscriber+ "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
                 serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
                         walletOwnerCode_subs + "&payAgentCode="+agentCode_subscriber,
 
@@ -1112,6 +1119,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         fees_amount = exchangeRate.getString("fee");
                          feeDouble= Double.parseDouble(fees_amount);
+                        tax_financial = exchangeRate.getString("value");
 
                         DecimalFormat df = new DecimalFormat("0.00");
 
@@ -1125,19 +1133,27 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                             JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
+                                String tax_financialnew = jsonObject2.getString("value");
+                                tax_financialtypename = jsonObject2.getString("taxTypeName");
+
+                                taxvalueLinear.setVisibility(View.VISIBLE);
+                                taxvalueText.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+
+                                receiptPage_tv_financialtaxvaluecashin.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
                             }
                         }
                         else {
                             tax_financial = exchangeRate.getString("value");
+
                         }
 
+                        rp_tv_financialTax.setText(currencySymbol_sender+" "  +MyApplication.addDecimal(tax_financial));
 
 
 
-                        rp_tv_financialTax.setText(currencySymbol_sender+" "  +tax_financial);
+                    //    rp_tv_financialTax.setText(currencySymbol_sender+" "  +MyApplication.addDecimal(tax_financial));
 
-                        tax_financial_double = Double.parseDouble(tax_financial);
+//                        tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble((fees_amount));
                         amountstr_double = Double.parseDouble(amountstr);
 

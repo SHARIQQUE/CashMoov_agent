@@ -74,12 +74,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     String currencySymbol_receiver="";
 
 
-    TextView tvAmtCurr,tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView taxvalueText,tvAmtCurr,tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName,receiptPage_tv_financialtaxvalue, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_paid, receiptPage_tv_fee, receiptPage_tv_financialtax,receipt_tv_amount_to_be_charge,
             receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
+    LinearLayout taxvalueLinear,ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
 
     String selectClickType="",desWalletOwnerCode_from_currency="";
 
@@ -95,7 +95,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
     String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",agentCode_subscriber;
 
-    String tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
+    String tax_financial = "",tax_financialtypename, fees_amount, totalAmount_str, receivermobileNumberStr,receiverlastnameStr,receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "";
@@ -139,12 +139,13 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
-
+            taxvalueLinear=findViewById(R.id.taxvalueLinear);
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
+            taxvalueText=findViewById(R.id.taxvalueText);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
 
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
@@ -213,6 +214,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             rp_tv_email = (TextView) findViewById(R.id.rp_tv_email);
             rp_tv_country = (TextView) findViewById(R.id.rp_tv_country);
             rp_tv_country.setVisibility(View.GONE);
+            receiptPage_tv_financialtaxvalue=findViewById(R.id.receiptPage_tv_financialtaxvalue);
             rp_tv_receiverName = (TextView) findViewById(R.id.rp_tv_receiverName);
             rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
@@ -427,7 +429,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     if (resultCode.equalsIgnoreCase("0")) {
 
                         JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
-                        rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
+                       // rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
 
                     } else {
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -572,8 +574,11 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                             receivernameStr = jsonObject2.getString("ownerName");
-                            rp_tv_receiverName.setText(receivernameStr);
+                            receiverlastnameStr=jsonObject2.getString("lastName");
+                            receivermobileNumberStr=jsonObject2.getString("mobileNumber");
 
+                            rp_tv_receiverName.setText(receivernameStr +" " + receiverlastnameStr);
+                            rp_tv_mobileNumber.setText(receivermobileNumberStr);
 
 //                                JSONObject walletTransfer = jsonObject.getJSONObject("walletTransfer");
 //                                JSONObject srcWalletOwner = walletTransfer.getJSONObject("srcWalletOwner");
@@ -754,6 +759,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             public void success(JSONObject jsonObject) {
 
                 MyApplication.hideLoader();
+
+                System.out.println("get jsonvalue"+jsonObject.toString());
 
                 try {
 
@@ -971,13 +978,13 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_stransactionType.setText("CASH-OUT");
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(amountstr));
                             receiptPage_tv_fee.setText(currencySymbol_sender +" " + MyApplication.addDecimal(fees_amount));
-                            receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ tax_financial);
+                            receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(tax_financial));
                             receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+MyApplication.addDecimal(totalAmount_str));
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
 
 
-                            receiptPage_tv_amount_to_be_paid.setText(currencySymbol_receiver +" " + MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_amount_to_be_paid.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(amountstr));
 
 
 
@@ -985,7 +992,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
                             receiptPage_tv_sender_name.setText(senderNameAgent);
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
-                            receiptPage_tv_receiver_name.setText(receivernameStr);
+                            receiptPage_tv_receiver_name.setText(receivernameStr+" "+receiverlastnameStr);
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
 
 
@@ -1287,6 +1294,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
 
                         fees_amount = exchangeRate.getString("fee");
+                        tax_financial = exchangeRate.getString("value");
+
                         rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + MyApplication.addDecimal(fees_amount));
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
@@ -1296,7 +1305,13 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
+                                String tax_financialnew = jsonObject2.getString("value");
+                                tax_financialtypename = jsonObject2.getString("taxTypeName");
+
+                                taxvalueLinear.setVisibility(View.VISIBLE);
+                                taxvalueText.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+
+                                receiptPage_tv_financialtaxvalue.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
                             }
                         }
                         else {
@@ -1305,8 +1320,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
 
-
-                        rp_tv_financialTax.setText(currencySymbol_sender+" "  + tax_financial);
+                        rp_tv_financialTax.setText(currencySymbol_sender+" "  +MyApplication.addDecimal(tax_financial));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble(fees_amount);
@@ -1319,7 +1333,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         amountstr = String.valueOf(amountstr_double);
                         rp_tv_transactionAmount.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
-                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "+ MyApplication.addDecimal(amountstr));
+                        rp_tv_amount_to_be_paid.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(amountstr));
 
                         allByCriteria_walletOwnerCode_api();
 

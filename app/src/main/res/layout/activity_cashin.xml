@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
-                android:text="@string/you_make_withdrawal"
+                android:text="@string/cash_In"
                 android:textColor="#29304d"
                 android:textSize="@dimen/_15sdp" />
 
@@ -85,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="#29304d"
+                android:visibility="gone"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/receipt_details" />
@@ -305,46 +306,6 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:gravity="left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone"
-
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/_5sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mobileNo_reveiewPage"
-                    android:textColor="#000"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
-                    />
-
-                <TextView
-                    android:id="@+id/rp_tv_mobileNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:textColor="#000"
-                    />
-
-
-            </LinearLayout>
 
             <LinearLayout
 
@@ -417,14 +378,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -460,14 +421,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -516,6 +477,46 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible"
+
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobileNo_reveiewPage"
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_tv_mobileNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:gravity="left"
@@ -603,7 +604,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -630,7 +631,50 @@
                     android:id="@+id/rp_tv_financialTax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/taxvalueLinear"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible"
+
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:id="@+id/taxvalueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_financialTaxvalue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -881,7 +925,7 @@
                 android:paddingBottom="@dimen/_15sdp"
                 android:text="@string/continu"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="@dimen/_15sdp" />
 
 
 
@@ -939,14 +983,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_transaction_receiptNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -979,14 +1023,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_stransactionType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1019,14 +1063,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_dateOfTransaction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1060,14 +1104,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_transactionAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1102,14 +1146,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_amount_to_be_credit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1142,14 +1186,14 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1163,7 +1207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -1181,16 +1225,17 @@
                     android:layout_height="wrap_content"
                     android:text="@string/financialTax_receiptPage"
                     android:textColor="#000"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
                 <TextView
                     android:id="@+id/receiptPage_tv_financialtax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
@@ -1199,6 +1244,46 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/receiptPage_tv_financialtaxvaluecashin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+
+                    android:layout_gravity="center_vertical"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1251,7 +1336,7 @@
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     />
 
 
@@ -1260,7 +1345,7 @@
                     android:id="@+id/receiptPage_tv_sender_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
