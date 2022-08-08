@@ -443,6 +443,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 transactionList.clear();
                 String taxName;
+             //   String taxName;
 
                 if(jsonObject != null && jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                     JSONArray dataArray = jsonObject.optJSONArray("transactionsList");

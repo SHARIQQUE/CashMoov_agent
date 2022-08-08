@@ -114,7 +114,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_fee.setText("Fee : "+fromAmount);
-            txt_postbalance.setText("Post Balance"+srcpostbalance);
+           // txt_postbalance.setText("Post Balance" +0.00);
             txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);
