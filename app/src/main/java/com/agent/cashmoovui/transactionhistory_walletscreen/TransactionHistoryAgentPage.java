@@ -652,6 +652,12 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject data=jsonArray.optJSONObject(i);
                 if(i==0){
+                    String alloctedValue="0.00";
+                    if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                    }else{
+                        alloctedValue=data.optString("allocatedValue");
+                    }
                     arrayList.add(data.optString("currencyName"));
                     MyApplication.currencyModelArrayList.add(new CurrencyModel(
                             data.optString("code"),
@@ -664,7 +670,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                             "0.0",
                             "0.0",
                             data.optString("walletOwnerName"),
-                            data.optString("allocatedValue")
+                            alloctedValue
                     ));
                 }else{
                     if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
@@ -676,6 +682,12 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     "",
@@ -688,7 +700,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
                             ));
                         }
 
@@ -702,6 +714,12 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     "",
@@ -715,7 +733,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     data.optString("walletOwnerName")
                                     ,
-                                    data.optString("allocatedValue")
+                                    alloctedValue
                             ));
                         }
                     }
@@ -725,9 +743,16 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
                                     MyApplication.currencyModelArrayList.get(j).setMainWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCode(data.optString("code"));
+                                    MyApplication.currencyModelArrayList.get(j).setAllocatedValue(data.optString("allocatedValue"));
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     data.optString("code"),
@@ -740,7 +765,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
                             ));
                         }
                     }

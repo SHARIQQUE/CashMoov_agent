@@ -47,7 +47,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     ImageView imgBack,imgHome;
     EditText edittext_amount,edittext_validity;
-    TextView  spinner_currency,tvAmtCurr,send_textview,tvContinue;
+    TextView  spinner_currency,tvAmtCurr,send_textview,tvContinue,head_overdraft;
     String profileTypeCode_fromServer="",profileTypeName_fromServer="",walletOwnerName_fromServer="",entityCode_from_creditLimitAllocation="";
 
     RecyclerView recyclerView;
@@ -59,7 +59,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
-    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",validityDaysStr;
+    String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",validityDaysStr,maximumLimit;
     Spinner spinner_record;
     SpinnerDialog spinnerDialogCurrency;
 
@@ -68,6 +68,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
+    ArrayList<String> arrayList_currecnyCodeNew = new ArrayList<String>();
 
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
@@ -107,7 +108,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         ll_successPage =(LinearLayout)findViewById(R.id.ll_successPage);
         linearLayout_record =(LinearLayout)findViewById(R.id.linearLayout_record);
         ll_firstPage =(LinearLayout)findViewById(R.id.ll_firstPage);
-
+         head_overdraft=findViewById(R.id.head_overdraft);
         tvContinue = (TextView) findViewById(R.id.tvContinue);
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -200,6 +201,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         MyApplication.showloader(OverdraftLimit.this, getString(R.string.please_wait));
 
 
+                        if(Double.parseDouble(amountstr)>Double.parseDouble(maximumLimit)){
+                            MyApplication.showToast(OverdraftLimit.this,"Please enter the correct amount");
+                            return;
+                        }
 
                         api_creditLimitAllocation();
 
@@ -260,7 +265,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                         arrayList_currecnyName.clear();
                         arrayList_currencySymbol.clear();
-
+                        arrayList_currecnyCodeNew.clear();
                        // arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
 
 
@@ -281,7 +286,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                             arrayList_currecnyName.add(currencyName_from_currency);
                             arrayList_currencySymbol.add(currencySymbol_from_currency);
-
+                            arrayList_currecnyCodeNew.add(currencyCode_agent);
                         }
 
 
@@ -296,6 +301,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                             @Override
                             public void onClick(String item, int position) {
                                 //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                selectCurrecnyCode = arrayList_currecnyCodeNew.get(position);
                                 setSelction(position);
                                 // spBusinessType.setTag(position);
 
@@ -363,8 +369,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //
 //        else
 //        {
-            amountstr="90000";
-            validityDaysStr="5";
+           /* amountstr="90000";
+            validityDaysStr="5";*/
 
             //   edittext_amount.setEnabled(false);
             edittext_validity.setEnabled(false);
@@ -374,7 +380,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
             tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
             selectCurrecnyName = arrayList_currecnyName.get(pos);
-            selectCurrecnyCode = arrayList_currecnyCode.get(pos);
+
             spinner_currency.setText(selectCurrecnyName);
 
         }
@@ -519,6 +525,68 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                 }).create().show();
     }
 
+    private void api_creditLimitAllocation_getValidity() {
+
+        String walletOwnerCode_from_mssid =  MyApplication.getSaveString("walletOwnerCode",OverdraftLimit.this);
+
+
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitConfig/all?walletOwnerCategoryCode="+walletOwnerCategoryCode
+                +"&profileTypeCode="+profileTypeCode, languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1937292\",\"requestTime\":\"Wed Nov 03 11:27:43 IST 2021\",\"responseTime\":\"Wed Nov 03 11:27:43 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"pageable\":{\"totalRecords\":1},\"creditLimitAllocationList\":[{\"id\":313,\"code\":\"100330\",\"walletOwnerCode\":\"1000002785\",\"walletOwnerName\":\"sharique agent\",\"currencyCode\":\"100062\",\"currencyName\":\"GNF\",\"currencySymbol\":\"Fr\",\"amount\":1000.0,\"validityDays\":90,\"status\":\"Approved\",\"creationDate\":\"2021-11-01T13:54:19.122+0530\",\"modificationDate\":\"2021-11-01T13:54:19.122+0530\"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONArray jsonArray=jsonObject.optJSONArray("creditLimitConfigList");
+                        validityDaysStr=jsonArray.optJSONObject(0).optString("validityDays");
+                        maximumLimit=jsonArray.optJSONObject(0).optString("maximumLimit");
+
+
+                        head_overdraft.setText("Maximum Overdraft Limit "+MyApplication.addDecimal(maximumLimit)+" for "+validityDaysStr+" days");
+
+
+
+
+                    } else {
+                        Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
+
+
+                    }
+                    api_creditLimitAllocation_all_walletOwnerCode();
+
+                } catch (Exception e) {
+                    Toast.makeText(OverdraftLimit.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(OverdraftLimit.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
     private void api_creditLimitAllocation_all_walletOwnerCode() {
 
         String walletOwnerCode_from_mssid =  MyApplication.getSaveString("walletOwnerCode",OverdraftLimit.this);
@@ -640,7 +708,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             jsonObject.put("walletOwnerCode", walletOwnerCode_from_mssid);   // Hard Code acording to Praveen
             jsonObject.put("currencyCode", selectCurrecnyCode);   // Hard Code acording to Praveen
             jsonObject.put("amount", amountstr);   // Hard Code acording to Praveen
-            jsonObject.put("validityDays", 5);   // Hard Code acording to Praveen
+            jsonObject.put("validityDays", validityDaysStr);   // Hard Code acording to Praveen
 
         }
         catch (Exception e)
@@ -648,6 +716,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
         }
 
+        System.out.println("Json Request Overdraft"+jsonObject.toString());
         String requestNo= AESEncryption.getAESEncryption(jsonObject.toString());
         JSONObject jsonObjectA=null;
         try{
@@ -885,7 +954,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
     }
-
+    String walletOwnerCategoryCode="",profileTypeCode="";
     private void api_wallet_walletOwner(String userCode_from_walletCode) {
 
 
@@ -910,6 +979,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                     JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+                     walletOwnerCategoryCode=jsonObject_walletOwner.optString("walletOwnerCategoryCode");
+                     profileTypeCode=jsonObject_walletOwner.optString("profileTypeCode");
 
                     if (resultCode.equalsIgnoreCase("0")) {
 
@@ -932,7 +1003,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         }
 
 
-                        api_creditLimitAllocation_all_walletOwnerCode();
+                        api_creditLimitAllocation_getValidity();
 
 
 

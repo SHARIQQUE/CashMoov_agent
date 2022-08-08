@@ -62,7 +62,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
             et_destination_idproof_expiry;
     public static EditText etComment;
     private static EditText et_destination_dob;
-    public static TextView mDobText;
+    public static TextView mDobText,spCity;
     private ImageView mCalenderIcon_Image;
 
     private ArrayList<String> benefiGenderList = new ArrayList<>();
@@ -76,7 +76,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
     private ArrayList<CountryRemittanceInfoModel.RemitCountry> issuingCountryModelList = new ArrayList<>();
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogBenefiGender,spinnerDialogBenefiRegion,
-            spinnerDialogIssuingCountry,spinnerDialogBenefiIdProofType;
+            spinnerDialogIssuingCountry,spinnerDialogBenefiIdProofType,spinnerDialogCity;
     
 
     @Override
@@ -140,6 +140,17 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         etComment = findViewById(R.id.et_fp_reason_sending);
         tvNext = findViewById(R.id.tvNext);
         mDobText=findViewById(R.id.dobText);
+
+        spCity = findViewById(R.id.spCity);
+        spCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCity!=null){
+                    spinnerDialogCity.showSpinerDialog();
+                }
+
+            }
+        });
 
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
         // etDob.setInputType(InputType.TYPE_NULL);
@@ -240,7 +251,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                     edittext_email_destination.setText("");
                     et_destination_dob.setText("");
                     spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                    et_destination_city.setText("");
+                    spCity.setText("");
                     et_destination_address.setText("");
                     spinner_destination_region.setText(getString(R.string.val_select_region));
                     spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -284,7 +295,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             edittext_email_destination.setText("");
                             et_destination_dob.setText("");
                             spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                            et_destination_city.setText("");
+                            spCity.setText("");
                             et_destination_address.setText("");
                             spinner_destination_region.setText(getString(R.string.val_select_region));
                             spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -300,7 +311,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                         edittext_email_destination.setText("");
                         et_destination_dob.setText("");
                         spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                        et_destination_city.setText("");
+                        spCity.setText("");
                         et_destination_address.setText("");
                         spinner_destination_region.setText(getString(R.string.val_select_region));
                         spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -378,22 +389,22 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 //            MyApplication.showErrorToast(internationalremitsenderkycC,getString(R.string.val_email));
 //            return;
 //        }
-                if (!edittext_email_destination.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(edittext_email_destination.getText().toString()))) {
+              /*  if (!edittext_email_destination.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(edittext_email_destination.getText().toString()))) {
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_email_valid));
                     return;
                 }
                 if (spinner_destination_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_select_gender));
                     return;
-                }
+                }*/
                 if (et_destination_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_dob));
                     return;
                 }
-                if (spinner_destination_country.getText().toString().equals(getString(R.string.valid_select_country))) {
+               /* if (spinner_destination_country.getText().toString().equals(getString(R.string.valid_select_country))) {
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_select_country));
                     return;
-                }
+                }*/
                 if (LocalRemittanceSenderKYC.et_sender_phoneNumber.getText().toString().trim().equalsIgnoreCase(et_destination_mobileNumber.getText().toString().trim())) {
                     MyApplication.showToast(localremitbenefikycC,getString(R.string.both_msisdn_not_same));
                     return;
@@ -512,7 +523,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                                             spinner_destination_region.setTag(position);
                                             //  spCity.setText(getString(R.string.valid_select_city));
 
-                                            //callApiCity(regionModelList.get(position).getCode());
+                                            callApiCity(regionModelList.get(position).getCode());
                                         }
                                     });
 
@@ -793,7 +804,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         edittext_email_destination.setText("");
         et_destination_dob.setText("");
         spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-        et_destination_city.setText("");
+        spCity.setText("");
         et_destination_address.setText("");
         spinner_destination_region.setText(getString(R.string.val_select_region));
         spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -831,7 +842,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         et_destination_dob.setText(data.getDateOfBirth());
         et_destination_address.setText(data.getAddress());
         spinner_destination_region.setText(data.getRegionName());
-        et_destination_city.setText(data.getCity());
+        spCity.setText(data.getCity());
         spinner_destination_idprooftype.setText(data.getIdProofTypeName());
         et_destination_idproofNumber.setText(data.getIdProofNumber());
         et_destination_idproof_expiry.setText(data.getIdExpiryDate());
@@ -870,7 +881,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                 benefiJson.put("regionCode",regioncode);
             }
 
-            benefiJson.put("city",et_destination_city.getText().toString().trim());
+            benefiJson.put("city",spCity.getText().toString().trim());
             benefiJson.put("address",et_destination_address.getText().toString().trim());
            /* if(spinner_destination_issuingCountry.getTag()!=null){
                 benefiJson.put("issuingCountryCode",issuingCountryModelList.get((Integer) spinner_destination_issuingCountry.getTag()).getCountryCode());
@@ -968,6 +979,74 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         }
     }
 
+
+    private void callApiCity(String code) {
+        try {
+//http://202.131.144.130:8081/ewallet/public/city/region/100068
+            API.GET_PUBLIC("ewallet/public/city/region/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                cityList.clear();
+                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        cityModelList.add(new CityInfoModel.City(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optString("name"),
+                                                data.optString("regionCode"),
+                                                data.optString("regionName"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        cityList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(localremitbenefikycC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity.setCancellable(true); // for cancellable
+                                    spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCity.setText(item);
+                                            spCity.setTag(position);
+                                        }
+                                    });
+
+                                    //  callApiGenderType();
+
+                                } else {
+                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription", " "));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
 }
 

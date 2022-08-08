@@ -589,6 +589,9 @@
     <string name="commision_Transfer">Commision Transfer</string>
     <string name="currency_Name">Currency name</string>
     <string name="main_Wallet">Main Wallet / Reserve Amount </string>
+
+    <string name="main_Wallet_single">Main Wallet :</string>
+    <string name="reserve_Wallet">Reserve Amount :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">State</string>
     <string name="validaty_days">Validity days* </string>

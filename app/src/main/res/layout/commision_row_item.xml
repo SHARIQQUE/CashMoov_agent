@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_weight=".5"
                 android:layout_height="wrap_content"
-                android:text="@string/main_Wallet"
+                android:text="@string/main_Wallet_single"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"

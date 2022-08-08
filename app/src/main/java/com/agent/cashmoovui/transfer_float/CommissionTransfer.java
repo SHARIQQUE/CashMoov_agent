@@ -55,6 +55,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -70,6 +71,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     RecyclerView recyclerView;
 
 
+    TextView tvAmtCurr;
 
     String select_currencySymbol="";
     String select_currencyCode="";
@@ -131,6 +133,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
+    TextView main_wallet;
 
 
 
@@ -173,10 +176,11 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
-
+            tvAmtCurr = (TextView) findViewById(R.id.tvAmtCurr);
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
+            main_wallet= (TextView) findViewById(R.id.main_wallet);
             spinner_currency.setOnItemSelectedListener(this);
 
             //    Reveiw page
@@ -524,7 +528,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 if(i==0){
                     arrayList.add(data.optString("currencyName"));
 
+                    String alloctedValue="0.00";
+                    if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
 
+                    }else{
+                        alloctedValue=data.optString("allocatedValue");
+                    }
                     MyApplication.currencyModelArrayList.add(new CurrencyModel(
                             data.optString("code"),
                             data.optString("code"),
@@ -536,7 +545,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                             "0.0",
                             "0.0",
                             data.optString("walletOwnerName"),
-                            data.optString("allocatedValue")
+                           alloctedValue
                     ));
 
 
@@ -551,6 +560,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     "",
@@ -563,7 +578,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
                             ));
                         }
 
@@ -577,6 +592,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     "",
@@ -589,7 +610,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
                             ));
                         }
                     }
@@ -601,10 +622,17 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                                     MyApplication.currencyModelArrayList.get(j).setMainWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCode(data.optString("code"));
+                                    MyApplication.currencyModelArrayList.get(j).setAllocatedValue(data.optString("allocatedValue"));
                                 }
                             }
                         }else{
                             arrayList.add(data.optString("currencyName"));
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     data.optString("code"),
                                     "",
@@ -616,7 +644,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
+
                             ));
                         }
                     }
@@ -731,7 +760,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
     boolean validation_mobile_Details() {
 
-        amountstr = edittext_amount.getText().toString().trim();
+        amountstr = edittext_amount.getText().toString().trim().replace(",","");
         mpinStr = et_mpin.getText().toString();
 
         if (amountstr.isEmpty()) {
@@ -1206,6 +1235,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 }).create().show();
     }
     int SpinnerPos;
+    DecimalFormat df = new DecimalFormat("0.00");
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
@@ -1219,7 +1249,13 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                      walletCode = MyApplication.currencyModelArrayList_temp.get(i).code;
                      select_currencySymbol = MyApplication.currencyModelArrayList_temp.get(i).currencySymbol;
                      select_currencyCode = MyApplication.currencyModelArrayList_temp.get(i).currencyCode;
-                     mainbalance_textview.setText(MyApplication.currencyModelArrayList_temp.get(i).mainWalletValue);
+                    Double main=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).mainWalletValue);
+                    Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).allocatedValue);
+                   /* mainbalance_textview.setText(df.format(main)+" / "+
+                            df.format(allocate));*/
+                    main_wallet.setText(getString(R.string.main_Wallet_single)+" "+select_currencySymbol+" "+df.format(main));
+                    mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+df.format(allocate));
+                    tvAmtCurr.setText(select_currencySymbol);
                      available_balance.setText("Available balance in Commision Wallet ("+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
 
 

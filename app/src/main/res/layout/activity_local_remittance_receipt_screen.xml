@@ -691,6 +691,28 @@
 
 
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <TextView
+                    android:id="@+id/agentName"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:text="@string/agentName"
+                    android:textColor="@color/blue_colour_review"
+                    android:textSize="@dimen/_15sdp" />
+
+
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

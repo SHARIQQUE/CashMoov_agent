@@ -77,14 +77,14 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
     private ArrayList<String> idProofTypeList = new ArrayList<>();
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogSenderGender,spinnerDialogSenderRegion,
-            spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType;
+            spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType,spinnerDialogCity;
     static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
     public static final int RESULT_CODE_FAILURE = 10;
     private Intent Data;
     Uri tempUriFront,tempUriBack;
     DatePickerDialog picker;
-    public static TextView mDobText;
+    public static TextView mDobText,spCity;
     private ImageView mCalenderIcon_Image;
 
 
@@ -147,6 +147,17 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         etBack = findViewById(R.id.etBack);
         mDobText=findViewById(R.id.dobText);
 
+        spCity = findViewById(R.id.spCity);
+        spCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogCity!=null){
+                    spinnerDialogCity.showSpinerDialog();
+                }
+
+            }
+        });
+
         btnBack = findViewById(R.id.btnBack);
         tvNext = findViewById(R.id.tvNext);
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
@@ -163,7 +174,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             }
         });
 
-   
+
   spinner_sender_gender.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -241,7 +252,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                 et_sender_email.setText("");
                 et_sender_dob.setText("");
                 spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-                et_sender_city.setText("");
+                spCity.setText("");
                 et_sender_address.setText("");
                 spinner_sender_region.setText(getString(R.string.valid_select_region));
                 spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
@@ -283,7 +294,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                         et_sender_email.setText("");
                         et_sender_dob.setText("");
                         spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-                        et_sender_city.setText("");
+                        spCity.setText("");
                         et_sender_address.setText("");
                         spinner_sender_region.setText(getString(R.string.valid_select_region));
                         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
@@ -297,7 +308,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                     et_sender_email.setText("");
                     et_sender_dob.setText("");
                     spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-                    et_sender_city.setText("");
+                    spCity.setText("");
                     et_sender_address.setText("");
                     spinner_sender_region.setText(getString(R.string.valid_select_region));
                     spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
@@ -402,7 +413,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_select_region));
                     return;
                 }
-                if (et_sender_city.getText().toString().trim().isEmpty()) {
+                if (spCity.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_city));
                     return;
                 }
@@ -541,7 +552,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                                             spinner_sender_region.setTag(position);
                                             //  spCity.setText(getString(R.string.valid_select_city));
 
-                                            //callApiCity(regionModelList.get(position).getCode());
+                                            callApiCity(regionModelList.get(position).getCode());
                                         }
                                     });
 
@@ -746,7 +757,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         et_sender_email.setText("");
         et_sender_dob.setText("");
         spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-        et_sender_city.setText("");
+        spCity.setText("");
         et_sender_address.setText("");
         spinner_sender_region.setText(getString(R.string.valid_select_region));
         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
@@ -782,7 +793,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         et_sender_dob.setText(data.getDateOfBirth());
         et_sender_address.setText(data.getAddress());
         spinner_sender_region.setText(data.getRegionName());
-        et_sender_city.setText(data.getCity());
+        spCity.setText(data.getCity());
         spinner_sender_idprooftype.setText(data.getIdProofTypeName());
         et_sender_idproofNumber.setText(data.getIdProofNumber());
         et_sender_idproof_expiry.setText(data.getIdExpiryDate());
@@ -957,14 +968,14 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             senderJson.put("lastName",et_sender_lastname.getText().toString().trim());
             senderJson.put("email",et_sender_email.getText().toString().trim());
             senderJson.put("mobileNumber",et_sender_phoneNumber.getText().toString().trim());
-            if(spinner_sender_idprooftype.getTag()!=null){
+            /*if(spinner_sender_idprooftype.getTag()!=null){
                 senderJson.put("idProofTypeCode",idProofTypeModelList.get((Integer) spinner_sender_idprooftype.getTag()).getCode());
             }else{
                 senderJson.put("idProofTypeCode",idprooftypecode);
-            }
+            }*/
 
-            senderJson.put("idProofNumber",et_sender_idproofNumber.getText().toString().trim());
-            senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
+          //  senderJson.put("idProofNumber",et_sender_idproofNumber.getText().toString().trim());
+            //senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
             senderJson.put("countryCode",LocalRemittanceActivity.sendCountryCode);
             if(spinner_sender_region.getTag()!=null){
@@ -973,8 +984,8 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                 senderJson.put("regionCode",regioncode);
             }
 
-            senderJson.put("city",et_sender_city.getText().toString().trim());
-            senderJson.put("address",et_sender_address.getText().toString().trim());
+            senderJson.put("city",spCity.getText().toString().trim());
+          //  senderJson.put("address",et_sender_address.getText().toString().trim());
             senderJson.put("issuingCountryCode",LocalRemittanceActivity.sendCountryCode);
             if(spinner_sender_gender.getTag()!=null){
                 senderJson.put("gender",senderGenderModelList.get((Integer) spinner_sender_gender.getTag()).getCode());
@@ -1071,5 +1082,73 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         }
     }
 
+
+    private void callApiCity(String code) {
+        try {
+//http://202.131.144.130:8081/ewallet/public/city/region/100068
+            API.GET_PUBLIC("ewallet/public/city/region/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //   MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                cityList.clear();
+                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
+                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
+                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        cityModelList.add(new CityInfoModel.City(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("creationDate"),
+                                                data.optString("modificationDate"),
+                                                data.optString("name"),
+                                                data.optString("regionCode"),
+                                                data.optString("regionName"),
+                                                data.optString("state"),
+                                                data.optString("status")
+
+                                        ));
+
+                                        cityList.add(data.optString("name").trim());
+
+                                    }
+
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(localremitsenderkycC, cityList, "Select City", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity.setCancellable(true); // for cancellable
+                                    spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spCity.setText(item);
+                                            spCity.setTag(position);
+                                        }
+                                    });
+
+                                    //  callApiGenderType();
+
+                                } else {
+                                    MyApplication.showToast(localremitsenderkycC,jsonObject.optString("resultDescription", " "));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
 }

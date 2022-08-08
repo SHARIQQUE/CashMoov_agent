@@ -586,6 +586,9 @@
     <string name="commision_Transfer">Transfert de commission</string>
     <string name="currency_Name">Nom de la devise</string>
     <string name="main_Wallet">Portefeuille principal / Montant de réserve</string>
+
+    <string name="main_Wallet_single">Portefeuille principal :</string>
+    <string name="reserve_Wallet">Montant de réserve :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">Etat</string>
     <string name="validaty_days">Jours de validité* </string>

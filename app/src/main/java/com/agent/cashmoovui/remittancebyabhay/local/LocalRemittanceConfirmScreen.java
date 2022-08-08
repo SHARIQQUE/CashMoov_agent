@@ -18,6 +18,8 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceBenefiKYC;
+import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceSenderKYC;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -67,9 +69,18 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
 
-        tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", localremitconfirmC));
+      /*  tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", localremitconfirmC));
         tvSenderCode.setText(LocalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
         tvBenefiCode.setText(LocalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+*/
+        String nameOwner=MyApplication.getSaveString("FIRSTNAME_USERINFO", localremitconfirmC)+
+                MyApplication.getSaveString("LASTNAME_USERINFO", localremitconfirmC);
+        tvAgentCode.setText(nameOwner);
+        tvSenderCode.setText(LocalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
+        tvBenefiCode.setText(LocalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
+
+
+
         tvSendCurrency.setText(LocalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(LocalRemittanceActivity.toCurrency);
         tvTransAmount.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+LocalRemittanceActivity.amount);
@@ -180,10 +191,10 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                     btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
-                    remitJson.put("walletOwnerCode",tvAgentCode.getText().toString());
+                    remitJson.put("walletOwnerCode",MyApplication.getSaveString("walletOwnerCode", localremitconfirmC));
                     remitJson.put("transactionType","SENDREMITTANCE");
-                    remitJson.put("senderCode",tvSenderCode.getText().toString());
-                    remitJson.put("receiverCode",tvBenefiCode.getText().toString());
+                    remitJson.put("senderCode",LocalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                    remitJson.put("receiverCode",LocalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
                     remitJson.put("fromCurrencyCode",LocalRemittanceActivity.fromCurrencyCode);
                     remitJson.put("toCurrencyCode",LocalRemittanceActivity.toCurrencyCode);
                     remitJson.put("amount",LocalRemittanceActivity.amount);

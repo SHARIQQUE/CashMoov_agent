@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.overdraft.OverDraftModal;
 import com.agent.cashmoovui.transfer_float.CallBackSellFloatRecycleViewClick;
@@ -36,7 +37,7 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
 
         viewHolder.currencyName.setText(arrayList_modalUserData.get(i).getCurrencyName());
-        viewHolder.amount.setText(arrayList_modalUserData.get(i).getCurrencySymbol()+" "+arrayList_modalUserData.get(i).getAmount());
+        viewHolder.amount.setText(arrayList_modalUserData.get(i).getCurrencySymbol()+" "+ MyApplication.addDecimal(arrayList_modalUserData.get(i).getAmount()));
         viewHolder.status_textview.setText(arrayList_modalUserData.get(i).getStatus());
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");

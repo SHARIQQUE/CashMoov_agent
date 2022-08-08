@@ -220,7 +220,14 @@
         android:text="@string/select_region"
         style="@style/SpinnerStyleNew1"/>
 
-    <EditText
+                    <TextView
+                        style="@style/SpinnerStyleNew1"
+                        android:id="@+id/spCity"
+                        android:text="@string/valid_select_city"
+                        />
+
+                    <EditText
+        android:visibility="gone"
         android:id="@+id/et_destination_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

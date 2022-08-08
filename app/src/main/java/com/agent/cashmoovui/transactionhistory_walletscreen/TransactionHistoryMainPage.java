@@ -788,6 +788,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject data=jsonArray.optJSONObject(i);
                 if(i==0){
+                    String alloctedValue="0.00";
+                    if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                    }else{
+                        alloctedValue=data.optString("allocatedValue");
+                    }
                     arrayList.add(data.optString("currencyName"));
                     MyApplication.currencyModelArrayList.add(new CurrencyModel(
                             data.optString("code"),
@@ -800,7 +806,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                             "0.0",
                             "0.0",
                             data.optString("walletOwnerName"),
-                            data.optString("allocatedValue")
+                            alloctedValue
                     ));
                 }else{
                     if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
@@ -812,6 +818,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     "",
@@ -824,7 +836,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
 
                                     ));
                         }
@@ -839,6 +851,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 }
                             }
                         }else{
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             arrayList.add(data.optString("currencyName"));
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     "",
@@ -851,7 +869,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
 
                             ));
                         }
@@ -862,10 +880,18 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
                                     MyApplication.currencyModelArrayList.get(j).setMainWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCode(data.optString("code"));
+                                    MyApplication.currencyModelArrayList.get(j).setAllocatedValue(data.optString("allocatedValue"));
+
                                 }
                             }
                         }else{
                             arrayList.add(data.optString("currencyName"));
+                            String alloctedValue="0.00";
+                            if(data.optString("allocatedValue").equalsIgnoreCase("0.0")){
+
+                            }else{
+                                alloctedValue=data.optString("allocatedValue");
+                            }
                             MyApplication.currencyModelArrayList.add(new CurrencyModel(
                                     data.optString("code"),
                                     "",
@@ -877,7 +903,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    data.optString("allocatedValue")
+                                    alloctedValue
                             ));
                         }
                     }

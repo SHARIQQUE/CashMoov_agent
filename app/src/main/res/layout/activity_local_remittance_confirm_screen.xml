@@ -54,10 +54,11 @@
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/agent_code_colon"
+                    android:text="@string/agentName"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="#000"
@@ -93,7 +94,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/sender_code_colon"
+                    android:text="@string/sender_mssidn_colon"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="#000"
@@ -133,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="@string/benefi_code_colon"
+                    android:text="@string/benificairay_mssidn"
                     android:textColor="#000"
                     android:textSize="@dimen/_13sdp" />
 
