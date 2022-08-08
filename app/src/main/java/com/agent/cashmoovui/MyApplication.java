@@ -54,6 +54,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.Executor;
@@ -73,29 +74,30 @@ import okhttp3.Route;
 public class MyApplication extends Application {
 
     public static String currencySymbol;
-    public static boolean AgentPage=false;
-    public static boolean InstPage=false;
-    public static boolean BranchPage=false;
-    public static String Amount="0.00";
-    public static boolean isNotification=false;
+    public static boolean AgentPage = false;
+    public static boolean InstPage = false;
+    public static boolean BranchPage = false;
+    public static String Amount = "0.00";
+    public static boolean isNotification = false;
     public static TinyDB tinyDB;
-    public static boolean showCashIn=false;
-    public static boolean showCashOut=false;
-    public static boolean showPayment=false;
-    public static boolean showRemittance=false;
-    public static boolean showSendRemit=false;
-    public static boolean showReceiveRemit=false;
-    public static boolean showCashtoWallet=false;
-    public static boolean showCreditPurchase=false;
-    public static boolean showTransfer=false;
-    public static boolean showSellFloat=false;
-    public static boolean showTransferFloat=false;
-    public static boolean showTransferCommission=false;
+    public static boolean showCashIn = false;
+    public static boolean showCashOut = false;
+    public static boolean showPayment = false;
+    public static boolean showRemittance = false;
+    public static boolean showSendRemit = false;
+    public static boolean showReceiveRemit = false;
+    public static boolean showCashtoWallet = false;
+    public static boolean showCreditPurchase = false;
+    public static boolean showTransfer = false;
+    public static boolean showSellFloat = false;
+    public static boolean showTransferFloat = false;
+    public static boolean showTransferCommission = false;
 
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
+
     private static final String TAG = MyApplication.class.getSimpleName();
     public static String UserMobile;
     private static KProgressHUD hud;
@@ -103,7 +105,6 @@ public class MyApplication extends Application {
     public static String lang;
 
     public static String setProtection;
-
 
 
     private SharedPreferences mSharedPreferences;
@@ -118,8 +119,8 @@ public class MyApplication extends Application {
     public static String SubscriberCode = "100010";
     public static String channelTypeCode = "100000";
 
-    public static ArrayList<CurrencyModel> currencyModelArrayList=new ArrayList<>();
-    public static ArrayList<CurrencyModel> currencyModelArrayList_temp=new ArrayList<>();
+    public static ArrayList<CurrencyModel> currencyModelArrayList = new ArrayList<>();
+    public static ArrayList<CurrencyModel> currencyModelArrayList_temp = new ArrayList<>();
 
 
     public SharedPreferences getmSharedPreferences() {
@@ -134,11 +135,10 @@ public class MyApplication extends Application {
         return appInstance;
     }
 
-    public  void callLogin() {
-        saveBool("isLogin",false,getInstance());
-        MyApplication.saveBool("FirstLogin",false,getInstance());
+    public void callLogin() {
+        saveBool("isLogin", false, getInstance());
+        MyApplication.saveBool("FirstLogin", false, getInstance());
         // MyApplication.saveString("ImageName", "1", LogoutC);
-
 
 
         getmSharedPreferences().edit().putString("isFirstRun", "YES").commit();
@@ -153,10 +153,10 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appInstance = this;
-        tinyDB=new TinyDB(appInstance);
+        tinyDB = new TinyDB(appInstance);
 
-        ImageURL= API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
-                getSaveString("walletOwnerCode",appInstance)+"/";
+        ImageURL = API.BASEURL + "ewallet/api/v1/fileUpload/download/" +
+                getSaveString("walletOwnerCode", appInstance) + "/";
 
         MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", appInstance);
         AndroidNetworking.initialize(getApplicationContext());
@@ -169,11 +169,11 @@ public class MyApplication extends Application {
 
         CrashReporter.initialize(this);
 
-        if(Build.VERSION.SDK_INT>=24){
-            try{
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
                 m.invoke(null);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -201,8 +201,8 @@ public class MyApplication extends Application {
                 @Override
                 public Request authenticate(Route route, Response response) throws IOException {
                     return response.request().newBuilder()
-                            .header("source","AGENT")
-                            .header("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                            .header("source", "AGENT")
+                            .header("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
                             .build();
                 }
             })
@@ -223,14 +223,14 @@ public class MyApplication extends Application {
                 @Override
                 public Request authenticate(Route route, Response response) throws IOException {
                     return response.request().newBuilder()
-                            .header("source","SUBSCRIBER")
-                            .header("Authorization","Bearer "+ MyApplication.getSaveString("token",MyApplication.getInstance()))
+                            .header("source", "SUBSCRIBER")
+                            .header("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
                             .build();
                 }
             })
             .build();
 
-    public static String doubleRound(double value){
+    public static String doubleRound(double value) {
         return String.format("%.2f", value);
     }
 
@@ -251,7 +251,7 @@ public class MyApplication extends Application {
         imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    public static void showTipError(Activity activity,String msg,View v){
+    public static void showTipError(Activity activity, String msg, View v) {
         ViewTooltip
                 .on(activity, v)
                 .autoHide(true, 2000)
@@ -263,17 +263,17 @@ public class MyApplication extends Application {
                 .show();
     }
 
-    public static void showAPIToast(String message){
-        Toast toast= Toast.makeText(getInstance(),
-                "   "+message+"  ", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP| Gravity.CENTER, 0, 0);
+    public static void showAPIToast(String message) {
+        Toast toast = Toast.makeText(getInstance(),
+                "   " + message + "  ", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 0);
         toast.show();
     }
 
-    public static void showToast(Activity activity, String message){
-        Toast toast= Toast.makeText(activity,
-                "   "+message+"  ", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP| Gravity.CENTER, 0, 0);
+    public static void showToast(Activity activity, String message) {
+        Toast toast = Toast.makeText(activity,
+                "   " + message + "  ", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 0);
 //        View view = toast.getView();
 //        // view.getBackground().setColorFilter(appInstance.getColor(R.color.white), PorterDuff.Mode.SRC_IN);
 //        view.setBackgroundResource(R.drawable.success_toast);
@@ -285,10 +285,9 @@ public class MyApplication extends Application {
     }
 
 
+    public static void showErrorToast(Activity activity, String message) {
 
-    public static void showErrorToast(Activity activity, String message){
-
-        Toast toast= Toast.makeText(activity, message, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(activity, message, Toast.LENGTH_SHORT);
 
       /*  toast.setGravity(Gravity.CENTER| Gravity.CENTER_HORIZONTAL, 0, 0);
         View view = toast.getView();
@@ -302,7 +301,7 @@ public class MyApplication extends Application {
     }
 
 
-    public static void showloader(Activity activity, String message){
+    public static void showloader(Activity activity, String message) {
         //        ImageView imageView = new ImageView(activity);
 //        imageView.setBackgroundResource(R.drawable.spin_animation);
 //        AnimationDrawable drawable = (AnimationDrawable) imageView.getBackground();
@@ -320,8 +319,8 @@ public class MyApplication extends Application {
         hud.setProgress(90);
     }
 
-    public static void hideLoader(){
-        if(hud!=null){
+    public static void hideLoader() {
+        if (hud != null) {
             hud.dismiss();
         }
     }
@@ -339,7 +338,7 @@ public class MyApplication extends Application {
     }
 
     public static void saveString(String key, String value, Context activity) {
-        SharedPreferences preferences =activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
         editor.commit();
@@ -347,13 +346,13 @@ public class MyApplication extends Application {
 
     public static String getSaveString(String key, Context activity) {
         SharedPreferences preferences = activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
-        String json = preferences.getString(key,"");
+        String json = preferences.getString(key, "");
         return json;
     }
 
 
     public static void saveInt(String key, int value, Context activity) {
-        SharedPreferences preferences =activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(key, value);
         editor.commit();
@@ -361,11 +360,12 @@ public class MyApplication extends Application {
 
     public static Integer getSaveInt(String key, Context activity) {
         SharedPreferences preferences = activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
-        int json = preferences.getInt(key,0);
+        int json = preferences.getInt(key, 0);
         return json;
     }
+
     public static void saveBool(String key, Boolean value, Context activity) {
-        SharedPreferences preferences =activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
         editor.commit();
@@ -373,13 +373,12 @@ public class MyApplication extends Application {
 
     public static Boolean getSaveBool(String key, Context activity) {
         SharedPreferences preferences = activity.getSharedPreferences("PROJECT_NAME", Context.MODE_PRIVATE);
-        Boolean json = preferences.getBoolean(key,false);
+        Boolean json = preferences.getBoolean(key, false);
         return json;
     }
 
 
-
-    public  static boolean isConnectingToInternet(Context context) {
+    public static boolean isConnectingToInternet(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null) {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
@@ -401,15 +400,15 @@ public class MyApplication extends Application {
     }
 
 
-
-    public static String addDecimal(String number){
+    public static String addDecimal(String number) {
         DecimalFormat df = new DecimalFormat("0.00");
-        System.out.println(("get datatype"+(Object)number).getClass().getName());
+        System.out.println(("get datatype" + (Object) number).getClass().getName());
 
         return df.format(Double.parseDouble(number));
 
 
     }
+
     public static String addDecimalthreenew(String number) {
 
         DecimalFormat df = new DecimalFormat("0.00");
@@ -417,7 +416,7 @@ public class MyApplication extends Application {
         return df.format(Double.parseDouble(number));
     }
 
-    public static String addDecimalthree(String number){
+    public static String addDecimalthree(String number) {
 
         DecimalFormat df = new DecimalFormat("0.00");
 
@@ -426,43 +425,42 @@ public class MyApplication extends Application {
     }
 
 
-
-    public  static void setrequired(TextView textView,String str){
-        TextView fname_label=textView;
-        String t=str+appInstance.getString(R.string.required_asterisk);
+    public static void setrequired(TextView textView, String str) {
+        TextView fname_label = textView;
+        String t = str + appInstance.getString(R.string.required_asterisk);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            fname_label.setText( Html.fromHtml(t,Html.FROM_HTML_MODE_LEGACY));
+            fname_label.setText(Html.fromHtml(t, Html.FROM_HTML_MODE_LEGACY));
         } else {
             fname_label.setText(Html.fromHtml(t), TextView.BufferType.SPANNABLE);
         }
 
     }
 
-    public static String getUniqueId(){
+    public static String getUniqueId() {
         String android_id = Settings.Secure.getString(MyApplication.appInstance.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
-        Log.d("Android==","Android ID : "+android_id);
+        Log.d("Android==", "Android ID : " + android_id);
 
         // return  "SA2132425277828";
-        return  android_id;
+        return android_id;
 
     }
 
-    public static void setLang(Context context){
-        lang =  getSaveString("Locale", context);
-        if(lang!=null && !MyApplication.lang.isEmpty()){
-            if(lang.equalsIgnoreCase("en")){
-                changeLocale(context,lang);
+    public static void setLang(Context context) {
+        lang = getSaveString("Locale", context);
+        if (lang != null && !MyApplication.lang.isEmpty()) {
+            if (lang.equalsIgnoreCase("en")) {
+                changeLocale(context, lang);
                 MyApplication.saveString("Locale", lang, context);
-            }else{
-                changeLocale(context,lang);
+            } else {
+                changeLocale(context, lang);
                 MyApplication.saveString("Locale", lang, context);
             }
 
             //change to fr
-        }else{
-            changeLocale(context,"en");
+        } else {
+            changeLocale(context, "en");
             MyApplication.saveString("Locale", "en", context);
         }
     }
@@ -476,6 +474,22 @@ public class MyApplication extends Application {
         config.locale = myLocale;//set config locale as selected locale
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());//Update the config
     }
+
+
+    String dateformat = "Thu Aug 04 09:38:31 UTC 2022";
+
+
+    public static String convertUTCToLocaldate(String Date) {
+
+        java.util.Date date = new Date(Date);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String format = formatter.format(date);
+        System.out.println("get date" + format);
+            return  format;
+        }
+
+
+
 
     public static String convertUTCToLocalTime(String Date){
         String dateStr = Date;

@@ -600,13 +600,15 @@
 
 
             <LinearLayout
+                android:id="@+id/taxcashinLinear"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="visible"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/_5sdp">
+                >
 
                 <ImageView
                     android:layout_width="@dimen/_15sdp"
@@ -617,15 +619,6 @@
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/financialTax_reveiewPage"
-                    android:textColor="#000"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_15sdp"
-                    />
 
                 <TextView
                     android:id="@+id/rp_tv_financialTax"
@@ -633,50 +626,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:textColor="#000"
-                    />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/taxvalueLinear"
-                android:gravity="left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="visible"
-
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/_10sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
-
-                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                    />
-
-                <TextView
-                    android:id="@+id/taxvalueText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="#000"
-                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:textSize="@dimen/_15sdp"
-                    />
-
-                <TextView
-                    android:id="@+id/rp_financialTaxvalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_15sdp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -1207,7 +1157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -1245,6 +1195,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/receipt_Linear"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1279,6 +1230,45 @@
                     android:textSize="@dimen/_15sdp"
 
                     android:layout_gravity="center_vertical"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/amount_to_be_charged_reveiewPage"
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_15sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/receipt_tv_amount_to_be_charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 

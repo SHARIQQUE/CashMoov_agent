@@ -14,6 +14,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -64,12 +66,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String walletOwnerCode="";
 
     EditText etPin;
-    LinearLayout taxvalueLinear,linear_layout_businessType;
+    LinearLayout linear_layout_businessType,taxcashinLinear,receipt_Linear;
     TextView receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_financialTax,rp_tv_amount_to_be_charge,rp_tv_amount_to_be_credit,previous_reviewClick_textview,confirm_reviewClick_textview;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, receipt_tv_amount_to_be_charge,rp_tv_financialTax,rp_tv_amount_to_be_charge,rp_tv_amount_to_be_credit,previous_reviewClick_textview,confirm_reviewClick_textview;
     LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
 
     MyApplication applicationComponentClass;
@@ -84,8 +86,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent;
     String  currencyCode_subscriber="",countryCode_subscriber="",currencyName_subscriber="",countryName_subscriber;
 
-    String tax_financialtypename,tax_financial="",fees_amount,receivermobileNumberStr,totalAmount_str,receivernameStr="",receiverlastnameStr="";
-    Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
+    String tax_financialnew,tax_financialtypename,tax_financial="",fees_amount,receivermobileNumberStr,totalAmount_str,receivernameStr="",receiverlastnameStr="";
+    Double tax_financial_double=0.0,amountstr_double=0.0,tax_financialnewDouble=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
     String mpinStr="";
     public Double feeDouble;
@@ -132,18 +134,20 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
             linear_layout_businessType = (LinearLayout) findViewById(R.id.linear_layout_businessType);
-            taxvalueLinear=findViewById(R.id.taxvalueLinear);
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
 
 
-
+            taxcashinLinear=findViewById(R.id.taxcashinLinear);
+            receipt_Linear=findViewById(R.id.receipt_Linear);
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
-            taxvalueText=findViewById(R.id.taxvalueText);
+
+
+
 
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -217,6 +221,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
+            receipt_tv_amount_to_be_charge = findViewById(R.id.receipt_tv_amount_to_be_charge);
             receiptPage_tv_financialtaxvaluecashin=findViewById(R.id.receiptPage_tv_financialtaxvaluecashin);
             et_mpin = (EditText) findViewById(R.id.et_mpin);
 
@@ -328,7 +333,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             receiptPage_tv_transactionAmount = (TextView) findViewById(R.id.receiptPage_tv_transactionAmount);
             receiptPage_tv_amount_to_be_credit = (TextView) findViewById(R.id.receiptPage_tv_amount_to_be_credit);
             receiptPage_tv_fee = (TextView) findViewById(R.id.receiptPage_tv_fee);
-            receiptPage_tv_financialtax = (TextView) findViewById(R.id.receiptPage_tv_financialtax);
             receiptPage_tv_sender_name = (TextView) findViewById(R.id.receiptPage_tv_sender_name);
             receiptPage_tv_sender_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_sender_phoneNo);
             receiptPage_tv_receiver_name = (TextView) findViewById(R.id.receiptPage_tv_receiver_name);
@@ -1010,12 +1014,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 receiptPage_tv_stransactionType.setText("CASH-IN");
                                 receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+MyApplication.addDecimal(amountstr));
                                 receiptPage_tv_fee.setText(currencySymbolsender+" "+df.format(feeDouble));
-                                receiptPage_tv_financialtax.setText(currencySymbolsender+" "+MyApplication.addDecimal(tax_financial));
 
+                                receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+MyApplication.addDecimal(totalAmount_str));
 
                                 receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
 
-                                receiptPage_tv_dateOfTransaction.setText((jsonObject.getString("responseTime")));
+                                receiptPage_tv_dateOfTransaction.setText((MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime"))));
 
                                 System.out.println("get date"+jsonObject.getString("responseTime"));
 
@@ -1133,13 +1137,26 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                             JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                String tax_financialnew = jsonObject2.getString("value");
+                                 tax_financialnew = jsonObject2.getString("value");
                                 tax_financialtypename = jsonObject2.getString("taxTypeName");
+                                //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                                taxvalueLinear.setVisibility(View.VISIBLE);
-                                taxvalueText.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                               // TextView textView = new TextView(CashIn.this);
+
+
+                                rp_tv_financialTax.setText((tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
+                              //  taxcashinLinear.addView(textView, lp);
+
 
                                 receiptPage_tv_financialtaxvaluecashin.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                                //receipt_Linear.addView(textView, lp);
+
+
+                               /* if(jsonArray.length()==0){
+                                    rp_tv_financialTax.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                                }*/
+
+
                             }
                         }
                         else {
@@ -1147,7 +1164,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         }
 
-                        rp_tv_financialTax.setText(currencySymbol_sender+" "  +MyApplication.addDecimal(tax_financial));
 
 
 
@@ -1156,10 +1172,15 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 //                        tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble((fees_amount));
                         amountstr_double = Double.parseDouble(amountstr);
-
-                        totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
+                        tax_financialnewDouble=Double.parseDouble(tax_financialnew);
+                        totalAmount_double = tax_financialnewDouble+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
                         double dtotalAmount_str= Double.parseDouble(totalAmount_str);
+                        System.out.println("get value1"+tax_financial_double);
+                        System.out.println("get value2"+amountstr_double);
+                        System.out.println("get value3"+fees_amount_double);
+
+                        System.out.println("get value4"+totalAmount_double);
 
 
                         rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ df.format(dtotalAmount_str));

@@ -595,6 +595,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/taxLinear"
                         android:gravity="left"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -615,7 +616,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/financialTax_reveiewPage"
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
@@ -628,56 +628,13 @@
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/_15sdp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginLeft="4dp"
                             android:textColor="#000"
                             />
 
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/taxvalueLinear"
-                        android:gravity="left"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="@dimen/_10sdp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_15sdp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_10sdp"
-
-                            app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                            />
-
-                        <TextView
-                            android:id="@+id/taxvalueText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textColor="#000"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
-                            />
-
-                        <TextView
-                            android:id="@+id/rp_financialTaxvalue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/_13sdp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_10sdp"
-                            android:textColor="#000"
-                            />
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:gravity="left"
@@ -1312,6 +1269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="@dimen/_5sdp">
 
@@ -1340,7 +1298,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:textColor="#000"
                             />
 
@@ -1366,7 +1324,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=""
+                            android:text="vat"
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
@@ -1379,7 +1337,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:textColor="#000"
                             />
 

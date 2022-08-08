@@ -89,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
+                android:visibility="gone"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/receiver_details" />

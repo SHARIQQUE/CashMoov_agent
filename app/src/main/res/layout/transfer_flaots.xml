@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14sdp"
                 android:textColor="#29304d"
+                android:visibility="gone"
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/receiver_details" />
@@ -246,7 +247,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <RelativeLayout
                 android:layout_width="match_parent"
