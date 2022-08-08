@@ -126,6 +126,7 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_plan_list.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_product.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_select.xml" value="0.20416666666666666" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_wallet.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/local_ramittance.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_with_pin.xml" value="0.20416666666666666" />
@@ -145,8 +146,6 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/transfer_flaots.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/wallet_recu_pop.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/menu/bottom_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-hdpi/arrow_right_menu.xml" value="0.12083333333333333" />
-        <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-hdpi/ic_baseline_gallery_24.xml" value="0.13842592592592592" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-hdpi/ic_cashpickup24.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-mdpi/ic_refresh.xml" value="0.2203125" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-xxxhdpi/btn_shape.xml" value="0.15729166666666666" />
@@ -259,15 +258,6 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_cashin.xml" value="0.165625" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_confidentiality.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_detail_abonne.xml" value="0.1171875" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance.xml" value="0.18" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_benefi_kyc.xml" value="0.18" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_confirm_screen.xml" value="0.13541666666666666" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_receipt_screen.xml" value="0.1203125" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_sender_kyc.xml" value="0.18" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_local_remittance.xml" value="0.12135416666666667" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_local_remittance_benefi_kyc.xml" value="0.22" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_local_remittance_sender_kyc.xml" value="0.18" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_overdraft_limit.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_owner_option.xml" value="0.10827374872318693" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_payment_confirm.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_payment_details.xml" value="0.18802083333333333" />

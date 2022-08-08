@@ -13,16 +13,21 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
+import com.agent.cashmoovui.model.Taxmodel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
 public class WalletTransactionDetails extends AppCompatActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
-    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,
+    TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_financialtax,txt_fee,
             txt_creation_date,txt_status,txt_success,txt_commission_amount;
 
 
@@ -77,7 +82,13 @@ public class WalletTransactionDetails extends AppCompatActivity {
         txt_creation_date = findViewById(R.id.txt_creation_date);
         txt_status = findViewById(R.id.txt_status);
         txt_success = findViewById(R.id.txt_success);
+        txt_financialtax=findViewById(R.id.txt_financialtax);
+        txt_fee=findViewById(R.id.txt_fee);
         txt_commission_amount = findViewById(R.id.txt_commission_amount);
+
+
+
+
 
         if (getIntent().getExtras() != null) {
             String transType = (getIntent().getStringExtra("TRANSTYPE"));
@@ -87,6 +98,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String transId = (getIntent().getStringExtra("TRANSID"));
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
+            String tax = (getIntent().getStringExtra("taxvalue"));
+
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
             String walletTypeCode="100008";
            if((getIntent().getStringExtra("WALLETTYPECODE")!=null) ){
@@ -98,6 +111,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
+            txt_fee.setText("Fee : "+fromAmount);
             txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);
@@ -120,7 +134,23 @@ public class WalletTransactionDetails extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            try {
 
+                Gson gson = new Gson();
+
+                Type userListType = new TypeToken<ArrayList<Taxmodel>>(){}.getType();
+
+                ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
+                for(Taxmodel user : userArray) {
+                    txt_financialtax.setText(user.getTaxTypeName() + " :" + " " + user.getValue());
+
+                    System.out.println("get user" + user.getTaxTypeName());
+                }
+
+
+            } catch (Exception e) {
+
+            }
 
         }
 

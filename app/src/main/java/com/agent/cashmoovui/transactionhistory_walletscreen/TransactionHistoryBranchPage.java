@@ -940,7 +940,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                              String toWalletOwnerName, String fromWalletOwnerMsisdn,
                                              String currencySymbol, double fromAmount, String transactionId,
                                              String creationDate, String status,
-                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount) {
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,String tax) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
