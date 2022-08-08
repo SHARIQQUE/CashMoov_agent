@@ -89,6 +89,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
 
 
+        Bundle b = getIntent().getExtras();
 
 
         if (getIntent().getExtras() != null) {
@@ -100,7 +101,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
             String tax = (getIntent().getStringExtra("taxvalue"));
-            String srcpostbalance = (getIntent().getStringExtra("srcpostbalance"));
+            double  srcpostbalance = b.getDouble("srcpostbalance");
+            double  fee = b.getDouble("fee");
 
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
             String walletTypeCode="100008";
@@ -113,8 +115,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
-            txt_fee.setText("Fee : "+fromAmount);
-           // txt_postbalance.setText("Post Balance" +0.00);
+            txt_fee.setText("Fee : "+fee);
+           txt_postbalance.setText("Post Balance :" +String.format("%.2f", srcpostbalance));
             txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);

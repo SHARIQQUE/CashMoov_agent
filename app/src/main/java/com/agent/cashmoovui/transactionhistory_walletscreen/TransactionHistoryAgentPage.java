@@ -506,7 +506,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                     data.optDouble("fromAmount"),
                                                     data.optDouble("toAmount"),
                                                     data.optDouble("comReceiveAmount"),
-                                                    data.optDouble("srcPostBalance"),
+                                                    data.optInt("srcPostBalance"),
                                                     data.optDouble("srcPreviousBalance"),
                                                     data.optDouble("destPreviousBalance"),
                                                     data.optDouble("destPostBalance"),
@@ -519,12 +519,14 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                     data.optDouble("principalAmount"),
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
-                                                    data.optBoolean("isReverse")));
+                                                    data.optBoolean("isReverse"),
+                                                    data.optDouble("fee")));
                                         }
 
                                         setData(miniStatementTransList,walletTypeCode);
 
                                     }
+
 
                                 } else {
                                     MyApplication.showToast(TransactionHistoryAgentPage.this,jsonObject.optString("resultDescription"));
@@ -973,7 +975,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                              String toWalletOwnerName, String fromWalletOwnerMsisdn,
                                              String currencySymbol, double fromAmount, String transactionId,
                                              String creationDate, String status,
-                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,String tax,double srcpostbalacne) {
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,double fee,String tax,double srcpostbalacne) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;

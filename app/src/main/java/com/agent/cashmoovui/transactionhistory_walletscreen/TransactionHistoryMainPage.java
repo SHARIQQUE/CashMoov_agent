@@ -76,6 +76,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     RecyclerView recyclerView;
 
     MyApplication applicationComponentClass;
+    public Double fee;
     String languageToUse = "",select_currency_name="",select_currency_code="",select_walletType_name="",select_walletValue_name="";
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
@@ -562,6 +563,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                             }else{
                                                 tomssisdn = data.optString("toWalletOwnerMsisdn").trim();
                                                 toName =  data.optString("toWalletOwnerName").trim();
+                                              String  fee =  data.optString("fee").trim();
+                                                System.out.println("get fee"+fee);
+
 
                                             }
 
@@ -574,7 +578,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                             }
 
-                                            miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
+                                            miniStatementTransList.add(new MiniStatementTrans(
+                                                    data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
                                                     data.optString("fromWalletOwnerCode").trim(),
@@ -601,7 +606,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                     data.optDouble("fromAmount"),
                                                     data.optDouble("toAmount"),
                                                     data.optDouble("comReceiveAmount"),
-                                                    data.optDouble("srcPostBalance"),
+
+                                                    data.optInt("srcPostBalance"),
                                                     data.optDouble("srcPreviousBalance"),
                                                     data.optDouble("destPreviousBalance"),
                                                     data.optDouble("destPostBalance"),
@@ -614,7 +620,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                     data.optDouble("principalAmount"),
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
-                                                    data.optBoolean("isReverse")));
+                                                    data.optBoolean("isReverse"),
+                                                    data.optDouble("fee")));
                                         }
 
                                         setData(miniStatementTransList,walletTypeCode);
@@ -644,7 +651,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     }
 
-    private void setData(List<MiniStatementTrans> miniStatementTransList,String walletTypeCode){
+    private void  setData(List<MiniStatementTrans> miniStatementTransList,String walletTypeCode){
         MiniStatementTransAdapter miniStatementTransAdapter = new MiniStatementTransAdapter(TransactionHistoryMainPage.this,miniStatementTransList,walletTypeCode);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
@@ -1131,7 +1138,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                              String toWalletOwnerName, String fromWalletOwnerMsisdn,
                                              String currencySymbol, double fromAmount, String transactionId,
                                              String creationDate, String status,
-                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,String tax,double srcpostbalance) {
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,double fee,String tax,double srcpostbalance) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
@@ -1156,6 +1163,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("taxvalue",tax);
+        intent.putExtra("fee",fee);
+
         intent.putExtra("srcpostbalance",srcpostbalance);
 
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));

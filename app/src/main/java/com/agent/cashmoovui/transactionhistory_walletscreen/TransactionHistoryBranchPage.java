@@ -510,7 +510,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                                     data.optDouble("principalAmount"),
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
-                                                    data.optBoolean("isReverse")));
+                                                    data.optBoolean("isReverse"),
+                                                    data.optDouble("fee")));
                                         }
 
                                         setData(miniStatementTransList,walletTypeCode);
@@ -965,7 +966,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                              String toWalletOwnerName, String fromWalletOwnerMsisdn,
                                              String currencySymbol, double fromAmount, String transactionId,
                                              String creationDate, String status,
-                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,String tax,double srcpostbalance) {
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,double fee,String tax,double srcpostbalance) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
