@@ -339,7 +339,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 miniStatementTransList.get(pos).getFromCurrencySymbol(),
                 Amount,miniStatementTransList.get(pos).getTransactionId(),
                 miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(),0.0,
-                miniStatementTransList.get(pos).getToWalletOwnerMsisdn(),miniStatementTransList.get(pos).getTransactionAmount(),miniStatementTransList.get(pos).getTaxAsJson());
+                miniStatementTransList.get(pos).getToWalletOwnerMsisdn(),miniStatementTransList.get(pos).getTransactionAmount(),miniStatementTransList.get(pos).getTaxAsJson(),miniStatementTransList.get(pos).getSrcPostBalance());
 
     }
 

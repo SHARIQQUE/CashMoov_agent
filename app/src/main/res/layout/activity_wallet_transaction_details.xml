@@ -121,6 +121,16 @@
                     android:fontFamily="@font/aileron_semibold"
                     android:textColor="@color/textcolor"
                     android:textSize="@dimen/_13sdp" />
+                <TextView
+                    android:id="@+id/txt_postbalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:text="N/A"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_13sdp" />
 
 
                 <TextView

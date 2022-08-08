@@ -1104,7 +1104,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                              String toWalletOwnerName, String fromWalletOwnerMsisdn,
                                              String currencySymbol, double fromAmount, String transactionId,
                                              String creationDate, String status,
-                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,String tax) {
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,String tax,double srcpostbalance) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
@@ -1129,6 +1129,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("taxvalue",tax);
+        intent.putExtra("srcpostbalance",srcpostbalance);
 
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));
         startActivity(intent);

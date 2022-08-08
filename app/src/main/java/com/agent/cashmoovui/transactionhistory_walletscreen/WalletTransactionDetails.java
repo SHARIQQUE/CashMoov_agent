@@ -28,7 +28,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
     TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_financialtax,txt_fee,
-            txt_creation_date,txt_status,txt_success,txt_commission_amount;
+            txt_creation_date,txt_status,txt_success,txt_postbalance,txt_commission_amount;
 
 
     @Override
@@ -85,6 +85,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
         txt_financialtax=findViewById(R.id.txt_financialtax);
         txt_fee=findViewById(R.id.txt_fee);
         txt_commission_amount = findViewById(R.id.txt_commission_amount);
+        txt_postbalance=findViewById(R.id.txt_postbalance);
 
 
 
@@ -99,6 +100,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
             String status = (getIntent().getStringExtra("STATUS"));
             String tax = (getIntent().getStringExtra("taxvalue"));
+            String srcpostbalance = (getIntent().getStringExtra("srcpostbalance"));
 
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
             String walletTypeCode="100008";
@@ -112,6 +114,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_fee.setText("Fee : "+fromAmount);
+            txt_postbalance.setText("Post Balance"+srcpostbalance);
             txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);
