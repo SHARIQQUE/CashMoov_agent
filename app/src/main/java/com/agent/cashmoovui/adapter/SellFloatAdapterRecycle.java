@@ -104,7 +104,7 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
                         +"|"+srcWalletOwnerName+"|"+desWalletOwnerName+"|"+currenyName
                         +"|"+amount_str+"|"+fee_str+"|"+tax_tax
                         +"|"+texchangeRate+"|"+finnalAmount+"|"+date
-                        +"|"+status+"|"+MSSDN+"|";
+                        +"|"+status+"|"+MSSDN+"|"+tax_tax+"|";
 
                    callBackSellFloatRecycleViewClick.callBackSellFloat(transationDetails);
             }

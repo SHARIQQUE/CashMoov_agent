@@ -1057,23 +1057,22 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                     sellFloatModal.setSellFloat_exchangeRate(sellFloat_aexchangeRate);
                                 }
 
-
-
-                                if(jsonObject2.has("fee")) {
-                                    Double  sellFloat_fee = jsonObject2.optDouble("fee");
-                                    sellFloatModal.setSellFloat_fee(sellFloat_fee);
-                                }
-
-                                if(jsonObject2.has("fee")) {
-                                    Double  sellFloat_fee = jsonObject2.optDouble("fee");
-                                    sellFloatModal.setSellFloat_fee(sellFloat_fee);
-                                }
-
-
-                                if(jsonObject2.has("Tax")) {
-                                    Double  sellFloat_Tax = jsonObject2.optDouble("Tax");
+                                if(jsonObject2.has("tax")) {
+                                    Double  sellFloat_Tax = jsonObject2.optDouble("tax");
                                     sellFloatModal.setSellFloat_tax(sellFloat_Tax);
+
+                                    System.out.println("get tax"+sellFloat_Tax);
                                 }
+
+                                if(jsonObject2.has("fee")) {
+                                    Double  sellFloat_fee = jsonObject2.optDouble("fee");
+                                    sellFloatModal.setSellFloat_fee(sellFloat_fee);
+                                }
+
+
+
+
+
 
                                 if(jsonObject2.has("finalAmount")) {
                                     Double  sellFloat_finalAmount = jsonObject2.optDouble("finalAmount");
@@ -1089,6 +1088,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                     String  sellFloat_status = jsonObject2.optString("status");
                                     sellFloatModal.setSellFloat_status(sellFloat_status);
                                 }
+
 
                                 if(jsonObject2.has("status")) {
                                     String  sellFloat_status = jsonObject2.optString("status");
@@ -2276,7 +2276,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             exchangeRate_textview.setText(MyApplication.addDecimal(strArray[9]));
             final_amount_textview.setText(MyApplication.addDecimalthree(strArray[10]));
 
-          //  System.out.println("get value"+strArray[4]);
+            System.out.println("get value"+strArray[8]);
 
             try {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
