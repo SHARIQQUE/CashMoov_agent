@@ -1447,6 +1447,8 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                     MyApplication.showToast(cashtowalletsenderkycC,"upload success");
                                     // callApiUpdateDataApproval();
                                     Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
+                                        i.putExtra("mobileNumber", et_sender_phoneNumber.getText().toString());
+
                                     startActivity(i);
 
                                 } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {

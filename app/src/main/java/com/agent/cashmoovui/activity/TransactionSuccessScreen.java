@@ -24,6 +24,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
         setContentView(R.layout.activity_transaction_success);
         transSuccessscreenC=this;
         setTransaction();
+
         //setBackMenu();
        // getIds();
     }

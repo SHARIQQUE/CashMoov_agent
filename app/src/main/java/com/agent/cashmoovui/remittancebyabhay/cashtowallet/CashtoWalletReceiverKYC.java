@@ -133,6 +133,8 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
 
         edittext_amount_pay.setEnabled(false);
 
+
+
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -346,6 +348,8 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                 }
 
                 Intent i = new Intent(cashtowalletbenefikycC, CashtoWalletConfirmScreen.class);
+                i.putExtra("destmobileNumber", et_destination_mobileNumber.getText().toString());
+
                 startActivity(i);
 
                // callApiPostReceiver();

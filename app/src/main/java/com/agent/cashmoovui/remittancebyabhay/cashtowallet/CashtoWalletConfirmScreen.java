@@ -69,12 +69,13 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
 
         tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", cashtowalletconfirmC));
         tvTransferMode.setText(getString(R.string.wallet));
+
         tvSenderMSISDN.setText(CashtoWalletSenderKYC.et_sender_phoneNumber.getText().toString());
         tvBenefiMSISDN.setText(CashtoWalletReceiverKYC.et_destination_mobileNumber.getText().toString());
         tvSendCurrency.setText(CashtoWalletReceiverKYC.fromCurrency);
         tvBenefiCurrency.setText(CashtoWalletReceiverKYC.toCurrency);
-        tvTransAmount.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+CashtoWalletReceiverKYC.amount);
-        tvConvRate.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+CashtoWalletReceiverKYC.rate);
+        tvTransAmount.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(CashtoWalletReceiverKYC.amount));
+        tvConvRate.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+CashtoWalletReceiverKYC.rate+"00");
         tvFee.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+CashtoWalletReceiverKYC.fee);
         tvAmountPaid.setText(CashtoWalletReceiverKYC.toCurrencySymbol+" "+CashtoWalletReceiverKYC.currencyValue);
        // tvComment.setText(CashtoWalletReceiverKYC.etComment.getText().toString());
