@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.media.MediaMetadataEditor;
 import android.net.ConnectivityManager;
@@ -51,6 +52,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -149,11 +151,21 @@ public class MyApplication extends Application {
         startActivity(intent);
     }
 
+
+    public static void setLocale( String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = appInstance.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
     @Override
     public void onCreate() {
         super.onCreate();
         appInstance = this;
         tinyDB = new TinyDB(appInstance);
+        setLocale("en");
 
         ImageURL = API.BASEURL + "ewallet/api/v1/fileUpload/download/" +
                 getSaveString("walletOwnerCode", appInstance) + "/";
@@ -399,26 +411,24 @@ public class MyApplication extends Application {
         return false;
     }
 
-
+    public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     public static String addDecimal(String number) {
-        DecimalFormat df = new DecimalFormat("0.00");
+
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         System.out.println(("get datatype" + (Object) number).getClass().getName());
-
         return df.format(Double.parseDouble(number));
-
-
     }
 
     public static String addDecimalthreenew(String number) {
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
 
         return df.format(Double.parseDouble(number));
     }
 
     public static String addDecimalthree(String number) {
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
 
 
         return df.format(Double.parseDouble(number));

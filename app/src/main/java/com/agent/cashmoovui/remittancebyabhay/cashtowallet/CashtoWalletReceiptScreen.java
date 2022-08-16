@@ -18,7 +18,9 @@ import com.agent.cashmoovui.R;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CashtoWalletReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashtoWalletReceiptScreen cashtowalletreceiptscreenC;
@@ -142,8 +144,8 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
 
-
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         tvTransRefNo.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("code"));
        // tvConfCode.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("confirmationCode"));
         tvTransType.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));

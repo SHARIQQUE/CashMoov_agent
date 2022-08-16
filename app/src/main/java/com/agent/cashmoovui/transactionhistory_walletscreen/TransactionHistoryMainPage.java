@@ -41,6 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -992,8 +993,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
 
     }
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
 
    /* public void createList(){
         *//*CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryMainPage.this, MyApplication.currencyModelArrayList);

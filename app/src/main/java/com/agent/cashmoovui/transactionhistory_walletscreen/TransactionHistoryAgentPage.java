@@ -46,6 +46,7 @@ import org.json.JSONObject;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -824,7 +825,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
     }
     int SpinnerPos;
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;

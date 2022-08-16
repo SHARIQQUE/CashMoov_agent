@@ -42,6 +42,7 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
     private String pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*_;~]).{8,12}$";
     public static String value="Self";
     boolean isPasswordVisible,isPasswordVisibleOther;
+    LinearLayout ll_resendOtp;
 
     public static SubscriberOtpActivity subscriberotpC;
 
@@ -61,6 +62,15 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
        // txt_resend = findViewById(R.id.txt_resend);
         txt_otp_success_msg = findViewById(R.id.txt_otp_success_msg);
         card_generate_via = findViewById(R.id.card_generate_via);
+
+        ll_resendOtp = findViewById(R.id.ll_resendOtp);
+
+        ll_resendOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callApiOTP();
+            }
+        });
 
         radio_group = findViewById(R.id.radio_group);
         rb_self = findViewById(R.id.rb_self);

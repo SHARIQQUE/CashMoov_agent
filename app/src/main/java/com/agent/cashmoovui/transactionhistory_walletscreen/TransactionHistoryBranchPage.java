@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -832,8 +833,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
 
     }
-
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

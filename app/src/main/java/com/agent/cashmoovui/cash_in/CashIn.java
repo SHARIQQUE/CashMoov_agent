@@ -46,6 +46,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -1116,8 +1117,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 currencySymbolsender = jsonObject_walletTransfer.getString("srcCurrencySymbol");
                                 currencySymbolreceiver = jsonObject_walletTransfer.getString("desCurrencySymbol");
-
-                                DecimalFormat df = new DecimalFormat("0.00");
+                                DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+                                DecimalFormat df = new DecimalFormat("0.00",symbols);
 
                                 receiptPage_tv_stransactionType.setText("CASH-IN");
                                 receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+MyApplication.addDecimal(amountstr));
@@ -1201,6 +1202,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     private void api_exchange_rate() {
 
+       /* if(amountstr.matches(".*\\s.*")){
+            amountstr=edittext_amount.getText().toString().trim().replaceAll("\\s","");
+        }else{
+            amountstr=edittext_amount.getText().toString().trim().replaceAll(",","");
+        }*/
+
         // API.GET_CASHIN_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=100062&sendCountryCode=100092&receiveCountryCode=&currencyValue=1000&channelTypeCode=100000&serviceCode=100003&serviceCategoryCode=100011&serviceProviderCode=100106&walletOwnerCode=1000002606&remitAgentCode=1000002606&payAgentCode=1000002488",languageToUse,new Api_Responce_Handler() {
 
         http://202.131.144.130:8081/ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100011&status=Y
@@ -1232,8 +1239,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         fees_amount = exchangeRate.getString("fee");
                          feeDouble= Double.parseDouble(fees_amount);
                         tax_financial = exchangeRate.getString("value");
-
-                        DecimalFormat df = new DecimalFormat("0.00");
+                        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+                        DecimalFormat df = new DecimalFormat("0.00",symbols);
 
                         rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + df.format(feeDouble));
 
