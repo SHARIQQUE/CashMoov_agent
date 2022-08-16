@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -189,6 +190,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 }
             });*/
 
+
         edittext_amount.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -203,12 +205,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
 
+
                 if (isFormatting) {
                     return;
                 }
 
                 if (s.length() > 0) {
                     formatInput(edittext_amount, s, s.length(), s.length());
+
+
+
 
                 }
 
@@ -691,6 +697,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
         amountstr = edittext_amount.getText().toString().trim().replace(",","");
+
 
         if (mEnterinstituteEdittext.getText().toString().isEmpty()) {
 

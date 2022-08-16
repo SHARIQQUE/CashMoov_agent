@@ -62,6 +62,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     private static final int REQUEST_CODE_QR_SCAN = 101;
 
+    public static EditText etName;
 
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
@@ -170,6 +171,46 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 }
             });
 
+
+
+            edittext_mobileNuber.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (isFormatting) {
+                        return;
+                    }
+
+                    if (s.length() >=9) {
+                        subscriber_details_api_walletownerUserNew();
+
+
+                    }
+                        if(s.length()<=9){
+                            etName.setText("");
+
+
+
+                    }
+
+                    isFormatting = false;
+
+
+
+                }
+            });
+
+
             edittext_amount.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -219,7 +260,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_paid = (TextView) findViewById(R.id.rp_tv_amount_to_be_paid);
+            etName = findViewById(R.id.etName);
 
+            etName.setEnabled(false);
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
@@ -312,6 +355,11 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 //nn
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
              selectClickType="select_otp";
+          //  agent_details_api_walletownerUser();
+
+
+
+
 
             et_mpin.addTextChangedListener(new TextWatcher() {
 
@@ -529,6 +577,77 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    private void subscriber_details_api_walletownerUserNew() {
+
+        String walletOwnerCategoryCode = MyApplication.getSaveString("walletOwnerCategoryCode", CashOutAgent.this);
+
+        walletOwnerCategoryCode = "100010"; // HARD CODE FINAL ACORDING TO PARVEEN
+
+
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber="+(edittext_mobileNuber.getText().toString()) +"&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+
+                        //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerList");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+
+
+                            receivernameStr = jsonObject2.getString("ownerName");
+                           etName.setText(receivernameStr);
+
+//                                JSONObject walletTransfer = jsonObject.getJSONObject("walletTransfer");
+//                                JSONObject srcWalletOwner = walletTransfer.getJSONObject("srcWalletOwner");
+//                                rp_tv_businessType.setText(srcWalletOwner.getString("businessTypeName"));
+
+
+                        }
+
+                       // api_currency_sender();
+
+                    } else {
+                        Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  finish();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
 
     private void subscriber_details_api_walletownerUser() {
 
@@ -537,7 +656,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         walletOwnerCategoryCode = "100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + mobileNoStr + "&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + edittext_mobileNuber.getText().toString() + "&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -566,7 +685,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             agentCode_subscriber = jsonObject2.getString("code");
 
                             rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
-                            rp_tv_email.setText(jsonObject2.getString("email"));
+                          //  rp_tv_email.setText(jsonObject2.getString("email"));
 
                             rp_tv_country.setText(countryName_agent);
 
@@ -787,6 +906,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             senderNameAgent = "";
                         }
                         rp_tv_senderName.setText(senderNameAgent);
+
+                        etName.setText(senderNameAgent);
 
                         subscriber_details_api_walletownerUser();
 

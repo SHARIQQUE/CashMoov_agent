@@ -68,6 +68,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String currencyName_from_currency="",walletOwnerCode_destination="",walletOwnerCode_source="";
     String countryCurrencyCode_from_currency="";
     String mobileNoStr="";
+    public static EditText etName;
 
 
     String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="",countryCode_agent="";
@@ -156,7 +157,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
+            etName = findViewById(R.id.etName);
 
+            etName.setEnabled(false);
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
@@ -182,6 +185,44 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                     return false;
+                }
+            });
+
+
+            edittext_mobileNo.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (isFormatting) {
+                        return;
+                    }
+
+                    if (s.length() >=9) {
+                        api_walletOwner_msisdnNew();
+
+
+                    }
+                    if(s.length()<=9){
+                        etName.setText("");
+
+
+
+                    }
+
+                    isFormatting = false;
+
+
+
                 }
             });
 
@@ -533,10 +574,69 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     }
 
+
+    private void api_walletOwner_msisdnNew() {
+
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/msisdn/"+edittext_mobileNo.getText().toString(),languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
+
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+                        receiver_name_str = jsonObject_walletOwner.getString("ownerName");
+                        etName.setText(receiver_name_str);
+
+
+
+                      //  api_serviceProvider();
+
+
+
+                    } else {
+                        Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(TransferFloats.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
     private void api_walletOwner_msisdn() {
 
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/msisdn/"+mobileNoStr,languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/msisdn/"+edittext_mobileNo.getText().toString(),languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
