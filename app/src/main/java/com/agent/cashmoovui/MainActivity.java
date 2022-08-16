@@ -45,6 +45,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -493,7 +494,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
                                                 if(data.optString("currencyCode").equalsIgnoreCase(MyApplication.getSaveString("countryCode_Loginpage",MainActivity.this))) {
                                                     tvName.setText(data.optString("walletOwnerName"));
-                                                    DecimalFormat df = new DecimalFormat("0.00");
+                                                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+                                                    DecimalFormat df = new DecimalFormat("0.00",symbols);
                                                     tvBalance.setText(df.format(data.optInt("value")) + " " + data.optString("currencySymbol"));
                                                     System.out.println("get value"+data.optString("value"));
 

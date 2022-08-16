@@ -33,6 +33,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -60,6 +61,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     boolean  isPasswordVisible;
 
     String emailId_from_api="";
+
+    LinearLayout otp_new_l,ll_resendOtp;
+    EditText et_otp;
 
 
     ImageButton qrCode_imageButton;
@@ -151,6 +155,13 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
+
+
+
+            otp_new_l =  findViewById(R.id.otp_new_l);
+            ll_resendOtp =  findViewById(R.id.ll_resendOtp);
+            et_otp =  findViewById(R.id.et_otp);
+            ll_resendOtp.setOnClickListener(this);
 
 
             et_mpin = (EditText) findViewById(R.id.et_mpin);
@@ -526,6 +537,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         ll_pin.setVisibility(View.VISIBLE);
 
                         tv_nextClick.setText("Submit");
+
                         buttonClick="1";
 
 
@@ -559,6 +571,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     JSONObject jsonObject_beneficiaryCustomer=null;
     JSONObject jsonObject_accountHolding=null;
 
+    String benificiaryCode,remitType;
     private void api_confcode() {
 
      //   MyApplication.showloader(RemittanceReceive.this, getString(R.string.getting_user_info));
@@ -595,6 +608,14 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         }else{
 
                         }
+
+                            if(jsonObject_accountHolding.has("remitType")){
+
+                               remitType=jsonObject_accountHolding.optString("remitType");
+                            }else{
+
+                            }
+
                         // ############################    beneficiaryCustomer  ############################
 
 
@@ -602,6 +623,15 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                                 jsonObject_beneficiaryCustomer = jsonObject_accountHolding.getJSONObject("beneficiaryCustomer");
                             } else {
 
+                            }
+
+
+
+
+                            if (jsonObject_beneficiaryCustomer.has("code")) {
+                                benificiaryCode = jsonObject_beneficiaryCustomer.getString("code");
+                            } else {
+                                benificiaryCode = "";
                             }
 
                             if (jsonObject_beneficiaryCustomer.has("lastName")) {
@@ -1095,6 +1125,10 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
 
+            case R.id.ll_resendOtp:
+                otp_generate_api(benificiaryCode);
+                break;
+
             case R.id.tv_nextClick: {
 
 
@@ -1106,7 +1140,17 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             MyApplication.showloader(RemittanceReceive.this, getString(R.string.please_wait));
 
-                            api_remittance_getCustomer();
+                            if(tv_nextClick.getText().toString().equalsIgnoreCase(getString(R.string.otp_verify))){
+                                otp_verify_api();
+                            }else {
+                                if (remitType.equalsIgnoreCase("Local Remit")) {
+                                    otp_generate_api(benificiaryCode);
+                                } else {
+                                    api_remittance_getCustomer();
+                                }
+                            }
+
+                            //
 
 
                         } else {
@@ -1456,6 +1500,197 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
         }
     }
 
+
+
+    private void otp_generate_api( String code) {
+        try{
+
+            JSONObject jsonObject=new JSONObject();
+
+
+            jsonObject.put("transTypeCode","101442");
+            // jsonObject.put("transTypeCode","101813");
+            jsonObject.put("customerCode",code);
+
+
+            API.POST_GET_OTP("ewallet/api/v1/otp",jsonObject,new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+                        //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1771883\",\"requestTime\":\"Mon Oct 18 18:05:40 IST 2021\",\"responseTime\":\"Mon Oct 18 18:05:40 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\"}");
+
+                        if (jsonObject.has("error")) {
+
+                            String error = jsonObject.getString("error");
+                            String error_message = jsonObject.getString("error_message");
+
+                            Toast.makeText(RemittanceReceive.this, error_message, Toast.LENGTH_LONG).show();
+
+                            if(error.equalsIgnoreCase("1251"))
+                            {
+
+                                Intent i = new Intent(RemittanceReceive.this, VerifyLoginAccountScreen.class);
+                                startActivity(i);
+
+                                // finish();
+                            }
+                        }
+
+                        else
+                        {
+
+                            String resultDescription = jsonObject.getString("resultDescription");
+                            String resultCode = jsonObject.getString("resultCode");
+
+                            if (resultCode.equalsIgnoreCase("0"))
+                            {
+
+
+                                Toast.makeText(RemittanceReceive.this, getString(R.string.otp_has_send_sucessfully_subscriber_register), Toast.LENGTH_LONG).show();
+
+                                otp_new_l.setVisibility(View.VISIBLE);
+                                tv_nextClick.setText(getString(R.string.otp_verify));
+
+
+                            }
+
+                            else {
+                                Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        Toast.makeText(RemittanceReceive.this,e.toString(),Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(RemittanceReceive.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    }
+
+                    else {
+
+                        Toast.makeText(RemittanceReceive.this, aFalse, Toast.LENGTH_SHORT).show();
+                    }
+
+                    //  MyApplication.showToast(LoginPin.this,aFalse);
+
+                }
+            });
+
+        }catch (Exception e){
+
+            MyApplication.hideLoader();
+
+            MyApplication.showToast(RemittanceReceive.this,e.toString());
+
+        }
+
+    }
+
+
+    private void otp_verify_api() {
+        try{
+
+            JSONObject jsonObject=new JSONObject();
+
+            jsonObject.put("transTypeCode","101442");      // Temporary Hard Code acording to Praveen
+            jsonObject.put("otp",et_otp.getText().toString());
+            jsonObject.put("customerCode",benificiaryCode);
+
+
+            API.POST_REQUEST_VERIFY_OTP("ewallet/api/v1/otp/verify",jsonObject,new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+
+                    MyApplication.hideLoader();
+
+                    try {
+
+                        //JSONObject jsonObject = new JSONObject("");
+
+                        if (jsonObject.has("error")) {
+
+                            String error = jsonObject.getString("error");
+                            String error_message = jsonObject.getString("error_message");
+
+                            Toast.makeText(RemittanceReceive.this, error_message, Toast.LENGTH_LONG).show();
+
+                            if(error.equalsIgnoreCase("1251")) {
+
+                                Intent i = new Intent(RemittanceReceive.this, VerifyLoginAccountScreen.class);
+                                startActivity(i);
+
+                                // finish();
+                            }
+                        }
+
+                        else
+                        {
+                            String resultDescription = jsonObject.getString("resultDescription");
+                            String resultCode = jsonObject.getString("resultCode");
+
+
+                            if (resultCode.equalsIgnoreCase("0"))
+                            {
+
+                                api_remittance_getCustomer();
+                                otp_new_l.setVisibility(View.GONE);
+
+
+                            }
+
+                            else {
+                                Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        Toast.makeText(RemittanceReceive.this,e.toString(),Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+
+                    if (aFalse.equalsIgnoreCase("1251")) {
+                        Intent i = new Intent(RemittanceReceive.this, VerifyLoginAccountScreen.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Toast.makeText(RemittanceReceive.this, aFalse, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }catch (Exception e){
+
+            MyApplication.hideLoader();
+            MyApplication.showToast(RemittanceReceive.this,e.toString());
+        }
+
+    }
 
 
 }

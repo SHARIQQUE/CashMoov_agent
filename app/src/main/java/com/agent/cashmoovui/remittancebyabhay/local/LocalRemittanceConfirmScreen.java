@@ -24,6 +24,8 @@ import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class LocalRemittanceConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static LocalRemittanceConfirmScreen localremitconfirmC;
@@ -90,7 +92,8 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
         tvComment.setText(LocalRemittanceBenefiKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(LocalRemittanceActivity.fee)+Double.parseDouble(LocalRemittanceActivity.amount);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(LocalRemittanceActivity.taxConfigurationList!=null){
             if(LocalRemittanceActivity.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

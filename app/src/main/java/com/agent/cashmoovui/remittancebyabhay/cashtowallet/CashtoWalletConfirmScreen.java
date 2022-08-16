@@ -22,6 +22,8 @@ import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class CashtoWalletConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static CashtoWalletConfirmScreen cashtowalletconfirmC;
@@ -81,7 +83,8 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
        // tvComment.setText(CashtoWalletReceiverKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(CashtoWalletReceiverKYC.taxConfigurationList!=null){
             if(CashtoWalletReceiverKYC.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

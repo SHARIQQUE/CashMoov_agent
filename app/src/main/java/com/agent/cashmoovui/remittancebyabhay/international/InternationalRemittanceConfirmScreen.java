@@ -23,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class InternationalRemittanceConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static InternationalRemittanceConfirmScreen internationalremitconfirmC;
@@ -81,7 +83,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         tvComment.setText(InternationalRemittanceBenefiKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(InternationalRemittanceActivity.fee)+Double.parseDouble(InternationalRemittanceActivity.amount);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(InternationalRemittanceActivity.taxConfigurationList!=null){
             if(InternationalRemittanceActivity.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);

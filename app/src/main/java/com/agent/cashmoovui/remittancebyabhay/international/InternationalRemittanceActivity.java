@@ -28,7 +28,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
@@ -182,24 +184,39 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 //                        MyApplication.showErrorToast(InternationalRemittance.this, getString(R.string.plz_select_receive_currency));
 //                        return;
 //                    }
-                    if (isFormatting) {
-                        return;
-                    }
 
-                    if (s.length()>1) {
-                        formatInput(edittext_amount, s, s.length(), s.length());
+
+                   MyApplication applicationComponentClass = (MyApplication) getApplicationContext();
+                   String  languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
+
+                   /* if(languageToUse.equalsIgnoreCase("fr")){
                         callApiExchangeRate();
-
                     }else {
-                        convertionRate_first_page.setText("");
-                        fees_first_page.setText("");
-                        tax_first_page.setText("");
-                        //amountTobePaid_first_page.setText("");
-                        amountTobeCharged_first_page.setText("");
-                        edittext_amount_pay.getText().clear();
-                    }
+                    }*/
+                        if (isFormatting) {
+                            return;
+                        }
 
-                    isFormatting = false;
+                        if (s.length()>1) {
+                            formatInput(edittext_amount, s, s.length(), s.length());
+
+                            callApiExchangeRate();
+
+                        }else {
+                            convertionRate_first_page.setText("");
+                            fees_first_page.setText("");
+                            tax_first_page.setText("");
+                            //amountTobePaid_first_page.setText("");
+                            amountTobeCharged_first_page.setText("");
+                            edittext_amount_pay.getText().clear();
+                        }
+
+                        isFormatting = false;
+
+
+
+
+
 
 
                 } else {
@@ -694,7 +711,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
     }
 
-    DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static JSONArray taxConfigurationList;
 
     private void callApiExchangeRate() {
@@ -783,6 +801,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+
+
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();
