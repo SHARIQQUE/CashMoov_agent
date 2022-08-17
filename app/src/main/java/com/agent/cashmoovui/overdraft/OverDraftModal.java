@@ -8,6 +8,34 @@ public class OverDraftModal {
     String currencySymbol="";
     String status="";
     String creationDate="";
+    String maximumLimit="";
+    String validityMaxDays="";
+    String currencyCode="";
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public String getMaximumLimit() {
+        return maximumLimit;
+    }
+
+    public void setMaximumLimit(String maximumLimit) {
+        this.maximumLimit = maximumLimit;
+    }
+
+
+    public String getValidityMaxDays() {
+        return validityMaxDays;
+    }
+
+    public void setValidityMaxDays(String validityMaxDays) {
+        this.validityMaxDays = validityMaxDays;
+    }
 
     public String getCurrencyName() {
         return currencyName;

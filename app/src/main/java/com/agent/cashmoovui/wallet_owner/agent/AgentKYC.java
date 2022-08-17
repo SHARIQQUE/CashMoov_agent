@@ -163,25 +163,6 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
         });
 
 
-        etDob.setInputType(InputType.TYPE_NULL);
-        etDob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
-                // date picker dialog
-                picker = new DatePickerDialog(agentkycC,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                etDob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                            }
-                        }, 1960, 01, 00);
-                picker.show();
-            }
-        });
 
         spBusinessType.setOnClickListener(new View.OnClickListener() {
             @Override

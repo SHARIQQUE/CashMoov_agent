@@ -79,7 +79,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     View rootView;
 
     EditText etPin;
-    TextView tvAmtCurr,spinner_currency,tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView rp_tv_comment,tvAmtCurr,spinner_currency,tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,receiptPage_tv_amount_to_be_charged,
@@ -89,7 +89,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    EditText edittext_amount,et_mpin,edittext_mobileNo;
+    EditText et_fp_reason_sending,edittext_amount,et_mpin,edittext_mobileNo;
 
 
     String amountstr="",agentName_from_walletOwner="", businessTypeName_walletOwnerCategoryCode="",email_walletOwnerCategoryCode="";
@@ -274,7 +274,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_paid = (TextView) findViewById(R.id.rp_tv_amount_paid);
 
-
+            et_fp_reason_sending=findViewById(R.id.et_fp_reason_sending);
+            rp_tv_comment=findViewById(R.id.rp_tv_comment);
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
@@ -1071,6 +1072,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
                         rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(totalAmount_str));
+                        rp_tv_comment.setText(et_fp_reason_sending.getText().toString());
 
 
                         ll_page_1.setVisibility(View.GONE);

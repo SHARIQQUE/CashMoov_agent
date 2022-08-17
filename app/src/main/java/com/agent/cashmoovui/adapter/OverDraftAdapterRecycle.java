@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,13 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
         viewHolder.currencyName.setText(arrayList_modalUserData.get(i).getCurrencyName());
         viewHolder.amount.setText(arrayList_modalUserData.get(i).getCurrencySymbol()+" "+ MyApplication.addDecimal(arrayList_modalUserData.get(i).getAmount()));
         viewHolder.status_textview.setText(arrayList_modalUserData.get(i).getStatus());
+
+        if(arrayList_modalUserData.get(i).getStatus().equalsIgnoreCase("Closed")){
+            viewHolder.rowLinear.setVisibility(View.VISIBLE);
+        }else {
+            viewHolder.rowLinear.setVisibility(View.GONE);
+
+        }
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
@@ -70,12 +78,14 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
 
         public TextView currencyName, amount,status_textview,datetime_textview;
         Button action_click;
+        public LinearLayout rowLinear;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             currencyName = (TextView) itemView.findViewById(R.id.currencyName);
             amount = (TextView) itemView.findViewById(R.id.amount);
+            rowLinear=(LinearLayout)itemView.findViewById(R.id.rowLinear);
             status_textview = (TextView) itemView.findViewById(R.id.status_textview);
             datetime_textview = (TextView) itemView.findViewById(R.id.datetime_textview);
 

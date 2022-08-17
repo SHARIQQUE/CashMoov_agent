@@ -130,6 +130,7 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/local_ramittance.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_with_pin.xml" value="0.20416666666666666" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/overdraft_row_item.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/remitance_receive.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/search_transaction_agent.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/search_transaction_agent_new.xml" value="0.20416666666666666" />
@@ -317,7 +318,6 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_abonne_one.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_agent.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_branch.xml" value="0.1921875" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_subscriber_otp.xml" value="0.1265625" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_verify_login_otp_screen.xml" value="0.10416666666666667" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.14895833333333333" />
@@ -334,7 +334,6 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/local_ramittance.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/login_pin.xml" value="0.15" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/otp_page.xml" value="0.1" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/remitance_receive.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/row_item_simple.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/search_transaction_agent_new.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/sellfloat.xml" value="0.1" />

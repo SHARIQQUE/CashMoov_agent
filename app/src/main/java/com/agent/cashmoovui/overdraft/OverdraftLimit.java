@@ -80,7 +80,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
 
-    String amountstr="",agentName_from_walletOwner="";
+    String amountstr="",agentName_from_walletOwner="",currencyCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,6 +201,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         MyApplication.showloader(OverdraftLimit.this, getString(R.string.please_wait));
 
 
+
+
                         if(Double.parseDouble(amountstr)>Double.parseDouble(maximumLimit)){
                             MyApplication.showToast(OverdraftLimit.this,"Please enter the correct amount");
                             return;
@@ -300,8 +302,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
                             @Override
                             public void onClick(String item, int position) {
+
                                 //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                 selectCurrecnyCode = arrayList_currecnyCodeNew.get(position);
+                                System.out.println("get selectCurrecnyCode"+selectCurrecnyCode);
                                 setSelction(position);
                                 // spBusinessType.setTag(position);
 
@@ -369,8 +373,9 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //
 //        else
 //        {
-           /* amountstr="90000";
-            validityDaysStr="5";*/
+            amountstr=arrayList_overdraft.get(pos).getMaximumLimit();
+            validityDaysStr=arrayList_overdraft.get(pos).getValidityMaxDays();
+
 
             //   edittext_amount.setEnabled(false);
             edittext_validity.setEnabled(false);
@@ -626,6 +631,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                             OverDraftModal overDraftModal = new OverDraftModal();
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+
                            // String walletOwnerCode = jsonObject3.getString("walletOwnerCode");
 
 
@@ -634,9 +640,26 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                                 overDraftModal.setCurrencyName(currencyName);
                             }
 
+                            if(jsonObject3.has("currencyCode")) {
+                                  currencyCode = jsonObject3.getString("currencyCode");
+                                overDraftModal.setCurrencyName(currencyCode);
+                                System.out.println("get currencyCode"+currencyCode);
+
+                            }
+
                             if(jsonObject3.has("amount")) {
                                 String  amount = jsonObject3.getString("amount");
                                 overDraftModal.setAmount(amount);
+                            }
+
+                            if(jsonObject3.has("maximumLimit")) {
+                                String  maximumLimit = jsonObject3.getString("maximumLimit");
+                                overDraftModal.setMaximumLimit(maximumLimit);
+                            }
+
+                            if(jsonObject3.has("validityMaxDays")) {
+                                String  validityMaxDays = jsonObject3.getString("validityMaxDays");
+                                overDraftModal.setValidityMaxDays(validityMaxDays);
                             }
 
                             if(jsonObject3.has("currencySymbol")) {
@@ -647,6 +670,12 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                             if(jsonObject3.has("status")) {
                                 String  status = jsonObject3.getString("status");
                                 overDraftModal.setStatus(status);
+
+                                if(status.equalsIgnoreCase("Closed")){
+                                    linearLayout_record.setVisibility(View.VISIBLE);
+                                }else{
+                                    linearLayout_record.setVisibility(View.GONE);
+                                }
                             }
 
                             if(jsonObject3.has("creationDate")) {
@@ -654,9 +683,17 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                                 overDraftModal.setCreationDate(creationDate);
                             }
 
+                            if(jsonObject3.has("currencyCode")) {
+                                String  currencyCode = jsonObject3.getString("currencyCode");
+                                overDraftModal.setCurrencyCode(currencyCode);
+                            }
+
                             arrayList_overdraft.add(overDraftModal);
 
+
+
                             recyclerView.setLayoutManager(new LinearLayoutManager(OverdraftLimit.this));
+
                             OverDraftAdapterRecycle adpter= new OverDraftAdapterRecycle(OverdraftLimit.this,arrayList_overdraft);
                             recyclerView.setAdapter(adpter);
 
@@ -1053,6 +1090,13 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
 
             return false;
+        }
+        for(int i =0; i<arrayList_overdraft.size(); i++){
+            if (selectCurrecnyCode.equalsIgnoreCase(arrayList_overdraft.get(i).getCurrencyCode())){
+                MyApplication.showErrorToast(this, "overdraft currency code is matched");
+             return false;
+            }
+
         }
 
 
