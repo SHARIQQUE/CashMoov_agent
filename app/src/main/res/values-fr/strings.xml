@@ -78,7 +78,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="previous">Previous</string>
+    <string name="previous">precedent</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -120,13 +120,13 @@
     <string name="merchant_payment">Paiments Marchand</string>
     <string name="cash_withdrawal">Retrait</string>
     <string name="receive_remittance">Receive Remittance</string>
-    <string name="fee">Frais de service</string>
+    <string name="fee">Frais</string>
     <string name="service_point">Trouver une agence</string>
     <string name="complete_profile">Completez le profile</string>
     <string name="complet_70">complet à 70 %</string>
     <string name="out_8_10_complete">8 sur 10 completet</string>
     <string name="recharge_payment">Paiements</string>
-    <string name="next">Suivant</string>
+    <string name="next">suivant</string>
     <string name="ignore">Ignorer</string>
     <string name="to_start">Commencer</string>
     <string name="to_end">Terminer</string>
@@ -145,7 +145,7 @@
     <string name="fname">PreNom</string>
     <string name="email">Email</string>
     <string name="city">Ville</string>
-    <string name="address">Addresse</string>
+    <string name="address">Adresse</string>
 
 
     <string name="username">
@@ -197,7 +197,7 @@
     <string name="delete_configuration">Voulez-vous vraiment supprimer la configuration?</string>
     <string name="this_action_reset_all_settings">Cette action va réinitialiser l\'ensemble des paramètres de l\'application.</string>
     <string name="need_to_link_account">Vous devrez à nouveau associer cette application à votre compte</string>
-    <string name="confirm">Confirmer</string>
+    <string name="confirm">confirmer</string>
     <string name="current_profile_photo">Votre photo de profile actuelle</string>
     <string name="select_new_profile_photo">Selectioner votre nouvelle photo de profile.</string>
     <string name="you_are_reloading">Vous effectuez un rechargement</string>
@@ -230,12 +230,12 @@
     <string name="valid_phone_number">Numéro de téléphone*</string>
     <string name="valid_email">Email*</string>
     <string name="valid_city">Ville*</string>
-    <string name="valid_address">Addresse*</string>
+    <string name="valid_address">Adresse*</string>
     <string name="valid_select_gender">Sélectionnez le sexe*</string>
     <string name="valid_select_occupation">Select Occupation*</string>
-    <string name="valid_dob">Date of Birth*</string>
+    <string name="valid_dob">Date de naissance</string>
     <string name="valid_select_id_proof">Sélectionnez la preuve d\'identité*</string>
-    <string name="vaild_id_proof_no">Id Proof Number*</string>
+    <string name="vaild_id_proof_no">Id Numéro de piece*</string>
     <string name="valid_amount_send">Montant à envoyer*</string>
 
     <string name="gender">Genre</string>
@@ -304,7 +304,7 @@
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
     <string name="select_id_proof">Sélectionnez la preuve d\'identité</string>
-    <string name="enter_pin">Entrer le code</string>
+    <string name="enter_pin">Entrez le code PIN</string>
     <string name="login_message">Veuillez entrer votre numéro de téléphone et votre mot de passe pour vous connecter au compte</string>
     <string name="login">Connexion</string>
     <string name="login_fingerprint">Connexion avec empreinte digitale ?</string>
@@ -312,7 +312,7 @@
     <string name="no_fingerprint_senser">Cet appareil n\'a pas de capteur d\'empreintes digitales</string>
     <string name="no_biometric_senser">Le capteur biométrique est actuellement indisponible</string>
     <string name="device_not_contain_fingerprint">Votre appareil n\'a pas d\'empreinte digitale enregistrée, veuillez vérifier vos paramètres de sécurité</string>
-    <string name="val_pin">veuillez entrer le code pin</string>
+    <string name="val_pin">veuillez entrer le code PIN</string>
     <string name="val_valid_pin">La broche doit comporter au moins 4 chiffres</string>
     <string name="enter_pass">Tapez votre mot de passe</string>
     <string name="or">OU</string>
@@ -335,7 +335,7 @@
     <string name="val_city">Veuillez entrer la ville</string>
     <string name="val_address">Veuillez saisir l\'adresse</string>
     <string name="val_proof_no">Veuillez entrer le numéro de preuve d\'identité</string>
-    <string name="val_select_id_proof">Please select id proof type</string>
+    <string name="val_select_id_proof">Please select Type de piece d\'identité</string>
     <string name="val_select_country">Veuillez sélectionner le pays</string>
     <string name="valid_select_country">Choisissez le pays*</string>
     <string name="val_email_valid">Veuillez saisir une adresse e-mail valide</string>
@@ -398,9 +398,9 @@
 
 
     <string name="plz_enter_amount">Veuillez saisir le montant</string>
-    <string name="minimum_amount_10">Le montant minimum est de 10</string>
-    <string name="minimum_amount_1000">Le montant minimum est de 1000</string>
-    <string name="maximum_amount_10000">Le montant maximm est de is 10000</string>
+    <string name="minimum_amount_10">Le montant minimum est 10</string>
+    <string name="minimum_amount_1000">Le montant minimum est 1000</string>
+    <string name="maximum_amount_10000">Le montant maximum est 10000</string>
 
     <string name="transaction_receiptNo_receiptPage">Numéro de transaction</string>
     <string name="otp_has_send_sucessfully_subscriber_register">OTP a été envoyé à l identifiant de courrier électronique enregistré de l abonné ou au numéro de téléphone portable</string>
@@ -561,7 +561,7 @@
     <string name="sell_float">Vendre le flotteur</string>
     <string name="transfer_float">Flotteur de transfert</string>
     <string name="transfer_commission">Commission Transfert</string>
-    <string name="overdraft_limit">Limite de découvert</string>
+    <string name="overdraft_limit">Limite de decouvert</string>
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
     <string name="one_sur_la_transaction">1% sur la transaction</string>
     <string name="remittance_option">Option de remise</string>
@@ -578,7 +578,7 @@
 
     <string name="select_institute_star">Choisir l\'institut*</string>
     <string name="select_institute">Choisir l\'institut</string>
-    <string name="select_currency_star">Sélectionnez la devise*</string>
+    <string name="select_currency_star">Selectionner devise</string>
     <string name="select_currency">Sélectionnez la devise</string>
 
     <string name="amount_to_paid_star">Montant à payer*</string>
@@ -591,7 +591,7 @@
     <string name="reserve_Wallet">Montant de réserve :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">Etat</string>
-    <string name="validaty_days">Jours de validité* </string>
+    <string name="validaty_days">Jours de validité</string>
 
     <string name="email_receiptPage">E-mail</string>
     <string name="select_operator_star">Sélectionnez l opérateur*</string>
@@ -624,14 +624,14 @@
     <string name="val_branch_name_len">Le nom de la succursale doit comporter au moins 3 caractères</string>
     <string name="agent_added">Agent ajouté avec succès !</string>
     <string name="branch_added">Branche ajoutée avec succès !</string>
-    <string name="acc_number_colon">Numéro de compte :</string>
+    <string name="acc_number_colon">Numéro de compte</string>
     <string name="operator_colon">Opérateur :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
     <string name="amount_paid_colon">Montant à payer :</string>
     <string name="trans_amount_colon">Montant de la transaction :</string>
     <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
     <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
-    <string name="val_amount">Veuillez saisir le montant</string>
+    <string name="val_amount">Entrer le montant</string>
     <string name="val_valid_amount">Veuillez saisir un montant valide</string>
 
 
@@ -687,7 +687,7 @@
 
    <string name="receiverName_receiptPage_without_coln">Nom du destinataire</string>
     <string name="final_amount">Le montant final </string>
-    <string name="status">Statut </string>
+    <string name="status">statut</string>
     <string name="create_on">Créé sur </string>
     <string name="action">Action </string>
 
@@ -695,8 +695,8 @@
     <string name="receiver_wallet_owner_code">eceiver wallet owner code </string>
     <string name="view_details"> Voir les détails  </string>
     <string name="senderName_without_semic"> Nom de expéditeur </string>
-    <string name="exchangeRate"> Taux de change  </string>
-    <string name="Currency_without_colon"> Monnaie  </string>
+    <string name="exchangeRate"> Taux de change</string>
+    <string name="Currency_without_colon"> Devise</string>
     <string name="trans_id">Identifiant de transaction</string>
 
     <string name="source">La source</string>
@@ -707,9 +707,9 @@
     <string name="amounts">Montant</string>
     <string name="tax_type">Type de taxe</string>
     <string name="trans_reversed">Transaction annulée</string>
-    <string name="trans_date">Date de la transaction</string>
+    <string name="trans_date">date de la transaction</string>
     <string name="view_deatils">Voir les détails</string>
-    <string name="post_balance">Publier le solde</string>
+    <string name="post_balance">solde apres</string>
     <string name="receiving_country">Pays d\'accueil</string>
     <string name="valid_select_city">Sélectionnez une ville*</string>
     <string name="val_select_city">Veuillez sélectionner la ville</string>
@@ -720,19 +720,19 @@
     <string name="receiver_info_colon">Informations sur le récepteur:</string>
     <string name="notification">Notification</string>
     <string name="range">Varier</string>
-    <string name="value">Valeur</string>
+    <string name="value">valeur</string>
     <string name="send_remittance">Envoyer un versement</string>
     <string name="range_value_not_available"><![CDATA[Aucune plage et valeur disponibles]]></string>
     <string name="mobile_recharge">Recharge mobile</string>
 
-    <string name="wallet_owner_name">Nom du propriétaire du portefeuille</string>
+    <string name="wallet_owner_name">nom du titulaire de compte</string>
     <string name="hint_otp">Entrez OTP*</string>
     <string name="generate_credential_via">Générer des informations d\'identification via</string>
     <string name="self">Soi</string>
     <string name="gen_pin">Générer une épingle</string>
     <string name="save">sauvegarder</string>
-    <string name="hint_new_pin">Nouvelle épingle*</string>
-    <string name="hint_conf_pin">Confirmer la nouvelle épingle*</string>
+    <string name="hint_new_pin">nouveau code PIN</string>
+    <string name="hint_conf_pin">Confirmer le nouveau code PIN</string>
     <string name="otp_verified_msg">OTP a été vérifié avec succès</string>
     <string name="val_new_pin">Veuillez saisir un nouveau code PIN</string>
     <string name="val_conf_pin">Veuillez saisir le code PIN de confirmation</string>
