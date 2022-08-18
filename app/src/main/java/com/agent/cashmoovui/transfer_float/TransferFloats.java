@@ -643,7 +643,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -674,11 +673,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -869,7 +872,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -904,12 +906,16 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -938,7 +944,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -975,6 +980,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                         //finish();
                     }
@@ -983,6 +990,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1026,7 +1035,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1079,11 +1087,14 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
                         ll_successPage.setVisibility(View.GONE);
+                        MyApplication.hideLoader();
 
 
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -1092,6 +1103,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1117,7 +1130,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     private void api_serviceProvider() {
 
-        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
         String serviceCategoryCode_hardcode="100017";   // 100017 is hard code according to praveen 19 Nov
 
@@ -1132,7 +1144,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1160,6 +1171,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                        // finish();
                     }
@@ -1168,6 +1181,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1199,7 +1214,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1233,12 +1247,16 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                         //finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1462,6 +1480,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             receiptPage_tv_receiver_emailId.setText(receiver_emailId_str);
                             receiptPage_tv_receiver_country.setText(receiver_country_str);
 
+                            MyApplication.hideLoader();
 
 
 
@@ -1475,12 +1494,16 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                         } else {
+                            MyApplication.hideLoader();
+
                             Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
 
 
                     } catch (Exception e) {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1548,6 +1571,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_successPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.VISIBLE);
+
 
             }
             break;

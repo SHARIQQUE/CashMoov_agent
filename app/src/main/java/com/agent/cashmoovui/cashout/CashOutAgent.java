@@ -623,6 +623,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                        // api_currency_sender();
 
                     } else {
+                        etName.setText("");
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
@@ -660,7 +662,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -707,12 +708,16 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                       api_currency_sender();
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -739,7 +744,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -778,12 +782,16 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -812,7 +820,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -839,12 +846,16 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -875,7 +886,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 System.out.println("get jsonvalue"+jsonObject.toString());
 
@@ -907,18 +917,22 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         }
                         rp_tv_senderName.setText(senderNameAgent);
 
-                        etName.setText(senderNameAgent);
+                       // etName.setText(senderNameAgent);
 
                         subscriber_details_api_walletownerUser();
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -946,7 +960,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -964,12 +977,16 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1065,7 +1082,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -1114,15 +1130,20 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_receiver_name.setText(receivernameStr+" "+receiverlastnameStr);
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
 
+                            MyApplication.hideLoader();
 
 
                         } else {
+                            MyApplication.hideLoader();
+
                             Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
 
 
                     } catch (Exception e) {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1318,7 +1339,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1356,6 +1376,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -1364,6 +1386,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1397,7 +1421,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1456,11 +1479,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         allByCriteria_walletOwnerCode_api();
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                     finish();
@@ -1627,13 +1654,14 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
                         //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1771883\",\"requestTime\":\"Mon Oct 18 18:05:40 IST 2021\",\"responseTime\":\"Mon Oct 18 18:05:40 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\"}");
 
                         if (jsonObject.has("error")) {
+                            MyApplication.hideLoader();
+
 
                             String error = jsonObject.getString("error");
                             String error_message = jsonObject.getString("error_message");
@@ -1675,11 +1703,14 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 ll_reviewPage.setVisibility(View.VISIBLE);
                                 ll_otp.setVisibility(View.VISIBLE);
                                 ll_resendOtp.setVisibility(View.VISIBLE);
+                                MyApplication.hideLoader();
 
 
                             }
 
                             else {
+                                MyApplication.hideLoader();
+
                                 Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                             }
                         }
@@ -1687,6 +1718,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashOutAgent.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }

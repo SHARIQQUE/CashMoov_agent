@@ -492,7 +492,7 @@ public class MyApplication extends Application {
     public static String convertUTCToLocaldate(String Date) {
 
         java.util.Date date = new Date(Date);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String format = formatter.format(date);
         System.out.println("get date" + format);
             return  format;

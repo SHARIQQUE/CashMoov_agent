@@ -382,7 +382,7 @@
                         <ImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            app:srcCompat="@drawable/transfer"
+                            app:srcCompat="@drawable/ic_transfer"
                             android:scaleType="centerCrop"/>
 
                         <TextView

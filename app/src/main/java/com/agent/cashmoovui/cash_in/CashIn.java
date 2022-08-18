@@ -585,6 +585,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        etName.setText("");
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
@@ -625,7 +626,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -665,6 +665,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
@@ -673,6 +675,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -701,7 +705,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -739,6 +742,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -747,6 +752,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -773,7 +780,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -811,6 +817,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -819,6 +827,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -847,7 +857,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -873,6 +882,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -881,6 +892,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -911,7 +924,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -948,6 +960,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -956,6 +970,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -983,7 +999,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1000,12 +1015,15 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         ll_successPage.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
+                        MyApplication.hideLoader();
 
 
 
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         //   finish();
                     }
@@ -1014,6 +1032,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1096,7 +1116,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -1156,17 +1175,22 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                         ll_receiptPage.setVisibility(View.VISIBLE);
                                     }
                                 }, 2000);
+                                MyApplication.hideLoader();
 
                             }
 
 
                         } else {
+                            MyApplication.hideLoader();
+
                             Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
 
 
                     } catch (Exception e) {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1221,7 +1245,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1309,6 +1332,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -1317,6 +1342,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 }
                 catch (Exception e)
                 {
+
+                    MyApplication.hideLoader();
+
                     Toast.makeText(CashIn.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

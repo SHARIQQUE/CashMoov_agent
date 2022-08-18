@@ -191,7 +191,7 @@
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center_vertical"
                             android:scaleType="fitXY"
-                            app:srcCompat="@drawable/sendremittance"/>
+                            app:srcCompat="@drawable/recieved"/>
                     </androidx.cardview.widget.CardView>
 
 

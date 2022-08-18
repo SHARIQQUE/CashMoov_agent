@@ -482,7 +482,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -529,6 +528,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             MyApplication.saveString("EMAIL",EMAIL,LoginMsis.this);
                             MyApplication.saveString("USERCODE",USERCODE,LoginMsis.this);
                             MyApplication.saveString("NTTYPECODE",NTTYPECODE,LoginMsis.this);
+                            MyApplication.hideLoader();
 
                             if(walletOwnerUser.optBoolean("reSetPinCredRequest")) {
                                 Intent i = new Intent(LoginMsis.this, RESETPINOtpPage.class);
@@ -552,7 +552,9 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             }
 
                             else {
-                                Toast.makeText(LoginMsis.this, firstLoginStatus, Toast.LENGTH_LONG).show();
+                                 MyApplication.hideLoader();
+
+                                 Toast.makeText(LoginMsis.this, firstLoginStatus, Toast.LENGTH_LONG).show();
                                 finish();
                             }
 
@@ -564,6 +566,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         else
                         {
                           //  selectButtonType = "0";
+                            MyApplication.hideLoader();
 
                             Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -575,6 +578,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -732,7 +737,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -776,6 +780,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         else
                         {
                             selectButtonType = "0";
+                            MyApplication.hideLoader();
 
                             Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -787,6 +792,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1300,7 +1307,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1319,12 +1325,16 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(LoginMsis.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

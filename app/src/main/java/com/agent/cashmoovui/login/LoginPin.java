@@ -366,13 +366,14 @@ public class LoginPin extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
 
                     try {
 
 
                         if (jsonObject.has("error")) {
+                            MyApplication.hideLoader();
+
 
                             //  String error_message = jsonObject.getString("error_message");
                             //  Toast.makeText(LoginMsis.this, error_message, Toast.LENGTH_LONG).show();
@@ -385,12 +386,15 @@ public class LoginPin extends AppCompatActivity {
                             }
 
                             else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
+                                MyApplication.hideLoader();
 
                                 Toast.makeText(LoginPin.this, "Invalid pin", Toast.LENGTH_LONG).show();
                                 MyApplication.saveString("pin", pin, loginpinC);
 
                             }
                             else{
+                                MyApplication.hideLoader();
+
                                 Toast.makeText(LoginPin.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
                         }
@@ -512,6 +516,7 @@ public class LoginPin extends AppCompatActivity {
                                     MyApplication.tinyDB.putObject("ServiceList",serviceList);
                                 }
                             }catch (Exception e){
+                                MyApplication.hideLoader();
 
                             }
 
@@ -528,6 +533,8 @@ public class LoginPin extends AppCompatActivity {
 
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
+
                         //Toast.makeText(loginpinC, e.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
@@ -535,6 +542,8 @@ public class LoginPin extends AppCompatActivity {
 
                 @Override
                 public void failure(String aFalse) {
+                    MyApplication.hideLoader();
+
 
                     if(aFalse.equalsIgnoreCase("1251")){
 
@@ -843,7 +852,6 @@ public class LoginPin extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -926,6 +934,7 @@ public class LoginPin extends AppCompatActivity {
                         else
                         {
 
+                            MyApplication.hideLoader();
 
                             Toast.makeText(LoginPin.this,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -937,6 +946,8 @@ public class LoginPin extends AppCompatActivity {
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(LoginPin.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -970,7 +981,6 @@ public class LoginPin extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -1043,6 +1053,7 @@ public class LoginPin extends AppCompatActivity {
                         else
                         {
 
+                            MyApplication.hideLoader();
 
                             Toast.makeText(LoginPin.this,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -1054,6 +1065,8 @@ public class LoginPin extends AppCompatActivity {
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(LoginPin.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }

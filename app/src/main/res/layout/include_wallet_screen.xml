@@ -763,7 +763,7 @@
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/transfer"
+                        android:src="@drawable/ic_transfer"
                          />
 
 
@@ -1027,7 +1027,7 @@
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/transfer"
+                        android:src="@drawable/ic_transfer"
                          />
 
 
