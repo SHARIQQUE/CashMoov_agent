@@ -895,7 +895,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
             e.printStackTrace();
         }
         if(isCustomerData) {
-            MyApplication.showloader(internationalremitbenefikycC,"Please Wait...");
+           // MyApplication.showloader(internationalremitbenefikycC,"Please Wait...");
             API.PUT("ewallet/api/v1/customer/receiver",benefiJson,
                     new Api_Responce_Handler() {
                         @Override

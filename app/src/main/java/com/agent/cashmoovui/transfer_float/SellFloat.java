@@ -837,7 +837,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -872,12 +871,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -904,7 +907,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -942,6 +944,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                         // finish();
                     }
@@ -950,6 +954,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(SellFloat.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1165,7 +1171,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1219,12 +1224,15 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
 
+                        MyApplication.hideLoader();
 
 
 
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
@@ -1233,6 +1241,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(SellFloat.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1271,7 +1281,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1299,6 +1308,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     }
 
                     else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -1307,6 +1318,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(SellFloat.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -1336,7 +1349,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -1371,6 +1383,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         rp_tv_email.setText(email_walletOwnerCategoryCode = walletOwnerUser.getString("email"));
 
+                        MyApplication.hideLoader();
 
 
 
@@ -1382,12 +1395,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

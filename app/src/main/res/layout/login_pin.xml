@@ -47,6 +47,28 @@
                     android:textColor="#323232"
                     android:layout_gravity="center"
                     android:textSize="@dimen/_14sdp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left">
+
+                    <TextView
+                        android:id="@+id/nameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/aileron_bold"
+                        android:lineSpacingExtra="4sp"
+                        android:text="sonu"
+                        android:textColor="#323232"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <!--                <ImageView-->
+                    <!--                    android:layout_width="@dimen/_120sdp"-->
+                    <!--                    android:layout_height="@dimen/_50sdp"-->
+                    <!--                    android:src="@drawable/logo200x70b" />-->
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,19 +76,44 @@
                     android:orientation="vertical"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/_50sdp">
+                    <EditText
+                        android:id="@+id/etmobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/btn_edittextname"
+                        android:backgroundTint="@color/grey_100_"
+                        android:inputType="text"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:hint="mobile no "
+
+                        android:lineSpacingExtra="10sp"
+                        android:paddingLeft="@dimen/_15sdp"
+                        android:paddingTop="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:fontFamily="@font/aileron_semibold"
+                        android:textColor="@color/textColorLBlack"
+                        android:textSize="@dimen/_15sdp"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="3sp"
                         android:text="@string/enter_pin"
                         android:textColor="#29304d"
+                        android:visibility="gone"
+                        android:layout_marginTop="15dp"
                         android:textSize="@dimen/_13sdp"
                         android:fontFamily="@font/aileron_bold"
                         android:layout_marginBottom="@dimen/_10sdp"/>
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_1sdp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/custom_rect"
                         android:outlineSpotShadowColor="@color/blue"
                         app:cardCornerRadius="@dimen/_6sdp">

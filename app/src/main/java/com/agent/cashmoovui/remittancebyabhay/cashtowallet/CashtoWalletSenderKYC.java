@@ -1433,13 +1433,12 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }else{
             idprooftypecodefile = idprooftypecode;
         }
-        MyApplication.showloader(cashtowalletsenderkycC, "uploading file...");
+      //  MyApplication.showloader(cashtowalletsenderkycC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
         API.Upload_REQUEST_WH("ewallet/api/v1/customer/fileUpload",fileFront,idprooftypecodefile,
                 sendorCustomerJsonObj.optJSONObject("customer").optString("code"), new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
                             if (jsonObject != null) {
                                 if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                     //MyApplication.showToast(getString(R.string.document_upload_msg));
@@ -1463,6 +1462,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
                         @Override
                         public void failure(String aFalse) {
+                            MyApplication.hideLoader();
 
                         }
                     });
@@ -1518,7 +1518,6 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
                                 filesUploadFront();

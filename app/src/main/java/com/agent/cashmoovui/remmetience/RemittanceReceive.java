@@ -520,7 +520,6 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -542,12 +541,16 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
                       //  finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -581,7 +584,6 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -723,11 +725,15 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                     }
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -756,7 +762,6 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -775,11 +780,15 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -874,7 +883,6 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
 
                     try {
 
@@ -944,6 +952,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
 
+                            MyApplication.hideLoader();
 
                             ////////////////////////////// Sender Details ///////////
 
@@ -1080,12 +1089,16 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                         } else {
+                            MyApplication.hideLoader();
+
                             Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
 
 
                     } catch (Exception e) {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }

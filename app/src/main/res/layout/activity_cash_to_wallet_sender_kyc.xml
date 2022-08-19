@@ -263,7 +263,7 @@
                     android:backgroundTint="#999999"
                     android:inputType="phone"
                     android:lineSpacingExtra="10sp"
-                    android:digits="0123456-/"
+                    android:digits="0123456789-/"
 
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"

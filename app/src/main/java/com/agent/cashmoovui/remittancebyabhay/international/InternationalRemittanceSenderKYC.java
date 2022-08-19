@@ -448,7 +448,6 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 senderGenderList.clear();
@@ -952,6 +951,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                         @Override
                         public void failure(String aFalse) {
+                            MyApplication.hideLoader();
 
                         }
                     });
@@ -1003,12 +1003,11 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             e.printStackTrace();
         }
         if(isCustomerData) {
-            MyApplication.showloader(internationalremitsenderkycC,"Please Wait...");
+          //  MyApplication.showloader(internationalremitsenderkycC,"Please Wait...");
             API.PUT("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
                                 filesUploadFront();
@@ -1025,12 +1024,11 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     });
 
         }else{
-            MyApplication.showloader(internationalremitsenderkycC,"Please Wait...");
+           // MyApplication.showloader(internationalremitsenderkycC,"Please Wait...");
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
                                 filesUploadFront();

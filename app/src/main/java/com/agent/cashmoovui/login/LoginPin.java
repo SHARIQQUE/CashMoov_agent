@@ -50,14 +50,14 @@ import java.util.concurrent.Executor;
 
 public class LoginPin extends AppCompatActivity {
     public static LoginPin loginpinC;
-    EditText etPin;
-    TextView tvContinue,tvFinger,msgText,tvregister,tvFinger1;
+    EditText etPin,etmobile;
+    TextView tvContinue,tvFinger,msgText,tvregister,tvFinger1,nameText;
     private static final int PERMISSION_REQUEST_CODE = 200,READ_EXTERNAL_STORAGE=201,WRITE_EXTERNAL_STORAGE=202;
 
     boolean  isPasswordVisible;
 
     MyApplication applicationComponentClass;
-    String languageToUse = "";
+    String languageToUse = "",mName,mMobile;
 
 
     @Override
@@ -167,6 +167,15 @@ public class LoginPin extends AppCompatActivity {
         tvFinger1= findViewById(R.id.tvFinger1);
         msgText = findViewById(R.id.msgText);
         tvregister = findViewById(R.id.tvregister);
+        nameText=findViewById(R.id.nameText);
+        etmobile=findViewById(R.id.etmobile);
+
+        mName=MyApplication.getSaveString("firstName", LoginPin.this);
+        mMobile=MyApplication.getSaveString("mobile", LoginPin.this);
+
+        nameText.setText("Hi "+ mName);
+        etmobile.setText(mMobile);
+        etmobile.setEnabled(false);
 
         tvFinger1.setOnClickListener(new View.OnClickListener() {
             @Override
