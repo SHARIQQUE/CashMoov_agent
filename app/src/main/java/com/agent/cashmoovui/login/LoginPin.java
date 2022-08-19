@@ -57,7 +57,7 @@ public class LoginPin extends AppCompatActivity {
     boolean  isPasswordVisible;
 
     MyApplication applicationComponentClass;
-    String languageToUse = "",mName,mMobile;
+    String languageToUse = "",mName,mMobile,mLastName;
 
 
     @Override
@@ -172,8 +172,16 @@ public class LoginPin extends AppCompatActivity {
 
         mName=MyApplication.getSaveString("firstName", LoginPin.this);
         mMobile=MyApplication.getSaveString("mobile", LoginPin.this);
+        mLastName=MyApplication.getSaveString("lastName", LoginPin.this);
 
-        nameText.setText("Hi "+ mName);
+
+        if(mLastName.equalsIgnoreCase("null")){
+            nameText.setText("Hi "+ mName);
+
+        }else{
+            nameText.setText("Hi "+ mName+" "+mLastName);
+
+        }
         etmobile.setText(mMobile);
         etmobile.setEnabled(false);
 
