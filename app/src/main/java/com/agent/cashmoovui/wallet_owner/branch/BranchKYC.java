@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -12,22 +13,28 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.adapter.SearchAdapteAgentDetails;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cashout.CashOutCodeSubscriber;
 import com.agent.cashmoovui.model.BusinessTypeModel;
 import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
+import com.agent.cashmoovui.model.UserDetailAgent;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryAgent;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
 import com.suke.widget.SwitchButton;
@@ -37,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -44,7 +52,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class BranchKYC extends AppCompatActivity implements View.OnClickListener {
     public static BranchKYC branchkycC;
     DatePickerDialog picker;
-    TextView spAccType,spBusinessType,spCountry,spRegion,spCity,spGender,spIdProof,tvNext;
+    TextView spAccType,agentType,spBusinessType,spCountry,spRegion,spCity,spGender,spIdProof,tvNext;
     public static EditText etBranchName,etLname,etEmail,etPhone,etAddress,etDob,etProofNo;
     private ArrayList<String> businessTypeList = new ArrayList<>();
     private ArrayList<BusinessTypeModel.BusinessType> businessTypeModelList = new ArrayList<>();
@@ -59,7 +67,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private ArrayList<String> genderList = new ArrayList<>();
     private ArrayList<GenderModel.Gender> genderModelList=new ArrayList<>();
 
-    private SpinnerDialog spinnerDialogBusinessType,spinnerDialogIdProofType,spinnerDialogCountry,
+    private SpinnerDialog spinnerDialogAgentType,spinnerDialogBusinessType,spinnerDialogIdProofType,spinnerDialogCountry,
             spinnerDialogRegion,spinnerDialogCity,spinnerDialogGender;
     public static String idProofTypeCode,branchWalletOwnerCode;
     private SwitchButton sbLoginwithotp;
@@ -67,7 +75,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private ImageView mCalenderIcon_Image;
     public static TextView mDobText;
 
-
+    MyApplication applicationComponentClass;
+    String languageToUse = "";
     public static final int REQUEST_CODE = 1;
 
     @Override
@@ -87,9 +96,26 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applicationComponentClass = (MyApplication) getApplicationContext();
+
+        languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
+
+        if (languageToUse.trim().length() == 0) {
+            languageToUse = "en";
+        }
+
+        Locale locale = new Locale(languageToUse);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_register_branch);
         branchkycC=this;
         getIds();
+
+
 
     }
 
@@ -157,6 +183,31 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             }
                         }, 1960, 01, 00);
                 picker.show();
+            }
+        });
+
+        agentType=findViewById(R.id.agentType);
+        agentType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogAgentType!=null)
+                    spinnerDialogAgentType.showSpinerDialog();
+            }
+        });
+
+        spBusinessType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogBusinessType!=null)
+                    spinnerDialogBusinessType.showSpinerDialog();
+            }
+        });
+
+        spBusinessType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerDialogBusinessType!=null)
+                    spinnerDialogBusinessType.showSpinerDialog();
             }
         });
 
@@ -235,7 +286,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
             }
         });
 
-        callBusinessTypeList();
+        api_transactionHistory_agent();
 
         setOnCLickListener();
 
@@ -394,6 +445,155 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
             }
 
         }
+
+    ArrayList<UserDetailAgent> arrayList_modalDetailsnew;
+    ArrayList<String> arraylistAgentStr;
+
+    private void api_transactionHistory_agent() {
+
+        // http://202.131.144.130:8081/ewallet/api/v1/transaction/all?srcWalletOwnerCode=1000002692&resultCode=0&offset=0&limit=5000
+
+
+        String usercode_from_msis = MyApplication.getSaveString("USERCODE", BranchKYC.this);
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/" + usercode_from_msis, languageToUse, new Api_Responce_Handler() {
+
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    arrayList_modalDetailsnew = new ArrayList<>();
+
+                    arraylistAgentStr=new ArrayList<>();
+                    UserDetailAgent userDetailAgent;// = new UserDetailAgent();
+
+                    arrayList_modalDetailsnew.clear();
+                    arraylistAgentStr.clear();
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+
+
+
+                        if (jsonObject.has("walletOwner")) {
+
+                            JSONObject jsonObject1_walletOwner = jsonObject.getJSONObject("walletOwner");
+
+
+                            if (jsonObject1_walletOwner.has("walletOwnerChildList")) {
+
+                                JSONArray jsonArray = jsonObject1_walletOwner.getJSONArray("walletOwnerChildList");
+
+
+                                for (int i = 0; i < jsonArray.length(); i++) {
+
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+
+                                    if (MyApplication.AgentCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
+                                        userDetailAgent = new UserDetailAgent();
+
+                                        if (jsonObject1.has("ownerName")) {
+
+                                            String ownerName = jsonObject1.getString("ownerName");
+                                            userDetailAgent.setOwnerName(ownerName);
+                                            arraylistAgentStr.add(ownerName);
+
+                                        }
+
+                                        if (jsonObject1.has("mobileNumber")) {
+                                            String mobileNumber = jsonObject1.getString("mobileNumber");
+
+                                            userDetailAgent.setMobileNumber(mobileNumber);
+
+                                        }
+
+                                        if (jsonObject1.has("email")) {
+                                            String email = jsonObject1.getString("email");
+
+                                            userDetailAgent.setEmail(email);
+                                        }
+                                        if (jsonObject1.has("issuingCountryName")) {
+                                            String issuingCountryName = jsonObject1.getString("issuingCountryName");
+                                            userDetailAgent.setIssuingCountryName(issuingCountryName);
+
+
+                                        }
+
+                                        if (jsonObject1.has("walletOwnerCode")) {
+
+                                            String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                            userDetailAgent.setWalletOwnerCode(walletOwnerCode);
+
+                                        }
+
+                                        if (jsonObject1.has("registerCountryCode")) {
+
+                                            String registerCountryCode = jsonObject1.getString("registerCountryCode");
+                                            userDetailAgent.setRegisterCountryCode(registerCountryCode);
+
+                                        }
+
+                                        arrayList_modalDetailsnew.add(userDetailAgent);
+
+                                    }
+
+
+                                }
+                                spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, "Select Business Type", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+                                spinnerDialogAgentType.setCancellable(true); // for cancellable
+                                spinnerDialogAgentType.setShowKeyboard(false);// for open keyboard by default
+                                spinnerDialogAgentType.bindOnSpinerListener(new OnSpinerItemClick() {
+                                    @Override
+                                    public void onClick(String item, int position) {
+                                        //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                        agentType.setText(item);
+                                        agentType.setTag(position);
+
+                                    }
+                                });
+                                callBusinessTypeList();
+
+                            }
+
+
+                        }
+
+
+
+                    } else {
+                        Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(BranchKYC.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    finish();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(BranchKYC.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
 
     private void callBusinessTypeList() {
         try {
