@@ -544,30 +544,32 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         if (!MyApplication.getSaveString("COUNTRYCODE_AGENT", internationalC).equalsIgnoreCase(data.optString("countryCode"))) {
-                                            recCountryModelList.add(new CountryRemittanceInfoModel.RemitCountry(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("countryCode"),
-                                                    data.optString("countryIsoCode"),
-                                                    data.optString("countryName"),
-                                                    data.optString("createdBy"),
-                                                    data.optString("creationDate"),
-                                                    data.optString("currencyCode"),
-                                                    data.optString("currencySymbol"),
-                                                    data.optString("dialCode"),
-                                                    data.optString("mobileLength"),
-                                                    data.optString("modificationDate"),
-                                                    data.optString("modifiedBy"),
-                                                    data.optString("state"),
-                                                    data.optString("status"),
-                                                    data.optBoolean("remitReceiving"),
-                                                    data.optBoolean("remitSending")
-                                            ));
+                                            if (data.optBoolean("remitReceiving")) {
+                                                recCountryModelList.add(new CountryRemittanceInfoModel.RemitCountry(
 
-                                            recCountryList.add(data.optString("countryName").trim());
+                                                        data.optInt("id"),
+                                                        data.optString("code"),
+                                                        data.optString("countryCode"),
+                                                        data.optString("countryIsoCode"),
+                                                        data.optString("countryName"),
+                                                        data.optString("createdBy"),
+                                                        data.optString("creationDate"),
+                                                        data.optString("currencyCode"),
+                                                        data.optString("currencySymbol"),
+                                                        data.optString("dialCode"),
+                                                        data.optString("mobileLength"),
+                                                        data.optString("modificationDate"),
+                                                        data.optString("modifiedBy"),
+                                                        data.optString("state"),
+                                                        data.optString("status"),
+                                                        data.optBoolean("remitReceiving"),
+                                                        data.optBoolean("remitSending")
+                                                ));
 
+                                                recCountryList.add(data.optString("countryName").trim());
+
+                                            }
                                         }
-
                                     }
 
                                     spinnerDialogRecCountry= new SpinnerDialog(internationalC, recCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
