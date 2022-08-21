@@ -308,6 +308,13 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvNext:
+
+                if(agentType.getText().toString().equalsIgnoreCase("Select Agent")) {
+                    MyApplication.showTipError(this,"Please Select Agent",agentType);
+                    MyApplication.hideKeyboard(branchkycC);
+                    return;
+                }
+
                 if(etBranchName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
                     MyApplication.showTipError(this,getString(R.string.val_branch_name),etBranchName);
@@ -432,7 +439,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", branchkycC));
                     jsonObject.put("notificationTypeCode","100002");
                     jsonObject.put("profileTypeCode","100000");
-                    jsonObject.put("walletOwnerParentCode",MyApplication.getSaveString("walletOwnerCode",branchkycC));
+                    jsonObject.put("walletOwnerParentCode",arrayList_modalDetailsnew.get((Integer)agentType.getTag()).getWalletOwnerCode());
                     jsonObject.put("walletOwnerCategoryCode",MyApplication.BranchCode);
                     jsonObject.put("loginWithOtpRequired",loginwithOtp);
 
@@ -545,7 +552,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
                                 }
-                                spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, "Select Business Type", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, "Select Agent", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                 spinnerDialogAgentType.setCancellable(true); // for cancellable
                                 spinnerDialogAgentType.setShowKeyboard(false);// for open keyboard by default
@@ -560,6 +567,10 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                 });
                                 callBusinessTypeList();
 
+                            }
+                            else{
+                                MyApplication.showToast(BranchKYC.this,"Please Add Agent First to Create Branch...");
+                                finish();
                             }
 
 

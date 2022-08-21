@@ -63,7 +63,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     String emailId_from_api="";
 
     LinearLayout otp_new_l,ll_resendOtp;
-    EditText et_otp;
+    EditText et_otp,edittext_comment;
 
 
     ImageButton qrCode_imageButton;
@@ -139,6 +139,38 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             edittext_email = (EditText) findViewById(R.id.edittext_email);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+            edittext_comment = (EditText) findViewById(R.id.edittext_comment);
+            et_otp = findViewById(R.id.et_otp);
+            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+            et_otp.setTransformationMethod(hiddenPassTransformationMethod);
+            et_otp.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_otp.getRight() - et_otp.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_otp.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_otp.setTransformationMethod(hiddenPassTransformationMethod);
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_otp.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_otp.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_otp.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
 
             //    Reveiw page
 
@@ -282,7 +314,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         MyApplication.hideKeyboard(RemittanceReceive.this);            }
             });
 
-            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+           // HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
             et_mpin.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -611,6 +643,16 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         }
 
+
+
+                            if (jsonObject_accountHolding.has("comments")) {
+
+                                edittext_comment.setText(jsonObject_accountHolding.optString("comments","N/A"));
+
+                            } else {
+
+                            }
+
                             if(jsonObject_accountHolding.has("remitType")){
 
                                remitType=jsonObject_accountHolding.optString("remitType");
@@ -626,6 +668,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             } else {
 
                             }
+
+
 
 
 
@@ -754,6 +798,64 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
     }
 
+    private void api_remittance_getCustomernew() {
+
+
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?firstName="+edittext_firstName.getText().toString().trim()+
+                "&mobileNumber="+edittext_mobileNuber.getText().toString().toString(), languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1813407\",\"requestTime\":\"Fri Oct 22 15:57:35 IST 2021\",\"responseTime\":\"Fri Oct 22 15:57:35 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"accountHolding\":{\"id\":1937,\"code\":\"1000002014\",\"walletOwnerCode\":\"1000002794\",\"transactionId\":116607,\"openingBalance\":47593,\"closingBalance\":45124,\"sendingAmount\":1000,\"beneficiaryAmount\":1000,\"fee\":1300,\"exchangeRateValue\":0,\"tax\":169,\"fromCurrencyCode\":\"100062\",\"toCurrencyCode\":\"100062\",\"confirmationCode\":\"MM*********\",\"dueDate\":\"2021-10-29T00:00:00.000+0530\",\"status\":\"In Transit\",\"creationDate\":\"2021-10-22 15:08:56\",\"createdBy\":\"102073\",\"sendingWalletOwnerCode\":\"1000002794\",\"beneficiaryWalletOwnerCode\":\"1000002785\",\"holdingAccountTypeCode\":\"100000\",\"holdingAccountTypeName\":\"R2R\",\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":169,\"taxAvailBy\":\"Fee Amount\"}],\"srcProviderWalletCode\":\"1000015411\",\"sendCountryCode\":\"100092\",\"receiveCountryCode\":\"100092\",\"walletToCash\":true}}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+
+                        // JSONObject accountHolding=jsonObject.getJSONObject("accountHolding");
+                        //   JSONObject beneficiaryCustomer=accountHolding.getJSONObject("beneficiaryCustomer");
+
+                        if (remitType.equalsIgnoreCase("Local Remit")) {
+                            otp_generate_api(benificiaryCode);
+
+                        }else{
+                            service_Provider_api();
+                        }
+
+                        //
+
+
+                    } else {
+                        Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(RemittanceReceive.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
 
     private void api_remittance_getCustomer() {
 
@@ -915,11 +1017,16 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             receiptPage_sender_mssidn.setText(mobileNoStr);
 
-
+                            receiptPage_sender_mssidn.setVisibility(View.GONE);
 
                             JSONObject remittance_object = jsonObject.getJSONObject("remittance");
-                            receiptPage_confirmationCode.setText(remittance_object.getString("confirmationCode"));
 
+                            TextView receiptPage_agentName=findViewById(R.id.receiptPage_agentName);
+                            receiptPage_agentName.setText(remittance_object.getString("walletOwnerUserName"));
+
+
+                            receiptPage_confirmationCode.setText(remittance_object.getString("confirmationCode"));
+                            receiptPage_confirmationCode.setVisibility(View.GONE);
                             JSONObject remittance_sender = remittance_object.getJSONObject("sender");
                             JSONObject remittance_receiver = remittance_object.getJSONObject("receiver");
 
@@ -934,23 +1041,42 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                                 currencySymbol_receiver = remittance_object.getString("toCurrencySymbol");
                             }
 
+                            if(remittance_object.getInt("amount")>0) {
+                                receiptPage_tv_financialtax.setVisibility(View.VISIBLE);
+                                receiptPage_tv_financialtax.setText(currencySymbol_sender+" "+MyApplication.addDecimal(remittance_object.getInt("amount")+""));
+                            }else{
+                                receiptPage_tv_financialtax.setVisibility(View.GONE);
+                            }
 
 
 
                             receiptPage_sbenificairay_mssidn.setText(MyApplication.getSaveString("USERNAME", RemittanceReceive.this));
 
+                            receiptPage_sbenificairay_mssidn.setVisibility(View.GONE);
+
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender+" "+MyApplication.addDecimal(remittance_object.getInt("amount")+""));
+                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(remittance_object.getInt("amountToPaid")+""));
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
+
+                           if(remittance_object.getInt("fee")>0) {
+                               receiptPage_tv_fee.setVisibility(View.VISIBLE);
+                               receiptPage_tv_fee.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.getInt("fee") + ""));
+                           }else{
+                               receiptPage_tv_fee.setVisibility(View.GONE);
+                           }
+
+                            if(remittance_object.getInt("conversionRate")>0) {
+                                receiptPage_conversion_rate.setVisibility(View.VISIBLE);
+                                receiptPage_conversion_rate.setText(currencySymbol_sender+" "+MyApplication.addDecimalthreenew(remittance_object.getString("conversionRate")));
+                            }else{
+                                receiptPage_conversion_rate.setVisibility(View.GONE);
+                            }
 
 
-                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender+" "+remittance_object.getInt("amount"));
-                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver+" "+remittance_object.getInt("amountToPaid"));
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" "+amountstr);
-                            receiptPage_tv_fee.setText(currencySymbol_sender+" "+remittance_object.getInt("fee"));
-                            receiptPage_conversion_rate.setText(currencySymbol_sender+" "+remittance_object.getString("conversionRate"));
-                            receiptPage_tv_financialtax.setText(currencySymbol_sender+" "+remittance_object.getInt("amount"));
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
+                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime")));
 
                             MyApplication.hideLoader();
 
@@ -1156,11 +1282,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             if(tv_nextClick.getText().toString().equalsIgnoreCase(getString(R.string.otp_verify))){
                                 otp_verify_api();
                             }else {
-                                if (remitType.equalsIgnoreCase("Local Remit")) {
-                                    otp_generate_api(benificiaryCode);
-                                } else {
-                                    api_remittance_getCustomer();
-                                }
+                               api_remittance_getCustomernew();
                             }
 
                             //

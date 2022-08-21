@@ -667,7 +667,7 @@
     <string name="agent_details">Agent details</string>
     <string name="branch_details">Branch details</string>
     <string name="total_amount_colon">Total Amount :</string>
-    <string name="vendor_trans_id_colom">Vendor Transaction ID :</string>
+    <string name="vendor_trans_id_colom">Transaction ID :</string>
     <string name="gnf_fixed">GNF Fixed</string>
     <string name="on_the_transaction">on the transaction</string>
     <string name="gnf_transaction">GNF / transaction</string>
@@ -680,7 +680,7 @@
     <string name="sell_float_colon">Sell Float:</string>
     <string name="transfer_float_colon">Transfer Float:</string>
     <string name="transaction_amount_receiptPage">Transaction Amount</string>
-    <string name="vendor_transaction_id_receipt">Vendor Transaction id</string>
+    <string name="vendor_transaction_id_receipt">Transaction id</string>
     <string name="receiver_msisdn"> Receiver MSISDN</string>
 
     <string name="receiverName_receiptPage_without_coln">Receiver name</string>

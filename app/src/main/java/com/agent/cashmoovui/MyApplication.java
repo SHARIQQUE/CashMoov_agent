@@ -413,22 +413,19 @@ public class MyApplication extends Application {
 
     public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     public static String addDecimal(String number) {
-
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         System.out.println(("get datatype" + (Object) number).getClass().getName());
         return df.format(Double.parseDouble(number));
     }
 
     public static String addDecimalthreenew(String number) {
-
-        DecimalFormat df = new DecimalFormat("0.00",symbols);
-
+        DecimalFormat df = new DecimalFormat("0.000",symbols);
         return df.format(Double.parseDouble(number));
     }
 
     public static String addDecimalthree(String number) {
 
-        DecimalFormat df = new DecimalFormat("0.00",symbols);
+        DecimalFormat df = new DecimalFormat("0.000",symbols);
 
 
         return df.format(Double.parseDouble(number));

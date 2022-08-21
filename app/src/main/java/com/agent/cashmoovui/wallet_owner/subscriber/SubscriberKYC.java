@@ -346,7 +346,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     jsonObject.put("registerCountryCode","100092");
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
 //                    jsonObject.put("city",etCity.getText().toString().trim());
-                    jsonObject.put("notificationLanguage",MyApplication.getSaveString("Locale", subscriberkycC));
+                    jsonObject.put("notificationLanguage","fr");
                     jsonObject.put("notificationTypeCode","100002");
                     jsonObject.put("profileTypeCode","100000");
                     jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());

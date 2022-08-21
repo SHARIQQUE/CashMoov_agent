@@ -284,7 +284,7 @@
     <string name="transaction_success">Transaction\nsuccèss!</string>
     <string name="details_of_transaction">Détails de votre transaction</string>
     <string name="transaction_type_colon">Type de transaction :</string>
-    <string name="transaction_id_colon">Transaction ID :</string>
+    <string name="transaction_id_colon">Identifiant de transaction :</string>
     <string name="change_pin_caps">Changer de PIN</string>
     <string name="change_pin_message">Veuillez saisir votre ancien code secret:</string>
     <string name="change_lang_conf_msg">Voulez-vous vraiment changer de langue ?</string>
@@ -669,7 +669,7 @@
     <string name="agent_details">Détails de l\'agent</string>
     <string name="branch_details">bronc Détails</string>
     <string name="total_amount_colon">Montant total :</string>
-    <string name="vendor_trans_id_colom">Identifiant de transaction du fournisseur :</string>
+    <string name="vendor_trans_id_colom">Identifiant de transaction :</string>
     <string name="gnf_fixed">GNF fixe</string>
     <string name="on_the_transaction">sur la transaction</string>
     <string name="gnf_transaction">GNF/transaction</string>
@@ -683,7 +683,7 @@
     <string name="transfer_float_colon">Flotteur de transfert :</string>
     <string name="transaction_amount_receiptPage">Amount transaction</string>
 
-    <string name="vendor_transaction_id_receipt">Identifiant de la trasaction </string>
+    <string name="vendor_transaction_id_receipt">Identifiant de transaction : </string>
 
     <string name="receiverName_receiptPage_without_coln">Nom du destinataire</string>
     <string name="final_amount">montant final</string>
@@ -698,7 +698,6 @@
     <string name="exchangeRate">Taux de change</string>
     <string name="Currency_without_colon"> Monnaie  </string>
     <string name="trans_id">Identifiant de transaction</string>
-
     <string name="source">La source</string>
     <string name="destination">Destination</string>
     <string name="source_msisdn">Source MSISDN</string>
