@@ -271,12 +271,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
              tvFinger =findViewById(R.id.tvFinger);
             if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
                 if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                    tvFinger.setVisibility(View.VISIBLE);
+                    //tvFinger.setVisibility(View.VISIBLE);
                 } else {
-                    tvFinger.setVisibility(View.GONE);
+                   // tvFinger.setVisibility(View.GONE);
                 }
             }else{
-                tvFinger.setVisibility(View.VISIBLE);
+               // tvFinger.setVisibility(View.VISIBLE);
             }
             tvFinger.setVisibility(View.GONE);
             tvFinger.setOnClickListener(new View.OnClickListener() {
@@ -1205,8 +1205,39 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             case R.id.confirm_reviewClick_textview: {
 
+                {
+                    MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
 
-                if (selectClickType.equalsIgnoreCase("select_otp")) {
+                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                if (new InternetCheck().isConnected(CashOutAgent.this)) {
+
+                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+
+
+                                    mpin_final_api();
+
+
+                                } else {
+                                    Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(CashOutAgent.this, failure);
+                            ll_pin.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
+              /*  if (selectClickType.equalsIgnoreCase("select_otp")) {
 
                     if (validation_otp_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
@@ -1249,6 +1280,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 }
 
 
+            }*/
             }
             break;
 
@@ -1540,7 +1572,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
             String requiredValue = data.getStringExtra("PHONE");
-            edittext_mobileNuber.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,edittext_mobileNuber);
+
             edittext_amount.requestFocus();
 
         }

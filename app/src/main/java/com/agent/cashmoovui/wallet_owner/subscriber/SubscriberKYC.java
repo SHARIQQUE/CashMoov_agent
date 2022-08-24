@@ -82,7 +82,9 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
 
             String requiredValue = data.getStringExtra("PHONE");
-            etPhone.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,etPhone);
+
+           // etPhone.setText(requiredValue);
 
         }
     }

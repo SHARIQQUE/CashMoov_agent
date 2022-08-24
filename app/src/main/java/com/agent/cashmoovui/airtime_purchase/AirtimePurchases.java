@@ -102,7 +102,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             receiptPage_tv_amount, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,rp_tv_excise_tax,rp_tv_amount_to_be_charge,rp_tv_transactionAmount,previous_reviewClick_textview,confirm_reviewClick_textview;
-    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage;
+    LinearLayout ll_page_1,ll_reviewPage,ll_receiptPage,main_layout,ll_successPage,pinLinear;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -189,6 +189,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
+            pinLinear=findViewById(R.id.pinLinear);
             edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -273,12 +274,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             TextView tvFinger =findViewById(R.id.tvFinger);
             if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
                 if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                    tvFinger.setVisibility(View.VISIBLE);
+                   // tvFinger.setVisibility(View.VISIBLE);
                 } else {
-                    tvFinger.setVisibility(View.GONE);
+                   // tvFinger.setVisibility(View.GONE);
                 }
             }else{
-                tvFinger.setVisibility(View.VISIBLE);
+               // tvFinger.setVisibility(View.VISIBLE);
             }
             tvFinger.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1576,7 +1577,37 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             case R.id.confirm_reviewClick_textview: {
 
-                if (validation_mpin_detail()) {
+                {
+                    MyApplication.biometricAuth(AirtimePurchases.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+
+                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                if (new InternetCheck().isConnected(AirtimePurchases.this)) {
+
+                                    MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+
+                                    api_allByCriteria_msisdnPrefix();
+
+                                } else {
+                                    Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+                            MyApplication.showToast(AirtimePurchases.this, failure);
+                            pinLinear.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
+               /* if (validation_mpin_detail()) {
 
                     if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
@@ -1589,6 +1620,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     }
                 }
 
+            }*/
             }
             break;
 
@@ -1651,7 +1683,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                 String requiredValue = data.getStringExtra("PHONE");
-                edittext_mobileNo.setText(requiredValue);
+                MyApplication.contactValidation(requiredValue,edittext_mobileNo);
+
+               // edittext_mobileNo.setText(requiredValue);
 
             }
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);

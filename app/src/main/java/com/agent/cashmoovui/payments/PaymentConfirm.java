@@ -32,7 +32,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
     public static TextView tvProvider,tvAccNo,tvOperatorName,tvCurrency,tvTransAmount,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
-    LinearLayout tax_label_layout,vat_label_layout;
+    LinearLayout tax_label_layout,vat_label_layout,pinLinear;
     CardView cardBearFee;
     boolean isPasswordVisible;
 
@@ -74,7 +74,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
         etPin = findViewById(R.id.etPin);
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
-
+        pinLinear=findViewById(R.id.pinLinear);
         tax_r=findViewById(R.id.tax_r);
         vat_r=findViewById(R.id.vat_r);
         tax_label=findViewById(R.id.tax_label);
@@ -166,12 +166,12 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
-                tvFinger.setVisibility(View.VISIBLE);
+                //tvFinger.setVisibility(View.VISIBLE);
             } else {
-                tvFinger.setVisibility(View.GONE);
+               // tvFinger.setVisibility(View.GONE);
             }
         }else{
-            tvFinger.setVisibility(View.VISIBLE);
+          //  tvFinger.setVisibility(View.VISIBLE);
         }
         tvFinger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,7 +213,28 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
         Intent intent;
         switch (view.getId()) {
             case R.id.btnConfirm:
-                if(etPin.getText().toString().trim().isEmpty()){
+            {
+                MyApplication.biometricAuth(PaymentConfirm.this, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+
+                            String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            PaymentDetails.dataToSend.put( "pin",encryptionDatanew);
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(PaymentConfirm.this,failure);
+                        pinLinear.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+               /* if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(paymentconfirmC,getString(R.string.val_pin));
                     return;
                 }
@@ -231,7 +252,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
                     e.printStackTrace();
                 }
 
-                System.out.println("dataToSend---"+PaymentDetails.dataToSend.toString());
+                System.out.println("dataToSend---"+PaymentDetails.dataToSend.toString());*/
                 break;
             case R.id.btnCancel:
                 finish();

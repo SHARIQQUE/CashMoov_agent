@@ -77,7 +77,8 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
 
             String requiredValue = data.getStringExtra("PHONE");
-            etPhone.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,etPhone);
+
 
         }
     }
