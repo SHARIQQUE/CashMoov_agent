@@ -1512,9 +1512,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            MyApplication.contactValidation(requiredValue,edittext_mobileNuber);
-
-            //edittext_mobileNuber.setText(requiredValue);
+            edittext_mobileNuber.setText(requiredValue);
             edittext_amount.requestFocus();
            // MyApplication.showKeyboard(CashIn.this,edittext_amount);
         }

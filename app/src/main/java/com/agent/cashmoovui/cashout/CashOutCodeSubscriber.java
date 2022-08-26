@@ -1023,12 +1023,12 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender+ " " +amountstr);
 
-                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender+ " " +remittance_object.getInt("amount"));
-                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver+ " " +remittance_object.getInt("amountToPaid"));
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender+ " " +MyApplication.addDecimal(remittance_object.getInt("amount")+""));
+                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver+ " " +MyApplication.addDecimal(remittance_object.getInt("amountToPaid")+""));
 
 
 
-                            receiptPage_tv_fee.setText(currencySymbol_sender+ " " +remittance_object.getInt("fee"));
+                            receiptPage_tv_fee.setText(currencySymbol_sender+ " " +MyApplication.addDecimal(remittance_object.getInt("fee")+""));
                             receiptPage_conversion_rate.setText(currencySymbol_sender+ " " +remittance_object.getString("conversionRate"));
                             receiptPage_tv_financialtax.setText(currencySymbol_sender+ " " +remittance_object.getInt("amount"));
 

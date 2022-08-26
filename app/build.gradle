@@ -91,6 +91,7 @@ dependencies {
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
 
 
+    implementation 'io.michaelrocks:libphonenumber-android:8.12.52'
 
 
 
