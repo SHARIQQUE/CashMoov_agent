@@ -767,6 +767,7 @@
 
 
             <LinearLayout
+                android:id="@+id/taxselffloatLinear"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -930,9 +931,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pinLinearselffloat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
 
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="4">

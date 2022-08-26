@@ -214,8 +214,9 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
                                                 jsonObjectServiceListResponceArray.optString("status"),
                                                 jsonObjectServiceListResponceArray.optString("creationDate"),
                                                 jsonObjectServiceListResponceArray.optBoolean("productAllowed")
-                                        ));
-
+                                                ,
+                                                jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                jsonObjectServiceListResponceArray.optInt("maxTransValue")));
                                     }
 
                                     dataM.add(new ServiceList.serviceListMain(

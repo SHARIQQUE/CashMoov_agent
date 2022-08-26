@@ -105,7 +105,25 @@ public  class ServiceList {
         public String status;
         public String creationDate;
         public boolean productAllowed;
+        public int minTransValue;
+        public int maxTransValue;
 
+
+        public int getMinTransValue() {
+            return minTransValue;
+        }
+
+        public void setMinTransValue(int minTransValue) {
+            this.minTransValue = minTransValue;
+        }
+
+        public int getMaxTransValue() {
+            return maxTransValue;
+        }
+
+        public void setMaxTransValue(int maxTransValue) {
+            this.maxTransValue = maxTransValue;
+        }
 
         public int getId() {
             return id;
@@ -171,7 +189,7 @@ public  class ServiceList {
             this.productAllowed = productAllowed;
         }
 
-        public serviceCategoryList(int id, String code, String serviceCode, String serviceName, String name, String status, String creationDate, boolean productAllowed) {
+        public serviceCategoryList(int id, String code, String serviceCode, String serviceName, String name, String status, String creationDate, boolean productAllowed, int minTransValue, int maxTransValue) {
             this.id = id;
             this.code = code;
             this.serviceCode = serviceCode;
@@ -180,6 +198,8 @@ public  class ServiceList {
             this.status = status;
             this.creationDate = creationDate;
             this.productAllowed = productAllowed;
+            this.minTransValue = minTransValue;
+            this.maxTransValue = maxTransValue;
         }
     }
 

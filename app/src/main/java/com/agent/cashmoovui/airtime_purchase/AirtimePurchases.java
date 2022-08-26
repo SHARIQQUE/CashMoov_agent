@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
@@ -37,6 +38,7 @@ import com.agent.cashmoovui.adapter.CustomeBaseAdapterAllCountry;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -1575,38 +1577,66 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             break;
 
-            case R.id.confirm_reviewClick_textview: {
+            case R.id.confirm_reviewClick_textview:
 
-                {
-                    MyApplication.biometricAuth(AirtimePurchases.this, new BioMetric_Responce_Handler() {
-                        @Override
-                        public void success(String success) {
-                            try {
 
-                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
 
-                                if (new InternetCheck().isConnected(AirtimePurchases.this)) {
+                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(AirtimePurchases.this);
+                switch (biometricManager.canAuthenticate()) {
 
-                                    MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+                    // this means we can use biometric sensor
+                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
 
-                                    api_allByCriteria_msisdnPrefix();
+                        Toast.makeText(AirtimePurchases.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                        pinLinear.setVisibility(View.VISIBLE);
+                        if (validation_mpin_detail()) {
 
-                                } else {
-                                    Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            if (new InternetCheck().isConnected(AirtimePurchases.this)) {
+
+                                MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+
+                                api_allByCriteria_msisdnPrefix();
+
+                            } else {
+                                Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                             }
+                            return;
+
                         }
 
-                        @Override
-                        public void failure(String failure) {
-                            MyApplication.showToast(AirtimePurchases.this, failure);
-                            pinLinear.setVisibility(View.VISIBLE);
-                        }
-                    });
+                    case BiometricManager.BIOMETRIC_SUCCESS:
+
+                        MyApplication.biometricAuth(AirtimePurchases.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                    if (new InternetCheck().isConnected(AirtimePurchases.this)) {
+
+                                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+
+                                        api_allByCriteria_msisdnPrefix();
+
+                                    } else {
+                                        Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(AirtimePurchases.this, failure);
+
+
+                            }
+                        });
                 }
+
                /* if (validation_mpin_detail()) {
 
                     if (new InternetCheck().isConnected(AirtimePurchases.this)) {
@@ -1621,7 +1651,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 }
 
             }*/
-            }
+
             break;
 
             case R.id.exportReceipt_textview: {
@@ -1738,6 +1768,17 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        ll_page_1.setVisibility(View.VISIBLE);
+        ll_reviewPage.setVisibility(View.GONE);
+        ll_successPage.setVisibility(View.GONE);
+        ll_receiptPage.setVisibility(View.GONE);
+        //  super.onBackPressed();
+    }
+
 
 //    @Override
 //    public void onBackPressed() {

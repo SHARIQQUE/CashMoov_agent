@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +46,7 @@ import com.agent.cashmoovui.adapter.RecordAdapter;
 import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.InstituteListModel;
@@ -104,7 +106,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, tvContinue, rp_tv_excise_tax, rp_tv_amount_to_be_charge, rp_tv_amount_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, main_layout, ll_successPage, linearLayout_record;
+    LinearLayout pinLinearselffloat,taxselffloatLinear,ll_page_1, ll_reviewPage, ll_receiptPage, main_layout, ll_successPage, linearLayout_record;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -177,11 +179,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         //     First page
 
         ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
-
+        taxselffloatLinear=findViewById(R.id.taxselffloatLinear);
         tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
         edittext_amount = (EditText) findViewById(R.id.edittext_amount);
         et_fp_reason_sending=findViewById(R.id.et_fp_reason_sending);
         rp_tv_comment=findViewById(R.id.rp_tv_comment);
+        pinLinearselffloat=findViewById(R.id.pinLinearselffloat);
         //  contact = (ImageView) findViewById(R.id.contact);
           /*  contact.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1861,21 +1864,79 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             case R.id.confirm_reviewClick_textview: {
 
-                if (validation_mpin_detail()) {
+                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(SellFloat.this);
+                switch (biometricManager.canAuthenticate()) {
 
-                    if (new InternetCheck().isConnected(SellFloat.this)) {
+                    // this means we can use biometric sensor
+                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
 
-                        MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
+                        Toast.makeText(SellFloat.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                        pinLinearselffloat.setVisibility(View.VISIBLE);
+                        if (validation_mpin_detail()) {
+
+                            if (new InternetCheck().isConnected(SellFloat.this)) {
+
+                                MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
+
+                                mpin_verify();
+
+                            } else {
+                                Toast.makeText(SellFloat.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                            }
+
+                            return;
+                        }
+
+
+                    case BiometricManager.BIOMETRIC_SUCCESS:
+
+
+                        MyApplication.biometricAuth(SellFloat.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                    if (new InternetCheck().isConnected(SellFloat.this)) {
+
+                                        MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
+
+                                        mpin_verify();
+
+
+                                    } else {
+                                        Toast.makeText(SellFloat.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(SellFloat.this, failure);
+                            }
+                        });
+                }
+
+
+              /*  if (validation_mpin_detail()) {
+
+                    if (new InternetCheck().isConnected(TransferFloats.this)) {
+
+                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                         mpin_verify();
 
                     } else {
-                        Toast.makeText(SellFloat.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                     }
                 }
-
-            }
-            break;
+*/
+        }
+        break;
 
             case R.id.exportReceipt_textview: {
                 close_receiptPage_textview.setVisibility(View.GONE);
@@ -2049,6 +2110,18 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     }
 
 
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        ll_page_1.setVisibility(View.VISIBLE);
+        ll_reviewPage.setVisibility(View.GONE);
+        ll_successPage.setVisibility(View.GONE);
+        ll_receiptPage.setVisibility(View.GONE);
+        //  super.onBackPressed();
+    }
 
 
     private static final int REQUEST_CODE_QR_SCAN = 101;

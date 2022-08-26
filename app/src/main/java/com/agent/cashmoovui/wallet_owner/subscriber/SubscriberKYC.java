@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +45,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
@@ -377,6 +381,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
                             if (jsonObject != null) {
                                 regionList.clear();
+
+                                generateNoteOnSD(SubscriberKYC.this,jsonObject.toString());
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                     JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
                                     JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("regionList");
@@ -796,5 +802,24 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    public void generateNoteOnSD(Context context, String sFileName) {
+        try {
+            File root = new File(Environment.getExternalStorageDirectory(), "Login Request");
 
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File txt = new File(root, "json.txt");
+            FileWriter fw = new FileWriter(txt);
+
+            File gpxfile = new File(root, sFileName);
+            //FileWriter writer = new FileWriter(gpxfile);
+            fw.append(sFileName);
+            fw.flush();
+            fw.close();
+            //Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

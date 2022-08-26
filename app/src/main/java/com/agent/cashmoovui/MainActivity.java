@@ -173,16 +173,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         if (da.getCode().equalsIgnoreCase("100011")) {
                             MyApplication.showCashIn = true;
+                            MyApplication.ToCashInMinAmount=da.getMinTransValue();//1000
+                            MyApplication.ToCashInMaxAmount=da.getMaxTransValue();//200000
                             //cardCashOut.setVisibility(View.VISIBLE);
                         }
                         if (da.getCode().equalsIgnoreCase("100012")) {
                             MyApplication.showCashOut = true;
+                            MyApplication.ToCashOutMinAmount=da.getMinTransValue();//1000
+                            MyApplication.ToCashOutMaxAmount=da.getMaxTransValue();//200000
+
                             // cardCashOut.setVisibility(View.VISIBLE);
                         }
 
                     }
 
                     if (dataM.get(i).code.equalsIgnoreCase("100001")) {
+
                         //cardRechargePayment.setVisibility(View.VISIBLE);
                         //remittance_head.setText(dataM.get(i).name);
 

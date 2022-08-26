@@ -966,8 +966,9 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                                         jsonObjectServiceListResponceArray.optString("status"),
                                                         jsonObjectServiceListResponceArray.optString("creationDate"),
                                                         jsonObjectServiceListResponceArray.optBoolean("productAllowed")
-                                                ));
-
+                                                       ,
+                                                        jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                        jsonObjectServiceListResponceArray.optInt("maxTransValue")));
                                             }
 
                                             dataM.add(new ServiceList.serviceListMain(

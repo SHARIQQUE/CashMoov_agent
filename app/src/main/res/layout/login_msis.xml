@@ -95,7 +95,7 @@
                                 android:textSize="@dimen/_15sdp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:textStyle="bold"
-                                android:inputType="phone"
+                                android:inputType="number"
                                 android:layout_marginTop="@dimen/_10sdp"
                                 android:layout_marginStart="@dimen/_1sdp"/>
 

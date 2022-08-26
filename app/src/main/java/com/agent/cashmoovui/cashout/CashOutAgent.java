@@ -2,6 +2,7 @@ package com.agent.cashmoovui.cashout;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -27,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -39,6 +42,7 @@ import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -80,7 +84,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
-    LinearLayout taxvalueLinear,ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
+    LinearLayout taxLinear,ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
 
     String selectClickType="",desWalletOwnerCode_from_currency="";
 
@@ -142,6 +146,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
+            taxLinear=findViewById(R.id.taxLinear);
             tvContinue.setOnClickListener(this);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
@@ -1205,39 +1210,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
             case R.id.confirm_reviewClick_textview: {
 
-                {
-                    MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
-                        @Override
-                        public void success(String success) {
-                            try {
-
-                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
-
-                                if (new InternetCheck().isConnected(CashOutAgent.this)) {
-
-                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
-                                    mpin_final_api();
-
-
-                                } else {
-                                    Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void failure(String failure) {
-                            MyApplication.showToast(CashOutAgent.this, failure);
-                            ll_pin.setVisibility(View.VISIBLE);
-                        }
-                    });
-                }
-              /*  if (selectClickType.equalsIgnoreCase("select_otp")) {
+                if (selectClickType.equalsIgnoreCase("select_otp")) {
 
                     if (validation_otp_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
@@ -1266,6 +1241,66 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 }
 
                 else if (selectClickType.equalsIgnoreCase("select_mpin")) {
+
+
+                    BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashOutAgent.this);
+                    switch (biometricManager.canAuthenticate()) {
+
+                        // this means we can use biometric sensor
+                        case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+
+                            Toast.makeText(CashOutAgent.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                            ll_pin.setVisibility(View.VISIBLE);
+                            if (validation_mpin_detail()) {
+                                if (new InternetCheck().isConnected(CashOutAgent.this)) {
+                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+
+
+                                    mpin_final_api();
+
+                                } else {
+                                    Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                }
+
+                                // msgText.setText("You can use the fingerprint sensor to login");
+                                // msgText.setTextColor(Color.parseColor("#fafafa"));
+                                return;
+                            }
+                        case BiometricManager.BIOMETRIC_SUCCESS:
+
+                            MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
+                                @Override
+                                public void success(String success) {
+                                    try {
+
+                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                        if (new InternetCheck().isConnected(CashOutAgent.this)) {
+
+                                            MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+
+
+                                            mpin_final_api();
+
+
+                                        } else {
+                                            Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void failure(String failure) {
+                                    MyApplication.showToast(CashOutAgent.this, failure);
+                                }
+                            });
+                    }
+
+                }
+/*
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
                             MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
@@ -1277,10 +1312,11 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                         }
                     }
-                }
+*/
 
 
-            }*/
+
+
             }
             break;
 
@@ -1352,8 +1388,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             break;
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -1481,6 +1517,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                  tax_financialnew = jsonObject2.getString("value");
                                 tax_financialtypename = jsonObject2.getString("taxTypeName");
+                                taxLinear.setVisibility(View.VISIBLE);
 
                                 rp_tv_financialTax.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
                                 receiptPage_tv_financialtaxvalue.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
@@ -1488,6 +1525,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         }
                         else {
                             tax_financial = exchangeRate.getString("value");
+                            tax_financialnew = exchangeRate.getString("value");
+
                         }
 
 
@@ -1974,6 +2013,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    @Override
+    public void onBackPressed() {
+
+        ll_page_1.setVisibility(View.VISIBLE);
+        ll_reviewPage.setVisibility(View.GONE);
+        ll_successPage.setVisibility(View.GONE);
+        ll_receiptPage.setVisibility(View.GONE);
+        //  super.onBackPressed();
+    }
 
 
 //    @Override
@@ -2163,6 +2211,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
+
 
 
 }

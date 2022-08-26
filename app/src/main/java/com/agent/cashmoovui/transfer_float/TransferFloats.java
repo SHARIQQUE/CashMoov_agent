@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
 
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
@@ -37,6 +38,7 @@ import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
@@ -1579,13 +1581,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             case R.id.confirm_reviewClick_textview: {
                 {
-                    MyApplication.biometricAuth(TransferFloats.this, new BioMetric_Responce_Handler() {
-                        @Override
-                        public void success(String success) {
-                            try {
+                    BiometricManager biometricManager = androidx.biometric.BiometricManager.from(TransferFloats.this);
+                    switch (biometricManager.canAuthenticate()) {
 
-                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+                        // this means we can use biometric sensor
+                        case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+
+                            Toast.makeText(TransferFloats.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                            pinLinear.setVisibility(View.VISIBLE);
+                            if (validation_mpin_detail()) {
 
                                 if (new InternetCheck().isConnected(TransferFloats.this)) {
 
@@ -1593,21 +1597,46 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                                     mpin_verify();
 
-
                                 } else {
                                     Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
 
-                        @Override
-                        public void failure(String failure) {
-                            MyApplication.showToast(TransferFloats.this,failure);
-                            pinLinear.setVisibility(View.VISIBLE);
-                        }
-                    });
+                                return;
+                            }
+
+
+                        case BiometricManager.BIOMETRIC_SUCCESS:
+
+
+                            MyApplication.biometricAuth(TransferFloats.this, new BioMetric_Responce_Handler() {
+                                @Override
+                                public void success(String success) {
+                                    try {
+
+                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                        if (new InternetCheck().isConnected(TransferFloats.this)) {
+
+                                            MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+
+                                            mpin_verify();
+
+
+                                        } else {
+                                            Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void failure(String failure) {
+                                    MyApplication.showToast(TransferFloats.this, failure);
+                                }
+                            });
+                    }
                 }
 
               /*  if (validation_mpin_detail()) {
@@ -1768,6 +1797,16 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 MyApplication.showToast(TransferFloats.this,aFalse);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        ll_page_1.setVisibility(View.VISIBLE);
+        ll_reviewPage.setVisibility(View.GONE);
+        ll_successPage.setVisibility(View.GONE);
+        ll_receiptPage.setVisibility(View.GONE);
+        //  super.onBackPressed();
     }
 
 

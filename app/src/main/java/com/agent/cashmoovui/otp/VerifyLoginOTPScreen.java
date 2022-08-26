@@ -207,8 +207,9 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
                                                     jsonObjectServiceListResponceArray.optString("status"),
                                                     jsonObjectServiceListResponceArray.optString("creationDate"),
                                                     jsonObjectServiceListResponceArray.optBoolean("productAllowed")
-                                            ));
-
+                                                    ,
+                                                    jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                    jsonObjectServiceListResponceArray.optInt("maxTransValue")));
                                         }
 
                                         dataM.add(new ServiceList.serviceListMain(

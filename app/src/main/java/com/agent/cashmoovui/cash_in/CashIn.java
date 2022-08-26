@@ -1,12 +1,16 @@
 package com.agent.cashmoovui.cash_in;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -25,6 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.core.app.ActivityCompat;
+
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
@@ -34,6 +41,7 @@ import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
@@ -150,7 +158,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
-
             pinLinear=findViewById(R.id.pinLinear);
 
 
@@ -470,12 +477,18 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             return false;
         }
 
-        else if(amountstr.trim().length() < 2) {
 
-            MyApplication.showErrorToast(this,getString(R.string.minimum_amount_10));
-
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashInMinAmount) {
+            MyApplication.showErrorToast(CashIn.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCashInMinAmount);
             return false;
         }
+
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashInMaxAmount) {
+            MyApplication.showErrorToast(CashIn.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCashInMaxAmount);
+            return false;
+
+
+    }
 
 
         return true;
@@ -1248,6 +1261,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                 try {
 
+                    System.out.println("get response"+jsonObject.toString());
+
                     //JSONObject jsonObject = new JSONObject("{"transactionId":"1789322","requestTime":"Wed Oct 20 15:53:33 IST 2021","responseTime":"Wed Oct 20 15:53:33 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","walletOwnerCountryCurrencyList":[{"id":7452,"code":"107451","walletOwnerCode":"1000002488","currencyCode":"100062","currencyName":"GNF","currencySymbol":"Fr","countryCurrencyCode":"100076","inBound":true,"outBound":true,"status":"Active"}]}");
 
                     String resultCode =  jsonObject.getString("resultCode");
@@ -1258,6 +1273,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         //Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
+
+
+                        System.out.println("get exchangeRate"+exchangeRate.toString());
 
                         fees_amount = exchangeRate.getString("fee");
                          feeDouble= Double.parseDouble(fees_amount);
@@ -1270,18 +1288,23 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
 
+
+
                         if(exchangeRate.has("taxConfigurationList"))
                         {
                             JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                  tax_financialnew = jsonObject2.getString("value");
+
+
                                 tax_financialtypename = jsonObject2.getString("taxTypeName");
                                 //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
                                // TextView textView = new TextView(CashIn.this);
 
-
+                                System.out.println("get tax"+tax_financialnew);
+                                taxcashinLinear.setVisibility(View.VISIBLE);
                                 rp_tv_financialTax.setText((tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
                               //  taxcashinLinear.addView(textView, lp);
 
@@ -1290,15 +1313,14 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 //receipt_Linear.addView(textView, lp);
 
 
-                               /* if(jsonArray.length()==0){
-                                    rp_tv_financialTax.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
-                                }*/
+
 
 
                             }
                         }
                         else {
                             tax_financial = exchangeRate.getString("value");
+                            tax_financialnew = exchangeRate.getString("value");
 
                         }
 
@@ -1314,7 +1336,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         totalAmount_double = tax_financialnewDouble+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
                         double dtotalAmount_str= Double.parseDouble(totalAmount_str);
-                        System.out.println("get value1"+tax_financial_double);
+                        System.out.println("get sonu"+amountstr_double);
                         System.out.println("get value2"+amountstr_double);
                         System.out.println("get value3"+fees_amount_double);
 
@@ -1389,36 +1411,70 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             break;
 
             case R.id.confirm_reviewClick_textview: {
-                {
-                    MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
-                        @Override
-                        public void success(String success) {
-                            try {
 
-                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);
+                switch (biometricManager.canAuthenticate()) {
 
-                                if (new InternetCheck().isConnected(CashIn.this)) {
+                    // this means we can use biometric sensor
+                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
 
-                                    MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+                        Toast.makeText(CashIn.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                        pinLinear.setVisibility(View.VISIBLE);
+                        if (validation_mpin_detail()) {
 
-                                    mpin_final_api();
+                            if (new InternetCheck().isConnected(CashIn.this)) {
 
-                                } else {
-                                    Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                                MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                mpin_final_api();
+
+                            } else {
+                                Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                             }
+                            // msgText.setText("You can use the fingerprint sensor to login");
+                            // msgText.setTextColor(Color.parseColor("#fafafa"));
+                            return;
+                        }
+                    case BiometricManager.BIOMETRIC_SUCCESS:
+
+                        // msgText.setText("You can use the fingerprint sensor to login");
+                        // msgText.setTextColor(Color.parseColor("#fafafa"));
+                            MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
+                                @Override
+                                public void success(String success) {
+                                    try {
+
+                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                        if (new InternetCheck().isConnected(CashIn.this)) {
+
+                                            MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                            mpin_final_api();
+
+                                        } else {
+                                            Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void failure(String failure) {
+                                    MyApplication.showToast(CashIn.this, failure);
+
+                                }
+
+                            });
                         }
 
-                        @Override
-                        public void failure(String failure) {
-                            MyApplication.showToast(CashIn.this,failure);
-                            pinLinear.setVisibility(View.VISIBLE);
-                        }
-                    });
-                }
+
+
+
+
+
 
                /* if (validation_mpin_detail()) {
 
@@ -1450,8 +1506,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -1590,9 +1646,18 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+        ll_page_1.setVisibility(View.VISIBLE);
+        ll_reviewPage.setVisibility(View.GONE);
+        ll_successPage.setVisibility(View.GONE);
+        ll_receiptPage.setVisibility(View.GONE);
+       super.onBackPressed();
+    }
 
 
-//
+    //
 //    @Override
 //    public void onBackPressed() {
 //        super.onBackPressed();
@@ -1684,6 +1749,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
 
+
+        if(MyApplication.checkMinMax(CashIn.this,s,editText
+                ,MyApplication.ToCashInMinAmount,MyApplication.ToCashInMaxAmount)){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

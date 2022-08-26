@@ -1,11 +1,13 @@
 package com.agent.cashmoovui.login;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -44,6 +46,9 @@ import com.google.firebase.iid.InstanceIdResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.Executor;
@@ -378,11 +383,13 @@ public class LoginPin extends AppCompatActivity {
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());
+
             MyApplication.showloader(loginpinC,getString(R.string.getting_user_info));
             API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
+                  //  generateNoteOnSD(LoginPin.this,ewallet/oauth/token", loginJson);
 
 
                     try {
@@ -418,6 +425,7 @@ public class LoginPin extends AppCompatActivity {
 
                         else {
 
+                            System.out.println("get response"+jsonObject.toString());
                             applicationComponentClass.getmSharedPreferences().edit().putString("isFirstRun", "NO_LOGINPIN").commit();
 
                             ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
@@ -512,8 +520,9 @@ public class LoginPin extends AppCompatActivity {
                                                         jsonObjectServiceListResponceArray.optString("status"),
                                                         jsonObjectServiceListResponceArray.optString("creationDate"),
                                                         jsonObjectServiceListResponceArray.optBoolean("productAllowed")
-                                                ));
-
+                                                        ,
+                                                        jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                        jsonObjectServiceListResponceArray.optInt("maxTransValue")));
                                             }
 
                                             dataM.add(new ServiceList.serviceListMain(
@@ -742,8 +751,9 @@ public class LoginPin extends AppCompatActivity {
                                                         jsonObjectServiceListResponceArray.optString("status"),
                                                         jsonObjectServiceListResponceArray.optString("creationDate"),
                                                         jsonObjectServiceListResponceArray.optBoolean("productAllowed")
-                                                ));
-
+                                                        ,
+                                                        jsonObjectServiceListResponceArray.optInt("minTransValue"),
+                                                        jsonObjectServiceListResponceArray.optInt("maxTransValue")));
                                             }
 
                                             dataM.add(new ServiceList.serviceListMain(
@@ -1107,6 +1117,9 @@ public class LoginPin extends AppCompatActivity {
         }
 
     }
+
+
+
 
 
 }

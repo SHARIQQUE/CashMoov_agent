@@ -96,6 +96,10 @@ public class MyApplication extends Application {
     public static boolean showSellFloat = false;
     public static boolean showTransferFloat = false;
     public static boolean showTransferCommission = false;
+    public static int ToCashInMinAmount;
+    public static int ToCashInMaxAmount;
+    public static int ToCashOutMinAmount;
+    public static int ToCashOutMaxAmount;
 
 
     static {
@@ -788,6 +792,23 @@ public class MyApplication extends Application {
         {
             editText.setText(Phoneno);
         }
+    }
+
+
+    public static boolean checkMinMax(Activity activity,CharSequence s,EditText editText,int minAmount,int maxAmount){
+        if(s.length()==1 && s.toString().equalsIgnoreCase(".")){
+            return true;
+        }
+        if (Double.parseDouble(s.toString().trim().replace(",","")) < minAmount) {
+            MyApplication.showTipError(activity, "Minimum Amount should be " + minAmount, editText);
+            return true;
+        }
+
+        if (Double.parseDouble(s.toString().trim().replace(",","")) > maxAmount) {
+            MyApplication.showTipError(activity, "Maximum Amount should be " + maxAmount, editText);
+            return true;
+        }
+        return false;
     }
 
 }
