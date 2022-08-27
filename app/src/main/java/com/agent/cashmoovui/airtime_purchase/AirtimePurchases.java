@@ -621,7 +621,17 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             return false;
         }
 
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCreditPurchaseMinAmount) {
+            MyApplication.showErrorToast(AirtimePurchases.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCreditPurchaseMinAmount);
+            return false;
+        }
 
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCreditPurchaseMaxAmount) {
+            MyApplication.showErrorToast(AirtimePurchases.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCreditPurchaseMaxAmount);
+            return false;
+
+
+        }
 
         return true;
     }
@@ -1776,7 +1786,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         ll_reviewPage.setVisibility(View.GONE);
         ll_successPage.setVisibility(View.GONE);
         ll_receiptPage.setVisibility(View.GONE);
-        //  super.onBackPressed();
+          super.onBackPressed();
     }
 
 
@@ -1953,7 +1963,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
-
+        if(MyApplication.checkMinMax(AirtimePurchases.this,s,editText
+                ,MyApplication.ToCreditPurchaseMinAmount,MyApplication.ToCreditPurchaseMaxAmount)){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

@@ -47,6 +47,7 @@ import com.agent.cashmoovui.adapter.SellFloatAdapterRecycle;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.InstituteListModel;
@@ -726,7 +727,17 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             return false;
         }
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToSelfFloatMinAmount) {
+            MyApplication.showErrorToast(SellFloat.this,getString(R.string.val_amount_min)+" "+MyApplication.ToSelfFloatMinAmount);
+            return false;
+        }
 
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToSelfFloatMinAmount) {
+            MyApplication.showErrorToast(SellFloat.this,getString(R.string.val_amount_max)+" "+MyApplication.ToSelfFloatMaxAmount);
+            return false;
+
+
+        }
 
         return true;
     }
@@ -2120,7 +2131,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         ll_reviewPage.setVisibility(View.GONE);
         ll_successPage.setVisibility(View.GONE);
         ll_receiptPage.setVisibility(View.GONE);
-        //  super.onBackPressed();
+          super.onBackPressed();
     }
 
 
@@ -2426,7 +2437,10 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
-
+        if(MyApplication.checkMinMax(SellFloat.this,s,editText
+                ,MyApplication.ToSelfFloatMinAmount,MyApplication.ToSelfFloatMaxAmount)){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

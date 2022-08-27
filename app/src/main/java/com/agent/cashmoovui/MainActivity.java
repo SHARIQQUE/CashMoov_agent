@@ -229,6 +229,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         // wallet_owner_head.setText(dataM.get(i).name);
                         if (da.getCode().equalsIgnoreCase("100021")) {
                             MyApplication.showCreditPurchase = true;
+                            MyApplication.ToCreditPurchaseMinAmount=da.getMinTransValue();
+                            MyApplication.ToCreditPurchaseMaxAmount=da.getMaxTransValue();
                             //cardAirtimePurchase.setVisibility(View.VISIBLE);
                         }
 //                    if(da.getCode().equalsIgnoreCase("SUBS")){
@@ -244,10 +246,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         if (da.getCode().equalsIgnoreCase("100016")) {
                             MyApplication.showSellFloat = true;
+                            MyApplication.ToSelfFloatMinAmount=da.getMinTransValue();
+                            MyApplication.ToSelfFloatMaxAmount=da.getMaxTransValue();
                             // cardPay.setVisibility(View.VISIBLE);
                         }
                         if (da.getCode().equalsIgnoreCase("100017")) {
                             MyApplication.showTransferFloat = true;
+                            MyApplication.ToTransferFloatMinAmount=da.getMinTransValue();
+                            MyApplication.ToTransferFloatMaxAmount=da.getMaxTransValue();
+
                             // cardPay.setVisibility(View.VISIBLE);
                         }
 
@@ -259,6 +266,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         if (da.getCode().equalsIgnoreCase("COMTRF")) {
                             MyApplication.showTransferCommission = true;
+                            MyApplication.ToCommisionTransferMinAmount=da.getMinTransValue();
+                            MyApplication.ToCommisionTransferMaxAmount=da.getMaxTransValue();
+
                             // cardPay.setVisibility(View.VISIBLE);
                         }
 

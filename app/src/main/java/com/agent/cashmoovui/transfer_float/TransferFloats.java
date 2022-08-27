@@ -738,7 +738,17 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             return false;
         }
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToTransferFloatMinAmount) {
+            MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_min)+" "+MyApplication.ToTransferFloatMinAmount);
+            return false;
+        }
 
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToTransferFloatMaxAmount) {
+            MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_max)+" "+MyApplication.ToTransferFloatMaxAmount);
+            return false;
+
+
+        }
 
         return true;
     }
@@ -1806,7 +1816,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
         ll_reviewPage.setVisibility(View.GONE);
         ll_successPage.setVisibility(View.GONE);
         ll_receiptPage.setVisibility(View.GONE);
-        //  super.onBackPressed();
+          super.onBackPressed();
     }
 
 
@@ -1964,6 +1974,10 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
 
+        if(MyApplication.checkMinMax(TransferFloats.this,s,editText
+                ,MyApplication.ToTransferFloatMinAmount,MyApplication.ToTransferFloatMaxAmount)){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

@@ -38,6 +38,7 @@ import com.agent.cashmoovui.adapter.TransferCommisionAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
@@ -770,7 +771,17 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             return false;
         }
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCommisionTransferMinAmount) {
+            MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCommisionTransferMinAmount);
+            return false;
+        }
 
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCommisionTransferMaxAmount) {
+            MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCommisionTransferMaxAmount);
+            return false;
+
+
+        }
 
         else if(mpinStr.trim().isEmpty()) {
 
@@ -1286,7 +1297,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
-
+        if(MyApplication.checkMinMax(CommissionTransfer.this,s,editText
+                ,MyApplication.ToCommisionTransferMinAmount,MyApplication.ToCommisionTransferMaxAmount)){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;
