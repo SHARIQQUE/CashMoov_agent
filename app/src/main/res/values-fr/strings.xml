@@ -237,6 +237,10 @@
     <string name="valid_select_occupation">Select Occupation*</string>
     <string name="valid_dob">Date of Birth*</string>
     <string name="valid_select_id_proof">Sélectionnez la preuve d\'identité*</string>
+    <string name="valid_select_id_proofnew">Sélectionnez la preuve d\'identité</string>
+    <string name="vaild_id_proof_nonew">Id Proof Number</string>
+    <string name="valid_id_proof_expiryDatenew">Date d\'expiration de la preuve d\'identité</string>
+
     <string name="vaild_id_proof_no">Id Proof Number*</string>
     <string name="valid_amount_send">Montant à envoyer*</string>
 

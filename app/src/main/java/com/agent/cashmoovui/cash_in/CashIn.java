@@ -159,6 +159,55 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             pinLinear=findViewById(R.id.pinLinear);
+            et_mpin = (EditText)findViewById(R.id.et_mpin);
+
+            et_mpin.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start,
+                                              int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 4)
+                        MyApplication.hideKeyboard(CashIn.this);            }
+            });
+
+            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+            et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
+            et_mpin.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    final int RIGHT = 2;
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                            int selection = et_mpin.getSelectionEnd();
+                            if (isPasswordVisible) {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                                // hide Password
+                                et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
+                                isPasswordVisible = false;
+                            } else  {
+                                // set drawable image
+                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                                // show Password
+                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                                isPasswordVisible = true;
+                            }
+                            et_mpin.setSelection(selection);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
 
 
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
@@ -272,54 +321,10 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
             receipt_tv_amount_to_be_charge = findViewById(R.id.receipt_tv_amount_to_be_charge);
             receiptPage_tv_financialtaxvaluecashin=findViewById(R.id.receiptPage_tv_financialtaxvaluecashin);
-            et_mpin = (EditText) findViewById(R.id.et_mpin);
 
-            et_mpin.addTextChangedListener(new TextWatcher() {
 
-                @Override
-                public void afterTextChanged(Editable s) {}
 
-                @Override
-                public void beforeTextChanged(CharSequence s, int start,
-                                              int count, int after) {
-                }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start,
-                                          int before, int count) {
-                    if(s.length() >= 4)
-                        MyApplication.hideKeyboard(CashIn.this);            }
-            });
-
-            HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
-            et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
-            et_mpin.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    final int RIGHT = 2;
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
-                        if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
-                            int selection = et_mpin.getSelectionEnd();
-                            if (isPasswordVisible) {
-                                // set drawable image
-                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
-                                // hide Password
-                                et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
-                                isPasswordVisible = false;
-                            } else  {
-                                // set drawable image
-                                et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
-                                // show Password
-                                et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                                isPasswordVisible = true;
-                            }
-                            et_mpin.setSelection(selection);
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            });
 
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
             confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);

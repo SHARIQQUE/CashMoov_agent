@@ -33,6 +33,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.CommonData;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
@@ -817,6 +818,17 @@ public class MyApplication extends Application {
             return true;
         }
         return false;
+    }
+
+    public static void saveOrUpdateValueInSharedPreferences (Context context, String key, String
+            value){
+        SharedPreferences sp = context.getSharedPreferences(CommonData.SHARED_PREF_NAME, MODE_PRIVATE);
+        sp.edit().putString(key, value).commit();
+    }
+
+    public static String getValueFromSharedPreferences (Context context, String key){
+        SharedPreferences sp = context.getSharedPreferences(CommonData.SHARED_PREF_NAME, MODE_PRIVATE);
+        return sp.getString(key, "");
     }
 
 }

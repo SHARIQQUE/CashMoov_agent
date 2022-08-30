@@ -103,7 +103,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     View rootView;
 
     EditText etPin;
-    TextView rp_tv_comment,rp_tv_convertionrate, exportReceipt_textview, tv_nextClick, rp_tv_agentName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
+    TextView rp_tv_comment,rp_tv_convertionrate, exportReceipt_textview, tv_nextClick, rp_tv_agentName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receivermobile,rp_tv_receiverName, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, tvContinue, rp_tv_excise_tax, rp_tv_amount_to_be_charge, rp_tv_amount_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
@@ -241,6 +241,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         rp_tv_businessType = (TextView) findViewById(R.id.rp_tv_businessType);
         rp_tv_email = (TextView) findViewById(R.id.rp_tv_email);
         rp_tv_country = (TextView) findViewById(R.id.rp_tv_country);
+        rp_tv_receivermobile=findViewById(R.id.rp_tv_receivermobile);
         rp_tv_receiverName = (TextView) findViewById(R.id.rp_tv_receiverName);
         rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
         rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
@@ -1389,7 +1390,55 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
                         rp_tv_country.setText(countryName_agent);
 
-                        rp_tv_receiverName.setText(select_insitute_name);
+
+                        String input = select_insitute_name;   //input string
+
+                        ///////////mobile no
+
+                        String mobileno = "";   //substring containing last 4 characters
+
+                        if (input.length() < 9)
+                        {
+                            mobileno = input.substring(input.length() - 9);
+                        }
+                        else
+                        {
+                            mobileno = input;
+                        }
+
+
+                        ///////////name showiing
+                        String lastname = "";   //substring containing last 4 characters
+
+                        if (input.length() > 9)
+                        {
+                            lastname = input.substring(input.length() - 9);
+                        }
+                        else
+                        {
+                            lastname = input;
+                        }
+
+                        StringBuffer sblastname= new StringBuffer(lastname);
+                        sblastname.deleteCharAt(sblastname.length()-1);
+
+
+
+                        rp_tv_receiverName.setText(sblastname);
+
+                        String firstFourChars = "";   //substring containing first 4 characters
+
+                        if (select_insitute_name.length() > 9)
+                        {
+                            firstFourChars = select_insitute_name.substring(0, 9);
+                        }
+                        else
+                        {
+                            firstFourChars = input;
+                        }
+
+
+                        rp_tv_receivermobile.setText(firstFourChars);
                         rp_tv_transactionAmount.setText(MyApplication.addDecimal(amountstr));
 
 

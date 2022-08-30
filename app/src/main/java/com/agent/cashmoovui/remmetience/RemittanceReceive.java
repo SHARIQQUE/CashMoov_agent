@@ -1,20 +1,27 @@
 package com.agent.cashmoovui.remmetience;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,6 +32,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
@@ -36,7 +44,9 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -44,10 +54,16 @@ import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
+
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class RemittanceReceive extends AppCompatActivity implements View.OnClickListener{
 
@@ -70,7 +86,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     private static final int PERMISSION_REQUEST_CODE = 200;
     ImageView imgBack,imgHome;
 
-    TextView exportReceipt_textview;
+    TextView exportReceipt_textview,spinner_sender_idprooftype;
     String countryName_from_confcode="",currencyName_from_confcode="",countryCode_from_confcode="",firstName_from_confcode="",lastName_from_confcode="",gender_from_confcode="",currencyCode_from_confcode="";
     View rootView;
 
@@ -81,16 +97,32 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage,ll_pin,ll_successPage;
     MyApplication applicationComponentClass;
     String languageToUse = "";
-    EditText edittext_email,edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,
+    EditText et_sender_idproofNumber, etFront,edittext_email,edittext_mobileNuber, edittext_amount, et_mpin,edittext_confirmationCode,edittext_countryName,
             edittext_currencyName,edittext_firstName,edittext_gender;
+    public static  EditText et_sender_dob,et_sender_idproof_expiry;
+    public static TextView mDobText,mDobidproffText;
     String mobileNoStr = "", amountstr  = "",confirmationCodeStr;
     String walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, senderNameAgent = "";
     String currencyCode_agent = "", countryCode_agent = "", currencyName_agent = "";
     String tax_financial = "", fees_amount, totalAmount_str, senderName_susbcriber = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
+    private Intent Data;
+    Uri tempUriFront;
+    public boolean isFrontUpload=false;
+    private String mInternational,mLocal;
 
     String mpinStr = "";
+    private ImageButton btnFront;
+    private LinearLayout dobLinear;
 
+    private ArrayList<String> idProofTypeList = new ArrayList<>();
+    private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
+    static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
+    File fileFront;
+
+    private ImageView mCalenderIcon_Image,calenderIconidproff_Image;
+
+    private SpinnerDialog spinnerDialogSenderIdProofType;
 
     String serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
 
@@ -125,8 +157,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             rootView = getWindow().getDecorView().findViewById(R.id.main_layout);
             exportReceipt_textview = (TextView) findViewById(R.id.exportReceipt_textview);
             exportReceipt_textview.setOnClickListener(this);
+            spinner_sender_idprooftype = findViewById(R.id.spinner_sender_idprooftype);
 
-
+            et_sender_idproofNumber=findViewById(R.id.et_sender_idproofNumber);
             edittext_confirmationCode = (EditText) findViewById(R.id.edittext_confirmationCode);
 
 
@@ -140,6 +173,46 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             edittext_email = (EditText) findViewById(R.id.edittext_email);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_comment = (EditText) findViewById(R.id.edittext_comment);
+            btnFront = findViewById(R.id.btnFront);
+            btnFront.setOnClickListener(RemittanceReceive.this);
+            etFront = findViewById(R.id.etFront);
+            et_sender_dob=findViewById(R.id.et_sender_dob);
+            et_sender_idproof_expiry=findViewById(R.id.et_sender_idproof_expiry);
+            mDobText=findViewById(R.id.dobText);
+            dobLinear=findViewById(R.id.dobLinear);
+            mDobidproffText=findViewById(R.id.dobidproffText);
+
+            calenderIconidproff_Image = findViewById(R.id.calenderIconidproff_Image);
+            mCalenderIcon_Image = findViewById(R.id.calenderIcon_Image);
+
+
+
+
+
+            mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogFragment dialogfragment = new DatePickerDialogTheme();
+
+                    dialogfragment.show(getSupportFragmentManager(), "");
+
+                    // ffffff
+
+                }
+            });
+            calenderIconidproff_Image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogFragment dialogfragment = new DatePickerDialogThemeidproff();
+
+                    dialogfragment.show(getSupportFragmentManager(), "");
+
+                    // ffffff
+
+                }
+            });
+
+
             et_otp = findViewById(R.id.et_otp);
             HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
             et_otp.setTransformationMethod(hiddenPassTransformationMethod);
@@ -260,7 +333,15 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             receiptPage_tv_receiver_idproofType = (TextView) findViewById(R.id.receiptPage_tv_receiver_idproofType);
             receiptPage_tv_receiver_idproofNumber = (TextView) findViewById(R.id.receiptPage_tv_receiver_idproofNumber);
             receiptPage_tv_receiver_idproofExpirayDate = (TextView) findViewById(R.id.receiptPage_tv_receiver_idproofExpirayDate);
+            callApiIdproofType();
 
+            spinner_sender_idprooftype.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (spinnerDialogSenderIdProofType!=null)
+                        spinnerDialogSenderIdProofType.showSpinerDialog();
+                }
+            });
 
             edittext_confirmationCode.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -352,6 +433,69 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
         }
 
     }
+
+    private void callApiIdproofType() {
+        try {
+
+            API.GET("ewallet/api/v1/master/IDPROOFTYPE",
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                idProofTypeList.clear();
+                                idProofTypeModelList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("idProffTypeList");
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        idProofTypeModelList.add(new IDProofTypeModel.IDProofType(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("type"),
+                                                data.optString("status"),
+                                                data.optString("creationDate")
+
+                                        ));
+
+                                        idProofTypeList.add(data.optString("type").trim());
+                                    }
+
+                                    spinnerDialogSenderIdProofType = new SpinnerDialog(RemittanceReceive.this, idProofTypeList, "Select Id Proof", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+                                    spinnerDialogSenderIdProofType.setCancellable(true); // for cancellable
+                                    spinnerDialogSenderIdProofType.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogSenderIdProofType.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            spinner_sender_idprooftype.setText(item);
+                                            spinner_sender_idprooftype.setTag(position);
+                                        }
+                                    });
+
+
+                                } else {
+                                    MyApplication.showToast(RemittanceReceive.this,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -822,10 +966,19 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         //   JSONObject beneficiaryCustomer=accountHolding.getJSONObject("beneficiaryCustomer");
 
                         if (remitType.equalsIgnoreCase("Local Remit")) {
+                            spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proofnew));
+                            dobLinear.setVisibility(View.GONE);
+                            et_sender_idproofNumber.setHint(getString(R.string.vaild_id_proof_nonew));
+                            et_sender_idproof_expiry.setHint(getString(R.string.valid_id_proof_expiryDatenew));
+
                             otp_generate_api(benificiaryCode);
 
                         }else{
                             service_Provider_api();
+                            spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
+                            dobLinear.setVisibility(View.VISIBLE);
+                            et_sender_idproofNumber.setHint(getString(R.string.vaild_id_proof_no));
+                            et_sender_idproof_expiry.setHint(getString(R.string.valid_id_proof_expiryDate));
                         }
 
                         //
@@ -1264,6 +1417,14 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
 
+            case R.id.btnFront:
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                try {
+                    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE_ONE);
+                } catch (ActivityNotFoundException e) {
+                    // display error state to the user
+                }                break;
+
             case R.id.ll_resendOtp:
                 otp_generate_api(benificiaryCode);
                 break;
@@ -1384,11 +1545,11 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 //                ll_reviewPage.setVisibility(View.GONE);
 //                ll_receiptPage.setVisibility(View.GONE);
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent1);
                 finish();
 
 
@@ -1498,7 +1659,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+
         try {
+
 
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
@@ -1546,6 +1709,27 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             e.printStackTrace();
         }
 
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {
+            if (resultCode == RESULT_OK) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                Data = data;
+
+                tempUriFront = getImageUri(getApplicationContext(), imageBitmap);
+
+                etFront.setText(tempUriFront.getLastPathSegment());
+
+                fileFront = new File(getRealPathFromURI(tempUriFront).toString());
+                int file_size = Integer.parseInt(String.valueOf(fileFront.length() / 1024));     //calculate size of image in KB
+                if (file_size <= 100) {
+                    isFrontUpload = true;
+                } else {
+                    MyApplication.showErrorToast(RemittanceReceive.this, "File size exceeds");
+                }
+            }
+
+        }
     }
 
 
@@ -1825,7 +2009,87 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             MyApplication.showToast(RemittanceReceive.this,e.toString());
         }
 
+
     }
 
 
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title"+ Calendar.getInstance().getTime(), null);
+        return Uri.parse(path);
+    }
+    public String getRealPathFromURI(Uri uri) {
+        String path = "";
+        if (getContentResolver() != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                path = cursor.getString(idx);
+                cursor.close();
+            }
+        }
+        return path;
+    }
+
+
+    public static class DatePickerDialogTheme extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.add(Calendar.YEAR, -18);
+
+            DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
+                    AlertDialog.THEME_TRADITIONAL, this, year, month, day);
+
+            datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+
+            return datepickerdialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            et_sender_dob.setText(year + "-" + (month+1) + "-" + day);
+            mDobText.setVisibility(View.VISIBLE);
+            // etDob.setText(year + "-" + (month+1) + "-" + day);
+
+        }
+    }
+
+    public static class DatePickerDialogThemeidproff extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.add(Calendar.YEAR, -18);
+
+            DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
+                    AlertDialog.THEME_TRADITIONAL, this, year, month, day);
+
+            datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+
+            return datepickerdialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            et_sender_idproof_expiry.setText(year + "-" + (month+1) + "-" + day);
+            mDobidproffText.setVisibility(View.VISIBLE);
+            // etDob.setText(year + "-" + (month+1) + "-" + day);
+
+        }
+    }
+
 }
+

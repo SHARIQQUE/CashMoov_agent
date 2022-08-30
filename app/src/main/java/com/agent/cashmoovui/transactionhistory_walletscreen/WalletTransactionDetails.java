@@ -18,10 +18,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class WalletTransactionDetails extends AppCompatActivity {
@@ -113,9 +116,12 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String fromWalletOwnerMsisdn = (getIntent().getStringExtra("FROMMSISDN"));
             String toWalletOwnerMsisdn = (getIntent().getStringExtra("TOMSISDN"));
             String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+
+            DecimalFormat df = new DecimalFormat("0.00",symbols);
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
-            txt_fee.setText("Fee : "+fee);
+            txt_fee.setText("Fee : "+df.format(fee));
            txt_postbalance.setText("Post Balance :" +String.format("%.2f", srcpostbalance));
             txt_from_owner_name.setText("From"+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+"To"+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             if(walletTypeCode.equalsIgnoreCase("100009")){

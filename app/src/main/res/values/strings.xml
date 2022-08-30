@@ -245,7 +245,11 @@
     <string name="valid_select_occupation">Select Occupation*</string>
     <string name="valid_dob">Date of Birth*</string>
     <string name="valid_select_id_proof">Select Id Proof*</string>
+    <string name="valid_select_id_proofnew">Select Id Proof</string>
+
     <string name="vaild_id_proof_no">Id Proof Number*</string>
+    <string name="vaild_id_proof_nonew">Id Proof Number</string>
+
     <string name="valid_amount_send">Amount to send*</string>
     <string name="gender">Gender</string>
     <string name="reason_for_sending">Reason for sending</string>
@@ -757,6 +761,8 @@
     <string name="both_msisdn_not_same"><![CDATA[Sender & beneficiary phone number should not be same]]></string>
     <string name="valid_select_issuing_country">Select Issuing Country*</string>
     <string name="valid_id_proof_expiryDate">Id Proof expiry date*</string>
+    <string name="valid_id_proof_expiryDatenew">Id Proof expiry date</string>
+
     <string name="valid_front">Ex: Front*</string>
     <string name="val_id_proof_expiryDate">Please select id proof expiry date</string>
     <string name="val_select_issuing_country">Please select issuing country</string>

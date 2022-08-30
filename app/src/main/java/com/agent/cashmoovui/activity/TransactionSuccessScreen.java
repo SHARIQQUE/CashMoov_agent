@@ -16,7 +16,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
     public static TransactionSuccessScreen transSuccessscreenC;
     // ImageView imgBack;
     TextView tvContinue;
-    String checkIntent;
+    String checkIntent,mrate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
 
         if (getIntent().getExtras() != null) {
             checkIntent = (getIntent().getStringExtra("SENDINTENT"));
+            mrate = (getIntent().getStringExtra("rate"));
 
         }
         setOnCLickListener();
@@ -74,6 +75,8 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 }
                 if(checkIntent.equalsIgnoreCase("INTERNATIONAL")) {
                     intent = new Intent(transSuccessscreenC, InternationalRemittanceReceiptScreen.class);
+                    intent.putExtra("rate",mrate);
+
                     startActivity(intent);
                     return;
                 }

@@ -157,7 +157,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         });
 
 
-        etDob.setInputType(InputType.TYPE_NULL);
+      //  etDob.setInputType(InputType.TYPE_NULL);
+/*
         etDob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,6 +177,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                 picker.show();
             }
         });
+*/
 
         spRegion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,133 +243,136 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch(view.getId()) {
             case R.id.tvNext:
-                if(etFname.getText().toString().trim().isEmpty()) {
+                if (etFname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this,getString(R.string.val_fname),etFname);
+                    MyApplication.showTipError(this, getString(R.string.val_fname), etFname);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etFname.getText().toString().trim().length()<3) {
+                if (etFname.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this,getString(R.string.val_fname_len),etFname);
+                    MyApplication.showTipError(this, getString(R.string.val_fname_len), etFname);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
 
-                if(etLname.getText().toString().trim().isEmpty()) {
+                if (etLname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_lname));
-                    MyApplication.showTipError(this,getString(R.string.val_lname),etLname);
+                    MyApplication.showTipError(this, getString(R.string.val_lname), etLname);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etLname.getText().toString().trim().length()<3) {
+                if (etLname.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_lname));
-                    MyApplication.showTipError(this,getString(R.string.val_lname_len),etLname);
+                    MyApplication.showTipError(this, getString(R.string.val_lname_len), etLname);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etPhone.getText().toString().trim().isEmpty()) {
+                if (etPhone.getText().toString().trim().isEmpty()) {
                     //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this,getString(R.string.enter_phone_no),etPhone);
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etPhone.getText().toString().trim().length()<9) {
+                if (etPhone.getText().toString().trim().length() < 9) {
                     //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this,getString(R.string.enter_phone_no_val),etPhone);
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etEmail.getText().toString().trim().isEmpty()) {
+                if (etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_email));
-                    MyApplication.showTipError(this,getString(R.string.val_email_valid),etEmail);
+                    MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(!MyApplication.isEmail(etEmail.getText().toString())){
-                    MyApplication.showTipError(this,getString(R.string.val_email_valid),etEmail);
+                if (!MyApplication.isEmail(etEmail.getText().toString())) {
+                    MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(spRegion.getText().toString().equals(getString(R.string.valid_select_region))) {
+                if (spRegion.getText().toString().equals(getString(R.string.valid_select_region))) {
                     //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
-                    MyApplication.showTipError(this,getString(R.string.val_select_region),spRegion);
+                    MyApplication.showTipError(this, getString(R.string.val_select_region), spRegion);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(spCity.getText().toString().equals(getString(R.string.valid_select_city))) {
+                if (spCity.getText().toString().equals(getString(R.string.valid_select_city))) {
                     //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
-                    MyApplication.showTipError(this,getString(R.string.val_select_city),spCity);
+                    MyApplication.showTipError(this, getString(R.string.val_select_city), spCity);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etAddress.getText().toString().trim().isEmpty()) {
+                if (etAddress.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_address));
-                    MyApplication.showTipError(this,getString(R.string.val_address),etAddress);
+                    MyApplication.showTipError(this, getString(R.string.val_address), etAddress);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(spGender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+                if (spGender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_select_gender));
-                    MyApplication.showTipError(this,getString(R.string.val_select_gender),spGender);
+                    MyApplication.showTipError(this, getString(R.string.val_select_gender), spGender);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etDob.getText().toString().trim().isEmpty()) {
+                if (etDob.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_dob));
-                    MyApplication.showTipError(this,getString(R.string.val_dob),etDob);
+                    MyApplication.showTipError(this, getString(R.string.val_dob), etDob);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(spIdProof.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
-                    MyApplication.showTipError(this,getString(R.string.val_select_id_proof),spIdProof);
+                if (spIdProof.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
+                    MyApplication.showTipError(this, getString(R.string.val_select_id_proof), spIdProof);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(etProofNo.getText().toString().trim().isEmpty()) {
-                    MyApplication.showTipError(this,getString(R.string.val_proof_no),etProofNo);
+                if (etProofNo.getText().toString().trim().isEmpty()) {
+                    MyApplication.showTipError(this, getString(R.string.val_proof_no), etProofNo);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if(spOccupation.getText().toString().equals(getString(R.string.valid_select_occupation))) {
+                if (spOccupation.getText().toString().equals(getString(R.string.valid_select_occupation))) {
                     //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_occupation));
-                    MyApplication.showTipError(this,getString(R.string.val_select_occupation),spOccupation);
+                    MyApplication.showTipError(this, getString(R.string.val_select_occupation), spOccupation);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                JSONObject jsonObject=new JSONObject();
-                try {
-                    jsonObject.put("ownerName",etFname.getText().toString().trim());
-                    jsonObject.put("lastName",etLname.getText().toString().trim());
-                    jsonObject.put("dateOfBirth",etDob.getText().toString().trim());
-                    jsonObject.put("idExpiryDate","2025-12-12T00:00:00.000Z");
-                    jsonObject.put("email",etEmail.getText().toString().trim());
-                    jsonObject.put("gender",genderModelList.get((Integer) spGender.getTag()).getCode());
-                    jsonObject.put("mobileNumber",etPhone.getText().toString().trim());
-                    jsonObject.put("idProofNumber",etProofNo.getText().toString().trim());
-                    jsonObject.put("idProofTypeCode",idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
-                    jsonObject.put("issuingCountryCode","100092");
-                    jsonObject.put("registerCountryCode","100092");
+                if (!MyApplication.isConnectingToInternet(SubscriberKYC.this)) {
+                    Toast.makeText(SubscriberKYC.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                } else {
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("ownerName", etFname.getText().toString().trim());
+                        jsonObject.put("lastName", etLname.getText().toString().trim());
+                        jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
+                        jsonObject.put("idExpiryDate", "2025-12-12T00:00:00.000Z");
+                        jsonObject.put("email", etEmail.getText().toString().trim());
+                        jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
+                        jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
+                        jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());
+                        jsonObject.put("idProofTypeCode", idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
+                        jsonObject.put("issuingCountryCode", "100092");
+                        jsonObject.put("registerCountryCode", "100092");
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
 //                    jsonObject.put("city",etCity.getText().toString().trim());
-                    jsonObject.put("notificationLanguage","fr");
-                    jsonObject.put("notificationTypeCode","100002");
-                    jsonObject.put("profileTypeCode","100000");
-                    jsonObject.put("occupationTypeCode",occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
-                    jsonObject.put("state","U");
-                    jsonObject.put("status","N");
-                    jsonObject.put("walletOwnerCategoryCode",MyApplication.SubscriberCode);
+                        jsonObject.put("notificationLanguage", "fr");
+                        jsonObject.put("notificationTypeCode", "100002");
+                        jsonObject.put("profileTypeCode", "100000");
+                        jsonObject.put("occupationTypeCode", occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
+                        jsonObject.put("state", "U");
+                        jsonObject.put("status", "N");
+                        jsonObject.put("walletOwnerCategoryCode", MyApplication.SubscriberCode);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    callRegisterApi(jsonObject);
+
                 }
-
-                callRegisterApi(jsonObject);
-
         }
-
     }
 
     private void callApiRegions() {

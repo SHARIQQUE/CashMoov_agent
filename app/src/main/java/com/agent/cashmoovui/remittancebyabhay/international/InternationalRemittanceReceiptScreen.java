@@ -31,6 +31,7 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
     private LinearLayout linConfCode,tax1_layout,tax2_layout;
     private Button btnCloseReceipt,btnShareReceipt;
     View rootView;
+    private String mRate;
 
 
     @Override
@@ -150,6 +151,11 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
             tax2_lable = findViewById(R.id.tax2_lable);
             tax2_value = findViewById(R.id.tax2_value);
 
+            if (getIntent().getExtras() != null) {
+                mRate = (getIntent().getStringExtra("rate"));
+
+            }
+
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             DecimalFormat df = new DecimalFormat("0.00",symbols);
             tvTransRefNo.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionReferenceNo"));
@@ -168,7 +174,7 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
             tvBenefiPhoneNo.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
 
             String[] arr = InternationalRemittanceConfirmScreen.tvTransAmount.getText().toString().split(" ");
-            tvTransAmount.setText(arr[0]+" "+MyApplication.addDecimal(arr[1]));
+            tvTransAmount.setText(arr[0]+" "+(arr[1]));
 
            // tvTransAmount.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + df.format(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
 
@@ -216,7 +222,7 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnCloseReceipt:
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(InternationalRemittanceReceiptScreen.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;

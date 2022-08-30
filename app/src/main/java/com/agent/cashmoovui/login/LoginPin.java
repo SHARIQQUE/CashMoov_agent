@@ -244,10 +244,15 @@ public class LoginPin extends AppCompatActivity {
 
                 if (checkPermission_camera()) {
                     if (checkPermission_read_external_storage()) {
+                        if(!MyApplication.isConnectingToInternet(LoginPin.this)){
+                            Toast.makeText(applicationComponentClass, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
+                        }else{
+                            callApiLoginPass();
+
+                        }
 
                        // if (checkPermission_write_external_storage()) {
 
-                            callApiLoginPass();
 
 
 //                        } else {

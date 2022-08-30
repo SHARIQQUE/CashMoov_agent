@@ -13,6 +13,7 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
+import com.agent.cashmoovui.apiCalls.CommonData;
 import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceActivity;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 
@@ -92,6 +93,8 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
             case R.id.ll_remitence_international: {
 
                 Intent i = new Intent(SendRemittanceOpt.this, InternationalRemittanceActivity.class);
+                MyApplication.saveOrUpdateValueInSharedPreferences(SendRemittanceOpt.this, "International","international");
+
                 startActivity(i);
             }
             break;
@@ -99,6 +102,8 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
             case R.id.ll_remitence_local:
             {
                 Intent i = new Intent(SendRemittanceOpt.this, LocalRemittanceActivity.class);
+                MyApplication.saveOrUpdateValueInSharedPreferences(SendRemittanceOpt.this, "Local","local");
+
                 startActivity(i);
             }
             break;
