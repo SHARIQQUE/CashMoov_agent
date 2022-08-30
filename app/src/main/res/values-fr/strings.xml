@@ -791,6 +791,7 @@
 
     <string name="verification_login_otp">Veuillez contacter votre service client pour Login OTP et veuillez entrer l\'OTP pour vérifier votre compte.</string>
     <string name="verification_reset_pin_otp">Veuillez contacter votre service clientèle pour réinitialiser le code PIN OTP et veuillez saisir l\'OTP pour vérifier votre compte</string>
+    <string name="due_date">Due Date</string>
 
 
 </resources>

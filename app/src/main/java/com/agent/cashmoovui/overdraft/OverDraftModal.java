@@ -12,6 +12,16 @@ public class OverDraftModal {
     String validityMaxDays="";
     String currencyCode="";
 
+    public String getDuaDate() {
+        return duaDate;
+    }
+
+    public void setDuaDate(String duaDate) {
+        this.duaDate = duaDate;
+    }
+
+    String duaDate="";
+
     public String getCurrencyCode() {
         return currencyCode;
     }

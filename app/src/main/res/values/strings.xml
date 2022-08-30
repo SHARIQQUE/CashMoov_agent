@@ -791,6 +791,7 @@
     <string name="choose_image">Choose image</string>
     <string name="service_not_available">This service is not available</string>
     <string name="reset_pin"><u>Reset Pin?</u></string>
+    <string name="due_date">Due Date</string>
 
 
 </resources>

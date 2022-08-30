@@ -54,6 +54,9 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
             date = inputFormat.parse(arrayList_modalUserData.get(i).getCreationDate());
             String formattedDate = outputFormat.format(date);
             viewHolder.datetime_textview.setText(formattedDate);
+            Date date1 = inputFormat.parse(arrayList_modalUserData.get(i).getDuaDate());
+            String dueDate = outputFormat.format(date1);
+            viewHolder.dueDate_textview.setText(dueDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -76,7 +79,7 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView currencyName, amount,status_textview,datetime_textview;
+        public TextView currencyName, amount,status_textview,datetime_textview,dueDate_textview;
         Button action_click;
         public LinearLayout rowLinear;
 
@@ -88,7 +91,7 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
             rowLinear=(LinearLayout)itemView.findViewById(R.id.rowLinear);
             status_textview = (TextView) itemView.findViewById(R.id.status_textview);
             datetime_textview = (TextView) itemView.findViewById(R.id.datetime_textview);
-
+            dueDate_textview= (TextView) itemView.findViewById(R.id.dueDate_textview);
 
 
         }

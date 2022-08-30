@@ -635,6 +635,11 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                            // String walletOwnerCode = jsonObject3.getString("walletOwnerCode");
 
 
+                            if(jsonObject3.has("duaDate")) {
+                                String  duaDate = jsonObject3.getString("duaDate");
+                                overDraftModal.setDuaDate(duaDate);
+                            }
+
                             if(jsonObject3.has("currencyName")) {
                                 String  currencyName = jsonObject3.getString("currencyName");
                                 overDraftModal.setCurrencyName(currencyName);
