@@ -1074,6 +1074,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
 
             return false;
+            //tt
         } else if (mpinStr.trim().length() == 4) {
 
 
