@@ -899,6 +899,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             amountstr = jsonObject3.getString("beneficiaryAmount");
                             edittext_amount.setText(amountstr);
                         } else {
+                            //tt
 
                         }
 
