@@ -573,6 +573,8 @@
     <string name="transfer_float">Transfer Float</string>
     <string name="transfer_commission">Transfer Commission</string>
     <string name="overdraft_limit">Overdraft Limit</string>
+    <string name="viewcongigservices">View Config Services</string>
+
     <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 90,000.000 for 5 days</string>
     <string name="one_sur_la_transaction">1% on the transa</string>
     <string name="remittance_option">Remittance Option</string>
@@ -798,6 +800,12 @@
     <string name="service_not_available">This service is not available</string>
     <string name="reset_pin"><u>Reset Pin?</u></string>
     <string name="due_date">Due Date</string>
+
+    <string name="channeltype">Channel Type</string>
+    <string name="servicename">Service Name</string>
+    <string name="servicecatname">Service Category Name</string>
+    <string name="serviceprovidername">Service Provider Name</string>
+
 
 
 </resources>

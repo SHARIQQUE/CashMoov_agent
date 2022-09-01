@@ -54,6 +54,38 @@
 
             </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/viewconfigLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/ic_baseline_remove_red_eye_24"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_bold"
+            android:lineSpacingExtra="3sp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/viewcongigservices"
+            android:textColor="#29304d"
+            android:textSize="@dimen/_16sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+
+    </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -201,6 +233,7 @@
                     android:fontFamily="@font/aileron_bold"
                     android:gravity="center"
                     android:text="@string/send"/>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"

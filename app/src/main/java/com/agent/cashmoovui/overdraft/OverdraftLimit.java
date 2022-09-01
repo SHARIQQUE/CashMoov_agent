@@ -63,7 +63,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
     Spinner spinner_record;
     SpinnerDialog spinnerDialogCurrency;
 
-    LinearLayout ll_firstPage,ll_successPage,linearLayout_record;
+    LinearLayout ll_firstPage,ll_successPage,linearLayout_record,viewconfigLinear;
 
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
@@ -113,7 +113,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         spinner_record = (Spinner) findViewById(R.id.spinner_record);
-
+        viewconfigLinear=findViewById(R.id.viewconfigLinear);
 
 
 
@@ -172,6 +172,13 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         });
 
 
+        viewconfigLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(OverdraftLimit.this,OverdraftLimitViewConfigServices.class);
+                startActivity(intent);
+            }
+        });
         imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -296,12 +296,29 @@ public class MyApplication extends Application {
                 .show();
     }
 
+
+
     public static void showAPIToast(String message) {
         Toast toast = Toast.makeText(getInstance(),
                 "   " + message + "  ", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 0);
         toast.show();
     }
+    public static void showToastNew(Context activity, String message) {
+        Toast toast = Toast.makeText(activity,
+                "   " + message + "  ", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 0);
+//        View view = toast.getView();
+//        // view.getBackground().setColorFilter(appInstance.getColor(R.color.white), PorterDuff.Mode.SRC_IN);
+//        view.setBackgroundResource(R.drawable.success_toast);
+//        TextView text = view.findViewById(android.R.id.message);
+//        text.setPadding(20,10,20,10);
+//        text.setTextSize(13);
+//        text.setTextColor(ContextCompat.getColor(activity, R.color.white));
+        toast.show();
+    }
+
+
 
     public static void showToast(Activity activity, String message) {
         Toast toast = Toast.makeText(activity,

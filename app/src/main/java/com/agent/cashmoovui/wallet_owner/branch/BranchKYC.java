@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
@@ -34,6 +36,7 @@ import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
+import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.model.UserDetailAgent;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryAgent;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
@@ -82,7 +85,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     MyApplication applicationComponentClass;
     String languageToUse = "";
     public static final int REQUEST_CODE = 1;
-
+    private boolean isFormatting;
+    String  walletOwnerCode, status;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -294,6 +298,38 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
             }
         });
 
+        etPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (isFormatting) {
+                    return;
+                }
+
+                if (s.length() >= 9) {
+                    saveMobilenoInfoAPI();
+
+
+                }
+                if(s.length()<9){
+                    clearData();
+                }
+                isFormatting = false;
+
+
+            }
+        });
+
         spIdProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -308,6 +344,171 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
     }
+
+
+    private void clearData() {
+        etBranchName.setText("");
+        etLname.setText((""));
+        etEmail.setText("");
+        Agentcode="";
+        tvNext.setVisibility(View.VISIBLE);
+
+
+    }
+
+    public String Agentcode="";
+
+    private void saveMobilenoInfoAPI() {
+
+
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/mobileNumber/" + etPhone.getText().toString(), languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    System.out.println("get moble response" + jsonObject.toString());
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+                        JSONObject json2 = jsonObject.getJSONObject("walletOwner");
+
+
+
+                        if(json2.getString("status").equalsIgnoreCase("Active") && json2.getString("state").equalsIgnoreCase("Approved")){
+                            Toast.makeText(applicationComponentClass, "user already exists", Toast.LENGTH_SHORT).show();
+                            tvNext.setVisibility(View.GONE);
+
+                            return;
+
+                        }
+
+                        if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Agent")){
+                            Toast.makeText(applicationComponentClass, "Mobile number exists with agent", Toast.LENGTH_SHORT).show();
+                            tvNext.setVisibility(View.GONE);
+                            return;
+                        }
+                        if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Subscriber")){
+                            Toast.makeText(applicationComponentClass, "Mobile number exists with subscriber", Toast.LENGTH_SHORT).show();
+                            tvNext.setVisibility(View.GONE);
+
+                            return;
+                        }
+
+                        if(json2.getString("stage").equalsIgnoreCase("Address")){
+                            branchWalletOwnerCode=json2.optString("walletOwnerCode");
+                            Intent i = new Intent(BranchKYC.this,BranchKYCAttached.class);
+                            startActivity(i);
+                            return;
+                        }
+
+                        branchWalletOwnerCode=json2.optString("walletOwnerCode");
+
+
+                        tvNext.setVisibility(View.VISIBLE);
+
+
+                        RegistrationModel registrationModel=new RegistrationModel(
+                                    json2.getInt("id"),
+                                    json2.optString("code"),
+                                    json2.optString("walletOwnerParentCode"),
+                                    json2.optString("walletOwnerCategoryCode"),
+                                    json2.optString("ownerName"),
+                                    json2.optString("mobileNumber"),
+                                    json2.optString("businessTypeCode"),
+                                    json2.optString("businessTypeName"),
+                                    json2.optString("idProofNumber"),
+                                    json2.optString("email"),
+                                    json2.optString("status"),
+                                    json2.optString("state"),
+                                    json2.optString("stage"),
+                                    json2.optString("idProofTypeCode"),
+                                    json2.optString("idProofTypeName"),
+                                    json2.optString("notificationLanguage"),
+                                    json2.optString("notificationTypeCode"),
+                                    json2.optString("notificationName"),
+                                    json2.optString("gender"),
+                                    json2.optString("dateOfBirth"),
+                                    json2.optString("lastName"),
+                                    json2.optString("issuingCountryCode"),
+                                    json2.optString("issuingCountryName"),
+                                    json2.optString("registerCountryCode"),
+                                    json2.optString("registerCountryName"),
+                                    json2.optString("createdBy"),
+                                    json2.getBoolean("walletExists"),
+                                    json2.optString("profileTypeCode"),
+                                    json2.optString("profileTypeName"),
+                                    json2.optString("currencyCode"),
+                                    json2.optString("walletOwnerCatName"),
+                                    json2.optString("requestedSource"),
+                                    json2.optString("regesterCountryDialCode"),
+                                    json2.optString("issuingCountryDialCode"),
+                                    json2.optString("walletOwnerCode"),
+                                    json2.optBoolean("hasChild"),
+                                    json2.optString("currencyName"),
+                                    json2.optBoolean("loginWithOtpRequired"),
+                                    json2.optString("timeZone"));
+
+
+
+                            Agentcode=registrationModel.getWalletOwnerCode();
+
+
+
+                            etBranchName.setText(registrationModel.getOwnerName());
+                            etLname.setText(registrationModel.getLastName());
+                            etEmail.setText(registrationModel.getEmail());
+                            //spGender.setText(registrationModel.getGender());
+                            //etDob.setText(registrationModel.getDateOfBirth());
+                            // spCountry.setText(registrationModel.getRegisterCountryName());
+                            // spBusinessType.setText(registrationModel.getBusinessTypeName());
+
+
+
+
+                        //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+
+
+                        // api_currency_sender();
+
+                    } else {
+                        clearData();
+
+                        Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  finish();
+                    }
+
+
+                } catch (Exception e) {
+                    clearData();
+                    // Toast.makeText(AgentKYC.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+                clearData();
+
+                MyApplication.hideLoader();
+                Toast.makeText(BranchKYC.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
 
     @Override
     protected void onStart() {
@@ -439,25 +640,25 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 if (!MyApplication.isConnectingToInternet(BranchKYC.this)) {
                     Toast.makeText(BranchKYC.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
                 } else {
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("code", "");
-                        jsonObject.put("ownerName", etBranchName.getText().toString().trim());
-                        jsonObject.put("lastName", etLname.getText().toString().trim());
-                        jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
-                        jsonObject.put("idExpiryDate", "");
-                        jsonObject.put("email", etEmail.getText().toString().trim());
-                        jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
-                        jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
-                        jsonObject.put("businessTypeCode", businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
-                        jsonObject.put("businessName", "");
-                        jsonObject.put("lineOfBusiness", "");
-                        jsonObject.put("groupCode", "");
-                        jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());
-                        jsonObject.put("idProofTypeCode", idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
-                        jsonObject.put("issuingCountryCode", "100092");
-                        jsonObject.put("walletCurrencyList", new JSONArray(walletCurrencyList));
-                        jsonObject.put("registerCountryCode", countryModelList.get((Integer) spCountry.getTag()).getCode());
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("code", Agentcode);
+                            jsonObject.put("ownerName", etBranchName.getText().toString().trim());
+                            jsonObject.put("lastName", etLname.getText().toString().trim());
+                            jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
+                            jsonObject.put("idExpiryDate", "");
+                            jsonObject.put("email", etEmail.getText().toString().trim());
+                            jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
+                            jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
+                            jsonObject.put("businessTypeCode", businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
+                            jsonObject.put("businessName", "");
+                            jsonObject.put("lineOfBusiness", "");
+                            jsonObject.put("groupCode", "");
+                            jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());
+                            jsonObject.put("idProofTypeCode", idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
+                            jsonObject.put("issuingCountryCode", "100092");
+                            jsonObject.put("walletCurrencyList", new JSONArray(walletCurrencyList));
+                            jsonObject.put("registerCountryCode", countryModelList.get((Integer) spCountry.getTag()).getCode());
 //                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
 //                    jsonObject.put("city",etCity.getText().toString().trim());
@@ -473,14 +674,21 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         jsonObject.put("walletOwnerCategoryCode", MyApplication.BranchCode);
                         jsonObject.put("loginWithOtpRequired", loginwithOtp);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        callRegisterApi(jsonObject);
+
+
+
+
+                    }
                     }
 
-                    callRegisterApi(jsonObject);
 
-                }
-        }
+
+
 
         }
 

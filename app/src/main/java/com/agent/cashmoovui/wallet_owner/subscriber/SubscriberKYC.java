@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +39,11 @@ import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.OccupationTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
+import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
+import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
+import com.agent.cashmoovui.wallet_owner.branch.BranchKYCAttached;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,6 +84,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     public static final int REQUEST_CODE = 1;
     private ImageView mCalenderIcon_Image;
     public static TextView mDobText;
+    private boolean isFormatting;
+    private String walletOwnerCode,status;
+    String languageToUse = "";
+    MyApplication applicationComponentClass;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -95,6 +105,13 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        applicationComponentClass = (MyApplication) getApplicationContext();
+
+        languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
+
+        if (languageToUse.trim().length() == 0) {
+            languageToUse = "en";
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_abonne_one);
         subscriberkycC=this;
@@ -157,7 +174,40 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         });
 
 
-      //  etDob.setInputType(InputType.TYPE_NULL);
+        etPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (isFormatting) {
+                    return;
+                }
+
+                if (s.length() >= 9) {
+                    saveMobilenoInfoAPI();
+
+
+                }
+                if(s.length()<9){
+                    clearData();
+                }
+
+                isFormatting = false;
+
+
+            }
+        });
+
+        //  etDob.setInputType(InputType.TYPE_NULL);
 /*
         etDob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,6 +279,17 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
 
     }
+
+    private void clearData() {
+        etFname.setText("");
+        etLname.setText((""));
+        etEmail.setText("");
+        Agentcode="";
+        tvNext.setVisibility(View.VISIBLE);
+
+
+    }
+
 
     @Override
     protected void onStart() {
@@ -342,34 +403,40 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                 if (!MyApplication.isConnectingToInternet(SubscriberKYC.this)) {
                     Toast.makeText(SubscriberKYC.this, getString(R.string.please_check_internet), Toast.LENGTH_SHORT).show();
                 } else {
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("ownerName", etFname.getText().toString().trim());
-                        jsonObject.put("lastName", etLname.getText().toString().trim());
-                        jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
-                        jsonObject.put("idExpiryDate", "2025-12-12T00:00:00.000Z");
-                        jsonObject.put("email", etEmail.getText().toString().trim());
-                        jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
-                        jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
-                        jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());
-                        jsonObject.put("idProofTypeCode", idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
-                        jsonObject.put("issuingCountryCode", "100092");
-                        jsonObject.put("registerCountryCode", "100092");
+
+
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("code", Agentcode);
+
+                            jsonObject.put("ownerName", etFname.getText().toString().trim());
+                            jsonObject.put("lastName", etLname.getText().toString().trim());
+                            jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
+                            jsonObject.put("idExpiryDate", "2025-12-12T00:00:00.000Z");
+                            jsonObject.put("email", etEmail.getText().toString().trim());
+                            jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
+                            jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
+                            jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());
+                            jsonObject.put("idProofTypeCode", idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
+                            jsonObject.put("issuingCountryCode", "100092");
+                            jsonObject.put("registerCountryCode", "100092");
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
 //                    jsonObject.put("city",etCity.getText().toString().trim());
-                        jsonObject.put("notificationLanguage", "fr");
-                        jsonObject.put("notificationTypeCode", "100002");
-                        jsonObject.put("profileTypeCode", "100000");
-                        jsonObject.put("occupationTypeCode", occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
-                        jsonObject.put("state", "U");
-                        jsonObject.put("status", "N");
-                        jsonObject.put("walletOwnerCategoryCode", MyApplication.SubscriberCode);
+                            jsonObject.put("notificationLanguage", "fr");
+                            jsonObject.put("notificationTypeCode", "100002");
+                            jsonObject.put("profileTypeCode", "100000");
+                            jsonObject.put("occupationTypeCode", occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
+                            jsonObject.put("state", "U");
+                            jsonObject.put("status", "N");
+                            jsonObject.put("walletOwnerCategoryCode", MyApplication.SubscriberCode);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                    callRegisterApi(jsonObject);
+                        callRegisterApi(jsonObject);
+
+
 
                 }
         }
@@ -759,7 +826,6 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                             //MyApplication.showToast(getString(R.string.address_add_msg));
                             Intent i = new Intent(subscriberkycC, SubscriberKYCAttached.class);
                             startActivity(i);
-                            finish();
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                             MyApplication.showToast(subscriberkycC,getString(R.string.technical_failure));
                         } else {
@@ -827,4 +893,157 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
     }
+    public String Agentcode="";
+
+    private void saveMobilenoInfoAPI() {
+
+
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/mobileNumber/" + etPhone.getText().toString(), languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+                    System.out.println("get moble response" + jsonObject.toString());
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789327","requestTime":"Wed Oct 20 15:55:16 IST 2021","responseTime":"Wed Oct 20 15:55:16 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","pageable":{"limit":500,"offset":0,"totalRecords":1},"walletOwnerList":[{"id":110382,"code":"1000002488","walletOwnerCategoryCode":"100010","ownerName":"Kundan","mobileNumber":"118110111","idProofNumber":"vc12345","email":"kundan.kumar@esteltelecom.com","status":"Active","state":"Approved","stage":"Document","idProofTypeCode":"100006","idProofTypeName":"OTHER","idExpiryDate":"2021-09-29","notificationLanguage":"en","notificationTypeCode":"100000","notificationName":"EMAIL","gender":"M","dateOfBirth":"1960-01-26","lastName":"New","issuingCountryCode":"100092","issuingCountryName":"Guinea","registerCountryCode":"100092","registerCountryName":"Guinea","createdBy":"100375","modifiedBy":"100322","creationDate":"2021-09-16T17:08:49.796+0530","modificationDate":"2021-09-16T17:10:17.009+0530","walletExists":true,"profileTypeCode":"100001","profileTypeName":"tier2","walletOwnerCatName":"Subscriber","occupationTypeCode":"100002","occupationTypeName":"Others","requestedSource":"ADMIN","regesterCountryDialCode":"+224","issuingCountryDialCode":"+224","walletOwnerCode":"1000002488"}]}");
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+                        JSONObject json2 = jsonObject.getJSONObject("walletOwner");
+
+
+
+                        if(json2.getString("status").equalsIgnoreCase("Active") && json2.getString("state").equalsIgnoreCase("Approved")){
+                            Toast.makeText(applicationComponentClass, "user already exists", Toast.LENGTH_SHORT).show();
+                            tvNext.setVisibility(View.GONE);
+
+                            return;
+                        }
+
+
+                        if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Agent")){
+                            Toast.makeText(applicationComponentClass, "Mobile number exists with agent", Toast.LENGTH_SHORT).show();
+                            tvNext.setVisibility(View.GONE);
+                           return;
+                        }
+                        if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Branch")){
+                            Toast.makeText(applicationComponentClass, "Mobile number exists with branch", Toast.LENGTH_SHORT).show();
+                            tvNext.setVisibility(View.GONE);
+
+                            return;
+                        }
+                        if(json2.getString("stage").equalsIgnoreCase("Address")){
+                            subscriberWalletOwnerCode=json2.optString("walletOwnerCode");
+                            Intent i = new Intent(subscriberkycC, SubscriberKYCAttached.class);
+                            startActivity(i);
+                            return;
+                        }
+
+                        subscriberWalletOwnerCode=json2.optString("walletOwnerCode");
+
+
+                        tvNext.setVisibility(View.VISIBLE);
+
+                        RegistrationModel registrationModel=new RegistrationModel(
+                                    json2.getInt("id"),
+                                    json2.optString("code"),
+                                    json2.optString("walletOwnerParentCode"),
+                                    json2.optString("walletOwnerCategoryCode"),
+                                    json2.optString("ownerName"),
+                                    json2.optString("mobileNumber"),
+                                    json2.optString("businessTypeCode"),
+                                    json2.optString("businessTypeName"),
+                                    json2.optString("idProofNumber"),
+                                    json2.optString("email"),
+                                    json2.optString("status"),
+                                    json2.optString("state"),
+                                    json2.optString("stage"),
+                                    json2.optString("idProofTypeCode"),
+                                    json2.optString("idProofTypeName"),
+                                    json2.optString("notificationLanguage"),
+                                    json2.optString("notificationTypeCode"),
+                                    json2.optString("notificationName"),
+                                    json2.optString("gender"),
+                                    json2.optString("dateOfBirth"),
+                                    json2.optString("lastName"),
+                                    json2.optString("issuingCountryCode"),
+                                    json2.optString("issuingCountryName"),
+                                    json2.optString("registerCountryCode"),
+                                    json2.optString("registerCountryName"),
+                                    json2.optString("createdBy"),
+                                    json2.getBoolean("walletExists"),
+                                    json2.optString("profileTypeCode"),
+                                    json2.optString("profileTypeName"),
+                                    json2.optString("currencyCode"),
+                                    json2.optString("walletOwnerCatName"),
+                                    json2.optString("requestedSource"),
+                                    json2.optString("regesterCountryDialCode"),
+                                    json2.optString("issuingCountryDialCode"),
+                                    json2.optString("walletOwnerCode"),
+                                    json2.optBoolean("hasChild"),
+                                    json2.optString("currencyName"),
+                                    json2.optBoolean("loginWithOtpRequired"),
+                                    json2.optString("timeZone"));
+
+
+
+                            Agentcode=registrationModel.getWalletOwnerCode();
+
+
+
+                            etFname.setText(registrationModel.getOwnerName());
+                            etLname.setText(registrationModel.getLastName());
+                            etEmail.setText(registrationModel.getEmail());
+
+                            //spGender.setText(registrationModel.getGender());
+                          //  etDob.setText(registrationModel.getDateOfBirth());
+                            // spCountry.setText(registrationModel.getRegisterCountryName());
+                            // spBusinessType.setText(registrationModel.getBusinessTypeName());
+
+
+
+
+                        //  Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+
+
+                        // api_currency_sender();
+
+                    } else {
+                        clearData();
+
+                        Toast.makeText(SubscriberKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                        //  finish();
+                    }
+
+
+                } catch (Exception e) {
+                    clearData();
+                    // Toast.makeText(AgentKYC.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+                clearData();
+
+                MyApplication.hideLoader();
+                Toast.makeText(SubscriberKYC.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+
+
 }

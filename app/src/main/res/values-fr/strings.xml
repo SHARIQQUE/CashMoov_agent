@@ -568,6 +568,8 @@
     <string name="transfer_float">Flotteur de transfert</string>
     <string name="transfer_commission">Commission Transfert</string>
     <string name="overdraft_limit">Limite de découvert</string>
+    <string name="viewcongigservices">Afficher les services de configuration</string>
+
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
     <string name="one_sur_la_transaction">1% sur la transaction</string>
     <string name="remittance_option">Option de remise</string>
@@ -798,5 +800,11 @@
     <string name="due_date">Due Date</string>
 
 
+
+
+    <string name="channeltype">Type de canal</string>
+    <string name="servicename">Nom du service</string>
+    <string name="servicecatname">Nom de la catégorie de services</string>
+    <string name="serviceprovidername">Nom du fournisseur de services</string>
 </resources>
 

@@ -60,6 +60,7 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_other_option.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_otp_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_overdraft_limit.xml" value="0.20416666666666666" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_overdraft_limit_viewconfig_services.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_owner_option.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_payment_confirm.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_payment_details.xml" value="0.20416666666666666" />
@@ -126,6 +127,7 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_plan_list.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_product.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_select.xml" value="0.20416666666666666" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_transaction_list.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_transaction_list_new.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_transaction_list_new_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/item_wallet.xml" value="0.19947916666666668" />
@@ -134,6 +136,7 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/login_with_pin.xml" value="0.20416666666666666" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/overdraft_row_item.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/overdraft_viewconfig.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/popup_airtime_fee.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/popup_money_transfer_fee.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/popup_remittance_fee.xml" value="0.1" />

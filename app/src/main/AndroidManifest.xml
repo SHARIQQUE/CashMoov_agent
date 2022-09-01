@@ -397,6 +397,11 @@ x
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".overdraft.OverdraftLimitViewConfigServices"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
         <activity android:name=".transfer_float.TransferFloats"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"

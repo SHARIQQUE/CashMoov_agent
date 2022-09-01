@@ -337,6 +337,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             String institutename = arrayList_instititueName.get(i).replaceAll("[0-9]", "");// prints awhefqoakwfn
                             String institutenamenew = institutename.replaceAll("[(){}]","");
 
+
+                            Toast.makeText(applicationComponentClass, "get name"+institutenamenew, Toast.LENGTH_SHORT).show();
                             mInstitutenameEdittext.setText(institutenamenew);
                             tv_nextClick.setVisibility(View.VISIBLE);
                             MyApplication.hideKeyboard(SellFloat.this);
@@ -344,6 +346,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                         }
+
                     }
                     if(mInstitutenameEdittext.getText().toString().trim().isEmpty()){
                         MyApplication.showToast(SellFloat.this,"Please Check another number institute not found!");
@@ -592,7 +595,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         }
 
 
-                        System.out.println("get name list"+arrayList_instititueName);
+                        System.out.println("get name list"+jsonObject);
                         System.out.println(arrayList_instititueCode);
 
 
@@ -2070,9 +2073,15 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             String requiredValue = data.getStringExtra("PHONE");
 
+            MyApplication.contactValidation(requiredValue,mEnterinstituteEdittext);
+
             int position = arrayList_instititueCode.indexOf(requiredValue);
+
             if (position == -1) {
-               MyApplication.showToast(SellFloat.this,"Institute not found!");
+                System.out.println("get position"+position);
+
+                Toast.makeText(SellFloat.this, "Institute not found!", Toast.LENGTH_SHORT).show();
+
             } else {
                 setSelction(position);
             }
@@ -2083,7 +2092,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
             if (data == null)
-                return;
+                   return;
             //Getting the passed result
             String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
             if (result != null) {
@@ -2140,12 +2149,31 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                                String select_insitute_code_temp = jsonObject_walletOwner.getString("mobileNumber");
 
+                                 if(!select_insitute_code_temp.equalsIgnoreCase(arrayList_instititueCode.get(pos))){
+                                     Toast.makeText(SellFloat.this, "Wallet owner not found", Toast.LENGTH_SHORT).show();
+                                     mEnterinstituteEdittext.setText(select_insitute_code_temp);
+                                     mEnterinstituteEdittext.setEnabled(false);
+
+                                 }else{
+                                     mEnterinstituteEdittext.setText(select_insitute_code_temp);
+                                     mEnterinstituteEdittext.setEnabled(false);
+
+                                 }
+
+
+
+
                                     for (int i = 0; i < arrayList_instititueCode.size(); i++) {
                                         if (select_insitute_code_temp.equalsIgnoreCase(arrayList_instititueCode.get(i)))
                                         {
+
                                            setSelction(i);
                                         }
                                     }
+
+                            }
+                            else{
+                                MyApplication.showToast(SellFloat.this,"Institute not found!");
 
                             }
 
@@ -2322,9 +2350,6 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             case R.id.spinner_insititue:
             {
-
-
-
             }
             break;
 
