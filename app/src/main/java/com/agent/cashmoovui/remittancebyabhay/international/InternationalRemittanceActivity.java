@@ -15,8 +15,10 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
+import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
@@ -268,6 +270,18 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             return;
         }
 
+         if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.RemittanceMinValue) {
+            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_min)+" "+MyApplication.RemittanceMinValue);
+            return ;
+        }
+
+          if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.RemittanceMaxValue) {
+            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_max)+" "+MyApplication.RemittanceMaxValue);
+            return ;
+
+
+        }
+
         Intent i = new Intent(internationalC, InternationalRemittanceSenderKYC.class);
         startActivity(i);
     }
@@ -442,30 +456,31 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
-                                        sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
-                                                data.optInt("id"),
-                                                data.optString("code"),
-                                                data.optString("countryCode"),
-                                                data.optString("countryName"),
-                                                data.optString("createdBy"),
-                                                data.optString("creationDate"),
-                                                data.optString("currCode"),
-                                                data.optString("currencyCode"),
-                                                data.optString("currencyName"),
-                                                data.optString("currencySymbol"),
-                                                data.optString("dialCode"),
-                                                data.optInt("mobileLength"),
-                                                data.optString("modificationDate"),
-                                                data.optString("modifiedBy"),
-                                                data.optString("state"),
-                                                data.optString("status"),
-                                                data.optBoolean("inBound"),
-                                                data.optBoolean("outBound")
+                                        if( data.optBoolean("outBound")) {
+                                            sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("countryName"),
+                                                    data.optString("createdBy"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("currCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencyName"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("dialCode"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("modifiedBy"),
+                                                    data.optString("state"),
+                                                    data.optString("status"),
+                                                    data.optBoolean("inBound"),
+                                                    data.optBoolean("outBound")
 
-                                        ));
+                                            ));
 
-                                        sendCurrencyList.add(data.optString("currCode").trim());
-
+                                            sendCurrencyList.add(data.optString("currCode").trim());
+                                        }
                                     }
 
                                     tvAmtCurr.setText("");
@@ -627,30 +642,31 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
-                                        recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
-                                                data.optInt("id"),
-                                                data.optString("code"),
-                                                data.optString("countryCode"),
-                                                data.optString("countryName"),
-                                                data.optString("createdBy"),
-                                                data.optString("creationDate"),
-                                                data.optString("currCode"),
-                                                data.optString("currencyCode"),
-                                                data.optString("currencyName"),
-                                                data.optString("currencySymbol"),
-                                                data.optString("dialCode"),
-                                                data.optInt("mobileLength"),
-                                                data.optString("modificationDate"),
-                                                data.optString("modifiedBy"),
-                                                data.optString("state"),
-                                                data.optString("status"),
-                                                data.optBoolean("inBound"),
-                                                data.optBoolean("outBound")
+                                        if(data.optBoolean("inBound")) {
+                                            recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("countryName"),
+                                                    data.optString("createdBy"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("currCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencyName"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("dialCode"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("modifiedBy"),
+                                                    data.optString("state"),
+                                                    data.optString("status"),
+                                                    data.optBoolean("inBound"),
+                                                    data.optBoolean("outBound")
 
-                                        ));
+                                            ));
 
-                                        recCurrencyList.add(data.optString("currCode").trim());
-
+                                            recCurrencyList.add(data.optString("currCode").trim());
+                                        }
                                     }
 
                                     tvAmtPaidCurr.setText("");
@@ -748,7 +764,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(MyApplication.addDecimal(rate));
+                                        convertionRate_first_page.setText(MyApplication.addDecimalthreenew(rate));
                                         fees_first_page.setText(fee);
                                         edittext_amount_pay.setText(currencyValue);
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
@@ -803,7 +819,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-
+        if(MyApplication.checkMinMax(internationalC,s,editText
+                ,MyApplication.RemittanceMinValue,MyApplication.RemittanceMaxValue)){
+            return;
+        }
 
         isFormatting = true;
 

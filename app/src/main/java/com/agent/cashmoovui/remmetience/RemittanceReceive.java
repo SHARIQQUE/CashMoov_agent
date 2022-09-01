@@ -121,6 +121,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     File fileFront;
 
     private ImageView mCalenderIcon_Image,calenderIconidproff_Image;
+    LinearLayout et_sender_idproof_expiry_lay;
 
     private SpinnerDialog spinnerDialogSenderIdProofType;
 
@@ -178,6 +179,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             etFront = findViewById(R.id.etFront);
             et_sender_dob=findViewById(R.id.et_sender_dob);
             et_sender_idproof_expiry=findViewById(R.id.et_sender_idproof_expiry);
+            et_sender_idproof_expiry_lay=findViewById(R.id.et_sender_idproof_expiry_lay);
             mDobText=findViewById(R.id.dobText);
             dobLinear=findViewById(R.id.dobLinear);
             mDobidproffText=findViewById(R.id.dobidproffText);
@@ -369,6 +371,19 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                             api_confcode();
+                        }else{
+
+                            edittext_comment.setText("");
+                            edittext_firstName.setText("");
+                            edittext_countryName.setText("");
+                            edittext_currencyName.setText("");
+                            edittext_amount.setText("");
+                            spinner_sender_idprooftype.setVisibility(View.GONE);
+                            dobLinear.setVisibility(View.GONE);
+                            et_sender_idproofNumber.setVisibility(View.GONE);
+                            et_sender_idproof_expiry.setVisibility(View.GONE);
+                            et_sender_idproof_expiry_lay.setVisibility(View.GONE);
+
                         }
 
                     } else {
@@ -618,9 +633,37 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
             return false;
         }
+        else if (remitType.equalsIgnoreCase("Local Remit")) {
+            return true;
+        }else{
+            //spinner_sender_idprooftype.setVisibility(View.GONE);
+            //                            dobLinear.setVisibility(View.GONE);
+            //                            et_sender_idproofNumber.setVisibility(View.GONE);
+            //                            et_sender_idproof_expiry.setVisibility(View.GONE);
+            //                            et_sender_idproof_expiry_lay.setVisibility(View.GONE);
+
+            if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
+                MyApplication.showErrorToast(RemittanceReceive.this, getString(R.string.val_select_id_proof));
+                return false;
+            }
+            if (et_sender_idproofNumber.getText().toString().trim().isEmpty()) {
+                MyApplication.showErrorToast(RemittanceReceive.this, getString(R.string.val_proof_no));
+                return false;
+            }
+            if (et_sender_idproof_expiry.getText().toString().trim().isEmpty()) {
+                MyApplication.showErrorToast(RemittanceReceive.this, getString(R.string.val_id_proof_expiryDate));
+                return false;
+            }
+
+            if (et_sender_dob.getText().toString().trim().isEmpty()) {
+                MyApplication.showErrorToast(RemittanceReceive.this, getString(R.string.val_dob));
+                return false;
+            }
+            return true;
+        }
 
 
-        return true;
+        //return true;
     }
 
 
@@ -800,7 +843,26 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             if(jsonObject_accountHolding.has("remitType")){
 
                                remitType=jsonObject_accountHolding.optString("remitType");
+                                if (remitType.equalsIgnoreCase("Local Remit")) {
+
+                                    spinner_sender_idprooftype.setVisibility(View.GONE);
+                                    dobLinear.setVisibility(View.GONE);
+                                    et_sender_idproofNumber.setVisibility(View.GONE);
+                                    et_sender_idproof_expiry.setVisibility(View.GONE);
+                                    et_sender_idproof_expiry_lay.setVisibility(View.GONE);
+
+
+                                }else{
+                                    spinner_sender_idprooftype.setVisibility(View.VISIBLE);
+                                    dobLinear.setVisibility(View.VISIBLE);
+                                    et_sender_idproofNumber.setVisibility(View.VISIBLE);
+                                    et_sender_idproof_expiry.setVisibility(View.VISIBLE);
+                                    et_sender_idproof_expiry_lay.setVisibility(View.VISIBLE);
+
+                                }
+
                             }else{
+
 
                             }
 
@@ -897,7 +959,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             JSONObject jsonObject3 = jsonObject.getJSONObject("accountHolding");
                             amountstr = jsonObject3.getString("beneficiaryAmount");
-                            edittext_amount.setText(amountstr);
+                            edittext_amount.setText(MyApplication.addDecimal(amountstr));
                         } else {
                             //tt
 
@@ -915,6 +977,16 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                     } else {
                         MyApplication.hideLoader();
+                        edittext_comment.setText("");
+                        edittext_firstName.setText("");
+                        edittext_countryName.setText("");
+                        edittext_currencyName.setText("");
+                        edittext_amount.setText("");
+                        spinner_sender_idprooftype.setVisibility(View.GONE);
+                        dobLinear.setVisibility(View.GONE);
+                        et_sender_idproofNumber.setVisibility(View.GONE);
+                        et_sender_idproof_expiry.setVisibility(View.GONE);
+                        et_sender_idproof_expiry_lay.setVisibility(View.GONE);
 
                         Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
                     }
@@ -922,6 +994,16 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                 } catch (Exception e) {
                     MyApplication.hideLoader();
+                    edittext_comment.setText("");
+                    edittext_firstName.setText("");
+                    edittext_countryName.setText("");
+                    edittext_currencyName.setText("");
+                    edittext_amount.setText("");
+                    spinner_sender_idprooftype.setVisibility(View.GONE);
+                    dobLinear.setVisibility(View.GONE);
+                    et_sender_idproofNumber.setVisibility(View.GONE);
+                    et_sender_idproof_expiry.setVisibility(View.GONE);
+                    et_sender_idproof_expiry_lay.setVisibility(View.GONE);
 
                     Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
@@ -934,6 +1016,17 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             public void failure(String aFalse) {
 
                 MyApplication.hideLoader();
+                edittext_comment.setText("");
+                edittext_firstName.setText("");
+                edittext_countryName.setText("");
+                edittext_currencyName.setText("");
+                edittext_amount.setText("");
+                spinner_sender_idprooftype.setVisibility(View.GONE);
+                dobLinear.setVisibility(View.GONE);
+                et_sender_idproofNumber.setVisibility(View.GONE);
+                et_sender_idproof_expiry.setVisibility(View.GONE);
+                et_sender_idproof_expiry_lay.setVisibility(View.GONE);
+
                 Toast.makeText(RemittanceReceive.this, aFalse, Toast.LENGTH_SHORT).show();
                 finish();
 
@@ -967,19 +1060,13 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         //   JSONObject beneficiaryCustomer=accountHolding.getJSONObject("beneficiaryCustomer");
 
                         if (remitType.equalsIgnoreCase("Local Remit")) {
-                            spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proofnew));
-                            dobLinear.setVisibility(View.GONE);
-                            et_sender_idproofNumber.setHint(getString(R.string.vaild_id_proof_nonew));
-                            et_sender_idproof_expiry.setHint(getString(R.string.valid_id_proof_expiryDatenew));
 
                             otp_generate_api(benificiaryCode);
 
                         }else{
-                            service_Provider_api();
-                            spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
-                            dobLinear.setVisibility(View.VISIBLE);
-                            et_sender_idproofNumber.setHint(getString(R.string.vaild_id_proof_no));
-                            et_sender_idproof_expiry.setHint(getString(R.string.valid_id_proof_expiryDate));
+                            api_remittance_getCustomer();
+                           // service_Provider_api();
+
                         }
 
                         //

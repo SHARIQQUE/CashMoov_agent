@@ -369,7 +369,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.val_fname_len));
                     return;
                 }
-                if (!et_destination_lastName.getText().toString().trim().isEmpty()&&et_destination_lastName.getText().toString().trim().length() < 3) {
+                if (et_destination_lastName.getText().toString().trim().isEmpty()||et_destination_lastName.getText().toString().trim().length() < 3) {
                     MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.val_lname_len));
                     return;
                 }

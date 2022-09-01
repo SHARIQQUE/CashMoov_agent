@@ -214,13 +214,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         if (da.getCode().equalsIgnoreCase("100001")) {
                             MyApplication.showSendRemit = true;
+                            MyApplication.RemittanceMinValue=da.getMinTransValue();
+                            MyApplication.RemittanceMaxValue=da.getMaxTransValue();
                         }
                         if (da.getCode().equalsIgnoreCase("100018")) {
                             MyApplication.showReceiveRemit = true;
+                            MyApplication.RecRemittanceMinValue=da.getMinTransValue();
+                            MyApplication.RecRemittanceMaxValue=da.getMaxTransValue();
                         }
 
                         if (da.getCode().equalsIgnoreCase("100061")) {
                             MyApplication.showCashtoWallet = true;
+                            MyApplication.CashToWalletMinValue=da.getMinTransValue();
+                            MyApplication.CashToWalletMaxValue=da.getMaxTransValue();
                         }
 
                     }

@@ -330,23 +330,30 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() == 9) {
-
+                if (s.length() >= 9) {
+                    mInstitutenameEdittext.setText("");
                     for (int i = 0; i < arrayList_instititueCode.size(); i++) {
                         if (mEnterinstituteEdittext.getText().toString().equalsIgnoreCase(arrayList_instititueCode.get(i))) {
                             String institutename = arrayList_instititueName.get(i).replaceAll("[0-9]", "");// prints awhefqoakwfn
                             String institutenamenew = institutename.replaceAll("[(){}]","");
 
                             mInstitutenameEdittext.setText(institutenamenew);
+                            tv_nextClick.setVisibility(View.VISIBLE);
                             MyApplication.hideKeyboard(SellFloat.this);
                             setSelction(i);
 
 
                         }
                     }
+                    if(mInstitutenameEdittext.getText().toString().trim().isEmpty()){
+                        MyApplication.showToast(SellFloat.this,"Please Check another number institute not found!");
+                        tv_nextClick.setVisibility(View.GONE);
+                        mInstitutenameEdittext.setText("");
+                    }
 
                 }else {
                     if(s.length()<=9){
+                        tv_nextClick.setVisibility(View.GONE);
                         mInstitutenameEdittext.setText("");
 
                     }
@@ -713,6 +720,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             return false;
         }
 
+
         else if (spinner_currency.getText().equals("Select Currency")) {
 
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
@@ -733,7 +741,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             return false;
         }
 
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToSelfFloatMinAmount) {
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToSelfFloatMaxAmount) {
             MyApplication.showErrorToast(SellFloat.this,getString(R.string.val_amount_max)+" "+MyApplication.ToSelfFloatMaxAmount);
             return false;
 
@@ -2176,11 +2184,20 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onBackPressed() {
 
-        ll_page_1.setVisibility(View.VISIBLE);
-        ll_reviewPage.setVisibility(View.GONE);
-        ll_successPage.setVisibility(View.GONE);
-        ll_receiptPage.setVisibility(View.GONE);
-          super.onBackPressed();
+
+
+        if(ll_reviewPage.getVisibility()==View.VISIBLE){
+            ll_page_1.setVisibility(View.VISIBLE);
+            ll_reviewPage.setVisibility(View.GONE);
+            ll_successPage.setVisibility(View.GONE);
+            ll_receiptPage.setVisibility(View.GONE);
+            return;
+        }
+
+        super.onBackPressed();
+
+
+
     }
 
 

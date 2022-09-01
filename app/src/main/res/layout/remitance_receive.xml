@@ -315,6 +315,7 @@
                         android:textSize="@dimen/_15sdp" />
 
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/edittext_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -384,11 +385,13 @@
                             android:layout_height="30dp" />
                     </LinearLayout>
                     <TextView
+                        android:visibility="gone"
                         android:id="@+id/spinner_sender_idprooftype"
                         style="@style/SpinnerStyleNew1"
-                        android:text="@string/valid_select_id_proofnew" />
+                        android:text="@string/valid_select_id_proof" />
 
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/et_sender_idproofNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -397,7 +400,7 @@
                         android:backgroundTint="#999999"
                         android:digits="0123456789-/"
                         android:fontFamily="@font/aileron_semibold"
-                        android:hint="@string/vaild_id_proof_nonew"
+                        android:hint="@string/vaild_id_proof_no"
 
                         android:inputType="phone"
                         android:lineSpacingExtra="10sp"
@@ -409,6 +412,7 @@
                         android:textSize="@dimen/_15sdp" />
 
                     <TextView
+
                         android:id="@+id/dobidproffText"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
@@ -421,6 +425,8 @@
                         android:visibility="gone"></TextView>
 
                     <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/et_sender_idproof_expiry_lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -438,7 +444,7 @@
 
                             android:focusable="false"
                             android:fontFamily="@font/aileron_semibold"
-                            android:hint="@string/valid_id_proof_expiryDatenew"
+                            android:hint="@string/valid_id_proof_expiryDate"
                             android:inputType="text"
                             android:lineSpacingExtra="10sp"
 

@@ -254,6 +254,18 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
             return;
         }
 
+        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.RemittanceMinValue) {
+            MyApplication.showErrorToast(localC,getString(R.string.val_amount_min)+" "+MyApplication.RemittanceMinValue);
+            return ;
+        }
+
+        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.RemittanceMaxValue) {
+            MyApplication.showErrorToast(localC,getString(R.string.val_amount_max)+" "+MyApplication.RemittanceMaxValue);
+            return ;
+
+
+        }
+
         Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
         startActivity(i);
     }
@@ -832,6 +844,11 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
+
+        if(MyApplication.checkMinMax(localC,s,editText
+                ,MyApplication.RemittanceMinValue,MyApplication.RemittanceMaxValue)){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

@@ -109,6 +109,12 @@ public class MyApplication extends Application {
     public static int ToTransferFloatMaxAmount;
     public static int ToCommisionTransferMinAmount;
     public static int ToCommisionTransferMaxAmount;
+    public static int RemittanceMinValue;
+    public static int RemittanceMaxValue;
+    public static int RecRemittanceMinValue;
+    public static int RecRemittanceMaxValue;
+    public static int CashToWalletMinValue;
+    public static int CashToWalletMaxValue;
 
 
     static {

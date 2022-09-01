@@ -1654,10 +1654,13 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onBackPressed() {
 
-        ll_page_1.setVisibility(View.VISIBLE);
-        ll_reviewPage.setVisibility(View.GONE);
-        ll_successPage.setVisibility(View.GONE);
-        ll_receiptPage.setVisibility(View.GONE);
+        if(ll_reviewPage.getVisibility()==View.VISIBLE) {
+            ll_page_1.setVisibility(View.VISIBLE);
+            ll_reviewPage.setVisibility(View.GONE);
+            ll_successPage.setVisibility(View.GONE);
+            ll_receiptPage.setVisibility(View.GONE);
+            return;
+        }
        super.onBackPressed();
     }
 

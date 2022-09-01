@@ -1696,8 +1696,8 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
                         edittext_amount_pay.setEnabled(false);
-                        edittext_amount_pay.setText("Fr "+amountstr);
-                        convertionRate_first_page.setText("Fr "+exchangeRate.getString("value"));
+                        edittext_amount_pay.setText("Fr "+MyApplication.addDecimal(amountstr));
+                        convertionRate_first_page.setText("Fr "+MyApplication.addDecimalthreenew(exchangeRate.getString("value")));
 
                         if(exchangeRate.has("taxConfigurationList"))
                         {

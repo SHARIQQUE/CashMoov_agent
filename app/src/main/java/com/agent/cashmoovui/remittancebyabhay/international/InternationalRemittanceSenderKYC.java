@@ -379,10 +379,12 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_fname_len));
                     return;
                 }
-                if (!et_sender_lastname.getText().toString().trim().isEmpty()&&et_sender_lastname.getText().toString().trim().length() < 3) {
+                if (et_sender_lastname.getText().toString().trim().isEmpty()||et_sender_lastname.getText().toString().trim().length() < 3) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_lname_len));
                     return;
                 }
+
+
 //        if(et_sender_email.getText().toString().trim().isEmpty()) {
 //            MyApplication.showErrorToast(internationalremitsenderkycC,getString(R.string.val_email));
 //            return;

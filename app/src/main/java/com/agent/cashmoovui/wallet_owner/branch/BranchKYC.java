@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.UserDetailAgent;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryAgent;
+import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
 import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
@@ -75,6 +77,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private boolean loginwithOtp=false;
     private ImageView mCalenderIcon_Image;
     public static TextView mDobText;
+    LinearLayout agentTypeLay;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -143,6 +146,14 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         sbLoginwithotp = findViewById(R.id.sbLoginwithotp);
         tvNext = findViewById(R.id.tvNext);
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
+
+        agentTypeLay=findViewById(R.id.agentTypeLay);
+
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
+           agentTypeLay.setVisibility(View.GONE);
+        }else{
+            agentTypeLay.setVisibility(View.VISIBLE);
+        }
         // etDob.setInputType(InputType.TYPE_NULL);
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,11 +325,16 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.tvNext:
 
-                if (agentType.getText().toString().equalsIgnoreCase("Select Agent")) {
-                    MyApplication.showTipError(this, "Please Select Agent", agentType);
-                    MyApplication.hideKeyboard(branchkycC);
-                    return;
+                if(MyApplication.getSaveString("walletOwnerCategoryCode", BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
+
+                }else{
+                    if (agentType.getText().toString().equalsIgnoreCase("Select Agent")) {
+                        MyApplication.showTipError(this, "Please Select Agent", agentType);
+                        MyApplication.hideKeyboard(branchkycC);
+                        return;
+                    }
                 }
+
 
                 if (etBranchName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
@@ -448,7 +464,12 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         jsonObject.put("notificationLanguage", MyApplication.getSaveString("Locale", branchkycC));
                         jsonObject.put("notificationTypeCode", "100002");
                         jsonObject.put("profileTypeCode", "100000");
-                        jsonObject.put("walletOwnerParentCode", arrayList_modalDetailsnew.get((Integer) agentType.getTag()).getWalletOwnerCode());
+                        if(MyApplication.getSaveString("walletOwnerCategoryCode", BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
+                            jsonObject.put("walletOwnerParentCode", MyApplication.getSaveString("walletOwnerCode", branchkycC));
+                        }else{
+                            jsonObject.put("walletOwnerParentCode", arrayList_modalDetailsnew.get((Integer) agentType.getTag()).getWalletOwnerCode());
+                        }
+
                         jsonObject.put("walletOwnerCategoryCode", MyApplication.BranchCode);
                         jsonObject.put("loginWithOtpRequired", loginwithOtp);
 
@@ -470,148 +491,153 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
         // http://202.131.144.130:8081/ewallet/api/v1/transaction/all?srcWalletOwnerCode=1000002692&resultCode=0&offset=0&limit=5000
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
+            callBusinessTypeList();
+        }else{
+            String usercode_from_msis = MyApplication.getSaveString("USERCODE", BranchKYC.this);
 
-        String usercode_from_msis = MyApplication.getSaveString("USERCODE", BranchKYC.this);
+            API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/" + usercode_from_msis, languageToUse, new Api_Responce_Handler() {
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/" + usercode_from_msis, languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
 
-            @Override
-            public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
 
-                MyApplication.hideLoader();
+                    try {
 
-                try {
+                        arrayList_modalDetailsnew = new ArrayList<>();
 
-                    arrayList_modalDetailsnew = new ArrayList<>();
+                        arraylistAgentStr=new ArrayList<>();
+                        UserDetailAgent userDetailAgent;// = new UserDetailAgent();
 
-                    arraylistAgentStr=new ArrayList<>();
-                    UserDetailAgent userDetailAgent;// = new UserDetailAgent();
+                        arrayList_modalDetailsnew.clear();
+                        arraylistAgentStr.clear();
 
-                    arrayList_modalDetailsnew.clear();
-                    arraylistAgentStr.clear();
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
-
-                    if (resultCode.equalsIgnoreCase("0")) {
-
-
-
-
-                        if (jsonObject.has("walletOwner")) {
-
-                            JSONObject jsonObject1_walletOwner = jsonObject.getJSONObject("walletOwner");
+                        if (resultCode.equalsIgnoreCase("0")) {
 
 
-                            if (jsonObject1_walletOwner.has("walletOwnerChildList")) {
-
-                                JSONArray jsonArray = jsonObject1_walletOwner.getJSONArray("walletOwnerChildList");
 
 
-                                for (int i = 0; i < jsonArray.length(); i++) {
+                            if (jsonObject.has("walletOwner")) {
 
-                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                JSONObject jsonObject1_walletOwner = jsonObject.getJSONObject("walletOwner");
 
-                                    if (MyApplication.AgentCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
-                                        userDetailAgent = new UserDetailAgent();
 
-                                        if (jsonObject1.has("ownerName")) {
+                                if (jsonObject1_walletOwner.has("walletOwnerChildList")) {
 
-                                            String ownerName = jsonObject1.getString("ownerName");
-                                            userDetailAgent.setOwnerName(ownerName);
-                                            arraylistAgentStr.add(ownerName);
+                                    JSONArray jsonArray = jsonObject1_walletOwner.getJSONArray("walletOwnerChildList");
+
+
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+
+                                        if (MyApplication.AgentCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
+                                            userDetailAgent = new UserDetailAgent();
+
+                                            if (jsonObject1.has("ownerName")) {
+
+                                                String ownerName = jsonObject1.getString("ownerName");
+                                                userDetailAgent.setOwnerName(ownerName);
+                                                arraylistAgentStr.add(ownerName);
+
+                                            }
+
+                                            if (jsonObject1.has("mobileNumber")) {
+                                                String mobileNumber = jsonObject1.getString("mobileNumber");
+
+                                                userDetailAgent.setMobileNumber(mobileNumber);
+
+                                            }
+
+                                            if (jsonObject1.has("email")) {
+                                                String email = jsonObject1.getString("email");
+
+                                                userDetailAgent.setEmail(email);
+                                            }
+                                            if (jsonObject1.has("issuingCountryName")) {
+                                                String issuingCountryName = jsonObject1.getString("issuingCountryName");
+                                                userDetailAgent.setIssuingCountryName(issuingCountryName);
+
+
+                                            }
+
+                                            if (jsonObject1.has("walletOwnerCode")) {
+
+                                                String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                                userDetailAgent.setWalletOwnerCode(walletOwnerCode);
+
+                                            }
+
+                                            if (jsonObject1.has("registerCountryCode")) {
+
+                                                String registerCountryCode = jsonObject1.getString("registerCountryCode");
+                                                userDetailAgent.setRegisterCountryCode(registerCountryCode);
+
+                                            }
+
+                                            arrayList_modalDetailsnew.add(userDetailAgent);
 
                                         }
 
-                                        if (jsonObject1.has("mobileNumber")) {
-                                            String mobileNumber = jsonObject1.getString("mobileNumber");
-
-                                            userDetailAgent.setMobileNumber(mobileNumber);
-
-                                        }
-
-                                        if (jsonObject1.has("email")) {
-                                            String email = jsonObject1.getString("email");
-
-                                            userDetailAgent.setEmail(email);
-                                        }
-                                        if (jsonObject1.has("issuingCountryName")) {
-                                            String issuingCountryName = jsonObject1.getString("issuingCountryName");
-                                            userDetailAgent.setIssuingCountryName(issuingCountryName);
-
-
-                                        }
-
-                                        if (jsonObject1.has("walletOwnerCode")) {
-
-                                            String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
-                                            userDetailAgent.setWalletOwnerCode(walletOwnerCode);
-
-                                        }
-
-                                        if (jsonObject1.has("registerCountryCode")) {
-
-                                            String registerCountryCode = jsonObject1.getString("registerCountryCode");
-                                            userDetailAgent.setRegisterCountryCode(registerCountryCode);
-
-                                        }
-
-                                        arrayList_modalDetailsnew.add(userDetailAgent);
 
                                     }
+                                    spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, "Select Agent", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
+                                    spinnerDialogAgentType.setCancellable(true); // for cancellable
+                                    spinnerDialogAgentType.setShowKeyboard(false);// for open keyboard by default
+                                    spinnerDialogAgentType.bindOnSpinerListener(new OnSpinerItemClick() {
+                                        @Override
+                                        public void onClick(String item, int position) {
+                                            //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                            agentType.setText(item);
+                                            agentType.setTag(position);
+
+                                        }
+                                    });
+                                    callBusinessTypeList();
 
                                 }
-                                spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, "Select Agent", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                else{
+                                    MyApplication.showToast(BranchKYC.this,"Please Add Agent First to Create Branch...");
+                                    finish();
+                                }
 
-                                spinnerDialogAgentType.setCancellable(true); // for cancellable
-                                spinnerDialogAgentType.setShowKeyboard(false);// for open keyboard by default
-                                spinnerDialogAgentType.bindOnSpinerListener(new OnSpinerItemClick() {
-                                    @Override
-                                    public void onClick(String item, int position) {
-                                        //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
-                                        agentType.setText(item);
-                                        agentType.setTag(position);
-
-                                    }
-                                });
-                                callBusinessTypeList();
 
                             }
-                            else{
-                                MyApplication.showToast(BranchKYC.this,"Please Add Agent First to Create Branch...");
-                                finish();
-                            }
 
+
+
+                        } else {
+                            Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         }
 
 
-
-                    } else {
-                        Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
-
+                    } catch (Exception e) {
+                        Toast.makeText(BranchKYC.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                        finish();
                     }
 
-
-                } catch (Exception e) {
-                    Toast.makeText(BranchKYC.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                    finish();
                 }
 
-            }
 
+                @Override
+                public void failure(String aFalse) {
 
-            @Override
-            public void failure(String aFalse) {
+                    MyApplication.hideLoader();
+                    Toast.makeText(BranchKYC.this, aFalse, Toast.LENGTH_SHORT).show();
+                    finish();
 
-                MyApplication.hideLoader();
-                Toast.makeText(BranchKYC.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
+                }
+            });
 
-            }
-        });
+        }
+
 
 
     }

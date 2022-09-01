@@ -748,7 +748,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(rate);
+                                        convertionRate_first_page.setText(MyApplication.addDecimalthreenew(rate));
                                         fees_first_page.setText(fee);
                                         edittext_amount_pay.setText(currencyValue);
                                         amount = edittext_amount.getText().toString().trim().replace(",","");

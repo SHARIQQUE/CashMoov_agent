@@ -75,6 +75,7 @@
                 android:layout_marginTop="@dimen/_10sdp">
 
                 <LinearLayout
+                    android:id="@+id/agentTypeLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
