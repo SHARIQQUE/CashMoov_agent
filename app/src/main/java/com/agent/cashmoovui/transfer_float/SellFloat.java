@@ -121,7 +121,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     String select_insitute_name = "", select_insitute_code = "", select_insitute_currencyCode = "", select_insitute_countryCode = "";
 
-    String tax_financial = "", fees_amount, totalAmount_str, receivernameStr = "";
+    String tax_financial = "",tax_financialtypename, fees_amount, totalAmount_str, receivernameStr = "";
     Double tax_financial_double = 0.0, amountstr_double = 0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
 
     String mpinStr = "";
@@ -338,7 +338,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             String institutenamenew = institutename.replaceAll("[(){}]","");
 
 
-                            Toast.makeText(applicationComponentClass, "get name"+institutenamenew, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(applicationComponentClass, "get name"+institutenamenew, Toast.LENGTH_SHORT).show();
                             mInstitutenameEdittext.setText(institutenamenew);
                             tv_nextClick.setVisibility(View.VISIBLE);
                             MyApplication.hideKeyboard(SellFloat.this);
@@ -1223,16 +1223,19 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                 tax_financial = jsonObject2.getString("value");
+                                tax_financialtypename = jsonObject2.getString("taxTypeName");
+
                             }
                         }
                         else {
                             tax_financial = exchangeRate.getString("value");
                         }
 
+                        taxselffloatLinear.setVisibility(View.VISIBLE);
 
                       //  rp_tv_convertionrate.setText(MyApplication.addDecimal(currencySymbol_receiver));
                         rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(fees_amount));
-                        rp_tv_excise_tax.setText(currencySymbol_receiver+" "+tax_financial);
+                        rp_tv_excise_tax.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+tax_financial);
                         rp_tv_amount_paid.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(amountstr));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
@@ -1402,54 +1405,18 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         rp_tv_country.setText(countryName_agent);
 
 
-                        String input = select_insitute_name;   //input string
-
-                        ///////////mobile no
-
-                        String mobileno = "";   //substring containing last 4 characters
-
-                        if (input.length() < 9)
-                        {
-                            mobileno = input.substring(input.length() - 9);
-                        }
-                        else
-                        {
-                            mobileno = input;
-                        }
-
-
-                        ///////////name showiing
-                        String lastname = "";   //substring containing last 4 characters
-
-                        if (input.length() > 9)
-                        {
-                            lastname = input.substring(input.length() - 9);
-                        }
-                        else
-                        {
-                            lastname = input;
-                        }
-
-                        StringBuffer sblastname= new StringBuffer(lastname);
-                        sblastname.deleteCharAt(sblastname.length()-1);
 
 
 
-                        rp_tv_receiverName.setText(sblastname);
-
-                        String firstFourChars = "";   //substring containing first 4 characters
-
-                        if (select_insitute_name.length() > 9)
-                        {
-                            firstFourChars = select_insitute_name.substring(0, 9);
-                        }
-                        else
-                        {
-                            firstFourChars = input;
-                        }
 
 
-                        rp_tv_receivermobile.setText(firstFourChars);
+
+                        rp_tv_receiverName.setText(mInstitutenameEdittext.getText().toString());
+
+
+
+
+                        rp_tv_receivermobile.setText(mEnterinstituteEdittext.getText().toString());
                         rp_tv_transactionAmount.setText(MyApplication.addDecimal(amountstr));
 
 

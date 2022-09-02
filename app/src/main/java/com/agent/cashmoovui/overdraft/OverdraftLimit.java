@@ -210,7 +210,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
 
-                        if(Double.parseDouble(amountstr)>Double.parseDouble(maximumLimit)){
+                        if(Double.parseDouble(repleaceString(amountstr))>Double.parseDouble(maximumLimit)){
                             MyApplication.showToast(OverdraftLimit.this,"Please enter the correct amount");
                             return;
                         }
@@ -383,6 +383,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             amountstr=arrayList_overdraft.get(pos).getMaximumLimit();
             validityDaysStr=arrayList_overdraft.get(pos).getValidityMaxDays();
             amountStrcheck=arrayList_overdraft.get(pos).getMaximumLimit();
+
 
             //   edittext_amount.setEnabled(false);
             edittext_validity.setEnabled(false);
@@ -756,7 +757,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
             jsonObject.put("walletOwnerCode", walletOwnerCode_from_mssid);   // Hard Code acording to Praveen
             jsonObject.put("currencyCode", selectCurrecnyCode);   // Hard Code acording to Praveen
-            jsonObject.put("amount", amountstr);   // Hard Code acording to Praveen
+            jsonObject.put("amount", repleaceString(amountstr));   // Hard Code acording to Praveen
             jsonObject.put("validityDays", validityDaysStr);   // Hard Code acording to Praveen
 
         }
@@ -1106,7 +1107,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             return false;
         }
 
-        else if (Double.parseDouble(amountStrcheck)<Double.parseDouble(amountstr)) {
+
+        else if (Double.parseDouble(repleaceString(amountStrcheck))<Double.parseDouble(repleaceString(amountstr))) {
 
 
             MyApplication.showErrorToast(this, "Amount should be less or equal to eligible amount");
@@ -1127,6 +1129,9 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
     }
 
 
+     public String repleaceString(String value){
+        return value.trim().replace(",","");
 
+     }
 
 }
