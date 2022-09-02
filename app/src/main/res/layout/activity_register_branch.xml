@@ -125,6 +125,25 @@
                         android:fontFamily="@font/aileron_semibold" />
                 </LinearLayout>
 
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint"
+                    android:inputType="phone"
+                    android:drawableRight="@drawable/ic_contact"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/valid_phone_number"
+                    android:textColor="@color/textColorLBlack"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
                     android:id="@+id/etBranchName"
@@ -185,25 +204,6 @@
                     android:textSize="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_semibold"  />
 
-                <EditText
-                    android:id="@+id/etPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="@color/bgColorHint"
-                    android:inputType="phone"
-                    android:drawableRight="@drawable/ic_contact"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/valid_phone_number"
-                    android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp"
-                    android:fontFamily="@font/aileron_semibold" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
