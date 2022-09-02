@@ -310,7 +310,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                 //   MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -378,7 +378,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -464,7 +464,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -550,7 +550,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -634,7 +634,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -906,7 +906,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -973,7 +973,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1048,7 +1048,7 @@ public class API {
                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                    //MyApplication.showToast("Unauthorized Request......");
-                                   MyApplication.getInstance().callLogin();
+                                 //  MyApplication.getInstance().callLogin();
 
                                }
                            }
@@ -1122,7 +1122,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                    //MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1202,7 +1202,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1277,7 +1277,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1349,7 +1349,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1425,7 +1425,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1501,7 +1501,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1641,7 +1641,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1715,7 +1715,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1785,7 +1785,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1856,7 +1856,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1928,7 +1928,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                 //   MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1999,7 +1999,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2066,7 +2066,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2151,7 +2151,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                 //   MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2161,8 +2161,8 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.showToast("Unauthorized Request......");
+                                    //MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2247,7 +2247,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2258,7 +2258,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2344,7 +2344,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2355,7 +2355,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2440,7 +2440,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2451,7 +2451,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2535,7 +2535,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2545,7 +2545,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2631,7 +2631,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                 //   MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2642,7 +2642,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2726,7 +2726,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2737,7 +2737,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2821,7 +2821,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                 //   MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2832,7 +2832,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2901,7 +2901,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2909,7 +2909,7 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2974,7 +2974,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2982,7 +2982,7 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3047,7 +3047,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -3055,7 +3055,7 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3633,7 +3633,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                  //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3709,13 +3709,13 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
+                                   // MyApplication.getInstance().callLogin();
 
                                 }
                             }
