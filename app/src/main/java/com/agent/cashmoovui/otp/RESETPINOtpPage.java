@@ -3,9 +3,11 @@ package com.agent.cashmoovui.otp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agent.cashmoovui.MyApplication;
@@ -14,6 +16,10 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.ServiceList;
 import com.agent.cashmoovui.set_pin.SetPin;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
 
@@ -153,6 +159,25 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
     }
     
     */
+ String FCM_TOKEN;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (!task.isSuccessful()) {
+                    FCM_TOKEN = task.getException().getMessage();
+                    Log.w("FCM TOKEN Failed", task.getException());
+                } else {
+                    FCM_TOKEN = task.getResult().getToken();
+                    Log.i("FCM TOKEN", FCM_TOKEN);
+                }
+            }
+        });
+
+    }
+
 
     private void callApiLoginPass(String otp) {
 
@@ -163,7 +188,7 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
             loginJson.put("username",MyApplication.getSaveString("USERNAME", RESETPINOtpPage.this));
             loginJson.put("password",otp);
             loginJson.put("grant_type","password");
-
+            loginJson.put("fcmToken",FCM_TOKEN);
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(RESETPINOtpPage.this,"Verify OTP");
             API.POST_REQEST_RESETPIN("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {

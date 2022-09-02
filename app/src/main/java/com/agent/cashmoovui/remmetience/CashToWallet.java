@@ -216,7 +216,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             edittext_amount.setEnabled(false);
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CashToWallet.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CashToWallet.this);
 
             if (new InternetCheck().isConnected(CashToWallet.this)) {
 

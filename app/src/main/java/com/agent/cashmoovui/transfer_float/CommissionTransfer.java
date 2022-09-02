@@ -284,7 +284,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             confirm_reviewClick_textview.setOnClickListener(this);
             close_receiptPage_textview.setOnClickListener(this);
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CommissionTransfer.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CommissionTransfer.this);
 
             edittext_amount.addTextChangedListener(new TextWatcher() {
                 @Override

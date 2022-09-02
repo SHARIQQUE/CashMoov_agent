@@ -403,7 +403,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             edittext_mobileNuber.setEnabled(true);
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CashIn.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CashIn.this);
 
 
             if (new InternetCheck().isConnected(CashIn.this)) {
@@ -1107,7 +1107,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("srcWalletOwnerCode",walletOwnerCode_mssis_agent);
+            jsonObject.put("srcWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", CashIn.this));
             jsonObject.put("desWalletOwnerCode",agentCode_subscriber);
             jsonObject.put("srcCurrencyCode",currencyCode_agent);
             jsonObject.put("desCurrencyCode",currencyCode_subscriber);
@@ -1121,6 +1121,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
 
 
+            System.out.println("CASHIN REQUEST================"+jsonObject.toString());
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA=null;
             try{

@@ -242,7 +242,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CashOutCodeSubscriber.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CashOutCodeSubscriber.this);
 
 
             et_otp = (EditText) findViewById(R.id.et_otp);

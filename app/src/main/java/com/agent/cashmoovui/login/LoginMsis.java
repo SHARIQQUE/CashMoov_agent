@@ -902,7 +902,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                 MyApplication.saveString("username", jsonObject.optString("username"), LoginMsis.this);
                                 MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
                                 MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), LoginMsis.this);
-
+                            MyApplication.saveString("userCode", jsonObject.optString("userCode"), LoginMsis.this);
                                 // #################### serviceList Add  serviceCategoryList add  serviceCode
 
                                 if (jsonObject.has("serviceList") &&jsonObject.optJSONArray("serviceList")!=null) {
@@ -1031,7 +1031,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         try{
 
             JSONObject jsonObject=new JSONObject();
-
+            jsonObject.put("fcmToken",FCM_TOKEN);
             //  jsonObject.put("scope","read write");
             jsonObject.put("username",strPhoneNo);
             jsonObject.put("password",strPasword);

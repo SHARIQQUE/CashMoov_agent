@@ -358,7 +358,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             confirm_reviewClick_textview.setOnClickListener(this);
             close_receiptPage_textview.setOnClickListener(this);
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", AirtimePurchases.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", AirtimePurchases.this);
 
 
 

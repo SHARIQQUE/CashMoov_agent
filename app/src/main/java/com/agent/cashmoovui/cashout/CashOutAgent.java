@@ -349,7 +349,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             edittext_mobileNuber.setEnabled(true);
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", CashOutAgent.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CashOutAgent.this);
 
 
             et_otp = (EditText) findViewById(R.id.et_otp);
@@ -1064,8 +1064,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             jsonObject.put("transactionType", "100001");         // Hard Code according  to Deepak
 
             jsonObject.put("srcWalletOwnerCode",agentCode_subscriber);
-            jsonObject.put("desWalletOwnerCode",walletOwnerCode_mssis_agent);
-
+            jsonObject.put("desWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode", CashOutAgent.this));
 
             jsonObject.put("srcCurrencyCode",currencyCode_agent);
             jsonObject.put("desCurrencyCode",currencyCode_subscriber);
@@ -1079,6 +1078,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
 
 
+            System.out.println("cashout REQUEST================"+jsonObject.toString());
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObject1=null;
             try{

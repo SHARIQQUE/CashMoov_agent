@@ -515,7 +515,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", LocalRemittance.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", LocalRemittance.this);
             COUNTRY_NAME_USERINFO = MyApplication.getSaveString("COUNTRY_NAME_USERINFO", LocalRemittance.this);
             COUNTRY_CODE_USERINFO = MyApplication.getSaveString("COUNTRY_CODE_USERINFO", LocalRemittance.this);
 

@@ -311,7 +311,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             edittext_mobileNuber.setEnabled(true);
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", RemittanceReceive.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", RemittanceReceive.this);
 
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
@@ -571,7 +571,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
     boolean validation_mobile_Details() {
 
         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
-        amountstr = edittext_amount.getText().toString().trim();
+        amountstr = edittext_amount.getText().toString().trim().replace(",","");
         confirmationCodeStr = edittext_confirmationCode.getText().toString().trim();
 
        // mpinStr = et_mpin.getText().toString();

@@ -533,7 +533,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", InternationalRemittance.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", InternationalRemittance.this);
             COUNTRY_NAME_USERINFO = MyApplication.getSaveString("COUNTRY_NAME_USERINFO", InternationalRemittance.this);
             COUNTRY_CODE_USERINFO = MyApplication.getSaveString("COUNTRY_CODE_USERINFO", InternationalRemittance.this);
 

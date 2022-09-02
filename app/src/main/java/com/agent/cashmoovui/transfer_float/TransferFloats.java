@@ -367,7 +367,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             confirm_reviewClick_textview.setOnClickListener(this);
             close_receiptPage_textview.setOnClickListener(this);
 
-            walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", TransferFloats.this);
+            walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", TransferFloats.this);
 
 
             spinner_insititue= (Spinner) findViewById(R.id.spinner_insititue);

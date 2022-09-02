@@ -343,7 +343,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         try{
 
             JSONObject loginJson=new JSONObject();
-
+            loginJson.put("fcmToken",FCM_TOKEN);
             loginJson.put("username",etPhoneNo.getText().toString().trim());
             loginJson.put("password",etPass.getText().toString().trim());
             loginJson.put("grant_type","password");

@@ -291,7 +291,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         confirm_reviewClick_textview.setOnClickListener(this);
         close_receiptPage_textview.setOnClickListener(this);
 
-        walletOwnerCode_mssis_agent = MyApplication.getSaveString("USERCODE", SellFloat.this);
+        walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", SellFloat.this);
 
 
         mEnterinstituteEdittext = findViewById(R.id.enterinstituteEdittext);

@@ -42,6 +42,7 @@ import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
+import com.agent.cashmoovui.wallet_owner.agent.AgentSignature;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYCAttached;
 
@@ -938,9 +939,16 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
                             return;
                         }
-                        if(json2.getString("stage").equalsIgnoreCase("Address")){
+                        if(json2.getString("stage").equalsIgnoreCase("Address")|| json2.getString("stage").equalsIgnoreCase("Bank")){
                             subscriberWalletOwnerCode=json2.optString("walletOwnerCode");
                             Intent i = new Intent(subscriberkycC, SubscriberKYCAttached.class);
+                            startActivity(i);
+                            return;
+                        }
+
+                        if(json2.getString("stage").equalsIgnoreCase("Document")){
+                            subscriberWalletOwnerCode=json2.optString("walletOwnerCode");
+                            Intent i = new Intent(subscriberkycC, SubscriberOtpActivity.class);
                             startActivity(i);
                             return;
                         }

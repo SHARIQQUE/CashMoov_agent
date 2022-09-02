@@ -42,6 +42,7 @@ import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryAg
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
+import com.agent.cashmoovui.wallet_owner.agent.AgentSignature;
 import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.suke.widget.SwitchButton;
 
@@ -402,9 +403,16 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             return;
                         }
 
-                        if(json2.getString("stage").equalsIgnoreCase("Address")){
+                        if(json2.getString("stage").equalsIgnoreCase("Address")|| json2.getString("stage").equalsIgnoreCase("Bank")){
                             branchWalletOwnerCode=json2.optString("walletOwnerCode");
                             Intent i = new Intent(BranchKYC.this,BranchKYCAttached.class);
+                            startActivity(i);
+                            return;
+                        }
+
+                        if(json2.getString("stage").equalsIgnoreCase("Document")){
+                            branchWalletOwnerCode=json2.optString("walletOwnerCode");
+                            Intent i = new Intent(branchkycC, BranchSignature.class);
                             startActivity(i);
                             return;
                         }

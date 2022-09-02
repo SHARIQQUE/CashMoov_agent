@@ -317,12 +317,20 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                             return;
                         }
 
-                        if(json2.getString("stage").equalsIgnoreCase("Address")){
+                        if(json2.getString("stage").equalsIgnoreCase("Address")|| json2.getString("stage").equalsIgnoreCase("Bank")){
                             agentWalletOwnerCode=json2.optString("walletOwnerCode");
                             Intent i = new Intent(agentkycC,AgentKYCAttached.class);
                             startActivity(i);
                             return;
                         }
+
+                        if(json2.getString("stage").equalsIgnoreCase("Document")){
+                            agentWalletOwnerCode=json2.optString("walletOwnerCode");
+                            Intent i = new Intent(agentkycC,AgentSignature.class);
+                            startActivity(i);
+                            return;
+                        }
+
 
 
                         tvNext.setVisibility(View.VISIBLE);
