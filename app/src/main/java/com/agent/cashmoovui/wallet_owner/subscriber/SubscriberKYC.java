@@ -927,6 +927,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                             return;
                         }
 
+                        etFname.setText(json2.optString("ownerName"));
+
 
                         if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Agent")){
                             Toast.makeText(applicationComponentClass, "Mobile number exists with agent", Toast.LENGTH_SHORT).show();

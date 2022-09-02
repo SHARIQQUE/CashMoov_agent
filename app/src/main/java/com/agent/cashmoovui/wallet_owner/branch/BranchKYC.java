@@ -391,6 +391,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                         }
 
+                        etBranchName.setText(json2.optString("ownerName"));
+
                         if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Agent")){
                             Toast.makeText(applicationComponentClass, "Mobile number exists with agent", Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
