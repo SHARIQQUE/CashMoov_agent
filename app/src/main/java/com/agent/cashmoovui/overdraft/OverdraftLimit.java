@@ -397,6 +397,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
             tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
             selectCurrecnyName = arrayList_currecnyName.get(pos);
+            spinner_currency.setText(selectCurrecnyName);
 
         }else {
 
