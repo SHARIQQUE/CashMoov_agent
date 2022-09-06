@@ -380,9 +380,29 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //
 //        else
 //        {
-            amountstr=arrayList_overdraft.get(pos).getMaximumLimit();
-            validityDaysStr=arrayList_overdraft.get(pos).getValidityMaxDays();
-            amountStrcheck=arrayList_overdraft.get(pos).getMaximumLimit();
+        if(arrayList_overdraft.isEmpty()){
+
+
+
+            amountstr = maximumLimit;
+
+            amountStrcheck = maximumLimit;
+
+
+            //   edittext_amount.setEnabled(false);
+            edittext_validity.setEnabled(false);
+
+            edittext_amount.setText(MyApplication.addDecimal(amountstr));
+            edittext_validity.setText(validityDaysStr);
+
+            tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
+            selectCurrecnyName = arrayList_currecnyName.get(pos);
+
+        }else {
+
+            amountstr = arrayList_overdraft.get(pos).getMaximumLimit();
+            validityDaysStr = arrayList_overdraft.get(pos).getValidityMaxDays();
+            amountStrcheck = arrayList_overdraft.get(pos).getMaximumLimit();
 
 
             //   edittext_amount.setEnabled(false);
@@ -395,6 +415,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             selectCurrecnyName = arrayList_currecnyName.get(pos);
 
             spinner_currency.setText(selectCurrecnyName);
+        }
 
         }
     //}
@@ -942,7 +963,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         String USER_CODE_FROM_TOKEN_AGENTDETAILS = MyApplication.getSaveString("userCode", OverdraftLimit.this);
 
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitConfig/all?walletOwnerCategoryCode=100000&profileTypeCode=100000",languageToUse, new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitConfig/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+
+                "&profileTypeCode="+profileTypeCode,languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1004,7 +1026,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
     }
-    String walletOwnerCategoryCode="",profileTypeCode="";
+    public static String walletOwnerCategoryCode="",profileTypeCode="";
     private void api_wallet_walletOwner(String userCode_from_walletCode) {
 
 

@@ -570,13 +570,13 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 //            return false;
 //        }
 
-        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashInMinAmount) {
-            MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCashInMinAmount);
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashOutMinAmount) {
+            MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCashOutMinAmount);
             return false;
         }
 
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashInMaxAmount) {
-            MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCashInMaxAmount);
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashOutMaxAmount) {
+            MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCashOutMaxAmount);
             return false;
 
 
@@ -2119,7 +2119,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
         if(MyApplication.checkMinMax(CashOutAgent.this,s,editText
-                ,MyApplication.ToCashInMinAmount,MyApplication.ToCashInMaxAmount)){
+                ,MyApplication.ToCashOutMinAmount,MyApplication.ToCashOutMinAmount)){
             return;
         }
         StringBuilder sbResult = new StringBuilder();

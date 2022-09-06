@@ -143,7 +143,8 @@ public class OverdraftLimitViewConfigServices extends AppCompatActivity {
 
         MyApplication.showloader(OverdraftLimitViewConfigServices.this, getString(R.string.please_wait));
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitConfigServices/allByServices?walletOwnerCategoryCode=100000&profileTypeCode=100000",languageToUse, new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/creditLimitConfigServices/allByServices?walletOwnerCategoryCode="+OverdraftLimit.walletOwnerCategoryCode
+                +"&profileTypeCode="+OverdraftLimit.profileTypeCode,languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
