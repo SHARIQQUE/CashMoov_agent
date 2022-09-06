@@ -430,10 +430,10 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 //            MyApplication.showErrorToast(cashtowalletsenderkycC,getString(R.string.val_email));
 //            return;
 //        }
-                if (!et_sender_email.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(et_sender_email.getText().toString()))) {
+              /*  if (!et_sender_email.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(et_sender_email.getText().toString()))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_email_valid));
                     return;
-                }
+                }*/
                 if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_gender));
                     return;
@@ -458,26 +458,26 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_city));
                     return;
                 }
-                if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
+              /*  if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_id_proof));
                     return;
-                }
-                if (et_sender_idproofNumber.getText().toString().trim().isEmpty()) {
+                }*/
+               /* if (et_sender_idproofNumber.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_proof_no));
                     return;
                 }
                 if (et_sender_idproof_expiry.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_id_proof_expiryDate));
                     return;
-                }
-                if (!isFrontUpload) {
+                }*/
+               /* if (!isFrontUpload) {
                     MyApplication.showErrorToast(this, "please upload front Image");
                     return;
-                }
-                if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
+                }*/
+               /* if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_issuing_country));
                     return;
-                }
+                }*/
 
                 callApiPostSender();
 
@@ -1327,7 +1327,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
                 etFront.setText(tempUriFront.getLastPathSegment());
 
-                fileFront = new File(getRealPathFromURI(tempUriFront).toString());
+             //   fileFront = new File(getRealPathFromURI(tempUriFront).toString());
                 int file_size = Integer.parseInt(String.valueOf(fileFront.length() / 1024));     //calculate size of image in KB
                 if (file_size <= 100){
                     isFrontUpload=true;
@@ -1356,7 +1356,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
                 etBack.setText(tempUriBack.getLastPathSegment());
 
-                fileBack = new File(getRealPathFromURI(tempUriBack).toString());
+              //  fileBack = new File(getRealPathFromURI(tempUriBack).toString());
                 int file_size = Integer.parseInt(String.valueOf(fileBack.length() / 1024));     //calculate size of image in KB
                 if (file_size <= 100){
                     isBackUpload=true;
@@ -1383,6 +1383,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         return Uri.parse(path);
     }
 
+/*
     public String getRealPathFromURI(Uri uri) {
         String path = "";
         if (getContentResolver() != null) {
@@ -1396,9 +1397,11 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }
         return path;
     }
+*/
 
     public boolean isFrontUpload=false;
     public boolean isBackUpload=false;
+/*
     public File filesUploadFront() {
         File file = new File(getRealPathFromURI(tempUriFront).toString());
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
@@ -1411,7 +1414,9 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }
         return file;
     }
+*/
 
+/*
     public File filesUploadBack() {
         File file = new File(getRealPathFromURI(tempUriBack).toString());
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
@@ -1423,6 +1428,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }
         return file;
     }
+*/
 
 
     JSONObject documentUploadJsonObj;
@@ -1442,7 +1448,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                             if (jsonObject != null) {
                                 if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                     //MyApplication.showToast(getString(R.string.document_upload_msg));
-                                    documentUploadJsonObj=jsonObject;
+                                   // documentUploadJsonObj=jsonObject;
                                     MyApplication.showToast(cashtowalletsenderkycC,"upload success");
                                     // callApiUpdateDataApproval();
                                     Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
@@ -1477,16 +1483,16 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
             senderJson.put("firstName",et_sender_firstName.getText().toString().trim());
             senderJson.put("lastName",et_sender_lastname.getText().toString().trim());
-            senderJson.put("email",et_sender_email.getText().toString().trim());
+            senderJson.put("email","");
             senderJson.put("mobileNumber",et_sender_phoneNumber.getText().toString().trim());
             if(spinner_sender_idprooftype.getTag()!=null){
-                senderJson.put("idProofTypeCode",idProofTypeModelList.get((Integer) spinner_sender_idprooftype.getTag()).getCode());
+                senderJson.put("idProofTypeCode","");
             }else{
-                senderJson.put("idProofTypeCode",idprooftypecode);
+                senderJson.put("idProofTypeCode","");
             }
 
-            senderJson.put("idProofNumber",et_sender_idproofNumber.getText().toString().trim());
-            senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
+            senderJson.put("idProofNumber","");
+            senderJson.put("idExpiryDate","");
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
             senderJson.put("countryCode",sendCountryCode);
             if(spinner_sender_region.getTag()!=null){
@@ -1496,7 +1502,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
             }
 
             senderJson.put("city",et_sender_city.getText().toString().trim());
-            senderJson.put("address",et_sender_address.getText().toString().trim());
+            senderJson.put("address","");
             senderJson.put("issuingCountryCode",recCountryCode);
             if(spinner_sender_gender.getTag()!=null){
                 senderJson.put("gender",senderGenderModelList.get((Integer) spinner_sender_gender.getTag()).getCode());
@@ -1520,7 +1526,13 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                         public void success(JSONObject jsonObject) {
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
-                                filesUploadFront();
+
+                                Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
+                                i.putExtra("mobileNumber", et_sender_phoneNumber.getText().toString());
+
+                                startActivity(i);
+
+                                //  filesUploadFront();
                             }else{
                                 MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription"));
                             }
@@ -1542,7 +1554,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                             MyApplication.hideLoader();
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
-                                filesUploadFront();
+                               // filesUploadFront();
                             }else{
                                 MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription"));
                             }

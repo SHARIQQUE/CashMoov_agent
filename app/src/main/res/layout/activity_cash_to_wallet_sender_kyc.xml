@@ -133,6 +133,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
+                    android:visibility="gone"
                     android:inputType="textPersonName"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
@@ -206,6 +207,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
+                    android:visibility="gone"
                     android:inputType="textPersonName"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
@@ -252,6 +254,7 @@
                 <TextView
                     android:id="@+id/spinner_sender_idprooftype"
                     android:text="@string/valid_select_id_proof"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1"/>
 
                 <EditText
@@ -259,6 +262,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
                     android:inputType="phone"
@@ -292,6 +296,7 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
 
@@ -332,6 +337,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_10sdp">
 
                     <ImageButton
@@ -428,6 +434,7 @@
                 <TextView
                     android:id="@+id/spinner_sender_issuingCountry"
                     android:text="@string/valid_select_issuing_country"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1"/>
                 <TextView
                     android:id="@+id/tvNext"

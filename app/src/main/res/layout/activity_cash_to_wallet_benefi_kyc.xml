@@ -71,6 +71,7 @@
                     android:backgroundTint="#999999"
                     android:inputType="textPersonName"
                     android:lineSpacingExtra="10sp"
+                    android:visibility="gone"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
                     android:paddingLeft="@dimen/_15sdp"
@@ -90,6 +91,7 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
                     android:inputType="textPersonName"
+                    android:visibility="gone"
                     android:lineSpacingExtra="10sp"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 

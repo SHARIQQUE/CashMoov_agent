@@ -1569,7 +1569,11 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             try{
                 jsonObjectA=new JSONObject();
                 jsonObjectA.put("request",requestNo);
+                System.out.println("get json "+jsonObjectA);
             }catch (Exception e){
+
+
+
 
             }
 

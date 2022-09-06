@@ -314,7 +314,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.enter_phone_no_val));
                     return;
                 }
-                if (et_destination_firstName.getText().toString().trim().isEmpty()) {
+               /* if (et_destination_firstName.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_fname));
                     return;
                 }
@@ -325,7 +325,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                 if (!et_destination_lastName.getText().toString().trim().isEmpty()&&et_destination_lastName.getText().toString().trim().length() < 3) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_lname_len));
                     return;
-                }
+                }*/
 
                 if (spinner_senderCurrency.getText().toString().equals(getString(R.string.sending_currencey))) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.select_currency));
