@@ -76,8 +76,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String walletOwnerCode="";
 
     EditText etPin;
-    LinearLayout linear_layout_businessType,taxcashinLinear,receipt_Linear,pinLinear;
-    TextView receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    LinearLayout financialTax_receiptPageLinear,linear_layout_businessType,taxcashinLinear,receipt_Linear,pinLinear;
+    TextView financialTax_receiptPage,receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
@@ -147,13 +147,14 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
+            financialTax_receiptPageLinear=findViewById(R.id.financialTax_receiptPageLinear);
+            financialTax_receiptPage=findViewById(R.id.financialTax_receiptPage);
 
             etName = findViewById(R.id.etName);
 
             etName.setEnabled(false);
 
             taxcashinLinear=findViewById(R.id.taxcashinLinear);
-            receipt_Linear=findViewById(R.id.receipt_Linear);
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
@@ -320,7 +321,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_credit = (TextView) findViewById(R.id.rp_tv_amount_to_be_credit);
             receipt_tv_amount_to_be_charge = findViewById(R.id.receipt_tv_amount_to_be_charge);
-            receiptPage_tv_financialtaxvaluecashin=findViewById(R.id.receiptPage_tv_financialtaxvaluecashin);
 
 
 
@@ -1311,12 +1311,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 System.out.println("get tax"+tax_financialnew);
                                 taxcashinLinear.setVisibility(View.VISIBLE);
-                                rp_tv_financialTax.setText((tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
+                                financialTax_receiptPageLinear.setVisibility(View.VISIBLE);
                               //  taxcashinLinear.addView(textView, lp);
 
+                                rp_tv_financialTax.setText((tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
 
-                                receiptPage_tv_financialtaxvaluecashin.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
-                                //receipt_Linear.addView(textView, lp);
+                                financialTax_receiptPage.setText(rp_tv_financialTax.getText().toString());
 
 
 
