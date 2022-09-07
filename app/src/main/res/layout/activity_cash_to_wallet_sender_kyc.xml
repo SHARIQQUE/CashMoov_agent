@@ -133,7 +133,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:inputType="textPersonName"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
@@ -257,7 +257,7 @@
                 <TextView
                     android:id="@+id/spinner_sender_idprooftype"
                     android:text="@string/valid_select_id_proof"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     style="@style/SpinnerStyleNew1"/>
 
                 <EditText
@@ -265,7 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
                     android:inputType="phone"
@@ -299,7 +299,7 @@
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:orientation="horizontal">
 
 
@@ -340,7 +340,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginTop="@dimen/_10sdp">
 
                     <ImageButton

@@ -215,12 +215,12 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         });
 
         spinner_senderCountry.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 if (spinnerDialogSendingCountry!=null)
                     spinnerDialogSendingCountry.showSpinerDialog();
-           }
-       });
+            }
+        });
 
         spinner_sender_gender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -430,14 +430,14 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 //            MyApplication.showErrorToast(cashtowalletsenderkycC,getString(R.string.val_email));
 //            return;
 //        }
-              /*  if (!et_sender_email.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(et_sender_email.getText().toString()))) {
+                if (!et_sender_email.getText().toString().trim().isEmpty()&& (!MyApplication.isEmail(et_sender_email.getText().toString()))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_email_valid));
                     return;
-                }*/
-              /*  if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+                }
+                if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_gender));
                     return;
-                }*/
+                }
                 if (et_sender_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_dob));
                     return;
@@ -446,38 +446,38 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_address));
                     return;
                 }
-               /* if (spinner_senderCountry.getText().toString().equals(getString(R.string.sending_country_star))) {
+                if (spinner_senderCountry.getText().toString().equals(getString(R.string.sending_country_star))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_country));
                     return;
                 }
                 if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_region));
                     return;
-                }*/
+                }
                 if (et_sender_city.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_city));
                     return;
                 }
-              /*  if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
+                if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_id_proof));
                     return;
-                }*/
-               /* if (et_sender_idproofNumber.getText().toString().trim().isEmpty()) {
+                }
+                if (et_sender_idproofNumber.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_proof_no));
                     return;
                 }
                 if (et_sender_idproof_expiry.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_id_proof_expiryDate));
                     return;
-                }*/
-               /* if (!isFrontUpload) {
+                }
+                if (!isFrontUpload) {
                     MyApplication.showErrorToast(this, "please upload front Image");
                     return;
-                }*/
-               /* if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
+                }
+                if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_issuing_country));
                     return;
-                }*/
+                }
 
                 callApiPostSender();
 
@@ -579,24 +579,24 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                      //  if (data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC))) {
-                                            sendCountryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("isoCode"),
-                                                    data.optString("name"),
-                                                    data.optString("countryCode"),
-                                                    data.optString("status"),
-                                                    data.optString("dialCode"),
-                                                    data.optString("currencyCode"),
-                                                    data.optString("currencySymbol"),
-                                                    data.optString("creationDate"),
-                                                    data.optBoolean("subscriberAllowed")
-                                            ));
+                                        //  if (data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC))) {
+                                        sendCountryModelList.add(new CountryInfoModel.Country(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("isoCode"),
+                                                data.optString("name"),
+                                                data.optString("countryCode"),
+                                                data.optString("status"),
+                                                data.optString("dialCode"),
+                                                data.optString("currencyCode"),
+                                                data.optString("currencySymbol"),
+                                                data.optString("creationDate"),
+                                                data.optBoolean("subscriberAllowed")
+                                        ));
 
-                                            sendingCountryList.add(data.optString("name").trim());
+                                        sendingCountryList.add(data.optString("name").trim());
 
-                                        }
+                                    }
                                     //}
 
                                     for(int i=0;i<sendCountryModelList.size();i++){
@@ -625,7 +625,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                             spinner_senderCountry.setTag(position);
                                             sendCountryCode = sendCountryModelList.get(position).getCode();
                                             sendCountryName = sendCountryModelList.get(position).getName();
-                                          //  spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
+                                            //  spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
                                             //callApiSendCurrency(sendCountryModelList.get(position).getCode());
                                         }
@@ -650,7 +650,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         } catch (Exception e) {
 
         }
-        
+
     }
 
 //    private void callApiSendCurrency(String code) {
@@ -771,26 +771,26 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                       // if (!MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(data.optString("countryCode"))) {
-                                            recCountryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("isoCode"),
-                                                    data.optString("name"),
-                                                    data.optString("countryCode"),
-                                                    data.optString("status"),
-                                                    data.optString("dialCode"),
-                                                    data.optString("currencyCode"),
-                                                    data.optString("currencySymbol"),
-                                                    data.optString("creationDate"),
-                                                    data.optBoolean("subscriberAllowed")
-                                            ));
+                                        // if (!MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(data.optString("countryCode"))) {
+                                        recCountryModelList.add(new CountryInfoModel.Country(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("isoCode"),
+                                                data.optString("name"),
+                                                data.optString("countryCode"),
+                                                data.optString("status"),
+                                                data.optString("dialCode"),
+                                                data.optString("currencyCode"),
+                                                data.optString("currencySymbol"),
+                                                data.optString("creationDate"),
+                                                data.optBoolean("subscriberAllowed")
+                                        ));
 
-                                            recCountryList.add(data.optString("name").trim());
+                                        recCountryList.add(data.optString("name").trim());
 
-                                        }
+                                    }
 
-                                   // }
+                                    // }
 
                                     for(int i=0;i<recCountryModelList.size();i++){
                                         if(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(
@@ -802,7 +802,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
                                             recCountryCode = recCountryModelList.get(i).getCode();
                                             recCountryName = recCountryModelList.get(i).getName();
-                                           // callApiRecCurrency(recCountryCode);
+                                            // callApiRecCurrency(recCountryCode);
 
                                         }
                                     }
@@ -820,7 +820,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
                                             recCountryCode = recCountryModelList.get(position).getCode();
                                             recCountryName = recCountryModelList.get(position).getName();
-                                          //  callApiRecCurrency(recCountryCode);
+                                            //  callApiRecCurrency(recCountryCode);
                                         }
                                     });
 
@@ -1052,7 +1052,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_sender_region.setText(item);
                                             spinner_sender_region.setTag(position);
-                                          //  spCity.setText(getString(R.string.valid_select_city));
+                                            //  spCity.setText(getString(R.string.valid_select_city));
 
                                             //callApiCity(regionModelList.get(position).getCode());
                                         }
@@ -1178,47 +1178,47 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                                     }
 
 
-                                        JSONObject jsonObjectSubscriber =  walletOwnerListArr.optJSONObject(index);
-                                        SubscriberInfoModel.Customer customer = new SubscriberInfoModel.Customer(
-                                                jsonObjectSubscriber.optInt("id"),
-                                                jsonObjectSubscriber.optString("code", "N/A"),
-                                                jsonObjectSubscriber.optString("firstName"),
-                                                jsonObjectSubscriber.optString("lastName"),
-                                                jsonObjectSubscriber.optString("email"),
-                                                jsonObjectSubscriber.optString("mobileNumber", "N/A"),
-                                                jsonObjectSubscriber.optString("gender", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofTypeCode", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofTypeName", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofNumber", "N/A"),
-                                                jsonObjectSubscriber.optString("idExpiryDate", "N/A"),
-                                                jsonObjectSubscriber.optString("dateOfBirth", "N/A"),
-                                                jsonObjectSubscriber.optString("countryCode", "N/A"),
-                                                jsonObjectSubscriber.optString("countryName", "N/A"),
-                                                jsonObjectSubscriber.optString("regionCode", "N/A"),
-                                                jsonObjectSubscriber.optString("regionName", "N/A"),
-                                                jsonObjectSubscriber.optString("city", "N/A"),
-                                                jsonObjectSubscriber.optString("address", "N/A"),
-                                                jsonObjectSubscriber.optString("issuingCountryCode", "N/A"),
-                                                jsonObjectSubscriber.optString("issuingCountryName", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofUrl", "N/A"),
-                                                jsonObjectSubscriber.optString("status", "N/A"),
-                                                jsonObjectSubscriber.optString("creationDate", "N/A"),
-                                                jsonObjectSubscriber.optString("createdBy", "N/A"),
-                                                jsonObjectSubscriber.optString("modificationDate", "N/A"),
-                                                jsonObjectSubscriber.optString("modifiedBy", "N/A")
-                                        );
+                                    JSONObject jsonObjectSubscriber =  walletOwnerListArr.optJSONObject(index);
+                                    SubscriberInfoModel.Customer customer = new SubscriberInfoModel.Customer(
+                                            jsonObjectSubscriber.optInt("id"),
+                                            jsonObjectSubscriber.optString("code", "N/A"),
+                                            jsonObjectSubscriber.optString("firstName"),
+                                            jsonObjectSubscriber.optString("lastName"),
+                                            jsonObjectSubscriber.optString("email"),
+                                            jsonObjectSubscriber.optString("mobileNumber", "N/A"),
+                                            jsonObjectSubscriber.optString("gender", "N/A"),
+                                            jsonObjectSubscriber.optString("idProofTypeCode", "N/A"),
+                                            jsonObjectSubscriber.optString("idProofTypeName", "N/A"),
+                                            jsonObjectSubscriber.optString("idProofNumber", "N/A"),
+                                            jsonObjectSubscriber.optString("idExpiryDate", "N/A"),
+                                            jsonObjectSubscriber.optString("dateOfBirth", "N/A"),
+                                            jsonObjectSubscriber.optString("countryCode", "N/A"),
+                                            jsonObjectSubscriber.optString("countryName", "N/A"),
+                                            jsonObjectSubscriber.optString("regionCode", "N/A"),
+                                            jsonObjectSubscriber.optString("regionName", "N/A"),
+                                            jsonObjectSubscriber.optString("city", "N/A"),
+                                            jsonObjectSubscriber.optString("address", "N/A"),
+                                            jsonObjectSubscriber.optString("issuingCountryCode", "N/A"),
+                                            jsonObjectSubscriber.optString("issuingCountryName", "N/A"),
+                                            jsonObjectSubscriber.optString("idProofUrl", "N/A"),
+                                            jsonObjectSubscriber.optString("status", "N/A"),
+                                            jsonObjectSubscriber.optString("creationDate", "N/A"),
+                                            jsonObjectSubscriber.optString("createdBy", "N/A"),
+                                            jsonObjectSubscriber.optString("modificationDate", "N/A"),
+                                            jsonObjectSubscriber.optString("modifiedBy", "N/A")
+                                    );
 
 
-                                        SubscriberInfoModel subscriberInfoModel = new SubscriberInfoModel(
-                                                jsonObject.optString("transactionId", "N/A"),
-                                                jsonObject.optString("requestTime", "N/A"),
-                                                jsonObject.optString("responseTime", "N/A"),
-                                                jsonObject.optString("resultCode", "N/A"),
-                                                jsonObject.optString("resultDescription", "N/A"),
-                                                customer
-                                        );
+                                    SubscriberInfoModel subscriberInfoModel = new SubscriberInfoModel(
+                                            jsonObject.optString("transactionId", "N/A"),
+                                            jsonObject.optString("requestTime", "N/A"),
+                                            jsonObject.optString("responseTime", "N/A"),
+                                            jsonObject.optString("resultCode", "N/A"),
+                                            jsonObject.optString("resultDescription", "N/A"),
+                                            customer
+                                    );
 
-                                        setSubscriberdata(subscriberInfoModel);
+                                    setSubscriberdata(subscriberInfoModel);
 
 
 
@@ -1327,7 +1327,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
                 etFront.setText(tempUriFront.getLastPathSegment());
 
-             //   fileFront = new File(getRealPathFromURI(tempUriFront).toString());
+                fileFront = new File(getRealPathFromURI(tempUriFront).toString());
                 int file_size = Integer.parseInt(String.valueOf(fileFront.length() / 1024));     //calculate size of image in KB
                 if (file_size <= 100){
                     isFrontUpload=true;
@@ -1356,7 +1356,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
                 etBack.setText(tempUriBack.getLastPathSegment());
 
-              //  fileBack = new File(getRealPathFromURI(tempUriBack).toString());
+                fileBack = new File(getRealPathFromURI(tempUriBack).toString());
                 int file_size = Integer.parseInt(String.valueOf(fileBack.length() / 1024));     //calculate size of image in KB
                 if (file_size <= 100){
                     isBackUpload=true;
@@ -1383,7 +1383,6 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         return Uri.parse(path);
     }
 
-/*
     public String getRealPathFromURI(Uri uri) {
         String path = "";
         if (getContentResolver() != null) {
@@ -1397,11 +1396,9 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }
         return path;
     }
-*/
 
     public boolean isFrontUpload=false;
     public boolean isBackUpload=false;
-/*
     public File filesUploadFront() {
         File file = new File(getRealPathFromURI(tempUriFront).toString());
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
@@ -1414,9 +1411,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }
         return file;
     }
-*/
 
-/*
     public File filesUploadBack() {
         File file = new File(getRealPathFromURI(tempUriBack).toString());
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
@@ -1428,7 +1423,6 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }
         return file;
     }
-*/
 
 
     JSONObject documentUploadJsonObj;
@@ -1439,40 +1433,40 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
         }else{
             idprooftypecodefile = idprooftypecode;
         }
-      //  MyApplication.showloader(cashtowalletsenderkycC, "uploading file...");
+        //  MyApplication.showloader(cashtowalletsenderkycC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
         API.Upload_REQUEST_WH("ewallet/api/v1/customer/fileUpload",fileFront,idprooftypecodefile,
                 sendorCustomerJsonObj.optJSONObject("customer").optString("code"), new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            if (jsonObject != null) {
-                                if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
-                                    //MyApplication.showToast(getString(R.string.document_upload_msg));
-                                   // documentUploadJsonObj=jsonObject;
-                                    MyApplication.showToast(cashtowalletsenderkycC,"upload success");
-                                    // callApiUpdateDataApproval();
-                                    Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
-                                        i.putExtra("mobileNumber", et_sender_phoneNumber.getText().toString());
+                    @Override
+                    public void success(JSONObject jsonObject) {
+                        if (jsonObject != null) {
+                            if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+                                //MyApplication.showToast(getString(R.string.document_upload_msg));
+                                documentUploadJsonObj=jsonObject;
+                                MyApplication.showToast(cashtowalletsenderkycC,"upload success");
+                                // callApiUpdateDataApproval();
+                                Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
+                                i.putExtra("mobileNumber", et_sender_phoneNumber.getText().toString());
 
-                                    startActivity(i);
+                                startActivity(i);
 
-                                } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
-                                    MyApplication.showToast(cashtowalletsenderkycC,getString(R.string.technical_failure));
-                                } else {
-                                    MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
-                                }
+                            } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
+                                MyApplication.showToast(cashtowalletsenderkycC,getString(R.string.technical_failure));
+                            } else {
+                                MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription", "N/A"));
                             }
-
-
                         }
 
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
 
-                        }
-                    });
-        }
+                    }
+
+                    @Override
+                    public void failure(String aFalse) {
+                        MyApplication.hideLoader();
+
+                    }
+                });
+    }
 
     public static JSONObject sendorCustomerJsonObj = new JSONObject();
 
@@ -1483,16 +1477,16 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
 
             senderJson.put("firstName",et_sender_firstName.getText().toString().trim());
             senderJson.put("lastName",et_sender_lastname.getText().toString().trim());
-            senderJson.put("email","");
+            senderJson.put("email",et_sender_email.getText().toString().trim());
             senderJson.put("mobileNumber",et_sender_phoneNumber.getText().toString().trim());
             if(spinner_sender_idprooftype.getTag()!=null){
-                senderJson.put("idProofTypeCode","");
+                senderJson.put("idProofTypeCode",idProofTypeModelList.get((Integer) spinner_sender_idprooftype.getTag()).getCode());
             }else{
-                senderJson.put("idProofTypeCode","");
+                senderJson.put("idProofTypeCode",idprooftypecode);
             }
 
-            senderJson.put("idProofNumber","");
-            senderJson.put("idExpiryDate","");
+            senderJson.put("idProofNumber",et_sender_idproofNumber.getText().toString().trim());
+            senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
             senderJson.put("countryCode","");
             if(spinner_sender_region.getTag()!=null){
@@ -1526,13 +1520,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                         public void success(JSONObject jsonObject) {
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
-
-                                Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
-                                i.putExtra("mobileNumber", et_sender_phoneNumber.getText().toString());
-
-                                startActivity(i);
-
-                                //  filesUploadFront();
+                                filesUploadFront();
                             }else{
                                 MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription"));
                             }
@@ -1554,7 +1542,7 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                             MyApplication.hideLoader();
                             if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                 sendorCustomerJsonObj = jsonObject;
-                               // filesUploadFront();
+                                filesUploadFront();
                             }else{
                                 MyApplication.showToast(cashtowalletsenderkycC,jsonObject.optString("resultDescription"));
                             }
