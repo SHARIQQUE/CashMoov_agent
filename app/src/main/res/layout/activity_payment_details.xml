@@ -127,7 +127,7 @@
                     android:paddingBottom="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_bold"
                     android:gravity="center"
-                    android:text="@string/send"
+                    android:text="@string/proceed_to_recharge"
                     />
 
                 <LinearLayout

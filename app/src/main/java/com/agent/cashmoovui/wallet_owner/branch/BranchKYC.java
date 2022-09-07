@@ -1384,6 +1384,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             //MyApplication.showToast(getString(R.string.address_add_msg));
                             Intent i = new Intent(branchkycC, BranchKYCAttached.class);
                             startActivity(i);
+                            finish();
 
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                             MyApplication.showToast(branchkycC,getString(R.string.technical_failure));

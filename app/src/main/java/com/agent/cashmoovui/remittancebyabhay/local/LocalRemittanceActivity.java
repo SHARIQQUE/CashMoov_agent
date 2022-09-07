@@ -463,31 +463,57 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
-                                        sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
-                                                data.optInt("id"),
-                                                data.optString("code"),
-                                                data.optString("countryCode"),
-                                                data.optString("countryName"),
-                                                data.optString("createdBy"),
-                                                data.optString("creationDate"),
-                                                data.optString("currCode"),
-                                                data.optString("currencyCode"),
-                                                data.optString("currencyName"),
-                                                data.optString("currencySymbol"),
-                                                data.optString("dialCode"),
-                                                data.optInt("mobileLength"),
-                                                data.optString("modificationDate"),
-                                                data.optString("modifiedBy"),
-                                                data.optString("state"),
-                                                data.optString("status"),
-                                                data.optBoolean("inBound"),
-                                                data.optBoolean("outBound")
+                                        if(data.optBoolean("outBound")) {
+                                            sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("countryName"),
+                                                    data.optString("createdBy"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("currCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencyName"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("dialCode"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("modifiedBy"),
+                                                    data.optString("state"),
+                                                    data.optString("status"),
+                                                    data.optBoolean("inBound"),
+                                                    data.optBoolean("outBound")
 
-                                        ));
+                                            ));
 
-                                        sendCurrencyList.add(data.optString("currCode").trim());
-                                        recCurrencyModelList = sendCurrencyModelList;
-                                        recCurrencyList = sendCurrencyList;
+                                            sendCurrencyList.add(data.optString("currCode").trim());
+                                        }
+                                        if(data.optBoolean("inBound")) {
+                                            recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                    data.optInt("id"),
+                                                    data.optString("code"),
+                                                    data.optString("countryCode"),
+                                                    data.optString("countryName"),
+                                                    data.optString("createdBy"),
+                                                    data.optString("creationDate"),
+                                                    data.optString("currCode"),
+                                                    data.optString("currencyCode"),
+                                                    data.optString("currencyName"),
+                                                    data.optString("currencySymbol"),
+                                                    data.optString("dialCode"),
+                                                    data.optInt("mobileLength"),
+                                                    data.optString("modificationDate"),
+                                                    data.optString("modifiedBy"),
+                                                    data.optString("state"),
+                                                    data.optString("status"),
+                                                    data.optBoolean("inBound"),
+                                                    data.optBoolean("outBound")
+
+                                            ));
+
+                                            recCurrencyList.add(data.optString("currCode").trim());
+                                        }
+
 
                                     }
 

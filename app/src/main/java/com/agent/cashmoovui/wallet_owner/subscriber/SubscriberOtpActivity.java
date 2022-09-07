@@ -306,7 +306,7 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
 
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                            //MyApplication.showToast(getString(R.string.otp_message));
+                            MyApplication.showToast(subscriberotpC,"Otp Send Successfully..");
                             txt_otp_msg.setVisibility(View.VISIBLE);
                             txt_otp_msg.setText(getString(R.string.verification_register_otp));
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
@@ -321,7 +321,8 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
 
                 @Override
                 public void failure(String aFalse) {
-
+                    MyApplication.hideLoader();
+                    MyApplication.showToast(subscriberotpC,aFalse);
                 }
             });
 

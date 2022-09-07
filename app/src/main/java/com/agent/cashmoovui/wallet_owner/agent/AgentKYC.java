@@ -1125,6 +1125,7 @@ ArrayList<String>walletCurrencyList;
                             //MyApplication.showToast(getString(R.string.address_add_msg));
                             Intent i = new Intent(agentkycC,AgentKYCAttached.class);
                             startActivity(i);
+                            finish();
                         }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                             MyApplication.showToast(agentkycC,getString(R.string.technical_failure));
                         } else {
