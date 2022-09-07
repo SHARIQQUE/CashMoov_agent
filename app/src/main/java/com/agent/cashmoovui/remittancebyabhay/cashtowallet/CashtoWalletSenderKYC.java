@@ -434,10 +434,10 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_email_valid));
                     return;
                 }*/
-                if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+              /*  if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_gender));
                     return;
-                }
+                }*/
                 if (et_sender_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_dob));
                     return;
@@ -446,14 +446,14 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_address));
                     return;
                 }
-                if (spinner_senderCountry.getText().toString().equals(getString(R.string.sending_country_star))) {
+               /* if (spinner_senderCountry.getText().toString().equals(getString(R.string.sending_country_star))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_country));
                     return;
                 }
                 if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_region));
                     return;
-                }
+                }*/
                 if (et_sender_city.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_city));
                     return;
@@ -1494,20 +1494,20 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
             senderJson.put("idProofNumber","");
             senderJson.put("idExpiryDate","");
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
-            senderJson.put("countryCode",sendCountryCode);
+            senderJson.put("countryCode","");
             if(spinner_sender_region.getTag()!=null){
-                senderJson.put("regionCode",regionModelList.get((Integer) spinner_sender_region.getTag()).getCode());
+                senderJson.put("regionCode","");
             }else{
-                senderJson.put("regionCode",regioncode);
+                senderJson.put("regionCode","");
             }
 
             senderJson.put("city",et_sender_city.getText().toString().trim());
             senderJson.put("address","");
-            senderJson.put("issuingCountryCode",recCountryCode);
+            senderJson.put("issuingCountryCode","");
             if(spinner_sender_gender.getTag()!=null){
-                senderJson.put("gender",senderGenderModelList.get((Integer) spinner_sender_gender.getTag()).getCode());
+                senderJson.put("gender","");
             }else{
-                senderJson.put("gender",gendercode);
+                senderJson.put("gender","");
             }
             if (code.isEmpty()||code==null) {
             } else{

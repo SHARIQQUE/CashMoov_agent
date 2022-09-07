@@ -148,6 +148,7 @@
                 <TextView
                     android:id="@+id/spinner_sender_gender"
                     android:text="@string/valid_select_gender"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1" />
 
 
@@ -224,11 +225,13 @@
                 <TextView
                     android:id="@+id/spinner_senderCountry"
                     android:text="@string/sending_country_star"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1"/>
 
                 <TextView
                     android:id="@+id/spinner_sender_region"
                     android:text="@string/valid_select_region"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1" />
 
                 <EditText
