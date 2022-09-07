@@ -1449,7 +1449,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     }
                 });
-
+//new update
               /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);
                 switch (biometricManager.canAuthenticate()) {
 
