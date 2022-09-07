@@ -171,8 +171,7 @@ public class OverdraftLimitViewConfigServices extends AppCompatActivity {
 
 
                         JSONArray jsonArray = jsonObject.getJSONArray("creditLimitConfigServicesBeanList");
-                        for(int i=0;i<jsonArray.length();i++)
-                        {
+                        for(int i=0;i<jsonArray.length();i++) {
 
                             OverdraftViewconfigModel overDraftModalviewconfig = new OverdraftViewconfigModel();
 
@@ -181,46 +180,52 @@ public class OverdraftLimitViewConfigServices extends AppCompatActivity {
                             // String walletOwnerCode = jsonObject3.getString("walletOwnerCode");
 
 
+                            if (jsonObject3.optString("chnTypeCode").equalsIgnoreCase("100002")) {
+
+
+                                if (jsonObject3.has("channelTypeName")) {
+                                    String channelTypeName = jsonObject3.getString("channelTypeName");
+                                    overDraftModalviewconfig.setChannelTypeName(channelTypeName);
+                                }
+
+                                if (jsonObject3.has("ewalletServicesName")) {
+                                    String ewalletServicesName = jsonObject3.getString("ewalletServicesName");
+                                    overDraftModalviewconfig.setEwalletServicesName(ewalletServicesName);
+                                }
+
+
+                                if (jsonObject3.has("servicesCategoryName")) {
+                                    String servicesCategoryName = jsonObject3.getString("servicesCategoryName");
+                                    overDraftModalviewconfig.setServicesCategoryName(servicesCategoryName);
+                                }
+
+                                if (jsonObject3.has("servicesProviderName")) {
+                                    String servicesProviderName = jsonObject3.getString("servicesProviderName");
+                                    overDraftModalviewconfig.setServicesProviderName(servicesProviderName);
+                                }
+
+                                if (jsonObject3.has("status")) {
+                                    String status = jsonObject3.getString("status");
+                                    overDraftModalviewconfig.setStatus(status);
+                                }
+
+                                arrayList_overdraftviewconfig.add(overDraftModalviewconfig);
 
 
 
-                            if(jsonObject3.has("channelTypeName")) {
-                                String  channelTypeName = jsonObject3.getString("channelTypeName");
-                                overDraftModalviewconfig.setChannelTypeName(channelTypeName);
                             }
-
-                            if(jsonObject3.has("ewalletServicesName")) {
-                                String  ewalletServicesName = jsonObject3.getString("ewalletServicesName");
-                                overDraftModalviewconfig.setEwalletServicesName(ewalletServicesName);
-                            }
-
-
-                            if(jsonObject3.has("servicesCategoryName")) {
-                                String  servicesCategoryName = jsonObject3.getString("servicesCategoryName");
-                                overDraftModalviewconfig.setServicesCategoryName(servicesCategoryName);
-                            }
-
-                            if(jsonObject3.has("servicesProviderName")) {
-                                String  servicesProviderName = jsonObject3.getString("servicesProviderName");
-                                overDraftModalviewconfig.setServicesProviderName(servicesProviderName);
-                            }
-
-                            if(jsonObject3.has("status")) {
-                                String  status = jsonObject3.getString("status");
-                                overDraftModalviewconfig.setStatus(status);
-                            }
-
-                            arrayList_overdraftviewconfig.add(overDraftModalviewconfig);
-
-
-
-                            recyclerView.setLayoutManager(new LinearLayoutManager(OverdraftLimitViewConfigServices.this));
-
-                            OverDraftviewconfigAdapterRecycle adpter= new OverDraftviewconfigAdapterRecycle(OverdraftLimitViewConfigServices.this,arrayList_overdraftviewconfig);
-                            recyclerView.setAdapter(adpter);
 
                         }
 
+                        if(arrayList_overdraftviewconfig.size()>0) {
+                            recyclerView.setLayoutManager(new LinearLayoutManager(OverdraftLimitViewConfigServices.this));
+
+                            OverDraftviewconfigAdapterRecycle adpter = new OverDraftviewconfigAdapterRecycle(OverdraftLimitViewConfigServices.this, arrayList_overdraftviewconfig);
+                            recyclerView.setAdapter(adpter);
+                        }else{
+                            MyApplication.showToast(OverdraftLimitViewConfigServices.this,"No Data AVailable");
+                            finish();
+                        }
 
 
                     } else {

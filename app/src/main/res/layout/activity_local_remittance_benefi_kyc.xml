@@ -106,7 +106,7 @@
         android:paddingTop="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
         android:paddingEnd="@dimen/_15sdp"
-        android:hint="@string/last_name"
+        android:hint="@string/last_name_mandatory"
         android:textColor="#323232"
         android:textSize="@dimen/_15sdp"
         android:fontFamily="@font/aileron_semibold"  />

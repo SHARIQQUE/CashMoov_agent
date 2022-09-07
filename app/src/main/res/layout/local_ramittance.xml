@@ -382,7 +382,7 @@
                             android:paddingLeft="37.5dp"
                             android:paddingTop="16dp"
                             android:paddingBottom="16dp"
-                            android:hint="@string/last_name"
+                            android:hint="@string/last_name_mandatory"
                             android:textColor="#323232"
                             android:textSize="15sp" />
 

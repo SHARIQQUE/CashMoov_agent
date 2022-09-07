@@ -1418,7 +1418,39 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.confirm_reviewClick_textview: {
 
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);
+                MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
+                    @Override
+                    public void success(String success) {
+                        try {
+
+                            //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+
+                            if (new InternetCheck().isConnected(CashIn.this)) {
+
+                                MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                mpin_final_api();
+
+                            } else {
+                                Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void failure(String failure) {
+                        MyApplication.showToast(CashIn.this,failure);
+
+                            pinLinear.setVisibility(View.VISIBLE);
+
+
+                    }
+                });
+
+              /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);
                 switch (biometricManager.canAuthenticate()) {
 
                     // this means we can use biometric sensor
@@ -1475,7 +1507,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                             });
                         }
-
+*/
 
 
 

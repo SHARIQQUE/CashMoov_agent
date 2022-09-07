@@ -733,7 +733,7 @@ public class MyApplication extends Application {
     }
 
 
-
+    public static BiometricPrompt biometricPrompt=null;
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
 
         BiometricManager biometricManager = androidx.biometric.BiometricManager.from(activity);
@@ -769,7 +769,7 @@ public class MyApplication extends Application {
         // creating a variable for our Executor
         Executor executor = ContextCompat.getMainExecutor(activity);
         // this will give us result of AUTHENTICATION
-        final BiometricPrompt biometricPrompt = new BiometricPrompt((FragmentActivity) activity, executor, new BiometricPrompt.AuthenticationCallback() {
+          biometricPrompt = new BiometricPrompt((FragmentActivity) activity, executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
@@ -792,6 +792,9 @@ public class MyApplication extends Application {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
+
+                bioMetric_responce_handler.failure("VISIBLE");
+                biometricPrompt.cancelAuthentication();
             }
         });
         // creating a variable for our promptInfo

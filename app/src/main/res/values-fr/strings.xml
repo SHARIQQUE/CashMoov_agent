@@ -807,5 +807,6 @@
     <string name="servicecatname">Nom de la catégorie de services</string>
     <string name="serviceprovidername">Nom du fournisseur de services</string>
     <string name="proceed_to_recharge">Procéder à la recharge</string>
+    <string name="last_name_mandatory">Nom de famille*</string>
 </resources>
 

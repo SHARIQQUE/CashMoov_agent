@@ -470,14 +470,14 @@ public class CashtoWalletSenderKYC extends AppCompatActivity implements View.OnC
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_id_proof_expiryDate));
                     return;
                 }
-                if (!isFrontUpload) {
+                /*if (!isFrontUpload) {
                     MyApplication.showErrorToast(this, "please upload front Image");
                     return;
-                }
-                if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
+                }*/
+                /*if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_issuing_country));
                     return;
-                }
+                }*/
 
                 callApiPostSender();
 

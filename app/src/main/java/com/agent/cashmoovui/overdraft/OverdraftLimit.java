@@ -1103,24 +1103,26 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         validityDaysStr = edittext_validity.getText().toString().trim();
 
         if (spinner_currency.getText().equals("Select Currency")) {
-
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
-
             return false;
         } else if (amountstr.isEmpty()) {
-
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
-
+            return false;
+        }  else if (Double.parseDouble(repleaceString(amountstr))<=0) {
+            MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
             return false;
         } else if (Double.parseDouble(repleaceString(amountStrcheck)) < Double.parseDouble(repleaceString(amountstr))) {
-
-
             MyApplication.showErrorToast(this, "Amount should be less or equal to eligible amount");
-
             return false;
         }
         for (int i = 0; i < arrayList_overdraft.size(); i++) {
             if (selectCurrecnyCode.equalsIgnoreCase(arrayList_overdraft.get(i).getCurrencyCode())) {
+                if(arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Closed")){
+                    return true;
+                }
+                if(arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Reject")){
+                    return true;
+                }
                 MyApplication.showErrorToast(this, "Request is already in queue.");
                 return false;
             }

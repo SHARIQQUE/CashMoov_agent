@@ -163,6 +163,11 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             }
 
+            if(txt_financialtax.getText().toString().isEmpty()||
+                    txt_financialtax.getText().toString().trim().equalsIgnoreCase("N/A")){
+                txt_financialtax.setText( "TAX : 0.00" );
+            }
+
         }
 
     }
