@@ -209,6 +209,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
 
 
 
+
                     tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
                     tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
 
