@@ -21,6 +21,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -793,7 +794,7 @@ public class MyApplication extends Application {
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
 
-                bioMetric_responce_handler.failure("VISIBLE");
+                bioMetric_responce_handler.failure("Please enter pin to complete the transaction");
                 biometricPrompt.cancelAuthentication();
             }
         });
@@ -807,6 +808,79 @@ public class MyApplication extends Application {
 
     }
 
+
+    public static void biometricAuthNew(Activity activity, LinearLayout layout, BioMetric_Responce_Handler bioMetric_responce_handler){
+
+        BiometricManager biometricManager = androidx.biometric.BiometricManager.from(activity);
+        switch (biometricManager.canAuthenticate()) {
+
+            // this means we can use biometric sensor
+            case BiometricManager.BIOMETRIC_SUCCESS:
+
+                // msgText.setText("You can use the fingerprint sensor to login");
+                // msgText.setTextColor(Color.parseColor("#fafafa"));
+                break;
+
+            // this means that the device doesn't have fingerprint sensor
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+                //msgText.setText(getString(R.string.no_fingerprint_senser));
+                //tvFinger.setVisibility(View.GONE);
+                break;
+
+            // this means that biometric sensor is not available
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
+              /*  msgText.setText(getString(R.string.no_biometric_senser));
+                tvFinger.setVisibility(View.GONE);*/
+                break;
+
+            // this means that the device doesn't contain your fingerprint
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
+
+                break;
+        }
+        // creating a variable for our Executor
+        Executor executor = ContextCompat.getMainExecutor(activity);
+        // this will give us result of AUTHENTICATION
+        biometricPrompt = new BiometricPrompt((FragmentActivity) activity, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                //  Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                // tvFinger.setText("Login Successful");
+
+                System.out.println("Biomatric   =>"+result.toString());
+                bioMetric_responce_handler.success("Call API");
+
+               /* Intent intent = new Intent(loginpinC, MainActivity.class);
+                startActivity(intent);*/
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+
+                bioMetric_responce_handler.failure("VISIBLE");
+                biometricPrompt.cancelAuthentication();
+            }
+        });
+        // creating a variable for our promptInfo
+        // BIOMETRIC DIALOG
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
+                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
+
+        biometricPrompt.authenticate(promptInfo);
+
+
+    }
     public static  void contactValidation(String Phoneno, EditText editText){
         if(Phoneno.length()>11)
         {

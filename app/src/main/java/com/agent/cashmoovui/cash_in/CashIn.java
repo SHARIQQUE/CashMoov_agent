@@ -1393,6 +1393,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    public static int clickedCount=0;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -1418,37 +1419,53 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.confirm_reviewClick_textview: {
 
-                MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
-                    @Override
-                    public void success(String success) {
-                        try {
+                if(pinLinear.getVisibility()==View.VISIBLE){
+                    if (validation_mpin_detail()) {
 
-                            //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+                        if (new InternetCheck().isConnected(CashIn.this)) {
 
-                            if (new InternetCheck().isConnected(CashIn.this)) {
+                            MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
-                                MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+                            mpin_final_api();
 
-                                mpin_final_api();
-
-                            } else {
-                                Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        } else {
+                            Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                         }
                     }
+                }else {
+                    MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
 
-                    @Override
-                    public void failure(String failure) {
-                        MyApplication.showToast(CashIn.this,failure);
+                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                if (new InternetCheck().isConnected(CashIn.this)) {
+
+                                    MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                    mpin_final_api();
+
+                                } else {
+                                    Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+
+                            MyApplication.showToast(CashIn.this, failure);
 
                             pinLinear.setVisibility(View.VISIBLE);
 
 
-                    }
-                });
+                        }
+                    });
+                }
 //new update
               /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);
                 switch (biometricManager.canAuthenticate()) {
