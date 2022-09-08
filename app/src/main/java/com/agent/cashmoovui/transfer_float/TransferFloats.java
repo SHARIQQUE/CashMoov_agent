@@ -1591,77 +1591,58 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             case R.id.confirm_reviewClick_textview: {
                 {
-                    BiometricManager biometricManager = androidx.biometric.BiometricManager.from(TransferFloats.this);
-                    switch (biometricManager.canAuthenticate()) {
 
-                        // this means we can use biometric sensor
-                        case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                    if (pinLinear.getVisibility() == View.VISIBLE) {
+                        if (validation_mpin_detail()) {
 
-                            Toast.makeText(TransferFloats.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                            pinLinear.setVisibility(View.VISIBLE);
-                            if (validation_mpin_detail()) {
+                            if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                                if (new InternetCheck().isConnected(TransferFloats.this)) {
+                                MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
-                                    MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                                mpin_verify();
 
-                                    mpin_verify();
-
-                                } else {
-                                    Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                }
-
-                                return;
+                            } else {
+                                Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                             }
 
+                        }
 
-                        case BiometricManager.BIOMETRIC_SUCCESS:
-
-
-                            MyApplication.biometricAuth(TransferFloats.this, new BioMetric_Responce_Handler() {
-                                @Override
-                                public void success(String success) {
-                                    try {
-
-                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
-
-                                        if (new InternetCheck().isConnected(TransferFloats.this)) {
-
-                                            MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
-
-                                            mpin_verify();
-
-
-                                        } else {
-                                            Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                @Override
-                                public void failure(String failure) {
-                                    MyApplication.showToast(TransferFloats.this, failure);
-                                }
-                            });
-                    }
-                }
-
-              /*  if (validation_mpin_detail()) {
-
-                    if (new InternetCheck().isConnected(TransferFloats.this)) {
-
-                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
-
-                        mpin_verify();
 
                     } else {
-                        Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        MyApplication.biometricAuth(TransferFloats.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                    if (new InternetCheck().isConnected(TransferFloats.this)) {
+
+                                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+
+                                        mpin_verify();
+
+
+                                    } else {
+                                        Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(TransferFloats.this, failure);
+                                pinLinear.setVisibility(View.VISIBLE);
+
+                            }
+                        });
                     }
+
+
                 }
-*/
             }
             break;
 

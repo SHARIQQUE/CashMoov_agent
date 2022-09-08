@@ -31,7 +31,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
     public static TextView tvTransAmount;
     private TextView tvAgentCode,tvSenderCode,tvBenefiCode,tvSendCurrency,tvBenefiCurrency,
             tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,tvComment,tax_label,tax_r,vat_label,vat_r;
-    private LinearLayout tax_label_layout,vat_label_layout;
+    private LinearLayout tax_label_layout,vat_label_layout,pinLenear;
     private EditText etPin;
     private Button btnCancel,btnConfirm;
     boolean  isPasswordVisible;
@@ -68,6 +68,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         vat_label=findViewById(R.id.vat_label);
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
+        pinLenear=findViewById(R.id.pinLenear);
 
         String nameOwner=MyApplication.getSaveString("FIRSTNAME_USERINFO", internationalremitconfirmC)+
                 MyApplication.getSaveString("LASTNAME_USERINFO", internationalremitconfirmC);
@@ -172,6 +173,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         Intent intent;
         switch (view.getId()) {
             case R.id.btnConfirm:
+
                 if (etPin.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_pin));
                     return;

@@ -1902,17 +1902,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             case R.id.confirm_reviewClick_textview: {
 
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(SellFloat.this);
-                switch (biometricManager.canAuthenticate()) {
+                {
 
-                    // this means we can use biometric sensor
-                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                        Toast.makeText(SellFloat.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                        pinLinearselffloat.setVisibility(View.VISIBLE);
+                    if(pinLinearselffloat.getVisibility()==View.VISIBLE){
                         if (validation_mpin_detail()) {
 
-                            if (new InternetCheck().isConnected(SellFloat.this)) {
+                                if (new InternetCheck().isConnected(SellFloat.this)) {
 
                                 MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
@@ -1922,13 +1917,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                 Toast.makeText(SellFloat.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                             }
 
-                            return;
+
                         }
-
-
-                    case BiometricManager.BIOMETRIC_SUCCESS:
-
-
+                    }else {
                         MyApplication.biometricAuth(SellFloat.this, new BioMetric_Responce_Handler() {
                             @Override
                             public void success(String success) {
@@ -1952,12 +1943,23 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                 }
                             }
 
+
                             @Override
                             public void failure(String failure) {
+
                                 MyApplication.showToast(SellFloat.this, failure);
+
+                                pinLinearselffloat.setVisibility(View.VISIBLE);
+
+
                             }
                         });
+                    }
+
+
                 }
+
+
 
 
               /*  if (validation_mpin_detail()) {

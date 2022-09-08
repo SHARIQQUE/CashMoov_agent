@@ -1215,95 +1215,83 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             case R.id.confirm_reviewClick_textview: {
 
 
-
                 if (selectClickType.equalsIgnoreCase("select_otp")) {
 
                     if (validation_otp_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
                             MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
-                           otp_verify_api();
+                            otp_verify_api();
 
                         } else {
                             Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                         }
                     }
-                }
-
-                else if (selectClickType.equalsIgnoreCase("select_subscriber_mpin")) {
+                } else if (selectClickType.equalsIgnoreCase("select_subscriber_mpin")) {
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
                             MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
-                           api_mpin_subscriber();
+                            api_mpin_subscriber();
 
                         } else {
                             Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                         }
                     }
-                }
+                } else if (selectClickType.equalsIgnoreCase("select_mpin")) {
 
-                else if (selectClickType.equalsIgnoreCase("select_mpin")) {
+                    if(ll_pin.getVisibility()==View.VISIBLE){
+                        if (validation_mpin_detail()) {
 
+                            if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                    BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashOutAgent.this);
-                    switch (biometricManager.canAuthenticate()) {
+                                MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
-                        // this means we can use biometric sensor
-                        case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                                mpin_final_api();
 
-                            Toast.makeText(CashOutAgent.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                            ll_pin.setVisibility(View.VISIBLE);
-                            if (validation_mpin_detail()) {
-                                if (new InternetCheck().isConnected(CashOutAgent.this)) {
-                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
-
-
-                                    mpin_final_api();
-
-                                } else {
-                                    Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                }
-
-                                // msgText.setText("You can use the fingerprint sensor to login");
-                                // msgText.setTextColor(Color.parseColor("#fafafa"));
-                                return;
+                            } else {
+                                Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                             }
-                        case BiometricManager.BIOMETRIC_SUCCESS:
+                        }
+                    }else {
 
-                            MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
-                                @Override
-                                public void success(String success) {
-                                    try {
+                        MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
 
-                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
 
-                                        if (new InternetCheck().isConnected(CashOutAgent.this)) {
+                                    if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                            MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+                                        MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
+                                        mpin_final_api();
 
-                                            mpin_final_api();
-
-
-                                        } else {
-                                            Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                        }
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                    } else {
+                                        Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                                     }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
+                            }
 
-                                @Override
-                                public void failure(String failure) {
-                                    MyApplication.showToast(CashOutAgent.this, failure);
-                                }
-                            });
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(CashOutAgent.this, failure);
+
+                                ll_pin.setVisibility(View.VISIBLE);
+
+
+                            }
+
+                        });
                     }
 
-                }
+
+
 /*
                     if (validation_mpin_detail()) {
                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
@@ -1319,8 +1307,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 */
 
 
-
-
+                }
             }
             break;
 

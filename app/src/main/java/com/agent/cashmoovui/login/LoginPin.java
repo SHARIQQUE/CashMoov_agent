@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
@@ -283,6 +284,9 @@ public class LoginPin extends AppCompatActivity {
 
     private void setOnClickListener() {
 
+
+
+
         BiometricManager biometricManager = BiometricManager.from(loginpinC);
         switch (biometricManager.canAuthenticate()) {
 
@@ -303,6 +307,7 @@ public class LoginPin extends AppCompatActivity {
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
                 msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);
+                System.out.println("get sensor");
                 break;
 
             // this means that the device doesn't contain your fingerprint
@@ -318,6 +323,8 @@ public class LoginPin extends AppCompatActivity {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                System.out.println("get failde"+errString);
+
             }
 
             // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS

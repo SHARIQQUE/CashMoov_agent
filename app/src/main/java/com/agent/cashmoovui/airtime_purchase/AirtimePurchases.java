@@ -1587,18 +1587,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             break;
 
-            case R.id.confirm_reviewClick_textview:
+            case R.id.confirm_reviewClick_textview:{
+                {
 
-
-
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(AirtimePurchases.this);
-                switch (biometricManager.canAuthenticate()) {
-
-                    // this means we can use biometric sensor
-                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
-                        Toast.makeText(AirtimePurchases.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
-                        pinLinear.setVisibility(View.VISIBLE);
+                    if(pinLinear.getVisibility()==View.VISIBLE){
                         if (validation_mpin_detail()) {
 
                             if (new InternetCheck().isConnected(AirtimePurchases.this)) {
@@ -1610,12 +1602,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             } else {
                                 Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                             }
-                            return;
-
                         }
-
-                    case BiometricManager.BIOMETRIC_SUCCESS:
-
+                    }else {
                         MyApplication.biometricAuth(AirtimePurchases.this, new BioMetric_Responce_Handler() {
                             @Override
                             public void success(String success) {
@@ -1640,27 +1628,95 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                             @Override
                             public void failure(String failure) {
+
                                 MyApplication.showToast(AirtimePurchases.this, failure);
+
+                                pinLinear.setVisibility(View.VISIBLE);
 
 
                             }
                         });
-                }
+                    }
+//new update
+              /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);
+                switch (biometricManager.canAuthenticate()) {
+
+                    // this means we can use biometric sensor
+                    case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+
+                        Toast.makeText(CashIn.this, getString(R.string.device_not_contain_fingerprint), Toast.LENGTH_SHORT).show();
+                        pinLinear.setVisibility(View.VISIBLE);
+                        if (validation_mpin_detail()) {
+
+                            if (new InternetCheck().isConnected(CashIn.this)) {
+
+                                MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                mpin_final_api();
+
+                            } else {
+                                Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                            }
+                            // msgText.setText("You can use the fingerprint sensor to login");
+                            // msgText.setTextColor(Color.parseColor("#fafafa"));
+                            return;
+                        }
+                    case BiometricManager.BIOMETRIC_SUCCESS:
+
+                        // msgText.setText("You can use the fingerprint sensor to login");
+                        // msgText.setTextColor(Color.parseColor("#fafafa"));
+                            MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
+                                @Override
+                                public void success(String success) {
+                                    try {
+
+                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                        if (new InternetCheck().isConnected(CashIn.this)) {
+
+                                            MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                            mpin_final_api();
+
+                                        } else {
+                                            Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                @Override
+                                public void failure(String failure) {
+                                    MyApplication.showToast(CashIn.this, failure);
+
+                                }
+
+                            });
+                        }
+*/
+
+
+
+
+
 
                /* if (validation_mpin_detail()) {
 
-                    if (new InternetCheck().isConnected(AirtimePurchases.this)) {
+                    if (new InternetCheck().isConnected(CashIn.this)) {
 
-                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+                        MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
-                        api_allByCriteria_msisdnPrefix();
+                        mpin_final_api();
 
                     } else {
-                        Toast.makeText(AirtimePurchases.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                     }
-                }
+                }*/
 
-            }*/
+                }
+            }
 
             break;
 

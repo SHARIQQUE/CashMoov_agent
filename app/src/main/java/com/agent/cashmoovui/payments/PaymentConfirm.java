@@ -25,6 +25,7 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.cash_in.CashIn;
+import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -220,7 +221,58 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
             case R.id.btnConfirm: {
 
-                BiometricManager biometricManager = androidx.biometric.BiometricManager.from(PaymentConfirm.this);
+                {
+
+                    if(pinLinear.getVisibility()==View.VISIBLE){
+                        if (etPin.getText().toString().trim().isEmpty()) {
+                            MyApplication.showErrorToast(paymentconfirmC, getString(R.string.val_pin));
+                            return;
+                        }
+                        if (etPin.getText().toString().trim().length() < 4) {
+                            MyApplication.showErrorToast(paymentconfirmC, getString(R.string.val_valid_pin));
+                            return;
+                        }
+                        try {
+                            etPin.setClickable(false);
+                            btnConfirm.setVisibility(View.GONE);
+                            String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                            PaymentDetails.dataToSend.put("pin", encryptionDatanew);
+                            callPostAPI();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }else {
+                        MyApplication.biometricAuth(PaymentConfirm.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+
+                                    String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin", MyApplication.appInstance).toString().trim());
+                                    PaymentDetails.dataToSend.put("pin", encryptionDatanew);
+                                    callPostAPI();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                MyApplication.showToast(PaymentConfirm.this, failure);
+                                pinLinear.setVisibility(View.VISIBLE);
+                            }
+
+                        });
+                    }
+
+
+
+
+
+                }
+
+              /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(PaymentConfirm.this);
                 switch (biometricManager.canAuthenticate()) {
 
                     // this means we can use biometric sensor
@@ -269,7 +321,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
                                 pinLinear.setVisibility(View.VISIBLE);
                             }
                         });
-                }
+                }*/
             }
                /* if(etPin.getText().toString().trim().isEmpty()){
                     MyApplication.showErrorToast(paymentconfirmC,getString(R.string.val_pin));
