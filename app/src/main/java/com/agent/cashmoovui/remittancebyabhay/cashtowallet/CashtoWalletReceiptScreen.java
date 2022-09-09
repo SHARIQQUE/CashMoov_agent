@@ -161,7 +161,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
                 CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("desWalletOwner").optString("lastName"));
         tvBenefiPhoneNo.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("desWalletOwner").optString("mobileNumber"));
 
-        tvTransAmount.setText(MyApplication.addDecimal(CashtoWalletConfirmScreen.tvTransAmount.getText().toString()));
+        tvTransAmount.setText((CashtoWalletConfirmScreen.tvTransAmount.getText().toString()));
         if(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").has("conversionRate")){
             tvConvRate.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("conversionRate"));
         }else{
