@@ -145,6 +145,8 @@
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
+
                     android:hint="@string/valid_email"
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp" />
