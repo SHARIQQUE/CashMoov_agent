@@ -151,7 +151,9 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         imgHome = findViewById(R.id.imgHome);
         edittext_amount = findViewById(R.id.edittext_amount);
         edittext_validity = findViewById(R.id.edittext_validity);
+        edittext_validity.setEnabled(false);
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
+
         send_textview = findViewById(R.id.send_textview);
 
         spinner_currency = findViewById(R.id.spinner_currency);

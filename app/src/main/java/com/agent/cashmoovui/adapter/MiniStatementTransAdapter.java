@@ -333,14 +333,28 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
     public void call(double Amount,int pos){
 
-        miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                miniStatementTransList.get(pos).getFromWalletOwnerName(),miniStatementTransList.get(pos).getToWalletOwnerName(),
-                miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                Amount,miniStatementTransList.get(pos).getTransactionId(),
-                miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(),0.0,
-                miniStatementTransList.get(pos).getToWalletOwnerMsisdn(),miniStatementTransList.get(pos).getTransactionAmount(),miniStatementTransList.get(pos).getFee(),miniStatementTransList.get(pos).getTaxAsJson(),miniStatementTransList.get(pos).getSrcPostBalance());
+        if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100002")) {
+            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                    miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                    miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                    miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                    Amount, miniStatementTransList.get(pos).getTransactionId(),
+                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                    miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
+                            getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
 
+        }else{
+            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                    miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                    miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                    miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                    Amount, miniStatementTransList.get(pos).getTransactionId(),
+                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                    miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
+                            getTaxAsJson(), miniStatementTransList.get(pos).getSrcPostBalance());
+        }
     }
 
     @Override
