@@ -617,9 +617,11 @@
             </androidx.cardview.widget.CardView>
             <LinearLayout
                 android:gravity="left"
+                android:id="@+id/pinlinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_20sdp">
 
                 <ImageView
