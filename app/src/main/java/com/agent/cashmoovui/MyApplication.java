@@ -909,12 +909,12 @@ public class MyApplication extends Application {
             return true;
         }
         if (Double.parseDouble(s.toString().trim().replace(",","")) < minAmount) {
-            MyApplication.showTipError(activity, "Minimum Amount should be " + minAmount, editText);
+            MyApplication.showTipError(activity, activity.getString(R.string.min_amount) + minAmount, editText);
             return true;
         }
 
         if (Double.parseDouble(s.toString().trim().replace(",","")) > maxAmount) {
-            MyApplication.showTipError(activity, "Maximum Amount should be " + maxAmount, editText);
+            MyApplication.showTipError(activity, activity.getString(R.string.min_amount) + maxAmount, editText);
             return true;
         }
         return false;

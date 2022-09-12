@@ -808,5 +808,8 @@
     <string name="serviceprovidername">Nom du fournisseur de services</string>
     <string name="proceed_to_recharge">Procéder à la recharge</string>
     <string name="last_name_mandatory">Nom de famille*</string>
+
+    <string name="min_amount">"Le montant minimum doit être  "</string>
+    <string name="max_amount">"Le montant maximum doit être  "</string>
 </resources>
 

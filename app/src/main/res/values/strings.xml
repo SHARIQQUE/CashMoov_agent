@@ -807,6 +807,9 @@
     <string name="serviceprovidername">Service Provider Name</string>
     <string name="proceed_to_recharge">Proceed to Recharge</string>
     <string name="last_name_mandatory">Last name*</string>
+    <string name="min_amount">"Minimum Amount should be  "</string>
+    <string name="max_amount">"Maximum Amount should be  "</string>
+
 
 
 </resources>
