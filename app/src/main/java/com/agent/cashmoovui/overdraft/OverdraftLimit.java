@@ -153,15 +153,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         edittext_validity = findViewById(R.id.edittext_validity);
         edittext_validity.setEnabled(false);
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
-
         send_textview = findViewById(R.id.send_textview);
-
         spinner_currency = findViewById(R.id.spinner_currency);
         spinner_currency.setText("Select Currency");
-
         imgBack.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 MyApplication.hideKeyboard(OverdraftLimit.this);
