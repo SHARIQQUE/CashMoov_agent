@@ -153,9 +153,9 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
                 ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
                 for(Taxmodel user : userArray) {
-                    txt_financialtax.setText(user.getTaxTypeName() + " :" + " " + user.getValue());
+                    txt_financialtax.setText(user.getTaxTypeName() + " :" + " " +MyApplication.addDecimal(user.getValue()));
 
-                    System.out.println("get user" + user.getTaxTypeName());
+                    System.out.println("get user" + MyApplication.addDecimal(user.getValue()));
                 }
 
 

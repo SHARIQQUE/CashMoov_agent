@@ -102,6 +102,10 @@ public class MyApplication extends Application {
     public static int ToCashInMaxAmount;
     public static int ToCashOutMinAmount;
     public static int ToCashOutMaxAmount;
+    public static int ToCashWalletMinAmount;
+    public static int ToCashWalletMaxAmount;
+
+
     public static int ToCreditPurchaseMinAmount;
     public static int ToCreditPurchaseMaxAmount;
     public static int ToSelfFloatMinAmount;
