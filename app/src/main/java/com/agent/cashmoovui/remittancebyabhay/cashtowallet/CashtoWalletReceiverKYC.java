@@ -24,6 +24,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
@@ -342,6 +343,16 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                 if(edittext_amount.getText().toString().trim().replace(",","").equals("0")||edittext_amount.getText().toString().replace(",","").trim().equals(".")||edittext_amount.getText().toString().trim().replace(",","").equals(".0")||
                         edittext_amount.getText().toString().trim().replace(",","").equals("0.")||edittext_amount.getText().toString().trim().replace(",","").equals("0.0")||edittext_amount.getText().toString().trim().replace(",","").equals("0.00")){
                     MyApplication.showErrorToast(cashtowalletbenefikycC,getString(R.string.val_valid_amount));
+                    return;
+                }
+
+                else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.CashToWalletMinValue) {
+                    MyApplication.showErrorToast(CashtoWalletReceiverKYC.this,getString(R.string.val_amount_min)+" "+MyApplication.CashToWalletMinValue);
+                    return ;
+                }
+
+                else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.CashToWalletMaxValue) {
+                    MyApplication.showErrorToast(CashtoWalletReceiverKYC.this, getString(R.string.val_amount_max) + " " + MyApplication.CashToWalletMaxValue);
                     return;
                 }
                 if (CashtoWalletSenderKYC.et_sender_phoneNumber.getText().toString().trim().equalsIgnoreCase(et_destination_mobileNumber.getText().toString().trim())) {
@@ -894,6 +905,10 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
 
+        if(MyApplication.checkMinMax(CashtoWalletReceiverKYC.this,s,editText
+                ,MyApplication.CashToWalletMinValue,MyApplication.CashToWalletMaxValue)){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

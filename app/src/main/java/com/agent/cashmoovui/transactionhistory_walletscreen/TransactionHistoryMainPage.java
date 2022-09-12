@@ -572,10 +572,22 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                             if(data.has("senderCustomer")){
                                                 msisdn = data.optJSONObject("senderCustomer").optString("mobileNumber");
-                                                name = data.optJSONObject("senderCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
+
+                                                String   lastname="";
+                                                   if(data.optJSONObject("receiverCustomer")==null){
+                                                        lastname="";
+                                                   }else{
+                                                       data.optJSONObject("receiverCustomer").optString("lastName");
+                                                   }
+
+                                                name = data.optJSONObject("senderCustomer").optString("firstName")+" "
+                                                        +lastname;
+
+                                                System.out.println("get nme"+lastname);
                                             }else{
                                                 msisdn = data.optString("fromWalletOwnerMsisdn").trim();
                                                 name =  data.optString("fromWalletOwnerName").trim();
+
 
                                             }
 
