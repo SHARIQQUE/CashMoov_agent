@@ -1805,13 +1805,14 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-        isFormatting = true;
+
 
 
         if(MyApplication.checkMinMax(CashIn.this,s,editText
                 ,MyApplication.ToCashInMinAmount,MyApplication.ToCashInMaxAmount)){
             return;
         }
+        isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

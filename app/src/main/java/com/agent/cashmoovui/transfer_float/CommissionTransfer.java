@@ -1296,11 +1296,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-        isFormatting = true;
+
         if(MyApplication.checkMinMax(CommissionTransfer.this,s,editText
                 ,MyApplication.ToCommisionTransferMinAmount,MyApplication.ToCommisionTransferMaxAmount)){
             return;
         }
+        isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

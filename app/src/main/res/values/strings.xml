@@ -800,7 +800,6 @@
     <string name="service_not_available">This service is not available</string>
     <string name="reset_pin"><u>Reset Pin?</u></string>
     <string name="due_date">Due Date</string>
-
     <string name="channeltype">Channel Type</string>
     <string name="servicename">Service Name</string>
     <string name="servicecatname">Service Category Name</string>

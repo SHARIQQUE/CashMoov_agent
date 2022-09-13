@@ -264,7 +264,7 @@ public class API {
         if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
             AndroidNetworking.post(BASEURL + URL)
-                    .addHeaders("Accept-Language", "en")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("source", "AGENT")
                     .addHeaders("channel", "APP")
                     //.addHeaders("Authorization","Bearer b1b80862-17b3-48f0-83a3-b4d27ddd09e2")
@@ -338,7 +338,7 @@ public class API {
         if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
             AndroidNetworking.put(BASEURL + URL)
-                    .addHeaders("Accept-Language", "en")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("source", "AGENT")
                     .addHeaders("channel", "APP")
                     //.addHeaders("Authorization","Bearer b1b80862-17b3-48f0-83a3-b4d27ddd09e2")
@@ -414,7 +414,7 @@ public class API {
                     .addBodyParameter("username", jsonObject.optString("username")) // posting json
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("grant_type", "password")
-                    .addHeaders("Accept-Language", "en")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "GENERATEOTP")
                     .addHeaders("source", "AGENT")
@@ -506,7 +506,7 @@ public class API {
                     .addBodyParameter("username", jsonObject.optString("username")) // posting json
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("grant_type", "password")
-                    .addHeaders("Accept-Language", "en")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "RESETPIN")
                     .addHeaders("source", "AGENT")
@@ -596,7 +596,7 @@ public class API {
                     .addBodyParameter("username", jsonObject.optString("username")) // posting json
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("grant_type", "password")
-                    .addHeaders("Accept-Language", "en")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "LOGINOTP")
                     .addHeaders("source", "AGENT")
@@ -791,7 +791,7 @@ public class API {
                 .addBodyParameter("username",jsonObject.optString("username")) // posting json
                 .addBodyParameter("password",jsonObject.optString("password"))
                 .addBodyParameter("grant_type","password")
-                // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 //.addHeaders("Accept-Language",MyApplication.getLang())
@@ -1375,7 +1375,7 @@ public class API {
             AndroidNetworking.post(BASEURL + URL)
                     .addJSONObjectBody(jsonObject) // posting json
                     .setOkHttpClient(okClient)
-                    .addHeaders("Accept-Language", "en")
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("mac", MyApplication.getUniqueId())
@@ -2230,7 +2230,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                    // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2332,7 +2332,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2435,7 +2435,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2537,7 +2537,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2638,7 +2638,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2740,7 +2740,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2841,7 +2841,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2942,14 +2942,13 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language","en")
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
                     .addHeaders("mac", MyApplication.getUniqueId())
                     .addHeaders("deviceId", MyApplication.getUniqueId())
                     .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-
                     .setOkHttpClient(okHttpClient)
                     .setTag("test")
                     .setPriority(Priority.MEDIUM)

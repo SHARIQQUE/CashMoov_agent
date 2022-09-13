@@ -206,7 +206,7 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                             try {
                                 etPin.setClickable(false);
                                 btnConfirm.setVisibility(View.GONE);
-                                String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance));
 
                                 remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", localremitconfirmC));
                                 remitJson.put("transactionType", "SENDREMITTANCE");

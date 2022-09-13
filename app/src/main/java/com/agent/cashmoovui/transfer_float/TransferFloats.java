@@ -1953,12 +1953,13 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-        isFormatting = true;
+
 
         if(MyApplication.checkMinMax(TransferFloats.this,s,editText
                 ,MyApplication.ToTransferFloatMinAmount,MyApplication.ToTransferFloatMaxAmount)){
             return;
         }
+        isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

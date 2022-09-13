@@ -200,7 +200,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                                 etPin.setClickable(false);
                                 btnConfirm.setVisibility(View.GONE);
 
-                                String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance));
 
                                 remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
                                 remitJson.put("transactionType", "SENDREMITTANCE");

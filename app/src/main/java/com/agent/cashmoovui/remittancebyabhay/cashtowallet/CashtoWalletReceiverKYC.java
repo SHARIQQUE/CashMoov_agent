@@ -903,12 +903,13 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-        isFormatting = true;
+
 
         if(MyApplication.checkMinMax(CashtoWalletReceiverKYC.this,s,editText
                 ,MyApplication.CashToWalletMinValue,MyApplication.CashToWalletMaxValue)){
             return;
         }
+        isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

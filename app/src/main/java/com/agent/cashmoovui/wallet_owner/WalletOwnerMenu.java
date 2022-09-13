@@ -71,7 +71,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.AgentCode)){
             ll_addAgentBranch.setVisibility(View.VISIBLE);
-            addtext.setText("Add Branch");
+            addtext.setText(getString(R.string.add_branch));
         }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",WalletOwnerMenu.this).equalsIgnoreCase(MyApplication.BranchCode)){
             ll_addAgentBranch.setVisibility(View.GONE);

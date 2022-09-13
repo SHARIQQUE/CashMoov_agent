@@ -2018,11 +2018,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     private boolean isFormatting;
     private int prevCommaAmount;
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
-        isFormatting = true;
+
         if(MyApplication.checkMinMax(AirtimePurchases.this,s,editText
                 ,MyApplication.ToCreditPurchaseMinAmount,MyApplication.ToCreditPurchaseMaxAmount)){
             return;
         }
+        isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;
