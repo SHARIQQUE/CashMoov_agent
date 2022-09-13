@@ -197,10 +197,7 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
 
                     MyApplication.hideLoader();
                     ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
-
                     System.out.println("Login response======="+jsonObject.toString());
-
-
                     MyApplication.saveString("token",jsonObject.optString("access_token"), RESETPINOtpPage.this);
                     MyApplication.saveString("firstName",jsonObject.optString("firstName"), RESETPINOtpPage.this);
                     MyApplication.saveString("lastName",jsonObject.optString("lastName"), RESETPINOtpPage.this);

@@ -602,7 +602,7 @@
     <string name="main_Wallet_single">Main Wallet :</string>
     <string name="reserve_Wallet">Reserve Amount :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
-    <string name="state">Etat</string>
+    <string name="state">State</string>
     <string name="validaty_days">Validity days* </string>
     <string name="select_operator">Select Operator </string>
     <string name="select_operator_star">Select Operator*</string>
