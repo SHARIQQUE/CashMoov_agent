@@ -1305,6 +1305,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
                                 tax_financialtypename = jsonObject2.getString("taxTypeName");
+
                                 //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
                                // TextView textView = new TextView(CashIn.this);

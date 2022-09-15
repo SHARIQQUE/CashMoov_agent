@@ -104,6 +104,9 @@
     <string name="val_amount_min">Please enter minimum amount </string>
     <string name="val_amount_max">Please enter maximum amount </string>
     <string name="profile">Profile</string>
+    <string name="Taxvat">VAT</string>
+    <string name="Taxfinancial">Financial Tax</string>
+
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
     <string name="version">Version : 1.0</string>

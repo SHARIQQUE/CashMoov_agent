@@ -350,6 +350,8 @@
     <string name="getting_user_info">obtention des informations utilisateur veuillez patienter!</string>
     <string name="login_successful">Connexion réussie</string>
     <string name="please_wait">S\'il vous plaît, attendez....</string>
+    <string name="Taxvat">T.V.A</string>
+    <string name="Taxfinancial">Taxe financière</string>
 
     <string name="please_check_internet">Veuillez verifier votre connexion Internet </string>
     <string name="please_try_again_later">Veuillez réessayer plus tard </string>
