@@ -433,7 +433,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         }
                                     }
 
-                                    spinnerDialogSendingCurr = new SpinnerDialog(cashtowalletbenefikycC, sendCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSendingCurr = new SpinnerDialog(cashtowalletbenefikycC, sendCurrencyList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogSendingCurr.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCurr.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSendingCurr.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -685,7 +685,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
 
                                         }
                                     }
-                                    spinnerDialogRecCurr = new SpinnerDialog(cashtowalletbenefikycC, recCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRecCurr = new SpinnerDialog(cashtowalletbenefikycC, recCurrencyList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogRecCurr.setCancellable(true); // for cancellable
                                     spinnerDialogRecCurr.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRecCurr.bindOnSpinerListener(new OnSpinerItemClick() {

@@ -132,7 +132,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
 
         spinner_currency= findViewById(R.id.spinner_currency);
-        spinner_currency.setText("Select Currency");
+        spinner_currency.setText(getString(R.string.select_currency));
         spinner_currency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -777,7 +777,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 //        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryBranchPage.this, MyApplication.currencyModelArrayList);
 //        spinner_currency.setAdapter(arraadapter2);
 
-        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryBranchPage.this, arrayList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryBranchPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
         spinnerDialogCurrency.setCancellable(true); // for cancellable
         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default

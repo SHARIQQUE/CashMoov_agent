@@ -375,7 +375,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             spinner_currency= findViewById(R.id.spinner_currency);
-            spinner_currency.setText("Select Currency");
+            spinner_currency.setText(getString(R.string.select_currency));
             spinner_currency.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -732,7 +732,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             return false;
         }
 
-       else if(spinner_currency.getText().equals("Select Currency"))
+       else if(spinner_currency.getText().equals(getString(R.string.select_currency)))
         {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
 
@@ -828,7 +828,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         spinner_currency.setAdapter(arraadapter2);
 */
 
-                       spinnerDialogCurrency = new SpinnerDialog(TransferFloats.this, arrayList_currecnyName, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                       spinnerDialogCurrency = new SpinnerDialog(TransferFloats.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                        spinnerDialogCurrency.setCancellable(true); // for cancellable
                        spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
@@ -1468,7 +1468,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
 
-                            receiptPage_tv_stransactionType.setText(" TRANSFER FLOAT");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.transfer_float));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
                             receiptPage_tv_fee.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
                             receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(tax_financial));

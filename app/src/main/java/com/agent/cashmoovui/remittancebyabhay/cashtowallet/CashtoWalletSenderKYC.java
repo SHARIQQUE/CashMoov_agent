@@ -1443,7 +1443,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
                                 documentUploadJsonObj=jsonObject;
-                                MyApplication.showToast(cashtowalletsenderkycC,"upload success");
+                                MyApplication.showToast(cashtowalletsenderkycC,getString(R.string.upload_success_toast));
                                 // callApiUpdateDataApproval();
                                 Intent i = new Intent(cashtowalletsenderkycC, CashtoWalletReceiverKYC.class);
                                 i.putExtra("mobileNumber", et_sender_phoneNumber.getText().toString());

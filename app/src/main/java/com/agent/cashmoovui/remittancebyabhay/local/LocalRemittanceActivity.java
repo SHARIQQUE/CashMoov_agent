@@ -535,7 +535,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         }
                                     }
 
-                                    spinnerDialogSendingCurr = new SpinnerDialog(localC, sendCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSendingCurr = new SpinnerDialog(localC, sendCurrencyList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogSendingCurr.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCurr.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSendingCurr.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -572,7 +572,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         }
                                     }
 
-                                    spinnerDialogRecCurr = new SpinnerDialog(localC, recCurrencyList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRecCurr = new SpinnerDialog(localC, recCurrencyList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogRecCurr.setCancellable(true); // for cancellable
                                     spinnerDialogRecCurr.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRecCurr.bindOnSpinerListener(new OnSpinerItemClick() {

@@ -352,7 +352,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Cash Out")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.cash_Out))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");

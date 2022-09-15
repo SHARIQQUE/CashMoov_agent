@@ -411,7 +411,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
                                 documentUploadJsonObj=jsonObject;
-                                MyApplication.showToast(branchkycattachedC,"upload success");
+                                MyApplication.showToast(branchkycattachedC,getString(R.string.upload_success_toast));
                                 if(check==1){
                                     btnFrontUpload.setVisibility(View.GONE);
                                 }if(check==2){

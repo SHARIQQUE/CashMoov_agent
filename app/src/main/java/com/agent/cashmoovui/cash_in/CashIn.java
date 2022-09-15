@@ -1158,7 +1158,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                 DecimalFormat df = new DecimalFormat("0.00",symbols);
 
-                                receiptPage_tv_stransactionType.setText("CASH-IN");
+                                receiptPage_tv_stransactionType.setText(getString(R.string.cash_In));
                                 receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+MyApplication.addDecimal(amountstr));
                                 receiptPage_tv_fee.setText(currencySymbolsender+" "+df.format(feeDouble));
 

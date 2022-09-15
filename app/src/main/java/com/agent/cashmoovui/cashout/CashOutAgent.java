@@ -1119,7 +1119,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             }, 2000);
 
 
-                            receiptPage_tv_stransactionType.setText("CASH-OUT");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.cash_Out));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(amountstr));
                             receiptPage_tv_fee.setText(currencySymbol_sender +" " + MyApplication.addDecimal(fees_amount));
                             receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(tax_financial));

@@ -155,7 +155,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         send_textview = findViewById(R.id.send_textview);
         spinner_currency = findViewById(R.id.spinner_currency);
-        spinner_currency.setText("Select Currency");
+        spinner_currency.setText(getString(R.string.select_currency));
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,7 +228,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         //  ll_firstPage.setVisibility(View.GONE);
                         //   ll_successPage.setVisibility(View.GONE);
 
-                        alert_dialogue_sh("Your overdraft request created successfully and send for approval");
+                        alert_dialogue_sh(getString(R.string.od_req_success_toast));
 
 
                     } else {
@@ -290,7 +290,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(OverdraftLimit.this, arrayList_currecnyName);
 //                        spinner_currency.setAdapter(arraadapter2);
 
-                        spinnerDialogCurrency = new SpinnerDialog(OverdraftLimit.this, arrayList_currecnyName, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogCurrency = new SpinnerDialog(OverdraftLimit.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                         spinnerDialogCurrency.setCancellable(true); // for cancellable
                         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
@@ -913,7 +913,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                                 @Override
                                 public void run() {
 
-                                    alert_dialogue_sh("Your overdraft request created successfully and send for approval");
+                                    alert_dialogue_sh(getString(R.string.od_req_success_toast));
 
 
                                 }
@@ -1099,7 +1099,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         amountstr = edittext_amount.getText().toString().trim();
         validityDaysStr = edittext_validity.getText().toString().trim();
 
-        if (spinner_currency.getText().equals("Select Currency")) {
+        if (spinner_currency.getText().equals(getString(R.string.select_currency))) {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
             return false;
         } else if (amountstr.isEmpty()) {

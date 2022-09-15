@@ -936,7 +936,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                             if (jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
                                 documentUploadJsonObj=jsonObject;
-                                MyApplication.showToast(localremitsenderkycC,"upload success");
+                                MyApplication.showToast(localremitsenderkycC,getString(R.string.upload_success_toast));
                                 // callApiUpdateDataApproval();
                                 Intent i = new Intent(localremitsenderkycC, LocalRemittanceBenefiKYC.class);
                                 startActivity(i);

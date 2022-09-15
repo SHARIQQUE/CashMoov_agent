@@ -197,7 +197,7 @@
                         android:id="@+id/typetrans"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cash Out"
+                        android:text="@string/cash_out"
                         android:layout_gravity="clip_horizontal"
                         android:paddingTop="5dp"
                         android:layout_marginLeft="10dp"

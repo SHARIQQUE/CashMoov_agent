@@ -344,7 +344,7 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
                                 documentUploadJsonObj=jsonObject;
-                                MyApplication.showToast(subscriberkycattachedC,"upload success");
+                                MyApplication.showToast(subscriberkycattachedC,getString(R.string.upload_success_toast));
                                 if(check==1){
                                     btnFrontUpload.setVisibility(View.GONE);
                                 }if(check==2){

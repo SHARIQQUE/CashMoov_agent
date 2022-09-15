@@ -405,7 +405,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
                                 documentUploadJsonObj=jsonObject;
-                                MyApplication.showToast(agentkycattachedC,"upload success");
+                                MyApplication.showToast(agentkycattachedC,getString(R.string.upload_success_toast));
                                 if(check==1){
                                     btnFrontUpload.setVisibility(View.GONE);
                                 }if(check==2){

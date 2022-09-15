@@ -534,7 +534,8 @@
     <string name="sending_currencey_star">Sending Currency*</string>
     <string name="sending_currencey">Sending Currency*</string>
     <string name="send_remitance_intenational">Send Remittance International</string>
-
+    <string name="remitance_intenational">Remittance International</string>
+    <string name="remitance_local">Remittance Local</string>
     <string name="genderSelect_fixed">Please select gender</string>
 
     <string name="plz_select_receive_country">Please select Receiving Country</string>
@@ -721,7 +722,7 @@
     <string name="trans_reversed">Transaction Reversed</string>
     <string name="trans_date">Transaction Date</string>
     <string name="view_deatils">View Details</string>
-    <string name="post_balance">Post Balance</string>
+
 
     <string name="receiving_country">Receiving country </string>
     <string name="valid_select_city">Select City*</string>
@@ -808,8 +809,22 @@
     <string name="last_name_mandatory">Last name*</string>
     <string name="min_amount">"Minimum Amount should be  "</string>
     <string name="max_amount">"Maximum Amount should be  "</string>
+    <string name="select_agent">Select Agent</string>
+    <string name="please_select_agent">Please Select Agent</string>
+    <string name="otp_send_successfully">Otp Send Successfully..</string>
+    <string name="upload_success_toast">upload success</string>
+    <string name="check_another_institute">Please Check another number institute not found!</string>
+    <string name="cash_out">Cash Out</string>
+    <string name="press_back_exit_toast">Please press Back again to exit</string>
+    <string name="od_req_success_toast">Your overdraft request created successfully and send for approval</string>
+    <string name="invalid_pin_toast">Invalid pin</string>
 
 
-
+    <string name="post_balance_colon">Post Balance :</string>
+    <string name="post_balance">Post Balance</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="institute_number">Institute number</string>
+    <string name="enter_institute_number">Enter the institute number</string>
 </resources>
 

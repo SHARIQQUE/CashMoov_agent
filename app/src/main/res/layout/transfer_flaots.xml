@@ -181,7 +181,7 @@
         android:background="@drawable/btn_edittextname"
         android:backgroundTint="@color/grey_100_"
         android:inputType="text"
-        android:hint="First name"
+        android:hint="@string/fname"
         android:lineSpacingExtra="10sp"
         android:paddingLeft="@dimen/_15sdp"
         android:paddingTop="@dimen/_12sdp"

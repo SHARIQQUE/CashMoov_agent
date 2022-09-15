@@ -918,7 +918,7 @@ public class MyApplication extends Application {
         }
 
         if (Double.parseDouble(s.toString().trim().replace(",","")) > maxAmount) {
-            MyApplication.showTipError(activity, activity.getString(R.string.min_amount) + maxAmount, editText);
+            MyApplication.showTipError(activity, activity.getString(R.string.max_amount) + maxAmount, editText);
             return true;
         }
         return false;

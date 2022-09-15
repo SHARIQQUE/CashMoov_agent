@@ -1235,7 +1235,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                                 }
                             }, 2000);
 
-                            receiptPage_tv_stransactionType.setText("RECEIVE REMITTANCE");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.receive_remittance));
 
                             receiptPage_sender_mssidn.setText(mobileNoStr);
 

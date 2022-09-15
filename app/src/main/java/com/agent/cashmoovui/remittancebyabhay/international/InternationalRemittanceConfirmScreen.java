@@ -179,17 +179,46 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
 
                 if(pinLenear.getVisibility()==View.VISIBLE) {
 
-                    if (etPin.getText().toString().trim().isEmpty()) {
-                        MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_pin));
-                        return;
-                    }
-                    if (etPin.getText().toString().trim().length() < 4) {
-                        MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_valid_pin));
-                        return;
-                    }
+                    try {
+                        if (etPin.getText().toString().trim().isEmpty()) {
+                            MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_pin));
+                            return;
+                        }
+                        if (etPin.getText().toString().trim().length() < 4) {
+                            MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_valid_pin));
+                            return;
+                        }
+
+                        String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
+
+                        remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
+                        remitJson.put("transactionType", "SENDREMITTANCE");
+                        remitJson.put("senderCode", InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                        remitJson.put("receiverCode", InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+                        remitJson.put("fromCurrencyCode", InternationalRemittanceActivity.fromCurrencyCode);
+                        remitJson.put("toCurrencyCode", InternationalRemittanceActivity.toCurrencyCode);
+                        remitJson.put("amount", InternationalRemittanceActivity.amount);
+                        remitJson.put("conversionRate", InternationalRemittanceActivity.rate);
+                        remitJson.put("pin", encryptionDatanew);
+                        remitJson.put("comments", tvComment.getText().toString());
+                        remitJson.put("exchangeRateCode", InternationalRemittanceActivity.exRateCode);
+                        remitJson.put("channelTypeCode", MyApplication.channelTypeCode);
+                        remitJson.put("serviceCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                        remitJson.put("serviceCategoryCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                        remitJson.put("serviceProviderCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                        remitJson.put("sendCountryCode", InternationalRemittanceActivity.sendCountryCode);
+                        remitJson.put("receiveCountryCode", InternationalRemittanceActivity.recCountryCode);
+                        remitJson.put("remitType", "International Remit");
 
 
-                    callPostAPI();
+                        tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                        tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+
+
+                        callPostAPI();
+                    }catch (Exception e){
+
+                    }
 
                 }else {
                     MyApplication.biometricAuth(InternationalRemittanceConfirmScreen.this, new BioMetric_Responce_Handler() {

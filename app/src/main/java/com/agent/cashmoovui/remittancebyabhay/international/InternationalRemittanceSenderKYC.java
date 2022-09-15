@@ -936,7 +936,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                                 if (jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")) {
                                     //MyApplication.showToast(getString(R.string.document_upload_msg));
                                     documentUploadJsonObj=jsonObject;
-                                    MyApplication.showToast(internationalremitsenderkycC,"upload success");
+                                    MyApplication.showToast(internationalremitsenderkycC,getString(R.string.upload_success_toast));
                                     // callApiUpdateDataApproval();
                                     Intent i = new Intent(internationalremitsenderkycC, InternationalRemittanceBenefiKYC.class);
                                     startActivity(i);

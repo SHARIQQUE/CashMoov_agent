@@ -424,7 +424,7 @@ public class LoginPin extends AppCompatActivity {
                             else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
                                 MyApplication.hideLoader();
 
-                                Toast.makeText(LoginPin.this, "Invalid pin", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginPin.this, R.string.invalid_pin_toast, Toast.LENGTH_LONG).show();
                                 MyApplication.saveString("pin", pin, loginpinC);
 
                             }
@@ -653,9 +653,9 @@ public class LoginPin extends AppCompatActivity {
 
                             } else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
 
-                                Toast.makeText(LoginPin.this, "Invalid pin", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginPin.this, getString(R.string.invalid_pin_toast), Toast.LENGTH_LONG).show();
 
-                                MyApplication.saveString("pin", pin, loginpinC);
+                               // MyApplication.saveString("pin", pin, loginpinC);
 
                             }else{
                                 Toast.makeText(LoginPin.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();

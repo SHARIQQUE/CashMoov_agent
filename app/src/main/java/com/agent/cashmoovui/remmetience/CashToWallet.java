@@ -1599,7 +1599,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                             ll_receiptPage.setVisibility(View.VISIBLE);
 
 
-                            receiptPage_tv_stransactionType.setText("CASH TO WALLET");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.cash_to_wallet));
                             receiptPage_tv_benificiary_no.setText(mobileNoStr);
 
                             receiptPage_tv_senderCurrency.setText("GNF");

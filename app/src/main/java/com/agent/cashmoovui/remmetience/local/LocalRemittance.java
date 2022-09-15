@@ -2892,7 +2892,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                             }, 2000);
 
 
-                            receiptPage_tv_stransactionType.setText("SEND REMITTANCE");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.remitance_local));
 
 
 

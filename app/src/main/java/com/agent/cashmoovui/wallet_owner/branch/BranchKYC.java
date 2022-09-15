@@ -539,8 +539,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 if(MyApplication.getSaveString("walletOwnerCategoryCode", BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
 
                 }else{
-                    if (agentType.getText().toString().equalsIgnoreCase("Select Agent")) {
-                        MyApplication.showTipError(this, "Please Select Agent", agentType);
+                    if (agentType.getText().toString().equalsIgnoreCase(getString(R.string.select_agent))) {
+                        MyApplication.showTipError(this, getString(R.string.please_select_agent), agentType);
                         MyApplication.hideKeyboard(branchkycC);
                         return;
                     }
@@ -803,7 +803,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
                                     }
-                                    spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, "Select Agent", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, getString(R.string.select_agent), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                     spinnerDialogAgentType.setCancellable(true); // for cancellable
                                     spinnerDialogAgentType.setShowKeyboard(false);// for open keyboard by default

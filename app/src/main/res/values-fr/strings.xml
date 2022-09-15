@@ -234,14 +234,14 @@
     <string name="valid_city">Ville*</string>
     <string name="valid_address">Addresse*</string>
     <string name="valid_select_gender">Sélectionnez le sexe*</string>
-    <string name="valid_select_occupation">Select Occupation*</string>
-    <string name="valid_dob">Date of Birth*</string>
+    <string name="valid_select_occupation">Sélectionnez la profession*</string>
+    <string name="valid_dob">Date de naissance*</string>
     <string name="valid_select_id_proof">Sélectionnez la preuve d\'identité*</string>
     <string name="valid_select_id_proofnew">Sélectionnez la preuve d\'identité</string>
-    <string name="vaild_id_proof_nonew">Id Proof Number</string>
+    <string name="vaild_id_proof_nonew">Numéro de preuve d\'identité</string>
     <string name="valid_id_proof_expiryDatenew">Date d\'expiration de la preuve d\'identité</string>
 
-    <string name="vaild_id_proof_no">Id Proof Number*</string>
+    <string name="vaild_id_proof_no">Numéro de preuve d\'identité*</string>
     <string name="valid_amount_send">Montant à envoyer*</string>
 
     <string name="gender">Sexe</string>
@@ -302,7 +302,7 @@
     <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
     <string name="save_next"><![CDATA[Enregistrer et suivant]]></string>
     <string name="clear">Duidelik</string>
-    <string name="self_sign">Self Signature</string>
+    <string name="self_sign">Signature personnelle</string>
     <string name="upload">Telecharger</string>
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
@@ -364,7 +364,7 @@
     <string name="plz_enter_6_digit_otp_code">Veuillez entrer le code OTP à 6 chiffres</string>
 
     <string name="cash_In">depot</string>
-    <string name="cash_Out">Cash Out</string>
+    <string name="cash_Out">Encaissement</string>
     <string name="remittance">Transfert de fonds</string>
     <string name="payments">Paiements</string>
     <string name="transfer">TRANSFERT</string>
@@ -524,7 +524,9 @@
     <string name="wallet_capital">WALLET</string>
     <string name="sending_currencey_star">Devise d\'envoi*</string>
     <string name="sending_currencey">Devise d\'envoi*</string>
-    <string name="send_remitance_intenational">Send Remittance International</string>
+    <string name="send_remitance_intenational">Envoyer un virement international</string>
+    <string name="remitance_intenational">Transfert de fonds international</string>
+    <string name="remitance_local">Versement local</string>
     <string name="genderSelect_fixed">Veuillez sélectionner le sexe</string>
     <string name="receive_country">Pays d\'accueil*</string>
 
@@ -586,7 +588,7 @@
 
     <string name="select_institute_star">Choisir l\'institut*</string>
     <string name="select_institute">Choisir l\'institut</string>
-    <string name="select_currency_star">Selectionner devise</string>
+    <string name="select_currency_star">Selectionner devise*</string>
     <string name="select_currency">Sélectionnez la devise</string>
 
     <string name="amount_to_paid_star">Montant à payer*</string>
@@ -689,7 +691,7 @@
     <string name="cash_to_wallet_colon">Cash a compte</string>
     <string name="sell_float_colon">Vendre le flotteur :</string>
     <string name="transfer_float_colon">Flotteur de transfert :</string>
-    <string name="transaction_amount_receiptPage">Amount transaction</string>
+    <string name="transaction_amount_receiptPage">Montant de la transaction</string>
 
     <string name="vendor_transaction_id_receipt">Identifiant de transaction : </string>
 
@@ -811,5 +813,21 @@
 
     <string name="min_amount">"Le montant minimum doit être  "</string>
     <string name="max_amount">"Le montant maximum doit être  "</string>
+    <string name="select_agent">Sélectionnez Agent</string>
+    <string name="please_select_agent">Veuillez sélectionner un agent</string>
+    <string name="otp_send_successfully">OTP envoyé avec succès..</string>
+    <string name="upload_success_toast">Télécharger le succès</string>
+    <string name="check_another_institute">Veuillez vérifier un autre numéro institut introuvable !</string>
+    <string name="cash_out">Encaissement</string>
+    <string name="press_back_exit_toast">Veuillez appuyer à nouveau sur Retour pour quitter</string>
+    <string name="od_req_success_toast">Votre demande de découvert a été créée avec succès et envoyée pour approbation</string>
+    <string name="invalid_pin_toast">NIP invalide</string>
+
+    <string name="post_balance_colon">solde apres :</string>
+    <string name="from">De</string>
+    <string name="to">À</string>
+    <string name="institute_number">Numéro d\'institut</string>
+    <string name="enter_institute_number">Entrez le numéro de l\'institut</string>
+
 </resources>
 

@@ -2918,7 +2918,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                             }, 2000);
 
 
-                            receiptPage_tv_stransactionType.setText("SEND REMITTANCE");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.remitance_intenational));
 
 
 

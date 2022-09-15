@@ -865,7 +865,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
 
-                                Toast.makeText(LoginMsis.this, "Invalid pin", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginMsis.this, getString(R.string.invalid_pin_toast), Toast.LENGTH_LONG).show();
 
                             }
 
@@ -882,14 +882,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         else {
 
                             ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
-
+                            MyApplication.saveString("pin", strPasword, LoginMsis.this);
                                 MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
 
 
                                 System.out.println("Login response=======" + jsonObject.toString());
-
                                 MyApplication.saveString("pin", strPasword, LoginMsis.this);
-
                                 MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
                                 MyApplication.saveString("firstName", jsonObject.optString("firstName"), LoginMsis.this);
                                 MyApplication.saveString("lastName", jsonObject.optString("lastName"), LoginMsis.this);
@@ -1070,7 +1068,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
 
-                                Toast.makeText(LoginMsis.this, "Invalid pin", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginMsis.this, getString(R.string.invalid_pin_toast), Toast.LENGTH_LONG).show();
 
                             }
                             else{

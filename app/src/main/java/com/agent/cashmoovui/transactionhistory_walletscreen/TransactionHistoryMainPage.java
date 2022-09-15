@@ -159,7 +159,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
         spinner_currency= findViewById(R.id.spinner_currency);
-        spinner_currency.setText("Select Currency");
+        spinner_currency.setText(getString(R.string.select_currency));
         spinner_currency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -946,7 +946,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 */
 
 
-        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryMainPage.this, arrayList, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryMainPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
         spinnerDialogCurrency.setCancellable(true); // for cancellable
         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default

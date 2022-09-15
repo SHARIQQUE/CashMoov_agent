@@ -1487,7 +1487,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             }, 2000);
 
 
-                            receiptPage_tv_stransactionType.setText("Airtime Purchase");
+                            receiptPage_tv_stransactionType.setText(getString(R.string.airtime_purchase));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" " +amountstr);
                             receiptPage_tv_fee.setText(currencySymbol_sender+" " +fees_amount);
                             receiptPage_tv_financialtax.setText(tax_financial);

@@ -296,6 +296,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         mEnterinstituteEdittext = findViewById(R.id.enterinstituteEdittext);
         mInstitutenameEdittext = findViewById(R.id.institutenameEdittext);
+        mInstitutenameEdittext.setEnabled(false);
          mEnterinstituteEdittext.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -349,7 +350,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     }
                     if(mInstitutenameEdittext.getText().toString().trim().isEmpty()){
-                        MyApplication.showToast(SellFloat.this,"Please Check another number institute not found!");
+                        MyApplication.showToast(SellFloat.this,getString(R.string.check_another_institute));
                         tv_nextClick.setVisibility(View.GONE);
                         mInstitutenameEdittext.setText("");
                     }
@@ -384,7 +385,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
             spinner_currency= findViewById(R.id.spinner_currency);
-        spinner_currency.setText("Select Currency");
+        spinner_currency.setText(getString(R.string.select_currency));
             spinner_currency.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -718,13 +719,13 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         if (mEnterinstituteEdittext.getText().toString().isEmpty()) {
 
-            MyApplication.showErrorToast(this, "Enter the institute number");
+            MyApplication.showErrorToast(this, getString(R.string.enter_institute_number));
 
             return false;
         }
 
 
-        else if (spinner_currency.getText().equals("Select Currency")) {
+        else if (spinner_currency.getText().equals(getString(R.string.select_currency))) {
 
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
 
@@ -808,7 +809,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        spinnerDialogCurrency = new SpinnerDialog(SellFloat.this, arrayList_currecnyName, "Select Currency", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogCurrency = new SpinnerDialog(SellFloat.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                         spinnerDialogCurrency.setCancellable(true); // for cancellable
                         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
