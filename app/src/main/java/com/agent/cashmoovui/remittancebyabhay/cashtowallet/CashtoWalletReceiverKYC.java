@@ -753,15 +753,15 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
 
                                         currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        fee =df.format(jsonObjectAmountDetails.optDouble("fee"));
                                         rate = jsonObjectAmountDetails.optString("value");
                                         exRateCode = jsonObjectAmountDetails.optString("code");
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
                                         convertionRate_first_page.setText(MyApplication.addDecimalthreenew(rate));
-                                        fees_first_page.setText(fee);
-                                        edittext_amount_pay.setText(currencyValue);
+                                        fees_first_page.setText(MyApplication.addDecimal(fee+""));
+                                        edittext_amount_pay.setText(MyApplication.addDecimal(""+currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
 
 
@@ -775,13 +775,13 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
 
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                            tax_first_page.setText(df.format(taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                           // amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim()) + taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                            tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                           // amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim()) + taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText("0.00");
-                                            //amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim())));
+                                            //amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim())));
 
                                         }
 

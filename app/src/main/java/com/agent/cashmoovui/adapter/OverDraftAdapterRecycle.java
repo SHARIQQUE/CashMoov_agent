@@ -42,7 +42,7 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
         viewHolder.status_textview.setText(arrayList_modalUserData.get(i).getStatus());
 
         if(arrayList_modalUserData.get(i).getStatus().equalsIgnoreCase("Closed")){
-            viewHolder.rowLinear.setVisibility(View.GONE);
+            viewHolder.rowLinear.setVisibility(View.VISIBLE);
         }else {
             viewHolder.rowLinear.setVisibility(View.VISIBLE);
 

@@ -518,7 +518,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     tvName.setText(data.optString("walletOwnerName"));
                                                     DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                                     DecimalFormat df = new DecimalFormat("0.00",symbols);
-                                                    tvBalance.setText(df.format(data.optInt("value")) + " " + data.optString("currencySymbol"));
+                                                    tvBalance.setText(	MyApplication.addDecimal(""+data.optInt("value")) + " " + data.optString("currencySymbol"));
                                                     System.out.println("get value"+data.optString("value"));
 
                                                 }

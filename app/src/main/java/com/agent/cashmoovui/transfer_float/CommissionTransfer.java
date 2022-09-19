@@ -1264,10 +1264,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                      select_currencyCode = MyApplication.currencyModelArrayList_temp.get(i).currencyCode;
                     Double main=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).mainWalletValue);
                     Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).allocatedValue);
-                   /* mainbalance_textview.setText(df.format(main)+" / "+
-                            df.format(allocate));*/
-                    main_wallet.setText(getString(R.string.main_Wallet_single)+" "+select_currencySymbol+" "+df.format(main));
-                    mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+df.format(allocate));
+                   /* mainbalance_textview.setText(MyApplication.addDecimal(""+main)+" / "+
+                            MyApplication.addDecimal(""+allocate));*/
+                    main_wallet.setText(getString(R.string.main_Wallet_single)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+main));
+                    mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
                     tvAmtCurr.setText(select_currencySymbol);
                      available_balance.setText("Available balance in Commision Wallet ("+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
 

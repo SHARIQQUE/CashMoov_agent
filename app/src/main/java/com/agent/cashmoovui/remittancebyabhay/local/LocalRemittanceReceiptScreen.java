@@ -171,29 +171,29 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             tvTransAmount.setText(MyApplication.addDecimal(arr[2]));
 */
             //tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid"));
-            tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
+            tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
             tvConvRate.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate")+"00");
             tvFee.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " "
-                    + df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
-            tvAmountPaid.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
-            tvAmountCharged.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + df.format(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
+                    + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
+            tvAmountPaid.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
+            tvAmountCharged.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
 
 
             if (LocalRemittanceConfirmScreen.taxConfigList != null) {
                 if (LocalRemittanceConfirmScreen.taxConfigList.length() == 1) {
                     tax1_layout.setVisibility(View.VISIBLE);
-                    tax1_lable.setText(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") + " :");
-                    tax1_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + df.format(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                    tax1_lable.setText(MyApplication.getTaxString(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") )+ " :");
+                    tax1_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
                     // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
                 }
                 if (LocalRemittanceConfirmScreen.taxConfigList.length() == 2) {
                     tax1_layout.setVisibility(View.VISIBLE);
-                    tax1_lable.setText(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") + " :");
-                    tax1_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + df.format(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
+                    tax1_lable.setText(MyApplication.getTaxString(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") )+ " :");
+                    tax1_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                     tax2_layout.setVisibility(View.VISIBLE);
-                    tax2_lable.setText(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName") + " :");
-                    tax2_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + df.format(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
+                    tax2_lable.setText(MyApplication.getTaxString(LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName")) + " :");
+                    tax2_value.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
                     // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
                 }
             }

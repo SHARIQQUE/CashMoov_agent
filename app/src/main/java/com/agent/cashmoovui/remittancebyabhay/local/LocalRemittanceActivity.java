@@ -814,8 +814,8 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
                                         convertionRate_first_page.setText(MyApplication.addDecimalthreenew(rate));
-                                        fees_first_page.setText(fee);
-                                        edittext_amount_pay.setText(currencyValue);
+                                        fees_first_page.setText(MyApplication.addDecimal(fee));
+                                        edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
 
 
@@ -829,8 +829,8 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                            tax_first_page.setText(df.format(taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(df.format(
+                                            tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
                                                     Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
                                                     + taxConfigurationList.optJSONObject(0).optDouble("value")+
                                                             jsonObjectAmountDetails.optDouble("fee")));
@@ -838,7 +838,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText("0.00");
-                                            amountTobeCharged_first_page.setText(df.format(
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
                                                     Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
                                         }

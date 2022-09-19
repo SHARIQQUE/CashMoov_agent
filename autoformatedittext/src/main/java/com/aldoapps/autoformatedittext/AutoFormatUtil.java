@@ -12,9 +12,12 @@ public class AutoFormatUtil {
 
     public static final String FORMAT_NO_DECIMAL = "###,###";
 
+
     public static final String FORMAT_WITH_DECIMAL = "###,###.##";
 
     public static  DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+
+
 
     public static int getCharOccurance(String input, char c) {
         int occurrence = 0;
@@ -36,6 +39,7 @@ public class AutoFormatUtil {
     }
 
     public static String formatToStringWithoutDecimal(double value) {
+
         NumberFormat formatter = new DecimalFormat(FORMAT_NO_DECIMAL,symbols);
         return formatter.format(value);
     }

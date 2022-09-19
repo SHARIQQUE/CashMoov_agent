@@ -1507,7 +1507,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                  tax_financialnew = jsonObject2.getString("value");
-                                tax_financialtypename = jsonObject2.getString("taxTypeName");
+                                tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
                                 taxLinear.setVisibility(View.VISIBLE);
 
                                 rp_tv_financialTax.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));

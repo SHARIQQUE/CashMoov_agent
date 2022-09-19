@@ -359,7 +359,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                             JSONObject data = dataArray.optJSONObject(i);
                             if(data.has("taxConfigurationList")){
                                 JSONArray taxArray = data.optJSONArray("taxConfigurationList");
-                                taxName = taxArray.optJSONObject(0).optString("taxTypeName");
+                                taxName = MyApplication.getTaxString(taxArray.optJSONObject(0).optString("taxTypeName"));
                             }else{
                                 taxName = "N/A";
                             }
@@ -834,8 +834,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
         Double main=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
         Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue);
-        mainwallet_textview.setText(df.format(main)+" / "+
-                df.format(allocate));
+        mainwallet_textview.setText(MyApplication.addDecimal(""+main)+" / "+
+                MyApplication.addDecimal(""+allocate));
         commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
         overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
@@ -992,7 +992,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+df.format(fromAmount));
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -1000,7 +1000,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         intent.putExtra("WALLETTYPECODE",wallettypecodee);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
-        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }
 

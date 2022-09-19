@@ -454,7 +454,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                             JSONObject data = dataArray.optJSONObject(i);
                             if(data.has("taxConfigurationList")){
                                 JSONArray taxArray = data.optJSONArray("taxConfigurationList");
-                                taxName = taxArray.optJSONObject(0).optString("taxTypeName");
+                                taxName = MyApplication.getTaxString(taxArray.optJSONObject(0).optString("taxTypeName"));
                             }else{
                                 taxName = "N/A";
                             }
@@ -993,8 +993,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
 
-        mainwallet_textview.setText(df.format(Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
-        " / "+df.format(Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
+        mainwallet_textview.setText(MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
+        " / "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
         commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
         overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
@@ -1166,7 +1166,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+df.format(fromAmount));
+        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -1180,7 +1180,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         intent.putExtra("srcpostbalance",srcpostbalance);
 
-        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+df.format(transactionAmount));
+        intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }
 

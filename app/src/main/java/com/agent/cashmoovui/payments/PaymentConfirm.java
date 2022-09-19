@@ -103,17 +103,17 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
         if(PaymentDetails.taxConfigurationList!=null){
             if(PaymentDetails.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
+                tax_label.setText(MyApplication.getTaxString(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
                 tax_r.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("value")));
                 finalamount=Double.parseDouble(String.valueOf(PaymentDetails.fee))+Double.parseDouble(PaymentDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(PaymentDetails.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName"));
+                tax_label.setText(MyApplication.getTaxString(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
                 tax_r.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(PaymentDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName"));
+                vat_label.setText(MyApplication.getTaxString(PaymentDetails.taxConfigurationList.optJSONObject(1).optString("taxTypeName")));
                 vat_r.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentDetails.taxConfigurationList.optJSONObject(1).optString("value")));
                 finalamount=Double.parseDouble(String.valueOf(PaymentDetails.fee))+Double.parseDouble(PaymentDetails.etAmount.getText().toString().replace(",",""))+Double.parseDouble(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(PaymentDetails.taxConfigurationList.optJSONObject(0).optString("value"));
             }

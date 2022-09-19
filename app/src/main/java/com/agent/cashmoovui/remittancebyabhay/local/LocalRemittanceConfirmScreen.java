@@ -100,23 +100,23 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
         if(LocalRemittanceActivity.taxConfigurationList!=null){
             if(LocalRemittanceActivity.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax_r.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+df.format(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_label.setText(MyApplication.getTaxString(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_r.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(LocalRemittanceActivity.fee)+Double.parseDouble(LocalRemittanceActivity.amount)+Double.parseDouble(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(LocalRemittanceActivity.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName")+" :");
-                tax_r.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+df.format(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_label.setText(MyApplication.getTaxString(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_r.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(LocalRemittanceActivity.taxConfigurationList.optJSONObject(1).optString("taxTypeName")+" :");
-                vat_r.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+df.format(LocalRemittanceActivity.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                vat_label.setText(MyApplication.getTaxString(LocalRemittanceActivity.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
+                vat_r.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+LocalRemittanceActivity.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(LocalRemittanceActivity.fee)+Double.parseDouble(LocalRemittanceActivity.amount)+Double.parseDouble(LocalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(LocalRemittanceActivity.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(LocalRemittanceActivity.toCurrencySymbol+" "+df.format(finalamount));
+        tvAmountCharged.setText(LocalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
 
         etPin.addTextChangedListener(new TextWatcher() {

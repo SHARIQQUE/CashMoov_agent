@@ -268,7 +268,7 @@
                     android:visibility="gone"
                     android:textSize="@dimen/_15sdp"
 
-                    android:text="Id Proof expiry date*"></TextView>
+                    android:text="@string/valid_id_proof_expiryDate"></TextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"

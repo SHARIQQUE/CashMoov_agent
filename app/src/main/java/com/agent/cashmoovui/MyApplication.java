@@ -56,6 +56,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -149,6 +150,9 @@ public class MyApplication extends Application {
 
     public static ArrayList<CurrencyModel> currencyModelArrayList = new ArrayList<>();
     public static ArrayList<CurrencyModel> currencyModelArrayList_temp = new ArrayList<>();
+
+
+
 
 
     public SharedPreferences getmSharedPreferences() {
@@ -456,9 +460,21 @@ public class MyApplication extends Application {
 
     public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     public static String addDecimal(String number) {
-        DecimalFormat df = new DecimalFormat("0.00",symbols);
+        String data="0.00";
+        DecimalFormat df = new DecimalFormat("0.00", symbols);
         System.out.println(("get datatype" + (Object) number).getClass().getName());
-        String data=formatInput(df.format(Double.parseDouble(number)),0,0);
+        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
+        /*if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
+            DecimalFormat df = new DecimalFormat("0.00", symbols);
+            System.out.println(("get datatype" + (Object) number).getClass().getName());
+             data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
+        }else{
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            symbols.setGroupingSeparator('.');
+            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.00#", symbols);
+            data = goodNumberFormat1.format(Double.parseDouble(number));
+        }*/
         return data;
     }
 
@@ -933,6 +949,21 @@ public class MyApplication extends Application {
     public static String getValueFromSharedPreferences (Context context, String key){
         SharedPreferences sp = context.getSharedPreferences(CommonData.SHARED_PREF_NAME, MODE_PRIVATE);
         return sp.getString(key, "");
+    }
+
+    public static String getTaxString(String test){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")){
+            return test;
+        }else {
+            if (test.equalsIgnoreCase("VAT")) {
+                return "T.V.A";
+            }
+            if (test.equalsIgnoreCase("Financial Tax")) {
+                return "Taxe financière";
+            }
+        }
+
+        return test;
     }
 
 }

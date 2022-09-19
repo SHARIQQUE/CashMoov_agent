@@ -3057,7 +3057,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                                     JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                                     for(int i=0;i<jsonArray.length();i++) {
                                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                        tax_financial_name = jsonObject2.getString("taxTypeName");
+                                        tax_financial_name = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
                                         tax_financial = jsonObject2.getString("value");
                                     }
                                 }
@@ -3176,7 +3176,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                                     if(value==0||value==.0||value==0.0||value==0.00||value==0.000){
                                         edittext_amount.setText(String.valueOf(currValue));
                                     }else{
-                                        String finalValue = df.format(currValue / value);
+                                        String finalValue = MyApplication.addDecimal(""+currValue / value);
                                         edittext_amount.setText(finalValue);
                                     }
 

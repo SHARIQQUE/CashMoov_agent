@@ -48,6 +48,7 @@ import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
+import com.aldoapps.autoformatedittext.AutoFormatUtilFrench;
 import com.blikoon.qrcodescanner.QrCodeActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -1160,7 +1161,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 receiptPage_tv_stransactionType.setText(getString(R.string.cash_In));
                                 receiptPage_tv_transactionAmount.setText(currencySymbolsender+" "+MyApplication.addDecimal(amountstr));
-                                receiptPage_tv_fee.setText(currencySymbolsender+" "+df.format(feeDouble));
+                                receiptPage_tv_fee.setText(currencySymbolsender+" "+MyApplication.addDecimal(feeDouble+""));
 
                                 receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+MyApplication.addDecimal(totalAmount_str));
 
@@ -1289,7 +1290,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                         DecimalFormat df = new DecimalFormat("0.00",symbols);
 
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + df.format(feeDouble));
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + MyApplication.addDecimal(feeDouble+""));
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
 
@@ -1304,7 +1305,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                  tax_financialnew = jsonObject2.getString("value");
 
 
-                                tax_financialtypename = jsonObject2.getString("taxTypeName");
+                                tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
 
                                 //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -1350,11 +1351,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         System.out.println("get value4"+totalAmount_double);
 
 
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ df.format(dtotalAmount_str));
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+ MyApplication.addDecimal(dtotalAmount_str+""));
 
                         amountstr = String.valueOf(amountstr_double);
                         rp_tv_transactionAmount.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
-                        rp_tv_amount_to_be_credit.setText(currencySymbol_receiver+" "+df.format(amountstr_double));
+                        rp_tv_amount_to_be_credit.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(amountstr_double+""));
 
                         allByCriteria_walletOwnerCode_api();
 
@@ -1891,6 +1892,112 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             // case when deleting without dots
             if (count == 0 && !sbResult.toString()
                     .contains(".") && prevCommaAmount != commaAmount) {
+                newStart = start;
+                prevCommaAmount = commaAmount;
+            }
+
+            editText.setText(sbResult.toString());
+
+            // ensure newStart is within result length
+            if (newStart > sbResult.toString().length()) {
+                newStart = sbResult.toString().length();
+            } else if (newStart < 0) {
+                newStart = 0;
+            }
+
+            editText.setSelection(newStart);
+
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void formatInputFrench(EditText editText,CharSequence s, int start, int count) {
+
+
+
+        if(MyApplication.checkMinMax(CashIn.this,s,editText
+                ,MyApplication.ToCashInMinAmount,MyApplication.ToCashInMaxAmount)){
+            return;
+        }
+        isFormatting = true;
+        StringBuilder sbResult = new StringBuilder();
+        String result;
+        int newStart = start;
+
+        try {
+            // Extract value without its comma
+            String digitAndDotText = s.toString().replace(" ", "");
+            int commaAmount = 0;
+
+            // if user press . turn it into 0.
+            if (s.toString().startsWith(",") && s.length() == 1) {
+                editText.setText("0,");
+                editText.setSelection(editText.getText().toString().length());
+                return;
+            }
+
+            // if user press . when number already exist turns it into comma
+            if (s.toString().startsWith(".") && s.length() > 1) {
+                StringTokenizer st = new StringTokenizer(s.toString());
+                String afterDot = st.nextToken(",");
+                editText.setText("0," + AutoFormatUtil.extractDigits(afterDot));
+                editText.setSelection(2);
+                return;
+            }
+
+            if (digitAndDotText.contains(",")) {
+                // escape sequence for .
+                String[] wholeText = digitAndDotText.split("\\,");
+
+                if (wholeText.length == 0) {
+                    return;
+                }
+
+                // in 150,000.45 non decimal is 150,000 and decimal is 45
+                String nonDecimal = wholeText[0];
+                if (nonDecimal.length() == 0) {
+                    return;
+                }
+
+                // only format the non-decimal value
+                result = AutoFormatUtilFrench.formatToStringWithoutDecimal(nonDecimal);
+
+                sbResult
+                        .append(result)
+                        .append(",");
+
+                if (wholeText.length > 1) {
+                    sbResult.append(wholeText[1]);
+                }
+
+            } else {
+                result = AutoFormatUtilFrench.formatWithDecimal(digitAndDotText);
+                sbResult.append(result);
+            }
+
+            // count == 0 indicates users is deleting a text
+            // count == 1 indicates users is entering a text
+            newStart += ((count == 0) ? 0 : 1);
+
+            // calculate comma amount in edit text
+            commaAmount += AutoFormatUtilFrench.getCharOccurance(result, '.');
+
+            // flag to mark whether new comma is added / removed
+            if (commaAmount >= 1 && prevCommaAmount != commaAmount) {
+                newStart += ((count == 0) ? -1 : 1);
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without comma
+            if (commaAmount == 0 && count == 0 && prevCommaAmount != commaAmount) {
+                newStart -= 1;
+                prevCommaAmount = commaAmount;
+            }
+
+            // case when deleting without dots
+            if (count == 0 && !sbResult.toString()
+                    .contains(",") && prevCommaAmount != commaAmount) {
                 newStart = start;
                 prevCommaAmount = commaAmount;
             }

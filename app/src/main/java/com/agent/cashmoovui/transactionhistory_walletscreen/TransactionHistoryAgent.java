@@ -347,7 +347,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
                             JSONObject data = dataArray.optJSONObject(i);
                             if (data.has("taxConfigurationList")) {
                                 JSONArray taxArray = data.optJSONArray("taxConfigurationList");
-                                taxName = taxArray.optJSONObject(0).optString("taxTypeName");
+                                taxName = MyApplication.getTaxString(taxArray.optJSONObject(0).optString("taxTypeName"));
                             } else {
                                 taxName = "N/A";
                             }

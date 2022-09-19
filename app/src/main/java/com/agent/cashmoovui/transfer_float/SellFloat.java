@@ -1224,7 +1224,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             for(int i=0;i<jsonArray.length();i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                 tax_financial = jsonObject2.getString("value");
-                                tax_financialtypename = jsonObject2.getString("taxTypeName");
+                                tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
 
                             }
                         }

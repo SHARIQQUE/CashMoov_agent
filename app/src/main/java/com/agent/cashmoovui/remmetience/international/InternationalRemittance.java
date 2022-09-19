@@ -3082,7 +3082,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                     JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                                     for(int i=0;i<jsonArray.length();i++) {
                                         JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                        tax_financial_name = jsonObject2.getString("taxTypeName");
+                                        tax_financial_name = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
                                         tax_financial = jsonObject2.getString("value");
                                     }
                                 }
@@ -3202,7 +3202,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                         edittext_amount.setText(String.valueOf(currValue));
                                     }else{
                                         String finalValue = df.format(currValue / value);
-                                        edittext_amount.setText(finalValue);
+                                        edittext_amount.setText(MyApplication.addDecimal(finalValue));
                                     }
 
                                 }catch (Exception e){}

@@ -85,12 +85,12 @@ public class MiniStatementAgentTransAdapter extends RecyclerView.Adapter<MiniSta
 
         if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
             holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-            holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+            holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
             holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
         }
         if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
             holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
-            holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
+            holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getToAmount())+" "+miniStatementTrans.getToCurrencySymbol());
             holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
         }
 
