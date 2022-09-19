@@ -461,10 +461,10 @@ public class MyApplication extends Application {
     public static DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     public static String addDecimal(String number) {
         String data="0.00";
-        DecimalFormat df = new DecimalFormat("0.00", symbols);
+       /* DecimalFormat df = new DecimalFormat("0.00", symbols);
         System.out.println(("get datatype" + (Object) number).getClass().getName());
-        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
-        /*if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
+        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);*/
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
             DecimalFormat df = new DecimalFormat("0.00", symbols);
             System.out.println(("get datatype" + (Object) number).getClass().getName());
              data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
@@ -474,7 +474,7 @@ public class MyApplication extends Application {
             symbols.setGroupingSeparator('.');
             NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.00#", symbols);
             data = goodNumberFormat1.format(Double.parseDouble(number));
-        }*/
+        }
         return data;
     }
 

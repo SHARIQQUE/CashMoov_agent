@@ -195,8 +195,34 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                         return;
                     }
 
+                    btnConfirm.setVisibility(View.GONE);
+                    String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
-                    callPostAPI();
+                    try {
+                        remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", localremitconfirmC));
+                        remitJson.put("transactionType", "SENDREMITTANCE");
+                        remitJson.put("senderCode", LocalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                        remitJson.put("receiverCode", LocalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+                        remitJson.put("fromCurrencyCode", LocalRemittanceActivity.fromCurrencyCode);
+                        remitJson.put("toCurrencyCode", LocalRemittanceActivity.toCurrencyCode);
+                        remitJson.put("amount", LocalRemittanceActivity.amount);
+                        remitJson.put("conversionRate", LocalRemittanceActivity.rate);
+                        remitJson.put("pin", encryptionDatanew);
+                        remitJson.put("comments", tvComment.getText().toString());
+                        remitJson.put("exchangeRateCode", LocalRemittanceActivity.exRateCode);
+                        remitJson.put("channelTypeCode", MyApplication.channelTypeCode);
+                        remitJson.put("serviceCode", LocalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                        remitJson.put("serviceCategoryCode", LocalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                        remitJson.put("serviceProviderCode", LocalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                        remitJson.put("sendCountryCode", LocalRemittanceActivity.sendCountryCode);
+                        remitJson.put("receiveCountryCode", LocalRemittanceActivity.recCountryCode);
+                        remitJson.put("remitType", "Local Remit");
+                        callPostAPI();
+                    }catch (Exception e){
+
+                    }
+
+
                 }
                 else {
                     MyApplication.biometricAuth(LocalRemittanceConfirmScreen.this, new BioMetric_Responce_Handler() {

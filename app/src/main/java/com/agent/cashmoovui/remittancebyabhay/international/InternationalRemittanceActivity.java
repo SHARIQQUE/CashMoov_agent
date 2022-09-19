@@ -781,8 +781,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
-                                                    Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
+                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
                                                             + taxConfigurationList.optJSONObject(0).optDouble("value")+
                                                             jsonObjectAmountDetails.optDouble("fee")));
 
