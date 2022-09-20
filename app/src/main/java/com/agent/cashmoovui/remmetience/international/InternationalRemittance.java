@@ -3095,7 +3095,13 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
                                 tax_first_page.setText(select_sender_currencySymbol+ " "+tax_amount);
 
                                 fees_first_page.setText(select_sender_currencySymbol+ " "+fees_amount);
-                                rp_tv_financialTax_name.setText(tax_financial_name+":");
+
+                                if(tax_financial_name.equalsIgnoreCase("VAT")){
+                                    rp_tv_financialTax_name.setText(getString(R.string.Taxvat)+":");
+                                }else{
+                                    rp_tv_financialTax_name.setText(getString(R.string.Taxfinancial)+":");
+
+                                }
                                 rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
 
                                 tax_financial_double = Double.parseDouble(tax_financial);

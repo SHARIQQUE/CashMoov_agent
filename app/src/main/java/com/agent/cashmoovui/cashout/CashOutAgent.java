@@ -1510,7 +1510,17 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
                                 taxLinear.setVisibility(View.VISIBLE);
 
-                                rp_tv_financialTax.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                                if(tax_financialtypename.equalsIgnoreCase("VAT")){
+                                    rp_tv_financialTax.setText(getString(R.string.Taxvat) +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+
+                                }else if(tax_financialtypename.equalsIgnoreCase("Financial Tax")){
+                                    rp_tv_financialTax.setText(getString(R.string.Taxfinancial) +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+
+                                }else{
+                                    rp_tv_financialTax.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+
+                                }
+
                                 receiptPage_tv_financialtaxvalue.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
                             }
                         }

@@ -83,6 +83,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
        // tvComment.setText(CashtoWalletReceiverKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount);
+
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
         if(CashtoWalletReceiverKYC.taxConfigurationList!=null){

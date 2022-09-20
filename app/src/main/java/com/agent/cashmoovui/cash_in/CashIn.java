@@ -1316,7 +1316,17 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 financialTax_receiptPageLinear.setVisibility(View.VISIBLE);
                               //  taxcashinLinear.addView(textView, lp);
 
-                                rp_tv_financialTax.setText((tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
+                                if(tax_financialtypename.equalsIgnoreCase("VAT")){
+                                    rp_tv_financialTax.setText((getString(R.string.Taxvat)+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
+
+                                }else if(tax_financialtypename.equalsIgnoreCase("Financial Tax")){
+                                    rp_tv_financialTax.setText((getString(R.string.Taxfinancial)+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
+
+                                }else{
+                                    rp_tv_financialTax.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+
+                                }
+
 
                                 financialTax_receiptPage.setText(rp_tv_financialTax.getText().toString());
 
