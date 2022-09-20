@@ -163,15 +163,15 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
 
         tvTransAmount.setText((CashtoWalletConfirmScreen.tvTransAmount.getText().toString()));
         if(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").has("conversionRate")){
-            tvConvRate.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("conversionRate"));
+            tvConvRate.setText(MyApplication.addDecimalthreenew(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("conversionRate")));
         }else{
             tvConvRate.setText("0.000");
         }
 
         tvFee.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + 	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee")));
-        tvAmountPaid.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount")));
-        tvAmountCharged.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("value")));
+        tvAmountPaid.setText(MyApplication.addDecimal(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));
+        tvAmountCharged.setText(MyApplication.addDecimal(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("value"))));
 
 
         if(CashtoWalletConfirmScreen.taxConfigList!=null){

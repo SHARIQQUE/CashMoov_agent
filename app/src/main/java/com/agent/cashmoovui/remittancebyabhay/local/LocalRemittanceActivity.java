@@ -830,10 +830,10 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(
                                                     df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
                                                     + taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                            jsonObjectAmountDetails.optDouble("fee")));
+                                                            jsonObjectAmountDetails.optDouble("fee"))));
 
                                         } else {
                                             taxConfigurationList = null;
@@ -873,6 +873,9 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
         if(MyApplication.checkMinMax(localC,s,editText
                 ,MyApplication.RemittanceMinValue,MyApplication.RemittanceMaxValue)){
+            return;
+        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
             return;
         }
         isFormatting = true;

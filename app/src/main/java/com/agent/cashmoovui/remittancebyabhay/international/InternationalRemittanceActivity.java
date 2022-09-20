@@ -781,9 +781,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
                                                             + taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                            jsonObjectAmountDetails.optDouble("fee")));
+                                                            jsonObjectAmountDetails.optDouble("fee"))));
 
                                         } else {
                                             taxConfigurationList = null;
@@ -823,6 +823,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             return;
         }
 
+       if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

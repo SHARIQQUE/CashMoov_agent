@@ -1080,9 +1080,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
 
 
-                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +"0.00");
+                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +MyApplication.addDecimalthreenew("0.00"));
                         rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
-                        rp_tv_excise_tax.setText(currencySymbol_receiver+" " +tax_financial);
+                        rp_tv_excise_tax.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(tax_financial));
                         rp_tv_amount_paid.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
@@ -1957,6 +1957,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
         if(MyApplication.checkMinMax(TransferFloats.this,s,editText
                 ,MyApplication.ToTransferFloatMinAmount,MyApplication.ToTransferFloatMaxAmount)){
+            return;
+        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
             return;
         }
         isFormatting = true;

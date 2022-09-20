@@ -1688,6 +1688,9 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
 
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

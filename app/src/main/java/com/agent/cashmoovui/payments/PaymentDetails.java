@@ -238,6 +238,9 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
         isFormatting = true;
 
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         StringBuilder sbResult = new StringBuilder();
         String result;
         int newStart = start;

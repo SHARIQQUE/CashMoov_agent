@@ -1301,6 +1301,9 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 ,MyApplication.ToCommisionTransferMinAmount,MyApplication.ToCommisionTransferMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;

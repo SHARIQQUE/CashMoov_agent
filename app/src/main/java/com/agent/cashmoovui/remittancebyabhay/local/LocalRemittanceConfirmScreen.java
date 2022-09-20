@@ -89,9 +89,9 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
         tvSendCurrency.setText(LocalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(LocalRemittanceActivity.toCurrency);
         tvTransAmount.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceActivity.amount));
-        tvConvRate.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+LocalRemittanceActivity.rate+"00");
-        tvFee.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+LocalRemittanceActivity.fee);
-        tvAmountPaid.setText(LocalRemittanceActivity.toCurrencySymbol+" "+LocalRemittanceActivity.currencyValue);
+        tvConvRate.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimalthreenew(LocalRemittanceActivity.rate));
+        tvFee.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceActivity.fee));
+        tvAmountPaid.setText(LocalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceActivity.currencyValue));
         tvComment.setText(LocalRemittanceBenefiKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(LocalRemittanceActivity.fee)+Double.parseDouble(LocalRemittanceActivity.amount);

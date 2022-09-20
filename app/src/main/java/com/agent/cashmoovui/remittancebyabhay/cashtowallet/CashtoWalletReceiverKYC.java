@@ -360,6 +360,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                     return;
                 }
 
+                recNumber=et_destination_mobileNumber.getText().toString().trim();
                 Intent i = new Intent(cashtowalletbenefikycC, CashtoWalletConfirmScreen.class);
                 i.putExtra("destmobileNumber", et_destination_mobileNumber.getText().toString());
 
@@ -372,6 +373,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         }
     }
 
+    public static String recNumber;
     private void callApiSendCurrency() {
         try {
 
@@ -907,6 +909,9 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
 
         if(MyApplication.checkMinMax(CashtoWalletReceiverKYC.this,s,editText
                 ,MyApplication.CashToWalletMinValue,MyApplication.CashToWalletMaxValue)){
+            return;
+        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
             return;
         }
         isFormatting = true;

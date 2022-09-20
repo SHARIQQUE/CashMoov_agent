@@ -178,7 +178,7 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
 
            // tvTransAmount.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
 
-            tvConvRate.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate"));
+            tvConvRate.setText(MyApplication.addDecimalthreenew(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate")));
             tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " "
                     + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
             tvAmountPaid.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));

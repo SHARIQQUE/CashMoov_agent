@@ -1814,6 +1814,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 ,MyApplication.ToCashInMinAmount,MyApplication.ToCashInMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;

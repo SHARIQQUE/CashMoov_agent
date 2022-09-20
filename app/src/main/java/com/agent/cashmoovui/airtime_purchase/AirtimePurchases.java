@@ -2023,6 +2023,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 ,MyApplication.ToCreditPurchaseMinAmount,MyApplication.ToCreditPurchaseMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;

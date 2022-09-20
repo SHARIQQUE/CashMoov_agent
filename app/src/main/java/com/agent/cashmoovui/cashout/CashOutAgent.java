@@ -2109,6 +2109,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 ,MyApplication.ToCashOutMinAmount,MyApplication.ToCashOutMinAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;

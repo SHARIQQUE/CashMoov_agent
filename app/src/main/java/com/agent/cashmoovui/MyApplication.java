@@ -564,8 +564,26 @@ public class MyApplication extends Application {
         return sbResult.toString();
     }
     public static String addDecimalthreenew(String number) {
-        DecimalFormat df = new DecimalFormat("0.000",symbols);
-        return df.format(Double.parseDouble(number));
+        String data="0.00";
+       /* DecimalFormat df = new DecimalFormat("0.00", symbols);
+        System.out.println(("get datatype" + (Object) number).getClass().getName());
+        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);*/
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
+            DecimalFormat df = new DecimalFormat("0.000", symbols);
+            System.out.println(("get datatype" + (Object) number).getClass().getName());
+            data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
+        }else{
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setDecimalSeparator(',');
+            symbols.setGroupingSeparator('.');
+            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.000#", symbols);
+            data = goodNumberFormat1.format(Double.parseDouble(number));
+        }
+        return data;
+
+
+       /* DecimalFormat df = new DecimalFormat("0.000",symbols);
+        return df.format(Double.parseDouble(number));*/
     }
 
     public static String addDecimalthree(String number) {

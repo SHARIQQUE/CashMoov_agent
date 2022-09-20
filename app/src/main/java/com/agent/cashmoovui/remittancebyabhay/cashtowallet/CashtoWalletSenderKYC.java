@@ -478,13 +478,15 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_issuing_country));
                     return;
                 }*/
-
+                senderNumber=et_sender_phoneNumber.getText().toString().trim();
                 callApiPostSender();
 
                 break;
 
         }
     }
+
+    public static String senderNumber;
 
     private void callApiserviceProvider() {
         try {

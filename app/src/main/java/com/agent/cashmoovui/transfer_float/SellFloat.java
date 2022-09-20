@@ -2502,6 +2502,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 ,MyApplication.ToSelfFloatMinAmount,MyApplication.ToSelfFloatMaxAmount)){
             return;
         }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
         StringBuilder sbResult = new StringBuilder();
         String result;
