@@ -856,7 +856,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             //  Toast.makeText(LoginMsis.this, error_message, Toast.LENGTH_LONG).show();
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
-
+                                MyApplication.saveString("pin", strPasword, LoginMsis.this);
                                 Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
                                 i.putExtra("ERROR1251","1251");
                                 startActivity(i);
@@ -1060,7 +1060,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             //  Toast.makeText(LoginMsis.this, error_message, Toast.LENGTH_LONG).show();
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
-
+                                MyApplication.saveString("pin", strPasword, LoginMsis.this);
                                 Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
                                 i.putExtra("ERROR1251","1251");
                                 startActivity(i);

@@ -1106,19 +1106,17 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         fees_amount = exchangeRate.getString("fee");
 
 
-
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financial = jsonObject2.getString("value");
+                                }
+                            } else {
+                                tax_financial = exchangeRate.getString("value");
                             }
                         }
-                        else {
-                            tax_financial = exchangeRate.getString("value");
-                        }
-
 
                         rp_tv_convertionrate.setText(currencySymbol_sender+" " +"0.0");
                         rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount));

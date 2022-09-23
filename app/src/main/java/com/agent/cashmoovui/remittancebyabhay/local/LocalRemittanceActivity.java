@@ -378,8 +378,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                             ));
 
                                             sendingCountryList.add(data.optString("name").trim());
-                                            recCurrencyModelList = sendCurrencyModelList;
-                                            recCurrencyList = sendingCountryList;
+
                                             spinner_senderCountry.setText(data.optString("name"));
                                             spinner_receiverCountry.setText(data.optString("name"));
                                             sendCountryCode = data.optString("code");
@@ -553,6 +552,9 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                             edittext_amount_pay.getText().clear();
                                         }
                                     });
+
+                                    System.out.println("Rece list Local  "+recCurrencyModelList.toString());
+                                    System.out.println("Send list Local  "+sendCountryModelList.toString());
 
                                     tvAmtPaidCurr.setText("");
                                     for(int i=0;i<recCurrencyModelList.size();i++){
@@ -842,7 +844,13 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                                     Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
                                         }
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList = null;
+                                            tax_first_page.setText("0.00");
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
+                                                    Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
+                                        }
 
                                         tvNext.setEnabled(true);
                                     }

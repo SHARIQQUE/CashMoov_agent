@@ -415,7 +415,7 @@ public class LoginPin extends AppCompatActivity {
                             //  Toast.makeText(LoginMsis.this, error_message, Toast.LENGTH_LONG).show();
 
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
-
+                                MyApplication.saveString("pin", etPin.getText().toString().trim(), loginpinC);
                                 Intent i = new Intent(LoginPin.this, VerifyLoginOTPScreen.class);
                                 i.putExtra("ERROR1251","1251");
                                 startActivity(i);

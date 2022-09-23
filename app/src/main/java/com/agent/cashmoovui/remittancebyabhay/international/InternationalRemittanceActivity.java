@@ -792,6 +792,12 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                                         }
 
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
+                                            tax_first_page.setText("0.00");
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
+
+                                        }
                                         tvNext.setEnabled(true);
                                     }
                                 } else {

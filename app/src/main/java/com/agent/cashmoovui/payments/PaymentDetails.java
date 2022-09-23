@@ -203,10 +203,15 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
                                     tvSend.setVisibility(View.VISIBLE);
+
                                     if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                         taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                     } else {
                                         taxConfigurationList = null;
+                                    }
+
+                                    if(jsonObjectAmountDetails.has("receiverTax")) {
+                                        taxConfigurationList=null;
                                     }
 
 

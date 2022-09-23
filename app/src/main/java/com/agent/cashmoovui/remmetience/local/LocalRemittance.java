@@ -3052,19 +3052,21 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
                                     exchangeRateCode_from_tax_api=exchangeRate.getString("code");
                                 }
 
-                                if(exchangeRate.has("taxConfigurationList"))
-                                {
-                                    JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                                    for(int i=0;i<jsonArray.length();i++) {
-                                        JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                        tax_financial_name = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
-                                        tax_financial = jsonObject2.getString("value");
+                                if(!exchangeRate.has("receiverTax")) {
+                                    if (exchangeRate.has("taxConfigurationList")) {
+                                        JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                            tax_financial_name = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
+                                            tax_financial = jsonObject2.getString("value");
+                                        }
+                                    } else {
+                                        //rp_tv_financialTax_name.setVisibility(View.GONE);
+                                        // rp_tv_financialTax.setVisibility(View.GONE);
+                                        tax_financial = MyApplication.addDecimal("0.00");
                                     }
-                                }
-                                else {
-                                    //rp_tv_financialTax_name.setVisibility(View.GONE);
-                                   // rp_tv_financialTax.setVisibility(View.GONE);
-                                    tax_financial = "0.00";
+                                }else{
+                                    tax_financial = MyApplication.addDecimal("0.00");
                                 }
 
                                 tax_first_page.setText(select_sender_currencySymbol+ " "+tax_amount);

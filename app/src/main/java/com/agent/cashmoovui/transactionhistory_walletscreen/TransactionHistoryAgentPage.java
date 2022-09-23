@@ -398,8 +398,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     data.optInt("value"),
                                     data.optInt("srcPreBalance"),
                                     data.optInt("destPreBalance"),
-                                    data.optInt("srcPostBalance"),
-                                    data.optInt("destPostBalance")));
+                                    data.optDouble("srcPostBalance"),
+                                    data.optDouble("destPostBalance")));
 
                         }
 
@@ -445,7 +445,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                         @Override
                         public void success(JSONObject jsonObject) {
                             MyApplication.hideLoader();
-                            String name,msisdn,toName,tomssisdn;
+                            String name,msisdn,toName,tomssisdn,taxAsJson;
                             if (jsonObject != null) {
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
@@ -479,7 +479,11 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                 name =  data.optString("fromWalletOwnerName").trim();
 
                                             }
-
+                                            if(data.has("receiverBearer")&&data.optBoolean("receiverBearer")){
+                                                taxAsJson="";
+                                            }else{
+                                                taxAsJson=data.optString("taxAsJson");
+                                            }
                                             miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("transactionId"),
@@ -501,13 +505,13 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                     data.optString("transactionTypeName").trim(),
                                                     data.optString("creationDate").trim(),
                                                     data.optString("comReceiveWalletCode").trim(),
-                                                    data.optString("taxAsJson").trim(),
+                                                    taxAsJson,
                                                     data.optString("holdingAccountCode").trim(),
                                                     data.optString("status").trim(),
                                                     data.optDouble("fromAmount"),
                                                     data.optDouble("toAmount"),
                                                     data.optDouble("comReceiveAmount"),
-                                                    data.optInt("srcPostBalance"),
+                                                    data.optDouble("srcPostBalance"),
                                                     data.optDouble("srcPreviousBalance"),
                                                     data.optDouble("destPreviousBalance"),
                                                     data.optDouble("destPostBalance"),
@@ -918,7 +922,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     }
 
     @Override
-    public void onTransactionViewItemClick(String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, int postBalance, String status) {
+    public void onTransactionViewItemClick(String transId, String transType, String transDate, String source, String destination, int sourceMsisdn, int destMsisdn, String symbol, int amount, int fee, String taxType, String tax, double postBalance, String status) {
         Dialog dialog = new Dialog(TransactionHistoryAgentPage.this, R.style.AppTheme);  //android.R.style.Theme_Translucent_NoTitleBar
         dialog.setContentView(R.layout.dialog_view_trans_details);
 

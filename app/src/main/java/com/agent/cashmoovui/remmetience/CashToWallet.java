@@ -1702,17 +1702,16 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
                         edittext_amount_pay.setEnabled(false);
                         edittext_amount_pay.setText("Fr "+MyApplication.addDecimal(amountstr));
                         convertionRate_first_page.setText("Fr "+MyApplication.addDecimalthreenew(exchangeRate.getString("value")));
-
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financial = jsonObject2.getString("value");
+                                }
+                            } else {
+                                tax_financial = exchangeRate.getString("value");
                             }
-                        }
-                        else {
-                            tax_financial = exchangeRate.getString("value");
                         }
 
 

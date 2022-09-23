@@ -59,6 +59,30 @@ public class CountryCurrencyInfoModel {
             this.outBound = outBound;
         }
 
+        @Override
+        public String toString() {
+            return "CountryCurrency{" +
+                    "id=" + id +
+                    ", code='" + code + '\'' +
+                    ", countryCode='" + countryCode + '\'' +
+                    ", countryName='" + countryName + '\'' +
+                    ", createdBy='" + createdBy + '\'' +
+                    ", creationDate='" + creationDate + '\'' +
+                    ", currCode='" + currCode + '\'' +
+                    ", currencyCode='" + currencyCode + '\'' +
+                    ", currencyName='" + currencyName + '\'' +
+                    ", currencySymbol='" + currencySymbol + '\'' +
+                    ", dialCode='" + dialCode + '\'' +
+                    ", mobileLength=" + mobileLength +
+                    ", modificationDate='" + modificationDate + '\'' +
+                    ", modifiedBy='" + modifiedBy + '\'' +
+                    ", state='" + state + '\'' +
+                    ", status='" + status + '\'' +
+                    ", inBound=" + inBound +
+                    ", outBound=" + outBound +
+                    '}';
+        }
+
         public int getId() {
             return id;
         }

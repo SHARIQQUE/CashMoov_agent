@@ -1500,34 +1500,33 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" "  + MyApplication.addDecimal(fees_amount));
 
                         //  credit_amount=exchangeRate.getString("currencyValue");
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financialnew = jsonObject2.getString("value");
+                                    tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
+                                    taxLinear.setVisibility(View.VISIBLE);
 
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                 tax_financialnew = jsonObject2.getString("value");
-                                tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
-                                taxLinear.setVisibility(View.VISIBLE);
+                                    if (tax_financialtypename.equalsIgnoreCase("VAT")) {
+                                        rp_tv_financialTax.setText(getString(R.string.Taxvat) + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
-                                if(tax_financialtypename.equalsIgnoreCase("VAT")){
-                                    rp_tv_financialTax.setText(getString(R.string.Taxvat) +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                                    } else if (tax_financialtypename.equalsIgnoreCase("Financial Tax")) {
+                                        rp_tv_financialTax.setText(getString(R.string.Taxfinancial) + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
-                                }else if(tax_financialtypename.equalsIgnoreCase("Financial Tax")){
-                                    rp_tv_financialTax.setText(getString(R.string.Taxfinancial) +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                                    } else {
+                                        rp_tv_financialTax.setText(tax_financialtypename + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
-                                }else{
-                                    rp_tv_financialTax.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
+                                    }
 
+                                    receiptPage_tv_financialtaxvalue.setText(tax_financialtypename + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
                                 }
+                            } else {
+                                tax_financial = exchangeRate.getString("value");
+                                tax_financialnew = exchangeRate.getString("value");
 
-                                receiptPage_tv_financialtaxvalue.setText(tax_financialtypename +":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
                             }
-                        }
-                        else {
-                            tax_financial = exchangeRate.getString("value");
-                            tax_financialnew = exchangeRate.getString("value");
-
                         }
 
 

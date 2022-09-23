@@ -35,10 +35,10 @@ public class TransactionModel {
     public int value;
     public int srcPreBalance;
     public int destPreBalance;
-    public int srcPostBalance;
-    public int destPostBalance;
+    public Double srcPostBalance;
+    public Double destPostBalance;
 
-    public TransactionModel(int id, String code, String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode, String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode, String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol, String desCurrencyCode, String desCurrencyName, String desCurrencySymbol, int transactionAmount, String tax, String resultCode, String resultDescription, String creationDate, String createdBy, String status, boolean transactionReversed, int srcMobileNumber, int destMobileNumber, boolean receiverBearer, String rechargeNumber, int fee, String taxTypeName, int value, int srcPreBalance, int destPreBalance, int srcPostBalance, int destPostBalance) {
+    public TransactionModel(int id, String code, String transactionId, String transTypeCode, String transTypeName, String srcWalletOwnerCode, String srcWalletOwnerName, String desWalletOwnerCode, String desWalletOwnerName, String srcWalletCode, String desWalletCode, String srcCurrencyCode, String srcCurrencyName, String srcCurrencySymbol, String desCurrencyCode, String desCurrencyName, String desCurrencySymbol, int transactionAmount, String tax, String resultCode, String resultDescription, String creationDate, String createdBy, String status, boolean transactionReversed, int srcMobileNumber, int destMobileNumber, boolean receiverBearer, String rechargeNumber, int fee, String taxTypeName, int value, int srcPreBalance, int destPreBalance, double srcPostBalance, double destPostBalance) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -350,19 +350,19 @@ public class TransactionModel {
         this.destPreBalance = destPreBalance;
     }
 
-    public int getSrcPostBalance() {
+    public double getSrcPostBalance() {
         return srcPostBalance;
     }
 
-    public void setSrcPostBalance(int srcPostBalance) {
+    public void setSrcPostBalance(double srcPostBalance) {
         this.srcPostBalance = srcPostBalance;
     }
 
-    public int getDestPostBalance() {
+    public double getDestPostBalance() {
         return destPostBalance;
     }
 
-    public void setDestPostBalance(int destPostBalance) {
+    public void setDestPostBalance(double destPostBalance) {
         this.destPostBalance = destPostBalance;
     }
 }

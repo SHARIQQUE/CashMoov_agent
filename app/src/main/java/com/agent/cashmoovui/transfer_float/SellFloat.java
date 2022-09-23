@@ -1217,21 +1217,19 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         fees_amount = exchangeRate.getString("fee");
 
 
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financial = jsonObject2.getString("value");
+                                    tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
 
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
-                                tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
-
+                                }
+                            } else {
+                                tax_financial = exchangeRate.getString("value");
                             }
                         }
-                        else {
-                            tax_financial = exchangeRate.getString("value");
-                        }
-
                         taxselffloatLinear.setVisibility(View.VISIBLE);
 
                       //  rp_tv_convertionrate.setText(MyApplication.addDecimal(currencySymbol_receiver));

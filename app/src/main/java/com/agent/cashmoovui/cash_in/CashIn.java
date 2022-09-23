@@ -1296,50 +1296,46 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
 
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financialnew = jsonObject2.getString("value");
 
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                 tax_financialnew = jsonObject2.getString("value");
+
+                                    tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
+
+                                    //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                                    // TextView textView = new TextView(CashIn.this);
+
+                                    System.out.println("get tax" + tax_financialnew);
+                                    taxcashinLinear.setVisibility(View.VISIBLE);
+                                    financialTax_receiptPageLinear.setVisibility(View.VISIBLE);
+                                    //  taxcashinLinear.addView(textView, lp);
+
+                                    if (tax_financialtypename.equalsIgnoreCase("VAT")) {
+                                        rp_tv_financialTax.setText((getString(R.string.Taxvat) + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew)));
+
+                                    } else if (tax_financialtypename.equalsIgnoreCase("Financial Tax")) {
+                                        rp_tv_financialTax.setText((getString(R.string.Taxfinancial) + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew)));
+
+                                    } else {
+                                        rp_tv_financialTax.setText(tax_financialtypename + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+
+                                    }
 
 
-                                tax_financialtypename = MyApplication.getTaxString(jsonObject2.getString("taxTypeName"));
+                                    financialTax_receiptPage.setText(rp_tv_financialTax.getText().toString());
 
-                                //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                               // TextView textView = new TextView(CashIn.this);
-
-                                System.out.println("get tax"+tax_financialnew);
-                                taxcashinLinear.setVisibility(View.VISIBLE);
-                                financialTax_receiptPageLinear.setVisibility(View.VISIBLE);
-                              //  taxcashinLinear.addView(textView, lp);
-
-                                if(tax_financialtypename.equalsIgnoreCase("VAT")){
-                                    rp_tv_financialTax.setText((getString(R.string.Taxvat)+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
-
-                                }else if(tax_financialtypename.equalsIgnoreCase("Financial Tax")){
-                                    rp_tv_financialTax.setText((getString(R.string.Taxfinancial)+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew)));
-
-                                }else{
-                                    rp_tv_financialTax.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+ MyApplication.addDecimal(tax_financialnew));
 
                                 }
-
-
-                                financialTax_receiptPage.setText(rp_tv_financialTax.getText().toString());
-
-
-
-
+                            } else {
+                                tax_financial = exchangeRate.getString("value");
+                                tax_financialnew = exchangeRate.getString("value");
 
                             }
-                        }
-                        else {
-                            tax_financial = exchangeRate.getString("value");
-                            tax_financialnew = exchangeRate.getString("value");
-
                         }
 
 

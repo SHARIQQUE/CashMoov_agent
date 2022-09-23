@@ -801,12 +801,12 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             jsonObject_accountHolding = jsonObject.getJSONObject("accountHolding");
 
 
-                        if (jsonObject_accountHolding.optBoolean("walletToCash")) {
+                       /* if (jsonObject_accountHolding.optBoolean("walletToCash")) {
                             Toast.makeText(RemittanceReceive.this, "Receive remittance is not allocated for", Toast.LENGTH_LONG).show();
                             return;
                         } else {
 
-                        }
+                        }*/
 
 
                         if (jsonObject_accountHolding.has("comments")) {

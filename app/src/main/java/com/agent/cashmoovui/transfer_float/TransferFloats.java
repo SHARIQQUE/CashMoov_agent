@@ -1066,16 +1066,17 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         fees_amount = exchangeRate.getString("fee");
 
 
-
-                        if(exchangeRate.has("taxConfigurationList"))
-                        {
-                            JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
-                            for(int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                                tax_financial = jsonObject2.getString("value");
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financial = jsonObject2.getString("value");
+                                }
+                            } else {
+                                tax_financial = exchangeRate.getString("value");
                             }
-                        }
-                        else {
+                        }else{
                             tax_financial = exchangeRate.getString("value");
                         }
 
