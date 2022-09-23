@@ -1742,6 +1742,7 @@
                 />
 
             <TextView
+                android:id="@+id/taxnew"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/financialTax_receiptPage"

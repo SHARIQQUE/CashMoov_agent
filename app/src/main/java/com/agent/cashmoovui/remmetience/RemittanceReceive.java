@@ -1261,11 +1261,19 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                                 currencySymbol_receiver = remittance_object.getString("toCurrencySymbol");
                             }
 
-                            if (remittance_object.getInt("amount") > 0) {
+                            TextView taxnew=findViewById(R.id.taxnew);
+
+                            if(remittance_object.optBoolean("bearerSender")) {
+                                if (Double.parseDouble(remittance_object.optString("tax")) > 0) {
+                                    receiptPage_tv_financialtax.setVisibility(View.VISIBLE);
+                                    receiptPage_tv_financialtax.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optString("tax") + ""));
+                                } else {
+                                    receiptPage_tv_financialtax.setVisibility(View.VISIBLE);
+                                    receiptPage_tv_financialtax.setText(currencySymbol_sender + " " + MyApplication.addDecimal("0.00"));
+                                }
+                            }else{
                                 receiptPage_tv_financialtax.setVisibility(View.VISIBLE);
-                                receiptPage_tv_financialtax.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.getInt("amount") + ""));
-                            } else {
-                                receiptPage_tv_financialtax.setVisibility(View.GONE);
+                                receiptPage_tv_financialtax.setText(currencySymbol_sender + " " + MyApplication.addDecimal("0.00"));
                             }
 
 
@@ -1273,22 +1281,28 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             receiptPage_sbenificairay_mssidn.setVisibility(View.GONE);
 
-                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.getInt("amount") + ""));
-                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.getInt("amountToPaid") + ""));
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender + " " + MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optDouble("amount") + ""));
+                            receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amountToPaid") + ""));
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
 
-                            if (remittance_object.getInt("fee") > 0) {
+                            if(remittance_object.optBoolean("bearerSender")) {
+                                if (remittance_object.optDouble("fee") > 0) {
+                                    receiptPage_tv_fee.setVisibility(View.VISIBLE);
+                                    receiptPage_tv_fee.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.getInt("fee") + ""));
+                                } else {
+                                    receiptPage_tv_fee.setVisibility(View.VISIBLE);
+                                    receiptPage_tv_fee.setText(currencySymbol_sender + " " + MyApplication.addDecimal("0.00"));
+                                }
+                            }else{
                                 receiptPage_tv_fee.setVisibility(View.VISIBLE);
-                                receiptPage_tv_fee.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.getInt("fee") + ""));
-                            } else {
-                                receiptPage_tv_fee.setVisibility(View.GONE);
+                                receiptPage_tv_fee.setText(currencySymbol_sender + " " + MyApplication.addDecimal("0.00"));
                             }
-
-                            if (remittance_object.getInt("conversionRate") > 0) {
+                            if (remittance_object.has("conversionRate")) {
                                 receiptPage_conversion_rate.setVisibility(View.VISIBLE);
                                 receiptPage_conversion_rate.setText(currencySymbol_sender + " " + MyApplication.addDecimalthreenew(remittance_object.getString("conversionRate")));
                             } else {
-                                receiptPage_conversion_rate.setVisibility(View.GONE);
+                                receiptPage_conversion_rate.setVisibility(View.VISIBLE);
+                                receiptPage_conversion_rate.setText(currencySymbol_sender + " " + MyApplication.addDecimalthreenew("0.00"));
                             }
 
 

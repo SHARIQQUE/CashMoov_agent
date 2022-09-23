@@ -1172,7 +1172,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
+        intent.putExtra("FROMAMOUNT",currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -1183,9 +1183,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("taxvalue",tax);
         intent.putExtra("fee",fee);
-
         intent.putExtra("srcpostbalance",srcpostbalance);
-
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }
