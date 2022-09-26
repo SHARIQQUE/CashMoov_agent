@@ -518,7 +518,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
                                                     data.optBoolean("isReverse"),
-                                                    data.optDouble("fee")));
+                                                    data.optDouble("fee"),
+                                                    data.optBoolean("bearerSender")));
                                         }
 
                                         setData(miniStatementTransList,walletTypeCode);

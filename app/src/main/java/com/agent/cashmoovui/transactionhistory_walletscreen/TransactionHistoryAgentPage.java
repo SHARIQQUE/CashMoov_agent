@@ -525,7 +525,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
                                                     data.optBoolean("isReverse"),
-                                                    data.optDouble("fee")));
+                                                    data.optDouble("fee"),
+                                                    data.optBoolean("bearerSender")));
                                         }
 
                                         setData(miniStatementTransList,walletTypeCode);

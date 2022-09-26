@@ -597,6 +597,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                 taxAsJson=data.optString("taxAsJson");
                                             }
 
+
+
                                                 miniStatementTransList.add(new MiniStatementTrans(
                                                     data.optInt("id"),
                                                     data.optString("code"),
@@ -640,7 +642,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
                                                     data.optBoolean("isReverse"),
-                                                    data.optDouble("fee")));
+                                                    data.optDouble("fee"),
+                                                        data.optBoolean("bearerSender")));
                                         }
 
                                         setData(miniStatementTransList,walletTypeCode);

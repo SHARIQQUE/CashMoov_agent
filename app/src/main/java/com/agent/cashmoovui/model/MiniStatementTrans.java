@@ -43,10 +43,11 @@ public class MiniStatementTrans {
     private String fromWalletOwnerSurname;
     private String fromWalletTypeCode;
     private boolean isReverse;
+    private boolean bearerSender;
 
 
     public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode,
-                              boolean isReverse,double fee) {
+                              boolean isReverse,double fee,boolean bearerSender) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -89,7 +90,16 @@ public class MiniStatementTrans {
         this.fromWalletTypeCode = fromWalletTypeCode;
         this.isReverse = isReverse;
         this.fee=fee;
+        this.bearerSender=bearerSender;
 
+    }
+
+    public boolean isBearerSender() {
+        return bearerSender;
+    }
+
+    public void setBearerSender(boolean bearerSender) {
+        this.bearerSender = bearerSender;
     }
 
     public int getId() {
