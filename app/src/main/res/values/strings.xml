@@ -829,5 +829,7 @@
     <string name="to">To</string>
     <string name="institute_number">Institute number</string>
     <string name="enter_institute_number">Enter the institute number</string>
+    <string name="commission_transfer_success">Commission transfer successfully to main wallet</string>
+    <string name="available_balnce">Available balance in Commision Wallet (</string>
 </resources>
 

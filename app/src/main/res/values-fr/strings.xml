@@ -830,6 +830,8 @@
     <string name="to">À</string>
     <string name="institute_number">Numéro d\'institut</string>
     <string name="enter_institute_number">Entrez le numéro de l\'institut</string>
+    <string name="commission_transfer_success">Transfert de commission réussi vers le portefeuille principal</string>
+    <string name="available_balnce">Solde disponible dans le portefeuille de commissions (</string>
 
 </resources>
 

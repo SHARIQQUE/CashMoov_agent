@@ -946,7 +946,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                 @Override
                                 public void run() {
 
-                                    alert_dialogue_sh("Commission transfer successfully to main wallet");
+                                    alert_dialogue_sh(getString(R.string.commission_transfer_success));
 
                                 }
                             }, 2000);
@@ -1269,7 +1269,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     main_wallet.setText(getString(R.string.main_Wallet_single)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+main));
                     mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
                     tvAmtCurr.setText(select_currencySymbol);
-                     available_balance.setText("Available balance in Commision Wallet ("+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
+                     available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
 
 
 
