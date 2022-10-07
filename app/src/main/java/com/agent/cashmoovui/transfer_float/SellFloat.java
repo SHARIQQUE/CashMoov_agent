@@ -535,7 +535,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         for(int i=0;i<jsonArray.length();i++) {
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
-                            if (jsonObject3.optString("state").equalsIgnoreCase("Approved")) {
+                            if (jsonObject3.optString("state").equalsIgnoreCase("Approved")||
+                                jsonObject3.optString("state").equalsIgnoreCase("Approuvée")){
 
 
                             instituteListModelArrayList.add(new InstituteListModel(
@@ -1683,7 +1684,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                 @Override
                                 public void run() {
 
-                                    alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
+                                    alert_dialogue_sh(getString(R.string.sell_float_added));
 
 
                                 }
@@ -1900,7 +1901,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                alert_dialogue_sh("Sell Float Added successfully and sent for approval ");
+                alert_dialogue_sh(getString(R.string.sell_float_added));
 
 
             }

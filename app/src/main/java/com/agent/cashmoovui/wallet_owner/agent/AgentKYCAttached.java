@@ -429,7 +429,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
 
                     @Override
                     public void failure(String aFalse) {
-
+                        MyApplication.showToast(agentkycattachedC,aFalse);
                     }
                 });
     }

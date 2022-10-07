@@ -96,7 +96,7 @@
     <string name="continues">Continue</string>
     <string name="please_see_our_term_condition">Please see our Terms of Service Policy</string>
     <string name="start_now">Start now</string>
-    <string name="login_successful">Login Successful</string>
+    <string name="login_successful">Login Successfully</string>
     <string name="home">Home</string>
     <string name="wallet">Wallet</string>
     <string name="setting">Setting</string>
@@ -439,7 +439,7 @@
     <string name="amount_to_be_charged_reveiewPage">Amount to be charged:</string>
     <string name="amount_to_be_credit_reveiewPage">Amount to be credit:</string>
     <string name="country_reviewPage">Country:</string>
-    <string name="amount_to_paid_review_page">Amount to Paid:</string>
+    <string name="amount_to_paid_review_page">Amount to be Paid:</string>
     <string name="login_user_pin">Login User Pin</string>
 
 
@@ -478,7 +478,7 @@
     <string name="country_receiptPage">Country:</string>
     <string name="pin_capital">PIN</string>
     <string name="transaction_receiptNo_receiptPage">Transaction Number:</string>
-    <string name="amount_to_paid_receiptpage">Amount to Paid:</string>
+    <string name="amount_to_paid_receiptpage">Amount to be Paid:</string>
     <string name="amount_to_be_charged_receiptpage">Amount to be charged:</string>
     <string name="upload_success">Profile image uploaded successfully</string>
     <string name="logout">Logout</string>
@@ -831,5 +831,6 @@
     <string name="enter_institute_number">Enter the institute number</string>
     <string name="commission_transfer_success">Commission transfer successfully to main wallet</string>
     <string name="available_balnce">Available balance in Commision Wallet (</string>
+    <string name="sell_float_added">\"Sell Float Added successfully and sent for approval \"</string>
 </resources>
 

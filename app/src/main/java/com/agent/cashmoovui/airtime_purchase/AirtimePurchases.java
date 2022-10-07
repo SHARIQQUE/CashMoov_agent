@@ -1486,12 +1486,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                             receiptPage_tv_stransactionType.setText(getString(R.string.airtime_purchase));
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" " +amountstr);
-                            receiptPage_tv_fee.setText(currencySymbol_sender+" " +fees_amount);
-                            receiptPage_tv_financialtax.setText(tax_financial);
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_fee.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount));
+                            receiptPage_tv_financialtax.setText(MyApplication.addDecimal(tax_financial));
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
-                            receiptPage_tv_amount.setText(currencySymbol_sender+" " +amountstr);
+                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime")));
+                            receiptPage_tv_amount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
 
 
                           //  receiptPage_tv_sender_name.setText(agentName_from_walletOwner);

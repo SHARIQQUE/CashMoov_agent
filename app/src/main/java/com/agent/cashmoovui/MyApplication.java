@@ -464,7 +464,8 @@ public class MyApplication extends Application {
        /* DecimalFormat df = new DecimalFormat("0.00", symbols);
         System.out.println(("get datatype" + (Object) number).getClass().getName());
         data = formatInput(df.format(Double.parseDouble(number)), 0, 0);*/
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")) {
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")||
+                MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()) {
             DecimalFormat df = new DecimalFormat("0.00", symbols);
             System.out.println(("get datatype" + (Object) number).getClass().getName());
              data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
@@ -970,7 +971,9 @@ public class MyApplication extends Application {
     }
 
     public static String getTaxString(String test){
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+        ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
+                MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
             return test;
         }else {
             if (test.equalsIgnoreCase("VAT")) {

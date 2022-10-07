@@ -832,6 +832,7 @@
     <string name="enter_institute_number">Entrez le numéro de l\'institut</string>
     <string name="commission_transfer_success">Transfert de commission réussi vers le portefeuille principal</string>
     <string name="available_balnce">Solde disponible dans le portefeuille de commissions (</string>
+    <string name="sell_float_added">\"Vendre le flotteur ajouté avec succès et envoyé pour approbation \"</string>
 
 </resources>
 
