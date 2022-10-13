@@ -312,7 +312,7 @@
                     android:backgroundTint="@color/bgColorHint"
                     android:inputType="text"
                     android:lineSpacingExtra="10sp"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"
+                    android:digits= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.,_-/*+()  "
 
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"

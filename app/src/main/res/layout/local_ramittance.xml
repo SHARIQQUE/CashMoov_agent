@@ -461,6 +461,8 @@
                             android:paddingTop="16dp"
                             android:paddingBottom="16dp"
                             android:hint="@string/address"
+                            android:digits= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.,_-/*+()  "
+
                             android:textColor="#323232"
                             android:textSize="15sp" />
 
@@ -810,6 +812,8 @@
                             android:paddingBottom="16dp"
                             android:hint="@string/address"
                             android:textColor="#323232"
+                            android:digits= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.,_-/*+()  "
+
                             android:textSize="15sp" />
 
                         <Spinner

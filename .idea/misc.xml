@@ -13,7 +13,16 @@
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/transaction_history_agentpage.xml" value="0.165625" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_to_wallet_benefi_kyc.xml" value="0.18541666666666667" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_to_wallet_sender_kyc.xml" value="0.18541666666666667" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_local_remittance_benefi_kyc.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_local_remittance_confirm_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_local_remittance_receipt_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_local_remittance_sender_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_register_abonne_one.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_register_agent.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_register_branch.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_register_branch_doc.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_reiceve_remittance.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_remittance_option.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-hdpi/ic_cashpickup24.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-mdpi/ic_refresh.xml" value="0.2203125" />
         <entry key="..\:/Users/User/StudioProjects/CashMoov_agent/app/src/main/res/drawable-xxxhdpi/btn_shape.xml" value="0.15729166666666666" />

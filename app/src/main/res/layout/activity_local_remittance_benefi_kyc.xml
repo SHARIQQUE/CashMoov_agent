@@ -205,7 +205,7 @@
         android:inputType="textPersonName"
         android:lineSpacingExtra="10sp"
         android:paddingLeft="@dimen/_15sdp"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:digits= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.,_-/*+()  "
 
         android:paddingTop="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
