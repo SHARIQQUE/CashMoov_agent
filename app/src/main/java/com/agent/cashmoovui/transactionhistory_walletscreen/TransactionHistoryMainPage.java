@@ -558,44 +558,60 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
-                                            if(data.has("receiverCustomer")){
+                                            if (data.has("receiverCustomer")) {
                                                 tomssisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
-                                                toName = data.optJSONObject("receiverCustomer").optString("firstName")+" "+data.optJSONObject("receiverCustomer").optString("lastName");
-                                            }else{
+                                                toName = data.optJSONObject("receiverCustomer").optString("firstName") + " " + data.optJSONObject("receiverCustomer").optString("lastName");
+                                            } else {
                                                 tomssisdn = data.optString("toWalletOwnerMsisdn").trim();
-                                                toName =  data.optString("toWalletOwnerName").trim();
-                                              String  fee =  data.optString("fee").trim();
-                                                System.out.println("get fee"+fee);
+                                                toName = data.optString("toWalletOwnerName").trim();
+                                                String fee = data.optString("fee").trim();
+                                                System.out.println("get fee" + fee);
 
 
                                             }
 
-                                            if(data.has("senderCustomer")){
+                                            if (data.has("senderCustomer")) {
                                                 msisdn = data.optJSONObject("senderCustomer").optString("mobileNumber");
 
-                                                String   lastname="";
-                                                   if(data.optJSONObject("receiverCustomer")==null){
-                                                        lastname="";
-                                                   }else{
-                                                       data.optJSONObject("receiverCustomer").optString("lastName");
-                                                   }
+                                                String lastname = "";
+                                                if (data.optJSONObject("receiverCustomer") == null) {
+                                                    lastname = "";
+                                                } else {
+                                                    data.optJSONObject("receiverCustomer").optString("lastName");
+                                                }
 
-                                                name = data.optJSONObject("senderCustomer").optString("firstName")+" "
-                                                        +lastname;
+                                                name = data.optJSONObject("senderCustomer").optString("firstName") + " "
+                                                        + lastname;
 
-                                                System.out.println("get nme"+lastname);
-                                            }else{
+                                                System.out.println("get nme" + lastname);
+                                            } else {
                                                 msisdn = data.optString("fromWalletOwnerMsisdn").trim();
-                                                name =  data.optString("fromWalletOwnerName").trim();
+                                                name = data.optString("fromWalletOwnerName").trim();
 
 
                                             }
 
-                                            if(data.has("receiverBearer")&&data.optBoolean("receiverBearer")){
-                                                taxAsJson="";
+                                            if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
+                                                taxAsJson = "";
+                                            } else {
+                                                taxAsJson = data.optString("taxAsJson");
+                                            }
+
+                                            Double fee=0.00;
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")){
+                                                if (data.has("receiverBearer") && !data.optBoolean("receiverBearer")) {
+                                                    taxAsJson = "";
+                                                } else {
+                                                    taxAsJson = "";
+                                                }
+                                        }
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")){
+                                                fee=0.00;
                                             }else{
-                                                taxAsJson=data.optString("taxAsJson");
+                                                fee=data.optDouble("fee");
                                             }
+
+
 
 
 
@@ -642,7 +658,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                     data.optString("fromWalletOwnerSurname").trim(),
                                                     data.optString("fromWalletTypeCode").trim(),
                                                     data.optBoolean("isReverse"),
-                                                    data.optDouble("fee"),
+                                                    fee,
                                                         data.optBoolean("bearerSender")));
                                         }
 

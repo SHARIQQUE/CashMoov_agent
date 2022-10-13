@@ -957,7 +957,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         etStatus.setText(status);
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(transDate);
             String formattedDate = outputFormat.format(date);

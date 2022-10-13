@@ -255,7 +255,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
         final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setDescription(getString(R.string.use_finger_to_login)).setNegativeButtonText(getString(R.string.cancel)).build();
+                .setDescription(getString(R.string.use_finger_to_login)).setNegativeButtonText(getString(R.string.cancel)).setConfirmationRequired(false).build();
         tv_fingurePrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

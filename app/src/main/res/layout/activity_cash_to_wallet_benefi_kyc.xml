@@ -203,7 +203,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="@string/conversion_rate"
+                        android:text="@string/conversion_rate_colon"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_13sdp"
                         android:fontFamily="@font/aileron_bold"/>

@@ -49,7 +49,7 @@ public class OverDraftAdapterRecycle extends RecyclerView.Adapter<OverDraftAdapt
         }
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(arrayList_modalUserData.get(i).getCreationDate());
             String formattedDate = outputFormat.format(date);

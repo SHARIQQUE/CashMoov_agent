@@ -211,7 +211,9 @@ public class PaymentDetails extends AppCompatActivity implements View.OnClickLis
                                     }
 
                                     if(jsonObjectAmountDetails.has("receiverTax")) {
-                                        taxConfigurationList=null;
+
+                                            taxConfigurationList = null;
+
                                     }
 
 

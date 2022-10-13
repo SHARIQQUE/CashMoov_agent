@@ -2460,7 +2460,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             try {
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                 Date date = null;
                 date = inputFormat.parse(strArray[11]);
                 String formattedDate = outputFormat.format(date);

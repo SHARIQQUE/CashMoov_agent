@@ -92,7 +92,7 @@ public class TransactionListAdapterNew extends RecyclerView.Adapter<TransactionL
                 holder.transReversed.setText(String.valueOf(transaction.isTransactionReversed()));
                 holder.status.setText(transaction.getResultDescription());
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                 Date date = null;
                 date = inputFormat.parse(transaction.getCreationDate());
                 String formattedDate = outputFormat.format(date);
@@ -138,7 +138,7 @@ public class TransactionListAdapterNew extends RecyclerView.Adapter<TransactionL
                     holder.transReversed.setText(String.valueOf(transaction.isTransactionReversed()));
                 holder.status.setText(transaction.getResultDescription());
                 SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
                 Date date = null;
                 date = inputFormat.parse(transaction.getCreationDate());
                 String formattedDate = outputFormat.format(date);

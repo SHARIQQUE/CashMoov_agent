@@ -840,7 +840,7 @@ public class MyApplication extends Application {
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
         final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
+                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).setConfirmationRequired(false).build();
 
         biometricPrompt.authenticate(promptInfo);
 
@@ -914,7 +914,7 @@ public class MyApplication extends Application {
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
         final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).build();
+                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).setConfirmationRequired(false).build();
 
         biometricPrompt.authenticate(promptInfo);
 
@@ -974,17 +974,17 @@ public class MyApplication extends Application {
         if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
         ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
                 MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
-            return test;
+            return test+" :";
         }else {
             if (test.equalsIgnoreCase("VAT")) {
-                return "T.V.A";
+                return "T.V.A :";
             }
             if (test.equalsIgnoreCase("Financial Tax")) {
-                return "Taxe financière";
+                return "Taxe financière :";
             }
         }
 
-        return test;
+        return test+" :";
     }
 
 }

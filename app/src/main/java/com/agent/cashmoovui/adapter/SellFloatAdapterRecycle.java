@@ -66,7 +66,7 @@ public class SellFloatAdapterRecycle extends RecyclerView.Adapter<SellFloatAdapt
 
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(arrayList_modalUserData.get(i).getSellFloat_creationDate());
             String formattedDate = outputFormat.format(date);

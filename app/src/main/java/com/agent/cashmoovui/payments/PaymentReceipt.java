@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 
 public class PaymentReceipt extends AppCompatActivity implements View.OnClickListener {
     public static PaymentReceipt paymentreceiptC;
-    Button btnShareReceipt;
+    Button btnShareReceipt,btnCloseReceipt;
     TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
@@ -113,6 +113,7 @@ public class PaymentReceipt extends AppCompatActivity implements View.OnClickLis
     private void getIds() {
         transId = findViewById(R.id.transId);
         btnShareReceipt = findViewById(R.id.btnShareReceipt);
+        btnCloseReceipt = findViewById(R.id.btnCloseReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
         tvMobile = findViewById(R.id.tvMobile);
@@ -135,8 +136,10 @@ public class PaymentReceipt extends AppCompatActivity implements View.OnClickLis
         transId.setText(getString(R.string.vendor_trans_id_colom));
         tvMobile.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 
-        tvOperatorName.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("operator"));
-        tvTransId.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
+        tvOperatorName.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("serviceName"));
+        tvTransId.setText(PaymentConfirm.receiptJson.optString("transactionId"));
+        TextView tvTransIdn=findViewById(R.id.tvTransIdn);
+        tvTransIdn.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("vendorTransId"));
         tvFee.setText(Payments.currencySymbol+" "
                 + MyApplication.addDecimal(String.valueOf(PaymentConfirm.receiptJson.optJSONObject("recharge").optInt("fee"))));
 
@@ -174,12 +177,17 @@ public class PaymentReceipt extends AppCompatActivity implements View.OnClickLis
 
     private void setOnCLickListener() {
         btnShareReceipt.setOnClickListener(paymentreceiptC);
-
+        btnCloseReceipt.setOnClickListener(paymentreceiptC);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.btnCloseReceipt:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
             case R.id.btnShareReceipt:
                 btnShareReceipt.setVisibility(View.GONE);
                 Bitmap bitmap=getScreenShot(rootView);

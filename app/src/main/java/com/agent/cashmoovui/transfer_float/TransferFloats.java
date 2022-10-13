@@ -71,6 +71,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String countryCurrencyCode_from_currency="";
     String mobileNoStr="";
     public static EditText etName;
+    TextView tax_lab;
 
 
     String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="",countryCode_agent="";
@@ -1065,21 +1066,26 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         fees_amount = exchangeRate.getString("fee");
 
-
+                        tax_lab=findViewById(R.id.tax_lab);
                         if(!exchangeRate.has("receiverTax")) {
                             if (exchangeRate.has("taxConfigurationList")) {
                                 JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                     tax_financial = jsonObject2.getString("value");
+                                    tax_lab.setText(MyApplication.getTaxString(jsonObject2.getString("taxTypeName")));
                                 }
                             } else {
+                                tax_lab.setText(MyApplication.getTaxString("TAX :"));
                                 tax_financial = exchangeRate.getString("value");
                             }
                         }else{
+                            tax_lab.setText(MyApplication.getTaxString("TAX :"));
                             tax_financial = exchangeRate.getString("value");
                         }
 
+                        TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
+                        receiptPage_tv_financialtaxl.setText(tax_lab.getText().toString());
 
                         rp_tv_convertionrate.setText(currencySymbol_receiver+" " +MyApplication.addDecimalthreenew("0.00"));
                         rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
@@ -1472,6 +1478,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             receiptPage_tv_stransactionType.setText(getString(R.string.transfer_float));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
                             receiptPage_tv_fee.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
+
                             receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(tax_financial));
                             receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(totalAmount_str));
 

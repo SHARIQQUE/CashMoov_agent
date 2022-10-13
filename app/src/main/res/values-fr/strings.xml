@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de cash moov app</string>
-    <string name="version">Version : 1.0</string>
+    <string name="version">Version : 11-10-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -600,6 +600,7 @@
     <string name="main_Wallet">Portefeuille principal / Montant de réserve</string>
 
     <string name="main_Wallet_single">Portefeuille principal :</string>
+    <string name="main_Wallet_singlen">Portefeuille principal</string>
     <string name="reserve_Wallet">Montant de réserve :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">Etat</string>
@@ -610,7 +611,7 @@
     <string name="select_operator">Sélectionnez l opérateur</string>
 
     <string name="Operator_reviewPage">operateur :</string>
-    <string name="Operator_receiptpage">opérateur</string>
+    <string name="Operator_receiptpage">opérateur :</string>
 
     <string name="val_fname_len">Le prénom doit comporter au moins 3 caractères</string>
     <string name="val_lname_len">Le nom de famille doit comporter au moins 3 caractères</string>
@@ -693,10 +694,10 @@
     <string name="cash_to_wallet_colon">Cash a compte</string>
     <string name="sell_float_colon">Vendre le flotteur :</string>
     <string name="transfer_float_colon">Flotteur de transfert :</string>
-    <string name="transaction_amount_receiptPage">Montant de la transaction</string>
+    <string name="transaction_amount_receiptPage">Montant de la transaction :</string>
 
     <string name="vendor_transaction_id_receipt">Identifiant de transaction : </string>
-
+    <string name="vendor_transaction_id_receiptn">Identifiant de transaction du fournisseur :</string>
     <string name="receiverName_receiptPage_without_coln">Nom du destinataire</string>
     <string name="final_amount">montant final</string>
     <string name="status">Statut</string>
@@ -833,6 +834,7 @@
     <string name="commission_transfer_success">Transfert de commission réussi vers le portefeuille principal</string>
     <string name="available_balnce">Solde disponible dans le portefeuille de commissions (</string>
     <string name="sell_float_added">\"Vendre le flotteur ajouté avec succès et envoyé pour approbation \"</string>
+    <string name="commisssion_bal_insufficient">vous avez entré le montant ci-dessous a partir du compte commission</string>
 
 </resources>
 

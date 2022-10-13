@@ -16,6 +16,7 @@
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -419,14 +420,16 @@
 
             </LinearLayout>
             <LinearLayout
+                android:weightSum="1"
                 android:gravity="left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
                 <ImageView
+
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -435,7 +438,8 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_weight=".45"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/transactionAmount_reveiewPage"
                     android:textColor="#000"
@@ -445,8 +449,9 @@
                     />
 
                 <TextView
+                    android:layout_weight=".5"
                     android:id="@+id/rp_tv_transactionAmount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
@@ -486,6 +491,45 @@
 
                 <TextView
                     android:id="@+id/rp_tv_fees_reveiewPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_tv_excise_tax_l"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tax"
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/rp_tv_excise_tax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
@@ -588,6 +632,7 @@
 
                 <TextView
 
+
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -601,7 +646,7 @@
 
                 <TextView
 
-                    android:id="@+id/rp_tv_excise_tax"
+
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -851,6 +896,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -889,7 +935,44 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vendor_transaction_id_receipt"
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
+
+            <TextView
+                android:id="@+id/vendorTransId_tv_receiptPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
+
+
+        </LinearLayout>
 
 
 
@@ -973,8 +1056,11 @@
         </LinearLayout>
 
 
+
+
         <LinearLayout
             android:gravity="left"
+            android:weightSum="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -982,6 +1068,7 @@
             android:layout_marginTop="@dimen/_10sdp">
 
             <ImageView
+
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -990,9 +1077,10 @@
                 />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_weight=".6"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/vendor_transaction_id_receipt"
+                android:text="@string/vendor_transaction_id_receiptn"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
@@ -1000,9 +1088,10 @@
                 />
 
             <TextView
-                android:id="@+id/vendorTransId_tv_receiptPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight=".35"
+                android:id="@+id/vendorTransId_tv_receiptPagen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/_13sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -1137,7 +1226,121 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
 
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fee_receiptPage"
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
+
+            <TextView
+                android:id="@+id/receiptPage_tv_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                />
+
+            <TextView
+                android:id="@+id/receiptPage_tv_financialtaxl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tax"
+                android:textColor="#000"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_13sdp"
+                />
+
+            <TextView
+                android:id="@+id/receiptPage_tv_financialtax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_13sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#000"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+
+            android:layout_weight="2">
+
+
+            <TextView
+
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:text="@string/financialTax_receiptPage"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <TextView
+
+
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:textColor="@color/blue_colour_review"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:gravity="left"
@@ -1179,81 +1382,10 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/_10sdp">
-
-            <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fee_receiptPage"
-                android:textColor="#000"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:textSize="@dimen/_13sdp"
-                />
-
-            <TextView
-                android:id="@+id/receiptPage_tv_fee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_13sdp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:textColor="#000"
-                />
 
 
-        </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-
-            android:layout_weight="2">
-
-
-            <TextView
-
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:text="@string/financialTax_receiptPage"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
-
-            <TextView
-
-                android:id="@+id/receiptPage_tv_financialtax"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="left"
-                android:textColor="@color/blue_colour_review"
-                android:textSize="16dp" />
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

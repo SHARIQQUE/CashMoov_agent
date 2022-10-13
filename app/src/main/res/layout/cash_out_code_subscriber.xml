@@ -1434,7 +1434,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/conversion_rate"
+                android:text="@string/conversion_rate_colon"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"

@@ -99,7 +99,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     View rootView;
 
     EditText etPin;
-    TextView tvAmtCurr,tvContinue,receiptPage_tv_mobileNumber,operator_tv_receipt,vendorTransId_tv_receiptPage,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_operator,rp_tv_totalAmount
+    TextView tvAmtCurr,tvContinue,receiptPage_tv_mobileNumber,operator_tv_receipt,vendorTransId_tv_receiptPagen,vendorTransId_tv_receiptPage,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_operator,rp_tv_totalAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
@@ -347,6 +347,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         //    receiptPage_tv_sender_emailId  = (TextView) findViewById(R.id.receiptPage_tv_sender_emailId);
            receiptPage_tv_mobileNumber  = (TextView) findViewById(R.id.receiptPage_tv_mobileNumber);
             vendorTransId_tv_receiptPage  = (TextView) findViewById(R.id.vendorTransId_tv_receiptPage);
+            vendorTransId_tv_receiptPagen= (TextView) findViewById(R.id.vendorTransId_tv_receiptPagen);
             receiptPage_tv_sender_country  = (TextView) findViewById(R.id.receiptPage_tv_sender_country);
             operator_tv_receipt  = (TextView) findViewById(R.id.operator_tv_receipt);
 
@@ -1106,21 +1107,27 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         fees_amount = exchangeRate.getString("fee");
 
 
+                        TextView rp_tv_excise_tax_l=findViewById(R.id.rp_tv_excise_tax_l);
                         if(!exchangeRate.has("receiverTax")) {
                             if (exchangeRate.has("taxConfigurationList")) {
                                 JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                     tax_financial = jsonObject2.getString("value");
+                                            rp_tv_excise_tax_l.setText(MyApplication.getTaxString(jsonObject2.getString("taxTypeName")));
                                 }
                             } else {
+                                rp_tv_excise_tax_l.setText(MyApplication.getTaxString("TAX"));
                                 tax_financial = exchangeRate.getString("value");
                             }
                         }
 
                         rp_tv_convertionrate.setText(currencySymbol_sender+" " +"0.0");
                         rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount));
-                        rp_tv_excise_tax.setText(currencySymbol_sender+" " +tax_financial);
+                        rp_tv_excise_tax.setText(currencySymbol_sender+" " +MyApplication.addDecimal(tax_financial));
+                       TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
+                        receiptPage_tv_financialtaxl.setText(rp_tv_excise_tax_l.getText().toString());
+                        receiptPage_tv_financialtax.setText(MyApplication.addDecimal(tax_financial));
                         rp_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
@@ -1131,7 +1138,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         totalAmount_str = String.valueOf(totalAmount_double);
                         rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" " +MyApplication.addDecimal(totalAmount_str));
 
-
+                        rp_tv_totalAmount.setText(currencySymbol_sender+" " + MyApplication.addDecimal(totalAmount_str));
 
 
                         ll_page_1.setVisibility(View.GONE);
@@ -1345,7 +1352,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         rp_tv_businessType.setText(businessTypeName_walletOwnerCategoryCode);
 
                         rp_tv_operator.setText(operatorName_from_operatorList);
-                        rp_tv_totalAmount.setText(currencySymbol_sender+" " + MyApplication.addDecimal(amountstr));
+
 
 
                         api_exchange_rate();
@@ -1488,10 +1495,11 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             receiptPage_tv_stransactionType.setText(getString(R.string.airtime_purchase));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
                             receiptPage_tv_fee.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount));
-                            receiptPage_tv_financialtax.setText(MyApplication.addDecimal(tax_financial));
+
+
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime")));
-                            receiptPage_tv_amount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_amount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(totalAmount_str));
 
 
                           //  receiptPage_tv_sender_name.setText(agentName_from_walletOwner);
@@ -1506,6 +1514,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             receiptPage_tv_mobileNumber.setText(mobileNoStr);
 
                            vendorTransId_tv_receiptPage.setText(jsonObject.getString("transactionId"));
+                            vendorTransId_tv_receiptPagen.setText(jsonObject.optJSONObject("recharge").getString("vendorTransId"));
                             operator_tv_receipt.setText(operatorName_from_operatorList);
 
 

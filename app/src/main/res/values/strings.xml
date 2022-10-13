@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 1.0</string>
+    <string name="version">Version : 11-10-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -604,6 +604,7 @@
     <string name="main_Wallet">Main Wallet / Reserve Amount </string>
 
     <string name="main_Wallet_single">Main Wallet :</string>
+    <string name="main_Wallet_singlen">Main Wallet</string>
     <string name="reserve_Wallet">Reserve Amount :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
     <string name="state">State</string>
@@ -611,7 +612,7 @@
     <string name="select_operator">Select Operator </string>
     <string name="select_operator_star">Select Operator*</string>
     <string name="Operator_reviewPage">Operator:</string>
-    <string name="Operator_receiptpage">Operator</string>
+    <string name="Operator_receiptpage">Operator:</string>
 
 
 
@@ -693,9 +694,9 @@
     <string name="sell_float_colon">Sell Float:</string>
     <string name="transfer_float_colon">Transfer Float:</string>
     <string name="transaction_amount_receiptPage">Transaction Amount</string>
-    <string name="vendor_transaction_id_receipt">Transaction id</string>
+    <string name="vendor_transaction_id_receipt">Transaction id:</string>
     <string name="receiver_msisdn"> Receiver MSISDN</string>
-
+    <string name="vendor_transaction_id_receiptn">Vendor Transaction id:</string>
     <string name="receiverName_receiptPage_without_coln">Receiver name</string>
     <string name="final_amount">Final Amount </string>
     <string name="status">Status </string>
@@ -832,5 +833,6 @@
     <string name="commission_transfer_success">Commission transfer successfully to main wallet</string>
     <string name="available_balnce">Available balance in Commision Wallet (</string>
     <string name="sell_float_added">\"Sell Float Added successfully and sent for approval \"</string>
+    <string name="commisssion_bal_insufficient">Insufficient Balance in Commission Wallet</string>
 </resources>
 

@@ -136,7 +136,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
     TextView main_wallet;
-
+    private String comiisionValueCheck;
 
 
     @Override
@@ -389,7 +389,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
               //  MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
 
-                callApiFromCurrency(MyApplication.getSaveString("userCountryCode",CommissionTransfer.this));
+
 
 
             } else {
@@ -446,7 +446,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
     private void api_wallet_walletOwner() {
 
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", CommissionTransfer.this);
+        String usercode_from_msis =  MyApplication.getSaveString("walletOwnerCode", CommissionTransfer.this);
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/wallet/walletOwner/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
 
@@ -782,6 +782,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
         }
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>Double.parseDouble(comiisionValueCheck)) {
+            MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.commisssion_bal_insufficient));
+            return false;
+
+
+        }
 
         else if(mpinStr.trim().isEmpty()) {
 
@@ -863,7 +869,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                         rp_tv_transactionAmount.setText(amountstr);
 
                         rp_tv_email.setText(email_walletOwnerCategoryCode = walletOwnerUser.getString("email"));
-
+                        callApiFromCurrency(MyApplication.getSaveString("userCountryCode",CommissionTransfer.this));
 
                     } else {
                         Toast.makeText(CommissionTransfer.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -901,7 +907,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
             jsonObject.put("transactionType","113093"); // Hard code
-            jsonObject.put("srcWalletOwnerCode",MyApplication.getSaveString("USERCODE", CommissionTransfer.this));
+            jsonObject.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode", CommissionTransfer.this));
             jsonObject.put("srcCurrencyCode",select_currencyCode);
             jsonObject.put("value",amountstr);
             jsonObject.put("channelTypeCode","100000");
@@ -921,7 +927,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             }
 
-            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/commissionTransfer/", jsonObjectA, languageToUse, new Api_Responce_Handler() {
+            API.POST_TRANSFERDETAILS("ewallet/api/v1/walletTransfer/commissionTransfer", jsonObjectA, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -1269,6 +1275,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     main_wallet.setText(getString(R.string.main_Wallet_single)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+main));
                     mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
                     tvAmtCurr.setText(select_currencySymbol);
+                    comiisionValueCheck=MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue;
                      available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
 
 

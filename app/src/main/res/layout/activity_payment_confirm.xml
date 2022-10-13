@@ -273,6 +273,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:weightSum="1"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -287,8 +288,8 @@
                     />
 
                 <TextView
-
-                    android:layout_width="wrap_content"
+android:layout_weight=".5"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/trans_amount_colon"
                     android:layout_gravity="center_vertical"
@@ -298,8 +299,9 @@
                     />
 
                 <TextView
+                    android:layout_weight=".45"
                     android:id="@+id/tvTransAmount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="00.00"
                     android:layout_gravity="center_vertical"

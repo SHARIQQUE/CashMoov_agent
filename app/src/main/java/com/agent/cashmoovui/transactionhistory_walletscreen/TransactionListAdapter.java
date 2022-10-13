@@ -64,7 +64,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         holder.status.setText(transaction.getResultDescription());
         try {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date date = null;
             date = inputFormat.parse(transaction.getCreationDate());
             String formattedDate = outputFormat.format(date);
