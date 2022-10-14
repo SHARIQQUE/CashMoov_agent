@@ -121,6 +121,7 @@ public class MyApplication extends Application {
     public static int RecRemittanceMaxValue;
     public static int CashToWalletMinValue;
     public static int CashToWalletMaxValue;
+    public static String userCodeTransaction;
 
 
     static {

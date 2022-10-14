@@ -105,13 +105,13 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 //                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
 //                        return;
 //                    }
-//                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 //                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
 //                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute())+" "+miniStatementTrans.getFromCurrencySymbol());
 //                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
 //                        return;
 //                    }
-//                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 //                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
 //                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute())+" "+miniStatementTrans.getToCurrencySymbol());
 //                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
@@ -130,13 +130,13 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 //                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
 //                        return;
 //                    }
-//                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 //                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
 //                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForAgent())+" "+miniStatementTrans.getFromCurrencySymbol());
 //                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
 //                        return;
 //                    }
-//                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 //                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
 //                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForAgent())+" "+miniStatementTrans.getToCurrencySymbol());
 //                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
@@ -155,13 +155,13 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 //                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
 //                        return;
 //                    }
-//                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//                    if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 //                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
 //                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForBranch())+" "+miniStatementTrans.getFromCurrencySymbol());
 //                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
 //                        return;
 //                    }
-//                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+//                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 //                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
 //                        holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForBranch())+" "+miniStatementTrans.getToCurrencySymbol());
 //                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
@@ -213,14 +213,14 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         }
 
         if(walletTypeCode.equalsIgnoreCase("100008")){
-            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
                 holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
                 //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
                 holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
                 holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
                 MyApplication.Amount=	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount());
             }
-            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
                 holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
                 if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
                     holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
@@ -278,10 +278,10 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 }
 
                 if(walletTypeCode.equalsIgnoreCase("100008")){
-                    if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                    if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
                         call(miniStatementTransList.get(pos).getFromAmount(),pos);
                     }
-                    if(miniStatementTransList.get(pos).getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                    if(miniStatementTransList.get(pos).getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 
                         if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("106445")) {
                             call(miniStatementTransList.get(pos).getFromAmount(),pos);
@@ -298,7 +298,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 }
 
 
-                   /* if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                   /* if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),
                                 miniStatementTrans.getFromWalletOwnerMsisdn(),
@@ -308,7 +308,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                                 miniStatementTrans.getToWalletOwnerMsisdn(),miniStatementTrans.getTransactionAmount());
                         return;
                     }
-                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))){
+                    if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
                         miniStatemetListners.onMiniStatementListItemClick(miniStatementTrans.getTransactionTypeName(),
                                 miniStatementTrans.getFromWalletOwnerName(),miniStatementTrans.getToWalletOwnerName(),
                                 miniStatementTrans.getFromWalletOwnerMsisdn(),miniStatementTrans.getToCurrencySymbol(),
@@ -350,7 +350,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
 
 
-            if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.getSaveString("walletOwnerCode",context))) {
+            if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
                 miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
                         miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
                         miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),

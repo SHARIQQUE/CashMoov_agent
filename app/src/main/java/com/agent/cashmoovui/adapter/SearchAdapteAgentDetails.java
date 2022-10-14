@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.UserDetailAgent;
 import com.agent.cashmoovui.transactionhistory_walletscreen.CallBackRecycleViewClick;
@@ -57,6 +58,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
         viewHolder.click_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MyApplication.userCodeTransaction=arrayList_modalUserData.get(i).getWalletOwnerCode();
                 callBackRecycleViewClick.callBackReycleView(arrayList_modalUserData.get(i).getWalletOwnerCode(),
                         arrayList_modalUserData.get(i).getRegisterCountryCode());
 

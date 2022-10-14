@@ -345,7 +345,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         MyApplication.hideKeyboard(this);
         if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
             insitute_textview.setClickable(false);
+            insitute_branch.setVisibility(View.GONE);
             insitute_textview.setVisibility(View.GONE);
+            MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
             MyApplication.AgentPage=false;
             MyApplication.BranchPage=false;
             MyApplication.InstPage=true;
@@ -354,6 +356,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             agent_textview.setClickable(false);
             insitute_textview.setVisibility(View.GONE);
             agent_textview.setVisibility(View.GONE);
+            MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
             MyApplication.AgentPage=true;
             MyApplication.BranchPage=false;
             MyApplication.InstPage=false;
@@ -362,6 +365,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.BranchCode)){
             insitute_branch.setClickable(false);
             insitute_textview.setVisibility(View.GONE);
+            MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
             agent_textview.setVisibility(View.GONE);
             insitute_branch.setVisibility(View.GONE);
             MyApplication.AgentPage=false;

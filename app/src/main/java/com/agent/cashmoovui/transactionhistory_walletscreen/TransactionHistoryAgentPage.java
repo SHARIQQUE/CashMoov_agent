@@ -977,12 +977,13 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     }
 
 
+
     @Override
     public void onMiniStatementListItemClick(String transactionTypeName, String fromWalletOwnerName,
                                              String toWalletOwnerName, String fromWalletOwnerMsisdn,
                                              String currencySymbol, double fromAmount, String transactionId,
                                              String creationDate, String status,
-                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,double fee,String tax,double srcpostbalacne) {
+                                             double commissionAmount,String toWalletOwnerMsisdn,double transactionAmount,double fee,String tax,double srcpostbalance) {
 //        String name="";
 //        if(fromWalletOwnerName.isEmpty()||fromWalletOwnerName==null){
 //            name = walletOwnerMsisdn;
@@ -997,17 +998,22 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
+        intent.putExtra("FROMAMOUNT",currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
         intent.putExtra("COMMISSIONAMOUNT",commissionAmount);
-        intent.putExtra("WALLETTYPECODE",wallettypecodee);
+        intent.putExtra("WALLETTYPECODE",wallettypeCode);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("taxvalue",tax);
+        intent.putExtra("fee",fee);
+        intent.putExtra("srcpostbalance",srcpostbalance);
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }
+
 
 
 }
