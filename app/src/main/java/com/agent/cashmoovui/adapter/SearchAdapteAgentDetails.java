@@ -1,6 +1,7 @@
 package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.UserDetailAgent;
 import com.agent.cashmoovui.transactionhistory_walletscreen.CallBackRecycleViewClick;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryBranch;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionListLisnersAgent;
 
 import java.util.ArrayList;
@@ -52,9 +55,22 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
         viewHolder.email_textview.setText(arrayList_modalUserData.get(i).getEmail());
         viewHolder.countryName_textview.setText(arrayList_modalUserData.get(i).getIssuingCountryName());
 
-        viewHolder.click_row_layout.setId(i);
+        //viewHolder.click_row_layout.setId(i);
 
 
+        viewHolder.viewbranch_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, TransactionHistoryBranch.class);
+                MyApplication.saveString("walletownercode",arrayList_modalUserData.get(i).getWalletOwnerCode(),context);
+                context.startActivity(intent);
+
+
+            }
+        });
+
+
+/*
         viewHolder.click_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +80,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
 
             }
         });
+*/
 
 
 //        viewHolder.viewAgent.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +128,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView agentName_textview, agent_mobileNumber,email_textview,countryName_textview;
+        public TextView agentName_textview, agent_mobileNumber,email_textview,countryName_textview,viewbranch_textview;
         LinearLayout click_row_layout;
 
         public ViewHolder(View itemView) {
@@ -122,7 +139,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
             email_textview = (TextView) itemView.findViewById(R.id.email_textview);
             countryName_textview = (TextView) itemView.findViewById(R.id.countryName_textview);
             click_row_layout = (LinearLayout) itemView.findViewById(R.id.click_row_layout);
-
+            viewbranch_textview=(TextView)itemView.findViewById(R.id.viewbranch_textview);
 
         }
     }

@@ -1272,11 +1272,11 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).allocatedValue);
                    /* mainbalance_textview.setText(MyApplication.addDecimal(""+main)+" / "+
                             MyApplication.addDecimal(""+allocate));*/
-                    main_wallet.setText(getString(R.string.main_Wallet_single)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+main));
-                    mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
+                    main_wallet.setText(getString(R.string.commision_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue));
+                   // mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
                     tvAmtCurr.setText(select_currencySymbol);
                     comiisionValueCheck=MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue;
-                     available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
+                    // available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
 
 
 

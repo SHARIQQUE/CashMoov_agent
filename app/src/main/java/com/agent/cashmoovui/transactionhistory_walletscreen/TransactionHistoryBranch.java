@@ -194,7 +194,12 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
         // http://202.131.144.130:8081/ewallet/api/v1/transaction/all?srcWalletOwnerCode=1000002692&resultCode=0&offset=0&limit=5000
 
 
-        String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryBranch.this);
+
+
+
+        String usercode_from_msis =  MyApplication.getSaveString("walletownercode", TransactionHistoryBranch.this);
+
+         // String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryBranch.this);
 
         API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
 

@@ -604,6 +604,8 @@
     <string name="main_Wallet">Main Wallet / Reserve Amount </string>
 
     <string name="main_Wallet_single">Main Wallet :</string>
+    <string name="commision_Wallet">Commision Wallet :</string>
+
     <string name="main_Wallet_singlen">Main Wallet</string>
     <string name="reserve_Wallet">Reserve Amount :</string>
     <string name="cashmoov_id">Cashmoov ID</string>
@@ -660,6 +662,8 @@
     <string name="institue">Institute</string>
     <string name="branch_history">Branch</string>
     <string name="agent_history">Agent</string>
+    <string name="view_branch">View Branch</string>
+
     <string name="commision_wallet">Commision wallet</string>
     <string name="overdraft_wallet">Over draft</string>
 

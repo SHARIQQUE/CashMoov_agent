@@ -598,6 +598,7 @@
     <string name="commision_Transfer">Transfert de commission</string>
     <string name="currency_Name">nom de la devise</string>
     <string name="main_Wallet">Portefeuille principal / Montant de réserve</string>
+    <string name="commision_Wallet">Portefeuille de commissions:</string>
 
     <string name="main_Wallet_single">Portefeuille principal :</string>
     <string name="main_Wallet_singlen">Portefeuille principal</string>
@@ -660,6 +661,7 @@
     <string name="institue">Institute</string>
     <string name="branch_history">Agence</string>
     <string name="agent_history">agent</string>
+    <string name="view_branch">Voir la succursale</string>
 
     <string name="commision_wallet">compte commission</string>
     <string name="overdraft_wallet">Découvert</string>

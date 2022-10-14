@@ -47,7 +47,7 @@ public class SearchAdapteBranchDetails extends RecyclerView.Adapter<SearchAdapte
         viewHolder.agentName_textview.setText(arrayList_modalUserData.get(i).getOwnerName());
         viewHolder.agent_mobileNumber.setText(arrayList_modalUserData.get(i).getMobileNumber());
         viewHolder.email_textview.setText(arrayList_modalUserData.get(i).getEmail());
-        viewHolder.countryName_textview.setText(arrayList_modalUserData.get(i).getEmail());
+        viewHolder.countryName_textview.setText(arrayList_modalUserData.get(i).getIssuingCountryName());
 
 
         viewHolder.linBranch.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +109,7 @@ public class SearchAdapteBranchDetails extends RecyclerView.Adapter<SearchAdapte
         public ViewHolder(View itemView) {
             super(itemView);
 
-            linBranch = itemView.findViewById(R.id.linBranch);
+            linBranch = itemView.findViewById(R.id.click_row_layout);
             agentName_textview = (TextView) itemView.findViewById(R.id.agentName_textview);
             agent_mobileNumber = (TextView) itemView.findViewById(R.id.agent_mobileNumber);
             email_textview = (TextView) itemView.findViewById(R.id.email_textview);

@@ -377,6 +377,20 @@
 
     </LinearLayout>
     <TextView
+        android:id="@+id/viewbranch_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_jaune"
+        android:gravity="center_horizontal"
+        android:paddingTop="13dp"
+        android:layout_gravity="center"
+        android:paddingBottom="13dp"
+        android:text="@string/view_branch"
+        android:textColor="@color/bleu_cashmoov"
+        android:textSize="@dimen/_13sdp"
+        android:fontFamily="@font/aileron_bold"/>
+
+    <TextView
         android:visibility="gone"
         android:id="@+id/tv_continue"
         android:layout_width="match_parent"
