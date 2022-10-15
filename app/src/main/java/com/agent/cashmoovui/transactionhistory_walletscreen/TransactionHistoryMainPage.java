@@ -343,15 +343,15 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     protected void onStart() {
         super.onStart();
         MyApplication.hideKeyboard(this);
-        if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
-            insitute_textview.setClickable(false);
-            insitute_branch.setVisibility(View.GONE);
-            insitute_textview.setVisibility(View.GONE);
-            MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
-            MyApplication.AgentPage=false;
-            MyApplication.BranchPage=false;
-            MyApplication.InstPage=true;
-        }
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
+                insitute_textview.setClickable(false);
+                insitute_branch.setVisibility(View.GONE);
+                insitute_textview.setVisibility(View.GONE);
+                MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
+                MyApplication.AgentPage=false;
+                MyApplication.BranchPage=false;
+                MyApplication.InstPage=true;
+            }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.AgentCode)){
             agent_textview.setClickable(false);
             insitute_textview.setVisibility(View.GONE);

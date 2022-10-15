@@ -146,9 +146,14 @@
     <string name="name">Nom</string>
     <string name="fname">Prenoms</string>
     <string name="email">Email</string>
+    <string name="email_star">E-mail*</string>
+
     <string name="city">Ville</string>
+    <string name="city_star">Ville *</string>
+
     <string name="address">Addresse</string>
 
+    <string name="address_star">Adresse 1*</string>
 
     <string name="username">
         <font fgcolor="#000000">Samuel</font><font fgcolor="#4f62c0"> </font><font fgcolor="#4f62c0">Flatcher</font>
@@ -225,6 +230,8 @@
     <string name="details_du_receveur">details du destinataire</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
     <string name="amount">montant</string>
+    <string name="business">Nom de l\'entreprise</string>
+
     <string name="non_subscribed_money_transfer">Transfert d\'argent non abonné</string>
     <string name="recipient_details">Details du destinataire</string>
     <string name="valid_fname">Prenom*</string>
@@ -306,6 +313,8 @@
     <string name="upload">Telecharger</string>
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
+    <string name="country_star">Pays *</string>
+
     <string name="id_proof_type">Type de piece d\'identité</string>
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
@@ -436,6 +445,7 @@
     <string name="mobileNo_reveiewPage">Numéro de portable:</string>
     <string name="country_reviewPage">Pays:</string>
     <string name="amount_to_paid_review_page">Montant à payer:</string>
+    <string name="Address_Type_star">Type d\'adresse *</string>
 
     <string name="agent_code_reviewpage">Code Agent</string>
     <string name="sender_reviewpage">Expéditrice:</string>
@@ -496,6 +506,9 @@
     <string name="plz_enter_confirmation_code">Veuillez saisir le code de confirmation</string>
     <string name="login_user_pin">Code d utilisateur de connexion</string>
     <string name="sender_details">Details de l\'expediteur</string>
+    <string name="merchant_details">Détails du marchand</string>
+    <string name="outlet_details">Détails de la sortie</string>
+
     <string name="receiver_details_cashout">Détails du destinataire</string>
     <string name="transaction_no">N de transaction</string>
     <string name="sender_mssidn">Expéditeur MSISDN</string>
@@ -531,6 +544,7 @@
     <string name="remitance_local">Versement local</string>
     <string name="genderSelect_fixed">Veuillez sélectionner le sexe</string>
     <string name="receive_country">Pays d\'accueil*</string>
+    <string name="operatingCountry">Pays d\'exploitation*</string>
 
 
     <string name="plz_select_receive_country">Pays d\'accueil</string>
@@ -573,6 +587,7 @@
     <string name="transfer_commission">Commission Transfert</string>
     <string name="overdraft_limit">Limite de découvert</string>
     <string name="viewcongigservices">Afficher les services de configuration</string>
+    <string name="receive_money">Recevoir de l\'argent</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
     <string name="one_sur_la_transaction">1% sur la transaction</string>
@@ -656,6 +671,7 @@
     <string name="firstname_star">Prénoms</string>
     <string name="Date_OF_Birth">Date de naissance</string>
     <string name="id_proof_expiryDate">Date d\'expiration de la preuve d\'identité</string>
+    <string name="Date_OF_Birth_star">Date de naissance *</string>
 
 
     <string name="institue">Institute</string>
@@ -760,6 +776,9 @@
     <string name="search_here">Cherche ici...</string>
     <string name="go">Aller</string>
     <string name="first_name_star">Prénom*</string>
+    <string name="merchant_name">Nom du commerçant</string>
+    <string name="outlet_name_star">Nom du point de vente *</string>
+
     <string name="choose_product">Choisissez le produit</string>
     <string name="login_with_otp">se connecter avec un OTP</string>
     <string name="choose_operator">Choisissez l\'opérateur</string>
@@ -770,6 +789,8 @@
     <string name="val_id_proof_expiryDate">Veuillez sélectionner la date d\'expiration de la preuve d\'identité</string>
     <string name="val_select_issuing_country">Veuillez sélectionner le pays émetteur</string>
     <string name="select_region">Choisissez une région</string>
+    <string name="region_name_star"> Nom de la région *</string>
+
     <string name="select_issuing_country">Sélectionnez le pays émetteur</string>
     <string name="agent_code_colon">Code agent :</string>
     <string name="sender_code_colon">Code expéditeur :</string>
@@ -788,6 +809,8 @@
     <string name="choose_the_plan">Choisissez le forfait</string>
     <string name="receive">Recevoir</string>
     <string name="subscriber_number_star">Abonné non*</string>
+    <string name="surname_star">Nom de famille*</string>
+
     <string name="receiver_msisdn_colon">MSISDN Réceveur :</string>
     <string name="beneficiary_msisdn_colon">Bénéficiaire MSISDN :</string>
     <string name="sender_mssidn_colon">MSISDN Expéditeur:</string>

@@ -60,6 +60,11 @@ x
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".receive_money.ReceiveMoney"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
         <activity android:name=".login.LoginMsis"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"

@@ -154,6 +154,9 @@
     <string name="email">Email</string>
     <string name="city">City</string>
     <string name="address">Address</string>
+    <string name="email_star">Email*</string>
+    <string name="address_star">Address Line 1*</string>
+    <string name="city_star">City *</string>
 
 
 
@@ -231,6 +234,7 @@
     <string name="details_du_receveur">Receiver details</string>
     <string name="numero_du_destinataire">Recipient number</string>
     <string name="amount">Amount*</string>
+    <string name="business">Business, Name</string>
 
     <string name="amount_simple">Amount</string>
     <string name="amount_start">Amount*</string>
@@ -317,6 +321,8 @@
     <string name="upload">Upload</string>
     <string name="lname">Last Name</string>
     <string name="country">Country</string>
+    <string name="country_star">Country *</string>
+
     <string name="id_proof_type">Id Proof Type</string>
     <string name="select_gender">Select Gender</string>
     <string name="select_occupation">Select Occupation</string>
@@ -441,6 +447,7 @@
     <string name="country_reviewPage">Country:</string>
     <string name="amount_to_paid_review_page">Amount to be Paid:</string>
     <string name="login_user_pin">Login User Pin</string>
+    <string name="Address_Type_star">Address Type *</string>
 
 
     <string name="agent_code_reviewpage">Agent Code:</string>
@@ -503,6 +510,9 @@
     <string name="confirmation_code_star">Confirmation code*</string>
     <string name="plz_enter_confirmation_code">Please enter confirmation code</string>
     <string name="sender_details">Sender Details</string>
+    <string name="merchant_details">Merchant Details</string>
+    <string name="outlet_details">Outlet Details</string>
+
     <string name="receiver_details_cashout">Receiver Details</string>
     <string name="transaction_no">Transaction No</string>
     <string name="sender_mssidn">Sender MSISDN</string>
@@ -540,6 +550,7 @@
     <string name="remitance_intenational">Remittance International</string>
     <string name="remitance_local">Remittance Local</string>
     <string name="genderSelect_fixed">Please select gender</string>
+    <string name="operatingCountry">Operating Country*</string>
 
     <string name="plz_select_receive_country">Please select Receiving Country</string>
     <string name="plz_select_receive_currency"> Please select receiving currency</string>
@@ -578,6 +589,7 @@
     <string name="transfer_commission">Transfer Commission</string>
     <string name="overdraft_limit">Overdraft Limit</string>
     <string name="viewcongigservices">View Config Services</string>
+    <string name="receive_money">Receive Money</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 90,000.000 for 5 days</string>
     <string name="one_sur_la_transaction">1% on the transa</string>
@@ -658,6 +670,7 @@
     <string name="firstname_star">First name</string>
     <string name="Date_OF_Birth">Date of Birth</string>
     <string name="id_proof_expiryDate">Id Proof expiry date</string>
+    <string name="Date_OF_Birth_star">Date of Birth *</string>
 
     <string name="institue">Institute</string>
     <string name="branch_history">Branch</string>
@@ -766,6 +779,9 @@
     <string name="search_here">Search here...</string>
     <string name="go">Go</string>
     <string name="first_name_star">First Name*</string>
+    <string name="merchant_name">Merchant Name</string>
+    <string name="outlet_name_star">Outlet Name *</string>
+
     <string name="choose_product">Choose the product</string>
     <string name="login_with_otp">Login With Otp</string>
     <string name="choose_operator">Choose the operator</string>
@@ -778,6 +794,8 @@
     <string name="val_id_proof_expiryDate">Please select id proof expiry date</string>
     <string name="val_select_issuing_country">Please select issuing country</string>
     <string name="select_region">Select Region</string>
+    <string name="region_name_star"> Region Name *</string>
+
     <string name="select_issuing_country">Select Issuing Country</string>
     <string name="agent_code_colon">Agent Code :</string>
     <string name="sender_code_colon">Sender Code :</string>
@@ -796,6 +814,8 @@
     <string name="choose_the_plan">Choose the plan</string>
     <string name="receive">Receive</string>
     <string name="subscriber_number_star">Subscriber Number*</string>
+    <string name="surname_star">Surname*</string>
+
     <string name="receiver_msisdn_colon">Receiver MSISDN :</string>
     <string name="beneficiary_msisdn_colon">Beneficiary MSISDN :</string>
     <string name="sender_mssidn_colon">Sender MSISDN :</string>
