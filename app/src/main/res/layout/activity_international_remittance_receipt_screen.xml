@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="@string/trans_ref_no_colon"
+                    android:text="@string/transaction_id_colon"
                     android:textColor="#000"
                     android:textSize="@dimen/_13sdp" />
 

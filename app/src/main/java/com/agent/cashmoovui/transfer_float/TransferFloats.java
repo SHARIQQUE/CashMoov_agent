@@ -1073,7 +1073,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                     tax_financial = jsonObject2.getString("value");
-                                    tax_lab.setText(MyApplication.getTaxString(jsonObject2.getString("taxTypeName")));
+                                    tax_lab.setText(MyApplication.getTaxString(jsonObject2.getString("taxTypeName")+" :"));
                                 }
                             } else {
                                 tax_lab.setText(MyApplication.getTaxString("TAX :"));

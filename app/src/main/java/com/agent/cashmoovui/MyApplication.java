@@ -975,7 +975,8 @@ public class MyApplication extends Application {
         if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
         ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
                 MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
-            return test+" :";
+
+            return test;
         }else {
             if (test.equalsIgnoreCase("VAT")) {
                 return "T.V.A :";

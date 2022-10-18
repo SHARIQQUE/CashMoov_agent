@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 11-10-2022</string>
+    <string name="version">Version : 17-10-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -477,7 +477,7 @@
     <string name="mobileNo_receiptPage">Mobile Number:</string>
     <string name="country_receiptPage">Country:</string>
     <string name="pin_capital">PIN</string>
-    <string name="transaction_receiptNo_receiptPage">Transaction Number:</string>
+    <string name="transaction_receiptNo_receiptPage">Transaction Id:</string>
     <string name="amount_to_paid_receiptpage">Amount to be Paid:</string>
     <string name="amount_to_be_charged_receiptpage">Amount to be charged:</string>
     <string name="upload_success">Profile image uploaded successfully</string>
@@ -504,7 +504,7 @@
     <string name="plz_enter_confirmation_code">Please enter confirmation code</string>
     <string name="sender_details">Sender Details</string>
     <string name="receiver_details_cashout">Receiver Details</string>
-    <string name="transaction_no">Transaction No</string>
+    <string name="transaction_no">Transaction Id</string>
     <string name="sender_mssidn">Sender MSISDN</string>
     <string name="benificairay_mssidn">Beneficiary MSISDN</string>
     <string name="conversion_rate">Conversion Rate</string>

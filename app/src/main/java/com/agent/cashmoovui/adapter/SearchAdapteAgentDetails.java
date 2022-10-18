@@ -70,7 +70,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
         });
 
 
-/*
+
         viewHolder.click_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,7 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
 
             }
         });
-*/
+
 
 
 //        viewHolder.viewAgent.setOnClickListener(new View.OnClickListener() {

@@ -470,10 +470,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_id_proof_expiryDate));
                     return;
                 }
-                /*if (!isFrontUpload) {
+                if (!isFrontUpload) {
                     MyApplication.showErrorToast(this, "please upload front Image");
                     return;
-                }*/
+                }
                 /*if (spinner_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_issuing_country));
                     return;
@@ -1595,13 +1595,13 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
-            calendar.add(Calendar.YEAR, -18);
+            //calendar.add(Calendar.YEAR, -18);
 
             DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
                     AlertDialog.THEME_TRADITIONAL, this, year, month, day);
 
-            datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-
+           // datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            datepickerdialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
             return datepickerdialog;
         }
@@ -1609,7 +1609,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         public void onDateSet(DatePicker view, int year, int month, int day) {
 
             et_sender_idproof_expiry.setText(year + "-" + (month+1) + "-" + day);
-            mDobidproffText.setVisibility(View.VISIBLE);
+           // mDobidproffText.setVisibility(View.VISIBLE);
             // etDob.setText(year + "-" + (month+1) + "-" + day);
 
         }

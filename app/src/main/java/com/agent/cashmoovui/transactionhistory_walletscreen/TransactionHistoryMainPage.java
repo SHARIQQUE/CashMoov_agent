@@ -601,73 +601,75 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                 taxAsJson = data.optString("taxAsJson");
                                             }
 
-                                            Double fee=0.00;
-                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")){
+                                            Double fee = 0.00;
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
                                                 if (data.has("receiverBearer") && !data.optBoolean("receiverBearer")) {
                                                     taxAsJson = "";
                                                 } else {
                                                     taxAsJson = "";
                                                 }
-                                        }
-                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")){
-                                                fee=0.00;
-                                            }else{
-                                                fee=data.optDouble("fee");
+                                            }
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
+                                                fee = 0.00;
+                                            } else {
+                                                fee = data.optDouble("fee");
                                             }
 
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("106443")) {
 
-
+                                            } else {
 
 
                                                 miniStatementTransList.add(new MiniStatementTrans(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("transactionId"),
-                                                    data.optString("fromWalletOwnerCode").trim(),
-                                                    data.optString("toWalletOwnerCode").trim(),
-                                                    name,
-                                                    toName,
-                                                    msisdn,
-                                                    tomssisdn,
-                                                    data.optString("fromWalletCode").trim(),
-                                                    data.optString("fromWalletName").trim(),
-                                                    data.optString("fromCurrencyCode").trim(),
-                                                    data.optString("toCurrencyCode").trim(),
-                                                    data.optString("fromCurrencyName").trim(),
-                                                    data.optString("toCurrencyName").trim(),
-                                                    data.optString("fromCurrencySymbol").trim(),
-                                                    data.optString("toCurrencySymbol").trim(),
-                                                    data.optString("transactionTypeCode").trim(),
-                                                    data.optString("transactionTypeName").trim(),
-                                                    data.optString("creationDate").trim(),
-                                                    data.optString("comReceiveWalletCode").trim(),
-                                                   taxAsJson,
-                                                    data.optString("holdingAccountCode").trim(),
-                                                    data.optString("status").trim(),
-                                                    data.optDouble("fromAmount"),
-                                                    data.optDouble("toAmount"),
-                                                    data.optDouble("comReceiveAmount"),
+                                                        data.optInt("id"),
+                                                        data.optString("code"),
+                                                        data.optString("transactionId"),
+                                                        data.optString("fromWalletOwnerCode").trim(),
+                                                        data.optString("toWalletOwnerCode").trim(),
+                                                        name,
+                                                        toName,
+                                                        msisdn,
+                                                        tomssisdn,
+                                                        data.optString("fromWalletCode").trim(),
+                                                        data.optString("fromWalletName").trim(),
+                                                        data.optString("fromCurrencyCode").trim(),
+                                                        data.optString("toCurrencyCode").trim(),
+                                                        data.optString("fromCurrencyName").trim(),
+                                                        data.optString("toCurrencyName").trim(),
+                                                        data.optString("fromCurrencySymbol").trim(),
+                                                        data.optString("toCurrencySymbol").trim(),
+                                                        data.optString("transactionTypeCode").trim(),
+                                                        data.optString("transactionTypeName").trim(),
+                                                        data.optString("creationDate").trim(),
+                                                        data.optString("comReceiveWalletCode").trim(),
+                                                        taxAsJson,
+                                                        data.optString("holdingAccountCode").trim(),
+                                                        data.optString("status").trim(),
+                                                        data.optDouble("fromAmount"),
+                                                        data.optDouble("toAmount"),
+                                                        data.optDouble("comReceiveAmount"),
 
-                                                    data.optDouble("srcPostBalance"),
-                                                    data.optDouble("srcPreviousBalance"),
-                                                    data.optDouble("destPreviousBalance"),
-                                                    data.optDouble("destPostBalance"),
-                                                    data.optDouble("commissionAmountForInstitute"),
-                                                    data.optDouble("commissionAmountForAgent"),
-                                                    data.optDouble("commissionAmountForBranch"),
-                                                    data.optDouble("commissionAmountForMerchant"),
-                                                    data.optDouble("commissionAmountForOutlet"),
-                                                    data.optDouble("transactionAmount"),
-                                                    data.optDouble("principalAmount"),
-                                                    data.optString("fromWalletOwnerSurname").trim(),
-                                                    data.optString("fromWalletTypeCode").trim(),
-                                                    data.optBoolean("isReverse"),
-                                                    fee,
+                                                        data.optDouble("srcPostBalance"),
+                                                        data.optDouble("srcPreviousBalance"),
+                                                        data.optDouble("destPreviousBalance"),
+                                                        data.optDouble("destPostBalance"),
+                                                        data.optDouble("commissionAmountForInstitute"),
+                                                        data.optDouble("commissionAmountForAgent"),
+                                                        data.optDouble("commissionAmountForBranch"),
+                                                        data.optDouble("commissionAmountForMerchant"),
+                                                        data.optDouble("commissionAmountForOutlet"),
+                                                        data.optDouble("transactionAmount"),
+                                                        data.optDouble("principalAmount"),
+                                                        data.optString("fromWalletOwnerSurname").trim(),
+                                                        data.optString("fromWalletTypeCode").trim(),
+                                                        data.optBoolean("isReverse"),
+                                                        fee,
                                                         data.optBoolean("bearerSender")));
-                                        }
+                                            }
 
-                                        setData(miniStatementTransList,walletTypeCode);
-                                        loadingPB.setVisibility(View.GONE);
+                                            setData(miniStatementTransList, walletTypeCode);
+                                            loadingPB.setVisibility(View.GONE);
+                                        }
                                     }
 
                                 } else {

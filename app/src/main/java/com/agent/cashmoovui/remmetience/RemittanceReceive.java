@@ -613,7 +613,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             MyApplication.showErrorToast(this, getString(R.string.val_phone));
 
             return false;
-        } else if (remitType.equalsIgnoreCase("Local Remit")) {
+        } else if (remitType.equalsIgnoreCase("Local Remit") ||remitType.equalsIgnoreCase("Wallet to Cash Local")) {
             return true;
         } else {
             //spinner_sender_idprooftype.setVisibility(View.GONE);
@@ -820,7 +820,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         if (jsonObject_accountHolding.has("remitType")) {
 
                             remitType = jsonObject_accountHolding.optString("remitType");
-                            if (remitType.equalsIgnoreCase("Local Remit")) {
+                            if (remitType.equalsIgnoreCase("Local Remit")||remitType.equalsIgnoreCase("Wallet to Cash Local")) {
 
                                 spinner_sender_idprooftype.setVisibility(View.GONE);
                                 dobLinear.setVisibility(View.GONE);
@@ -1039,7 +1039,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         // JSONObject accountHolding=jsonObject.getJSONObject("accountHolding");
                         //   JSONObject beneficiaryCustomer=accountHolding.getJSONObject("beneficiaryCustomer");
 
-                        if (remitType.equalsIgnoreCase("Local Remit")) {
+                        if (remitType.equalsIgnoreCase("Local Remit")||remitType.equalsIgnoreCase("Wallet to Cash Local")) {
 
                             otp_generate_api(benificiaryCode);
 
@@ -1368,7 +1368,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             String receiveFirstNameTemp = "", receiverlastNameTemp = "";
                             if (remittance_receiver.has("firstName")) {
                                 receiveFirstNameTemp = remittance_receiver.getString("firstName");
-                                receiptPage_tv_sender_name.setText(receiveFirstNameTemp);
+                                receiptPage_tv_receiver_name.setText(receiveFirstNameTemp);
                             }
 
                             if (remittance_receiver.has("lastName")) {
@@ -2097,13 +2097,13 @@ public static class DatePickerDialogThemeidproff extends DialogFragment implemen
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        calendar.add(Calendar.YEAR, -18);
+        //calendar.add(Calendar.YEAR, -18);
 
         DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),
                 AlertDialog.THEME_TRADITIONAL, this, year, month, day);
 
-        datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
-
+      //  datepickerdialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+        datepickerdialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
         return datepickerdialog;
     }
@@ -2111,7 +2111,7 @@ public static class DatePickerDialogThemeidproff extends DialogFragment implemen
     public void onDateSet(DatePicker view, int year, int month, int day) {
 
         et_sender_idproof_expiry.setText(year + "-" + (month + 1) + "-" + day);
-        mDobidproffText.setVisibility(View.VISIBLE);
+        //mDobidproffText.setVisibility(View.VISIBLE);
         // etDob.setText(year + "-" + (month+1) + "-" + day);
 
     }

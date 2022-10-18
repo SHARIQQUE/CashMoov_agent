@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
-    int notificationCountCurrent=0;
-    int notificationCountPrevious=0;
+    int notificationCountCurrent;
+    int notificationCountPrevious;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -681,7 +681,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             tvBadge.setVisibility(View.VISIBLE);
                                             tvBadge.setText(String.valueOf(notificationCountCurrent));
                                         }else{
-                                            // tvBadge.setVisibility(View.GONE);
+                                              // tvBadge.setVisibility(View.GONE);
                                         }
 
                                         if(notificationCountCurrent>notificationCountPrevious){
@@ -691,7 +691,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             // tvBadge.setVisibility(View.GONE);
                                         }
                                         MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,MainActivity.this);
-                                        MyApplication.saveInt("NOTIFICATIONCOUNTPREV",notificationCountPrevious,MainActivity.this);
+
                                         if(notificationCountCurrent>0){
                                             tvBadge.setVisibility(View.VISIBLE);
                                             tvBadge.setText(String.valueOf(notificationCountCurrent));
