@@ -113,6 +113,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
             String lastNamerec =(String) bollean.get("lastNamerec");
 
             tvSendemail.setText(emailstr);
+
             tvSendName.setText(ownerName + " "+lastName);
             tvSendPhoneNo.setText(mobileNumber);
             tvReceiverName.setText(ownerNamerec+ " "+lastNamerec);
