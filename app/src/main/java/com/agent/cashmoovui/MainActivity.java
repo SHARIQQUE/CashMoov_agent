@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.agent.cashmoovui.activity.MoreActivity;
 import com.agent.cashmoovui.activity.NotificationList;
-import com.agent.cashmoovui.addoutlet.AddOutletKYC;
+
 import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.location.Constants;
 import com.agent.cashmoovui.location.FetchAddressIntentServices;
@@ -561,8 +561,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_outlet:
-                Intent ll_outlet = new Intent(MainActivity.this, AddOutletKYC.class);
-                startActivity(ll_outlet);
+                /*Intent ll_outlet = new Intent(MainActivity.this, AddOutletKYC.class);
+                startActivity(ll_outlet);*/
                 break;
 
         }
