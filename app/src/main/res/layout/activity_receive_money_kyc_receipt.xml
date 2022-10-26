@@ -102,7 +102,7 @@
                     android:textSize="@dimen/_13sdp" />
 
                 <TextView
-                    android:id="@+id/tvConfCode"
+                    android:id="@+id/tvDateOfTrans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -191,6 +191,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="left"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -227,6 +228,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="left"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <ImageView

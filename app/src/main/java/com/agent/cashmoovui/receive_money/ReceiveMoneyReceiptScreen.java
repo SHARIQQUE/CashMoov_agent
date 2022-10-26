@@ -52,7 +52,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
     LinearLayout linConfCode,tax1_layout,tax2_layout;
     View rootView;
 
-    private TextView tvTranstype,tvsendercurrency,tvReceivercurrency,tvSendCurrencycode,
+    private TextView tvDateOfTrans,tvTranstype,tvsendercurrency,tvReceivercurrency,tvSendCurrencycode,
             tvReceiverCurrencyCode,tvRecCountry,tvTransAmount,tvReceiverName,
             tvAmounttobpaid,tvSendName,tvSendPhoneNo,tvSendemail,
             tvAmount,tvReceiverPhoneNo,tvReceiveremail;
@@ -73,6 +73,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
 
     private void getIds() {
         tvTranstype=findViewById(R.id.tvTranstype);
+        tvDateOfTrans=findViewById(R.id.tvDateOfTrans);
         tvsendercurrency=findViewById(R.id.tvsendercurrency);
         tvReceivercurrency=findViewById(R.id.tvReceivercurrency);
         tvSendCurrencycode=findViewById(R.id.tvSendCurrencycode);
@@ -111,6 +112,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
             String mobileNumberrec =(String) bollean.get("mobileNumberrec");
             String ownerNamerec =(String) bollean.get("ownerNamerec");
             String lastNamerec =(String) bollean.get("lastNamerec");
+            String creationDate =(String) bollean.get("creationDate");
 
             tvSendemail.setText(emailstr);
 
@@ -120,7 +122,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
             tvReceiverName.setText(ownerNamerec+ " "+lastNamerec);
             tvReceiverPhoneNo.setText(mobileNumberrec);
             tvReceiveremail.setText(emailrec);
-
+            tvDateOfTrans.setText(MyApplication.convertUTCToLocalTime(creationDate));
         }
        // tvSendName.setText(ReceiveMoneyConfirmScreen.walletTransfernew.optJSONObject("srcWalletOwner").optString("ownerName")+ " "+ ReceiveMoneyConfirmScreen.walletTransfernew.optJSONObject("srcWalletOwner").optString("lastName"));
        /* tvSendPhoneNo.setText(ReceiveMoneyConfirmScreen.mobilenumber);

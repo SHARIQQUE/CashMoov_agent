@@ -64,9 +64,12 @@
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/international_ramittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/item_transaction_list_new.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/item_wallet.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/search_transaction_adapter.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/search_transaction_agent_new.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/search_transaction_branch.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/toolbar_active.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/transaction_history_agent.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/transaction_history_agentpage.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/transaction_history_branch.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/transaction_history_mainpage.xml" value="0.19947916666666668" />
@@ -200,7 +203,6 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/international_ramittance.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/item_contact.xml" value="0.165625" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/item_transaction_list_new.xml" value="0.14895833333333333" />
-        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/item_transaction_list_new_agent.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/local_ramittance.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/row_item_simple.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/search_transaction_agent_new.xml" value="0.14895833333333333" />

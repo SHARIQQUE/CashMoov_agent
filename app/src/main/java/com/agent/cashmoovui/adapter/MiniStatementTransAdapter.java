@@ -254,7 +254,13 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                // MyApplication.showToast(MyApplication.getInstance(),holder.getAbsoluteAdapterPosition()+"");
                 System.out.println("pososososo+  "+holder.getAbsoluteAdapterPosition());
 
+
+
                 int pos=holder.getAbsoluteAdapterPosition();
+
+                if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105068")) {
+                    call(miniStatementTrans.getFromAmount(),pos);
+                }
                 if(walletTypeCode.equalsIgnoreCase("100009")){
                     if(miniStatementTransList.get(pos).getFromWalletTypeCode().equalsIgnoreCase("100009")){
                         call(miniStatementTransList.get(pos).getFromAmount(),pos);

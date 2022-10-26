@@ -442,7 +442,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                             intent.putExtra("mobileNumber",walletTransfersrcWalletOwner.getString("mobileNumber"));
                             intent.putExtra("ownerName",walletTransfersrcWalletOwner.getString("ownerName"));
                             intent.putExtra("lastName",walletTransfersrcWalletOwner.getString("lastName"));
-
+                            intent.putExtra("creationDate",walletTransfersrcWalletOwner.getString("creationDate"));
 
                             intent.putExtra("emailrec",walletTransferdesWalletOwner.getString("email"));
                             intent.putExtra("mobileNumberrec",walletTransferdesWalletOwner.getString("mobileNumber"));
