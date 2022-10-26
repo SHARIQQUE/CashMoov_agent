@@ -32,7 +32,7 @@ public class CountryInfoModel {
 
 
 
-        public Country(int id, String code, String isoCode, String name, String countryCode, String status,
+        public Country(int i, int id, String code, String isoCode, String name, String countryCode, String status,
                        String dialCode, String currencyCode, String currencySymbol, String creationDate,
                        boolean subscriberAllowed) {
             this.id = id;

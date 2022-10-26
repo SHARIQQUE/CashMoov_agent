@@ -14,11 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.OtherOption;
-import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
@@ -380,7 +377,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         if (data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT", internationalC))) {
                                             sendCountryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
+                                                    data.optInt("id"), data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("isoCode"),
                                                     data.optString("name"),

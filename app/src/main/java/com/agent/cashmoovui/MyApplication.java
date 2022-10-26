@@ -148,6 +148,11 @@ public class MyApplication extends Application {
     public static String OutletCode = "100012";
     public static String SubscriberCode = "100010";
     public static String channelTypeCode = "100000";
+    public static boolean isContact=false;
+    public static boolean isFirstTime=false;
+    public static int mobileLength=9;
+    public static int ToReceiveMoneyMinAmount;
+    public static int ToReceiveMoneyMaxAmount;
 
     public static ArrayList<CurrencyModel> currencyModelArrayList = new ArrayList<>();
     public static ArrayList<CurrencyModel> currencyModelArrayList_temp = new ArrayList<>();

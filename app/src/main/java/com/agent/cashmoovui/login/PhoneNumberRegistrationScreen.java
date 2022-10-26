@@ -237,7 +237,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                                          if(data.optBoolean("subscriberAllowed")) {
                                         if (data.optString("code").equalsIgnoreCase("100092")) {
                                             countryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
+                                                    data.optInt("id"), data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("isoCode"),
                                                     data.optString("name"),

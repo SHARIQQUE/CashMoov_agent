@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -364,7 +363,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         if (data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT", localC))) {
                                             sendCountryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
+                                                    data.optInt("id"), data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("isoCode"),
                                                     data.optString("name"),

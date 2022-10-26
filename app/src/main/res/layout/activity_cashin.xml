@@ -824,7 +824,7 @@
 
                 <TextView
 
-                    android:id="@+id/confirm_reviewClick_textview"
+                        android:id="@+id/confirm_reviewClick_textview"
 
                     android:layout_width="120dp"
                     android:layout_height="60dp"

@@ -2,6 +2,7 @@ package com.agent.cashmoovui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.agent.cashmoovui.activity.MoreActivity;
 import com.agent.cashmoovui.activity.NotificationList;
+import com.agent.cashmoovui.addoutlet.AddOutletKYC;
 import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.location.Constants;
 import com.agent.cashmoovui.location.FetchAddressIntentServices;
@@ -31,12 +33,15 @@ import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.cash_in.CashIn;
-import com.agent.cashmoovui.cashout.CashOutOpt;
+import com.agent.cashmoovui.receive_money.ReceiveMoneyDetailScreen;
 import com.agent.cashmoovui.remittancebyabhay.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.agent.cashmoovui.transfer_float.CommissionTransfer;
+import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.location.LocationCallback;
@@ -59,8 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tvBadge;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance,tvName;
-    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,
-            ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_more;
+    CardView ll_addoutletcard,ll_paymentcard,ll_creditcard,ll_creditcardnew,ll_paymentnewcard,ll_receivemoneycard,ll_commissionTransfercard,ll_transferFloatcard,ll_cashIncard,ll_remitencecard,ll_morecard,ll_cashoutcard;
+    LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_paymentnew,ll_creditnew,
+            ll_outlet,ll_transfer,ll_credit,ll_overdraft,ll_more,ll_receivemoney,ll_transferFloat,ll_commissionTransfer;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -123,7 +129,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linClick.setOnClickListener(this);
         tvClick = findViewById(R.id.tvClick);
        // tvClick.setOnClickListener(this);
-
+        ll_receivemoneycard=findViewById(R.id.ll_receivemoneycard);
+        ll_addoutletcard=findViewById(R.id.ll_addoutletcard);
+        ll_creditcardnew=findViewById(R.id.ll_creditcardnew);
+        ll_paymentnewcard=findViewById(R.id.ll_paymentnewcard);
+        ll_commissionTransfercard=findViewById(R.id.ll_commissionTransfercard);
+        ll_transferFloatcard=findViewById(R.id.ll_transferFloatcard);
+        ll_cashIncard=findViewById(R.id.ll_cashIncard);
+        ll_paymentcard=findViewById(R.id.ll_paymentcard);
+        ll_creditcard=findViewById(R.id.ll_creditcard);
+        ll_cashoutcard=findViewById(R.id.ll_cashoutcard);
+        ll_remitencecard=findViewById(R.id.ll_remitencecard);
+        ll_morecard=findViewById(R.id.ll_morecard);
         tvBalance = findViewById(R.id.tvBalance);
         //tvBalance.setOnClickListener(this);
 
@@ -139,12 +156,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_payment= (LinearLayout) findViewById(R.id.ll_payment);
         ll_payment.setOnClickListener(this);
 
+        ll_paymentnew= (LinearLayout) findViewById(R.id.ll_paymentnew);
+        ll_paymentnew.setOnClickListener(this);
+
 //        ll_transfer= (LinearLayout) findViewById(R.id.ll_transfer);
 //        ll_transfer.setOnClickListener(this);
 
         ll_credit= (LinearLayout) findViewById(R.id.ll_credit);
         ll_credit.setOnClickListener(this);
 
+
+        ll_creditnew= (LinearLayout) findViewById(R.id.ll_creditnew);
+        ll_creditnew.setOnClickListener(this);
 //        ll_overdraft= (LinearLayout) findViewById(R.id.ll_overdraft);
 //        ll_overdraft.setOnClickListener(this);
 
@@ -154,7 +177,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          ll_more= (LinearLayout) findViewById(R.id.ll_more);
          ll_more.setOnClickListener(this);
+        ll_transferFloat=findViewById(R.id.ll_transferFloat);
+        ll_transferFloat.setOnClickListener(this);
+        ll_commissionTransfer=findViewById(R.id.ll_commissionTransfer);
+        ll_commissionTransfer.setOnClickListener(this);
+        ll_receivemoney=findViewById(R.id.ll_receivemoney);
+        ll_receivemoney.setOnClickListener(this);
         MyApplication.hideKeyboard(this);
+        ll_outlet=findViewById(R.id.ll_outlet);
+        ll_outlet.setOnClickListener(this);
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
@@ -322,6 +353,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         MyApplication.hideKeyboard(this);
+
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", MainActivity.this).equalsIgnoreCase(MyApplication.MerchatCode)){
+            ll_cashIn.setVisibility(View.GONE);
+            ll_cashIncard.setVisibility(View.GONE);
+            ll_cashoutcard.setVisibility(View.GONE);
+            ll_cashout.setVisibility(View.GONE);
+            ll_remitencecard.setVisibility(View.GONE);
+            ll_morecard.setVisibility(View.GONE);
+            ll_remitence.setVisibility(View.GONE);
+            ll_more.setVisibility(View.GONE);
+            ll_receivemoney.setVisibility(View.VISIBLE);
+            ll_transferFloat.setVisibility(View.VISIBLE);
+            ll_outlet.setVisibility(View.VISIBLE);
+            ll_commissionTransfer.setVisibility(View.VISIBLE);
+            ll_receivemoneycard.setVisibility(View.VISIBLE);
+            ll_addoutletcard.setVisibility(View.GONE);
+            ll_commissionTransfercard.setVisibility(View.VISIBLE);
+            ll_transferFloatcard.setVisibility(View.VISIBLE);
+            ll_creditcardnew.setVisibility(View.VISIBLE);
+            ll_paymentnewcard.setVisibility(View.VISIBLE);
+            ll_creditcard.setVisibility(View.GONE);
+            ll_paymentcard.setVisibility(View.GONE);
+        }
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.profil)
@@ -446,6 +500,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
+            case R.id.ll_paymentnew:
+                if(!MyApplication.showPayment){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, Payments.class);
+                    startActivity(i);
+                }
+                break;
+
+
 //            case R.id.ll_walletowner:
 //                i = new Intent(MainActivity.this, WalletOwnerMenu.class);
 //                startActivity(i);
@@ -465,6 +529,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
+            case R.id.ll_creditnew:
+                if(!MyApplication.showCreditPurchase){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else{
+                    i = new Intent(MainActivity.this, AirtimePurchases.class);
+                    startActivity(i);
+                }
+                break;
+
 //            case R.id.ll_overdraft:
 //                i = new Intent(MainActivity.this, OverdraftLimit.class);
 //                startActivity(i);
@@ -473,7 +546,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 i = new Intent(MainActivity.this, MoreActivity.class);
                 startActivity(i);
                 break;
+            case R.id.ll_transferFloat:
+                i = new Intent(MainActivity.this, TransferFloats.class);
+                startActivity(i);
+                break;
 
+            case R.id.ll_commissionTransfer:
+                i = new Intent(MainActivity.this, CommissionTransfer.class);
+                startActivity(i);
+                break;
+            case R.id.ll_receivemoney:
+               Intent inew = new Intent(MainActivity.this, ReceiveMoneyDetailScreen.class);
+                startActivity(inew);
+                break;
+
+            case R.id.ll_outlet:
+                Intent ll_outlet = new Intent(MainActivity.this, AddOutletKYC.class);
+                startActivity(ll_outlet);
+                break;
 
         }
     }

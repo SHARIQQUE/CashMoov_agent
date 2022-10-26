@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,15 +20,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.adapter.SearchAdapteAgentDetails;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cashout.CashOutCodeSubscriber;
 import com.agent.cashmoovui.model.BusinessTypeModel;
 import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
@@ -38,12 +34,6 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.model.UserDetailAgent;
-import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryAgent;
-import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
-import com.agent.cashmoovui.wallet_owner.agent.AgentSignature;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
@@ -945,7 +935,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                         if(data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT",branchkycC))) {
 
                                             countryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
+                                                    data.optInt("id"), data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("isoCode"),
                                                     data.optString("name"),

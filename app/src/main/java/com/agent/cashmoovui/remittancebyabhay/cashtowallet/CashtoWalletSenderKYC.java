@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,7 +31,6 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -44,8 +42,6 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.ServiceProviderModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
-import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceActivity;
-import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceBenefiKYC;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -583,7 +579,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         //  if (data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC))) {
                                         sendCountryModelList.add(new CountryInfoModel.Country(
-                                                data.optInt("id"),
+                                                data.optInt("id"), data.optInt("id"),
                                                 data.optString("code"),
                                                 data.optString("isoCode"),
                                                 data.optString("name"),
@@ -775,7 +771,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         // if (!MyApplication.getSaveString("COUNTRYCODE_AGENT", cashtowalletsenderkycC).equalsIgnoreCase(data.optString("countryCode"))) {
                                         recCountryModelList.add(new CountryInfoModel.Country(
-                                                data.optInt("id"),
+                                                data.optInt("id"), data.optInt("id"),
                                                 data.optString("code"),
                                                 data.optString("isoCode"),
                                                 data.optString("name"),
