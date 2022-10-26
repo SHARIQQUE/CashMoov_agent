@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.payments.PaymentReceipt;
+import com.agent.cashmoovui.receive_money.ReceiveMoneyReceiptScreen;
 import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletReceiptScreen;
 import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceReceiptScreen;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceReceiptScreen;
@@ -136,6 +137,12 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 }
                 if(checkIntent.equalsIgnoreCase("CASHTOWALLET")) {
                     intent = new Intent(transSuccessscreenC, CashtoWalletReceiptScreen.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                if(checkIntent.equalsIgnoreCase("ReceiveMoney")) {
+                    intent = new Intent(transSuccessscreenC, ReceiveMoneyReceiptScreen.class);
                     startActivity(intent);
                     return;
                 }

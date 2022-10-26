@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.agent.cashmoovui.activity.MoreActivity;
 import com.agent.cashmoovui.activity.NotificationList;
+import com.agent.cashmoovui.addoutlet.AddOutletKYC;
 import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.location.Constants;
 import com.agent.cashmoovui.location.FetchAddressIntentServices;
@@ -32,8 +33,7 @@ import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
 import com.agent.cashmoovui.cash_in.CashIn;
-import com.agent.cashmoovui.cashout.CashOutOpt;
-import com.agent.cashmoovui.receive_money.ReceiveMoney;
+import com.agent.cashmoovui.receive_money.ReceiveMoneyDetailScreen;
 import com.agent.cashmoovui.remittancebyabhay.RemittanceOption;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tvBadge;
     CircleImageView imgProfile;
     TextView tvClick,tvBalance,tvName;
-    CardView ll_paymentcard,ll_creditcard,ll_creditcardnew,ll_paymentnewcard,ll_receivemoneycard,ll_commissionTransfercard,ll_transferFloatcard,ll_cashIncard,ll_remitencecard,ll_morecard,ll_cashoutcard;
+    CardView ll_addoutletcard,ll_paymentcard,ll_creditcard,ll_creditcardnew,ll_paymentnewcard,ll_receivemoneycard,ll_commissionTransfercard,ll_transferFloatcard,ll_cashIncard,ll_remitencecard,ll_morecard,ll_cashoutcard;
     LinearLayout linClick,ll_cashIn,ll_cashout,ll_remitence,ll_payment,ll_paymentnew,ll_creditnew,
-            ll_walletowner,ll_transfer,ll_credit,ll_overdraft,ll_more,ll_receivemoney,ll_transferFloat,ll_commissionTransfer;
+            ll_outlet,ll_transfer,ll_credit,ll_overdraft,ll_more,ll_receivemoney,ll_transferFloat,ll_commissionTransfer;
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvClick = findViewById(R.id.tvClick);
        // tvClick.setOnClickListener(this);
         ll_receivemoneycard=findViewById(R.id.ll_receivemoneycard);
+        ll_addoutletcard=findViewById(R.id.ll_addoutletcard);
         ll_creditcardnew=findViewById(R.id.ll_creditcardnew);
         ll_paymentnewcard=findViewById(R.id.ll_paymentnewcard);
         ll_commissionTransfercard=findViewById(R.id.ll_commissionTransfercard);
@@ -183,6 +184,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ll_receivemoney=findViewById(R.id.ll_receivemoney);
         ll_receivemoney.setOnClickListener(this);
         MyApplication.hideKeyboard(this);
+        ll_outlet=findViewById(R.id.ll_outlet);
+        ll_outlet.setOnClickListener(this);
         bottomBar.setItemActiveIndex(0);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
 
@@ -362,8 +365,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ll_more.setVisibility(View.GONE);
             ll_receivemoney.setVisibility(View.VISIBLE);
             ll_transferFloat.setVisibility(View.VISIBLE);
+            ll_outlet.setVisibility(View.VISIBLE);
             ll_commissionTransfer.setVisibility(View.VISIBLE);
             ll_receivemoneycard.setVisibility(View.VISIBLE);
+            ll_addoutletcard.setVisibility(View.GONE);
             ll_commissionTransfercard.setVisibility(View.VISIBLE);
             ll_transferFloatcard.setVisibility(View.VISIBLE);
             ll_creditcardnew.setVisibility(View.VISIBLE);
@@ -551,8 +556,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.ll_receivemoney:
-                i = new Intent(MainActivity.this, ReceiveMoney.class);
-                startActivity(i);
+               Intent inew = new Intent(MainActivity.this, ReceiveMoneyDetailScreen.class);
+                startActivity(inew);
+                break;
+
+            case R.id.ll_outlet:
+                Intent ll_outlet = new Intent(MainActivity.this, AddOutletKYC.class);
+                startActivity(ll_outlet);
                 break;
 
         }

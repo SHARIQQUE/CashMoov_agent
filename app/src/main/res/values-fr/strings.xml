@@ -229,12 +229,16 @@
     <string name="scanner">Scanner</string>
     <string name="details_du_receveur">details du destinataire</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
-    <string name="amount">montant</string>
+    <string name="amount">montant :</string>
     <string name="business">Nom de l\'entreprise</string>
+    <string name="enterbusiness">Veuillez entrer le nom de l\'entreprise</string>
+    <string name="business_name">Nom de l\'entreprise</string>
 
     <string name="non_subscribed_money_transfer">Transfert d\'argent non abonné</string>
     <string name="recipient_details">Details du destinataire</string>
     <string name="valid_fname">Prenom*</string>
+    <string name="outlet_name">Nom du point de vente*</string>
+
     <string name="valid_lname">Nom de famille*</string>
     <string name="valid_phone_number">Numéro de téléphone*</string>
     <string name="valid_email">Email*</string>
@@ -313,7 +317,6 @@
     <string name="upload">Telecharger</string>
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
-    <string name="country_star">Pays *</string>
 
     <string name="id_proof_type">Type de piece d\'identité</string>
     <string name="select_gender">Sélectionnez le sexe</string>
@@ -457,7 +460,7 @@
     <string name="convertionRate_reviewPage"> Taux de conversion:</string>
     <string name="comment_reviewPage"> Commentaires :</string>
     <string name="amount_to_paid_reviewPage">Montant à payer: </string>
-    <string name="sender_currency_receiptpage">Devise de l\'expéditeur</string>
+    <string name="sender_currency_receiptpage">Devise de l\'expéditeur :</string>
     <string name="senderCode_receiptpage">Code expéditeur</string>
     <string name="benificiary_no_receiptpage">Bénéficiaire Non:</string>
     <string name="receiver_currency_reviewPage"> Devise du destinataire :</string>
@@ -549,7 +552,7 @@
 
     <string name="plz_select_receive_country">Pays d\'accueil</string>
     <string name="plz_select_receive_currency">Devise de réception</string>
-    <string name="receive_courency">Devise de réception</string>
+    <string name="receive_courency">Devise de réception :</string>
 
 
 
@@ -588,6 +591,7 @@
     <string name="overdraft_limit">Limite de découvert</string>
     <string name="viewcongigservices">Afficher les services de configuration</string>
     <string name="receive_money">Recevoir de l\'argent</string>
+    <string name="add_outlet">Ajouter une prise</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
     <string name="one_sur_la_transaction">1% sur la transaction</string>
@@ -653,6 +657,8 @@
     <string name="val_branch_name_len">Le nom de la succursale doit comporter au moins 3 caractères</string>
     <string name="agent_added">Agent ajouté avec succès !</string>
     <string name="branch_added">Agence ajoutée avec succès !</string>
+    <string name="addoutlet_added">Ajouter une prise enregistrée avec succès!</string>
+
     <string name="acc_number_colon">Numéro de compte</string>
     <string name="operator_colon">Opérateur :</string>
     <string name="amount_charged_colon">Montant à facturer :</string>
@@ -664,7 +670,6 @@
     <string name="val_valid_amount">Veuillez saisir un montant valide</string>
 
 
-    <string name="country_star">Pays*</string>
     <string name="mobileNumber_star">Numéro de portable*</string>
     <string name="confirmation_code_star">code de confirmation*</string>
 
@@ -673,6 +678,13 @@
     <string name="id_proof_expiryDate">Date d\'expiration de la preuve d\'identité</string>
     <string name="Date_OF_Birth_star">Date de naissance *</string>
 
+    <string name="amount_to_paid_colon">Montant à payer:</string>
+    <string name="kyc_detail_response_msg">details KYC soumis avec succes</string>
+    <string name="valid_select_service_provider">Selectionnez Fournisseur de services*</string>
+    <string name="valid_select_rec_country">Select Receiving Country*</string>
+    <string name="valid_select_benifi_curr">Select Benificiary Currency*</string>
+    <string name="val_select_curr">Veuillez sélectionner la devise</string>
+    <string name="val_select_service_provider">Veuillez selectionner fournisseur de services</string>
 
     <string name="institue">Institute</string>
     <string name="branch_history">Agence</string>
@@ -794,6 +806,10 @@
     <string name="select_issuing_country">Sélectionnez le pays émetteur</string>
     <string name="agent_code_colon">Code agent :</string>
     <string name="sender_code_colon">Code expéditeur :</string>
+    <string name="sender_currency_code">Code de devise de l\'expéditeur :</string>
+    <string name="receiver_currency_code">Code de devise du destinataire :</string>
+
+
     <string name="benefi_code_colon">Code bénéficiaire :</string>
     <string name="send_curr_colon">Devise d\'envoi :</string>
     <string name="benefi_curr_colon">Devise du bénéficiaire :</string>

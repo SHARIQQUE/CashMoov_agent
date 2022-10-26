@@ -4,10 +4,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,7 +24,6 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.model.BusinessTypeModel;
 import com.agent.cashmoovui.model.CityInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
@@ -34,8 +31,6 @@ import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.RegistrationModel;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYCAttached;
 import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
@@ -43,7 +38,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -685,7 +679,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         if(data.optString("code").equalsIgnoreCase(MyApplication.getSaveString("COUNTRYCODE_AGENT",agentkycC))) {
                                             countryModelList.add(new CountryInfoModel.Country(
-                                                    data.optInt("id"),
+                                                    data.optInt("id"), data.optInt("id"),
                                                     data.optString("code"),
                                                     data.optString("isoCode"),
                                                     data.optString("name"),

@@ -821,69 +821,69 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void service_Provider_api() {
+        private void service_Provider_api() {
 
-        // Hard Code Final Deepak
+            // Hard Code Final Deepak
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100012&status=Y", languageToUse, new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
-
-
-                try {
-
-                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
-
-                    String resultCode = jsonObject.getString("resultCode");
-                    String resultDescription = jsonObject.getString("resultDescription");
-
-                    if (resultCode.equalsIgnoreCase("0")) {
+            API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100012&status=Y", languageToUse, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
 
 
-                        JSONArray jsonArray = jsonObject.getJSONArray("serviceProviderList");
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                    try {
 
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                        // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
 
-                            serviceCode_from_serviceCategory = jsonObject2.getString("serviceCode");
-                            serviceCategoryCode_from_serviceCategory = jsonObject2.getString("serviceCategoryCode");
-                            serviceProviderCode_from_serviceCategory = jsonObject2.getString("code");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
+                        if (resultCode.equalsIgnoreCase("0")) {
+
+
+                            JSONArray jsonArray = jsonObject.getJSONArray("serviceProviderList");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                                serviceCode_from_serviceCategory = jsonObject2.getString("serviceCode");
+                                serviceCategoryCode_from_serviceCategory = jsonObject2.getString("serviceCategoryCode");
+                                serviceProviderCode_from_serviceCategory = jsonObject2.getString("code");
+
+                            }
+
+                            agent_details_api_walletownerUser();
+
+
+                        } else {
+                            MyApplication.hideLoader();
+
+                            Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
+                            finish();
                         }
 
-                        agent_details_api_walletownerUser();
 
-
-                    } else {
+                    } catch (Exception e) {
                         MyApplication.hideLoader();
 
-                        Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
-                        finish();
+                        Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
                     }
 
-
-                } catch (Exception e) {
-                    MyApplication.hideLoader();
-
-                    Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
                 }
 
-            }
+
+                @Override
+                public void failure(String aFalse) {
+
+                    MyApplication.hideLoader();
+                    Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
+                    finish();
+
+                }
+            });
 
 
-            @Override
-            public void failure(String aFalse) {
-
-                MyApplication.hideLoader();
-                Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
-                finish();
-
-            }
-        });
-
-
-    }
+        }
 
 
     private void agent_details_api_walletownerUser() {
@@ -1319,7 +1319,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             }
             break;
 
-            case R.id.tvContinue: {
+                case R.id.tvContinue: {
 
                 ll_page_1.setVisibility(View.GONE);
                 ll_reviewPage.setVisibility(View.GONE);
@@ -1877,7 +1877,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                 selectClickType="select_subscriber_mpin";
                                 confirm_reviewClick_textview.setText(getString(R.string.verify_subscriber_pin));
-                                ll_otp.setVisibility(View.GONE);
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
                                 ll_pin.setVisibility(View.VISIBLE);

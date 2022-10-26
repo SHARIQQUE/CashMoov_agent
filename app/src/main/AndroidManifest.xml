@@ -61,11 +61,44 @@ x
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
 
-        <activity android:name=".receive_money.ReceiveMoney"
+        <activity android:name=".receive_money.ReceiveMoneyReceiptScreen"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
-        <activity android:name=".login.LoginMsis"
+
+        <activity android:name=".receive_money.ReceiveMoneyConfirmScreen"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+            <activity android:name=".receive_money.ReceiveMoneyDetailScreen"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+        <activity android:name=".addoutlet.AddOutletKYC"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+
+        <activity android:name=".addoutlet.AddOutletKYCAttached"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+
+
+        <activity android:name=".addoutlet.AddOutletSignature"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+            <activity android:name=".receive_money.AddBeneficiaryToSubscriber"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+
+            <activity android:name=".login.LoginMsis"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>

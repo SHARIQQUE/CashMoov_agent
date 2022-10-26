@@ -233,8 +233,10 @@
     <string name="scanner">Scanner</string>
     <string name="details_du_receveur">Receiver details</string>
     <string name="numero_du_destinataire">Recipient number</string>
-    <string name="amount">Amount*</string>
+    <string name="amount">Amount :</string>
     <string name="business">Business, Name</string>
+    <string name="enterbusiness">Please enter Business Name</string>
+    <string name="business_name">Business Name</string>
 
     <string name="amount_simple">Amount</string>
     <string name="amount_start">Amount*</string>
@@ -243,6 +245,9 @@
     <string name="non_subscribed_money_transfer">Non-subscribed money transfer</string>
     <string name="recipient_details">Recipient details</string>
     <string name="valid_fname">First name*</string>
+
+    <string name="outlet_name">Outlet Name*</string>
+
     <string name="valid_lname">Last Name*</string>
     <string name="valid_phone_number">Phone number*</string>
     <string name="valid_email">Email*</string>
@@ -321,7 +326,6 @@
     <string name="upload">Upload</string>
     <string name="lname">Last Name</string>
     <string name="country">Country</string>
-    <string name="country_star">Country *</string>
 
     <string name="id_proof_type">Id Proof Type</string>
     <string name="select_gender">Select Gender</string>
@@ -330,6 +334,14 @@
     <string name="enter_pin">Enter pin</string>
     <string name="login_message">Please enter your phone number &amp; password to login the account.</string>
     <string name="login">Login</string>
+    <string name="amount_to_paid_colon">Amount to be paid:</string>
+    <string name="kyc_detail_response_msg">Kyc details submitted successfully</string>
+    <string name="valid_select_service_provider">Select Service Provider*</string>
+    <string name="valid_select_rec_country">Select Receiving Country*</string>
+    <string name="valid_select_benifi_curr">Select Benificiary Currency*</string>
+    <string name="val_select_curr">Please select currency</string>
+    <string name="val_select_service_provider">Please select service provider</string>
+
     <string name="login_fingerprint">Login with Fingerprint?</string>
     <string name="use_finger_to_login">Use your fingerprint to login</string>
     <string name="no_fingerprint_senser">This device doesn\'t have a fingerprint sensor</string>
@@ -492,7 +504,7 @@
     <string name="this_action_logout">This action will logout from the application</string>
     <string name="logout_app">Are you sure you want to logout the app?</string>
 
-    <string name="sender_currency_receiptpage">Sender Currency </string>
+    <string name="sender_currency_receiptpage">Sender Currency :</string>
     <string name="benificiary_currency_receiptpage">Beneficiary Currency</string>
     <string name="senderCode_receiptpage">Sender Code</string>
     <string name="benificiary_no_receiptpage">Beneficiary No</string>
@@ -557,7 +569,7 @@
 
 
     <string name="receive_country">Receiving Country*</string>
-    <string name="receive_courency">Receiving Currency*</string>
+    <string name="receive_courency">Receiving Currency :</string>
 
 
 
@@ -590,6 +602,7 @@
     <string name="overdraft_limit">Overdraft Limit</string>
     <string name="viewcongigservices">View Config Services</string>
     <string name="receive_money">Receive Money</string>
+    <string name="add_outlet">Add Outlet</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 90,000.000 for 5 days</string>
     <string name="one_sur_la_transaction">1% on the transa</string>
@@ -654,6 +667,8 @@
     <string name="val_branch_name_len">Branch Name must be at least 3 characters long</string>
     <string name="agent_added">Agent added successfully!</string>
     <string name="branch_added">Branch added successfully!</string>
+    <string name="addoutlet_added">Add Outlet Saved successfully!</string>
+
     <string name="acc_number_colon">Account number :</string>
     <string name="operator_colon">Operator :</string>
     <string name="amount_charged_colon">Amount to be Charged :</string>
@@ -799,6 +814,10 @@
     <string name="select_issuing_country">Select Issuing Country</string>
     <string name="agent_code_colon">Agent Code :</string>
     <string name="sender_code_colon">Sender Code :</string>
+    <string name="sender_currency_code">Sender Currency Code :</string>
+    <string name="receiver_currency_code">Receiver Currency Code :</string>
+
+
     <string name="benefi_code_colon">Beneficiary Code :</string>
     <string name="send_curr_colon">Sending Currency :</string>
     <string name="benefi_curr_colon">Beneficiary Currency :</string>
