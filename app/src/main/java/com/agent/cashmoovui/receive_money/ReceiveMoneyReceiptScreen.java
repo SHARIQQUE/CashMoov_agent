@@ -114,6 +114,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
 
             tvSendemail.setText(emailstr);
 
+
             tvSendName.setText(ownerName + " "+lastName);
             tvSendPhoneNo.setText(mobileNumber);
             tvReceiverName.setText(ownerNamerec+ " "+lastNamerec);
