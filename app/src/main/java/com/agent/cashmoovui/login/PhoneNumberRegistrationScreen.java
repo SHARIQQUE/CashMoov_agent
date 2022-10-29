@@ -259,7 +259,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
                                     }
 
-                                    spinnerDialogCountry = new SpinnerDialog(phnoregistrationccreenC, countryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCountry = new SpinnerDialog(phnoregistrationccreenC, countryList, getString(R.string.val_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogCountry.setCancellable(true); // for cancellable
                                     spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCountry.bindOnSpinerListener(new OnSpinerItemClick() {

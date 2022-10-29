@@ -472,7 +472,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                                         idProofTypeList.add(data.optString("type").trim());
                                     }
 
-                                    spinnerDialogSenderIdProofType = new SpinnerDialog(RemittanceReceive.this, idProofTypeList, "Select Id Proof", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderIdProofType = new SpinnerDialog(RemittanceReceive.this, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                                     spinnerDialogSenderIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogSenderIdProofType.setShowKeyboard(false);// for open keyboard by default
@@ -1307,7 +1307,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime")));
+                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(remittance_object.getString("creationDate")));
 
                             MyApplication.hideLoader();
 

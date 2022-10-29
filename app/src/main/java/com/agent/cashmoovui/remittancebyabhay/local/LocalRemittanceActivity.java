@@ -308,7 +308,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogSerProvider = new SpinnerDialog(localC, serviceProviderList, "Select Service Provider", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSerProvider = new SpinnerDialog(localC, serviceProviderList, getString(R.string.val_select_service_provider), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
 
                                     spinnerDialogSerProvider.setCancellable(true); // for cancellable
@@ -389,7 +389,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         }
                                     }
 
-                                    spinnerDialogSendingCountry= new SpinnerDialog(localC, sendingCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSendingCountry= new SpinnerDialog(localC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogSendingCountry.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSendingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -404,7 +404,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         }
                                     });
 
-                                    spinnerDialogRecCountry= new SpinnerDialog(localC, recCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRecCountry= new SpinnerDialog(localC, recCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogRecCountry.setCancellable(true); // for cancellable
                                     spinnerDialogRecCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRecCountry.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -657,7 +657,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 //
 //                                    }
 //
-//                                    spinnerDialogRecCountry= new SpinnerDialog(localC, recCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+//                                    spinnerDialogRecCountry= new SpinnerDialog(localC, recCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 //                                    spinnerDialogRecCountry.setCancellable(true); // for cancellable
 //                                    spinnerDialogRecCountry.setShowKeyboard(false);// for open keyboard by default
 //                                    spinnerDialogRecCountry.bindOnSpinerListener(new OnSpinerItemClick() {

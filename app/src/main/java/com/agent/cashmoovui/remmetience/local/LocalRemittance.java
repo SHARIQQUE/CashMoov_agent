@@ -2916,7 +2916,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(jsonObject.getString("responseTime"));
+                            receiptPage_tv_dateOfTransaction.setText(jsonObject_remittance.getString("creationDate"));
 
 
                             receiptPage_tv_amount_to_be_charged.setText(select_sender_currencySymbol+ " "+totalAmount_str);

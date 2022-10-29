@@ -297,7 +297,7 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
 //
 //                                    }
 //
-//                                    spinnerDialogIdProofType = new SpinnerDialog(subscriberkycattachedC, idProofTypeList, "Select Id Proof", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+//                                    spinnerDialogIdProofType = new SpinnerDialog(subscriberkycattachedC, idProofTypeList, getString(R.string.val_valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 //                                    spinnerDialogIdProofType.setCancellable(true); // for cancellable
 //                                    spinnerDialogIdProofType.setShowKeyboard(false);// for open keyboard by default
 //                                    spinnerDialogIdProofType.bindOnSpinerListener(new OnSpinerItemClick() {

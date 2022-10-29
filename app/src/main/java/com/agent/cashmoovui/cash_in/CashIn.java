@@ -1167,9 +1167,10 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
 
-                                receiptPage_tv_dateOfTransaction.setText((MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime"))));
+                                receiptPage_tv_dateOfTransaction.setText((MyApplication.convertUTCToLocaldate(jsonObject_walletTransfer.
+                                        getString("creationDate"))));
 
-                                System.out.println("get date"+jsonObject.getString("responseTime"));
+
 
                                 receiptPage_tv_amount_to_be_credit.setText(currencySymbolreceiver+" "+MyApplication.addDecimal(amountstr));
 

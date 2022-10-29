@@ -1125,7 +1125,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_financialtax.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(tax_financial));
                             receipt_tv_amount_to_be_charge.setText(currencySymbol_sender+" "+MyApplication.addDecimal(totalAmount_str));
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime")));
+                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.optJSONObject("walletTransfer")
+                                    .getString("creationDate")));
 
 
                             receiptPage_tv_amount_to_be_paid.setText(currencySymbol_sender +" "+ MyApplication.addDecimal(amountstr));

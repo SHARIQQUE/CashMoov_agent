@@ -322,7 +322,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogSerProvider = new SpinnerDialog(internationalC, serviceProviderList, "Select Service Provider", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSerProvider = new SpinnerDialog(internationalC, serviceProviderList, getString(R.string.val_select_service_provider), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
 
                                     spinnerDialogSerProvider.setCancellable(true); // for cancellable
@@ -398,7 +398,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         }
                                     }
 
-                                    spinnerDialogSendingCountry= new SpinnerDialog(internationalC, sendingCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSendingCountry= new SpinnerDialog(internationalC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogSendingCountry.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSendingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -584,7 +584,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         }
                                     }
 
-                                    spinnerDialogRecCountry= new SpinnerDialog(internationalC, recCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRecCountry= new SpinnerDialog(internationalC, recCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogRecCountry.setCancellable(true); // for cancellable
                                     spinnerDialogRecCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRecCountry.bindOnSpinerListener(new OnSpinerItemClick() {

@@ -603,7 +603,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        spinnerDialogImstitute = new SpinnerDialog(SellFloat.this, arrayList_instititueName, "Select Institute Type", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogImstitute = new SpinnerDialog(SellFloat.this, arrayList_instititueName, getString(R.string.select_institute_type), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
 
                         spinnerDialogImstitute.setCancellable(true); // for cancellable
                         spinnerDialogImstitute.setShowKeyboard(false);// for open keyboard by default

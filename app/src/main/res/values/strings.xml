@@ -877,5 +877,6 @@
     <string name="available_balnce">Available balance in Commision Wallet (</string>
     <string name="sell_float_added">\"Sell Float Added successfully and sent for approval \"</string>
     <string name="commisssion_bal_insufficient">Insufficient Balance in Commission Wallet</string>
+    <string name="select_institute_type">Select Institute Type</string>
 </resources>
 

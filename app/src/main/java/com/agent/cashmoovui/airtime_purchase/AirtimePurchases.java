@@ -1469,7 +1469,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     try {
 
 
-                      //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"115313\",\"requestTime\":\"Wed Nov 17 14:57:03 IST 2021\",\"responseTime\":\"Wed Nov 17 14:57:07 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"recharge\":{\"requestType\":\"topup\",\"channel\":\"SELFCARE\",\"operator\":\"ORANGE\",\"accountNumber\":\"629300694\",\"amount\":\"1000.0\",\"totalAmount\":\"1000.0\",\"fee\":\"0.0\",\"tax\":\"0.0\",\"vendorTransId\":\"624505\",\"vendorResultCode\":\"000\",\"vendorResultDescription\":\"Successful\",\"resultDescription\":\"Transaction Successful\",\"creationDate\":\"2021-11-17T14:57:07.637+0530\"}}");
+                      //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"115313\",\"requestTime\":\"Wed Nov 17 14:57:03 IST 2021\",
+                        //  \"responseTime\":\"Wed Nov 17 14:57:07 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",
+                        //  \"recharge\":{\"requestType\":\"topup\",\"channel\":\"SELFCARE\",\"operator\":\"ORANGE\",\"accountNumber\":\"629300694\",\"amount\":\"1000.0\",\"totalAmount\":\"1000.0\",\"fee\":\"0.0\",\"tax\":\"0.0\",\"vendorTransId\":\"624505\",\"vendorResultCode\":\"000\",\"vendorResultDescription\":\"Successful\",\"resultDescription\":\"Transaction Successful\",\"creationDate\":\"2021-11-17T14:57:07.637+0530\"}}");
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
@@ -1498,7 +1500,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getString("responseTime")));
+                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.optJSONObject("recharge").
+                                    getString("creationDate")));
                             receiptPage_tv_amount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(totalAmount_str));
 
 

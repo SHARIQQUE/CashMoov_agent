@@ -869,6 +869,7 @@
     <string name="available_balnce">Solde disponible dans le portefeuille de commissions (</string>
     <string name="sell_float_added">\"Vendre le flotteur ajouté avec succès et envoyé pour approbation \"</string>
     <string name="commisssion_bal_insufficient">vous avez entré le montant ci-dessous a partir du compte commission</string>
+    <string name="select_institute_type">Sélectionnez le type d\'institut</string>
 
 </resources>
 
