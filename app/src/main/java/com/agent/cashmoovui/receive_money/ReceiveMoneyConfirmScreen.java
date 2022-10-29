@@ -30,6 +30,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 
 
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletReceiverKYC;
@@ -374,11 +375,11 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
 
             JSONObject dataObjectrequest = new JSONObject();
 
-            dataObjectrequest.put("srcWalletOwnerCode", "1000004478");
+            dataObjectrequest.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this) );
             dataObjectrequest.put("desWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this));
             dataObjectrequest.put("srcCurrencyCode", "100062");
             dataObjectrequest.put("desCurrencyCode", "100062");
-            dataObjectrequest.put("value", "10000");
+            dataObjectrequest.put("value", tvTransAmounts.getText().toString());
             dataObjectrequest.put("transactionType", "113092");
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
 

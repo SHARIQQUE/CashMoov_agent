@@ -131,7 +131,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             }
 
             txt_commission_amount.setText(fromAmount);
-            txt_from_amount.setText(getString(R.string.transaction_amount_receiptPage)+" : "+transactionAmount);
+            txt_from_amount.setText(getString(R.string.transaction_amount_receiptPage)+"  "+transactionAmount);
             txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
             txt_status.setText(getString(R.string.status)+" : "+status);
             txt_success.setText(getString(R.string.transaction_successful));

@@ -1236,13 +1236,13 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                       //  rp_tv_convertionrate.setText(MyApplication.addDecimal(currencySymbol_receiver));
                         rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(fees_amount));
                        if(tax_financialtypename.equalsIgnoreCase("VAT")){
-                           rp_tv_excise_tax.setText(getString(R.string.Taxvat)+":"  + " "+currencySymbol_receiver+" "+tax_financial);
+                           rp_tv_excise_tax.setText(getString(R.string.Taxvat)+""  + " "+currencySymbol_receiver+" "+tax_financial);
 
                        }else if(tax_financialtypename.equalsIgnoreCase("Financial Tax")){
-                           rp_tv_excise_tax.setText(getString(R.string.Taxfinancial)+":"  + " "+currencySymbol_receiver+" "+tax_financial);
+                           rp_tv_excise_tax.setText(getString(R.string.Taxfinancial)+""  + " "+currencySymbol_receiver+" "+tax_financial);
 
                        }else{
-                           rp_tv_excise_tax.setText(tax_financialtypename+":"  + " "+currencySymbol_receiver+" "+tax_financial);
+                           rp_tv_excise_tax.setText(tax_financialtypename+""  + " "+currencySymbol_receiver+" "+tax_financial);
 
                        }
                         rp_tv_amount_paid.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(amountstr));

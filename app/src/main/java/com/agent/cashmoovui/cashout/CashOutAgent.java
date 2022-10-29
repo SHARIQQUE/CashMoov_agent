@@ -1511,17 +1511,17 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                     taxLinear.setVisibility(View.VISIBLE);
 
                                     if (tax_financialtypename.equalsIgnoreCase("VAT")) {
-                                        rp_tv_financialTax.setText(getString(R.string.Taxvat) + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                        rp_tv_financialTax.setText(getString(R.string.Taxvat) + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
                                     } else if (tax_financialtypename.equalsIgnoreCase("Financial Tax")) {
-                                        rp_tv_financialTax.setText(getString(R.string.Taxfinancial) + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                        rp_tv_financialTax.setText(getString(R.string.Taxfinancial) + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
                                     } else {
-                                        rp_tv_financialTax.setText(tax_financialtypename + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                        rp_tv_financialTax.setText(tax_financialtypename + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
                                     }
 
-                                    receiptPage_tv_financialtaxvalue.setText(tax_financialtypename + ":" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                    receiptPage_tv_financialtaxvalue.setText(tax_financialtypename + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
                                 }
                             } else {
                                 tax_financial = exchangeRate.getString("value");

@@ -8,12 +8,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.CommonData;
+import com.agent.cashmoovui.internationaltransfer.InTransfer;
+import com.agent.cashmoovui.internationaltransfer.OutTransfer;
 import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceActivity;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 
@@ -25,6 +28,7 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
     String languageToUse = "";
 
     LinearLayout ll_remitence_international,ll_remitence_local;
+    CardView cardToreceiveinternational,mCardToPartners;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +55,12 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
 
         ll_remitence_international = (LinearLayout) findViewById(R.id.ll_remitence_international);
         ll_remitence_local = (LinearLayout) findViewById(R.id.ll_remitence_local);
-
+        cardToreceiveinternational=findViewById(R.id.cardToreceiveinternational);
+        mCardToPartners=findViewById(R.id.cardToPartners);
         ll_remitence_international.setOnClickListener(this);
         ll_remitence_local.setOnClickListener(this);
+        mCardToPartners.setOnClickListener(this);
+        cardToreceiveinternational.setOnClickListener(this);
 
     }
     @Override
@@ -108,9 +115,19 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
             }
             break;
 
+            case R.id.cardToreceiveinternational:
 
+                    Intent intent = new Intent(SendRemittanceOpt.this, InTransfer.class);
+                    startActivity(intent);
 
+                break;
 
+            case R.id.cardToPartners:
+
+                    Intent intento = new Intent(SendRemittanceOpt.this, OutTransfer.class);
+                    startActivity(intento);
+
+                break;
         }
     }
 }

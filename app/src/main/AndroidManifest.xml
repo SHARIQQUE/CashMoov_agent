@@ -493,8 +493,67 @@ x
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
 
+            <activity android:name=".internationaltransfer.Inform"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
 
-        <meta-data
+            <activity android:name=".internationaltransfer.InFormConfirmation"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+            <activity android:name=".internationaltransfer.InFormReceiptScreen"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+
+            <activity android:name=".internationaltransfer.InFormRecptNew"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+            <activity android:name=".internationaltransfer.InternationalTransferOption"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+            <activity android:name=".internationaltransfer.InTransfer"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+
+            <activity android:name=".internationaltransfer.Outform"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+
+            <activity android:name=".internationaltransfer.OutFormConfirmation"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+            <activity android:name=".internationaltransfer.OutFormReceiptScreen"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+
+            <activity android:name=".internationaltransfer.OutFormRecptNew"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+            <activity android:name=".internationaltransfer.OutTransfer"
+                android:windowSoftInputMode="adjustResize|stateVisible"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNew"/>
+
+
+
+            <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="default" />
 

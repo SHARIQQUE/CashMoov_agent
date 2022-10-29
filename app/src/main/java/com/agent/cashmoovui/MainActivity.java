@@ -42,6 +42,7 @@ import org.json.JSONObject;
 
 import com.agent.cashmoovui.transfer_float.CommissionTransfer;
 import com.agent.cashmoovui.transfer_float.TransferFloats;
+import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.location.LocationCallback;
@@ -552,8 +553,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_commissionTransfer:
-                i = new Intent(MainActivity.this, CommissionTransfer.class);
-                startActivity(i);
+            {
+                if(!MyApplication.showTransferCommission){
+                    MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
+                }else {
+                    Intent itr = new Intent(MainActivity.this, CommissionTransfer.class);
+                    startActivity(itr);
+                }
+            }
                 break;
             case R.id.ll_receivemoney:
                Intent inew = new Intent(MainActivity.this, ReceiveMoneyDetailScreen.class);

@@ -630,6 +630,14 @@
 
     <string name="main_Wallet_single">Main Wallet :</string>
     <string name="commision_Wallet">Commision Wallet :</string>
+    <string name="Parteners">Partners</string>
+    <string name="val_subscriber_no">Please enter subscriber number</string>
+    <string name="enter_subscriber_no_val">Subscriber number must be at least 9 digits long</string>
+    <string name="msisdn_not_reg_with_subscriber">MSISDN is not saved, do you want to send to non subscriber?</string>
+    <string name="vendor_trans_id_colon">Vendor Transaction ID :</string>
+    <string name="sedingcountry">Sending Country</string>
+    <string name="destinationcountry">Destination Country</string>
+    <string name="benefi_msisdn_colom">Beneficiary MSISDN :</string>
 
     <string name="main_Wallet_singlen">Main Wallet</string>
     <string name="reserve_Wallet">Reserve Amount :</string>

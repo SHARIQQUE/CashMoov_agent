@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linOperator"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            app:cardCornerRadius="@dimen/_6sdp"
+            android:layout_margin="@dimen/_5sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/ivOperatorLogo"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/startimeslogo"
+                    android:scaleType="fitXY"
+                    app:civ_border_color="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/tvOperatorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_11sdp"
+        android:textColor="@color/textColorDBlack"
+        android:lineSpacingExtra="3sp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/aileron_bold"
+        android:gravity="center_horizontal"
+        android:text="Star Time"
+        android:singleLine="false"
+        android:ellipsize="marquee"/>
+
+
+</LinearLayout>

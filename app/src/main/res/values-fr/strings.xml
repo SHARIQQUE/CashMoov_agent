@@ -230,6 +230,15 @@
     <string name="details_du_receveur">Details du destinataire</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
     <string name="amount">Montant</string>
+    <string name="Parteners">Les partenaires</string>
+    <string name="val_subscriber_no">Veuillez saisir le numéro d\'abonné</string>
+    <string name="enter_subscriber_no_val">Le numéro d\'abonné doit comporter au moins 9 chiffres</string>
+    <string name="msisdn_not_reg_with_subscriber">MSISDN n\'est pas enregistré, voulez-vous envoyer à un non abonné ?</string>
+    <string name="vendor_trans_id_colon">ID de la transaction  du vendeur:</string>
+    <string name="sedingcountry">Pays d\'envoi</string>
+    <string name="destinationcountry">Pays de destination</string>
+    <string name="benefi_msisdn_colom">Bénéficiaire MSISDN :</string>
+
     <string name="non_subscribed_money_transfer">Transfert d\'argent non abonné</string>
     <string name="recipient_details">Details du destinataire</string>
     <string name="valid_fname">Prenoms*</string>

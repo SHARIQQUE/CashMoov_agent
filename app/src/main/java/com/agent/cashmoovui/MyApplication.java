@@ -91,6 +91,10 @@ public class MyApplication extends Application {
     public static boolean showCashOut = false;
     public static boolean showPayment = false;
     public static boolean showRemittance = false;
+    public static boolean showToSubscriber=false;
+    public static boolean showToNonSubscriber=false;
+    public static boolean showInternationalRemit=false;
+
     public static boolean showSendRemit = false;
     public static boolean showReceiveRemit = false;
     public static boolean showCashtoWallet = false;
@@ -982,7 +986,7 @@ public class MyApplication extends Application {
         ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
                 MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
 
-            return test;
+            return test +" :";
         }else {
             if (test.equalsIgnoreCase("VAT")) {
                 return "T.V.A :";
@@ -994,5 +998,24 @@ public class MyApplication extends Application {
 
         return test+" :";
     }
+
+    public static String getTaxStringnew(String test){
+        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("en")
+                ||MyApplication.getSaveString("Locale", MyApplication.getInstance()).isEmpty()||
+                MyApplication.getSaveString("Locale", MyApplication.getInstance())==null){
+
+            return test +" ";
+        }else {
+            if (test.equalsIgnoreCase("VAT")) {
+                return "T.V.A :";
+            }
+            if (test.equalsIgnoreCase("Financial Tax")) {
+                return "Taxe financière :";
+            }
+        }
+
+        return test+" ";
+    }
+
 
 }

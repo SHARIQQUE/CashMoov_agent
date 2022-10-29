@@ -782,7 +782,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
         }
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>Double.parseDouble(comiisionValueCheck)) {
+
+        else if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>Double.parseDouble(comiisionValueCheck)) {
             MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.commisssion_bal_insufficient));
             return false;
 
@@ -1277,8 +1278,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     tvAmtCurr.setText(select_currencySymbol);
                     comiisionValueCheck=MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue;
                     // available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
-
-
+                    System.out.println("get comiisionValueCheck"+comiisionValueCheck);
 
                 }
                 catch (Exception e)

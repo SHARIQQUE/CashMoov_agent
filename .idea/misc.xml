@@ -13,18 +13,24 @@
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/transaction_history_agentpage.xml" value="0.165625" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/drawable-mdpi/ic_hide.xml" value="0.1535" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/drawable-mdpi/ic_show.xml" value="0.1535" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/drawable-v24/baseline_swipe_left_alt_black_24dp.xml" value="0.156" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/acticity_subscriber_signature.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_about.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_add_outlets.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_add_outletsnew.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_addoutlet_one.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_bill_pay_receipt.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_billpay.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_out_opt.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_to_wallet_benefi_kyc.xml" value="0.18541666666666667" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_to_wallet_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_to_wallet_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cash_to_wallet_sender_kyc.xml" value="0.18541666666666667" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_cashin.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_confirm_screen.xml" value="0.49122807017543857" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_in_form.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_international_option.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_international_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_international_remittance_benefi_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_international_remittance_confirm_screen.xml" value="0.19947916666666668" />
@@ -36,8 +42,10 @@
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_local_remittance_sender_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_more.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_out_form.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_overdraft_limit.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_owner_option.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_receipt_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_receive_money_confirmation_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_receive_money_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_receive_money_kyc_details.xml" value="0.19947916666666668" />
@@ -52,8 +60,10 @@
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_register_branch_doc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_reiceve_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_remittance_option.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_send_remittance_opt.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_subscriber_otp.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_transfer_option.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/cash_to_wallet.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/cashout_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/commision_transfer.xml" value="0.19947916666666668" />
@@ -63,8 +73,11 @@
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/include_transaction_history_agent_page.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/international_ramittance.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/item_bill_pay_operator.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/item_transaction_list_new.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/item_wallet.xml" value="0.20416666666666666" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/login_msis.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/search_transaction_adapter.xml" value="0.20416666666666666" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/search_transaction_agent_new.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/layout/search_transaction_branch.xml" value="0.19947916666666668" />

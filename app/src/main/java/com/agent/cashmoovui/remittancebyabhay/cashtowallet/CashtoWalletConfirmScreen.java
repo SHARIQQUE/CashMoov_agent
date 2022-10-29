@@ -89,17 +89,17 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
         if(CashtoWalletReceiverKYC.taxConfigurationList!=null){
             if(CashtoWalletReceiverKYC.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxStringnew(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount)+Double.parseDouble(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashtoWalletReceiverKYC.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxStringnew(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
                 tax_r.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(MyApplication.getTaxString(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
+                vat_label.setText(MyApplication.getTaxStringnew(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
                 vat_r.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount)+Double.parseDouble(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optString("value"));
             }
