@@ -678,6 +678,7 @@
 
     <string name="firstname_star">Prénoms</string>
     <string name="Date_OF_Birth">Date de naissance</string>
+    <string name="Date_OF_Birth_star">Date de naissance *</string>
     <string name="id_proof_expiryDate">Date d\'expiration de la piece d\'identité</string>
 
     <string name="amount_to_paid_colon">Montant à payer:</string>
