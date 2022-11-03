@@ -217,10 +217,10 @@
     <string name="bank_transfer_to_wallet">Bank transfer to your wallet</string>
     <string name="transaction_details">Transaction details</string>
     <string name="select_bank">Select Bank*</string>
-    <string name="acc_number">Account number:</string>
+    <string name="acc_number">Account number :</string>
     <string name="montant_a_envoyer">Amount to send</string>
-    <string name="fees">Fees:</string>
-    <string name="amount_to_paid">Amount to be paid:</string>
+    <string name="fees">Fees :</string>
+    <string name="amount_to_paid">Amount to be paid :</string>
     <string name="send">Send</string>
     <string name="choose_operation">Choose the operation</string>
     <string name="subscriber">Subscriber</string>
@@ -240,7 +240,7 @@
 
     <string name="amount_simple">Amount</string>
     <string name="amount_start">Amount*</string>
-    <string name="amount_reveiewPage">Amount:</string>
+    <string name="amount_reveiewPage">Amount :</string>
 
     <string name="non_subscribed_money_transfer">Non-subscribed money transfer</string>
     <string name="recipient_details">Recipient details</string>
@@ -266,7 +266,7 @@
     <string name="gender">Gender</string>
     <string name="reason_for_sending">Reason for sending</string>
     <string name="international_money_transfer">International money transfer</string>
-    <string name="Rate">Rate:</string>
+    <string name="Rate">Rate :</string>
     <string name="transfer_to_your_bank">Transfer to your Bank</string>
     <string name="valid_select_provider">Select provider*</string>
     <string name="amount_to_send">Amount to send</string>
@@ -312,12 +312,12 @@
     <string name="transaction_type_colon">Transaction Type :</string>
     <string name="transaction_id_colon">Transaction ID :</string>
     <string name="change_pin_caps">Change PIN</string>
-    <string name="change_pin_message">Please enter your old secret code:</string>
+    <string name="change_pin_message">Please enter your old secret code :</string>
     <string name="change_lang_conf_msg">Are you sure you want to change language?</string>
     <string name="fee_consulting_service">Cash Moov Fee Consulting Service</string>
-    <string name="service_chosen_colon">Service chosen:</string>
-    <string name="subscriber_transfer_colon">Subscriber transfer:</string>
-    <string name="non_subscriber_transfer_colon">Non-subscribed transfer:</string>
+    <string name="service_chosen_colon">Service chosen :</string>
+    <string name="subscriber_transfer_colon">Subscriber transfer :</string>
+    <string name="non_subscriber_transfer_colon">Non-subscribed transfer :</string>
     <string name="close">Close</string>
     <string name="required_asterisk"><![CDATA[<font color=\'#FF0000\'>&nbsp*</font>]]></string>
     <string name="save_next"><![CDATA[Save & Next]]></string>
@@ -334,7 +334,7 @@
     <string name="enter_pin">Enter pin</string>
     <string name="login_message">Please enter your phone number &amp; password to login the account.</string>
     <string name="login">Login</string>
-    <string name="amount_to_paid_colon">Amount to be paid:</string>
+    <string name="amount_to_paid_colon">Amount to be paid :</string>
     <string name="kyc_detail_response_msg">Kyc details submitted successfully</string>
     <string name="valid_select_service_provider">Select Service Provider*</string>
     <string name="valid_select_rec_country">Select Receiving Country*</string>
@@ -446,59 +446,59 @@
     <!--    Reveiew Page-->
 
 
-    <string name="mobileNo_reveiewPage">Mobile Number:</string>
-    <string name="senderName_reveiewPage">Sender Name:</string>
-    <string name="business_type_reveiewPage">Business Type:</string>
-    <string name="email_reveiewPage">Email:</string>
-    <string name="receiverName_reveiewPage">Receiver Name:</string>
-    <string name="transactionAmount_reveiewPage">Transaction Amount:</string>
-    <string name="fee_reveiewPage">Fee:</string>
-    <string name="financialTax_reveiewPage">Financial Tax:</string>
-    <string name="amount_to_be_charged_reveiewPage">Amount to be charged:</string>
-    <string name="amount_to_be_credit_reveiewPage">Amount to be credit:</string>
-    <string name="country_reviewPage">Country:</string>
-    <string name="amount_to_paid_review_page">Amount to be Paid:</string>
+    <string name="mobileNo_reveiewPage">Mobile Number :</string>
+    <string name="senderName_reveiewPage">Sender Name :</string>
+    <string name="business_type_reveiewPage">Business Type :</string>
+    <string name="email_reveiewPage">Email :</string>
+    <string name="receiverName_reveiewPage">Receiver Name :</string>
+    <string name="transactionAmount_reveiewPage">Transaction Amount :</string>
+    <string name="fee_reveiewPage">Fee :</string>
+    <string name="financialTax_reveiewPage">Financial Tax :</string>
+    <string name="amount_to_be_charged_reveiewPage">Amount to be charged :</string>
+    <string name="amount_to_be_credit_reveiewPage">Amount to be credit :</string>
+    <string name="country_reviewPage">Country :</string>
+    <string name="amount_to_paid_review_page">Amount to be Paid :</string>
     <string name="login_user_pin">Login User Pin</string>
     <string name="Address_Type_star">Address Type *</string>
 
 
-    <string name="agent_code_reviewpage">Agent Code:</string>
-    <string name="sender_reviewpage">Sender:</string>
-    <string name="benificiarayCode_reviewpage">Beneficiary Code:</string>
-    <string name="sender_document_reviewpage">Sender Document:</string>
-    <string name="sending_currency_reviewPage">Sending Currency:</string>
-    <string name="beneficiary_currency_reviewPage"> Beneficiary Currency:</string>
-    <string name="beneficiary_sendingCurrency_reviewPage"> Sending Currency:</string>
-    <string name="convertionRate_reviewPage"> Conversion Rate:</string>
-    <string name="comment_reviewPage"> Comment:</string>
+    <string name="agent_code_reviewpage">Agent Code :</string>
+    <string name="sender_reviewpage">Sender :</string>
+    <string name="benificiarayCode_reviewpage">Beneficiary Code :</string>
+    <string name="sender_document_reviewpage">Sender Document :</string>
+    <string name="sending_currency_reviewPage">Sending Currency :</string>
+    <string name="beneficiary_currency_reviewPage"> Beneficiary Currency :</string>
+    <string name="beneficiary_sendingCurrency_reviewPage"> Sending Currency :</string>
+    <string name="convertionRate_reviewPage"> Conversion Rate :</string>
+    <string name="comment_reviewPage"> Comment :</string>
     <string name="amount_to_paid_reviewPage">Amount to be paid</string>
-    <string name="agentName_reveiewPage">Agent name:</string>
-    <string name="excise_tax_reveiewPage">Excise tax:</string>
-    <string name="total_amount_reveiewPage">Total amount:</string>
+    <string name="agentName_reveiewPage">Agent name :</string>
+    <string name="excise_tax_reveiewPage">Excise tax :</string>
+    <string name="total_amount_reveiewPage">Total amount :</string>
 
 
 
 
     <!--  receipt page-->
 
-    <string name="senderName_receiptPage">Sender name:</string>
-    <string name="receiverName_receiptPage">Receiver Name:</string>
-    <string name="financialTax_receiptPage">Financial Tax:</string>
-    <string name="fee_receiptPage">Fee:</string>
-    <string name="amount_to_be_credit_receiptPage">Amount to be credit:</string>
-    <string name="name_receiptPage">Name:</string>
-    <string name="transactionAmount_receiptPage">Transaction Amount:</string>
-    <string name="transactionReferenceNo_receiptPage">Transaction Reference Number:</string>
-    <string name="transactionType_receiptPage">Transaction Type:</string>
-    <string name="dateOfTransaction_receiptPage">Date of Transaction:</string>
-    <string name="receiver_details_receiptPage">Receiver Details:</string>
-    <string name="phoneNo_receiptPage">Phone Number:</string>
-    <string name="mobileNo_receiptPage">Mobile Number:</string>
-    <string name="country_receiptPage">Country:</string>
+    <string name="senderName_receiptPage">Sender name :</string>
+    <string name="receiverName_receiptPage">Receiver Name :</string>
+    <string name="financialTax_receiptPage">Financial Tax :</string>
+    <string name="fee_receiptPage">Fee :</string>
+    <string name="amount_to_be_credit_receiptPage">Amount to be credit :</string>
+    <string name="name_receiptPage">Name :</string>
+    <string name="transactionAmount_receiptPage">Transaction Amount :</string>
+    <string name="transactionReferenceNo_receiptPage">Transaction Reference Number :</string>
+    <string name="transactionType_receiptPage">Transaction Type :</string>
+    <string name="dateOfTransaction_receiptPage">Date of Transaction :</string>
+    <string name="receiver_details_receiptPage">Receiver Details :</string>
+    <string name="phoneNo_receiptPage">Phone Number :</string>
+    <string name="mobileNo_receiptPage">Mobile Number :</string>
+    <string name="country_receiptPage">Country :</string>
     <string name="pin_capital">PIN</string>
-    <string name="transaction_receiptNo_receiptPage">Transaction Id:</string>
-    <string name="amount_to_paid_receiptpage">Amount to be Paid:</string>
-    <string name="amount_to_be_charged_receiptpage">Amount to be charged:</string>
+    <string name="transaction_receiptNo_receiptPage">Transaction Id :</string>
+    <string name="amount_to_paid_receiptpage">Amount to be Paid :</string>
+    <string name="amount_to_be_charged_receiptpage">Amount to be charged :</string>
     <string name="upload_success">Profile image uploaded successfully</string>
     <string name="logout">Logout</string>
     <string name="this_action_logout">This action will logout from the application</string>
@@ -513,7 +513,7 @@
 
     <string name="email_receiptPage">Email</string>
 
-    <string name="total_amount_receiptpage">Total amount:</string>
+    <string name="total_amount_receiptpage">Total amount :</string>
 
 
     <!--   -->
@@ -544,7 +544,7 @@
     <string name="plz_enter_name">PLease enter name</string>
 
     <string name="cash_to_wallet">Cash to Wallet</string>
-    <string name="tax">Tax</string>
+    <string name="tax">Tax :</string>
 
     <string name="total_amount_invoice">Total amount invoice</string>
     <string name="rate">Rate</string>
@@ -646,8 +646,8 @@
     <string name="validaty_days">Validity days* </string>
     <string name="select_operator">Select Operator </string>
     <string name="select_operator_star">Select Operator*</string>
-    <string name="Operator_reviewPage">Operator:</string>
-    <string name="Operator_receiptpage">Operator:</string>
+    <string name="Operator_reviewPage">Operator :</string>
+    <string name="Operator_receiptpage">Operator :</string>
 
 
 
@@ -727,16 +727,16 @@
     <string name="gnf_transaction">GNF / transaction</string>
     <string name="recharge_mobile">Recharge Mobile</string>
     <string name="recharge_tv">Recharge TV</string>
-    <string name="international_colon">International:</string>
-    <string name="send_remittance_colon">Send Remittance:</string>
-    <string name="receive_remittance_colon">Receive Remittance:</string>
-    <string name="cash_to_wallet_colon">Cash to Wallet:</string>
-    <string name="sell_float_colon">Sell Float:</string>
-    <string name="transfer_float_colon">Transfer Float:</string>
+    <string name="international_colon">International :</string>
+    <string name="send_remittance_colon">Send Remittance :</string>
+    <string name="receive_remittance_colon">Receive Remittance :</string>
+    <string name="cash_to_wallet_colon">Cash to Wallet :</string>
+    <string name="sell_float_colon">Sell Float :</string>
+    <string name="transfer_float_colon">Transfer Float :</string>
     <string name="transaction_amount_receiptPage">Transaction Amount</string>
-    <string name="vendor_transaction_id_receipt">Transaction id:</string>
+    <string name="vendor_transaction_id_receipt">Transaction id :</string>
     <string name="receiver_msisdn"> Receiver MSISDN</string>
-    <string name="vendor_transaction_id_receiptn">Vendor Transaction id:</string>
+    <string name="vendor_transaction_id_receiptn">Vendor Transaction id :</string>
     <string name="receiverName_receiptPage_without_coln">Receiver name</string>
     <string name="final_amount">Final Amount </string>
     <string name="status">Status </string>
@@ -773,8 +773,8 @@
     <string name="val_select_city">Please select city</string>
     <string name="transaction_successful">Transaction Successful</string>
     <string name="date">Date</string>
-    <string name="sender_info_colon">Sender info:</string>
-    <string name="receiver_info_colon">Receiver info:</string>
+    <string name="sender_info_colon">Sender info :</string>
+    <string name="receiver_info_colon">Receiver info :</string>
     <string name="notification">Notification</string>
     <string name="range">Range</string>
     <string name="value">Value</string>

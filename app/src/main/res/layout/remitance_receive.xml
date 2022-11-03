@@ -186,7 +186,7 @@
                         android:paddingBottom="@dimen/_12sdp"
                         android:textAllCaps="true"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <EditText
                         android:id="@+id/edittext_firstName"
@@ -208,7 +208,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <EditText
                         android:id="@+id/edittext_countryName"
@@ -230,7 +230,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
 
                     <EditText
@@ -251,7 +251,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
 
                     <EditText
@@ -290,7 +290,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <EditText
                         android:id="@+id/edittext_gender"
@@ -312,7 +312,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <EditText
                         android:visibility="gone"
@@ -331,7 +331,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <TextView
                         android:id="@+id/dobText"
@@ -341,7 +341,7 @@
                         android:textStyle="bold"
                         android:paddingTop="10dp"
                         android:visibility="gone"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
 
                         android:text="@string/valid_dob"></TextView>
 
@@ -374,7 +374,7 @@
                             android:paddingEnd="@dimen/_15sdp"
                             android:hint="@string/valid_dob"
                             android:textColor="@color/textColorLBlack"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:fontFamily="@font/aileron_semibold" />
                         <ImageView
                             android:id="@+id/calenderIcon_Image"
@@ -409,7 +409,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <TextView
 
@@ -419,7 +419,7 @@
                         android:layout_marginStart="10dp"
                         android:paddingTop="10dp"
                         android:text="@string/vaild_id_proof_no"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"
 
                         android:visibility="gone"></TextView>
@@ -454,7 +454,7 @@
                             android:paddingEnd="@dimen/_15sdp"
                             android:paddingBottom="@dimen/_12sdp"
                             android:textColor="@color/textColorLBlack"
-                            android:textSize="@dimen/_15sdp" />
+                            android:textSize="@dimen/_13sdp" />
 
                         <ImageView
                             android:id="@+id/calenderIconidproff_Image"
@@ -501,7 +501,7 @@
                             android:paddingEnd="@dimen/_15sdp"
                             android:paddingBottom="@dimen/_12sdp"
                             android:textColor="@color/textColorLBlack"
-                            android:textSize="@dimen/_15sdp" />
+                            android:textSize="@dimen/_13sdp" />
 
                         <Button
                             android:id="@+id/btnFrontUpload"
@@ -533,7 +533,7 @@
                         android:paddingEnd="@dimen/_15sdp"
                         android:paddingBottom="@dimen/_12sdp"
                         android:textColor="#323232"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <LinearLayout
 
@@ -573,7 +573,7 @@
                             android:maxLength="4"
                             android:padding="@dimen/_12sdp"
                             android:textColor="#323232"
-                            android:textSize="@dimen/_15sdp" />
+                            android:textSize="@dimen/_13sdp" />
 
 
                     </LinearLayout>
@@ -1109,6 +1109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:gravity="left"
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />

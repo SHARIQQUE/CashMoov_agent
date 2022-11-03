@@ -838,14 +838,14 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                                         } else {
                                             taxConfigurationList = null;
-                                            tax_first_page.setText("0.00");
+                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
                                                     Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
                                         }
                                         if(jsonObjectAmountDetails.has("receiverTax")) {
                                             taxConfigurationList = null;
-                                            tax_first_page.setText("0.00");
+                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
                                                     Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 

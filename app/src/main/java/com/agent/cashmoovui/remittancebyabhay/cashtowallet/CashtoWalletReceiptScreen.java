@@ -177,17 +177,17 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
         if(CashtoWalletConfirmScreen.taxConfigList!=null){
             if(CashtoWalletConfirmScreen.taxConfigList.length()==1){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxStringnew(CashtoWalletConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxStringnew(CashtoWalletConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+":");
                 tax1_value.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }
             if(CashtoWalletConfirmScreen.taxConfigList.length()==2){
                 tax1_layout.setVisibility(View.VISIBLE);
-                tax1_lable.setText(MyApplication.getTaxStringnew(CashtoWalletConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax1_lable.setText(MyApplication.getTaxStringnew(CashtoWalletConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName"))+":");
                 tax1_value.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 tax2_layout.setVisibility(View.VISIBLE);
-                tax2_lable.setText(MyApplication.getTaxStringnew(CashtoWalletConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"))+" :");
+                tax2_lable.setText(MyApplication.getTaxStringnew(CashtoWalletConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName"))+":");
                 tax2_value.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
                 // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
             }

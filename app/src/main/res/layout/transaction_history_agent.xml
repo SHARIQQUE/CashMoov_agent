@@ -462,7 +462,7 @@ android:id="@+id/commisionwallet_heding_textview"
                             android:maxLength="11"
                             android:hint="@string/find_a_agent"
                             android:textColor="#323232"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:fontFamily="@font/aileron_semibold" />
 
 

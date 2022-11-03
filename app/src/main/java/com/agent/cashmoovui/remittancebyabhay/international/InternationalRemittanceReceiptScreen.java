@@ -188,17 +188,17 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
             if (InternationalRemittanceConfirmScreen.taxConfigList != null) {
                 if (InternationalRemittanceConfirmScreen.taxConfigList.length() == 1) {
                     tax1_layout.setVisibility(View.VISIBLE);
-                    tax1_lable.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") )+ " :");
+                    tax1_lable.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") )+ ":");
                     tax1_value.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
                     // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
                 }
                 if (InternationalRemittanceConfirmScreen.taxConfigList.length() == 2) {
                     tax1_layout.setVisibility(View.VISIBLE);
-                    tax1_lable.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")) + " :");
+                    tax1_lable.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName")) + ":");
                     tax1_value.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                     tax2_layout.setVisibility(View.VISIBLE);
-                    tax2_lable.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName") )+ " :");
+                    tax2_lable.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optString("taxTypeName") )+ ":");
                     tax2_value.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(1).optDouble("value")));
                     // finalamount=Double.parseDouble(String.valueOf(ToSubscriber.fee))+Double.parseDouble(ToSubscriber.etAmount.getText().toString())+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ToSubscriber.taxConfigurationList.optJSONObject(0).optString("value"));
                 }

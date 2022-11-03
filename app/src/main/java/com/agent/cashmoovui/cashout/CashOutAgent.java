@@ -549,14 +549,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             MyApplication.showErrorToast(this, getString(R.string.subscriber_number_new));
 
             return false;
-        } else if (mobileNoStr.length() < 9) {
+        }
+        if (mobileNoStr.length() < 9) {
 
             MyApplication.showErrorToast(this, getString(R.string.enter_phone_no_val));
 
             return false;
         }
 
-        if (amountstr.isEmpty()) {
+        else if (amountstr.isEmpty()) {
 
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
 
@@ -570,12 +571,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 //            return false;
 //        }
 
-        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashOutMinAmount) {
+          if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashOutMinAmount) {
             MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCashOutMinAmount);
             return false;
         }
 
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashOutMaxAmount) {
+           if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashOutMaxAmount) {
             MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCashOutMaxAmount);
             return false;
 
@@ -1511,17 +1512,17 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                     taxLinear.setVisibility(View.VISIBLE);
 
                                     if (tax_financialtypename.equalsIgnoreCase("VAT")) {
-                                        rp_tv_financialTax.setText(getString(R.string.Taxvat) + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                        rp_tv_financialTax.setText(getString(R.string.Taxvat) + "" + "  " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
                                     } else if (tax_financialtypename.equalsIgnoreCase("Financial Tax")) {
-                                        rp_tv_financialTax.setText(getString(R.string.Taxfinancial) + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                        rp_tv_financialTax.setText(getString(R.string.Taxfinancial) + "" + "  " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
                                     } else {
-                                        rp_tv_financialTax.setText(tax_financialtypename + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                        rp_tv_financialTax.setText(tax_financialtypename + "" + "  " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
 
                                     }
 
-                                    receiptPage_tv_financialtaxvalue.setText(tax_financialtypename + "" + " " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
+                                    receiptPage_tv_financialtaxvalue.setText(tax_financialtypename + "" + "  " + currencySymbol_receiver + " " + MyApplication.addDecimal(tax_financialnew));
                                 }
                             } else {
                                 tax_financial = exchangeRate.getString("value");

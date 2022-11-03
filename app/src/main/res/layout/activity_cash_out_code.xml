@@ -152,7 +152,7 @@
                 android:paddingBottom="16dp"
                 android:hint="Montant*"
                 android:textColor="#323232"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:fontFamily="@font/aileron_semibold" />
             <EditText
                 android:layout_width="match_parent"

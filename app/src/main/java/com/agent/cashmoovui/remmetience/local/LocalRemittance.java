@@ -3084,7 +3084,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
                                 }
 
-                                rp_tv_financialTax.setText(select_sender_currencySymbol+ " "+tax_financial);
+                                rp_tv_financialTax.setText(select_sender_currencySymbol+ "  "+tax_financial);
 
                                 tax_financial_double = Double.parseDouble(tax_financial);
                                 //  credit_amount_double = Double.parseDouble(credit_amount);

@@ -182,7 +182,7 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/confirmation_code_star"
                 android:textColor="#323232"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:fontFamily="@font/aileron_semibold"/>
 
             <EditText
@@ -200,7 +200,7 @@
                 android:paddingEnd="@dimen/_15sdp"
                 android:hint="@string/mobileNumber_star"
                 android:textColor="#323232"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_13sdp"
                 android:fontFamily="@font/aileron_semibold" />
 
 
@@ -275,7 +275,7 @@
                     android:gravity="left"
                     android:text="@string/pin"
                     android:textColor="@color/textColorDBlack"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/aileron_semibold" />
 
                 <EditText
@@ -290,7 +290,7 @@
                     android:background="@drawable/rect_lightcolor_outline"
                     android:maxLength="4"
                     android:backgroundTint="#999999"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/aileron_semibold"
                     android:drawableRight="@drawable/ic_visibility_off_black_24dp"
                     android:inputType="numberPassword" />
@@ -720,7 +720,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="#000"
                     />
 

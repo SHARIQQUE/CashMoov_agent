@@ -1087,7 +1087,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
                         receiptPage_tv_financialtaxl.setText(tax_lab.getText().toString());
 
-                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +MyApplication.addDecimalthreenew("0.00"));
+                        rp_tv_convertionrate.setText(currencySymbol_receiver+" " +MyApplication.addDecimalthreenew("00.000"));
                         rp_tv_fees_reveiewPage.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
                         rp_tv_excise_tax.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(tax_financial));
                         rp_tv_amount_paid.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));

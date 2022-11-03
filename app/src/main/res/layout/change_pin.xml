@@ -102,7 +102,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_15sdp"
+                                android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
@@ -160,7 +160,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
-                                android:textSize="@dimen/_15sdp"
+                                android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
@@ -221,7 +221,7 @@
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
-                                android:textSize="@dimen/_15sdp"
+                                android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold"
                                 android:inputType="numberPassword"
                                 android:maxLength="4"/>
@@ -263,7 +263,7 @@
                         android:text="@string/login_pin"
                         android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <TextView
                         android:visibility="gone"
@@ -275,7 +275,7 @@
                         android:lineSpacingExtra="3sp"
                         android:text="@string/or"
                         android:layout_gravity="center"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
 
                     <TextView
                         android:visibility="gone"
@@ -288,7 +288,7 @@
                         android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_13sdp" />
                     <TextView
                         android:visibility="gone"
                         android:id="@+id/msgText"

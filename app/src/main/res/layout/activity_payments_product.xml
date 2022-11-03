@@ -32,7 +32,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="@string/you_make_an_invoice_payment"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_13sdp" />
 
 
             <LinearLayout

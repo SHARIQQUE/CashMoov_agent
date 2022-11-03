@@ -470,14 +470,14 @@
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             />
 
                         <TextView
                             android:id="@+id/rp_tv_receiverName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textColor="#000"
@@ -512,14 +512,14 @@
 
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             />
 
                         <TextView
                             android:id="@+id/rp_tv_mobileNumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textColor="#000"
@@ -553,14 +553,14 @@
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             />
 
                         <TextView
                             android:id="@+id/rp_tv_transactionAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textColor="#000"
@@ -594,14 +594,14 @@
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             />
 
                         <TextView
                             android:id="@+id/rp_tv_fees_reveiewPage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textColor="#000"
@@ -635,9 +635,10 @@
                             android:id="@+id/rp_tv_financialTax"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="4dp"
+                            android:layout_marginLeft="@dimen/_5sdp"
                             android:textColor="#000"
                             />
 
@@ -669,14 +670,14 @@
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             />
 
                         <TextView
                             android:id="@+id/rp_tv_amount_to_be_charge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textColor="#000"
@@ -710,14 +711,14 @@
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             />
 
                         <TextView
                             android:id="@+id/rp_tv_amount_to_be_paid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_15sdp"
+                            android:textSize="@dimen/_13sdp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textColor="#000"

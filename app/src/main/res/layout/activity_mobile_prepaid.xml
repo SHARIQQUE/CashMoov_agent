@@ -31,7 +31,7 @@
                 android:lineSpacingExtra="3sp"
                 android:text="Achat de Credit"
                 android:textColor="#29304d"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/_13sdp" />
 
             <TextView
                 android:layout_width="match_parent"

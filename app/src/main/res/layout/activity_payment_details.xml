@@ -71,7 +71,7 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/valid_acc_number"
                     android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/aileron_semibold"  />
 
                 <LinearLayout

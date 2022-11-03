@@ -16,7 +16,7 @@
         android:lineSpacingExtra="3sp"
         android:text="@string/Contacts"
         android:textColor="#29304d"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
