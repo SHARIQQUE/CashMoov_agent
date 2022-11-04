@@ -795,7 +795,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                             "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
                             + "&serviceProviderCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
-                            + "&walletOwnerCode=" + MyApplication.getSaveString("USERCODE", localC),
+                            + "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", localC),
 
                     new Api_Responce_Handler() {
                         @Override

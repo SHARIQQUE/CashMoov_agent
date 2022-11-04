@@ -192,6 +192,7 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_edit_profile.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_confirm_screen.xml" value="0.25" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_receipt_screen.xml" value="0.15" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_sender_kyc.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_local_remittance_confirm_screen.xml" value="0.25" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_mobile_prepaid.xml" value="0.1" />
@@ -203,6 +204,7 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_payment_receipt.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_payments_product.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_profile.xml" value="0.1171875" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_receive_money_kyc_receipt.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_abonne_one.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_agent.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_branch.xml" value="0.1921875" />

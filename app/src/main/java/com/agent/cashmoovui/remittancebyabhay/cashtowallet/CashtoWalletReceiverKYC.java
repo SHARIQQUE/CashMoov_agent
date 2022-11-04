@@ -742,7 +742,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                             "&serviceCode=" + CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode=" + CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
                             + "&serviceProviderCode=" + CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
-                            + "&walletOwnerCode=" + MyApplication.getSaveString("USERCODE", cashtowalletbenefikycC),
+                            + "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", cashtowalletbenefikycC),
 
                     new Api_Responce_Handler() {
                         @Override

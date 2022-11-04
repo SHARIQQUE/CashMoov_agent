@@ -530,19 +530,35 @@
                 android:orientation="vertical"
                 android:layout_height="match_parent"
                 android:visibility="gone">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:background="@color/colorPrimary">
 
                     <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:layout_centerInParent="true"
-                        android:background="@drawable/check" />
+                        android:background="@drawable/check"
+                        android:backgroundTint="@color/colorPrimaryDark" />
 
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/confirmation_receipt"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
 
 
 

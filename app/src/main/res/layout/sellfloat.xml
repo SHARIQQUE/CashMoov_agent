@@ -1152,6 +1152,15 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/details_of_transaction"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

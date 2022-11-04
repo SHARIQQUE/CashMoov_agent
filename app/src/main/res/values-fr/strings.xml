@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 04-11-2022</string>
+    <string name="version">Version : 05-11-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -414,7 +414,7 @@
 
     <string name="amount_simple">Montant</string>
     <string name="amount_start">Montant*</string>
-    <string name="otp_capital">OTP</string>
+    <string name="otp_capital">OTP :</string>
     <string name="didnot_get_the_Code"> Vous n avez pas reçu le code ?</string>
     <string name="resend_it">Renvoyez-le</string>
 
@@ -489,7 +489,7 @@
     <string name="receiver_details_receiptPage">Détails du Réceveur :</string>
     <string name="phoneNo_receiptPage">Numéro de téléphone :</string>
     <string name="country_receiptPage">Pays :</string>
-    <string name="pin_capital">code PIN</string>
+    <string name="pin_capital">code PIN :</string>
     <string name="amount_to_paid_receiptpage">Montant à payer :</string>
     <string name="amount_to_be_charged_receiptpage">Montant à facturer :</string>
 

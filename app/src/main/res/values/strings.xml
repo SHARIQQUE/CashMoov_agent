@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 04-11-2022</string>
+    <string name="version">Version : 05-11-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -391,7 +391,7 @@
     <string name="session_expire_60">Session expires in 60 seconds</string>
     <string name="havenot_receive">Haven\'t received a code? Send it back</string>
     <string name="please_enter_otp_code">Please enter otp code</string>
-    <string name="otp_capital">OTP</string>
+    <string name="otp_capital">OTP :</string>
     <string name="otp_verify">OTP Verify</string>
     <string name="verify_subscriber_pin">Verify Subscriber Pin</string>
     <string name="subscriber_pin">Subscriber Pin</string>
@@ -495,7 +495,7 @@
     <string name="phoneNo_receiptPage">Phone Number :</string>
     <string name="mobileNo_receiptPage">Mobile Number :</string>
     <string name="country_receiptPage">Country :</string>
-    <string name="pin_capital">PIN</string>
+    <string name="pin_capital">PIN :</string>
     <string name="transaction_receiptNo_receiptPage">Transaction Id :</string>
     <string name="amount_to_paid_receiptpage">Amount to be Paid :</string>
     <string name="amount_to_be_charged_receiptpage">Amount to be charged :</string>

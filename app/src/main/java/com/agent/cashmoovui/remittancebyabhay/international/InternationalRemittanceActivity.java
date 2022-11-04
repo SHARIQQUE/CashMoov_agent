@@ -742,7 +742,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                             "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
                             + "&serviceProviderCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
-                            + "&walletOwnerCode=" + MyApplication.getSaveString("USERCODE", internationalC),
+                            + "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", internationalC),
 
                     new Api_Responce_Handler() {
                         @Override

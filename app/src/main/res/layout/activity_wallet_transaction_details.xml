@@ -89,6 +89,16 @@
                     android:fontFamily="@font/aileron_bold"
                     android:layout_marginTop="@dimen/_10sdp"/>
                 <TextView
+                    android:id="@+id/txt_from_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:fontFamily="@font/aileron_bold"
+                    android:textColor="@color/textcolor"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_15sdp"/>
+                <TextView
                     android:id="@+id/txt_trans_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,16 +143,7 @@
                     android:textSize="@dimen/_13sdp" />
 
 
-                <TextView
-                    android:id="@+id/txt_from_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="N/A"
-                    android:fontFamily="@font/aileron_semibold"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/_13sdp"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/_5sdp"/>
+
                 <TextView
                     android:visibility="gone"
                     android:id="@+id/txt_success"
