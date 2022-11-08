@@ -447,7 +447,7 @@
     <string name="fee_reveiewPage">Frais :</string>
     <string name="financialTax_reveiewPage">Taxe financière :</string>
     <string name="amount_to_be_charged_reveiewPage">Montant à facturer:</string>
-    <string name="amount_to_be_credit_reveiewPage">Montant à créditer :</string>
+    <string name="amount_to_be_credit_reveiewPage">Montant à facturer :</string>
     <string name="mobileNo_reveiewPage">Numéro de telephone:</string>
     <string name="country_reviewPage">Pays :</string>
     <string name="amount_to_paid_review_page">Montant à payer :</string>
@@ -480,7 +480,7 @@
     <string name="receiverName_receiptPage">nom du destinataire</string>
     <string name="financialTax_receiptPage">Taxe financière :</string>
     <string name="fee_receiptPage">Frais :</string>
-    <string name="amount_to_be_credit_receiptPage">Montant à créditer :</string>
+    <string name="amount_to_be_credit_receiptPage">Montant à facturer :</string>
     <string name="name_receiptPage">Nom :</string>
     <string name="transactionAmount_receiptPage">Montant de la transaction :</string>
     <string name="mobileNo_receiptPage">Numéro de telephone:</string>

@@ -274,7 +274,7 @@
     <string name="valid_choose_your_bank">Choose your Bank*</string>
     <string name="recharge_your_number">Recharge your number</string>
     <string name="recharge_details">Recharge details</string>
-    <string name="valid_amount_charged">Amount to be charged *</string>
+    <string name="valid_amount_charged">Amount to be Charged *</string>
     <string name="recharge_another_number">Recharge another number</string>
     <string name="you_make_an_invoice_payment">You make an invoice payment</string>
     <string name="recharge_tv_star_time">Recharge Tv Star Time</string>
@@ -454,7 +454,7 @@
     <string name="transactionAmount_reveiewPage">Transaction Amount :</string>
     <string name="fee_reveiewPage">Fee :</string>
     <string name="financialTax_reveiewPage">Financial Tax :</string>
-    <string name="amount_to_be_charged_reveiewPage">Amount to be charged :</string>
+    <string name="amount_to_be_charged_reveiewPage">Amount to be Charged :</string>
     <string name="amount_to_be_credit_reveiewPage">Amount to be credit :</string>
     <string name="country_reviewPage">Country :</string>
     <string name="amount_to_paid_review_page">Amount to be Paid :</string>
@@ -499,7 +499,7 @@
     <string name="pin_capital_new">PIN </string>
     <string name="transaction_receiptNo_receiptPage">Transaction Id :</string>
     <string name="amount_to_paid_receiptpage">Amount to be Paid :</string>
-    <string name="amount_to_be_charged_receiptpage">Amount to be charged :</string>
+    <string name="amount_to_be_charged_receiptpage">Amount to be Charged :</string>
     <string name="upload_success">Profile image uploaded successfully</string>
     <string name="logout">Logout</string>
     <string name="this_action_logout">This action will logout from the application</string>
