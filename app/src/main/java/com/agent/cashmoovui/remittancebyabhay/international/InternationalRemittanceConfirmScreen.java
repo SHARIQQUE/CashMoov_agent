@@ -107,7 +107,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
             }
         }
 
-        tvAmountCharged.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
+        tvAmountCharged.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
 
         etPin.addTextChangedListener(new TextWatcher() {
