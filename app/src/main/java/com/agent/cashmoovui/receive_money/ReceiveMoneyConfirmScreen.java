@@ -551,7 +551,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                                 mpinStr="";
 
                                 selectClickType="select_mpin";
-                                btnConfirm.setText(getString(R.string.pin_capital));
+                                btnConfirm.setText(getString(R.string.pin_capital_new));
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
                                 pinLinear.setVisibility(View.VISIBLE);
