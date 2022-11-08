@@ -712,7 +712,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/amount_to_be_credit_reveiewPage"
+                    android:text="@string/amount_paid_colon"
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
