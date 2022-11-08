@@ -2116,7 +2116,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     private void formatInput(EditText editText,CharSequence s, int start, int count) {
 
         if(MyApplication.checkMinMax(CashOutAgent.this,s,editText
-                ,MyApplication.ToCashOutMinAmount,MyApplication.ToCashOutMinAmount)){
+                ,MyApplication.ToCashOutMinAmount,MyApplication.ToCashOutMaxAmount)){
             return;
         }
         if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){

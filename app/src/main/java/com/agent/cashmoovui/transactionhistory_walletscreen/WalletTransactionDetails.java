@@ -176,7 +176,10 @@ public class WalletTransactionDetails extends AppCompatActivity {
             } catch (Exception e) {
 
             }
-
+            if (txt_financialtax.getText().toString().trim().equalsIgnoreCase("")||
+                    txt_financialtax.getText().toString().trim().equalsIgnoreCase("N/A")){
+                txt_financialtax.setText(getString(R.string.tax) + " " + " " + MyApplication.addDecimal("0.00"));
+            }
 
         }
 
