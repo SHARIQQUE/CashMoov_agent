@@ -123,7 +123,7 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             agentName= findViewById(R.id.agentName);
             String nameOwner=MyApplication.getSaveString("FIRSTNAME_USERINFO", localremitreceiptscreenC)+
                     MyApplication.getSaveString("LASTNAME_USERINFO", localremitreceiptscreenC);
-            agentName.setText("Sending Agent Name : "+nameOwner);
+            agentName.setText(getString(R.string.SendingAgentName)+nameOwner);
             tvTransRefNo = findViewById(R.id.tvTransRefNo);
             tvConfCode = findViewById(R.id.tvConfCode);
             tvTransType = findViewById(R.id.tvTransType);

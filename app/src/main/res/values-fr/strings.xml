@@ -92,7 +92,7 @@
 
     <string name="to_login">Se connecter</string>
     <string name="please_enter_username_password">Veuillez entrer votre identifiant et ode PIN</string>
-    <string name="phoneNumber">Numero de telephone</string>
+    <string name="phoneNumber">Numero de téléphone</string>
     <string name="password">Mot de passe</string>
     <string name="continues">Continuer</string>
     <string name="please_see_our_term_condition">Veuillez consulter notre \nPolitique relative aux conditions d\'utilisation</string>
@@ -121,7 +121,7 @@
     <string name="payment">Paiements</string>
     <string name="merchant_payment">Paiments Marchand</string>
     <string name="cash_withdrawal">Retrait d\'argent</string>
-    <string name="receive_remittance">Reception de fonds</string>
+    <string name="receive_remittance">Reception d\'argent</string>
     <string name="fee">Frais</string>
     <string name="service_point">Point de service</string>
     <string name="complete_profile">Completez le profile</string>
@@ -488,7 +488,7 @@
     <string name="transactionType_receiptPage">Type de transaction:</string>
     <string name="dateOfTransaction_receiptPage">Date de la transaction :</string>
     <string name="receiver_details_receiptPage">Détails du Réceveur :</string>
-    <string name="phoneNo_receiptPage">Numero de telephone:</string>
+    <string name="phoneNo_receiptPage">Numero de téléphone:</string>
     <string name="country_receiptPage">Pays :</string>
     <string name="pin_capital">Code PIN :</string>
     <string name="pin_capital_new">Code PIN </string>
@@ -542,7 +542,7 @@
     <string name="device_to_send">Appareil a envoyer</string>
     <string name="plz_enter_subscriber_no">Veuillez entrer le numéro d\'abonné</string>
     <string name="subscriber_number"> Numero d\'abonne </string>
-    <string name="trasfer_of_mode">Mode du Transfert </string>
+    <string name="trasfer_of_mode"> mode de Transfert</string>
     <string name="wallet_capital">WALLET</string>
     <string name="sending_currencey_star">Devise d\'envoi*</string>
     <string name="sending_currencey">Devise d\'envoi*</string>
@@ -716,6 +716,8 @@
     <string name="agent_mobileNumber">Agent mobile non</string>
     <string name="agent_details">Détails de l\'agent</string>
     <string name="branch_details">bronc Détails</string>
+    <string name="SendingAgentName">Nom de l\'agent expéditeur:</string>
+
     <string name="total_amount_colon">Montant total :</string>
     <string name="vendor_trans_id_colom">Identifiant de la  transaction:</string>
     <string name="gnf_fixed">GNF fixe</string>
@@ -725,7 +727,7 @@
     <string name="recharge_tv">Recharger la télévision</string>
     <string name="international_colon">International :</string>
     <string name="send_remittance_colon">Envoyer un versement :</string>
-    <string name="receive_remittance_colon">Recevoir le versement :</string>
+    <string name="receive_remittance_colon">Reception d\'argent:</string>
     <string name="cash_to_wallet_colon">Cash a compte</string>
     <string name="sell_float_colon">Vendre le flotteur :</string>
     <string name="transfer_float_colon">Flotteur de transfert :</string>

@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <include layout="@layout/toolbar_active"></include>
 
@@ -912,7 +912,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <RelativeLayout
@@ -1124,7 +1124,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/amount_to_be_credit_receiptPage"
+                    android:text="@string/amount_to_paid"
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
