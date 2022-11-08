@@ -496,6 +496,7 @@
     <string name="mobileNo_receiptPage">Mobile Number :</string>
     <string name="country_receiptPage">Country :</string>
     <string name="pin_capital">PIN :</string>
+    <string name="pin_capital_new">PIN </string>
     <string name="transaction_receiptNo_receiptPage">Transaction Id :</string>
     <string name="amount_to_paid_receiptpage">Amount to be Paid :</string>
     <string name="amount_to_be_charged_receiptpage">Amount to be charged :</string>
