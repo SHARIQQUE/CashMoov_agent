@@ -146,6 +146,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
+
             try {
 
                 Gson gson = new Gson();
@@ -155,6 +157,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
                 ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
                 for(Taxmodel user : userArray) {
                     String taxvaluename=user.getTaxTypeName();
+                    txt_financialtax.setText(taxvaluename + " :" + " " +MyApplication.addDecimal(user.getValue()));
+
                     if(taxvaluename.equalsIgnoreCase("VAT")){
                         txt_financialtax.setText(getString(R.string.Taxvat) + " :" + " " +MyApplication.addDecimal(user.getValue()));
 
@@ -165,7 +169,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
                        }
                     }
 
-                    System.out.println("get user" + MyApplication.addDecimal(user.getValue()));
+                    System.out.println("get user" + MyApplication.addDecimal(user.getTaxTypeName()));
                 }
 
 
@@ -173,10 +177,6 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             }
 
-            if(txt_financialtax.getText().toString().isEmpty()||
-                    txt_financialtax.getText().toString().trim().equalsIgnoreCase("N/A")){
-                txt_financialtax.setText( "TAX : 0.00" );
-            }
 
         }
 

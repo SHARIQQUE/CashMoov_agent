@@ -691,7 +691,7 @@
 
     <string name="institue">Institute</string>
     <string name="branch_history">Agence</string>
-    <string name="agent_history">Agent</string>
+    <string name="agent_history">agent</string>
     <string name="view_branch">Voir Agence</string>
 
     <string name="commision_wallet">Compte commission</string>
