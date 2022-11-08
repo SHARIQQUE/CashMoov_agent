@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 05-11-2022</string>
+    <string name="version">Version : 07-11-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -134,7 +134,7 @@
     <string name="complet_70">70% complete</string>
     <string name="out_8_10_complete">8 out of 10 complete</string>
     <string name="recharge_payment">Recharge &amp; Payment</string>
-    <string name="next">Next</string>
+        <string name="next">Next</string>
     <string name="ignore">Ignore</string>
     <string name="to_start">Start</string>
     <string name="to_end">End</string>
@@ -552,7 +552,7 @@
     <string name="device_to_send">Device to send</string>
     <string name="plz_enter_subscriber_no">Please enter subscriber no</string>
     <string name="subscriber_number"> Subscriber no </string>
-    <string name="subscriber_number_new"> Subscriber number </string>
+    <string name="subscriber_number_new">Subscriber number </string>
     <string name="trasfer_of_mode">Transfer of Mode  </string>
     <string name="wallet_capital">WALLET</string>
 
