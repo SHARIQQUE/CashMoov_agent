@@ -125,6 +125,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
            txt_postbalance.setText(getString(R.string.post_balance_colon) + " "+MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+srcpostbalance));
             txt_from_owner_name.setText(getString(R.string.from)+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+getString(R.string.to)+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             txt_commission_amount.setVisibility(View.GONE);
+
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);
             }else{
