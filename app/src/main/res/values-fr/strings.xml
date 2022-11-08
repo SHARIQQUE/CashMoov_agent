@@ -286,6 +286,7 @@
     <string name="locate_agency">Localiser une agence</string>
     <string name="search_results">Resultat de la recherche</string>
     <string name="agency_found">Agence trouvée</string>
+
     <string name="service_fees">Frais de service</string>
     <string name="fees_1000_gnf_transaction">Frais: 1000 GNF/transaction</string>
     <string name="free_service">Service gratuit</string>
