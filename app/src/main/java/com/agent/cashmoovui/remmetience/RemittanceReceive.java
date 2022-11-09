@@ -1283,7 +1283,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optDouble("amount") + ""));
                             receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amountToPaid") + ""));
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
+                            receiptPage_tv_transactionAmount.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
 
                             if(remittance_object.optBoolean("bearerSender")) {
                                 if (remittance_object.optDouble("fee") > 0) {
@@ -1307,7 +1307,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
-                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(remittance_object.getString("creationDate")));
+                            receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(remittance_object.getString("transactionDateTime")));
 
                             MyApplication.hideLoader();
 

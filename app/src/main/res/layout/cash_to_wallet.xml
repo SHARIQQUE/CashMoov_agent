@@ -809,7 +809,7 @@
                     android:gravity="left"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
-                    android:text="@string/financialTax_reveiewPage"
+                    android:text="@string/tax"
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />
 
@@ -1472,7 +1472,7 @@
                 android:gravity="left"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
-                android:text="@string/financialTax_receiptPage"
+                android:text="@string/tax"
                 android:textColor="@android:color/black"
                 android:textSize="16dp" />
 

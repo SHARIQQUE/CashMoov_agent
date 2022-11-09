@@ -726,16 +726,17 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
         }
 
 
-       else if (amountstr.isEmpty()) {
 
-            MyApplication.showErrorToast(this, getString(R.string.amount_to_paid_without_star));
-
-            return false;
-        }
 
        else if(spinner_currency.getText().equals(getString(R.string.select_currency)))
         {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
+
+            return false;
+        }
+        else if (amountstr.isEmpty()) {
+
+            MyApplication.showErrorToast(this, getString(R.string.amount_to_paid_without_star));
 
             return false;
         }
