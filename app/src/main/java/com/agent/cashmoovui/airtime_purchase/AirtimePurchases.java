@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.MotionEvent;
@@ -192,6 +193,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
             pinLinear=findViewById(R.id.pinLinear);
+
+
+           String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+            edittext_mobileNo.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
             edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

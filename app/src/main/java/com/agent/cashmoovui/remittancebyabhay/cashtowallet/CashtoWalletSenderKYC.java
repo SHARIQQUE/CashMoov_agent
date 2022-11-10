@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -252,6 +253,13 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
             }
         });
 
+
+        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+        et_sender_phoneNumber.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
+
         et_sender_phoneNumber.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -316,6 +324,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         String regex = "[0-9]+";
         Pattern p = Pattern.compile(regex);
 
+        et_sender_phoneNumber.setThreshold(9);
 
         et_sender_phoneNumber.addTextChangedListener(new TextWatcher() {
             @Override

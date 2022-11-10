@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -127,6 +128,15 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
         tvNext = findViewById(R.id.tvNext);
         mCalenderIcon_Image = findViewById(R.id.calenderIcon_Image);
         // etDob.setInputType(InputType.TYPE_NULL);
+
+
+        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+        etPhone.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
+
+
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

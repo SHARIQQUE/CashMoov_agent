@@ -25,6 +25,7 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_receive_money_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_register_abonne_one.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_register_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_register_branch.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_remittance_option.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_send_remittance.xml" value="0.19947916666666668" />
@@ -35,7 +36,10 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/cashout_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/commision_transfer.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/login_msis.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/remitance_receive.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/sellfloat.xml" value="0.1995831162063575" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/transaction_history_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/transfer_flaots.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent_13-10/app/src/main/res/drawable-mdpi/ic_hide.xml" value="0.1535" />

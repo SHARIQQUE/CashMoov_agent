@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -137,6 +138,14 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spOccupation = findViewById(R.id.spOccupation);
         tvNext = findViewById(R.id.tvNext);
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
+
+
+        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+        etPhone.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
+
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

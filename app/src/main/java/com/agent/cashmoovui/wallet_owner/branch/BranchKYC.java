@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -143,6 +144,13 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
 
         agentTypeLay=findViewById(R.id.agentTypeLay);
+
+
+
+      String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+        etPhone.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
         if(MyApplication.getSaveString("walletOwnerCategoryCode",BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
            agentTypeLay.setVisibility(View.GONE);

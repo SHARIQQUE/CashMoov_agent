@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -146,6 +147,11 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
             }
         });
 
+
+        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+        et_destination_mobileNumber.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
         et_destination_mobileNumber.setOnTouchListener(new View.OnTouchListener() {
             @Override

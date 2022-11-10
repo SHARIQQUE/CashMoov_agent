@@ -127,6 +127,7 @@ public class MyApplication extends Application {
     public static int CashToWalletMaxValue;
     public static String userCodeTransaction;
 
+    public static int mobileLengthnormal=10;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);

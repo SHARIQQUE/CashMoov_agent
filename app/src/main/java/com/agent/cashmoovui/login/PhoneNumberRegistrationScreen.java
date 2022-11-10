@@ -53,6 +53,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_phone_number_registration_screen);
         phnoregistrationccreenC = this;
         getIds();
+        getIds();
     }
 
     String FCM_TOKEN;

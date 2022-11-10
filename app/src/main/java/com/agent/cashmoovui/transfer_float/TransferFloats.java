@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
@@ -166,6 +167,13 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
+
+
+            String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+            edittext_mobileNo.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
             pinLinear=findViewById(R.id.pinLinear);
             edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
                 @Override

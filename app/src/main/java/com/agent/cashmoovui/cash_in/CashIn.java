@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
@@ -104,7 +105,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     public Double feeDouble;
 
 
-    String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
+    String  mobilelength,serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
 
 
 
@@ -162,7 +163,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             pinLinear=findViewById(R.id.pinLinear);
             et_mpin = (EditText)findViewById(R.id.et_mpin);
+            mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+            System.out.println("get lengh new"+mobilelength);
 
+            edittext_mobileNuber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
             et_mpin.addTextChangedListener(new TextWatcher() {
 
                 @Override

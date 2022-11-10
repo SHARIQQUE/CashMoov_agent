@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
@@ -76,7 +77,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     View rootView;
 
     String currencySymbol_sender="";
-    String currencySymbol_receiver="";
+    String mobilelength,currencySymbol_receiver="";
 
 
     TextView taxvalueText,tvAmtCurr,tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName,receiptPage_tv_financialtaxvalue, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
@@ -151,7 +152,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
             tvAmtCurr = findViewById(R.id.tvAmtCurr);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
+            mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
+            edittext_mobileNuber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

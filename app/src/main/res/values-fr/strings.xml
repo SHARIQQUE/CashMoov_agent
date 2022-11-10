@@ -88,7 +88,7 @@
     <string name="language_select">French</string>
     <string name="language_name">French</string>
     <string name="language_code">FR</string>
-    <string name="enterinstitute">Veuillez saisir linstitut</string>
+    <string name="enterinstitute">Veuillez saisir linstitution</string>
 
     <string name="to_login">Se connecter</string>
     <string name="please_enter_username_password">Veuillez entrer votre identifiant et ode PIN</string>
@@ -227,7 +227,7 @@
     <string name="money_transfer_to_subscriber">Transfert d\'argent vers abonné</string>
     <string name="subscriber_details">Détails de l\'abonné</string>
     <string name="scanner">Scanner</string>
-    <string name="details_du_receveur">Details du destinataire</string>
+    <string name="details_du_receveur">Détails du réceveur</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
     <string name="amount">Montant</string>
     <string name="Parteners">Les partenaires</string>
@@ -276,7 +276,7 @@
     <string name="valid_acc_number">Numero de compte</string>
     <string name="valid_amount">Montant*</string>
     <string name="you_make_significant_payment">Vous effectuez un paiement marchand</string>
-    <string name="receiver_details">Details du Destinataire</string>
+    <string name="receiver_details">Détails du réceveur</string>
     <string name="you_make_withdrawal">Vous effectuez un retrait</string>
     <string name="pos_number">Numero PDV</string>
     <string name="beneficiary_details">Details du beneficiaire</string>
@@ -487,7 +487,7 @@
     <string name="transactionReferenceNo_receiptPage">Numéro de référence de la transaction :</string>
     <string name="transactionType_receiptPage">Type de transaction:</string>
     <string name="dateOfTransaction_receiptPage">Date de la transaction :</string>
-    <string name="receiver_details_receiptPage">Détails du Réceveur :</string>
+    <string name="receiver_details_receiptPage">Détails du réceveur:</string>
     <string name="phoneNo_receiptPage">Numero de téléphone:</string>
     <string name="country_receiptPage">Pays :</string>
     <string name="pin_capital">Code PIN :</string>
@@ -516,7 +516,7 @@
     <string name="merchant_details">Détails du marchand</string>
     <string name="outlet_details">Détails de la sortie</string>
 
-    <string name="receiver_details_cashout">Détails du destinataire</string>
+    <string name="receiver_details_cashout">Détails du réceveur</string>
     <string name="transaction_no">Identifiant de la  transaction:</string>
     <string name="sender_mssidn">Expéditeur MSISDN</string>
     <string name="benificairay_mssidn">Bénéficiaire MSISDN</string>
@@ -589,7 +589,7 @@
     <string name="owner_management">Gestion du titulaire</string>
     <string name="wallet_owner">Titulaire de compte</string>
     <string name="add_agent_branch">Ajouter un agent/une agence</string>
-    <string name="sell_float">Transfert intra agent</string>
+    <string name="sell_float">transfert intra agent</string>
     <string name="transfer_float">Transfert de Stock</string>
     <string name="transfer_commission">Transfert de Commission</string>
     <string name="overdraft_limit">Limite de découvert</string>
@@ -599,22 +599,22 @@
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
     <string name="one_sur_la_transaction">1% sur la transaction</string>
-    <string name="remittance_option">Option de remise</string>
+    <string name="remittance_option">Option du transfert</string>
     <string name="local">Local</string>
-    <string name="you_can_scan_the">Vous pouvez scanner le</string>
+    <string name="you_can_scan_the">vous pouvez scanner le</string>
     <string name="subscriber_qr_code">Code Qr de l\'abonné</string>
     <string name="other">Autre</string>
     <string name="attach_customer_id">Attachez L\'ID du client</string>
 
 
 
-    <string name="sell_Float">Transfert intra agent</string>
-    <string name="reciver_detail">Détails du Réceveur</string>
+    <string name="sell_Float">transfert intra agent</string>
+    <string name="reciver_detail">Détails du réceveur</string>
 
-    <string name="select_institute_star">Choisir l\'institut*</string>
-    <string name="select_institute">Choisir l\'institut</string>
+    <string name="select_institute_star">selectionnez l\'institution*</string>
+    <string name="select_institute">selectionnez l\'institution</string>
     <string name="select_currency_star">Selectionner devise*</string>
-    <string name="select_currency">Sélectionnez la devise</string>
+    <string name="select_currency">Selectionner devise</string>
 
     <string name="amount_to_paid_star">Montant à payer*</string>
     <string name="amount_to_paid_without_star">Montant à payer</string>
@@ -646,7 +646,7 @@
     <string name="user_info_msg">Pour terminez l\'inscriptions nous avons besoin de toutes les informations sur le futur utilisateur.</string>
     <string name="valid_select_acc_type">Type de compte*</string>
     <string name="valid_agent_name">Nom d\'agent*</string>
-    <string name="valid_select_region">Choisissez une région*</string>
+    <string name="valid_select_region">Selectionnez une région*</string>
     <string name="valid_select_business_type">Sélectionnez le type d\'entreprise*</string>
     <string name="agent">nom de l\'agent</string>
     <string name="val_agent_name">Veuillez saisir le nom de l\'agent</string>
@@ -658,7 +658,7 @@
     <string name="branch">Agence</string>
     <string name="valid_branch_name">nom de l\'agence</string>
     <string name="val_branch_name">veuillez entrer le nom de l\'agence</string>
-    <string name="val_branch_name_len">Le nom de la succursale doit comporter au moins 3 caractères</string>
+    <string name="val_branch_name_len">Le nom de l\'agence doit comporter au moins 3 caractères</string>
     <string name="agent_added">Agent ajouté avec succès !</string>
     <string name="branch_added">Agence ajoutée avec succès !</string>
     <string name="addoutlet_added">Ajouter une prise enregistrée avec succès!</string>
@@ -723,13 +723,13 @@
     <string name="gnf_fixed">GNF fixe</string>
     <string name="on_the_transaction">sur la transaction</string>
     <string name="gnf_transaction">GNF/transaction</string>
-    <string name="recharge_mobile">Recharger le mobile</string>
+    <string name="recharge_mobile">Recharge Telephonique</string>
     <string name="recharge_tv">Recharger la télévision</string>
     <string name="international_colon">International :</string>
     <string name="send_remittance_colon">Envoyer un versement :</string>
     <string name="receive_remittance_colon">Reception d\'argent:</string>
     <string name="cash_to_wallet_colon">Cash a compte</string>
-    <string name="sell_float_colon">Vendre le flotteur :</string>
+    <string name="sell_float_colon">transfert intra agent:</string>
     <string name="transfer_float_colon">Flotteur de transfert :</string>
     <string name="transaction_amount_receiptPage">Montant de la transaction :</string>
 
@@ -807,7 +807,7 @@
     <string name="valid_front">Ex: Recto*</string>
     <string name="val_id_proof_expiryDate">Veuillez sélectionner la date d\'expiration de la piece d\'identité</string>
     <string name="val_select_issuing_country">Veuillez sélectionner le pays émetteur</string>
-    <string name="select_region">Choisissez une région</string>
+    <string name="select_region">Selectionnez une région</string>
     <string name="region_name_star"> Nom de la région *</string>
 
     <string name="select_issuing_country">Sélectionnez le pays émetteur</string>
