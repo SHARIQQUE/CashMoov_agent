@@ -405,7 +405,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                             getTaxAsJson(), miniStatementTransList.get(pos).getSrcPostBalance());
 
         }else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101442")){
-            //MyApplication.currencySymbol=miniStatementTransList.get(pos).getToCurrencySymbol();
+            MyApplication.currencySymbol=miniStatementTransList.get(pos).getToCurrencySymbol();
             String taxJSON="";
             Double fee=0.00;
             if (miniStatementTransList.get(pos).isBearerSender()){
@@ -421,7 +421,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     miniStatementTransList.get(pos).getToCurrencySymbol(),
                     Amount, miniStatementTransList.get(pos).getTransactionId(),
                     miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getPrincipalAmount(),
+                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getToAmount(),
                    fee, taxJSON
                            , miniStatementTransList.get(pos).getDestPostBalance());
 
