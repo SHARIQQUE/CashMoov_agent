@@ -796,7 +796,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
 //        CurrencyListTransaction arraadapter2 = new CurrencyListTransaction(TransactionHistoryAgentPage.this, MyApplication.currencyModelArrayList);
 //        spinner_currency.setAdapter(arraadapter2);
-        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryAgentPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryAgentPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
         spinnerDialogCurrency.setCancellable(true); // for cancellable
         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default

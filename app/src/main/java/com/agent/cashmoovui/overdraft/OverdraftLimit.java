@@ -290,7 +290,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 //                        CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(OverdraftLimit.this, arrayList_currecnyName);
 //                        spinner_currency.setAdapter(arraadapter2);
 
-                        spinnerDialogCurrency = new SpinnerDialog(OverdraftLimit.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogCurrency = new SpinnerDialog(OverdraftLimit.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                         spinnerDialogCurrency.setCancellable(true); // for cancellable
                         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
@@ -594,7 +594,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                         maximumLimit = jsonArray.optJSONObject(0).optString("maximumLimit");
 
 
-                        head_overdraft.setText("Maximum Overdraft Limit " + MyApplication.addDecimal(maximumLimit) + " for " + validityDaysStr + " days");
+                        head_overdraft.setText(getString(R.string.maximumoverdraft) +" "+ MyApplication.addDecimal(maximumLimit) + " for " + validityDaysStr + " days");
 
 
                     } else {

@@ -475,7 +475,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
 
                                     }
 
-                                    spinnerDialogSenderGender = new SpinnerDialog(localremitsenderkycC, senderGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderGender = new SpinnerDialog(localremitsenderkycC, senderGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogSenderGender.setCancellable(true); // for cancellable
                                     spinnerDialogSenderGender.setShowKeyboard(false);// for open keyboard by default
@@ -541,7 +541,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogSenderRegion = new SpinnerDialog(localremitsenderkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderRegion = new SpinnerDialog(localremitsenderkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogSenderRegion.setCancellable(true); // for cancellable
                                     spinnerDialogSenderRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSenderRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -605,7 +605,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                                         idProofTypeList.add(data.optString("type").trim());
                                     }
 
-                                    spinnerDialogSenderIdProofType = new SpinnerDialog(localremitsenderkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderIdProofType = new SpinnerDialog(localremitsenderkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogSenderIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogSenderIdProofType.setShowKeyboard(false);// for open keyboard by default
@@ -1118,7 +1118,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogCity = new SpinnerDialog(localremitsenderkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity = new SpinnerDialog(localremitsenderkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogCity.setCancellable(true); // for cancellable
                                     spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {

@@ -977,7 +977,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 */
 
 
-        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryMainPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+        spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryMainPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
         spinnerDialogCurrency.setCancellable(true); // for cancellable
         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default

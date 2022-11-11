@@ -732,7 +732,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         ll_pin.setVisibility(View.VISIBLE);
 
-                        tv_nextClick.setText("Submit");
+                        tv_nextClick.setText(getString(R.string.Submit));
 
                         buttonClick = "1";
 
@@ -1561,7 +1561,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                     IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-                    intentIntegrator.setPrompt("Scan a barcode or QR Code");
+                    intentIntegrator.setPrompt(getString(R.string.scanbarcode));
                     intentIntegrator.setOrientationLocked(true);
                     intentIntegrator.initiateScan();
 

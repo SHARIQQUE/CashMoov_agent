@@ -102,7 +102,7 @@
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:fontFamily="@font/aileron_semibold"
                     android:lineSpacingExtra="3sp"
-                    android:text="@string/maximum_overdraft_limit_100_000_for_180_days"
+                    android:text="@string/maximumoverdraft"
                     />
 
                 <TextView
@@ -261,7 +261,7 @@
 
                     android:layout_gravity="center"
                     android:textSize="@dimen/_14sdp"
-                    android:text="Show"
+                    android:text="@string/show"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -281,7 +281,7 @@
                     android:textSize="@dimen/_14sdp"
 
 
-                    android:text="Entries"
+                    android:text="@string/entries"
                     android:textStyle="bold" />
 
 

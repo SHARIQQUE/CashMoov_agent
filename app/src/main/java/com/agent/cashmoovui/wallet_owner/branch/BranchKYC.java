@@ -801,7 +801,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
                                     }
-                                    spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, getString(R.string.select_agent), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogAgentType = new SpinnerDialog(branchkycC, arraylistAgentStr, getString(R.string.select_agent), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogAgentType.setCancellable(true); // for cancellable
                                     spinnerDialogAgentType.setShowKeyboard(false);// for open keyboard by default
@@ -885,8 +885,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                         businessTypeList.add(data.optString("type").trim());
                                     }
 
-                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogBusinessType = new SpinnerDialog(branchkycC, businessTypeList, getString(R.string.val_select_business_type), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City",getString(R.string.cancel));// With No Animation
+                                    spinnerDialogBusinessType = new SpinnerDialog(branchkycC, businessTypeList, getString(R.string.val_select_business_type), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogBusinessType.setCancellable(true); // for cancellable
                                     spinnerDialogBusinessType.setShowKeyboard(false);// for open keyboard by default
@@ -961,7 +961,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                         }
                                     }
 
-                                    spinnerDialogCountry= new SpinnerDialog(branchkycC,countryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCountry= new SpinnerDialog(branchkycC,countryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogCountry.setCancellable(true); // for cancellable
                                     spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
 
@@ -1038,8 +1038,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                     }
 
-                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogRegion = new SpinnerDialog(branchkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City",getString(R.string.cancel));// With No Animation
+                                    spinnerDialogRegion = new SpinnerDialog(branchkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogRegion.setCancellable(true); // for cancellable
                                     spinnerDialogRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -1108,8 +1108,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                     }
 
-                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogCity = new SpinnerDialog(branchkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City",getString(R.string.cancel));// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(branchkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogCity.setCancellable(true); // for cancellable
                                     spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -1224,7 +1224,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                     }
 
-                                    spinnerDialogGender = new SpinnerDialog(branchkycC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogGender = new SpinnerDialog(branchkycC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogGender.setCancellable(true); // for cancellable
                                     spinnerDialogGender.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogGender.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -1285,7 +1285,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                     }
 
-                                    spinnerDialogIdProofType = new SpinnerDialog(branchkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIdProofType = new SpinnerDialog(branchkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogIdProofType.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogIdProofType.bindOnSpinerListener(new OnSpinerItemClick() {

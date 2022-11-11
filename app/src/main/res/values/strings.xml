@@ -387,6 +387,11 @@
     <string name="please_enter_4_digit_mpin">Please enter pin</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="enter_otp_details">Enter the 6-digit OTP code we sent to +224 621 123 123</string>
+    <string name="fingerprint"> Use Fingerprint</string>
+    <string name="show">Show</string>
+    <string name="entries">Entries</string>
+
+
 
     <string name="session_expire_60">Session expires in 60 seconds</string>
     <string name="havenot_receive">Haven\'t received a code? Send it back</string>
@@ -430,6 +435,8 @@
     <string name="receipt_details">Recipient details</string>
     <string name="scan_details">Scan details</string>
     <string name="qr_code_of_the">QR code of the</string>
+    <string name="scanbarcode">Scan a barcode or QR Code</string>
+
 
 
     <string name="plz_enter_amount">Please enter amount</string>
@@ -547,6 +554,8 @@
     <string name="cash_to_wallet">Cash to Wallet</string>
     <string name="tax">Tax :</string>
 
+    <string name="Submit">Submit :</string>
+
     <string name="total_amount_invoice">Total amount invoice</string>
     <string name="rate">Rate</string>
 
@@ -604,6 +613,8 @@
     <string name="viewcongigservices">View Config Services</string>
     <string name="receive_money">Receive Money</string>
     <string name="add_outlet">Add Outlet</string>
+
+    <string name="maximumoverdraft">Maximum Overdraft Limit</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Maximum Overdraft limit 90,000.000 for 5 days</string>
     <string name="one_sur_la_transaction">1% on the transa</string>

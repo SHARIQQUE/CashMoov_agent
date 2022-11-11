@@ -414,7 +414,7 @@
 
                android:layout_gravity="center"
                android:textSize="@dimen/_14sdp"
-               android:text="Show"
+               android:text="@string/show"
                android:textStyle="bold" />
 
            <Spinner
@@ -435,7 +435,7 @@
                android:textSize="@dimen/_14sdp"
 
 
-               android:text="Entries"
+               android:text="@string/entries"
                android:textStyle="bold" />
 
 

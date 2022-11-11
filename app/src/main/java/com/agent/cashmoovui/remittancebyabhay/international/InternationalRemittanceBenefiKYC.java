@@ -434,7 +434,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
 
                                     }
 
-                                    spinnerDialogBenefiGender = new SpinnerDialog(internationalremitbenefikycC, benefiGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiGender = new SpinnerDialog(internationalremitbenefikycC, benefiGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogBenefiGender.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiGender.setShowKeyboard(false);// for open keyboard by default
@@ -500,7 +500,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogBenefiRegion = new SpinnerDialog(internationalremitbenefikycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiRegion = new SpinnerDialog(internationalremitbenefikycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogBenefiRegion.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogBenefiRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -564,7 +564,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                                         idProofTypeList.add(data.optString("type").trim());
                                     }
 
-                                    spinnerDialogBenefiIdProofType = new SpinnerDialog(internationalremitbenefikycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBenefiIdProofType = new SpinnerDialog(internationalremitbenefikycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogBenefiIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogBenefiIdProofType.setShowKeyboard(false);// for open keyboard by default
@@ -638,7 +638,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
 
                                     }
 
-                                    spinnerDialogIssuingCountry= new SpinnerDialog(internationalremitbenefikycC, issuingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIssuingCountry= new SpinnerDialog(internationalremitbenefikycC, issuingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogIssuingCountry.setCancellable(true); // for cancellable
                                     spinnerDialogIssuingCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogIssuingCountry.bindOnSpinerListener(new OnSpinerItemClick() {

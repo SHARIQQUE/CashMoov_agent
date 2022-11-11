@@ -633,7 +633,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogBusinessType = new SpinnerDialog(agentkycC, businessTypeList, getString(R.string.val_select_business_type), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogBusinessType = new SpinnerDialog(agentkycC, businessTypeList, getString(R.string.val_select_business_type), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogBusinessType.setCancellable(true); // for cancellable
                                     spinnerDialogBusinessType.setShowKeyboard(false);// for open keyboard by default
@@ -708,7 +708,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
                                     }
 
-                                    spinnerDialogCountry= new SpinnerDialog(agentkycC,countryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCountry= new SpinnerDialog(agentkycC,countryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogCountry.setCancellable(true); // for cancellable
                                     spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
                                     if(countryList.size()==1){
@@ -784,7 +784,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogRegion = new SpinnerDialog(agentkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogRegion = new SpinnerDialog(agentkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogRegion.setCancellable(true); // for cancellable
                                     spinnerDialogRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -854,7 +854,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogCity = new SpinnerDialog(agentkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogCity = new SpinnerDialog(agentkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogCity.setCancellable(true); // for cancellable
                                     spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -968,7 +968,7 @@ ArrayList<String>walletCurrencyList;
 
                                     }
 
-                                    spinnerDialogGender = new SpinnerDialog(agentkycC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogGender = new SpinnerDialog(agentkycC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogGender.setCancellable(true); // for cancellable
                                     spinnerDialogGender.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogGender.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -1030,7 +1030,7 @@ ArrayList<String>walletCurrencyList;
 
                                     }
 
-                                    spinnerDialogIdProofType = new SpinnerDialog(agentkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIdProofType = new SpinnerDialog(agentkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogIdProofType.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogIdProofType.bindOnSpinerListener(new OnSpinerItemClick() {

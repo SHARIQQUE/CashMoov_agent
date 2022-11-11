@@ -603,7 +603,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        spinnerDialogImstitute = new SpinnerDialog(SellFloat.this, arrayList_instititueName, getString(R.string.select_institute_type), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogImstitute = new SpinnerDialog(SellFloat.this, arrayList_instititueName, getString(R.string.select_institute_type), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                         spinnerDialogImstitute.setCancellable(true); // for cancellable
                         spinnerDialogImstitute.setShowKeyboard(false);// for open keyboard by default
@@ -810,7 +810,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
 
-                        spinnerDialogCurrency = new SpinnerDialog(SellFloat.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogCurrency = new SpinnerDialog(SellFloat.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                         spinnerDialogCurrency.setCancellable(true); // for cancellable
                         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default

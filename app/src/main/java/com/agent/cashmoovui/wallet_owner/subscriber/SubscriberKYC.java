@@ -486,8 +486,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
                                     }
 
-                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogRegion = new SpinnerDialog(subscriberkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City",getString(R.string.cancel));// With No Animation
+                                    spinnerDialogRegion = new SpinnerDialog(subscriberkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogRegion.setCancellable(true); // for cancellable
                                     spinnerDialogRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -556,8 +556,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
                                     }
 
-                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogCity = new SpinnerDialog(subscriberkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City",getString(R.string.cancel));// With No Animation
+                                    spinnerDialogCity = new SpinnerDialog(subscriberkycC, cityList, getString(R.string.val_select_city), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogCity.setCancellable(true); // for cancellable
                                     spinnerDialogCity.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCity.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -617,7 +617,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
                                     }
 
-                                    spinnerDialogGender = new SpinnerDialog(subscriberkycC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogGender = new SpinnerDialog(subscriberkycC, genderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogGender.setCancellable(true); // for cancellable
                                     spinnerDialogGender.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogGender.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -678,7 +678,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
                                     }
 
-                                    spinnerDialogIdProofType = new SpinnerDialog(subscriberkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIdProofType = new SpinnerDialog(subscriberkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogIdProofType.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogIdProofType.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -739,7 +739,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                                         occupationTypeList.add(data.optString("type").trim());
 
                                     }
-                                    spinnerDialogOccupation = new SpinnerDialog(subscriberkycC, occupationTypeList, "Select Occupation", R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogOccupation = new SpinnerDialog(subscriberkycC, occupationTypeList, "Select Occupation", R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogOccupation.setCancellable(true); // for cancellable
                                     spinnerDialogOccupation.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogOccupation.bindOnSpinerListener(new OnSpinerItemClick() {
