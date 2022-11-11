@@ -1974,7 +1974,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 mpinStr="";
 
                                 selectClickType="select_mpin";
-                                confirm_reviewClick_textview.setText(getString(R.string.pin_capital_new));
+                                confirm_reviewClick_textview.setText(getString(R.string.next));
                                 ll_otp.setVisibility(View.GONE);
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);

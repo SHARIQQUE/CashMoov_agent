@@ -111,7 +111,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
                 addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                 if(photoSend!=null){
-                    callupload(photoSend, "100039",AgentKYC.agentWalletOwnerCode);
+                    callupload(photoSend, "100044",AgentKYC.agentWalletOwnerCode);
                 }
 
             }

@@ -305,7 +305,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
         if (file_size <= 100){
             isFrontUpload=true;
 
-            callupload(file,"100012");
+            callupload(file,"100041");
         }else {
             MyApplication.showErrorToast(branchkycattachedC,"File size exceeds");
         }
@@ -317,7 +317,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isBackUpload=true;
-            callupload(file,"100013");
+            callupload(file,"100042");
         }else {
             MyApplication.showErrorToast(branchkycattachedC,"File size exceeds");
         }

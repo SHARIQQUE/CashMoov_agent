@@ -300,7 +300,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
         if (file_size <= 100){
             isFrontUpload=true;
 
-            callupload(file,"100012");
+            callupload(file,"100046");
         }else {
             MyApplication.showErrorToast(agentkycattachedC,"File size exceeds");
         }
@@ -312,7 +312,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isBackUpload=true;
-            callupload(file,"100013");
+            callupload(file,"100045");
         }else {
             MyApplication.showErrorToast(agentkycattachedC,"File size exceeds");
         }

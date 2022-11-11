@@ -935,8 +935,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         if (jsonObject.has("accountHolding")) {
 
                             JSONObject jsonObject3 = jsonObject.getJSONObject("accountHolding");
-                            amountstr = jsonObject3.getString("beneficiaryAmount");
-                            edittext_amount.setText(MyApplication.addDecimal(amountstr));
+                            amountstr =  jsonObject3.optInt("beneficiaryAmount")+"";
+                            edittext_amount.setText(amountstr);
                         } else {
                             //tt
 
@@ -1195,6 +1195,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
 
+            System.out.println("Receive request "+jsonObject.toString());
             String requestNo = AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA = null;
             try {
