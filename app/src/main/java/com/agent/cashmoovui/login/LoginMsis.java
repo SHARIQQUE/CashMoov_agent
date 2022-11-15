@@ -758,7 +758,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
                             JSONObject jsonObject_country = jsonObject.getJSONObject("country");
 
-                            MyApplication.saveString("MobileLength", jsonObject_country.getString("mobileLength"), LoginMsis.this);
+                            if(jsonObject_country.has("mobileLength")) {
+
+                                MyApplication.saveString("MobileLength", jsonObject_country.getString("mobileLength"), LoginMsis.this);
+                            }else{
+                                MyApplication.saveString("MobileLength", "11", LoginMsis.this);
+                            }
 
                             System.out.println("get length"+jsonObject_country.getString("mobileLength"));
                             if(jsonObject_country.has("currencySymbol")){

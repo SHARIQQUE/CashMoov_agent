@@ -329,7 +329,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isOtherUpload=true;
-            callupload(file,BranchKYC.idProofTypeCode);
+            callupload(file,"100047");
         }else {
             MyApplication.showErrorToast(branchkycattachedC,"File size exceeds");
         }

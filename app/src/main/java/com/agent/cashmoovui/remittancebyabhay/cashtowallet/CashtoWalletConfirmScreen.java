@@ -70,7 +70,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
         vat_label_layout=findViewById(R.id.vat_label_layout);
 
         tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", cashtowalletconfirmC));
-        tvTransferMode.setText(getString(R.string.wallet));
+        tvTransferMode.setText(getString(R.string.cash_to_wallet));
 
         tvSenderMSISDN.setText(CashtoWalletSenderKYC.senderNumber);
         tvBenefiMSISDN.setText(CashtoWalletReceiverKYC.recNumber);

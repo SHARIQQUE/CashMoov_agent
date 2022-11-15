@@ -1405,7 +1405,12 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         //countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                         //countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
-                        countryName_agent = MyApplication.getSaveString("COUNTRYNAME_AGENT",SellFloat.this);
+                        if(walletOwnerUser.has("issuingCountryName")){
+                            countryName_agent = walletOwnerUser.optString("issuingCountryName");
+                        }else{
+                            countryName_agent = MyApplication.getSaveString("COUNTRYNAME_AGENT",SellFloat.this);
+                        }
+
                         countryCode_agent = MyApplication.getSaveString("COUNTRYCODE_AGENT",SellFloat.this);
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);

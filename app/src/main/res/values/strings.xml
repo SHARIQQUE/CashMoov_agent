@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 10-11-2022</string>
+    <string name="version">Version : 15-11-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -554,7 +554,7 @@
     <string name="cash_to_wallet">Cash to Wallet</string>
     <string name="tax">Tax :</string>
 
-    <string name="Submit">Submit :</string>
+    <string name="Submit">Submit </string>
 
     <string name="total_amount_invoice">Total amount invoice</string>
     <string name="rate">Rate</string>

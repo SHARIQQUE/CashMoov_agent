@@ -324,7 +324,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
         int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));     //calculate size of image in KB
         if (file_size <= 100){
             isOtherUpload=true;
-            callupload(file,AgentKYC.idProofTypeCode);
+            callupload(file,"100048");
         }else {
             MyApplication.showErrorToast(agentkycattachedC,"File size exceeds");
         }
