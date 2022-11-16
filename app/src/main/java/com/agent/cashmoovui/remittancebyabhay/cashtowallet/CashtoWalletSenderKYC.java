@@ -532,7 +532,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogSerProvider = new SpinnerDialog(cashtowalletsenderkycC, serviceProviderList, getString(R.string.val_select_service_provider), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSerProvider = new SpinnerDialog(cashtowalletsenderkycC, serviceProviderList, getString(R.string.val_select_service_provider), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
 
                                     spinnerDialogSerProvider.setCancellable(true); // for cancellable
@@ -621,7 +621,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                         }
                                     }
 
-                                    spinnerDialogSendingCountry= new SpinnerDialog(cashtowalletsenderkycC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSendingCountry= new SpinnerDialog(cashtowalletsenderkycC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancelf));// With 	Animation
                                     spinnerDialogSendingCountry.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSendingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -814,7 +814,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                         }
                                     }
 
-                                    spinnerDialogIssuingCountry= new SpinnerDialog(cashtowalletsenderkycC, recCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogIssuingCountry= new SpinnerDialog(cashtowalletsenderkycC, recCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogIssuingCountry.setCancellable(true); // for cancellable
                                     spinnerDialogIssuingCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogIssuingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -983,7 +983,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
                                     }
 
-                                    spinnerDialogSenderGender = new SpinnerDialog(cashtowalletsenderkycC, senderGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderGender = new SpinnerDialog(cashtowalletsenderkycC, senderGenderList, getString(R.string.select_gender), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogSenderGender.setCancellable(true); // for cancellable
                                     spinnerDialogSenderGender.setShowKeyboard(false);// for open keyboard by default
@@ -1050,7 +1050,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                     }
 
                                     //  spinnerDialog=new SpinnerDialog(selltransferC,instituteList,"Select or Search City","CANCEL");// With No Animation
-                                    spinnerDialogSenderRegion = new SpinnerDialog(cashtowalletsenderkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderRegion = new SpinnerDialog(cashtowalletsenderkycC, regionList, getString(R.string.select_region), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogSenderRegion.setCancellable(true); // for cancellable
                                     spinnerDialogSenderRegion.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSenderRegion.bindOnSpinerListener(new OnSpinerItemClick() {
@@ -1114,7 +1114,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                         idProofTypeList.add(data.optString("type").trim());
                                     }
 
-                                    spinnerDialogSenderIdProofType = new SpinnerDialog(cashtowalletsenderkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                                    spinnerDialogSenderIdProofType = new SpinnerDialog(cashtowalletsenderkycC, idProofTypeList, getString(R.string.valid_select_id_proofnew), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                                     spinnerDialogSenderIdProofType.setCancellable(true); // for cancellable
                                     spinnerDialogSenderIdProofType.setShowKeyboard(false);// for open keyboard by default
