@@ -153,13 +153,13 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
 //                }
 
                 if(!isFrontUpload){
-                    MyApplication.showTipError(this,"Please upload front Image",btnFrontUpload);
+                    MyApplication.showTipError(this,getString(R.string.uploadimage),btnFrontUpload);
                     MyApplication.hideKeyboard(branchkycattachedC);
                     return;
                 }
 
                 if(!isBackUpload){
-                    MyApplication.showTipError(this,"Please upload back Image",btnBackUpload);
+                    MyApplication.showTipError(this,getString(R.string.uploadbackimage),btnBackUpload);
                     MyApplication.hideKeyboard(branchkycattachedC);
                     return;
                 }

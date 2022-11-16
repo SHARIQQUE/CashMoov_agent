@@ -377,6 +377,8 @@
     <string name="fingerprint"> Utiliser l\'empreinte digitale</string>
     <string name="show">Spectacle</string>
     <string name="entries">Entrées</string>
+    <string name="uploadimage">veuillez télécharger l\'image avant</string>
+    <string name="uploadbackimage">veuillez télécharger à nouveau l\'image</string>
 
     <string name="session_expire_60">La session expire dans 60 secondes</string>
     <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>

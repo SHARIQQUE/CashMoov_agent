@@ -1399,16 +1399,20 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     if (resultCode.equalsIgnoreCase("0")) {
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
+                    //    JSONObject walletOwnerUsernew = walletOwnerUser.getJSONObject("addressList");
 
-                        //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                        JSONArray walletOwnerListArr = walletOwnerUser.optJSONArray("addressList");
+                        for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                            JSONObject data = walletOwnerListArr.optJSONObject(i);
+
+                                    //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
                         //countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                         //countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
-                        if(walletOwnerUser.has("issuingCountryName")){
-                            countryName_agent = walletOwnerUser.optString("issuingCountryName");
-                        }else{
-                            countryName_agent = MyApplication.getSaveString("COUNTRYNAME_AGENT",SellFloat.this);
+
+                            countryName_agent = data.optString("countryName");
+
                         }
 
                         countryCode_agent = MyApplication.getSaveString("COUNTRYCODE_AGENT",SellFloat.this);

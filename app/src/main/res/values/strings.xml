@@ -390,6 +390,8 @@
     <string name="fingerprint"> Use Fingerprint</string>
     <string name="show">Show</string>
     <string name="entries">Entries</string>
+    <string name="uploadimage">please upload front Image</string>
+    <string name="uploadbackimage"> please upload back Image</string>
 
 
 

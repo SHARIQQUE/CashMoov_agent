@@ -19,6 +19,9 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_cashin.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_historique_agent.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_option.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_remittance.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_remittance_benefi_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_remittance_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_remittance_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_remittance_sender_kyc.xml" value="0.19947916666666668" />
@@ -30,6 +33,7 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_payment_confirm.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_profil_agent.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_profile.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_receive_money_confirmation_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_receive_money_kyc.xml" value="0.19947916666666668" />

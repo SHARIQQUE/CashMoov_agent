@@ -151,12 +151,12 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
 //                }
 
                 if(!isFrontUpload){
-                    MyApplication.showErrorToast(agentkycattachedC,"please upload front Image");
+                    MyApplication.showErrorToast(agentkycattachedC,getString(R.string.uploadimage));
                     return;
                 }
 
                 if(!isBackUpload){
-                    MyApplication.showErrorToast(agentkycattachedC,"please upload back Image");
+                    MyApplication.showErrorToast(agentkycattachedC,getString(R.string.uploadbackimage));
                     return;
                 }
 

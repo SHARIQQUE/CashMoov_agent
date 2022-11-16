@@ -606,7 +606,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if (jsonObject != null) {
 
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                                    if(jsonObject.has("walletList") &&jsonObject.optJSONArray("walletList")!=null){
+                                    if(jsonObject.has(
+                                            "walletList") &&jsonObject.optJSONArray("walletList")!=null){
                                         JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletList");
                                         for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                             JSONObject data = walletOwnerListArr.optJSONObject(i);
