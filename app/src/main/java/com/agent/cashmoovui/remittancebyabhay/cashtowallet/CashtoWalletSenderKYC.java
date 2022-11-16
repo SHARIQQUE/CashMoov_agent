@@ -621,7 +621,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                                         }
                                     }
 
-                                    spinnerDialogSendingCountry= new SpinnerDialog(cashtowalletsenderkycC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancelf));// With 	Animation
+                                    spinnerDialogSendingCountry= new SpinnerDialog(cashtowalletsenderkycC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel)); // With 	Animation
                                     spinnerDialogSendingCountry.setCancellable(true); // for cancellable
                                     spinnerDialogSendingCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogSendingCountry.bindOnSpinerListener(new OnSpinerItemClick() {
