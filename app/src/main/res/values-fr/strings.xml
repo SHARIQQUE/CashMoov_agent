@@ -201,6 +201,8 @@
     <string name="activate_ptotection">Activer la protection</string>
     <string name="press_cancel_return_to_dashboard">Appuyer sur le boutton annuler pour revenir au tableau de bord</string>
     <string name="cancel">Annuler</string>
+    <string name="wallentnotfound">Propriétaire du portefeuille introuvable</string>
+
     <string name="delete_configuration">Voulez-vous vraiment supprimer la configuration?</string>
     <string name="this_action_reset_all_settings">Cette action va réinitialiser l\'ensemble des paramètres de l\'application.</string>
     <string name="need_to_link_account">Vous devrez à nouveau associer cette application à votre compte</string>

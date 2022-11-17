@@ -495,9 +495,12 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                             MyApplication.hideLoader();
 
                             if (jsonObject != null) {
+                                System.out.println("get value"+jsonObject);
+
                                 subscriberList.clear();
                                 if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                     walletOwner = jsonObject;
+
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletOwnerList");
                                     int pcount=0;
                                     int index=0;
@@ -570,7 +573,8 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
 
                                 } else {
                                     setSubscriberdataf("No Data");
-                                    // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+                                    Toast.makeText(CashtoWalletReceiverKYC.this, getString(R.string.wallentnotfound), Toast.LENGTH_LONG).show();
+
                                 }
 
                             }

@@ -205,6 +205,9 @@
     <string name="activate_ptotection">Activate Protection</string>
     <string name="press_cancel_return_to_dashboard">Press the cancel button to return to the dashboard</string>
     <string name="cancel">Cancel</string>
+    <string name="wallentnotfound">Wallet Owner Not Found</string>
+
+
     <string name="delete_configuration">Are you sure you want to delete the configuration?</string>
     <string name="this_action_reset_all_settings">This action will reset all of the application\'s settings.</string>
     <string name="need_to_link_account">You will need to link this app to your account again</string>
