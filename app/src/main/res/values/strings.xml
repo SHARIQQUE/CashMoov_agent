@@ -224,6 +224,8 @@
     <string name="montant_a_envoyer">Amount to send</string>
     <string name="fees">Fees :</string>
     <string name="amount_to_paid">Amount to be paid :</string>
+    <string name="amount_paid">Amount paid :</string>
+
     <string name="send">Send</string>
     <string name="choose_operation">Choose the operation</string>
     <string name="subscriber">Subscriber</string>

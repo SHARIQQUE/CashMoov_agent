@@ -132,10 +132,12 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
         String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
-       /* etPhone.setFilters(new InputFilter[] {
+        System.out.println("get length"+mobilelength);
+
+        etPhone.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
-*/
+
 
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -722,6 +724,10 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spCountry.setText(item);
                                             spCountry.setTag(position);
+
+                                            String dialcode=countryModelList.get(position).dialCode;
+
+                                            System.out.println("get dial code"+dialcode);
                                             //  callApiRegions();
 
                                             //callApiCurrencyList(countryModelList.get(position).getCode());

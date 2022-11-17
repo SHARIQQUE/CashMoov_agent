@@ -142,9 +142,9 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
         String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
-        /*etPhone.setFilters(new InputFilter[] {
+        etPhone.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-*/
+
 
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override

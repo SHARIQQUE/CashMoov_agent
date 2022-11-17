@@ -149,9 +149,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
       String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
-      /*  etPhone.setFilters(new InputFilter[] {
+        etPhone.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-*/
+
         if(MyApplication.getSaveString("walletOwnerCategoryCode",BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
            agentTypeLay.setVisibility(View.GONE);
         }else{
