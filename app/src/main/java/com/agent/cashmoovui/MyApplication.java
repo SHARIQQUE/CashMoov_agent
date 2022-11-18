@@ -957,7 +957,7 @@ public class MyApplication extends Application {
 
 
     public static boolean checkMinMax(Activity activity,CharSequence s,EditText editText,int minAmount,int maxAmount){
-        if(s.length()==1 && s.toString().equalsIgnoreCase(".")){
+       /* if(s.length()==1 && s.toString().equalsIgnoreCase(".")){
             return true;
         }
         if (Double.parseDouble(s.toString().trim().replace(",","")) < minAmount) {
@@ -968,7 +968,7 @@ public class MyApplication extends Application {
         if (Double.parseDouble(s.toString().trim().replace(",","")) > maxAmount) {
             MyApplication.showTipError(activity, activity.getString(R.string.max_amount) + maxAmount, editText);
             return true;
-        }
+        }*/
         return false;
     }
 
