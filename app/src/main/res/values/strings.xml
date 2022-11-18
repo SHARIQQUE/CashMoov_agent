@@ -207,6 +207,10 @@
     <string name="cancel">Cancel</string>
     <string name="wallentnotfound">Wallet Owner Not Found</string>
 
+    <string name="useralreadyexists"> user already exists</string>
+    <string name="mobile_number_exits_with_agent">"Mobile number exists with agent</string>
+    <string name="mobile_number_exits_with_branch">"Mobile number exists with branch</string>
+    <string name="mobile_number_exits_with_subscriber">"Mobile number exists with subscriber</string>
 
     <string name="delete_configuration">Are you sure you want to delete the configuration?</string>
     <string name="this_action_reset_all_settings">This action will reset all of the application\'s settings.</string>
@@ -223,7 +227,7 @@
     <string name="acc_number">Account number :</string>
     <string name="montant_a_envoyer">Amount to send</string>
     <string name="fees">Fees :</string>
-    <string name="amount_to_paid">Amount to be paid :</string>
+    <string name="amount_to_paid">Amount paid :</string>
     <string name="amount_paid">Amount paid :</string>
 
     <string name="send">Send</string>

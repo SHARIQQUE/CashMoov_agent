@@ -930,7 +930,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
 
                         if(json2.getString("status").equalsIgnoreCase("Active") && json2.getString("state").equalsIgnoreCase("Approved")){
-                            Toast.makeText(applicationComponentClass, "user already exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(applicationComponentClass, getString(R.string.useralreadyexists), Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
 
                             return;
@@ -940,12 +940,12 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
 
                         if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Agent")){
-                            Toast.makeText(applicationComponentClass, "Mobile number exists with agent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(applicationComponentClass, getString(R.string.mobile_number_exits_with_agent), Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
                            return;
                         }
                         if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Branch")){
-                            Toast.makeText(applicationComponentClass, "Mobile number exists with branch", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(applicationComponentClass, getString(R.string.mobile_number_exits_with_branch), Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
 
                             return;

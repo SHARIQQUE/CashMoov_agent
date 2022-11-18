@@ -382,7 +382,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
                         if(json2.getString("status").equalsIgnoreCase("Active") && json2.getString("state").equalsIgnoreCase("Approved")){
-                            Toast.makeText(applicationComponentClass, "user already exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(applicationComponentClass, getString(R.string.useralreadyexists), Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
 
                             return;
@@ -392,12 +392,12 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         etBranchName.setText(json2.optString("ownerName"));
 
                         if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Agent")){
-                            Toast.makeText(applicationComponentClass, "Mobile number exists with agent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(applicationComponentClass, getString(R.string.mobile_number_exits_with_agent), Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
                             return;
                         }
                         if(json2.getString("walletOwnerCatName").equalsIgnoreCase("Subscriber")){
-                            Toast.makeText(applicationComponentClass, "Mobile number exists with subscriber", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(applicationComponentClass, getString(R.string.mobile_number_exits_with_subscriber), Toast.LENGTH_SHORT).show();
                             tvNext.setVisibility(View.GONE);
 
                             return;

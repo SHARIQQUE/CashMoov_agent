@@ -98,7 +98,7 @@
     <string name="please_see_our_term_condition">Veuillez consulter notre \nPolitique relative aux conditions d\'utilisation</string>
     <string name="start_now">Demarrer maintenant</string>
     <string name="home">Accueil</string>
-    <string name="wallet">WALLET</string>
+    <string name="wallet">Compte</string>
     <string name="setting">Réglage</string>
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
@@ -202,6 +202,10 @@
     <string name="press_cancel_return_to_dashboard">Appuyer sur le boutton annuler pour revenir au tableau de bord</string>
     <string name="cancel">Annuler</string>
     <string name="wallentnotfound">Propriétaire du portefeuille introuvable</string>
+    <string name="useralreadyexists">"L'utilisateur existe déjà</string>
+    <string name="mobile_number_exits_with_agent">"Le numéro de portable existe avec l'agent</string>
+    <string name="mobile_number_exits_with_branch">"Le numéro de portable existe avec la succursale</string>
+    <string name="mobile_number_exits_with_subscriber">"Le numéro de mobile existe avec l'abonné</string>
 
     <string name="delete_configuration">Voulez-vous vraiment supprimer la configuration?</string>
     <string name="this_action_reset_all_settings">Cette action va réinitialiser l\'ensemble des paramètres de l\'application.</string>
@@ -218,7 +222,7 @@
     <string name="acc_number">N° de Compte :</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais :</string>
-    <string name="amount_to_paid">Montant à payer :</string>
+    <string name="amount_to_paid">Montant facturé :</string>
     <string name="amount_paid">Montant facturé :</string>
 
     <string name="send">Envoyer</string>
@@ -554,7 +558,7 @@
     <string name="plz_enter_subscriber_no">Veuillez entrer le numéro d\'abonné</string>
     <string name="subscriber_number"> Numero de l\'abonné </string>
     <string name="trasfer_of_mode"> Mode de Transfert</string>
-    <string name="wallet_capital">WALLET</string>
+    <string name="wallet_capital">Compte</string>
     <string name="sending_currencey_star">Devise d\'envoi*</string>
     <string name="sending_currencey">Devise d\'envoi*</string>
     <string name="send_remitance_intenational">Envoyer un virement international</string>
