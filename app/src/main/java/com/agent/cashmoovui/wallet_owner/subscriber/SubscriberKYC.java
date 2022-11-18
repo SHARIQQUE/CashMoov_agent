@@ -316,6 +316,19 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.tvNext:
+
+                if (etPhone.getText().toString().trim().isEmpty()) {
+                    //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
+                    MyApplication.hideKeyboard(subscriberkycC);
+                    return;
+                }
+                if (etPhone.getText().toString().trim().length() < 9) {
+                    //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
+                    MyApplication.hideKeyboard(subscriberkycC);
+                    return;
+                }
                 if (etFname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_fname));
                     MyApplication.showTipError(this, getString(R.string.val_fname), etFname);
@@ -341,18 +354,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
-                if (etPhone.getText().toString().trim().isEmpty()) {
-                    //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
-                    MyApplication.hideKeyboard(subscriberkycC);
-                    return;
-                }
-                if (etPhone.getText().toString().trim().length() < 9) {
-                    //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
-                    MyApplication.hideKeyboard(subscriberkycC);
-                    return;
-                }
+
                 if (etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_email));
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);

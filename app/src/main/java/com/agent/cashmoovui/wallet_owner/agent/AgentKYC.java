@@ -460,6 +460,19 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvNext:
+                if (etPhone.getText().toString().trim().isEmpty()) {
+                    //MyApplication.showErrorToast(agentkycC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
+                    MyApplication.hideKeyboard(agentkycC);
+                    return;
+                }
+                if (etPhone.getText().toString().trim().length() < 9) {
+                    //MyApplication.showErrorToast(agentkycC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
+                    MyApplication.hideKeyboard(agentkycC);
+                    return;
+                }
+
                 if (etAgentName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_fname));
                     MyApplication.showTipError(this, getString(R.string.val_agent_name), etAgentName);
@@ -496,18 +509,8 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
-                if (etPhone.getText().toString().trim().isEmpty()) {
-                    //MyApplication.showErrorToast(agentkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
-                    MyApplication.hideKeyboard(agentkycC);
-                    return;
-                }
-                if (etPhone.getText().toString().trim().length() < 9) {
-                    //MyApplication.showErrorToast(agentkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
-                    MyApplication.hideKeyboard(agentkycC);
-                    return;
-                }
+
+
                 if (spBusinessType.getText().toString().equals(getString(R.string.valid_select_business_type))) {
                     //MyApplication.showErrorToast(agentkycC,getString(R.string.val_select_gender));
                     MyApplication.showTipError(this, getString(R.string.val_select_business_type), spBusinessType);

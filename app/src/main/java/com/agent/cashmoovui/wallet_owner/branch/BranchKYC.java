@@ -545,6 +545,18 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 }
 
 
+                if (etPhone.getText().toString().trim().isEmpty()) {
+                    //MyApplication.showErrorToast(branchkycC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
+                    MyApplication.hideKeyboard(branchkycC);
+                    return;
+                }
+                if (etPhone.getText().toString().trim().length() < 9) {
+                    //MyApplication.showErrorToast(branchkycC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
+                    MyApplication.hideKeyboard(branchkycC);
+                    return;
+                }
                 if (etBranchName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
                     MyApplication.showTipError(this, getString(R.string.val_branch_name), etBranchName);
@@ -580,18 +592,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
-                if (etPhone.getText().toString().trim().isEmpty()) {
-                    //MyApplication.showErrorToast(branchkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
-                    MyApplication.hideKeyboard(branchkycC);
-                    return;
-                }
-                if (etPhone.getText().toString().trim().length() < 9) {
-                    //MyApplication.showErrorToast(branchkycC,getString(R.string.val_phone));
-                    MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
-                    MyApplication.hideKeyboard(branchkycC);
-                    return;
-                }
+
                 if (spBusinessType.getText().toString().equals(getString(R.string.valid_select_business_type))) {
                     //MyApplication.showErrorToast(branchkycC,getString(R.string.val_select_gender));
                     MyApplication.showTipError(this, getString(R.string.val_select_business_type), spBusinessType);
