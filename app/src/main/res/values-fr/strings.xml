@@ -682,7 +682,7 @@
     <string name="acc_number_colon">Numéro de compte</string>
     <string name="operator_colon">Opérateur :</string>
     <string name="amount_charged_colon">Montant à facturer:</string>
-    <string name="amount_paid_colon">Montant à payer :</string>
+    <string name="amount_paid_colon">Montant facturé :</string>
     <string name="trans_amount_colon">Montant de la transaction :</string>
     <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
     <string name="val_valid_acc_no">Le numéro de compte doit comporter au moins 4 caractères</string>
