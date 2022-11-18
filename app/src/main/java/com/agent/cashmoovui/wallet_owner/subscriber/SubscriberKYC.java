@@ -316,6 +316,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.tvNext:
+                //
 
                 if (etPhone.getText().toString().trim().isEmpty()) {
                     //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
