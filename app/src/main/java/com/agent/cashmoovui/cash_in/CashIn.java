@@ -1352,7 +1352,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 //                        tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble((fees_amount));
                         amountstr_double = Double.parseDouble(amountstr);
+                        try{
                         tax_financialnewDouble=Double.parseDouble(tax_financialnew);
+
+                        }  catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         totalAmount_double = tax_financialnewDouble+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
                         double dtotalAmount_str= Double.parseDouble(totalAmount_str);

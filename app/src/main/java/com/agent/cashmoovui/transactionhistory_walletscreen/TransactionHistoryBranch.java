@@ -193,11 +193,14 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
         // http://202.131.144.130:8081/ewallet/api/v1/transaction/all?srcWalletOwnerCode=1000002692&resultCode=0&offset=0&limit=5000
 
+        String usercode_from_msis =  MyApplication.getSaveString("walletOwnerCode", TransactionHistoryBranch.this);
 
 
+        if(!MyApplication.getSaveString("newwalletownercode",TransactionHistoryBranch.this).equalsIgnoreCase("")){
+             usercode_from_msis =  MyApplication.getSaveString("newwalletownercode", TransactionHistoryBranch.this);
 
+        }
 
-        String usercode_from_msis =  MyApplication.getSaveString("walletownercode", TransactionHistoryBranch.this);
 
          // String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryBranch.this);
 
@@ -290,7 +293,14 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
 
                                 }
+                                recyclerView_agent.setLayoutManager(new LinearLayoutManager(TransactionHistoryBranch.this));
+
+
+                                adpter = new SearchAdapteBranchDetails(TransactionHistoryBranch.this, arrayList_modalDetails, TransactionHistoryBranch.this);
+                                recyclerView_agent.setAdapter(adpter);
                             }
+
+
 
 
                         }
@@ -298,11 +308,6 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
 
 
-                        recyclerView_agent.setLayoutManager(new LinearLayoutManager(TransactionHistoryBranch.this));
-
-
-                        adpter = new SearchAdapteBranchDetails(TransactionHistoryBranch.this, arrayList_modalDetails, TransactionHistoryBranch.this);
-                        recyclerView_agent.setAdapter(adpter);
 
 
                     }

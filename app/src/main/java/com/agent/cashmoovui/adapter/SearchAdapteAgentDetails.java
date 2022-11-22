@@ -61,8 +61,9 @@ public class SearchAdapteAgentDetails extends RecyclerView.Adapter<SearchAdapteA
         viewHolder.viewbranch_textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, TransactionHistoryBranch.class);
-                MyApplication.saveString("walletownercode",arrayList_modalUserData.get(i).getWalletOwnerCode(),context);
+                MyApplication.saveString("newwalletownercode",arrayList_modalUserData.get(i).getWalletOwnerCode(),context);
                 context.startActivity(intent);
 
 

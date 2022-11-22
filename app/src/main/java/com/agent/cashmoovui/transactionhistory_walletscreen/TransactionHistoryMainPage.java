@@ -342,6 +342,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.saveString("newwalletownercode","",TransactionHistoryMainPage.this);
+
         MyApplication.hideKeyboard(this);
             if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
                 insitute_textview.setClickable(false);
@@ -351,6 +353,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 MyApplication.AgentPage=false;
                 MyApplication.BranchPage=false;
                 MyApplication.InstPage=true;
+
+
             }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.AgentCode)){
             agent_textview.setClickable(false);
