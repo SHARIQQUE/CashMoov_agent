@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 17-11-2022</string>
+    <string name="version">Version : 22-11-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -465,7 +465,7 @@
     <string name="amount_to_be_credit_reveiewPage">Montant à facturer :</string>
     <string name="mobileNo_reveiewPage">Numéro de telephone:</string>
     <string name="country_reviewPage">Pays :</string>
-    <string name="amount_to_paid_review_page">Montant à payer :</string>
+    <string name="amount_to_paid_review_page">Montant facturé :</string>
     <string name="Address_Type_star">Type d\'adresse *</string>
 
     <string name="agent_code_reviewpage">Code Agent</string>
@@ -477,7 +477,7 @@
     <string name="beneficiary_sendingCurrency_reviewPage"> Devise d\'envoi :</string>
     <string name="convertionRate_reviewPage"> Taux de conversion :</string>
     <string name="comment_reviewPage"> Commentaires :</string>
-    <string name="amount_to_paid_reviewPage">Montant à payer : </string>
+    <string name="amount_to_paid_reviewPage">Montant facturé : </string>
     <string name="sender_currency_receiptpage">Devise de l\'expéditeur</string>
     <string name="senderCode_receiptpage">Code expéditeur</string>
     <string name="benificiary_no_receiptpage">Bénéficiaire Non :</string>
@@ -507,7 +507,7 @@
     <string name="country_receiptPage">Pays :</string>
     <string name="pin_capital">Code PIN :</string>
     <string name="pin_capital_new">Code PIN </string>
-    <string name="amount_to_paid_receiptpage">Montant à payer :</string>
+    <string name="amount_to_paid_receiptpage">Montant facturé :</string>
     <string name="amount_to_be_charged_receiptpage">Montant à facturer:</string>
 
     <string name="upload_success">Image de profil téléchargée avec succès</string>
@@ -632,8 +632,8 @@
     <string name="select_currency_star">Selectionner devise*</string>
     <string name="select_currency">Selectionner devise</string>
 
-    <string name="amount_to_paid_star">Montant à payer*</string>
-    <string name="amount_to_paid_without_star">Montant à payer</string>
+    <string name="amount_to_paid_star">Montant facturé*</string>
+    <string name="amount_to_paid_without_star">Montant facturé</string>
     <string name="commision_Transfer">Transfert de commission</string>
     <string name="currency_Name">Nom de la devise</string>
     <string name="main_Wallet">Compte principal / Montant réservé</string>
@@ -900,6 +900,8 @@
     <string name="sell_float_added">\"Transfert intra agent ajouté avec succès et envoyé pour approbation"</string>
     <string name="commisssion_bal_insufficient">Vous avez entré le montant ci-dessous a partir du compte commission</string>
     <string name="select_institute_type">Sélectionnez le type d\'institut</string>
+    <string name="please_enter_signature">Veuillez saisir votre signature</string>
+    <string name="please_add_agent_createbranch">Veuillez d\'abord ajouter un agent pour créer une succursale...</string>
 
 </resources>
 

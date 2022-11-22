@@ -46,6 +46,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
     Bitmap signatureBitmapBillElectricity;
 
     Button btnClear,btnSave;
+    boolean isphotoSigntature=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +64,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
         signaturePad_electricityBill.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
+                isphotoSigntature=true;
 
                 signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
                 System.out.println(signatureBitmapBillElectricity);
@@ -71,14 +73,18 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onSigned() {
+                isphotoSigntature=true;
+
                 btnClear.setEnabled(true);
                 btnSave.setEnabled(true);
             }
 
             @Override
             public void onClear() {
+                photoSend=null;
                 btnClear.setEnabled(true);  // change all page
                 btnClear.setEnabled(false);
+                isphotoSigntature=false;
             }
         });
 
@@ -101,18 +107,27 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btnClear: {
+                photoSend=null;
                 signaturePad_electricityBill.clear();
 
             }
             break;
 
             case R.id.btnSave: {
-                signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
-                addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
+                if(isphotoSigntature){
+                    signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
+                    addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
-                if(photoSend!=null){
-                    callupload(photoSend, "100044",AgentKYC.agentWalletOwnerCode);
+                    if(photoSend!=null){
+                        callupload(photoSend, "100044",AgentKYC.agentWalletOwnerCode);
+                    }else{
+                        MyApplication.showToast(AgentSignature.this,getString(R.string.please_enter_signature));
+                    }
+
                 }
+            else{
+                MyApplication.showToast(AgentSignature.this,getString(R.string.please_enter_signature));
+            }
 
             }
             break;
@@ -120,7 +135,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    File photoSend;
+    File photoSend=null;
     public boolean addJpgSignatureToGallery(Bitmap signature, String selectionType) {
         boolean result = false;
         try {
@@ -183,6 +198,8 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
 
 
         photoSend = new File(getRealPathFromURI(photoSend1).toString());
+
+
         String  uploadGalleryStringElectricity = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
        // Toast.makeText(SelfSignature.this,uploadGalleryStringElectricity,Toast.LENGTH_LONG).show();
@@ -305,6 +322,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
         }
 
     }
+
 
 
 }

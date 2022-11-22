@@ -1039,7 +1039,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     } else {
                         clearData();
 
-                        Toast.makeText(SubscriberKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(SubscriberKYC.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
 

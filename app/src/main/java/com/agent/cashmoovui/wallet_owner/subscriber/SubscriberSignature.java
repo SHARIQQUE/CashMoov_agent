@@ -23,6 +23,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,6 +43,8 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
     Bitmap signatureBitmapBillElectricity;
 
     Button btnClear,btnSave;
+    boolean isphotoSigntature=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,8 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
         signaturePad_electricityBill.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
+                isphotoSigntature=true;
+
 
                 signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
                 System.out.println(signatureBitmapBillElectricity);
@@ -67,6 +72,8 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onSigned() {
+                isphotoSigntature=true;
+
                 btnClear.setEnabled(true);
                 btnSave.setEnabled(true);
             }
@@ -75,6 +82,8 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
             public void onClear() {
                 btnClear.setEnabled(true);  // change all page
                 btnClear.setEnabled(false);
+                isphotoSigntature=false;
+
             }
         });
 
@@ -104,16 +113,25 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
             break;
 
             case R.id.btnSave: {
-                signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
+                if (isphotoSigntature) {
+
+                    signatureBitmapBillElectricity = signaturePad_electricityBill.getSignatureBitmap();
                 addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                 if(photoSend!=null){
                     callupload(photoSend,"100039",SubscriberKYC.subscriberWalletOwnerCode);
                 }
 
+                }
+                else{
+                    MyApplication.showToast(SubscriberSignature.this,getString(R.string.please_enter_signature));
+                }
             }
+
+
             break;
         }
+
 
     }
 

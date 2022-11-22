@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +59,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
     private EditText et_otp,et_mpin;
     private String otpStr="",mpinStr;
     String languageToUse = "";
+    boolean  isPasswordVisible;
 
     MyApplication applicationComponentClass;
     Double tax_financial_double = 0.0, amountstr_double = 0.0,tax_financialnewDouble=0.0, fees_amount_double = 0.0, totalAmount_double = 0.0;
@@ -189,8 +191,55 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         tvAmountCharged.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+MyApplication.addDecimal((totalAmount_str)));
 
 
+        et_mpin.addTextChangedListener(new TextWatcher() {
 
-      //  tvAmountCharged.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+(ReceiveMoneyDetailScreen.currencyValue));
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if(s.length() >= 4)
+                    MyApplication.hideKeyboard(ReceiveMoneyConfirmScreen.this);            }
+        });
+
+        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
+        et_mpin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (et_mpin.getRight() - et_mpin.getCompoundDrawables()[RIGHT].getBounds().width())) {
+                        int selection = et_mpin.getSelectionEnd();
+                        if (isPasswordVisible) {
+                            // set drawable image
+                            et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_off_black_24dp, 0);
+                            // hide Password
+                            et_mpin.setTransformationMethod(hiddenPassTransformationMethod);
+                            isPasswordVisible = false;
+                        } else  {
+                            // set drawable image
+                            et_mpin.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
+                            // show Password
+                            et_mpin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            isPasswordVisible = true;
+                        }
+                        et_mpin.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
+        //  tvAmountCharged.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+(ReceiveMoneyDetailScreen.currencyValue));
 
         TextView tvFinger =findViewById(R.id.tvFinger);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {

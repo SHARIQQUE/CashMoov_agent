@@ -409,7 +409,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     } else {
                         clearData();
 
-                       Toast.makeText(AgentKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                      // Toast.makeText(AgentKYC.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
 

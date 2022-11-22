@@ -489,7 +489,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     } else {
                         clearData();
 
-                        Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                      //  Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
 
@@ -713,7 +713,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         }else{
             String usercode_from_msis = MyApplication.getSaveString("USERCODE", BranchKYC.this);
 
-            API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/" + usercode_from_msis, languageToUse, new Api_Responce_Handler() {
+            API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/" + MyApplication.getSaveString("walletOwnerCode",BranchKYC.this), languageToUse, new Api_Responce_Handler() {
 
                 @Override
                 public void success(JSONObject jsonObject) {
@@ -819,7 +819,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                 }
                                 else{
-                                    MyApplication.showToast(BranchKYC.this,"Please Add Agent First to Create Branch...");
+                                    MyApplication.showToast(BranchKYC.this,getString(R.string.please_add_agent_createbranch));
                                     finish();
                                 }
 
