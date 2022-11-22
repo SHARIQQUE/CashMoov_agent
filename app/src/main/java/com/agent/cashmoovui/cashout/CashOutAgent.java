@@ -1726,6 +1726,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             jsonObject.put("transTypeCode","100001");
            // jsonObject.put("transTypeCode","101813");
             jsonObject.put("subscriberWalletOwnerCode",walletOwnerCode_subs);
+            jsonObject.put("transAmount",amountstr);
 
 
             API.POST_GET_OTP("ewallet/api/v1/otp",jsonObject,new Api_Responce_Handler() {
