@@ -462,7 +462,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
                                             }
 
-                                            if (data.has("senderCustomer")) {
+                                           /* if (data.has("senderCustomer")) {
+                                                msisdn = data.optJSONObject("senderCustomer").optString("mobileNumber");
+                                                name = data.optJSONObject("senderCustomer").optString("firstName") + " " + data.optJSONObject("receiverCustomer").optString("lastName");
+*/
+
+                                                if (data.has("senderCustomer")) {
                                                 msisdn = data.optJSONObject("senderCustomer").optString("mobileNumber");
                                                 name = data.optJSONObject("senderCustomer").optString("firstName") + " " + data.optJSONObject("senderCustomer").optString("lastName");
                                             } else {

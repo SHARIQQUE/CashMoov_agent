@@ -912,5 +912,7 @@
     <string name="SendingAgentName">Sending Agent Name :</string>
     <string name="please_enter_signature">Please enter signature</string>
     <string name="please_add_agent_createbranch">Please Add Agent First to Create Branch...</string>
+    <string name="overdraftvalidation">Amount should be less or equal to eligible amount</string>
+    <string name="requestqueoverdraft">Request is already in queue.</string>
 </resources>
 

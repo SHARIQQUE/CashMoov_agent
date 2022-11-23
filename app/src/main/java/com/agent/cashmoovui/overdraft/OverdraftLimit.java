@@ -376,7 +376,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             //   edittext_amount.setEnabled(false);
             edittext_validity.setEnabled(false);
 
-            edittext_amount.setText(MyApplication.addDecimal(amountstr));
+            edittext_amount.setText(amountstr);
             edittext_validity.setText(validityDaysStr);
 
             tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
@@ -397,7 +397,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                     //   edittext_amount.setEnabled(false);
                     edittext_validity.setEnabled(false);
 
-                    edittext_amount.setText(MyApplication.addDecimal(amountstr));
+                    edittext_amount.setText(amountstr);
                     edittext_validity.setText(validityDaysStr);
 
                     tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
@@ -420,7 +420,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                 //   edittext_amount.setEnabled(false);
                 edittext_validity.setEnabled(false);
 
-                edittext_amount.setText(MyApplication.addDecimal(amountstr));
+                edittext_amount.setText(amountstr);
                 edittext_validity.setText(validityDaysStr);
 
                 tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
@@ -1099,6 +1099,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         amountstr = edittext_amount.getText().toString().trim();
         validityDaysStr = edittext_validity.getText().toString().trim();
 
+
         if (spinner_currency.getText().equals(getString(R.string.select_currency))) {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
             return false;
@@ -1108,19 +1109,26 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         }  else if (Double.parseDouble(repleaceString(amountstr))<=0) {
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
             return false;
-        } else if (Double.parseDouble(repleaceString(amountStrcheck)) < Double.parseDouble(repleaceString(amountstr))) {
-            MyApplication.showErrorToast(this, "Amount should be less or equal to eligible amount");
+        }
+
+         else if (amountStrcheck.length()<= amountstr.length()) {
+            MyApplication.showErrorToast(this, getString(R.string.overdraftvalidation));
             return false;
         }
+
+
         for (int i = 0; i < arrayList_overdraft.size(); i++) {
+
             if (selectCurrecnyCode.equalsIgnoreCase(arrayList_overdraft.get(i).getCurrencyCode())) {
-                if(arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Closed")){
+                if(arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Closed") ||
+                        arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Cloturer")){
                     return true;
                 }
-                if(arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Reject")){
+                if(arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Reject") ||
+                        arrayList_overdraft.get(i).getStatus().equalsIgnoreCase("Rejeter") ){
                     return true;
                 }
-                MyApplication.showErrorToast(this, "Request is already in queue.");
+                MyApplication.showErrorToast(this, getString(R.string.requestqueoverdraft));
                 return false;
             }
 

@@ -161,7 +161,7 @@
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/first_name"
+                    android:hint="@string/first_name_star"
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/aileron_semibold"  />
