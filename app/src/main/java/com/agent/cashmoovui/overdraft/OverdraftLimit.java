@@ -591,7 +591,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                         JSONArray jsonArray = jsonObject.optJSONArray("creditLimitConfigList");
                         validityDaysStr = jsonArray.optJSONObject(0).optString("validityDays");
-                        maximumLimit = jsonArray.optJSONObject(0).optString("maximumLimit");
+                        maximumLimit = ""+jsonArray.optJSONObject(0).optInt("maximumLimit");
 
 
                         head_overdraft.setText(getString(R.string.maximumoverdraft) +" "+ MyApplication.addDecimal(maximumLimit) + " for " + validityDaysStr + " days");
@@ -683,12 +683,12 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                             }
 
                             if (jsonObject3.has("amount")) {
-                                String amount = jsonObject3.getString("amount");
+                                String amount = String.valueOf(jsonObject3.optInt("amount"));
                                 overDraftModal.setAmount(amount);
                             }
 
                             if (jsonObject3.has("maximumLimit")) {
-                                String maximumLimit = jsonObject3.getString("maximumLimit");
+                                String maximumLimit = ""+jsonObject3.optInt("maximumLimit");
                                 overDraftModal.setMaximumLimit(maximumLimit);
                             }
 
@@ -1111,7 +1111,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             return false;
         }
 
-         else if (amountStrcheck.length()<= amountstr.length()) {
+         else if (amountStrcheck.length()< amountstr.length()) {
             MyApplication.showErrorToast(this, getString(R.string.overdraftvalidation));
             return false;
         }
