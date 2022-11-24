@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 22-11-2022</string>
+    <string name="version">Version : 24-11-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -559,7 +559,7 @@
     <string name="plz_select_provider">Please select provider</string>
     <string name="plz_enter_country">Please enter country</string>
     <string name="plz_enter_amount_to_pay">Enter amount to pay</string>
-    <string name="plz_enter_firstName">PLease enter first name</string>
+    <string name="plz_enter_firstName">Please enter first name</string>
     <string name="plz_enter_name">PLease enter name</string>
 
     <string name="cash_to_wallet">Cash to Wallet</string>

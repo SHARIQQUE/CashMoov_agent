@@ -169,7 +169,7 @@
                 android:weightSum="3"
                 android:orientation="horizontal">
             <androidx.cardview.widget.CardView
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/cardToreceiveinternational"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -220,7 +220,7 @@
                 android:weightSum="3"
                 android:orientation="horizontal">
             <androidx.cardview.widget.CardView
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/cardToPartners"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"

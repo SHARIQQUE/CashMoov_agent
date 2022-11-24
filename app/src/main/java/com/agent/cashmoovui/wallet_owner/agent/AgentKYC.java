@@ -475,7 +475,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
                 if (etAgentName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this, getString(R.string.val_agent_name), etAgentName);
+                    MyApplication.showTipError(this, getString(R.string.plz_enter_firstName), etAgentName);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
