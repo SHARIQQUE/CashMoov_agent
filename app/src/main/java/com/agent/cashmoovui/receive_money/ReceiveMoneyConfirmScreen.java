@@ -428,7 +428,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
             dataObjectrequest.put("desWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this));
             dataObjectrequest.put("srcCurrencyCode", "100062");
             dataObjectrequest.put("desCurrencyCode", "100062");
-            dataObjectrequest.put("value", tvTransAmounts.getText().toString());
+            dataObjectrequest.put("value", MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount).replace(",",""));
             dataObjectrequest.put("transactionType", "113092");
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
 
@@ -464,6 +464,8 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
 
+
+                        System.out.println("get response"+resultDescription);
                         if (resultCode.equalsIgnoreCase("0")) {
                             ll_successPage.setVisibility(View.VISIBLE);
                             linera_all.setVisibility(View.GONE);

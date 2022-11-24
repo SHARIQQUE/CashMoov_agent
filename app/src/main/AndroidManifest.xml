@@ -541,7 +541,7 @@ x
                 android:theme="@style/AppThemeNew"/>
 
 
-            <activity android:name=".internationaltransfer.OutFormRecptNew"
+            <activity android:name=".internationaltransfer.OutFormRecpt"
                 android:windowSoftInputMode="adjustResize|stateVisible"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppThemeNew"/>

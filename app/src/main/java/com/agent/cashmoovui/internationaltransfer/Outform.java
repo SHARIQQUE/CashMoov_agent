@@ -128,7 +128,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
             MyApplication.isContact=false;
             String requiredValue = data.getStringExtra("PHONE");
 
-          //  etSubscriberNo.setText(requiredValue);
+            //  etSubscriberNo.setText(requiredValue);
 
         }
         if (resultCode != Activity.RESULT_OK) {
@@ -187,15 +187,13 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         xofAmountLinear=findViewById(R.id.xofAmountLinear);
         spinner_destinaioncountry=findViewById(R.id.spinner_destinaioncountry);
 
-         etSubscriberNo.setText("775389850");
+         /*etSubscriberNo.setText("775389850");
           etFname.setText("Sandeep");
-        etLname.setText("Singh");
-       // etAmount.setText("10,000");
-       // etAmountN.setText("670.00");
+        etLname.setText("Singh");*/
+        // etAmount.setText("10,000");
+        // etAmountN.setText("670.00");
 
-        mobileNo = etSubscriberNo.getText().toString();
-        ownerName =  etFname.getText().toString();
-        lastName =  etLname.getText().toString();
+
         headText = findViewById(R.id.headText);
         headText.setText(OutTransfer.operatorNname);
 
@@ -272,7 +270,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
                 }*/
             }
         });
-callApiWalletCountryCurrencyJSOn();
+        callApiWalletCountryCurrencyJSOn();
         etSubscriberNo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -296,51 +294,51 @@ callApiWalletCountryCurrencyJSOn();
         });
         callwalletOwner();
 
-            etAmount.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+        etAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                }
+            }
 
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
+            }
 
-                @Override
-                public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
 
                   /* if (isFormatting) {
                         return;
                     }*/
 
-                    if(s.length()>=1) {
-                        // formatInput(etAmount,s, s.length(), s.length());
+                if(s.length()>=1) {
+                    // formatInput(etAmount,s, s.length(), s.length());
 
-                        if(isAmt){
-                            etAmountN.setEnabled(false);
-                            isAmtPaid=false;
-                            callApiAmountDetailsstatic();
-                        }else{
-                            etAmountN.setEnabled(true);
-                            isAmtPaid=true;
-                        }
+                    if(isAmt){
+                        etAmountN.setEnabled(false);
+                        isAmtPaid=false;
+                        callApiAmountDetailsstatic();
                     }else{
-                        isAmtPaid=true;
                         etAmountN.setEnabled(true);
-                        etAmountN.getText().clear();
-                        tvFee.setText("");
-                        tvAmtPaid.setText("");
-                        tvRate.setText("");
+                        isAmtPaid=true;
                     }
-
-
-                                      // isFormatting = false;
-
-
-
+                }else{
+                    isAmtPaid=true;
+                    etAmountN.setEnabled(true);
+                    etAmountN.getText().clear();
+                    tvFee.setText("");
+                    tvAmtPaid.setText("");
+                    tvRate.setText("");
                 }
-            });
+
+
+                // isFormatting = false;
+
+
+
+            }
+        });
 
 
         etAmountN.addTextChangedListener(new TextWatcher() {
@@ -526,6 +524,10 @@ callApiWalletCountryCurrencyJSOn();
 
 
         try {
+
+            mobileNo = etSubscriberNo.getText().toString();
+            ownerName =  etFname.getText().toString();
+            lastName =  etLname.getText().toString();
             jsonObjectNew.put("channel","SELFCARE");
             jsonObjectNew.put("serviceCode","100023");
             jsonObjectNew.put("serviceCategoryCode","TRTWLT");
@@ -535,16 +537,18 @@ callApiWalletCountryCurrencyJSOn();
             jsonObjectNew.put("serviceItemId",OutTransfer.serviceItemId);
             jsonObjectNew.put("fromCurrencyCode","100062");
             jsonObjectNew.put("toCurrencyCode","100018");
-            jsonObjectNew.put("mobileNumber","775389850");
+            jsonObjectNew.put("mobileNumber",mobileNo);
             jsonObjectNew.put("amount",etAmount.getText().toString());
             //jsonObject.put("pin","38b0059a03897cc6260e73cfe3f070a3");
-            jsonObjectNew.put("providerServiceItemCode","100002");
+            // jsonObjectNew.put("providerServiceItemCode","100002");
             jsonObjectNew.put("firstName",etFname.getText().toString());
             jsonObjectNew.put("productCode",OutTransfer.operatorCode);
-           // jsonObjectNew.put("lastName",etLname.getText().toString());
+            // jsonObjectNew.put("lastName",etLname.getText().toString());
 
             // jsonObject.put("idProofNumber","");
             // jsonObject.put("idProofTypeCode","");
+
+
             Intent i1=new Intent(tosubscriberC, OutFormConfirmation.class);
             startActivity(i1);
 
@@ -605,8 +609,8 @@ callApiWalletCountryCurrencyJSOn();
             @Override
             public void success(JSONObject jsonObject) {
                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                   etName.setText(jsonObject.optJSONArray("walletList").optJSONObject(0).optString("walletOwnerName"));
-                   etPhone.setText(jsonObject.optJSONArray("walletList").optJSONObject(0).optString("walletOwnerMsisdn"));
+                    etName.setText(jsonObject.optJSONArray("walletList").optJSONObject(0).optString("walletOwnerName"));
+                    etPhone.setText(jsonObject.optJSONArray("walletList").optJSONObject(0).optString("walletOwnerMsisdn"));
                 }else{
                     MyApplication.showToast(tosubscriberC,jsonObject.optString("resultDescription"));
                 }
@@ -696,7 +700,7 @@ callApiWalletCountryCurrencyJSOn();
 
                                 } else {
                                     subscriberList.clear();
-                                   // setSubscriberdataf("No Data");
+                                    // setSubscriberdataf("No Data");
                                     // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
                                 }
 
@@ -762,7 +766,7 @@ callApiWalletCountryCurrencyJSOn();
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface arg0, int arg1) {
-                       /* Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
+                     /*   Intent i = new Intent(tosubscriberC, ToNonSubscriber.class);
                         i.putExtra("TOSUBMSISDN",etSubscriberNo.getText().toString().trim());
                         startActivity(i);
                         finish();*/
@@ -781,8 +785,8 @@ callApiWalletCountryCurrencyJSOn();
         lastName = data.getLastName();
         if (isQR) {
             etSubscriberNo.setText(data.getMobileNumber());
-           // etFname.setText(data.getOwnerName());
-           // etLname.setText(data.getLastName());
+            // etFname.setText(data.getOwnerName());
+            // etLname.setText(data.getLastName());
             etAmount.setText("");
             etAmount.requestFocus();
             isQR = false;
@@ -795,7 +799,7 @@ callApiWalletCountryCurrencyJSOn();
             etSubscriberNo.showDropDown();
 
             //etFname.setText(data.getOwnerName());
-           // etLname.setText(data.getLastName());
+            // etLname.setText(data.getLastName());
             etAmount.setText("");
             etAmount.requestFocus();
         }
@@ -864,7 +868,7 @@ callApiWalletCountryCurrencyJSOn();
 
     }
 
-        public void callserviceCategory() {
+    public void callserviceCategory() {
         API.GET("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100000&serviceCategoryCode=100024&status=Y", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -1017,7 +1021,7 @@ callApiWalletCountryCurrencyJSOn();
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(rate);
+                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
                                         tvFee.setText(fee);
                                         // etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);
@@ -1072,7 +1076,7 @@ callApiWalletCountryCurrencyJSOn();
                             +"&serviceCategoryCode="+"TRTWLT"+
                             "&serviceProviderCode="+"100182"+
                             "&walletOwnerCode="+MyApplication.getSaveString("walletOwnerCode", tosubscriberC),
-                           new Api_Responce_Handler() {
+                    new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
                             // MyApplication.hideLoader();
@@ -1089,10 +1093,10 @@ callApiWalletCountryCurrencyJSOn();
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(rate);
+                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
                                         tvFee.setText(fee);
                                         etAmountN.setText(currencyValue);
-                                       // tvAmtPaid.setText(currencyValue);
+                                        // tvAmtPaid.setText(currencyValue);
 
 
 //                                    int tax = receiverFee+receiverTax;
@@ -1326,7 +1330,7 @@ callApiWalletCountryCurrencyJSOn();
                                         }
                                     }
 
-                                    spinnerDialogCountry= new SpinnerDialog(tosubscriberC, benefiCountryList, "Select Country", R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
+                                    spinnerDialogCountry= new SpinnerDialog(tosubscriberC, benefiCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
                                     spinnerDialogCountry.setCancellable(true); // for cancellable
                                     spinnerDialogCountry.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogCountry.bindOnSpinerListener(new OnSpinerItemClick() {

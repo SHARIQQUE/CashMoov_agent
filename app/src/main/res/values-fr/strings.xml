@@ -549,6 +549,8 @@
     <string name="plz_enter_amount_to_pay">Saisir le montant à payer</string>
     <string name="plz_enter_firstName">Veuillez saisir le prénom</string>
     <string name="plz_enter_name">Veuillez entrer le nom</string>
+    <string name="transaction_status_colon">Statut de la transtion :</string>
+    <string name="vendor_result_description">Fournisseur Résultat Description :</string>
 
     <string name="cash_to_wallet">Cash a compte</string>
     <string name="tax">Taxe :</string>

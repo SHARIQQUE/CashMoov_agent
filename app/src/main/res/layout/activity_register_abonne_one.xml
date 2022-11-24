@@ -80,7 +80,9 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
-                    android:inputType="phone"
+                    android:inputType="number"
+                    android:digits="0123456789"
+
                     android:drawableRight="@drawable/ic_contact"
                     android:drawablePadding="@dimen/_10sdp"
                     android:lineSpacingExtra="10sp"

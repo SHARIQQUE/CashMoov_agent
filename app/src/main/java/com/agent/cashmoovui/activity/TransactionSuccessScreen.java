@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.internationaltransfer.OutFormRecpt;
 import com.agent.cashmoovui.payments.PaymentReceipt;
 import com.agent.cashmoovui.receive_money.ReceiveMoneyReceiptScreen;
 import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletReceiptScreen;
@@ -69,6 +70,12 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
         Intent intent;
         switch (view.getId()) {
             case R.id.tvContinue:
+
+                if(checkIntent.equalsIgnoreCase("OTOSUB")){
+                    intent = new Intent(transSuccessscreenC, OutFormRecpt.class);
+                    startActivity(intent);
+                    return;
+                }
                 if(checkIntent.equalsIgnoreCase("Payments")) {
                     intent = new Intent(transSuccessscreenC, PaymentReceipt.class);
                     startActivity(intent);
@@ -122,6 +129,12 @@ public class TransactionSuccessScreen extends AppCompatActivity implements View.
                 Intent intent;
                 if(checkIntent.equalsIgnoreCase("Payments")) {
                     intent = new Intent(transSuccessscreenC, PaymentReceipt.class);
+                    startActivity(intent);
+                    return;
+                }
+
+                if(checkIntent.equalsIgnoreCase("OTOSUB")){
+                    intent = new Intent(transSuccessscreenC, OutFormRecpt.class);
                     startActivity(intent);
                     return;
                 }

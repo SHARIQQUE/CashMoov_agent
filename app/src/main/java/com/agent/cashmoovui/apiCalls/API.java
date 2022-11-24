@@ -4042,7 +4042,7 @@ public class API {
             AndroidNetworking.get(BASEURL + URL)
                     .setOkHttpClient(client)
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                    .addHeaders("channel", "APP")
+                    .addHeaders("channel", "WEB")
                     .addHeaders("source", "AGENT")
                     .addHeaders("mac", MyApplication.getUniqueId())
                     .addHeaders("deviceId", MyApplication.getUniqueId())

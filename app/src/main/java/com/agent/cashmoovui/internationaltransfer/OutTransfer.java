@@ -199,7 +199,7 @@ TextView  opt_text;
 
     public  void CallApiOutboundServiceJsonList(){
         MyApplication.showloader(OutTransfer.this,"Please wait");
-        API.GETPreProd("ewallet/api/v1/productMaster/allByCriteria?serviceCategoryCode=TRTWLT&status=Y",
+        API.GET("ewallet/api/v1/productMaster/allByCriteria?serviceCategoryCode=TRTWLT&status=Y",
                 new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

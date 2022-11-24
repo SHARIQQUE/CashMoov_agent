@@ -44,9 +44,9 @@ import java.util.StringTokenizer;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
+public class ReceiveMoneyReceiptScreen extends AppCompatActivity implements View.OnClickListener {
     public static ReceiveMoneyReceiptScreen receiveMoneyReceiptScreenC;
-    Button btnClose,btnShareReceipt;
+    Button btnCloseReceipt,btnShareReceipt;
     TextView tvSubscriberMobile,tvrate,tvConfCode,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout linConfCode,tax1_layout,tax2_layout;
@@ -88,7 +88,10 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
         tvReceiverName=findViewById(R.id.tvReceiverName);
         tvReceiverPhoneNo=findViewById(R.id.tvReceiverPhoneNo);
         tvReceiveremail=findViewById(R.id.tvReceiveremail);
-
+        btnCloseReceipt = findViewById(R.id.btnCloseReceipt);
+        btnCloseReceipt.setOnClickListener(this);
+        btnShareReceipt=findViewById(R.id.btnShareReceipt);
+        btnShareReceipt.setOnClickListener(this);
         tvTranstype.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("transactionType"));
         tvsendercurrency.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol"));
         tvReceivercurrency.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol"));
@@ -147,6 +150,82 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity {
         startActivity(intent);
         super.onBackPressed();
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnShareReceipt:
+                btnShareReceipt.setVisibility(View.VISIBLE);
+                Bitmap bitmap=getScreenShot(rootView);
+                createImageFile(bitmap);
+                //store(bitmap,"test.jpg");
+                break;
+            case R.id.btnCloseReceipt:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+
+        }
+    }
+
+    public static Bitmap getScreenShot(View view) {
+        View screenView = view;
+        screenView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+        screenView.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    public  void createImageFile(Bitmap bm)  {
+        try {
+            // Create an image file name
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+                    .format(System.currentTimeMillis());
+            File storageDir = new File(Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/");
+            if (!storageDir.exists())
+                storageDir.mkdirs();
+            File image = File.createTempFile(
+                    timeStamp,
+                    ".jpeg",
+                    storageDir
+            );
+
+            System.out.println(image.getAbsolutePath());
+            if (image.exists()) image.delete();
+            //   Log.i("LOAD", root + fname);
+            try {
+                FileOutputStream out = new FileOutputStream(image);
+                bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+                out.flush();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            shareImage(image);
+        }catch (Exception e){
+
+        }
+    }
+
+    private void shareImage(File file){
+        Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(Intent.EXTRA_TEXT, "");
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        try {
+            startActivity(Intent.createChooser(intent, getString(R.string.share_screenshot)));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getApplicationContext(), getString(R.string.no_app_available), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
 
 

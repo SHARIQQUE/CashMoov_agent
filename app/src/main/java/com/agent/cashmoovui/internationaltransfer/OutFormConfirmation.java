@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
-
 import com.agent.cashmoovui.R;
+
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
@@ -71,7 +71,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
     private void getIds() {
         tvrate=findViewById(R.id.tvrate);
-        tvrate.setText(Outform.rate);
+        tvrate.setText(MyApplication.addDecimalthreenew(Outform.rate));
         pinLinear=findViewById(R.id.pinLinear);
         bearLay=findViewById(R.id.bearLay);
         bearLay.setVisibility(View.GONE);
@@ -189,17 +189,17 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
             if(Outform.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
                 tax_r.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+Outform.taxConfigurationList.optJSONObject(0).optDouble("value")));
                 finalamount=(Double.parseDouble(Outform.fee)+Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Outform.taxConfigurationList.optJSONObject(0).optString("value")));
             }
             if(Outform.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(0).optString("taxTypeName")));
                 tax_r.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+Outform.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
+                vat_label.setText(MyApplication.getTaxString(Outform.taxConfigurationList.optJSONObject(1).optString("taxTypeName")));
                 vat_r.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(""+Outform.taxConfigurationList.optJSONObject(1).optDouble("value")));
                 finalamount=(Double.parseDouble(Outform.fee)+Double.parseDouble(Outform.etAmount.getText().toString().replace(",",""))+Double.parseDouble(Outform.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(Outform.taxConfigurationList.optJSONObject(1).optString("value")));
             }
