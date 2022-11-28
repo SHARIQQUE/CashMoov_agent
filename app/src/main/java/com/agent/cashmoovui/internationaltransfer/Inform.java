@@ -133,7 +133,9 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
             String requiredValue = data.getStringExtra("PHONE");
             MyApplication.contactValidation(requiredValue,etSubscriberNo);
 
-            //  etSubscriberNo.setText(requiredValue);
+              etSubscriberNo.setText(requiredValue);
+            etFname.requestFocus();
+
 
         }
         if (resultCode != Activity.RESULT_OK) {

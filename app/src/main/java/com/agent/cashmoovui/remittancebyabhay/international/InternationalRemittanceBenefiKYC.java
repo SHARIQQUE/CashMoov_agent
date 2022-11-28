@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -78,6 +79,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
             spinnerDialogIssuingCountry,spinnerDialogBenefiIdProofType;
     public static TextView mDobText;
     private ImageView mCalenderIcon_Image;
+    private String mobilelength;
 
 
     @Override
@@ -140,6 +142,13 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         etComment = findViewById(R.id.et_fp_reason_sending);
         tvNext = findViewById(R.id.tvNext);
         mDobText=findViewById(R.id.dobText);
+
+
+        mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        System.out.println("get lengh new"+mobilelength);
+
+        et_destination_mobileNumber.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
@@ -970,6 +979,18 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         }
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+            et_destination_mobileNumber.setText(requiredValue);
+            et_destination_firstName.requestFocus();
+
+        }
+    }
 
 
 }

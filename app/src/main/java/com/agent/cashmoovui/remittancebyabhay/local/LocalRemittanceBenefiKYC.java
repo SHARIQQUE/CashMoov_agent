@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -64,6 +65,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
     private static EditText et_destination_dob;
     public static TextView mDobText,spCity;
     private ImageView mCalenderIcon_Image;
+    private String mobilelength;
 
     private ArrayList<String> benefiGenderList = new ArrayList<>();
     private ArrayList<GenderModel.Gender> benefiGenderModelList=new ArrayList<>();
@@ -140,6 +142,13 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         etComment = findViewById(R.id.et_fp_reason_sending);
         tvNext = findViewById(R.id.tvNext);
         mDobText=findViewById(R.id.dobText);
+
+        mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        System.out.println("get lengh new"+mobilelength);
+
+        et_destination_mobileNumber.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
 
         spCity = findViewById(R.id.spCity);
         spCity.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +260,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                     edittext_email_destination.setText("");
                     et_destination_dob.setText("");
                     spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                    spCity.setText("");
+                    spCity.setText(getString(R.string.valid_select_city));
                     et_destination_address.setText("");
                     spinner_destination_region.setText(getString(R.string.val_select_region));
                     spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -295,7 +304,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             edittext_email_destination.setText("");
                             et_destination_dob.setText("");
                             spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                            spCity.setText("");
+                            spCity.setText(getString(R.string.valid_select_city));
                             et_destination_address.setText("");
                             spinner_destination_region.setText(getString(R.string.val_select_region));
                             spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -311,7 +320,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                         edittext_email_destination.setText("");
                         et_destination_dob.setText("");
                         spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                        spCity.setText("");
+                        spCity.setText(getString(R.string.valid_select_city));
                         et_destination_address.setText("");
                         spinner_destination_region.setText(getString(R.string.val_select_region));
                         spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -804,7 +813,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         edittext_email_destination.setText("");
         et_destination_dob.setText("");
         spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-        spCity.setText("");
+        spCity.setText(getString(R.string.valid_select_city));
         et_destination_address.setText("");
         spinner_destination_region.setText(getString(R.string.val_select_region));
         spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -1047,6 +1056,20 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         }
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+            et_destination_mobileNumber.setText(requiredValue);
+            et_destination_firstName.requestFocus();
+            spCity.setText(getString(R.string.valid_select_city));
+
+        }
+    }
+
 
 }
 

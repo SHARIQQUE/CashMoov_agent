@@ -126,10 +126,11 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         if (requestCode == REQUEST_CODE  && resultCode  == RESULT_OK) {
 
             MyApplication.isContact=false;
-            String requiredValue = data.getStringExtra("PHONE");
-
-            //  etSubscriberNo.setText(requiredValue);
-
+            if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+                String requiredValue = data.getStringExtra("PHONE");
+                etSubscriberNo.setText(requiredValue);
+                etFname.requestFocus();
+            }
         }
         if (resultCode != Activity.RESULT_OK) {
             Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");

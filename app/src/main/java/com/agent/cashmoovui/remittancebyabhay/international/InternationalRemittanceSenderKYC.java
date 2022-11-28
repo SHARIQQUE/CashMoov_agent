@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -79,11 +80,12 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogSenderGender,spinnerDialogSenderRegion,
             spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType,spinnerDialogCity;
-    static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
+    static final int REQUEST_IMAGE_CAPTURE_ONE = 4;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
     public static final int RESULT_CODE_FAILURE = 10;
     private Intent Data;
     Uri tempUriFront,tempUriBack;
+    private String mobilelength;
     DatePickerDialog picker;
     public static TextView mDobText,dobexpiryText,spCity;
     private ImageView mCalenderIcon_Image,calenderIcon_Image_dobexpiry;
@@ -165,6 +167,12 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         tvNext = findViewById(R.id.tvNext);
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
         calenderIcon_Image_dobexpiry=findViewById(R.id.calenderIcon_Image_dobexpiry);
+
+        mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        System.out.println("get lengh new"+mobilelength);
+
+        et_sender_phoneNumber.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
         calenderIcon_Image_dobexpiry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -808,9 +816,19 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+            et_sender_phoneNumber.setText(requiredValue);
+            et_sender_firstName.requestFocus();
+
+        }
+
         if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {
             if (resultCode == RESULT_OK) {
+
+
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 Data = data;
@@ -821,10 +839,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                 fileFront = new File(getRealPathFromURI(tempUriFront).toString());
                 int file_size = Integer.parseInt(String.valueOf(fileFront.length() / 1024));     //calculate size of image in KB
-                if (file_size <= 100){
-                    isFrontUpload=true;
-                }else {
-                    MyApplication.showErrorToast(internationalremitsenderkycC,"File size exceeds");
+                if (file_size <= 100) {
+                    isFrontUpload = true;
+                } else {
+                    MyApplication.showErrorToast(internationalremitsenderkycC, "File size exceeds");
                 }
                 //  btnFrontUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
@@ -832,9 +850,9 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 //                System.out.println(file);
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(internationalremitsenderkycC,"User Canceled");
+                MyApplication.showToast(internationalremitsenderkycC, "User Canceled");
             } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(internationalremitsenderkycC,"Failed");
+                MyApplication.showToast(internationalremitsenderkycC, "Failed");
             }
 
         }
@@ -850,19 +868,19 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
                 fileBack = new File(getRealPathFromURI(tempUriBack).toString());
                 int file_size = Integer.parseInt(String.valueOf(fileBack.length() / 1024));     //calculate size of image in KB
-                if (file_size <= 100){
-                    isBackUpload=true;
-                }else {
-                    MyApplication.showErrorToast(internationalremitsenderkycC,"File size exceeds");
+                if (file_size <= 100) {
+                    isBackUpload = true;
+                } else {
+                    MyApplication.showErrorToast(internationalremitsenderkycC, "File size exceeds");
                 }
                 //btnBackUpload.setVisibility(View.VISIBLE);
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
                 // File file = new File(getRealPathFromURI(tempUri));
 
             } else if (resultCode == RESULT_CANCELED) {
-                MyApplication.showToast(internationalremitsenderkycC,"User Canceled");
+                MyApplication.showToast(internationalremitsenderkycC, "User Canceled");
             } else if (resultCode == RESULT_CODE_FAILURE) {
-                MyApplication.showToast(internationalremitsenderkycC,"Failed");
+                MyApplication.showToast(internationalremitsenderkycC, "Failed");
             }
 
         }
@@ -995,7 +1013,9 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             }else{
                 senderJson.put("gender",gendercode);
             }
-            if (code.isEmpty()||code==null) {
+            if (code==null) {
+                senderJson.put("code","");
+
             } else{
                 senderJson.put("code",code);
             }

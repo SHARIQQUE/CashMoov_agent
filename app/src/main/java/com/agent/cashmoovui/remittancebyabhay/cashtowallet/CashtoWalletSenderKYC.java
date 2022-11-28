@@ -93,7 +93,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
     private ArrayList<IDProofTypeModel.IDProofType> idProofTypeModelList=new ArrayList<>();
     private SpinnerDialog spinnerDialogSerProvider,spinnerDialogSenderGender,spinnerDialogSendingCountry,
             spinnerDialogSenderRegion, spinnerDialogIssuingCountry,spinnerDialogSenderIdProofType;
-    static final int REQUEST_IMAGE_CAPTURE_ONE = 1;
+    static final int REQUEST_IMAGE_CAPTURE_ONE = 4;
     static final int REQUEST_IMAGE_CAPTURE_TWO = 2;
     public static final int RESULT_CODE_FAILURE = 10;
     private Intent Data;
@@ -1324,6 +1324,12 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+            et_sender_phoneNumber.setText(requiredValue);
+            et_sender_firstName.requestFocus();
+        }
         if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {
             if (resultCode == RESULT_OK) {
                 Bundle extras = data.getExtras();
@@ -1510,7 +1516,9 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
             }else{
                 senderJson.put("gender","Male");
             }
-            if (code.isEmpty()||code==null) {
+            if (code==null) {
+                senderJson.put("code","");
+
             } else{
                 senderJson.put("code",code);
             }

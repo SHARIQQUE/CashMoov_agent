@@ -166,8 +166,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
             System.out.println("get lengh new"+mobilelength);
 
-            edittext_mobileNuber.setFilters(new InputFilter[] {
-                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+          /*  edittext_mobileNuber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});*/
             et_mpin.addTextChangedListener(new TextWatcher() {
 
                 @Override

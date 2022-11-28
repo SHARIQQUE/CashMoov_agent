@@ -154,8 +154,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
-          /*  edittext_mobileNuber.setFilters(new InputFilter[] {
-                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});*/
+            edittext_mobileNuber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

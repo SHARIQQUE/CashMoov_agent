@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 24-11-2022</string>
+    <string name="version">Version : 25-11-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -387,6 +387,7 @@
     <string name="entries">Entrées</string>
     <string name="uploadimage">veuillez télécharger l\'image avant</string>
     <string name="uploadbackimage">veuillez télécharger à nouveau l\'image</string>
+    <string name="Tax"> Taxe : 0,00</string>
 
     <string name="session_expire_60">La session expire dans 60 secondes</string>
     <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>
