@@ -172,7 +172,7 @@
                                 android:layout_weight="0.8"
                                 android:inputType="numberDecimal"
                                 android:lineSpacingExtra="10sp"
-                                android:hint="@string/amount_to_paid_without_star"
+                                android:hint="@string/amount_to_paid_colon"
                                 android:background="@null"
                                 android:fontFamily="@font/aileron_bold"
                                 android:textColor="@color/textColorLBlack"

@@ -1823,7 +1823,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             //   Log.i("LOAD", root + fname);
             try {
                 FileOutputStream out = new FileOutputStream(image);
-                bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+              //  bm.compress(Bitmap.CompressFormat.PNG, 90, out);
                 out.flush();
                 out.close();
             } catch (Exception e) {
@@ -2042,7 +2042,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+       // inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title" + Calendar.getInstance().getTime(), null);
         return Uri.parse(path);
     }

@@ -245,7 +245,7 @@
     <string name="vendor_trans_id_colon">ID de la transaction  du vendeur :</string>
     <string name="sedingcountry">Pays d\'envoi</string>
     <string name="destinationcountry">Pays de destination</string>
-    <string name="benefi_msisdn_colom">MSISDN Bénéficiaire:</string>
+    <string name="benefi_msisdn_colom">Numéro du bénéficiaire:</string>
 
     <string name="non_subscribed_money_transfer">Transfert d\'argent non abonné</string>
     <string name="recipient_details">Details du destinataire</string>
@@ -534,8 +534,8 @@
 
     <string name="receiver_details_cashout">Détails du réceveur</string>
     <string name="transaction_no">Identifiant de la  transaction:</string>
-    <string name="sender_mssidn">MSISDN Expéditeur</string>
-    <string name="benificairay_mssidn">MSISDNBénéficiaire</string>
+    <string name="sender_mssidn">Numéro de l\'expéditeur</string>
+    <string name="benificairay_mssidn">Numéro du bénéficiaire</string>
     <string name="conversion_rate">Taux de conversion</string>
 
     <string name="export_receipt">Reçu d\'exportation</string>
@@ -780,6 +780,8 @@
     <string name="post_balance">Solde apres</string>
     <string name="receiving_country">Pays d\'accueil</string>
     <string name="valid_select_city">Sélectionnez la ville*</string>
+    <string name="valid_select_city_withoutstar">Sélectionnez la ville </string>
+
     <string name="val_select_city">Veuillez sélectionner la ville</string>
     <string name="transaction_successful">Transaction réussie</string>
     <string name="date">Date</string>
@@ -855,7 +857,7 @@
 
     <string name="receiver_msisdn_colon">MSISDN Réceveur :</string>
     <string name="beneficiary_msisdn_colon">MSISDNBénéficiaire :</string>
-    <string name="sender_mssidn_colon">MSISDN Expéditeur:</string>
+    <string name="sender_mssidn_colon">Numéro de l\'expéditeur:</string>
     <string name="agent_mssidn_colon">Agent MSISDN :</string>
     <string name="transfer_of_mode_colon">Transfert de mode :</string>
     <string name="paid_service">Service payant</string>

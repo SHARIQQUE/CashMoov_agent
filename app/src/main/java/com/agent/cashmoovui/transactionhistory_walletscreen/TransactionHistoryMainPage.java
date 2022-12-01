@@ -741,6 +741,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
+                MyApplication.checkWalletTypeCode="100008";
+
                 walletTypeCode="100008";
                 callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
 
@@ -749,6 +751,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ccode;
+                MyApplication.checkWalletTypeCode="100009";
                 walletTypeCode="100009";
                 callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
                 break;
@@ -756,6 +759,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ocode;
+                MyApplication.checkWalletTypeCode="100011";
+
                 walletTypeCode="100011";
                 callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
                 break;
@@ -768,7 +773,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 startActivity(intent);
                 break;
 
-            case R.id.search_imageView:
+            case R.id.
+                    search_imageView:
 
                // Toast.makeText(TransactionHistoryMainPage.this, "---------search_imageView-------", Toast.LENGTH_LONG).show();
 

@@ -164,7 +164,7 @@ public class TinyDB {
         FileOutputStream out = null;
         try {
             out = new FileOutputStream(imageFile);
-            bitmapCompressed = bitmap.compress(CompressFormat.PNG, 100, out);
+         //   bitmapCompressed = bitmap.compress(CompressFormat.PNG, 100, out);
 
         } catch (Exception e) {
             e.printStackTrace();

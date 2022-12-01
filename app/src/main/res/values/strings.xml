@@ -796,6 +796,8 @@
 
     <string name="receiving_country">Receiving country </string>
     <string name="valid_select_city">Select City*</string>
+    <string name="valid_select_city_withoutstar">Select City </string>
+
     <string name="val_select_city">Please select city</string>
     <string name="transaction_successful">Transaction Successful</string>
     <string name="date">Date</string>

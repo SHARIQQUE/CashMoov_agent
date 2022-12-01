@@ -247,7 +247,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                     et_destination_lastName.setText("");
                     edittext_email_destination.setText("");
                     et_destination_dob.setText("");
-                    spinner_destination_gender.setText(getString(R.string.valid_select_gender));
+                    spinner_destination_gender.setText(getString(R.string.select_gender));
                     et_destination_city.setText("");
                     et_destination_address.setText("");
                     spinner_destination_region.setText(getString(R.string.val_select_region));
@@ -291,7 +291,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                             et_destination_lastName.setText("");
                             edittext_email_destination.setText("");
                             et_destination_dob.setText("");
-                            spinner_destination_gender.setText(getString(R.string.valid_select_gender));
+                            spinner_destination_gender.setText(getString(R.string.select_gender));
                             et_destination_city.setText("");
                             et_destination_address.setText("");
                             spinner_destination_region.setText(getString(R.string.val_select_region));
@@ -307,7 +307,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                         et_destination_lastName.setText("");
                         edittext_email_destination.setText("");
                         et_destination_dob.setText("");
-                        spinner_destination_gender.setText(getString(R.string.valid_select_gender));
+                        spinner_destination_gender.setText(getString(R.string.select_gender));
                         et_destination_city.setText("");
                         et_destination_address.setText("");
                         spinner_destination_region.setText(getString(R.string.val_select_region));
@@ -390,10 +390,10 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.val_email_valid));
                     return;
                 }*/
-                if (spinner_destination_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+                /*if (spinner_destination_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.val_select_gender));
                     return;
-                }
+                }*/
                /* if (et_destination_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.val_dob));
                     return;

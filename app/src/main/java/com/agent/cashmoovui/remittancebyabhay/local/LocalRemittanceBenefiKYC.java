@@ -259,8 +259,8 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                     et_destination_lastName.setText("");
                     edittext_email_destination.setText("");
                     et_destination_dob.setText("");
-                    spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                    spCity.setText(getString(R.string.valid_select_city));
+                    spinner_destination_gender.setText(getString(R.string.select_gender));
+                    spCity.setText(getString(R.string.valid_select_city_withoutstar));
                     et_destination_address.setText("");
                     spinner_destination_region.setText(getString(R.string.val_select_region));
                     spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -303,8 +303,8 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             et_destination_lastName.setText("");
                             edittext_email_destination.setText("");
                             et_destination_dob.setText("");
-                            spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                            spCity.setText(getString(R.string.valid_select_city));
+                            spinner_destination_gender.setText(getString(R.string.select_gender));
+                            spCity.setText(getString(R.string.valid_select_city_withoutstar));
                             et_destination_address.setText("");
                             spinner_destination_region.setText(getString(R.string.val_select_region));
                             spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));
@@ -319,8 +319,8 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                         et_destination_lastName.setText("");
                         edittext_email_destination.setText("");
                         et_destination_dob.setText("");
-                        spinner_destination_gender.setText(getString(R.string.valid_select_gender));
-                        spCity.setText(getString(R.string.valid_select_city));
+                        spinner_destination_gender.setText(getString(R.string.select_gender));
+                        spCity.setText(getString(R.string.valid_select_city_withoutstar));
                         et_destination_address.setText("");
                         spinner_destination_region.setText(getString(R.string.val_select_region));
                         spinner_destination_idprooftype.setText(getString(R.string.val_select_id_proof));

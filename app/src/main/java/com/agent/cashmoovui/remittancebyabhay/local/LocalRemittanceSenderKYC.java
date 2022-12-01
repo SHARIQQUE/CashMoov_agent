@@ -260,10 +260,10 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                 et_sender_lastname.setText("");
                 et_sender_email.setText("");
                 et_sender_dob.setText("");
-                spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-                spCity.setText(getString(R.string.valid_select_city));
+                spinner_sender_gender.setText(getString(R.string.select_gender));
+                spCity.setText(getString(R.string.valid_select_city_withoutstar));
                 et_sender_address.setText("");
-                spinner_sender_region.setText(getString(R.string.valid_select_region));
+                spinner_sender_region.setText(getString(R.string.select_region));
                 spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                 et_sender_idproofNumber.setText("");
                 et_sender_idproof_expiry.setText("");
@@ -302,10 +302,10 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                         et_sender_lastname.setText("");
                         et_sender_email.setText("");
                         et_sender_dob.setText("");
-                        spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-                        spCity.setText(getString(R.string.valid_select_city));
+                        spinner_sender_gender.setText(getString(R.string.select_gender));
+                        spCity.setText(getString(R.string.valid_select_city_withoutstar));
                         et_sender_address.setText("");
-                        spinner_sender_region.setText(getString(R.string.valid_select_region));
+                        spinner_sender_region.setText(getString(R.string.select_region));
                         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                         et_sender_idproofNumber.setText("");
                         et_sender_idproof_expiry.setText("");
@@ -316,10 +316,10 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                     et_sender_lastname.setText("");
                     et_sender_email.setText("");
                     et_sender_dob.setText("");
-                    spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-                    spCity.setText(getString(R.string.valid_select_city));
+                    spinner_sender_gender.setText(getString(R.string.select_gender));
+                    spCity.setText(getString(R.string.valid_select_city_withoutstar));
                     et_sender_address.setText("");
-                    spinner_sender_region.setText(getString(R.string.valid_select_region));
+                    spinner_sender_region.setText(getString(R.string.select_region));
                     spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                     et_sender_idproofNumber.setText("");
                     et_sender_idproof_expiry.setText("");
@@ -406,10 +406,10 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_email_valid));
                     return;
                 }*/
-                if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+                /*if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_select_gender));
                     return;
-                }
+                }*/
                 if (et_sender_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_dob));
                     return;
@@ -418,14 +418,14 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_address));
                     return;
                 }*/
-                if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
+              /*  if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_select_region));
                     return;
-                }
-                if (spCity.getText().toString().trim().isEmpty()) {
+                }*/
+               /* if (spCity.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_city));
                     return;
-                }
+                }*/
                /* if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showErrorToast(localremitsenderkycC, getString(R.string.val_select_id_proof));
                     return;
@@ -765,10 +765,10 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
         et_sender_lastname.setText("");
         et_sender_email.setText("");
         et_sender_dob.setText("");
-        spinner_sender_gender.setText(getString(R.string.valid_select_gender));
-        spCity.setText(getString(R.string.valid_select_city));
+        spinner_sender_gender.setText(getString(R.string.select_gender));
+        spCity.setText(getString(R.string.valid_select_city_withoutstar));
         et_sender_address.setText("");
-        spinner_sender_region.setText(getString(R.string.valid_select_region));
+        spinner_sender_region.setText(getString(R.string.select_region));
         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
         et_sender_idproofNumber.setText("");
         et_sender_idproof_expiry.setText("");
@@ -887,7 +887,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+       // inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title"+ Calendar.getInstance().getTime(), null);
         return Uri.parse(path);
     }

@@ -70,7 +70,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
             //   Log.i("LOAD", root + fname);
             try {
                 FileOutputStream out = new FileOutputStream(image);
-                bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+              //  bm.compress(Bitmap.CompressFormat.PNG, 90, out);
                 out.flush();
                 out.close();
             } catch (Exception e) {

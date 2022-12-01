@@ -274,10 +274,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     et_sender_lastname.setText("");
                     et_sender_email.setText("");
                     et_sender_dob.setText("");
-                    spinner_sender_gender.setText(getString(R.string.valid_select_gender));
+                    spinner_sender_gender.setText(getString(R.string.select_gender));
                     et_sender_city.setText("");
                     et_sender_address.setText("");
-                    spinner_sender_region.setText(getString(R.string.valid_select_region));
+                    spinner_sender_region.setText(getString(R.string.select_region));
                     spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                     et_sender_idproofNumber.setText("");
                     et_sender_idproof_expiry.setText("");
@@ -316,10 +316,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                             et_sender_lastname.setText("");
                             et_sender_email.setText("");
                             et_sender_dob.setText("");
-                            spinner_sender_gender.setText(getString(R.string.valid_select_gender));
+                            spinner_sender_gender.setText(getString(R.string.select_gender));
                             et_sender_city.setText("");
                             et_sender_address.setText("");
-                            spinner_sender_region.setText(getString(R.string.valid_select_region));
+                            spinner_sender_region.setText(getString(R.string.select_region));
                             spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                             et_sender_idproofNumber.setText("");
                             et_sender_idproof_expiry.setText("");
@@ -330,10 +330,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                         et_sender_lastname.setText("");
                         et_sender_email.setText("");
                         et_sender_dob.setText("");
-                        spinner_sender_gender.setText(getString(R.string.valid_select_gender));
+                        spinner_sender_gender.setText(getString(R.string.select_gender));
                         et_sender_city.setText("");
                         et_sender_address.setText("");
-                        spinner_sender_region.setText(getString(R.string.valid_select_region));
+                        spinner_sender_region.setText(getString(R.string.select_region));
                         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                         et_sender_idproofNumber.setText("");
                         et_sender_idproof_expiry.setText("");
@@ -401,10 +401,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_email_valid));
                     return;
                 }
-                if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
+              /*  if (spinner_sender_gender.getText().toString().equals(getString(R.string.valid_select_gender))) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_gender));
                     return;
-                }
+                }*/
                 if (et_sender_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_dob));
                     return;
@@ -413,14 +413,14 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_address));
                     return;
                 }
-                if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
+               /* if (spinner_sender_region.getText().toString().equals(getString(R.string.valid_select_region))) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_region));
                     return;
-                }
-                if (spCity.getText().toString().trim().isEmpty()) {
+                }*/
+               /* if (spCity.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_city));
                     return;
-                }
+                }*/
                 if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_select_id_proof));
                     return;
@@ -762,10 +762,10 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         et_sender_lastname.setText("");
         et_sender_email.setText("");
         et_sender_dob.setText("");
-        spinner_sender_gender.setText(getString(R.string.valid_select_gender));
+        spinner_sender_gender.setText(getString(R.string.select_gender));
         et_sender_city.setText("");
         et_sender_address.setText("");
-        spinner_sender_region.setText(getString(R.string.valid_select_region));
+        spinner_sender_region.setText(getString(R.string.select_region));
         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
         et_sender_idproofNumber.setText("");
         et_sender_idproof_expiry.setText("");
@@ -998,19 +998,33 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
             senderJson.put("idExpiryDate",et_sender_idproof_expiry.getText().toString().trim());
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
             senderJson.put("countryCode",InternationalRemittanceActivity.sendCountryCode);
+            if(spinner_sender_region.getText().toString().equalsIgnoreCase(getString(R.string.select_region))){
+                senderJson.put("regionCode","");
+
+            }
             if(spinner_sender_region.getTag()!=null){
                 senderJson.put("regionCode",regionModelList.get((Integer) spinner_sender_region.getTag()).getCode());
             }else{
                 senderJson.put("regionCode",regioncode);
             }
 
-            //if(spCity.getText().toString().isEmpty())
-            senderJson.put("city",spCity.getText().toString());
+            if(spCity.getText().toString().equalsIgnoreCase(getString(R.string.valid_select_city_withoutstar))){
+                senderJson.put("city","");
+
+            }else{
+                senderJson.put("city",spCity.getText().toString());
+
+            }
             senderJson.put("address",et_sender_address.getText().toString().trim());
             senderJson.put("issuingCountryCode",InternationalRemittanceActivity.sendCountryCode);
+            if(spinner_sender_gender.getText().toString().equalsIgnoreCase(getString(R.string.select_gender))){
+                senderJson.put("gender","");
+
+            }
             if(spinner_sender_gender.getTag()!=null){
                 senderJson.put("gender",senderGenderModelList.get((Integer) spinner_sender_gender.getTag()).getCode());
             }else{
+
                 senderJson.put("gender",gendercode);
             }
             if (code==null) {

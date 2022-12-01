@@ -568,16 +568,22 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
             case R.id.cardMainWallet:
                 walletTypeCode="100008";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
+                MyApplication.checkWalletTypeCode="100008";
+
                 callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
             case R.id.cardCommissionWallet:
                 walletTypeCode="100009";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ccode;
+                MyApplication.checkWalletTypeCode="100009";
+
                 callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
             case R.id.cardOverdraftWallet:
                 walletTypeCode="100011";
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ocode;
+                MyApplication.checkWalletTypeCode="100011";
+
                 callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
 //            case R.id.imgQR:

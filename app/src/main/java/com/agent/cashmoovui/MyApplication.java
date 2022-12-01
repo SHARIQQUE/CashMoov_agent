@@ -129,6 +129,8 @@ public class MyApplication extends Application {
 
     public static int mobileLengthnormal=10;
 
+    public static  String checkWalletTypeCode="100008";
+
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }

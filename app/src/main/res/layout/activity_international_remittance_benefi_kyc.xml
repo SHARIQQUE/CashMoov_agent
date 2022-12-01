@@ -106,7 +106,7 @@
 
                 <TextView
                     android:id="@+id/spinner_destination_gender"
-                    android:text="@string/valid_select_gender"
+                    android:text="@string/select_gender"
                     style="@style/SpinnerStyleNew1"/>
 
 

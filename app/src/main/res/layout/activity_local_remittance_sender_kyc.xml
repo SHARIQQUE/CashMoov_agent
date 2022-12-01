@@ -133,7 +133,7 @@
 
     <TextView
         android:id="@+id/spinner_sender_gender"
-        android:text="@string/valid_select_gender"
+        android:text="@string/select_gender"
         style="@style/SpinnerStyleNew1"/>
                     <TextView
                         android:id="@+id/dobText"
@@ -209,13 +209,13 @@
 
     <TextView
         android:id="@+id/spinner_sender_region"
-        android:text="@string/valid_select_region"
+        android:text="@string/select_region"
         style="@style/SpinnerStyleNew1" />
 
                     <TextView
                         style="@style/SpinnerStyleNew1"
                         android:id="@+id/spCity"
-                        android:text="@string/valid_select_city"
+                        android:text="@string/valid_select_city_withoutstar"
                         />
     <EditText
         android:visibility="gone"

@@ -352,10 +352,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                             et_sender_lastname.setText("");
                             et_sender_email.setText("");
                             et_sender_dob.setText("");
-                            spinner_sender_gender.setText(getString(R.string.valid_select_gender));
+                            spinner_sender_gender.setText(getString(R.string.select_gender));
                             et_sender_city.setText("");
                             et_sender_address.setText("");
-                            spinner_sender_region.setText(getString(R.string.valid_select_region));
+                            spinner_sender_region.setText(getString(R.string.select_region));
                             spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                             et_sender_idproofNumber.setText("");
                             et_sender_idproof_expiry.setText("");
@@ -366,10 +366,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                         et_sender_lastname.setText("");
                         et_sender_email.setText("");
                         et_sender_dob.setText("");
-                        spinner_sender_gender.setText(getString(R.string.valid_select_gender));
+                        spinner_sender_gender.setText(getString(R.string.select_gender));
                         et_sender_city.setText("");
                         et_sender_address.setText("");
-                        spinner_sender_region.setText(getString(R.string.valid_select_region));
+                        spinner_sender_region.setText(getString(R.string.select_region));
                         spinner_sender_idprooftype.setText(getString(R.string.valid_select_id_proof));
                         et_sender_idproofNumber.setText("");
                         et_sender_idproof_expiry.setText("");
@@ -459,10 +459,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_region));
                     return;
                 }*/
-                if (et_sender_city.getText().toString().trim().isEmpty()) {
+              /*  if (et_sender_city.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_city));
                     return;
-                }
+                }*/
                 if (spinner_sender_idprooftype.getText().toString().equals(getString(R.string.valid_select_id_proof))) {
                     MyApplication.showErrorToast(cashtowalletsenderkycC, getString(R.string.val_select_id_proof));
                     return;

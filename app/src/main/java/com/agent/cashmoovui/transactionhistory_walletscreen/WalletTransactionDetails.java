@@ -122,7 +122,13 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_fee.setText(getString(R.string.fee_colon)+" " +MyApplication.addDecimal(""+fee));
-           txt_postbalance.setText(getString(R.string.post_balance_colon) + " "+MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+srcpostbalance));
+            if(MyApplication.checkWalletTypeCode.equalsIgnoreCase("100009")){
+                txt_postbalance.setVisibility(View.GONE);
+            }else{
+                txt_postbalance.setVisibility(View.VISIBLE);
+                txt_postbalance.setText(getString(R.string.post_balance_colon) + " "+MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+srcpostbalance));
+
+            }
             txt_from_owner_name.setText(getString(R.string.from)+" : "+fromWalletOwnerMsisdn+"("+fromOwnerName+")"+" ,\n"+getString(R.string.to)+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
             txt_commission_amount.setVisibility(View.GONE);
 
