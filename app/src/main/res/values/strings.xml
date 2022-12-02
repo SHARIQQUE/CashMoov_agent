@@ -919,5 +919,6 @@
     <string name="please_add_agent_createbranch">Please Add Agent First to Create Branch...</string>
     <string name="overdraftvalidation">Amount should be less or equal to eligible amount</string>
     <string name="requestqueoverdraft">Request is already in queue.</string>
+    <string name="you_will_loose">You will loose your information if you go back</string>
 </resources>
 

@@ -909,6 +909,7 @@
     <string name="please_add_agent_createbranch">Veuillez d\'abord ajouter un agent pour créer une succursale...</string>
     <string name="overdraftvalidation">Le montant doit être inférieur ou égal au montant éligible</string>
     <string name="requestqueoverdraft"> La demande est déjà en file d\'attente.</string>
+    <string name="you_will_loose">Vous perdrez vos informations si vous revenez</string>
 
 </resources>
 

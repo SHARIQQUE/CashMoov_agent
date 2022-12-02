@@ -278,6 +278,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -293,6 +294,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/rec_country_colon"
                     android:textColor="#000"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
@@ -319,6 +321,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -479,6 +482,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="left"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <ImageView

@@ -800,10 +800,10 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         et_destination_lastName.setText("");
         edittext_email_destination.setText("");
         et_destination_dob.setText("");
-        spinner_destination_gender.setText(getString(R.string.valid_select_gender));
+        spinner_destination_gender.setText(getString(R.string.select_gender));
         et_destination_city.setText("");
         et_destination_address.setText("");
-        spinner_destination_region.setText(getString(R.string.valid_select_region));
+        spinner_destination_region.setText(getString(R.string.select_region));
         spinner_destination_idprooftype.setText(getString(R.string.valid_select_id_proof));
         et_destination_idproofNumber.setText("");
         et_destination_idproof_expiry.setText("");

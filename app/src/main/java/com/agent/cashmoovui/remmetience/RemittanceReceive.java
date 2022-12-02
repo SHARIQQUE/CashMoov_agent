@@ -175,6 +175,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_comment = (EditText) findViewById(R.id.edittext_comment);
             btnFront = findViewById(R.id.btnFront);
+            edittext_comment.setEnabled(false);
             btnFront.setOnClickListener(RemittanceReceive.this);
             etFront = findViewById(R.id.etFront);
             et_sender_dob = findViewById(R.id.et_sender_dob);

@@ -7,12 +7,15 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -20,6 +23,7 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.set_pin.SetPin;
+import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -459,6 +463,23 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
 //        }
 //
 //    }
+
+
+    int doubleBackToExitPressed = 1;
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressed == 2) {
+            Intent intent=new Intent(SubscriberKYCAttached.this, WalletOwnerMenu.class);
+            startActivity(intent);
+            finish();
+
+        }
+        else {
+            doubleBackToExitPressed++;
+            Toast.makeText(this, R.string.you_will_loose, Toast.LENGTH_SHORT).show();
+        }
+
+      }
 
 
 }

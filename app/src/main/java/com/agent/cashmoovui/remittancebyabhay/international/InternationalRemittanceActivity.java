@@ -254,6 +254,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             }
         });
 
+/*
         edittext_amount_pay.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -304,6 +305,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
 
         });
+*/
 
         callApiserviceProvider();
 

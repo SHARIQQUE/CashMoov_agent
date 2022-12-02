@@ -306,6 +306,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
 
+
+
     }
 
     private void setOnCLickListener() {

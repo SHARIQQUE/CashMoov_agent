@@ -286,6 +286,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 if(walletTypeCode.equalsIgnoreCase("100008")){
                     if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
                         call(miniStatementTransList.get(pos).getFromAmount(),pos);
+                        return;
                     }
                     if(miniStatementTransList.get(pos).getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
 

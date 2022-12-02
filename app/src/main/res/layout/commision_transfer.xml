@@ -393,7 +393,7 @@
                     android:paddingBottom="20dp"
                     android:fontFamily="@font/aileron_bold"
                     android:gravity="center"
-                    android:text="@string/next"
+                    android:text="@string/Submit"
                     />
 
 
