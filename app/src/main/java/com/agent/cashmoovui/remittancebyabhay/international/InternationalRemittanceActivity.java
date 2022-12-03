@@ -254,7 +254,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             }
         });
 
-/*
+
         edittext_amount_pay.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -305,7 +305,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
 
         });
-*/
+
 
         callApiserviceProvider();
 
@@ -937,7 +937,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
                                         edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
 
-                                      //  amount = edittext_amount.getText().toString().trim().replace(",","");
+                                        amount = edittext_amount.getText().toString().trim().replace(",","");
 
 
 //                                    int tax = receiverFee+receiverTax;

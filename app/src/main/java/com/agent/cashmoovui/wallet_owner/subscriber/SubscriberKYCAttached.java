@@ -470,6 +470,8 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
     public void onBackPressed() {
         if (doubleBackToExitPressed == 2) {
             Intent intent=new Intent(SubscriberKYCAttached.this, WalletOwnerMenu.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
 

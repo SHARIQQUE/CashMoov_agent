@@ -83,6 +83,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+
         return true;
     }
 

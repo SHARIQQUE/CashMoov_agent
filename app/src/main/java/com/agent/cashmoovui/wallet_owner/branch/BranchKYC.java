@@ -322,6 +322,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 }
                 if(s.length()<9){
                     clearData();
+                    tvNext.setVisibility(View.VISIBLE);
                 }
                 isFormatting = false;
 
@@ -687,7 +688,15 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             e.printStackTrace();
                         }
 
-                        callRegisterApi(jsonObject);
+
+
+                    if(MyApplication.getSaveString("walletOwnerCategoryCode", BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
+                        callApiCurrencyListnew(MyApplication.getSaveString("walletOwnerCode", branchkycC),jsonObject);
+
+                    }else{
+                        callApiCurrencyListnew(arrayList_modalDetailsnew.get((Integer) agentType.getTag()).getWalletOwnerCode(),jsonObject);
+
+                    }
 
 
 
@@ -1197,6 +1206,66 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
     }
+
+
+   // http://180.179.201.109:8081/ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/1000005350
+    private void callApiCurrencyListnew(String code,JSONObject jsonObjectnew123) {
+        try {
+
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //
+                            // MyApplication.hideLoader();
+                            walletCurrencyList=new ArrayList<>();
+                            walletCurrencyList.clear();
+                            currenyList=new JSONObject();
+                            if (jsonObject != null) {
+                              //  regionList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    //JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
+                                 //   JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("countryCurrencyList");
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+
+
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        walletCurrencyList.add(data.optString("currencyCode"));
+//"walletCurrencyList":["100106","100062","100003","100004"]
+
+
+
+
+                                    }
+
+                                    System.out.println("LISTTTT  "+walletCurrencyList.toString());
+
+                                    callRegisterApi(jsonObjectnew123);
+
+
+                                } else {
+                                    MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+
+    }
+
+
 
     private void callApiGenderType() {
         try {

@@ -446,6 +446,8 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
     public void onBackPressed() {
         if (doubleBackToExitPressed == 2) {
             Intent intent=new Intent(AgentKYCAttached.this, WalletOwnerMenu.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
 

@@ -209,6 +209,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                 }
                 if(s.length()<9){
                     clearData();
+                    tvNext.setVisibility(View.VISIBLE);
                 }
 
                 isFormatting = false;

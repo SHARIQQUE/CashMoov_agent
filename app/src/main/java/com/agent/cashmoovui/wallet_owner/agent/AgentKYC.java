@@ -214,7 +214,10 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                 }
                 if(s.length()<9){
                     clearData();
+                    tvNext.setVisibility(View.VISIBLE);
                 }
+
+
 
                 isFormatting = false;
 
@@ -901,7 +904,10 @@ ArrayList<String>walletCurrencyList;
     private void callApiCurrencyList(String code) {
         try {
 
-            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+
+          // previous api  03-12-2022-  ewallet/api/v1/countryCurrency/country/"+code
+          //  http://180.179.201.109:8081/ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/1000005350
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/"+MyApplication.getSaveString("walletOwnerCode", agentkycC),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -913,8 +919,11 @@ ArrayList<String>walletCurrencyList;
                             if (jsonObject != null) {
                                 regionList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
-                                    JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("countryCurrencyList");
+                                   // JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
+                                   // JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("countryCurrencyList");
+
+                                         JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
                                         walletCurrencyList.add(data.optString("currencyCode"));
