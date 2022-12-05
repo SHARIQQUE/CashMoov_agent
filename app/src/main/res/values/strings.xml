@@ -916,5 +916,12 @@
     <string name="requestqueoverdraft">Request is already in queue.</string>
     <string name="please_enter_pin_bio">Please enter pin to complete the transaction</string>
     <string name="you_will_loose">You will loose your information if you go back</string>
+
+    <string name="Tax"> Tax : 0,00</string>
+    <string name="valid_select_city_withoutstar">Select city </string>
+
+    <string name="transaction_status_colon">Transaction Status :</string>
+    <string name="vendor_result_description">Supplier Result Description :</string>
+
 </resources>
 
