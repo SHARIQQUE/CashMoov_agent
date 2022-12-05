@@ -401,7 +401,6 @@
     <string name="entries">Entries</string>
     <string name="uploadimage">please upload front Image</string>
     <string name="uploadbackimage"> please upload back Image</string>
-    <string name="Tax"> Tax : 0.00</string>
 
 
 
@@ -562,8 +561,6 @@
     <string name="plz_enter_amount_to_pay">Enter amount to pay</string>
     <string name="plz_enter_firstName">Please enter first name</string>
     <string name="plz_enter_name">PLease enter name</string>
-    <string name="transaction_status_colon">Transaction Status :</string>
-    <string name="vendor_result_description">Vendor Result Description :</string>
 
     <string name="cash_to_wallet">Cash to Wallet</string>
     <string name="tax">Tax :</string>
@@ -796,8 +793,6 @@
 
     <string name="receiving_country">Receiving country </string>
     <string name="valid_select_city">Select City*</string>
-    <string name="valid_select_city_withoutstar">Select City </string>
-
     <string name="val_select_city">Please select city</string>
     <string name="transaction_successful">Transaction Successful</string>
     <string name="date">Date</string>
@@ -919,6 +914,7 @@
     <string name="please_add_agent_createbranch">Please Add Agent First to Create Branch...</string>
     <string name="overdraftvalidation">Amount should be less or equal to eligible amount</string>
     <string name="requestqueoverdraft">Request is already in queue.</string>
+    <string name="please_enter_pin_bio">Please enter pin to complete the transaction</string>
     <string name="you_will_loose">You will loose your information if you go back</string>
 </resources>
 
