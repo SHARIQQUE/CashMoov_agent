@@ -1327,7 +1327,9 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            et_sender_phoneNumber.setText(requiredValue);
+
+            MyApplication.contactValidation(requiredValue,et_sender_phoneNumber);
+
             et_sender_firstName.requestFocus();
         }
         if (requestCode == REQUEST_IMAGE_CAPTURE_ONE) {

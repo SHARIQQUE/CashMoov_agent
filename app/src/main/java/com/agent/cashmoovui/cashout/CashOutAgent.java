@@ -301,7 +301,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                 if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                    MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+                                   // MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
 
                                     mpin_final_api();
@@ -1252,7 +1252,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                             if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+                               // MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
                                 mpin_final_api();
 
@@ -1272,7 +1272,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                     if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                        MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+                                     //   MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
                                         mpin_final_api();
 
@@ -1322,6 +1322,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
+                ll_pin.setVisibility(View.GONE);
             }
             break;
 
@@ -2026,11 +2027,18 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         ll_reviewPage.setVisibility(View.GONE);
         ll_successPage.setVisibility(View.GONE);
         ll_receiptPage.setVisibility(View.GONE);
+        ll_pin.setVisibility(View.GONE);
+
           super.onBackPressed();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-//    @Override
+    }
+
+    //    @Override
 //    public void onBackPressed() {
 //        super.onBackPressed();
 //

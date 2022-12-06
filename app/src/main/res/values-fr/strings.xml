@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 25-11-2022</string>
+    <string name="version">Version : 05-12-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -575,6 +575,7 @@
     <string name="plz_select_receive_country">Pays d\'accueil</string>
     <string name="plz_select_receive_currency">Devise de réception</string>
     <string name="receive_courency">Devise de réception</string>
+    <string name="receive_courency_start">Devise de réception*</string>
 
 
 
@@ -911,6 +912,7 @@
     <string name="requestqueoverdraft"> La demande est déjà en file d\'attente.</string>
     <string name="please_enter_pin_bio">Veuillez entrer le code PIN pour terminer la transaction</string>
     <string name="you_will_loose">Vous perdrez vos informations si vous revenez</string>
+    <string name="tryagain">Veuillez réessayer</string>
 
 </resources>
 

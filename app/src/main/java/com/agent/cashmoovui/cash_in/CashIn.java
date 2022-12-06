@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
@@ -165,7 +167,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             et_mpin = (EditText)findViewById(R.id.et_mpin);
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
             System.out.println("get lengh new"+mobilelength);
-
           /*  edittext_mobileNuber.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});*/
             et_mpin.addTextChangedListener(new TextWatcher() {
@@ -1413,6 +1414,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     }
 
     public static int clickedCount=0;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -1438,12 +1440,13 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.confirm_reviewClick_textview: {
 
+                System.out.println("get click");
                 if(pinLinear.getVisibility()==View.VISIBLE){
                     if (validation_mpin_detail()) {
 
                         if (new InternetCheck().isConnected(CashIn.this)) {
 
-                            MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+                          //  MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
                             mpin_final_api();
 
@@ -1462,7 +1465,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 if (new InternetCheck().isConnected(CashIn.this)) {
 
-                                    MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+                                  //  MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
                                     mpin_final_api();
 
@@ -1595,6 +1598,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_successPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
+                pinLinear.setVisibility(View.GONE);
             }
             break;
 
@@ -1642,7 +1646,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            edittext_mobileNuber.setText(requiredValue);
+
+
+            MyApplication.contactValidation(requiredValue,edittext_mobileNuber);
+
+          //  edittext_mobileNuber.setText(get_Mo);
             edittext_amount.requestFocus();
            // MyApplication.showKeyboard(CashIn.this,edittext_amount);
         }
@@ -1728,6 +1736,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             ll_reviewPage.setVisibility(View.GONE);
             ll_successPage.setVisibility(View.GONE);
             ll_receiptPage.setVisibility(View.GONE);
+            pinLinear.setVisibility(View.GONE);
             return;
         }
        super.onBackPressed();
@@ -2038,5 +2047,10 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        pinLinear.setVisibility(View.GONE);
 
+    }
 }

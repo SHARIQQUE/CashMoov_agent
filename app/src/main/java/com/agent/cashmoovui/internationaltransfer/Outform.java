@@ -128,7 +128,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
             MyApplication.isContact=false;
             if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
                 String requiredValue = data.getStringExtra("PHONE");
-                etSubscriberNo.setText(requiredValue);
+                MyApplication.contactValidation(requiredValue,etSubscriberNo);
+
                 etFname.requestFocus();
             }
         }

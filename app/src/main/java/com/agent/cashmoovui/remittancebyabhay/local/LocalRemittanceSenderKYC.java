@@ -820,7 +820,9 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
 
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            et_sender_phoneNumber.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,et_sender_phoneNumber);
+
+
             et_sender_firstName.requestFocus();
             spCity.setText(getString(R.string.valid_select_city));
 

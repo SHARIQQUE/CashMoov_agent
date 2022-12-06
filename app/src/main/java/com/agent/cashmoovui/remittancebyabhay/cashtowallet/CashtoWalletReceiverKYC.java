@@ -1032,7 +1032,8 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            et_destination_mobileNumber.setText(requiredValue);
+            MyApplication.contactValidation(requiredValue,et_destination_mobileNumber);
+
             edittext_amount.requestFocus();
 
         }

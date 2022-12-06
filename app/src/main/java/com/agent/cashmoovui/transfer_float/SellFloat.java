@@ -1927,7 +1927,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                                 if (new InternetCheck().isConnected(SellFloat.this)) {
 
-                                MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
+                              //  MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
                                 mpin_verify();
 
@@ -1948,7 +1948,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                                     if (new InternetCheck().isConnected(SellFloat.this)) {
 
-                                        MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
+                                      //  MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
                                         mpin_verify();
 
@@ -2011,6 +2011,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 ll_page_1.setVisibility(View.VISIBLE);
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
+                pinLinearselffloat.setVisibility(View.GONE);
             }
             break;
 
@@ -2206,6 +2207,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             ll_reviewPage.setVisibility(View.GONE);
             ll_successPage.setVisibility(View.GONE);
             ll_receiptPage.setVisibility(View.GONE);
+            pinLinearselffloat.setVisibility(View.GONE);
             return;
         }
 

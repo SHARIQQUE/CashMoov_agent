@@ -86,6 +86,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
 
             String requiredValue = data.getStringExtra("PHONE");
+
+
             MyApplication.contactValidation(requiredValue,etPhone);
 
             //etPhone.setText(requiredValue);

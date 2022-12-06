@@ -3941,13 +3941,17 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            et_sender_phoneNumber.setText(requiredValue);
+
+            MyApplication.contactValidation(requiredValue,et_sender_phoneNumber);
+
 
             // MyApplication.showKeyboard(CashIn.this,edittext_amount);
         }
         if (requestCode == REQUEST_CODEN && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            et_destination_mobileNumber.setText(requiredValue);
+
+            MyApplication.contactValidation(requiredValue,et_destination_mobileNumber);
+
 
             // MyApplication.showKeyboard(CashIn.this,edittext_amount);
         }

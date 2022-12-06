@@ -1612,7 +1612,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                             if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-                                MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+                              //  MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
                                 api_allByCriteria_msisdnPrefix();
 
@@ -1631,7 +1631,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                                     if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-                                        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+                                       // MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
                                         api_allByCriteria_msisdnPrefix();
 
@@ -1753,6 +1753,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
                 ll_successPage.setVisibility(View.GONE);
+                pinLinear.setVisibility(View.GONE);
             }
             break;
 
@@ -1859,6 +1860,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
         ll_reviewPage.setVisibility(View.GONE);
         ll_successPage.setVisibility(View.GONE);
         ll_receiptPage.setVisibility(View.GONE);
+        pinLinear.setVisibility(View.GONE);
           super.onBackPressed();
     }
 

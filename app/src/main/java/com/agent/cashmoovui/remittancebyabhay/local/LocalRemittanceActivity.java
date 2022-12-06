@@ -38,7 +38,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class LocalRemittanceActivity extends AppCompatActivity implements View.OnClickListener {
     public static LocalRemittanceActivity localC;
     ImageView imgBack,imgHome;
-    private TextView spinner_provider,spinner_senderCountry,spinner_senderCurrency,
+    private TextView receivingcurrecncyText,sendigncurrecncyText,spinner_provider,spinner_senderCountry,spinner_senderCurrency,
             spinner_receiverCountry,spinner_receiverCurrency,convertionRate_first_page,fees_first_page,
             tax_first_page,amountTobeCharged_first_page,tvAmtCurr,tvAmtPaidCurr,tvNext;
     private EditText edittext_amount,edittext_amount_pay;
@@ -115,6 +115,8 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
         tvAmtCurr = findViewById(R.id.tvAmtCurr);
         edittext_amount_pay = findViewById(R.id.edittext_amount_pay);
         tvAmtPaidCurr = findViewById(R.id.tvAmtPaidCurr);
+        sendigncurrecncyText=findViewById(R.id.sendigncurrecncyText);
+        receivingcurrecncyText=findViewById(R.id.receivingcurrecncyText);
         convertionRate_first_page = findViewById(R.id.convertionRate_first_page);
         fees_first_page = findViewById(R.id.fees_first_page);
         tax_first_page = findViewById(R.id.tax_first_page);
@@ -399,6 +401,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                             spinner_senderCountry.setText(item);
                                             spinner_senderCountry.setTag(position);
                                             spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
+                                            sendigncurrecncyText.setVisibility(View.VISIBLE);
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
                                             callApiSendCurrency(sendCountryModelList.get(position).getCode());
                                         }
@@ -522,6 +525,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         )){
                                             spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrCode());
                                             spinner_senderCurrency.setTag(i);
+                                            sendigncurrecncyText.setVisibility(View.VISIBLE);
                                             fromCurrency = sendCurrencyModelList.get(i).getCurrCode();
                                             fromCurrencySymbol = sendCurrencyModelList.get(i).getCurrencySymbol();
                                             fromCurrencyCode = sendCurrencyModelList.get(i).getCurrencyCode();
@@ -542,6 +546,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_senderCurrency.setText(item);
                                             spinner_senderCurrency.setTag(position);
+                                            sendigncurrecncyText.setVisibility(View.VISIBLE);
                                             fromCurrency = sendCurrencyModelList.get(position).getCurrCode();
                                             fromCurrencySymbol = sendCurrencyModelList.get(position).getCurrencySymbol();
                                             fromCurrencyCode = sendCurrencyModelList.get(position).getCurrencyCode();
@@ -562,6 +567,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                         )){
                                             spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
                                             spinner_receiverCurrency.setTag(i);
+                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(i).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
@@ -582,6 +588,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_receiverCurrency.setText(item);
                                             spinner_receiverCurrency.setTag(position);
+                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();

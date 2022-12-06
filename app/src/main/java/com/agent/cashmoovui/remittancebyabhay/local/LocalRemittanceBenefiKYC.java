@@ -1063,7 +1063,9 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String requiredValue = data.getStringExtra("PHONE");
-            et_destination_mobileNumber.setText(requiredValue);
+
+            MyApplication.contactValidation(requiredValue,et_destination_mobileNumber);
+
             et_destination_firstName.requestFocus();
             spCity.setText(getString(R.string.valid_select_city));
 

@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 25-11-2022</string>
+    <string name="version">Version : 05-12-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -591,6 +591,7 @@
 
     <string name="receive_country">Receiving Country*</string>
     <string name="receive_courency">Receiving Currency :</string>
+    <string name="receive_courency_start">Receiving Currency*</string>
 
 
 
@@ -922,6 +923,7 @@
 
     <string name="transaction_status_colon">Transaction Status :</string>
     <string name="vendor_result_description">Supplier Result Description :</string>
+    <string name="tryagain">Please try again</string>
 
 </resources>
 

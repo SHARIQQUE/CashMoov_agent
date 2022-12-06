@@ -187,7 +187,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
                                 if (new InternetCheck().isConnected(CashOutCodeSubscriber.this)) {
 
-                                    MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
+                                   // MyApplication.showloader(CashOutCodeSubscriber.this, getString(R.string.please_wait));
 
 
                                     mpin_final_api();

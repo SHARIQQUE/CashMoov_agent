@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.hardware.fingerprint.FingerprintManager;
 import android.media.MediaMetadataEditor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
@@ -790,13 +792,20 @@ public class MyApplication extends Application {
     public static int bioMetricCounter=0;
     public static BiometricPrompt biometricPrompt=null;
     public static Activity activityNew;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
         activityNew=activity;
+        FingerprintManager fingerprintManager = (FingerprintManager) activity.getSystemService(Context.FINGERPRINT_SERVICE);
+
         BiometricManager biometricManager = androidx.biometric.BiometricManager.from(activity);
         switch (biometricManager.canAuthenticate()) {
 
+
             // this means we can use biometric sensor
             case BiometricManager.BIOMETRIC_SUCCESS:
+
+
+               // showToast(activity,"hardwatre unvaliba 00");
 
                 // msgText.setText("You can use the fingerprint sensor to login");
                 // msgText.setTextColor(Color.parseColor("#fafafa"));
@@ -804,14 +813,21 @@ public class MyApplication extends Application {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                //bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+               // showToast(activity,"hardwatre unvaliba 11");
+
+
+              //  bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
                 //tvFinger.setVisibility(View.GONE);
                 break;
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-               // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
+
+               // bioMetric_responce_handler.failure(message);
+               // showToast(activity,"hardwatre 22");
+
+               //  bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
               /*  msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);*/
                 break;
@@ -819,6 +835,7 @@ public class MyApplication extends Application {
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
               //  bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
+               // showToast(activity,"hardwatre 33");
 
                 break;
         }
@@ -829,6 +846,16 @@ public class MyApplication extends Application {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+               // showToast(activity,"hardwatre "+errorCode);
+                   // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
+
+               if(!fingerprintManager.hasEnrolledFingerprints()) {
+                    bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+
+                    // User hasn't enrolled any fingerprints to authenticate with
+                } else {
+                    // Everything is ready for fingerprint authentication
+                }
 
              //   checkCounter(bioMetric_responce_handler,errString+"");
 
@@ -843,6 +870,7 @@ public class MyApplication extends Application {
 
                 System.out.println("Biomatric   =>"+result.toString());
                 bioMetric_responce_handler.success("Call API");
+               // showToast(activity,"hardwatre 55");
 
                /* Intent intent = new Intent(loginpinC, MainActivity.class);
                 startActivity(intent);*/
@@ -853,6 +881,7 @@ public class MyApplication extends Application {
                 super.onAuthenticationFailed();
 
                 checkCounter(bioMetric_responce_handler,activity.getString(R.string.please_enter_pin_bio));
+                //showToast(activity,"hardwatre 66");
 
                 biometricPrompt.cancelAuthentication();
             }
@@ -869,10 +898,12 @@ public class MyApplication extends Application {
 
     public static void checkCounter(BioMetric_Responce_Handler bioMetric_responce_handler,String message){
         if(bioMetricCounter==3){
+            bioMetricCounter=0;
             bioMetric_responce_handler.failure(message);
         }else{
             bioMetricCounter=bioMetricCounter+1;
-            showToast(activityNew,"Please try "+bioMetricCounter);
+            showToast(activityNew,appInstance.getString(R.string.tryagain));
+
 
         }
         
@@ -1035,6 +1066,7 @@ public class MyApplication extends Application {
 
         return test+" ";
     }
+
 
 
 }

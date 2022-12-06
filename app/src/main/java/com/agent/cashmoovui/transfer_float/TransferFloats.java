@@ -319,7 +319,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                                 if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                                    MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                                  //  MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                                     mpin_verify();
 
@@ -1614,7 +1614,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                             if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                                MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                               // MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                                 mpin_verify();
 
@@ -1636,7 +1636,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                                     if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                                      //  MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                                         mpin_verify();
 
@@ -1679,6 +1679,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 ll_reviewPage.setVisibility(View.GONE);
                 ll_receiptPage.setVisibility(View.GONE);
                 ll_successPage.setVisibility(View.GONE);
+                pinLinear.setVisibility(View.GONE);
             }
             break;
 
@@ -1814,6 +1815,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
         ll_reviewPage.setVisibility(View.GONE);
         ll_successPage.setVisibility(View.GONE);
         ll_receiptPage.setVisibility(View.GONE);
+        pinLinear.setVisibility(View.GONE);
           super.onBackPressed();
     }
 
