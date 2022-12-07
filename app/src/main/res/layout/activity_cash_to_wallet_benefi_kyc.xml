@@ -71,7 +71,7 @@
                     android:backgroundTint="#999999"
                     android:inputType="textPersonName"
                     android:lineSpacingExtra="10sp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
                     android:paddingLeft="@dimen/_15sdp"
@@ -106,10 +106,34 @@
 
 
                 <TextView
+                    android:id="@+id/sendigncurrecncyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="10dp"
+                    android:textStyle="bold"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"
+                    android:textSize="@dimen/_15sdp"
+
+                    android:text="@string/sending_currencey_star"></TextView>
+
+                <TextView
                     android:id="@+id/spinner_senderCurrency"
                     android:text="@string/sending_currencey"
                     style="@style/SpinnerStyleNew1"/>
 
+
+                <TextView
+                    android:id="@+id/receivingcurrecncyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="10dp"
+                    android:textStyle="bold"
+                    android:paddingTop="10dp"
+                    android:visibility="gone"
+                    android:textSize="@dimen/_15sdp"
+
+                    android:text="@string/receive_courency_start"/>
 
                 <TextView
                     android:id="@+id/spinner_receiverCurrency"

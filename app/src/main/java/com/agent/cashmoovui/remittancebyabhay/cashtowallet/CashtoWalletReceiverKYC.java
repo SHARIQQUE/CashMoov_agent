@@ -54,7 +54,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
     boolean isCustomerData;
     public static final int REQUEST_CODE = 1;
     DatePickerDialog picker;
-    private TextView spinner_senderCurrency,spinner_receiverCurrency,tvAmtCurr,tvAmtPaidCurr,convertionRate_first_page,
+    private TextView receivingcurrecncyText,sendigncurrecncyText,spinner_senderCurrency,spinner_receiverCurrency,tvAmtCurr,tvAmtPaidCurr,convertionRate_first_page,
             fees_first_page,tax_first_page,tvNext;
     RadioGroup radio_group;
     RadioButton rb_wallet;
@@ -134,9 +134,12 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         radio_group = findViewById(R.id.radio_group);
         rb_wallet = findViewById(R.id.rb_wallet);
         tvNext = findViewById(R.id.tvNext);
+        receivingcurrecncyText=findViewById(R.id.receivingcurrecncyText);
+        sendigncurrecncyText=findViewById(R.id.sendigncurrecncyText);
 
         edittext_amount_pay.setEnabled(false);
 
+        et_destination_firstName.setEnabled(false);
 
 
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
@@ -430,6 +433,8 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         )){
                                             spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrCode() );
                                             spinner_senderCurrency.setTag(i);
+                                            sendigncurrecncyText.setVisibility(View.VISIBLE);
+
                                             fromCurrency = sendCurrencyModelList.get(i).getCurrCode();
                                             fromCurrencySymbol = sendCurrencyModelList.get(i).getCurrencySymbol();
                                             fromCurrencyCode = sendCurrencyModelList.get(i).getCurrencyCode();
@@ -687,6 +692,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         )){
                                             spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
                                             spinner_receiverCurrency.setTag(i);
+                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(i).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
@@ -706,6 +712,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_receiverCurrency.setText(item);
                                             spinner_receiverCurrency.setTag(position);
+                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();

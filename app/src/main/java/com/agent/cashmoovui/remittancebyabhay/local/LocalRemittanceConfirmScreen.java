@@ -217,6 +217,8 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                         remitJson.put("sendCountryCode", LocalRemittanceActivity.sendCountryCode);
                         remitJson.put("receiveCountryCode", LocalRemittanceActivity.recCountryCode);
                         remitJson.put("remitType", "Local Remit");
+
+                        System.out.println("get request"+remitJson);
                         callPostAPI();
                     }catch (Exception e){
 
