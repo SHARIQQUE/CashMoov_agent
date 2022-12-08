@@ -48,6 +48,9 @@ public class API {
    // public static String BASEURL="https://cashmoovmm.com:8081/";
    //public static String BASEURL="http://180.179.201.109:8081/";
 
+
+  //  mujhe remiitance local /international  benficairy detail  email id remove karni h jab prod pe build dena hoga to
+
    public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
 
     //###############################################################

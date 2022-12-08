@@ -34,11 +34,13 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
     public static TextView tvTransAmount;
     private TextView tvAgentCode,tvSenderCode,tvBenefiCode,tvSendCurrency,tvBenefiCurrency,
             tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,tvComment,tax_label,tax_r,vat_label,vat_r;;
-    private LinearLayout tax_label_layout,vat_label_layout,pinlinear;
+    private LinearLayout tax_label_layout,vat_label_layout,pinlinear,amoutpaidLinear;
     private EditText etPin;
     private Button btnCancel,btnConfirm;
     boolean  isPasswordVisible;
     double finalamount;
+    public static String transactionAmountReceipt,amounttobepaidReceipt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
         pinlinear=findViewById(R.id.pinlinear);
+        amoutpaidLinear=findViewById(R.id.amoutpaidLinear);
 
       /*  tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", localremitconfirmC));
         tvSenderCode.setText(LocalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
@@ -89,9 +92,21 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
         tvSendCurrency.setText(LocalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(LocalRemittanceActivity.toCurrency);
         tvTransAmount.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceActivity.amount));
-        tvConvRate.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimalthreenew(LocalRemittanceActivity.rate));
+        tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceActivity.rate));
         tvFee.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceActivity.fee));
+
+
         tvAmountPaid.setText(LocalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceActivity.currencyValue));
+
+        String tamount=tvTransAmount.getText().toString();
+        String paid=tvAmountPaid.getText().toString();
+
+        System.out.println("get amount"+tamount);
+        System.out.println("get paid"+paid);
+
+        if(!tamount.equalsIgnoreCase(paid)){
+            amoutpaidLinear.setVisibility(View.VISIBLE);
+        }
         tvComment.setText(LocalRemittanceBenefiKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(LocalRemittanceActivity.fee)+Double.parseDouble(LocalRemittanceActivity.amount);
@@ -116,7 +131,7 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
             }
         }
 
-        tvAmountCharged.setText(LocalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
+        tvAmountCharged.setText(LocalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
 
         etPin.addTextChangedListener(new TextWatcher() {
@@ -217,6 +232,8 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                         remitJson.put("sendCountryCode", LocalRemittanceActivity.sendCountryCode);
                         remitJson.put("receiveCountryCode", LocalRemittanceActivity.recCountryCode);
                         remitJson.put("remitType", "Local Remit");
+
+
 
                         System.out.println("get request"+remitJson);
                         callPostAPI();

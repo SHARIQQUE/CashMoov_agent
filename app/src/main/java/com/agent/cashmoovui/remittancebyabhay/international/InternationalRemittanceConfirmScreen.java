@@ -192,7 +192,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
                         remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
-                        remitJson.put("transactionType", "SENDREMITTANCE");
+                        JSONObject put = remitJson.put("transactionType", "SENDREMITTANCE");
+
                         remitJson.put("senderCode", InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
                         remitJson.put("receiverCode", InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
                         remitJson.put("fromCurrencyCode", InternationalRemittanceActivity.fromCurrencyCode);
@@ -208,7 +209,9 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                         remitJson.put("serviceProviderCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
                         remitJson.put("sendCountryCode", InternationalRemittanceActivity.sendCountryCode);
                         remitJson.put("receiveCountryCode", InternationalRemittanceActivity.recCountryCode);
-                        remitJson.put("remitType", "International Remit");
+                        remitJson.put("remitType", getString(R.string.International_Remittance));
+
+                        System.out.println("get json remit"+remitJson);
 
 
                         tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));

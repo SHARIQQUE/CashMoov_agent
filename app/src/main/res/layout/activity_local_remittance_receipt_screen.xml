@@ -482,7 +482,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="left"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -657,6 +657,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/amoutnpaidLinear"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

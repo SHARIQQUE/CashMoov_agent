@@ -3,6 +3,7 @@ package com.agent.cashmoovui.remittancebyabhay.international;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -123,7 +124,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
       //  edittext_amount_pay.setEnabled(false);
 
-
+        edittext_amount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

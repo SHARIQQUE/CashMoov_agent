@@ -1021,7 +1021,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
         API.GET_REMMITANCE_DETAILS("ewallet/api/v1/customer/allByCriteria?firstName=" + edittext_firstName.getText().toString().trim() +
-                "&mobileNumber=" + edittext_mobileNuber.getText().toString().toString(), languageToUse, new Api_Responce_Handler() {
+                "&mobileNumber=" + edittext_mobileNuber.getText().toString().toString()+"&confirmationCode="+edittext_confirmationCode.getText().toString().trim(), languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

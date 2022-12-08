@@ -199,6 +199,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             edittext_mobileNo.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
+            edittext_amount.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(MyApplication.amountLength)});
             edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {

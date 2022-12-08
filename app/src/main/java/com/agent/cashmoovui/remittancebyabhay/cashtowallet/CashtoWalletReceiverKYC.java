@@ -156,6 +156,10 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         et_destination_mobileNumber.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
+
+        edittext_amount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
+
         et_destination_mobileNumber.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

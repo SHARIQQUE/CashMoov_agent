@@ -28,7 +28,7 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             tvRecCountry,tvSendCountry,tvTransAmount,tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,
             tvSendName,tvSendPhoneNo,tvBenefiName,tvBenefiPhoneNo,
             tax1_lable,tax1_value,tax2_lable,tax2_value,agentName;
-    private LinearLayout linConfCode,tax1_layout,tax2_layout;
+    private LinearLayout linConfCode,tax1_layout,tax2_layout,amoutnpaidLinear;
     private Button btnCloseReceipt,btnShareReceipt;
     View rootView;
 
@@ -150,6 +150,7 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             tax1_value = findViewById(R.id.tax1_value);
             tax2_lable = findViewById(R.id.tax2_lable);
             tax2_value = findViewById(R.id.tax2_value);
+            amoutnpaidLinear=findViewById(R.id.amoutnpaidLinear);
 
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             DecimalFormat df = new DecimalFormat("0.00",symbols);
@@ -171,13 +172,28 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             tvTransAmount.setText(MyApplication.addDecimal(arr[2]));
 */
             //tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid"));
-            tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
+            tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " +
+                    MyApplication.addDecimal(""+LocalRemittanceActivity.amount));
             tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate")));
             tvFee.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " "
                     + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
+
+
+
+
             tvAmountPaid.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
             tvAmountCharged.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
 
+            Double tamount=Double.parseDouble(LocalRemittanceActivity.amount);
+             Double paid=LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid");
+
+
+            if(tamount!=paid){
+                amoutnpaidLinear.setVisibility(View.VISIBLE);
+            }else{
+                amoutnpaidLinear.setVisibility(View.GONE);
+
+            }
 
             if (LocalRemittanceConfirmScreen.taxConfigList != null) {
                 if (LocalRemittanceConfirmScreen.taxConfigList.length() == 1) {

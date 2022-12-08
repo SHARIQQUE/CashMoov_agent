@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.MotionEvent;
@@ -285,7 +286,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             close_receiptPage_textview.setOnClickListener(this);
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CommissionTransfer.this);
-
+            edittext_amount.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(MyApplication.amountLength)});
             edittext_amount.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {

@@ -913,6 +913,7 @@
     <string name="please_enter_pin_bio">Veuillez entrer le code PIN pour terminer la transaction</string>
     <string name="you_will_loose">Vous perdrez vos informations si vous revenez</string>
     <string name="tryagain">Veuillez réessayer</string>
+    <string name="International_Remittance">Transfert international</string>
 
 </resources>
 

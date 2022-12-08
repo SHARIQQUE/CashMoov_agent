@@ -159,7 +159,7 @@ public class MyApplication extends Application {
     public static String channelTypeCode = "100000";
     public static boolean isContact=false;
     public static boolean isFirstTime=false;
-    public static int mobileLength=9;
+    public static int amountLength=10;
     public static int ToReceiveMoneyMinAmount;
     public static int ToReceiveMoneyMaxAmount;
 

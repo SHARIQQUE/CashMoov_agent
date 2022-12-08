@@ -168,7 +168,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
             public void onClick(View v) {
                 DialogFragment dialogfragment = new DatePickerDialogTheme();
 
-                dialogfragment.show(getSupportFragmentManager(), "");
+                dialogfragment.show(getSupportFragmentManager(), " " );
 
                 // ffffff
 
@@ -439,7 +439,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             if (jsonObject != null) {
                                 benefiGenderList.clear();
                                 benefiGenderModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode"   ).equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("genderTypeList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
@@ -471,7 +471,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                                     callApiRegions();
 
                                 } else {
-                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription"   ));
                                 }
                             }
                         }
@@ -499,7 +499,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
                             if (jsonObject != null) {
                                 regionList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode"   ).equalsIgnoreCase("0")){
                                     JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
                                     JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("regionList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
@@ -539,7 +539,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                                     callApiIdproofType();
 
                                 } else {
-                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription"   ));
                                 }
                             }
                         }
@@ -569,7 +569,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             if (jsonObject != null) {
                                 idProofTypeList.clear();
                                 idProofTypeModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode"   ).equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("idProffTypeList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
@@ -601,7 +601,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                                     callApiIssueCountry();
 
                                 } else {
-                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription"   ));
                                 }
                             }
                         }
@@ -630,7 +630,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             if (jsonObject != null) {
                                 issuingCountryList.clear();
                                 issuingCountryModelList.clear();
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode"   ).equalsIgnoreCase("0")){
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("countryRemittanceList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
@@ -674,7 +674,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
 
                                 } else {
-                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription", "N/A"));
+                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription"   ));
                                 }
                             }
                         }
@@ -706,7 +706,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
                             if (jsonObject != null) {
                                 subscriberList.clear();
-                                if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
+                                if (jsonObject.optString("resultCode"   ).equalsIgnoreCase("0")) {
                                     walletOwner = jsonObject;
                                     JSONArray walletOwnerListArr = jsonObject.optJSONArray("customerList");
                                     int pcount=0;
@@ -733,40 +733,40 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
                                     SubscriberInfoModel.Customer customer = new SubscriberInfoModel.Customer(
                                                 jsonObjectSubscriber.optInt("id"),
-                                                jsonObjectSubscriber.optString("code", "N/A"),
+                                                jsonObjectSubscriber.optString("code"   ),
                                                 jsonObjectSubscriber.optString("firstName"),
                                                 jsonObjectSubscriber.optString("lastName"),
                                                 jsonObjectSubscriber.optString("email"),
-                                                jsonObjectSubscriber.optString("mobileNumber", "N/A"),
-                                                jsonObjectSubscriber.optString("gender", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofTypeCode", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofTypeName", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofNumber", "N/A"),
-                                                jsonObjectSubscriber.optString("idExpiryDate", "N/A"),
-                                                jsonObjectSubscriber.optString("dateOfBirth", "N/A"),
-                                                jsonObjectSubscriber.optString("countryCode", "N/A"),
-                                                jsonObjectSubscriber.optString("countryName", "N/A"),
-                                                jsonObjectSubscriber.optString("regionCode", "N/A"),
-                                                jsonObjectSubscriber.optString("regionName", "N/A"),
-                                                jsonObjectSubscriber.optString("city", "N/A"),
-                                                jsonObjectSubscriber.optString("address", "N/A"),
-                                                jsonObjectSubscriber.optString("issuingCountryCode", "N/A"),
-                                                jsonObjectSubscriber.optString("issuingCountryName", "N/A"),
-                                                jsonObjectSubscriber.optString("idProofUrl", "N/A"),
-                                                jsonObjectSubscriber.optString("status", "N/A"),
-                                                jsonObjectSubscriber.optString("creationDate", "N/A"),
-                                                jsonObjectSubscriber.optString("createdBy", "N/A"),
-                                                jsonObjectSubscriber.optString("modificationDate", "N/A"),
-                                                jsonObjectSubscriber.optString("modifiedBy", "N/A")
+                                                jsonObjectSubscriber.optString("mobileNumber"   ),
+                                                jsonObjectSubscriber.optString("gender"   ),
+                                                jsonObjectSubscriber.optString("idProofTypeCode"),
+                                                jsonObjectSubscriber.optString("idProofTypeName"),
+                                                jsonObjectSubscriber.optString("idProofNumber"  ),
+                                                jsonObjectSubscriber.optString("idExpiryDate"   ),
+                                                jsonObjectSubscriber.optString("dateOfBirth"   ),
+                                                jsonObjectSubscriber.optString("countryCode"   ),
+                                                jsonObjectSubscriber.optString("countryName"   ),
+                                                jsonObjectSubscriber.optString("regionCode"   ),
+                                                jsonObjectSubscriber.optString("regionName"   ),
+                                                jsonObjectSubscriber.optString("city"   ),
+                                                jsonObjectSubscriber.optString("address"   ),
+                                                jsonObjectSubscriber.optString("issuingCountryCode"   ),
+                                                jsonObjectSubscriber.optString("issuingCountryName"   ),
+                                                jsonObjectSubscriber.optString("idProofUrl"   ),
+                                                jsonObjectSubscriber.optString("status"   ),
+                                                jsonObjectSubscriber.optString("creationDate"   ),
+                                                jsonObjectSubscriber.optString("createdBy"   ),
+                                                jsonObjectSubscriber.optString("modificationDate"   ),
+                                                jsonObjectSubscriber.optString("modifiedBy"   )
                                         );
 
 
                                         SubscriberInfoModel subscriberInfoModel = new SubscriberInfoModel(
-                                                jsonObject.optString("transactionId", "N/A"),
-                                                jsonObject.optString("requestTime", "N/A"),
-                                                jsonObject.optString("responseTime", "N/A"),
-                                                jsonObject.optString("resultCode", "N/A"),
-                                                jsonObject.optString("resultDescription", "N/A"),
+                                                jsonObject.optString("transactionId"   ),
+                                                jsonObject.optString("requestTime"   ),
+                                                jsonObject.optString("responseTime"   ),
+                                                jsonObject.optString("resultCode"   ),
+                                                jsonObject.optString("resultDescription"   ),
                                                 customer
                                         );
 
@@ -775,7 +775,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
 
                                 } else {
                                     setSubscriberdataf("No Data");
-                                    // MyApplication.showToast(jsonObject.optString("resultDescription", "N/A"));
+                                    // MyApplication.showToast(jsonObject.optString("resultDescription"   ));
                                 }
 
                             }
@@ -1001,7 +1001,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                             if (jsonObject != null) {
 
                                 cityList.clear();
-                                if(jsonObject.optString("resultCode", " ").equalsIgnoreCase("0")){
+                                if(jsonObject.optString("resultCode"   ).equalsIgnoreCase("0")){
                                     JSONObject jsonObjectRegions = jsonObject.optJSONObject("region");
                                     JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("cityList");
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
@@ -1039,7 +1039,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                                     //  callApiGenderType();
 
                                 } else {
-                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription", " "));
+                                    MyApplication.showToast(localremitbenefikycC,jsonObject.optString("resultDescription"   ));
                                 }
                             }
                         }

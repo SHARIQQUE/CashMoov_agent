@@ -173,7 +173,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             edittext_mobileNo.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-
+            edittext_amount.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(MyApplication.amountLength)});
             pinLinear=findViewById(R.id.pinLinear);
             edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
                 @Override

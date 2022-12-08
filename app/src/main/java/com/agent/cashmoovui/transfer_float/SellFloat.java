@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.text.method.HideReturnsTransformationMethod;
@@ -196,7 +197,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 }
             });*/
 
-
+        edittext_amount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         edittext_amount.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

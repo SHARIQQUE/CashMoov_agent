@@ -13,6 +13,7 @@
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/transaction_history_agentpage.xml" value="0.165625" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_bill_pay_receipt.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_billpay.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_cash_to_wallet_benefi_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_cash_to_wallet_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_cash_to_wallet_receipt_screen.xml" value="0.19947916666666668" />
@@ -39,6 +40,7 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_overdraft_limit.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_owner_option.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_payment_confirm.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_payment_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_payment_receipt.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_phone_number_registration_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_profil_agent.xml" value="0.19947916666666668" />

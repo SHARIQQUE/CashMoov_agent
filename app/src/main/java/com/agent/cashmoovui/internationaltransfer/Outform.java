@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -295,6 +296,12 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
             }
         });
         callwalletOwner();
+
+
+
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
+
 
         etAmount.addTextChangedListener(new TextWatcher() {
             @Override
