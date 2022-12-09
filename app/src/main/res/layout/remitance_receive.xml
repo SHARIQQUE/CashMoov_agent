@@ -1133,6 +1133,7 @@
 
 
             </LinearLayout>
+<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1169,13 +1170,14 @@
 
 
             </LinearLayout>
+-->
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:visibility="gone"
+                android:visibility="visible"
 
                 android:orientation="horizontal"
                 android:layout_weight="2">
@@ -1551,11 +1553,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/amoutnpaidLinear"
+
             android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp">
 
@@ -1593,10 +1597,13 @@
 
 
         <LinearLayout
+            android:id="@+id/amountchargeLinear"
             android:gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
+
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_10sdp">
 

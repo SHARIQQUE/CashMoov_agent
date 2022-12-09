@@ -18,6 +18,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -74,38 +75,38 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
 
         tvSenderMSISDN.setText(CashtoWalletSenderKYC.senderNumber);
         tvBenefiMSISDN.setText(CashtoWalletReceiverKYC.recNumber);
-        tvSendCurrency.setText(CashtoWalletReceiverKYC.fromCurrency);
-        tvBenefiCurrency.setText(CashtoWalletReceiverKYC.toCurrency);
-        tvTransAmount.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(CashtoWalletReceiverKYC.amount));
-        tvConvRate.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimalthreenew(CashtoWalletReceiverKYC.rate));
-        tvFee.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(CashtoWalletReceiverKYC.fee));
-        tvAmountPaid.setText(CashtoWalletReceiverKYC.toCurrencySymbol+" "+MyApplication.addDecimal(CashtoWalletReceiverKYC.currencyValue));
-       // tvComment.setText(CashtoWalletReceiverKYC.etComment.getText().toString());
+        tvSendCurrency.setText(LocalRemittanceCashtowalletActivity.fromCurrency);
+        tvBenefiCurrency.setText(LocalRemittanceCashtowalletActivity.toCurrency);
+        tvTransAmount.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.amount));
+        tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceCashtowalletActivity.rate));
+        tvFee.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.fee));
+        tvAmountPaid.setText(LocalRemittanceCashtowalletActivity.toCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.currencyValue));
+       // tvComment.setText(LocalRemittanceCashtowalletActivity.etComment.getText().toString());
 
-        finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount);
+        finalamount=Double.parseDouble(LocalRemittanceCashtowalletActivity.fee)+Double.parseDouble(LocalRemittanceCashtowalletActivity.amount);
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
-        if(CashtoWalletReceiverKYC.taxConfigurationList!=null){
-            if(CashtoWalletReceiverKYC.taxConfigurationList.length()==1){
+        if(LocalRemittanceCashtowalletActivity.taxConfigurationList!=null){
+            if(LocalRemittanceCashtowalletActivity.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxStringnew(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optDouble("value")));
-                finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount)+Double.parseDouble(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("value"));
+                tax_label.setText(MyApplication.getTaxStringnew(LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_r.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                finalamount=Double.parseDouble(LocalRemittanceCashtowalletActivity.fee)+Double.parseDouble(LocalRemittanceCashtowalletActivity.amount)+Double.parseDouble(LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(0).optString("value"));
             }
-            if(CashtoWalletReceiverKYC.taxConfigurationList.length()==2){
+            if(LocalRemittanceCashtowalletActivity.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxStringnew(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_label.setText(MyApplication.getTaxStringnew(LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_r.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(MyApplication.getTaxStringnew(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
-                vat_r.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optDouble("value")));
-                finalamount=Double.parseDouble(CashtoWalletReceiverKYC.fee)+Double.parseDouble(CashtoWalletReceiverKYC.amount)+Double.parseDouble(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(CashtoWalletReceiverKYC.taxConfigurationList.optJSONObject(1).optString("value"));
+                vat_label.setText(MyApplication.getTaxStringnew(LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
+                vat_r.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(1).optDouble("value")));
+                finalamount=Double.parseDouble(LocalRemittanceCashtowalletActivity.fee)+Double.parseDouble(LocalRemittanceCashtowalletActivity.amount)+Double.parseDouble(LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(LocalRemittanceCashtowalletActivity.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
 
-        tvAmountCharged.setText(CashtoWalletReceiverKYC.fromCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
+        tvAmountCharged.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
 
 
         etPin.addTextChangedListener(new TextWatcher() {
@@ -187,17 +188,17 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
                         remitJson.put("walletOwnerCode",tvAgentCode.getText().toString());
-                       // remitJson.put("transactionType","SENDREMITTANCE");
+                        remitJson.put("transactionType","SENDREMITTANCE");
                         remitJson.put("senderCode",CashtoWalletSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
-                        remitJson.put("receiverCode",CashtoWalletReceiverKYC.receiverCode);
-                        remitJson.put("fromCurrencyCode",CashtoWalletReceiverKYC.fromCurrencyCode);
-                        remitJson.put("toCurrencyCode",CashtoWalletReceiverKYC.toCurrencyCode);
-                        remitJson.put("amount",CashtoWalletReceiverKYC.amount);
+                       remitJson.put("receiverCode",CashtoWalletReceiverKYC.receiverCode);
+                        remitJson.put("fromCurrencyCode",LocalRemittanceCashtowalletActivity.fromCurrencyCode);
+                        remitJson.put("toCurrencyCode",LocalRemittanceCashtowalletActivity.toCurrencyCode);
+                        remitJson.put("amount",LocalRemittanceCashtowalletActivity.amount);
                         remitJson.put("receiveMode","WALLET");
-                        remitJson.put("conversionRate",CashtoWalletReceiverKYC.rate);
+                        remitJson.put("conversionRate",LocalRemittanceCashtowalletActivity.rate);
                         remitJson.put("pin", encryptionDatanew);
                         remitJson.put("comments","");
-                        remitJson.put("exchangeRateCode",CashtoWalletReceiverKYC.exRateCode);
+                        remitJson.put("exchangeRateCode",LocalRemittanceCashtowalletActivity.exRateCode);
                         remitJson.put("channelTypeCode",MyApplication.channelTypeCode);
                         remitJson.put("serviceCode",CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
                         remitJson.put("serviceCategoryCode",CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));

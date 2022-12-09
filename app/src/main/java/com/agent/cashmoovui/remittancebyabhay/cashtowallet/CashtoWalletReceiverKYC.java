@@ -136,7 +136,8 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         tvNext = findViewById(R.id.tvNext);
         receivingcurrecncyText=findViewById(R.id.receivingcurrecncyText);
         sendigncurrecncyText=findViewById(R.id.sendigncurrecncyText);
-
+        sendigncurrecncyText.setVisibility(View.GONE);
+        receivingcurrecncyText.setVisibility(View.GONE);
         edittext_amount_pay.setEnabled(false);
 
         et_destination_firstName.setEnabled(false);
@@ -320,14 +321,14 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         switch (v.getId()) {
             case R.id.tvNext:
 
-                if (et_destination_mobileNumber.getText().toString().trim().isEmpty()) {
+               /* if (et_destination_mobileNumber.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_phone));
                     return;
                 }
                 if (et_destination_mobileNumber.getText().toString().trim().length() < 9) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.enter_phone_no_val));
                     return;
-                }
+                }*/
                /* if (et_destination_firstName.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_fname));
                     return;
@@ -341,7 +342,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                     return;
                 }*/
 
-                if (spinner_senderCurrency.getText().toString().equals(getString(R.string.sending_currencey))) {
+               /* if (spinner_senderCurrency.getText().toString().equals(getString(R.string.sending_currencey))) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.select_currency));
                     return;
                 }
@@ -371,7 +372,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                 if (CashtoWalletSenderKYC.et_sender_phoneNumber.getText().toString().trim().equalsIgnoreCase(et_destination_mobileNumber.getText().toString().trim())) {
                     MyApplication.showToast(cashtowalletbenefikycC,getString(R.string.both_msisdn_not_same));
                     return;
-                }
+                }*/
 
                 recNumber=et_destination_mobileNumber.getText().toString().trim();
                 Intent i = new Intent(cashtowalletbenefikycC, CashtoWalletConfirmScreen.class);
@@ -437,7 +438,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         )){
                                             spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrCode() );
                                             spinner_senderCurrency.setTag(i);
-                                            sendigncurrecncyText.setVisibility(View.VISIBLE);
+                                          //  sendigncurrecncyText.setVisibility(View.VISIBLE);
 
                                             fromCurrency = sendCurrencyModelList.get(i).getCurrCode();
                                             fromCurrencySymbol = sendCurrencyModelList.get(i).getCurrencySymbol();
@@ -696,7 +697,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                         )){
                                             spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
                                             spinner_receiverCurrency.setTag(i);
-                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
+                                          //  receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(i).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
@@ -716,7 +717,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_receiverCurrency.setText(item);
                                             spinner_receiverCurrency.setTag(position);
-                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
+                                           // receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();

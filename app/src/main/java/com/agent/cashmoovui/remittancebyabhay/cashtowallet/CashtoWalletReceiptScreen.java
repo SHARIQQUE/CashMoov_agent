@@ -162,12 +162,15 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
         tvBenefiPhoneNo.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optJSONObject("desWalletOwner").optString("mobileNumber"));
 
         tvTransAmount.setText((CashtoWalletConfirmScreen.tvTransAmount.getText().toString()));
-        if(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").has("conversionRate")){
+
+        tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceCashtowalletActivity.rate));
+
+       /* if(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").has("conversionRate")){
             tvConvRate.setText(MyApplication.addDecimalthreenew(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("conversionRate")));
         }else{
             tvConvRate.setText("0.000");
         }
-
+*/
         tvFee.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + 	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee")));
         tvAmountPaid.setText((CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));

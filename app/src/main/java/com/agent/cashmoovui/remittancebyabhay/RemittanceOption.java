@@ -14,6 +14,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
+import com.agent.cashmoovui.remittancebyabhay.cashtowallet.LocalRemittanceCashtowalletActivity;
 import com.agent.cashmoovui.remmetience.RemittanceReceive;
 
 import java.util.Locale;
@@ -119,7 +120,7 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
                     if(!MyApplication.showCashtoWallet){
                         MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
                     }else {
-                        Intent i = new Intent(RemittanceOption.this, CashtoWalletSenderKYC.class);
+                        Intent i = new Intent(RemittanceOption.this, LocalRemittanceCashtowalletActivity.class);
                         startActivity(i);
                     }
             }

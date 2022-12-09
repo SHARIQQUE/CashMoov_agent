@@ -48,6 +48,8 @@ import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceConfirmScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -95,7 +97,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             receiptPage_tv_amount_to_be_charged, receiptPage_amount_to_paid_receiptpage, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
             receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_credit, previous_reviewClick_textview;
-    LinearLayout ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_successPage;
+    LinearLayout amoutnpaidLinear,ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_successPage;
     MyApplication applicationComponentClass;
     String languageToUse = "";
     EditText et_sender_idproofNumber, etFront, edittext_email, edittext_mobileNuber, edittext_amount, et_mpin, edittext_confirmationCode, edittext_countryName,
@@ -168,6 +170,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             //     First page
 
             ll_page_1 = (LinearLayout) findViewById(R.id.ll_page_1);
+            amoutnpaidLinear=findViewById(R.id.amoutnpaidLinear);
 
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_mobileNuber = (EditText) findViewById(R.id.edittext_mobileNuber);
@@ -1283,9 +1286,22 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                             receiptPage_sbenificairay_mssidn.setVisibility(View.GONE);
 
-                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optDouble("amount") + ""));
+                  //        receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amount") + ""));
                             receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amountToPaid") + ""));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
+
+                           /* Double tamount=Double.parseDouble(MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
+                            Double paid= Double.parseDouble(MyApplication.addDecimal(remittance_object.optDouble("amountToPaid") + ""));
+
+
+                            if(tamount!=paid){
+                                amoutnpaidLinear.setVisibility(View.VISIBLE);
+                            }else{
+                                amoutnpaidLinear.setVisibility(View.GONE);
+
+                            }*/
+
+
 
                             if(remittance_object.optBoolean("bearerSender")) {
                                 if (remittance_object.optDouble("fee") > 0) {
@@ -1301,10 +1317,10 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             }
                             if (remittance_object.has("conversionRate")) {
                                 receiptPage_conversion_rate.setVisibility(View.VISIBLE);
-                                receiptPage_conversion_rate.setText(currencySymbol_sender + " " + MyApplication.addDecimalthreenew(remittance_object.getString("conversionRate")));
+                                receiptPage_conversion_rate.setText(MyApplication.addDecimalthreenew(remittance_object.getString("conversionRate")));
                             } else {
                                 receiptPage_conversion_rate.setVisibility(View.VISIBLE);
-                                receiptPage_conversion_rate.setText(currencySymbol_sender + " " + MyApplication.addDecimalthreenew("0.00"));
+                                receiptPage_conversion_rate.setText(MyApplication.addDecimalthreenew("0.00"));
                             }
 
 

@@ -120,6 +120,7 @@
                 <TextView
                     android:id="@+id/spinner_senderCurrency"
                     android:text="@string/sending_currencey"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1"/>
 
 
@@ -138,6 +139,7 @@
                 <TextView
                     android:id="@+id/spinner_receiverCurrency"
                     android:text="@string/receive_courency"
+                    android:visibility="gone"
                     style="@style/SpinnerStyleNew1"/>
 
                 <LinearLayout
@@ -151,6 +153,7 @@
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
+                    android:visibility="gone"
                     android:layout_gravity="center_vertical">
 
                     <TextView
@@ -186,6 +189,7 @@
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_12sdp"
+                    android:visibility="gone"
                     android:paddingEnd="@dimen/_15sdp"
                     android:layout_gravity="center_vertical">
 
@@ -217,6 +221,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:weightSum="2">
 
@@ -251,6 +256,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
 
@@ -284,6 +290,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
 
@@ -314,6 +321,7 @@
                     android:id="@+id/radio_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
 
                     android:orientation="horizontal">
 

@@ -674,19 +674,57 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                         alloctedValue=data.optString("allocatedValue");
                     }
                     arrayList.add(data.optString("currencyName"));
-                    MyApplication.currencyModelArrayList.add(new CurrencyModel(
-                            data.optString("code"),
-                            data.optString("code"),
-                            data.optString("code"),
-                            data.optString("currencyCode"),
-                            data.optString("currencyName"),
-                            data.optString("currencySymbol"),
-                            data.optString("value"),
-                            "0.0",
-                            "0.0",
-                            data.optString("walletOwnerName"),
-                            alloctedValue
-                    ));
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100008")) {
+                        MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("currencyCode"),
+                                data.optString("currencyName"),
+                                data.optString("currencySymbol"),
+                                "0.0",
+                                "0.0",
+                                data.optString("value"),
+                                data.optString("walletOwnerName"),
+                                alloctedValue
+                        ));
+                        //Commission Wallet
+                    }
+
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100009")) {
+                        MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("currencyCode"),
+                                data.optString("currencyName"),
+                                data.optString("currencySymbol"),
+                                data.optString("value"),
+                                "0.0",
+                                "0.0",
+                                data.optString("walletOwnerName"),
+                                alloctedValue
+                        ));//Commission Wallet
+                    }
+
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100011")) {
+                        MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("currencyCode"),
+                                data.optString("currencyName"),
+                                data.optString("currencySymbol"),
+                                "0.0",
+                                data.optString("value"),
+                                "0.0",
+                                data.optString("walletOwnerName"),
+                                alloctedValue
+                        ));//oveerdraft Wallet
+                    }
+
+
+
                 }else{
                     if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){//Commission Wallet
                         if(arrayList.contains(data.optString("currencyName"))){
