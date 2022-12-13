@@ -406,10 +406,10 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_select_gender));
                     return;
                 }*/
-                if (et_destination_dob.getText().toString().trim().isEmpty()) {
+              /*  if (et_destination_dob.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_dob));
                     return;
-                }
+                }*/
                /* if (spinner_destination_country.getText().toString().equals(getString(R.string.valid_select_country))) {
                     MyApplication.showErrorToast(localremitbenefikycC, getString(R.string.val_select_country));
                     return;
@@ -882,7 +882,9 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
             }*/
           //  benefiJson.put("idProofNumber",et_destination_idproofNumber.getText().toString().trim());
             //benefiJson.put("idExpiryDate",et_destination_idproof_expiry.getText().toString().trim());
-            benefiJson.put("dateOfBirth",et_destination_dob.getText().toString().trim());
+                 benefiJson.put("dateOfBirth","");
+
+
             benefiJson.put("countryCode",LocalRemittanceActivity.recCountryCode);
             if(spinner_destination_region.getTag()!=null){
                 benefiJson.put("regionCode",regionModelList.get((Integer) spinner_destination_region.getTag()).getCode());
@@ -891,7 +893,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
             }
 
             benefiJson.put("city",spCity.getText().toString().trim());
-            benefiJson.put("address",et_destination_address.getText().toString().trim());
+            benefiJson.put("address","");
            /* if(spinner_destination_issuingCountry.getTag()!=null){
                 benefiJson.put("issuingCountryCode",issuingCountryModelList.get((Integer) spinner_destination_issuingCountry.getTag()).getCountryCode());
             }else{

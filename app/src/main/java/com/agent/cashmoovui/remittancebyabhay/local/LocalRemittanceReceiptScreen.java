@@ -174,7 +174,7 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             //tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid"));
             tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " +
                     MyApplication.addDecimal(""+LocalRemittanceActivity.amount));
-            tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate")));
+            tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceActivity.rate));
             tvFee.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " "
                     + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
 

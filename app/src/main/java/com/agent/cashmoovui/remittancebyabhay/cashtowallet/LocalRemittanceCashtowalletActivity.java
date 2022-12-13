@@ -157,13 +157,13 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 //                    spinnerDialogRecCountry.showSpinerDialog();
 //            }
 //        });
-        spinner_receiverCurrency.setOnClickListener(new View.OnClickListener() {
+      /*  spinner_receiverCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (spinnerDialogRecCurr!=null)
                     spinnerDialogRecCurr.showSpinerDialog();
             }
-        });
+        });*/
 
         
    edittext_amount.addTextChangedListener(new TextWatcher() {
@@ -276,7 +276,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
     private void callApiserviceProvider() {
         try {
 
-            API.GET("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100002&serviceCategoryCode=100001&status=Y",
+            API.GET("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100002&serviceCategoryCode=100061&status=Y",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

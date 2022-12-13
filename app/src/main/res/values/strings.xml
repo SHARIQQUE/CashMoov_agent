@@ -337,6 +337,8 @@
     <string name="country">Country</string>
 
     <string name="id_proof_type">Id Proof Type</string>
+    <string name="name_proof_type">Profile Type</string>
+
     <string name="select_gender">Select Gender</string>
     <string name="select_occupation">Select Occupation</string>
     <string name="select_id_proof">Select Id Proof</string>
@@ -925,6 +927,8 @@
     <string name="vendor_result_description">Supplier Result Description :</string>
     <string name="tryagain">Please try again</string>
     <string name="International_Remittance">International Remittance</string>
+    <string name="tier">Tier1</string>
+    <string name="all">All</string>
 
 </resources>
 

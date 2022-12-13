@@ -156,6 +156,7 @@
                         android:background="@drawable/btn_edittextname"
                         android:backgroundTint="@color/bgColorHint"
                         android:layout_marginTop="10dp"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
 
@@ -204,6 +205,7 @@
         android:background="@drawable/btn_edittextname"
         android:backgroundTint="#999999"
         android:inputType="textPersonName"
+        android:visibility="gone"
         android:lineSpacingExtra="10sp"
         android:paddingLeft="@dimen/_15sdp"
         android:digits= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.,_-/*+()  "

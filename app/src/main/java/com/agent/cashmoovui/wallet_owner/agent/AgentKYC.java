@@ -904,10 +904,12 @@ ArrayList<String>walletCurrencyList;
     private void callApiCurrencyList(String code) {
         try {
 
-
+          /*  String val=MyApplication.getSaveString("walletOwnerCode", agentkycC);
+            System.out.println("get agent wallet"+val);
+*/
           // previous api  03-12-2022-  ewallet/api/v1/countryCurrency/country/"+code
           //  http://180.179.201.109:8081/ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/1000005350
-            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/"+MyApplication.getSaveString("walletOwnerCode", agentkycC),
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparentCurrency/"+MyApplication.getSaveString("walletOwnerCode", agentkycC),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

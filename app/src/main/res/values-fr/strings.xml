@@ -330,6 +330,8 @@
     <string name="lname">Nom de famille</string>
     <string name="country">Pays</string>
     <string name="id_proof_type">Type de piece d\'identité</string>
+    <string name="name_proof_type">Type de profil</string>
+
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
     <string name="select_id_proof">Sélectionnez la piece d\'identité</string>
@@ -914,6 +916,8 @@
     <string name="you_will_loose">Vous perdrez vos informations si vous revenez</string>
     <string name="tryagain">Veuillez réessayer</string>
     <string name="International_Remittance">Transfert international</string>
+    <string name="tier">niveau1</string>
+    <string name="all">Toute</string>
 
 </resources>
 

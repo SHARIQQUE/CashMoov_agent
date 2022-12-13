@@ -14,6 +14,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -28,7 +29,7 @@ public class WalletOwner extends AppCompatActivity {
     MyApplication applicationComponentClass;
     CircleImageView profile_img;
     String languageToUse = "";
-    TextView tvName,tvAddress,tvPhone,tvCurrency,tvCountry,tvLanguage,tvEmail,tvIdProofType,tvIdProofNo,tvCashmoovId,tvState;
+    TextView tvName,tvAddress,tvPhone,tvCurrency,tvCountry,tvProofTypename,tvLanguage,tvEmail,tvIdProofType,tvIdProofNo,tvCashmoovId,tvState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class WalletOwner extends AppCompatActivity {
         tvPhone = findViewById(R.id.tvPhone);
         tvCurrency = findViewById(R.id.tvCurrency);
         tvCountry = findViewById(R.id.tvCountry);
+        tvProofTypename=findViewById(R.id.tvProofTypename);
         tvLanguage = findViewById(R.id.tvLanguage);
         tvEmail = findViewById(R.id.tvEmail);
         tvIdProofType = findViewById(R.id.tvIdProofType);
@@ -141,10 +143,31 @@ public class WalletOwner extends AppCompatActivity {
                     tvCountry.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryName","N/A"));
                     //tvLanguage.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode","N/A"));
                     tvEmail.setText(jsonObject.optJSONObject("walletOwner").optString("email","N/A"));
+
+
+                    if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.AgentCode)) {
+                        tvProofTypename.setText("Golden");
+
+                    }else if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.BranchCode)) {
+                        tvProofTypename.setText("Standard");
+
+
+                }else if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.InstituteCode)) {
+                    tvProofTypename.setText(getString(R.string.tier));
+                }else {
+
+                    tvProofTypename.setText(getString(R.string.all));
+                }
+
+                  //  tvProofTypename.setText(jsonObject.optJSONObject("walletOwner").optString("profileTypeName","N/A"));
+
+
+
                     tvIdProofType.setText(jsonObject.optJSONObject("walletOwner").optString("idProofTypeName","N/A"));
                     tvIdProofNo.setText(jsonObject.optJSONObject("walletOwner").optString("idProofNumber","N/A"));
                     tvCashmoovId.setText(jsonObject.optJSONObject("walletOwner").optString("createdBy","N/A"));
                     tvState.setText(jsonObject.optJSONObject("walletOwner").optString("state","N/A"));
+
 
                     callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
                 }else{

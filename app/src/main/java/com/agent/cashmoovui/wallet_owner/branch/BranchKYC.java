@@ -537,6 +537,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()) {
             case R.id.tvNext:
 
+
+
                 if(MyApplication.getSaveString("walletOwnerCategoryCode", BranchKYC.this).equalsIgnoreCase(MyApplication.AgentCode)){
 
                 }else{
@@ -584,7 +586,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
-                if (etEmail.getText().toString().trim().isEmpty()) {
+               /* if (etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_email));
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(branchkycC);
@@ -594,7 +596,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
-                }
+                }*/
 
                 if (spBusinessType.getText().toString().equals(getString(R.string.valid_select_business_type))) {
                     //MyApplication.showErrorToast(branchkycC,getString(R.string.val_select_gender));
@@ -659,7 +661,13 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             jsonObject.put("lastName", etLname.getText().toString().trim());
                             jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
                             jsonObject.put("idExpiryDate", "");
-                            jsonObject.put("email", etEmail.getText().toString().trim());
+                            if(etEmail.getText().toString().equalsIgnoreCase("")){
+                                jsonObject.put("email", "");
+
+                            }else{
+                                jsonObject.put("email", etEmail.getText().toString().trim());
+
+                            }
                             jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
                             jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
                             jsonObject.put("businessTypeCode", businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
@@ -685,6 +693,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                         jsonObject.put("walletOwnerCategoryCode", MyApplication.BranchCode);
                         jsonObject.put("loginWithOtpRequired", loginwithOtp);
+
+                            System.out.println("get json"+jsonObject);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -1214,7 +1224,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     private void callApiCurrencyListnew(String code,JSONObject jsonObjectnew123) {
         try {
 
-            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/"+code,
+
+
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparentCurrency/"+MyApplication.getSaveString("walletOwnerCode", branchkycC),
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
@@ -1223,6 +1235,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             walletCurrencyList=new ArrayList<>();
                             walletCurrencyList.clear();
                             currenyList=new JSONObject();
+
+                            System.out.println("get response"+jsonObject.toString());
                             if (jsonObject != null) {
                               //  regionList.clear();
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){

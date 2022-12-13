@@ -999,9 +999,9 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             senderJson.put("dateOfBirth",et_sender_dob.getText().toString().trim());
             senderJson.put("countryCode",LocalRemittanceActivity.sendCountryCode);
             if(spinner_sender_region.getTag()!=null){
-                senderJson.put("regionCode",regionModelList.get((Integer) spinner_sender_region.getTag()).getCode());
+                senderJson.put("regionCode","");
             }else{
-                senderJson.put("regionCode",regioncode);
+                senderJson.put("regionCode","");
             }
 
             senderJson.put("city",spCity.getText().toString().trim());

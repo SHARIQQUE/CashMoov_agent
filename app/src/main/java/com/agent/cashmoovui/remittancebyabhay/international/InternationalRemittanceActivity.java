@@ -297,6 +297,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                     //amountTobePaid_first_page.setText("");
                     amountTobeCharged_first_page.setText("");
                     edittext_amount.getText().clear();
+
                 }
 
                 isFormatting = false;

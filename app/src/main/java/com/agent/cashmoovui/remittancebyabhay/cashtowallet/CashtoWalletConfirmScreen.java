@@ -207,7 +207,9 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                         remitJson.put("receiveCountryCode",CashtoWalletSenderKYC.recCountryCode);
                         remitJson.put("firstName",CashtoWalletSenderKYC.et_sender_firstName.getText().toString());
                         remitJson.put("mobileNumber",CashtoWalletSenderKYC.et_sender_phoneNumber.getText().toString());
-                       // remitJson.put("remitType","International Remit");
+                       // remitJso  n.put("remitType","International Remit");
+
+                    System.out.println("remitJson"+remitJson);
 
                         callPostAPI();
 
