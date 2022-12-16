@@ -76,11 +76,11 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
         tvSenderMSISDN.setText(CashtoWalletSenderKYC.senderNumber);
         tvBenefiMSISDN.setText(CashtoWalletReceiverKYC.recNumber);
         tvSendCurrency.setText(LocalRemittanceCashtowalletActivity.fromCurrency);
-        tvBenefiCurrency.setText(LocalRemittanceCashtowalletActivity.toCurrency);
+        tvBenefiCurrency.setText("GNF");
         tvTransAmount.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.amount));
         tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceCashtowalletActivity.rate));
         tvFee.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.fee));
-        tvAmountPaid.setText(LocalRemittanceCashtowalletActivity.toCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.currencyValue));
+        tvAmountPaid.setText(LocalRemittanceCashtowalletActivity.toCurrencySymbolnew+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.currencyValue));
        // tvComment.setText(LocalRemittanceCashtowalletActivity.etComment.getText().toString());
 
         finalamount=Double.parseDouble(LocalRemittanceCashtowalletActivity.fee)+Double.parseDouble(LocalRemittanceCashtowalletActivity.amount);
@@ -192,7 +192,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                         remitJson.put("senderCode",CashtoWalletSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
                        remitJson.put("receiverCode",CashtoWalletReceiverKYC.receiverCode);
                         remitJson.put("fromCurrencyCode",LocalRemittanceCashtowalletActivity.fromCurrencyCode);
-                        remitJson.put("toCurrencyCode",LocalRemittanceCashtowalletActivity.toCurrencyCode);
+                        remitJson.put("toCurrencyCode","100062");
                         remitJson.put("amount",LocalRemittanceCashtowalletActivity.amount);
                         remitJson.put("receiveMode","WALLET");
                         remitJson.put("conversionRate",LocalRemittanceCashtowalletActivity.rate);

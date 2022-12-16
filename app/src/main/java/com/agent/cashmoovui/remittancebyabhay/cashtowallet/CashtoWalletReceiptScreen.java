@@ -173,7 +173,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
 */
         tvFee.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + 	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee")));
-        tvAmountPaid.setText((CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));
+        tvAmountPaid.setText((LocalRemittanceCashtowalletActivity.toCurrencySymbolnew+" "+MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));
         tvAmountCharged.setText((CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("value"))));
 
 

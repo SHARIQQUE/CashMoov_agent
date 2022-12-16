@@ -147,6 +147,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
         agentTypeLay=findViewById(R.id.agentTypeLay);
 
+        callApiCurrencyListnew1();
 
 
       String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
@@ -586,7 +587,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
-               /* if (etEmail.getText().toString().trim().isEmpty()) {
+                if (etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_email));
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(branchkycC);
@@ -596,7 +597,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
-                }*/
+                }
 
                 if (spBusinessType.getText().toString().equals(getString(R.string.valid_select_business_type))) {
                     //MyApplication.showErrorToast(branchkycC,getString(R.string.val_select_gender));
@@ -661,13 +662,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             jsonObject.put("lastName", etLname.getText().toString().trim());
                             jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
                             jsonObject.put("idExpiryDate", "");
-                            if(etEmail.getText().toString().equalsIgnoreCase("")){
-                                jsonObject.put("email", "");
 
-                            }else{
-                                jsonObject.put("email", etEmail.getText().toString().trim());
-
-                            }
+                            jsonObject.put("email", etEmail.getText().toString().trim());
                             jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
                             jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
                             jsonObject.put("businessTypeCode", businessTypeModelList.get((Integer) spBusinessType.getTag()).getCode());
@@ -677,7 +673,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                             jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());
                             jsonObject.put("idProofTypeCode", idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode());
                             jsonObject.put("issuingCountryCode", "100092");
-                            jsonObject.put("walletCurrencyList", new JSONArray(walletCurrencyList));
+                            jsonObject.put("walletCurrencyList", new JSONArray(walletCurrencyListnew));
                             jsonObject.put("registerCountryCode", countryModelList.get((Integer) spCountry.getTag()).getCode());
 //                    jsonObject.put("regionCode",regionModelList.get((Integer) spRegion.getTag()).getCode());
 //                    jsonObject.put("addressLine1",etAddress.getText().toString().trim());
@@ -696,6 +692,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                             System.out.println("get json"+jsonObject);
 
+                            System.out.println("get val"+new JSONArray(walletCurrencyListnew));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -706,7 +704,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         callApiCurrencyListnew(MyApplication.getSaveString("walletOwnerCode", branchkycC),jsonObject);
 
                     }else{
-                        callApiCurrencyListnew(arrayList_modalDetailsnew.get((Integer) agentType.getTag()).getWalletOwnerCode(),jsonObject);
+                        callApiCurrencyListnew(MyApplication.getSaveString("walletOwnerCode", branchkycC),jsonObject);
 
                     }
 
@@ -1220,6 +1218,70 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    private void callApiCurrencyListnew1() {
+        try {
+
+
+
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparentCurrency/"+MyApplication.getSaveString("walletOwnerCode", branchkycC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            //
+                            // MyApplication.hideLoader();
+                            walletCurrencyListnew=new ArrayList<>();
+                            // walletCurrencyListnew.clear();
+                            currenyListnew=new JSONObject();
+
+                            System.out.println("get response"+jsonObject.toString());
+                            if (jsonObject != null) {
+                                //  regionList.clear();
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    //JSONObject jsonObjectRegions = jsonObject.optJSONObject("country");
+                                    //   JSONArray walletOwnerListArr = jsonObjectRegions.optJSONArray("countryCurrencyList");
+                                    JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+
+
+                                    for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                        JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                        walletCurrencyListnew.add(data.optString("currencyCode"));
+//"walletCurrencyList":["100106","100062","100003","100004"]
+
+
+
+
+                                    }
+
+                                    System.out.println("get data  "+walletCurrencyListnew.toString());
+
+
+
+
+                                } else {
+                                    MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+
+    }
+
+
+    ArrayList<String>walletCurrencyListnew;
+    JSONObject currenyListnew;
+
    // http://180.179.201.109:8081/ewallet/api/v1/walletOwnerCountryCurrency/walletOwnerparent/1000005350
     private void callApiCurrencyListnew(String code,JSONObject jsonObjectnew123) {
         try {
@@ -1232,9 +1294,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         public void success(JSONObject jsonObject) {
                             //
                             // MyApplication.hideLoader();
-                            walletCurrencyList=new ArrayList<>();
-                            walletCurrencyList.clear();
-                            currenyList=new JSONObject();
+                            walletCurrencyListnew=new ArrayList<>();
+                           // walletCurrencyListnew.clear();
+                            currenyListnew=new JSONObject();
 
                             System.out.println("get response"+jsonObject.toString());
                             if (jsonObject != null) {
@@ -1247,7 +1309,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                     for (int i = 0; i < walletOwnerListArr.length(); i++) {
                                         JSONObject data = walletOwnerListArr.optJSONObject(i);
-                                        walletCurrencyList.add(data.optString("currencyCode"));
+                                        walletCurrencyListnew.add(data.optString("currencyCode"));
 //"walletCurrencyList":["100106","100062","100003","100004"]
 
 
@@ -1255,7 +1317,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                                     }
 
-                                    System.out.println("LISTTTT  "+walletCurrencyList.toString());
+                                    System.out.println("get data  "+walletCurrencyListnew.toString());
+
+                                    System.out.println("get jsonObjectnew123  "+jsonObjectnew123);
 
                                     callRegisterApi(jsonObjectnew123);
 

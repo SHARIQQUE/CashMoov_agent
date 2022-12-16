@@ -149,7 +149,7 @@
                     android:paddingEnd="@dimen/_15sdp"
 
 
-                    android:hint="@string/valid_email"
+                    android:hint="@string/email"
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp" />
 

@@ -31,6 +31,7 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_international_remittance_sender_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_local_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_local_remittance_benefi_kyc.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_local_remittance_cashtowallet.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_local_remittance_confirm_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_local_remittance_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_local_remittance_sender_kyc.xml" value="0.19947916666666668" />
@@ -58,6 +59,7 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_set_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_transfer_option.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_verify_login_otp_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_wallet_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/airtime_purchases.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.19947916666666668" />

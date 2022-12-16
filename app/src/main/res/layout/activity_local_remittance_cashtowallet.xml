@@ -49,7 +49,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/aileron_bold"
                             android:lineSpacingExtra="3sp"
-                            android:text="@string/send_remittance_local"
+                            android:text="@string/send_cashtowallet"
                             android:textColor="#29304d"
                             android:textSize="@dimen/_16sdp" />
 

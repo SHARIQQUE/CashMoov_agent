@@ -544,6 +544,8 @@
     <string name="share_screenshot">Partager une capture d écran</string>
     <string name="no_app_available">Aucune application disponible</string>
     <string name="send_remittance_local">Envoyer un versement local</string>
+    <string name="send_cashtowallet">Envoyer de l\'argent au portefeuille  </string>
+
     <string name="amount_to_pay">Montant à payer</string>
     <string name="destination_details">Détails de la destination</string>
     <string name="first_name">Prénom</string>

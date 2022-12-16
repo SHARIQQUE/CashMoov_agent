@@ -359,7 +359,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     return;
                 }
 
-                if (etEmail.getText().toString().trim().isEmpty()) {
+              /*  if (etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_email));
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(subscriberkycC);
@@ -369,7 +369,13 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
-                }
+                }*/
+
+               /* if (!MyApplication.email_validation(etEmail.getText().toString())) {
+                    MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
+                    MyApplication.hideKeyboard(subscriberkycC);
+                    return;
+                }*/
                 if (spRegion.getText().toString().equals(getString(R.string.valid_select_region))) {
                     //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_select_gender));
                     MyApplication.showTipError(this, getString(R.string.val_select_region), spRegion);
@@ -429,7 +435,13 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                             jsonObject.put("lastName", etLname.getText().toString().trim());
                             jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
                             jsonObject.put("idExpiryDate", "2025-12-12T00:00:00.000Z");
-                            jsonObject.put("email", etEmail.getText().toString().trim());
+                            if(etEmail.getText().toString().equalsIgnoreCase("")){
+                                jsonObject.put("email", "");
+
+                            }else{
+                                jsonObject.put("email", etEmail.getText().toString().trim());
+
+                            }
                             jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
                             jsonObject.put("mobileNumber", etPhone.getText().toString().trim());
                             jsonObject.put("idProofNumber", etProofNo.getText().toString().trim());

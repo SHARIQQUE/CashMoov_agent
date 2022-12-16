@@ -112,7 +112,7 @@
 
 
                 <EditText
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/edittext_email_destination"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

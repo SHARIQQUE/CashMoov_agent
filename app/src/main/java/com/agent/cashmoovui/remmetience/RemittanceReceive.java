@@ -939,7 +939,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                         if (jsonObject.has("accountHolding")) {
 
                             JSONObject jsonObject3 = jsonObject.getJSONObject("accountHolding");
-                            amountstr =  jsonObject3.optInt("beneficiaryAmount")+"";
+                            amountstr =  jsonObject3.optDouble("beneficiaryAmount")+"";
                             edittext_amount.setText(amountstr);
                         } else {
                             //tt

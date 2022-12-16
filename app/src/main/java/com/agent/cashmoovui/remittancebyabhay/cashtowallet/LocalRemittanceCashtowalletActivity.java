@@ -67,7 +67,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_local_remittance);
+        setContentView(R.layout.activity_local_remittance_cashtowallet);
         localC=this;
         setBackMenu();
         getIds();
@@ -103,7 +103,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 
     public static String serviceProvider,sendCountryCode,sendCountryName,recCountryCode,recCountryName,
             amount,currencyValue,fee,rate,exRateCode, fromCurrency,fromCurrencySymbol,fromCurrencyCode,
-            toCurrency,toCurrencySymbol,toCurrencyCode;
+            toCurrency,toCurrencySymbol,toCurrencyCode,toCurrencySymbolnew;
     public static int receiverFee,receiverTax;
     public static JSONObject serviceCategory = new JSONObject();
 
@@ -126,7 +126,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
         tvNext = findViewById(R.id.tvNext);
 
         edittext_amount_pay.setEnabled(false);
-
+        spinner_receiverCurrency.setText("GNF");
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -386,7 +386,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             spinner_receiverCountry.setText(data.optString("name"));
                                             sendCountryCode = data.optString("code");
                                             sendCountryName = data.optString("name");
-                                            recCountryCode = sendCountryCode;
+                                            recCountryCode = recCountryCode;
                                             recCountryName = sendCountryName;
 
 
@@ -562,19 +562,21 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                     System.out.println("Rece list Local  "+recCurrencyModelList.toString());
                                     System.out.println("Send list Local  "+sendCountryModelList.toString());
 
-                                    tvAmtPaidCurr.setText("");
+                                    tvAmtPaidCurr.setText("GNF");
                                     for(int i=0;i<recCurrencyModelList.size();i++){
                                         if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
                                                 recCurrencyModelList.get(i).getCurrencySymbol()
                                         )){
-                                            spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
-                                            spinner_receiverCurrency.setTag(i);
+                                          //  spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
+                                          //  spinner_receiverCurrency.setTag(i);
                                             receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(i).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
-                                            tvAmtPaidCurr.setText(toCurrencySymbol);
+                                          //  tvAmtPaidCurr.setText(toCurrencySymbol);
                                             // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                         toCurrencySymbolnew ="GNF";
+
                                             edittext_amount.getText().clear();
                                             edittext_amount_pay.getText().clear();
 
@@ -594,7 +596,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             toCurrency = recCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();
-                                            tvAmtPaidCurr.setText(toCurrencySymbol);
+                                          //  tvAmtPaidCurr.setText(toCurrencySymbol);
                                             // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
                                             edittext_amount.getText().clear();
                                             edittext_amount_pay.getText().clear();
@@ -797,9 +799,9 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             //MyApplication.showloader(cashinC, "Please wait!");
             API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
                             sendCurrencyModelList.get((Integer) spinner_senderCurrency.getTag()).getCurrencyCode()
-                            +"&receiveCurrencyCode="+recCurrencyModelList.get((Integer) spinner_receiverCurrency.getTag()).getCurrencyCode()
+                            +"&receiveCurrencyCode="+"100062"
                             +"&sendCountryCode="+ sendCountryCode+
-                            "&receiveCountryCode="+recCountryCode
+                            "&receiveCountryCode="+"100092"
                             +"&currencyValue="+ edittext_amount.getText().toString().replace(",","") + "&channelTypeCode="+MyApplication.channelTypeCode+
                             "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
                             "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
