@@ -80,7 +80,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         tvSendCurrency.setText(InternationalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(InternationalRemittanceActivity.toCurrency);
         tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.amount));
-        tvConvRate.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimalthreenew(InternationalRemittanceActivity.rate));
+        tvConvRate.setText(MyApplication.addDecimalfiveinternatonal(InternationalRemittanceActivity.rate));
         tvFee.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.fee));
         tvAmountPaid.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.currencyValue));
         tvComment.setText(InternationalRemittanceBenefiKYC.etComment.getText().toString());

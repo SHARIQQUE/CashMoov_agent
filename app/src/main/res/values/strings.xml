@@ -346,6 +346,8 @@
     <string name="login_message">Please enter your phone number &amp; password to login the account.</string>
     <string name="login">Login</string>
     <string name="amount_to_paid_colon">Amount to be paid :</string>
+    <string name="amount_to_paid_colonnew">Amount to be paid</string>
+
     <string name="kyc_detail_response_msg">Kyc details submitted successfully</string>
     <string name="valid_select_service_provider">Select Service Provider*</string>
     <string name="valid_select_rec_country">Select Receiving Country*</string>
@@ -433,7 +435,7 @@
     <string name="please_choose_language">Please choose language</string>
     <string name="you_have_choose_english_language">You have choose english language</string>
     <string name="you_have_choose_french_language">You have choose french language</string>
-    <string name="pin">Code Pin</string>
+    <string name="pin">Code Pin :</string>
     <string name="please_enter_pin">Please enter pin</string>
     <string name="verification_register_otp">Please enter the OTP (one time password) to verify your account. Code has been sent to registered email id &amp; mobile number</string>
     <string name="verification_register_otpback">Kindly contact your customer care for Generate OTP and please enter the OTP to verify your account.</string>
@@ -931,6 +933,13 @@
     <string name="International_Remittance">International Remittance</string>
     <string name="tier">Tier1</string>
     <string name="all">All</string>
+    <string name="Mainwallet">Main wallet</string>
+    <string name="maxvaluewallet">Max value</string>
+    <string name="minvaluewallet">Min value</string>
+    <string name="alertvalue">Alert value</string>
+    <string name="Commisionwallet">Commision wallet</string>
+    <string name="Viewwallet">View wallet</string>
+    <string name="Creditlimit">Credit limit</string>
 
 </resources>
 

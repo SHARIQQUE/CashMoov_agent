@@ -412,7 +412,7 @@
 
     <string name="you_have_choose_english_language">Vous avez choisi la langue anglaise</string>
     <string name="you_have_choose_french_language">Vous avez choisir la langue française</string>
-    <string name="pin">Code PIN</string>
+    <string name="pin">Code PIN :</string>
     <string name="please_enter_pin">Veuillez saisir le code PIN</string>
     <string name="verification_register_otp">Veuillez entrer l\'OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l\'identifiant de messagerie enregistré et au numéro de téléphone portable</string>
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
@@ -708,6 +708,8 @@
     <string name="id_proof_expiryDate">Date d\'expiration de la piece d\'identité</string>
 
     <string name="amount_to_paid_colon">Montant à payer :</string>
+    <string name="amount_to_paid_colonnew">Montant à payer</string>
+
     <string name="kyc_detail_response_msg">Details KYC soumis avec succes</string>
     <string name="valid_select_service_provider">Selectionnez Fournisseur de services*</string>
     <string name="valid_select_rec_country">Sélectionnez le pays de destination*</string>
@@ -920,6 +922,13 @@
     <string name="International_Remittance">Transfert international</string>
     <string name="tier">niveau1</string>
     <string name="all">Toute</string>
+    <string name="Mainwallet">Portefeuille principal</string>
+    <string name="maxvaluewallet">Valeur max</string>
+    <string name="minvaluewallet">Valeur minimale</string>
+    <string name="alertvalue">Valeur d\'alerte</string>
+    <string name="Commisionwallet">"Portefeuille de commissions"</string>
+    <string name="Viewwallet">"Voir le portefeuille"</string>
+    <string name="Creditlimit">Limite de crédit</string>
 
 </resources>
 

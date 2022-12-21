@@ -374,6 +374,15 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                     return;
                 }*/
 
+                if (et_destination_mobileNumber.getText().toString().trim().isEmpty()) {
+                    MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_phone));
+                    return;
+                }
+                if (et_destination_firstName.getText().toString().trim().isEmpty()) {
+                    MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_fname));
+                    return;
+                }
+
                 recNumber=et_destination_mobileNumber.getText().toString().trim();
                 Intent i = new Intent(cashtowalletbenefikycC, CashtoWalletConfirmScreen.class);
                 i.putExtra("destmobileNumber", et_destination_mobileNumber.getText().toString());

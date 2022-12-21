@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -33,6 +34,7 @@ import com.agent.cashmoovui.model.MiniStatementTrans;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.settings.Profile;
+import com.agent.cashmoovui.transfer_float.SellFloat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -85,7 +87,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     ArrayList<String> arrayList_walletTypeName = new ArrayList<String>();
     ArrayList<String> arrayList_wallet_value = new ArrayList<String>();
 
-    TextView insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
+    TextView viewwallet_textview,insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
     TextView spinner_currency;
 
@@ -171,7 +173,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         insitute_textview =(TextView)findViewById(R.id.insitute_textview);
         insitute_branch =(TextView)findViewById(R.id.insitute_branch);
         insitute_branch.setOnClickListener(this);
-
+        viewwallet_textview=findViewById(R.id.viewwallet_textview);
+        viewwallet_textview.setOnClickListener(this);
         agent_textview =(TextView)findViewById(R.id.agent_textview);
         agent_textview.setOnClickListener(this);
 
@@ -183,6 +186,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         main_wallet_value_textview =(TextView)findViewById(R.id.main_wallet_value_textview);
         commisionwallet_value_textview =(TextView)findViewById(R.id.commisionwallet_value_textview);
         overdraft_value_heding_textview =(TextView)findViewById(R.id.overdraft_value_heding_textview);
+
 
 
         if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.InstituteCode)){
@@ -795,6 +799,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 break;
 
 
+            case R.id.viewwallet_textview:
+                alertdialouge_viewwallet();
+
+                break;
+
 
         }
     }
@@ -1260,6 +1269,124 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }
+
+
+
+
+    public void alertdialouge_viewwallet() {
+
+        try {
+
+
+            Dialog operationDialog = new Dialog(TransactionHistoryMainPage.this);
+            operationDialog.setContentView(R.layout.alert_dialogue_viewallet);
+
+            Button closeButton;
+            TextView senderWalletOwnerCode_textview, receiverWalletOwnerCode_textview, senderName_textview, receiverName_textview, currencyName_textview, amount_textview, fee_textview, tax_textview, exchangeRate_textview, receiver_msisdn_textview,final_amount_textview, create_on_textview, status_textview;
+            closeButton = operationDialog.findViewById(R.id.closeButton);
+
+          TextView  maxvalueText=operationDialog.findViewById(R.id.maxvalueText);
+            TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
+            TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
+
+
+            TextView  commsionmaxvalueText=operationDialog.findViewById(R.id.commisionmaxvalueText);
+            TextView  comissionminvalueText=operationDialog.findViewById(R.id.comissionminvalueText);
+            TextView  comissionalertvalueText=operationDialog.findViewById(R.id.comissionalertvalueText);
+
+
+
+            TextView  creditmaxvalueText=operationDialog.findViewById(R.id.creditmaxvalueText);
+            TextView  creditminvalueText=operationDialog.findViewById(R.id.creditminvalueText);
+            TextView  creditalertvalueText=operationDialog.findViewById(R.id.creditalertvalueText);
+
+
+            try {
+                // MyApplication.showloader(MainActivity.this,"Please wait!");
+                API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
+                        new Api_Responce_Handler() {
+                            @Override
+                            public void success(JSONObject jsonObject) {
+                                // MyApplication.showloader();
+                                System.out.println("MiniStatement response======="+jsonObject.toString());
+                                if (jsonObject != null) {
+
+                                    if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                        if(jsonObject.has(
+                                                "walletList") &&jsonObject.optJSONArray("walletList")!=null){
+                                            JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletList");
+                                            for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                                JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
+                                                      maxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    minvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    alertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){
+                                                    commsionmaxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    comissionminvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    comissionalertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100011")){
+                                                    creditmaxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    creditminvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    creditalertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+
+                                            }
+
+                                        }
+
+
+                                    } else {
+                                        MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
+                                    }
+                                }
+                            }
+
+
+
+
+
+                            @Override
+                            public void failure(String aFalse) {
+                                MyApplication.hideLoader();
+
+
+                            }
+                        });
+
+            } catch (Exception e) {
+
+            }
+
+
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    operationDialog.dismiss();
+                }
+            });
+            //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            operationDialog.show();
+        } catch (Exception e) {
+
+            Toast.makeText(TransactionHistoryMainPage.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
 
 
 

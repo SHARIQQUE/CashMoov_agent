@@ -28,7 +28,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
             tvSendCountry,tvRecCountry,tvTransAmount,tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,
             tvSendName,tvSendPhoneNo,tvBenefiName,tvBenefiPhoneNo,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
-    private LinearLayout linConfCode,tax1_layout,tax2_layout;
+    private LinearLayout linConfCode,tax1_layout,tax2_layout,amoutpaidLinear;
     private Button btnCloseReceipt,btnShareReceipt;
     View rootView;
 
@@ -143,6 +143,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
         tax1_value = findViewById(R.id.tax1_value);
         tax2_lable = findViewById(R.id.tax2_lable);
         tax2_value = findViewById(R.id.tax2_value);
+        amoutpaidLinear=findViewById(R.id.amoutpaidLinear);
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
         DecimalFormat df = new DecimalFormat("0.00",symbols);
@@ -163,7 +164,7 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
 
         tvTransAmount.setText((CashtoWalletConfirmScreen.tvTransAmount.getText().toString()));
 
-        tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceCashtowalletActivity.rate));
+        tvConvRate.setText(MyApplication.addDecimalfive(LocalRemittanceCashtowalletActivity.rate));
 
        /* if(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").has("conversionRate")){
             tvConvRate.setText(MyApplication.addDecimalthreenew(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("conversionRate")));
@@ -174,6 +175,19 @@ public class CashtoWalletReceiptScreen extends AppCompatActivity implements View
         tvFee.setText(CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "
                 + 	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee")));
         tvAmountPaid.setText((LocalRemittanceCashtowalletActivity.toCurrencySymbolnew+" "+MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));
+
+        String tamount=tvTransAmount.getText().toString();
+        String paid=tvAmountPaid.getText().toString();
+
+        System.out.println("get amount"+tamount);
+        System.out.println("get paid"+paid);
+
+        if(!tamount.equalsIgnoreCase(paid)){
+            amoutpaidLinear.setVisibility(View.VISIBLE);
+        }else{
+            amoutpaidLinear.setVisibility(View.GONE);
+        }
+
         tvAmountCharged.setText((CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencySymbol")+" "+	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("value"))));
 
 

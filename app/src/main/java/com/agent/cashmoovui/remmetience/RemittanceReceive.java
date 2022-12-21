@@ -1317,10 +1317,10 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             }
                             if (remittance_object.has("conversionRate")) {
                                 receiptPage_conversion_rate.setVisibility(View.VISIBLE);
-                                receiptPage_conversion_rate.setText(MyApplication.addDecimalthreenew(remittance_object.getString("conversionRate")));
+                                receiptPage_conversion_rate.setText(MyApplication.addDecimalfive(remittance_object.getString("conversionRate")));
                             } else {
                                 receiptPage_conversion_rate.setVisibility(View.VISIBLE);
-                                receiptPage_conversion_rate.setText(MyApplication.addDecimalthreenew("0.00"));
+                                receiptPage_conversion_rate.setText(MyApplication.addDecimalfive("0.00"));
                             }
 
 

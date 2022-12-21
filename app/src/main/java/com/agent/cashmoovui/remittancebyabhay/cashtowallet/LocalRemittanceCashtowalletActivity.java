@@ -826,7 +826,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(MyApplication.addDecimalthreenew(rate));
+                                        convertionRate_first_page.setText(MyApplication.addDecimalfive(rate));
                                         fees_first_page.setText(MyApplication.addDecimal(fee));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");

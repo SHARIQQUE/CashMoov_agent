@@ -31,7 +31,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
     public static TextView tvTransAmount;
     private TextView tvAgentCode,tvTransferMode,tvSenderMSISDN,tvBenefiMSISDN,tvSendCurrency,tvBenefiCurrency,
             tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,tvComment,tax_label,tax_r,vat_label,vat_r;
-    private LinearLayout tax_label_layout,vat_label_layout;
+    private LinearLayout amountpaidLinear,tax_label_layout,vat_label_layout;
     private EditText etPin;
     private Button btnCancel,btnConfirm;
     boolean  isPasswordVisible;
@@ -69,6 +69,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
         vat_label=findViewById(R.id.vat_label);
         tax_label_layout=findViewById(R.id.tax_label_layout);
         vat_label_layout=findViewById(R.id.vat_label_layout);
+        amountpaidLinear=findViewById(R.id.amountpaidLinear);
 
         tvAgentCode.setText(MyApplication.getSaveString("walletOwnerCode", cashtowalletconfirmC));
         tvTransferMode.setText(getString(R.string.cash_to_wallet));
@@ -78,11 +79,23 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
         tvSendCurrency.setText(LocalRemittanceCashtowalletActivity.fromCurrency);
         tvBenefiCurrency.setText("GNF");
         tvTransAmount.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.amount));
-        tvConvRate.setText(MyApplication.addDecimalthreenew(LocalRemittanceCashtowalletActivity.rate));
+        tvConvRate.setText(MyApplication.addDecimalfive(LocalRemittanceCashtowalletActivity.rate));
         tvFee.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.fee));
         tvAmountPaid.setText(LocalRemittanceCashtowalletActivity.toCurrencySymbolnew+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.currencyValue));
        // tvComment.setText(LocalRemittanceCashtowalletActivity.etComment.getText().toString());
 
+
+        String tamount=tvTransAmount.getText().toString();
+        String paid=tvAmountPaid.getText().toString();
+
+        System.out.println("get amount"+tamount);
+        System.out.println("get paid"+paid);
+
+        if(!tamount.equalsIgnoreCase(paid)){
+            amountpaidLinear.setVisibility(View.VISIBLE);
+        }else{
+            amountpaidLinear.setVisibility(View.GONE);
+        }
         finalamount=Double.parseDouble(LocalRemittanceCashtowalletActivity.fee)+Double.parseDouble(LocalRemittanceCashtowalletActivity.amount);
 
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
