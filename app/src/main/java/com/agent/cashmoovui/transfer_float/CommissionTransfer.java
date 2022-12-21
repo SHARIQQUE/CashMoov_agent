@@ -549,7 +549,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                             "0.0",
                             "0.0",
                             data.optString("walletOwnerName"),
-                           alloctedValue
+                           alloctedValue,
+                            data.optString("minValue"),
+                            data.optString("maxValue"),
+                            data.optString("alertValue")
                     ));
 
 
@@ -582,7 +585,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
 
@@ -614,7 +620,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
                     }
@@ -648,7 +657,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
 
                             ));
                         }

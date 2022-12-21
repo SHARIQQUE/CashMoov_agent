@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -71,6 +72,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
 
     RecyclerView recyclerView;
+    private String maxvalue,minvalue,alertvalue;
 
     MyApplication applicationComponentClass;
     String languageToUse = "",select_currency_name="",select_currency_code="",select_walletType_name="",select_walletValue_name="";
@@ -88,6 +90,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     SearchAdapterTransactionDetails adpter;
     String walletCode;
     String walletTypeCode="100008";
+    private TextView viewwallet_textview;
 
 
     @Override
@@ -127,7 +130,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         cardMainWallet.setEnabled(true);
         cardCommissionWallet.setEnabled(true);
         cardOverdraftWallet.setEnabled(false);
-
+        viewwallet_textview=findViewById(R.id.viewwallet_textview);
+        viewwallet_textview.setOnClickListener(this);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
 
@@ -586,6 +590,14 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
                 callApiMiniStatementTrans(walletCode,walletTypeCode);
                 break;
+
+            case R.id.viewwallet_textview:
+                alertdialouge_viewwallet();
+
+                break;
+
+
+
 //            case R.id.imgQR:
 //                Intent intent = new Intent(TransactionHistoryBranchPage.this, ShowProfileQr.class);
 //                startActivity(intent);
@@ -686,7 +698,11 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 "0.0",
                                 data.optString("value"),
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
+
                         ));
                         //Commission Wallet
                     }
@@ -703,7 +719,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 "0.0",
                                 "0.0",
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
                         ));//Commission Wallet
                     }
 
@@ -719,7 +738,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 data.optString("value"),
                                 "0.0",
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
                         ));//oveerdraft Wallet
                     }
 
@@ -753,7 +775,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
 
@@ -785,7 +810,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
                     }
@@ -817,7 +845,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
                     }
@@ -879,6 +910,11 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     int SpinnerPos;
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
+
+        maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
+        minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+        alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
+
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
         Double main=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
@@ -1054,6 +1090,116 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         startActivity(intent);
     }
 
+
+    public void alertdialouge_viewwallet() {
+
+        try {
+
+
+            Dialog operationDialog = new Dialog(TransactionHistoryBranchPage.this);
+            operationDialog.setContentView(R.layout.alert_dialogue_viewallet);
+
+            Button closeButton;
+            TextView senderWalletOwnerCode_textview, receiverWalletOwnerCode_textview, senderName_textview, receiverName_textview, currencyName_textview, amount_textview, fee_textview, tax_textview, exchangeRate_textview, receiver_msisdn_textview,final_amount_textview, create_on_textview, status_textview;
+            closeButton = operationDialog.findViewById(R.id.closeButton);
+
+            TextView  maxvalueText=operationDialog.findViewById(R.id.maxvalueText);
+            TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
+            TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
+
+            maxvalueText.setText(maxvalue);
+            minvalueText.setText(minvalue);
+            alertvalueText.setText(alertvalue);
+
+
+
+/*
+            try {
+                // MyApplication.showloader(MainActivity.this,"Please wait!");
+                API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
+                        new Api_Responce_Handler() {
+                            @Override
+                            public void success(JSONObject jsonObject) {
+                                // MyApplication.showloader();
+                                System.out.println("MiniStatement response======="+jsonObject.toString());
+                                if (jsonObject != null) {
+
+                                    if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                        if(jsonObject.has(
+                                                "walletList") &&jsonObject.optJSONArray("walletList")!=null){
+                                            JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletList");
+                                            for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                                JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
+                                                      maxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    minvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    alertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){
+                                                    commsionmaxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    comissionminvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    comissionalertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100011")){
+                                                    creditmaxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    creditminvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    creditalertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+
+                                            }
+
+                                        }
+
+
+                                    } else {
+                                        MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
+                                    }
+                                }
+                            }
+
+
+
+
+
+                            @Override
+                            public void failure(String aFalse) {
+                                MyApplication.hideLoader();
+
+
+                            }
+                        });
+
+            } catch (Exception e) {
+
+            }
+*/
+
+
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    operationDialog.dismiss();
+                }
+            });
+            //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            operationDialog.show();
+        } catch (Exception e) {
+
+            Toast.makeText(TransactionHistoryBranchPage.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
 
 
 

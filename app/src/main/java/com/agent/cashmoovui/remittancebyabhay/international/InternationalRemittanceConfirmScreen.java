@@ -80,7 +80,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         tvSendCurrency.setText(InternationalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(InternationalRemittanceActivity.toCurrency);
         tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.amount));
-        tvConvRate.setText(MyApplication.addDecimalfiveinternatonal(InternationalRemittanceActivity.rate));
+        tvConvRate.setText(MyApplication.addDecimalfive(InternationalRemittanceActivity.rate));
         tvFee.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.fee));
         tvAmountPaid.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.currencyValue));
         tvComment.setText(InternationalRemittanceBenefiKYC.etComment.getText().toString());
@@ -97,8 +97,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
             }
             if(InternationalRemittanceActivity.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxStringnew(InternationalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
-                tax_r.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+InternationalRemittanceActivity.taxConfigurationList.optJSONObject(0).optDouble("value")));
+                tax_label.setText(MyApplication.getTaxStringnew(InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optString("taxTypeName") )+ ":");
+                tax_r.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.taxConfigList.optJSONObject(0).optDouble("value")));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
                 vat_label.setText(MyApplication.getTaxStringnew(InternationalRemittanceActivity.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
@@ -106,8 +106,10 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                 finalamount=Double.parseDouble(InternationalRemittanceActivity.fee)+Double.parseDouble(InternationalRemittanceActivity.amount)+Double.parseDouble(InternationalRemittanceActivity.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(InternationalRemittanceActivity.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
+       String val= MyApplication.getSaveString("amountchagre",getApplicationContext());
 
-        tvAmountCharged.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(""+finalamount));
+
+        tvAmountCharged.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+(""+val));
 
 
         etPin.addTextChangedListener(new TextWatcher() {

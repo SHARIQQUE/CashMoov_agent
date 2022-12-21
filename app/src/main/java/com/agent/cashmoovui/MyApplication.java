@@ -619,7 +619,7 @@ public static String addDecimal(String number) {
             DecimalFormatSymbols symbols = new DecimalFormatSymbols();
             symbols.setDecimalSeparator(',');
             symbols.setGroupingSeparator('.');
-            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.0000#", symbols);
+            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.00000#", symbols);
             data = goodNumberFormat1.format(Double.parseDouble(number));
 
         }else{

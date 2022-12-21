@@ -44,6 +44,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             tax_first_page,amountTobeCharged_first_page,tvAmtCurr,tvAmtPaidCurr,tvNext;
     private EditText edittext_amount,edittext_amount_pay;
 
+    String amountpay_temp_str="";
+
+    Double amount_reverse=0.0;
+
     private ArrayList<String> serviceProviderList = new ArrayList<>();
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
 
@@ -63,7 +67,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             spinnerDialogRecCountry,spinnerDialogRecCurr;
     private boolean isAmt=true;
     private boolean isAmtPaid=true;
-    private String amoutpayvalue,amoutpayvaluenew;
+    String amoutvalidationcheck="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,12 +207,14 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                     if (s.length() > 1) {
 
+
                         formatInput(edittext_amount, s, s.length(), s.length());
 
                         if (isAmt) {
                             edittext_amount_pay.setEnabled(false);
                             isAmtPaid = false;
                             callApiExchangeRate();
+                            amoutvalidationcheck="firstvalidation";
                         } else {
                             edittext_amount_pay.setEnabled(true);
                             isAmtPaid = true;
@@ -276,7 +282,6 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                     return;
                 }
 
-
                 if(s.length()>1) {
 
 
@@ -286,6 +291,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                         edittext_amount.setEnabled(false);
                         isAmt = false;
                         callApiExchangeRatenew();
+                        amoutvalidationcheck="secondvalidation";
+
                     } else {
                         edittext_amount.setEnabled(true);
                         isAmt = true;
@@ -299,7 +306,6 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                     //amountTobePaid_first_page.setText("");
                     amountTobeCharged_first_page.setText("");
                     edittext_amount.getText().clear();
-
                 }
 
                 isFormatting = false;
@@ -324,6 +330,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
     @Override
     public void onClick(View v) {
+
+
+
         if(spinner_provider.getText().toString().equals(getString(R.string.valid_select_provider))) {
             MyApplication.showErrorToast(internationalC,getString(R.string.plz_select_provider));
             return;
@@ -354,28 +363,32 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             return;
         }
 
-        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.RemittanceMinValue) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_min)+" "+MyApplication.RemittanceMinValue);
-            return ;
-        }
-
-        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.RemittanceMaxValue) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_max)+" "+MyApplication.RemittanceMaxValue);
-            return ;
+        if(amoutvalidationcheck.equalsIgnoreCase("firstvalidation")) {
 
 
-        }
+            if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
 
-        if(Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))<MyApplication.RemittanceMinValue) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_min)+" "+MyApplication.RemittanceMinValue);
-            return ;
-        }
-
-        if(Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))>MyApplication.RemittanceMaxValue) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount_max)+" "+MyApplication.RemittanceMaxValue);
-            return ;
+            if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
 
 
+            }
+        }else {
+            if (Double.parseDouble(amountpay_temp_str.replace(",", "")) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
+
+            if (Double.parseDouble(amountpay_temp_str.replace(",", "")) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
+
+
+            }
         }
 
         Intent i = new Intent(internationalC, InternationalRemittanceSenderKYC.class);
@@ -860,7 +873,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(MyApplication.addDecimalfiveinternatonal(rate));
+                                        convertionRate_first_page.setText(MyApplication.addDecimalfive(rate));
                                         fees_first_page.setText(MyApplication.addDecimal(fee+""));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
@@ -880,11 +893,12 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
                                                     + taxConfigurationList.optJSONObject(0).optDouble("value")+
                                                     jsonObjectAmountDetails.optDouble("fee"))));
-
+                                          MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
+                                            MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
 
@@ -892,6 +906,106 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             taxConfigurationList=null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
+                                            MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
+
+                                        }
+                                        tvNext.setEnabled(true);
+                                    }
+                                } else {
+                                    tvNext.setEnabled(false);
+                                    MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+
+    }
+
+    private void callApiExchangeRate_again() {
+        try {
+
+
+
+
+            //MyApplication.showloader(cashinC, "Please wait!");
+            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
+                            sendCurrencyModelList.get((Integer) spinner_senderCurrency.getTag()).getCurrencyCode()
+                            +"&receiveCurrencyCode="+recCurrencyModelList.get((Integer) spinner_receiverCurrency.getTag()).getCurrencyCode()
+                            +"&sendCountryCode="+ sendCountryCode+
+                            "&receiveCountryCode="+recCountryCode
+                            +"&currencyValue="+ amountpay_temp_str + "&channelTypeCode="+MyApplication.channelTypeCode+
+                            "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
+                            "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
+                            + "&serviceProviderCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
+                            + "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", internationalC),
+
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            // MyApplication.hideLoader();
+                            System.out.println("International response======="+jsonObject.toString());
+                            if (jsonObject != null) {
+                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                                    if(edittext_amount.getText().toString().trim().replace(",","").length()>0) {
+                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
+
+                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
+                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
+                                        rate = jsonObjectAmountDetails.optString("value");
+                                        exRateCode = jsonObjectAmountDetails.optString("code");
+                                        //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
+                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
+                                        //etAmountNew.setText(currencyValue);
+                                        convertionRate_first_page.setText(MyApplication.addDecimalfive(rate));
+                                        fees_first_page.setText(MyApplication.addDecimal(fee+""));
+
+                                        //  edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue)); // annu
+
+
+                                        amount = edittext_amount.getText().toString().trim().replace(",","");
+
+
+//                                    int tax = receiverFee+receiverTax;
+//                                    if(currencyValue<tax){
+//                                        tvSend.setVisibility(View.GONE);
+//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
+//                                    }else{
+//                                        tvSend.setVisibility(View.VISIBLE);
+//                                    }
+
+                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                            tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(amountpay_temp_str)
+                                                    + taxConfigurationList.optJSONObject(0).optDouble("value")+
+                                                    jsonObjectAmountDetails.optDouble("fee"))));
+                                            MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
+
+
+                                        } else {
+                                            taxConfigurationList = null;
+                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(amountpay_temp_str)));
+                                            MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
+
+                                        }
+
+                                        if(jsonObjectAmountDetails.has("receiverTax")) {
+                                            taxConfigurationList=null;
+                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(amountpay_temp_str)));
+                                            MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
                                         tvNext.setEnabled(true);
@@ -949,36 +1063,30 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(MyApplication.addDecimalfiveinternatonal(rate));
+
+
+                                        //  convertionRate_first_page.setText(MyApplication.addDecimalthreenew(rate));
                                         //  fees_first_page.setText(MyApplication.addDecimal(fee+""));
+
+
                                         Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
 
-                                        amoutpayvalue=MyApplication.addDecimal(amountpay+"");
-                                        //  edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
+                                        try {
+
+
+                                            Double amountpay_temp_double = Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",","")) / Double.parseDouble(rate);
+                                            amountpay_temp_str = df.format(amountpay_temp_double);
 
 
 
-                                        System.out.println("get amoun"+amoutpayvalue);
-                                        String val=amoutpayvalue.replace(".","").replace(",",".").trim();
-                                        System.out.println("get val"+val);
-                                        edittext_amount.setText(val);
-                                       // edittext_amount.setText(((amoutpayvalue.replace(".","").replace(",","."))));
 
-                                        // edittext_amount.setText((amoutpayvalue));
-                                       // amount = edittext_amount.getText().toString().trim().replace(",","");
+                                            edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
 
-                                      //  amoutpayvalue=amountpay+"";
-
-
-                                     //   amoutpayvaluenew = amoutpayvalue.replace(",", "");
-
-
-                                        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
-                                            callApiExchangeRatenewlastinfr();
-
-                                        }else{
-                                            callApiExchangeRatenewlast();
-
+                                            amount = edittext_amount.getText().toString().trim().replace(",","");
+                                        }
+                                        catch (Exception e)
+                                        {
+                                            e.printStackTrace();
                                         }
 
 //                                    int tax = receiverFee+receiverTax;
@@ -989,103 +1097,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
-                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                            //  tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
-                                                    + taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                    jsonObjectAmountDetails.optDouble("fee"))));
-
-                                        } else {
-                                            taxConfigurationList = null;
-                                            //  tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            //  amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
-
-                                        }
-
-                                        if(jsonObjectAmountDetails.has("receiverTax")) {
-                                            taxConfigurationList=null;
-                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
-
-                                        }
-                                        tvNext.setEnabled(true);
-                                    }
-                                } else {
-                                    tvNext.setEnabled(false);
-                                    MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-    private void callApiExchangeRatenewlast() {
-        try {
-
-            double d = Double.parseDouble(amoutpayvalue); // returns double primitive
-            System.out.println("get d"+d);
-            //MyApplication.showloader(cashinC, "Please wait!");
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
-                            sendCurrencyModelList.get((Integer) spinner_senderCurrency.getTag()).getCurrencyCode()
-                            +"&receiveCurrencyCode="+recCurrencyModelList.get((Integer) spinner_receiverCurrency.getTag()).getCurrencyCode()
-                            +"&sendCountryCode="+ sendCountryCode+
-                            "&receiveCountryCode="+recCountryCode +
-
-                            "&currencyValue="+ d + "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
-                            "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
-                            + "&serviceProviderCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
-                            + "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", internationalC),
-
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
-                            System.out.println("International response======="+jsonObject.toString());
-                            if (jsonObject != null) {
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    if(edittext_amount_pay.getText().toString().trim().replace(",","").length()>0) {
-                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
-
-                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                        rate = jsonObjectAmountDetails.optString("value");
-                                        exRateCode = jsonObjectAmountDetails.optString("code");
-                                        receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                        //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(MyApplication.addDecimalfiveinternatonal(rate));
-                                        fees_first_page.setText(MyApplication.addDecimal(fee+""));
-                                       /* Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
-                                        amoutpayvalue=MyApplication.addDecimal(amountpay+"");
-                                        edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
-
-
-                                        System.out.println("get amout pay"+amoutpayvalue);
-*/                                        amount = edittext_amount.getText().toString().trim().replace(",","");
-
-
-//                                    int tax = receiverFee+receiverTax;
-//                                    if(currencyValue<tax){
-//                                        tvSend.setVisibility(View.GONE);
-//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
-//                                    }else{
-//                                        tvSend.setVisibility(View.VISIBLE);
-//                                    }
-
-                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
+  /*                                      if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
@@ -1105,6 +1117,13 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
 
                                         }
+
+   */
+
+
+
+                                        callApiExchangeRate_again();
+
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
@@ -1127,110 +1146,6 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
 
     }
-
-    private void callApiExchangeRatenewlastinfr() {
-        try {
-            //MyApplication.showloader(cashinC, "Please wait!");
-
-
-
-
-            API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
-                            sendCurrencyModelList.get((Integer) spinner_senderCurrency.getTag()).getCurrencyCode()
-                            +"&receiveCurrencyCode="+recCurrencyModelList.get((Integer) spinner_receiverCurrency.getTag()).getCurrencyCode()
-                            +"&sendCountryCode="+ sendCountryCode+
-                            "&receiveCountryCode="+recCountryCode +
-
-                            "&currencyValue="+ amoutpayvalue.replace(".","").replace(",",".") + "&channelTypeCode="+MyApplication.channelTypeCode+
-                            "&serviceCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode")+
-                            "&serviceCategoryCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode")
-                            + "&serviceProviderCode=" + serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code")
-                            + "&walletOwnerCode=" + MyApplication.getSaveString("walletOwnerCode", internationalC),
-
-                    new Api_Responce_Handler() {
-                        @Override
-                        public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
-                            System.out.println("International response======="+jsonObject.toString());
-                            if (jsonObject != null) {
-                                if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-                                    if(edittext_amount_pay.getText().toString().trim().replace(",","").length()>0) {
-                                        JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("exchangeRate");
-
-                                        currencyValue = df.format(jsonObjectAmountDetails.optDouble("currencyValue"));
-                                        fee = df.format(jsonObjectAmountDetails.optDouble("fee"));
-                                        rate = jsonObjectAmountDetails.optString("value");
-                                        exRateCode = jsonObjectAmountDetails.optString("code");
-                                        receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
-                                        //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
-                                        //etAmountNew.setText(currencyValue);
-                                        convertionRate_first_page.setText(MyApplication.addDecimalfiveinternatonal(rate));
-                                        fees_first_page.setText(MyApplication.addDecimal(fee+""));
-                                        Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
-                                        amoutpayvalue=amountpay+"";
-                                       // edittext_amount.setText(MyApplication.addDecimal(amoutpayvalue+""));
-
-                                     /*   amoutpayvaluenew = amoutpayvalue.replace(",", "");
-
-                                        DecimalFormat df = new DecimalFormat("#.####");
-                                        System.out.println("get vafff"+amoutpayvaluenew);
-
-*/
-                                       // System.out.println("get amout pay"+amoutpayvalue);
-                                        amount = edittext_amount.getText().toString().trim().replace(",","");
-
-
-//                                    int tax = receiverFee+receiverTax;
-//                                    if(currencyValue<tax){
-//                                        tvSend.setVisibility(View.GONE);
-//                                        MyApplication.showErrorToast(tononsubscriberC,getString(R.string.fee_tax_greater_than_trans_amt));
-//                                    }else{
-//                                        tvSend.setVisibility(View.VISIBLE);
-//                                    }
-
-                                        if (jsonObjectAmountDetails.has("taxConfigurationList")) {
-                                            taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
-                                            tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
-                                                    + taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                    jsonObjectAmountDetails.optDouble("fee"))));
-
-                                        } else {
-                                            taxConfigurationList = null;
-                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
-
-                                        }
-
-                                        if(jsonObjectAmountDetails.has("receiverTax")) {
-                                            taxConfigurationList=null;
-                                            tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
-
-                                        }
-                                        tvNext.setEnabled(true);
-                                    }
-                                } else {
-                                    tvNext.setEnabled(false);
-                                    MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void failure(String aFalse) {
-                            MyApplication.hideLoader();
-
-                        }
-                    });
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-
 
     private boolean isFormatting;
     private int prevCommaAmount;
@@ -1240,9 +1155,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             return;
         }
 
-//       if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
-//            return;
-//        }
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            return;
+        }
         isFormatting = true;
 
         StringBuilder sbResult = new StringBuilder();

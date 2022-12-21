@@ -300,6 +300,7 @@
             android:fontFamily="@font/aileron_bold"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:textColor="@color/textColorDBlack"
             android:text="@string/Commisionwallet"
             android:gravity="center" />
@@ -310,6 +311,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 
@@ -351,6 +353,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 
@@ -392,6 +395,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_5sdp">
 
@@ -430,139 +434,10 @@
         </LinearLayout>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_16sdp"
-            android:fontFamily="@font/aileron_bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/textColorDBlack"
-            android:text="@string/Creditlimit"
-            android:gravity="center" />
-
-        <LinearLayout
-            android:gravity="left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/_5sdp">
 
 
-            <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content"
-                android:text="@string/maxvaluewallet"
-                android:textColor="#000"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/aileron_semibold"
-                android:layout_marginLeft="@dimen/_5sdp"/>
-
-            <TextView
-                android:id="@+id/creditmaxvalueText"
-                android:layout_width="0dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_weight=".5"
-                android:fontFamily="@font/aileron_bold"
-                android:textColor="#000"
-                android:textSize="@dimen/_12sdp" />
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:gravity="left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/_5sdp">
-
-
-            <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content"
-                android:text="@string/minvaluewallet"
-                android:textColor="#000"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/aileron_semibold"
-                android:layout_marginLeft="@dimen/_5sdp"/>
-
-            <TextView
-                android:id="@+id/creditminvalueText"
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/aileron_bold"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:textColor="#000"
-                />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:gravity="left"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/_5sdp">
-
-
-            <ImageView
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
-                />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content"
-                android:text="@string/alertvalue"
-                android:textColor="#000"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/aileron_semibold"
-                android:layout_marginLeft="@dimen/_5sdp"/>
-
-            <TextView
-                android:id="@+id/creditalertvalueText"
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/aileron_bold"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:textColor="#000"
-                />
-
-
-        </LinearLayout>
 
 
         <LinearLayout

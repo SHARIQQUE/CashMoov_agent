@@ -96,6 +96,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     TextView tvRefresh,tvView,tvViewHide;
     private NestedScrollView nestedSV;
     private ProgressBar loadingPB;
+    private String maxvalue,minvalue,alertvalue;
     int page = 0, limit = 20;
 
 
@@ -878,8 +879,12 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 "0.0",
                                 data.optString("value"),
                                 data.optString("walletOwnerName"),
-                                alloctedValue
-                        ));
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
+
+                                ));
                         //Commission Wallet
                     }
 
@@ -895,7 +900,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 "0.0",
                                 "0.0",
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
+
                         ));//Commission Wallet
                     }
 
@@ -911,7 +920,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 data.optString("value"),
                                 "0.0",
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
+
                         ));//oveerdraft Wallet
                     }
 
@@ -945,9 +958,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
 
-                                    ));
+
+                            ));
                         }
 
                     }
@@ -978,7 +995,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
+
 
                             ));
                         }
@@ -1012,7 +1033,11 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
+
                             ));
                         }
                     }
@@ -1080,6 +1105,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
+
+         maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
+         minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+         alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
 
         mainwallet_textview.setText(MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
         " / "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
@@ -1289,18 +1318,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
             TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
 
-
-            TextView  commsionmaxvalueText=operationDialog.findViewById(R.id.commisionmaxvalueText);
-            TextView  comissionminvalueText=operationDialog.findViewById(R.id.comissionminvalueText);
-            TextView  comissionalertvalueText=operationDialog.findViewById(R.id.comissionalertvalueText);
-
+            maxvalueText.setText(maxvalue);
+            minvalueText.setText(minvalue);
+            alertvalueText.setText(alertvalue);
 
 
-            TextView  creditmaxvalueText=operationDialog.findViewById(R.id.creditmaxvalueText);
-            TextView  creditminvalueText=operationDialog.findViewById(R.id.creditminvalueText);
-            TextView  creditalertvalueText=operationDialog.findViewById(R.id.creditalertvalueText);
 
-
+/*
             try {
                 // MyApplication.showloader(MainActivity.this,"Please wait!");
                 API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
@@ -1368,6 +1392,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             } catch (Exception e) {
 
             }
+*/
 
 
             closeButton.setOnClickListener(new View.OnClickListener() {

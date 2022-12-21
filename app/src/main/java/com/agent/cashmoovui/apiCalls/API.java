@@ -3891,6 +3891,8 @@ public class API {
     }
 
 
+
+
     public static void PUT(String URL, JSONObject jsonObject, final Api_Responce_Handler responce_handler){
         if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
@@ -3920,7 +3922,7 @@ public class API {
                         public void onResponse(JSONObject response) {
                             MyApplication.hideLoader();
                             responce_handler.success(response);
-                            Log.d(TAG, "onResponse object : " + response.toString());
+                            Log.d(TAG, "onResponse sonu object : " + response.toString());
                         }
 
                         @Override

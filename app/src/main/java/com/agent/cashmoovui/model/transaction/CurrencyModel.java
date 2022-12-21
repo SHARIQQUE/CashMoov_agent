@@ -13,6 +13,9 @@ public class CurrencyModel {
     public String mainWalletValue;
     public String walletOwnerName;
     public String allocatedValue;
+    public String minValue;
+    public String maxValue;
+    public String alertValue;
 
     public String getWalletOwnerName() {
         return walletOwnerName;
@@ -39,7 +42,7 @@ public class CurrencyModel {
                 '}';
     }
 
-    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName, String allocatedValue) {
+    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName, String allocatedValue,String maxValue,String minValue,String alertValue) {
         this.code = code;
         Ccode = ccode;
         Ocode = ocode;
@@ -51,6 +54,34 @@ public class CurrencyModel {
         this.mainWalletValue = mainWalletValue;
         this.walletOwnerName = walletOwnerName;
         this.allocatedValue = allocatedValue;
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+        this.alertValue = alertValue;
+
+    }
+
+    public String getMinValue() {
+        return minValue;
+    }
+
+    public void setMinValue(String minValue) {
+        this.minValue = minValue;
+    }
+
+    public String getMaxValue() {
+        return maxValue;
+    }
+
+    public void setMaxValue(String maxValue) {
+        this.maxValue = maxValue;
+    }
+
+    public String getAlertValue() {
+        return alertValue;
+    }
+
+    public void setAlertValue(String alertValue) {
+        this.alertValue = alertValue;
     }
 
     public String getAllocatedValue() {

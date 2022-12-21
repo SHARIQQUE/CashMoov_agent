@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -88,12 +89,14 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     ArrayList<String> arrayList_walletTypeName = new ArrayList<String>();
     ArrayList<String> arrayList_wallet_value = new ArrayList<String>();
+    private String maxvalue,minvalue,alertvalue;
 
     TextView t1,insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
     TextView spinner_currency;
     private SpinnerDialog spinnerDialogCurrency;
 
+    private TextView viewwallet_textview;
 
     SearchAdapterTransactionDetails adpter;
     String walletCode;
@@ -131,7 +134,8 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         cardMainWallet.setOnClickListener(this);
         cardCommissionWallet.setOnClickListener(this);
         cardOverdraftWallet.setOnClickListener(this);
-
+        viewwallet_textview=findViewById(R.id.viewwallet_textview);
+        viewwallet_textview.setOnClickListener(this);
         cardMainWallet.setEnabled(true);
         cardCommissionWallet.setEnabled(true);
         cardOverdraftWallet.setEnabled(false);
@@ -594,6 +598,12 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 //                startActivity(intent);
 //                break;
 
+            case R.id.viewwallet_textview:
+                alertdialouge_viewwallet();
+
+                break;
+
+
             case R.id.search_imageView:
 
                // Toast.makeText(TransactionHistoryMainPage.this, "---------search_imageView-------", Toast.LENGTH_LONG).show();
@@ -689,7 +699,11 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 "0.0",
                                 data.optString("value"),
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
+
                         ));
                         //Commission Wallet
                     }
@@ -706,7 +720,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 "0.0",
                                 "0.0",
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
                         ));//Commission Wallet
                     }
 
@@ -722,7 +739,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 data.optString("value"),
                                 "0.0",
                                 data.optString("walletOwnerName"),
-                                alloctedValue
+                                alloctedValue,
+                                data.optString("minValue"),
+                                data.optString("maxValue"),
+                                data.optString("alertValue")
                         ));//oveerdraft Wallet
                     }
 
@@ -756,7 +776,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
 
@@ -789,7 +812,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     data.optString("walletOwnerName")
                                     ,
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
                     }
@@ -821,7 +847,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    alloctedValue
+                                    alloctedValue,
+                                    data.optString("minValue"),
+                                    data.optString("maxValue"),
+                                    data.optString("alertValue")
                             ));
                         }
                     }
@@ -862,6 +891,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
             {
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
                 setSelctionCurrency(i);
+
                 MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
             }
         }
@@ -882,6 +912,11 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     DecimalFormat df = new DecimalFormat("0.00",symbols);
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
+
+        maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
+        minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+        alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
+
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
 
@@ -1062,6 +1097,117 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
         startActivity(intent);
     }
 
+
+
+    public void alertdialouge_viewwallet() {
+
+        try {
+
+
+            Dialog operationDialog = new Dialog(TransactionHistoryAgentPage.this);
+            operationDialog.setContentView(R.layout.alert_dialogue_viewallet);
+
+            Button closeButton;
+            TextView senderWalletOwnerCode_textview, receiverWalletOwnerCode_textview, senderName_textview, receiverName_textview, currencyName_textview, amount_textview, fee_textview, tax_textview, exchangeRate_textview, receiver_msisdn_textview,final_amount_textview, create_on_textview, status_textview;
+            closeButton = operationDialog.findViewById(R.id.closeButton);
+
+            TextView  maxvalueText=operationDialog.findViewById(R.id.maxvalueText);
+            TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
+            TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
+
+            maxvalueText.setText(maxvalue);
+            minvalueText.setText(minvalue);
+            alertvalueText.setText(alertvalue);
+
+
+
+/*
+            try {
+                // MyApplication.showloader(MainActivity.this,"Please wait!");
+                API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
+                        new Api_Responce_Handler() {
+                            @Override
+                            public void success(JSONObject jsonObject) {
+                                // MyApplication.showloader();
+                                System.out.println("MiniStatement response======="+jsonObject.toString());
+                                if (jsonObject != null) {
+
+                                    if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                                        if(jsonObject.has(
+                                                "walletList") &&jsonObject.optJSONArray("walletList")!=null){
+                                            JSONArray walletOwnerListArr = jsonObject.optJSONArray("walletList");
+                                            for (int i = 0; i < walletOwnerListArr.length(); i++) {
+                                                JSONObject data = walletOwnerListArr.optJSONObject(i);
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100008")){
+                                                      maxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    minvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    alertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100009")){
+                                                    commsionmaxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    comissionminvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    comissionalertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+                                                if(data.optString("walletTypeCode").equalsIgnoreCase("100011")){
+                                                    creditmaxvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("maxTransValue")))));
+                                                    creditminvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("minTransValue")))));
+                                                    creditalertvalueText.setText(MyApplication.addDecimal(String.valueOf((data.optDouble("alertValue")))));
+
+
+                                                }
+
+
+                                            }
+
+                                        }
+
+
+                                    } else {
+                                        MyApplication.showToast(TransactionHistoryMainPage.this,jsonObject.optString("resultDescription"));
+                                    }
+                                }
+                            }
+
+
+
+
+
+                            @Override
+                            public void failure(String aFalse) {
+                                MyApplication.hideLoader();
+
+
+                            }
+                        });
+
+            } catch (Exception e) {
+
+            }
+*/
+
+
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    operationDialog.dismiss();
+                }
+            });
+            //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            operationDialog.show();
+        } catch (Exception e) {
+
+            Toast.makeText(TransactionHistoryAgentPage.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
 
 
 }

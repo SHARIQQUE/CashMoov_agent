@@ -413,6 +413,7 @@ public class BranchKYCAttached extends AppCompatActivity implements View.OnClick
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
                         if (jsonObject != null) {
+                            System.out.println("get json"+jsonObject);
                             if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                                 //MyApplication.showToast(getString(R.string.document_upload_msg));
                                 documentUploadJsonObj=jsonObject;

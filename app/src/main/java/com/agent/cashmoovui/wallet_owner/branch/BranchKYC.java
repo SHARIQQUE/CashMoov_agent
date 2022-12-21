@@ -741,6 +741,10 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                     try {
 
+
+                        System.out.println("get jsonob"+jsonObject);
+
+                        MyApplication.saveString("JsonObject",jsonObject.toString(),BranchKYC.this);
                         arrayList_modalDetailsnew = new ArrayList<>();
 
                         arraylistAgentStr=new ArrayList<>();
@@ -816,6 +820,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                             }
 
                                             arrayList_modalDetailsnew.add(userDetailAgent);
+
+                                            System.out.println("get list"+arrayList_modalDetailsnew);
 
                                         }
 
@@ -1469,34 +1475,34 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     }
 
     public static JSONObject walletOwnerJson=new JSONObject();
-    public void callRegisterApi(JSONObject jsonObject){
+        public void callRegisterApi(JSONObject jsonObject){
 
-        MyApplication.showloader(branchkycC,"Please wait...");
-        API.POST_REQEST_REGISTER("ewallet/api/v1/walletOwner/branch", jsonObject, new Api_Responce_Handler() {
-            @Override
-            public void success(JSONObject jsonObject) {
-                MyApplication.hideLoader();
-                System.out.println("BranchKYC response======="+jsonObject.toString());
-                if(jsonObject!=null){
-                    if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                        branchWalletOwnerCode = jsonObject.optString("walletOwnerCode");
-                        MyApplication.UserMobile=etPhone.getText().toString().trim();
-                        callApiAddBranchAddress(branchWalletOwnerCode);
-                    }else{
-                        MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription"));
+            MyApplication.showloader(branchkycC,"Please wait...");
+            API.POST_REQEST_REGISTER("ewallet/api/v1/walletOwner/branch", jsonObject, new Api_Responce_Handler() {
+                @Override
+                public void success(JSONObject jsonObject) {
+                    MyApplication.hideLoader();
+                    System.out.println("BranchKYC response======="+jsonObject.toString());
+                    if(jsonObject!=null){
+                        if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
+                            branchWalletOwnerCode = jsonObject.optString("walletOwnerCode");
+                            MyApplication.UserMobile=etPhone.getText().toString().trim();
+                            callApiAddBranchAddress(branchWalletOwnerCode);
+                        }else{
+                            MyApplication.showToast(branchkycC,jsonObject.optString("resultDescription"));
+                        }
+
                     }
-
                 }
-            }
 
-            @Override
-            public void failure(String aFalse) {
-                MyApplication.hideLoader();
-                MyApplication.showToast(branchkycC,aFalse);
-            }
+                @Override
+                public void failure(String aFalse) {
+                    MyApplication.hideLoader();
+                    MyApplication.showToast(branchkycC,aFalse);
+                }
 
-        });
-    }
+            });
+        }
 
     private void callApiAddBranchAddress(String branchWalletOwnerCode) {
         try{
