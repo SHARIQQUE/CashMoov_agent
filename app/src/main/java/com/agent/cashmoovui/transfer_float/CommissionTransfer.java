@@ -948,6 +948,9 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                     MyApplication.hideLoader();
 
+                    tv_nextClick.setClickable(true);
+
+
                     try {
 
 
@@ -991,6 +994,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
+                    tv_nextClick.setClickable(true);
+
 
                     if (aFalse.equalsIgnoreCase("1251")) {
                         Intent i = new Intent(CommissionTransfer.this, VerifyLoginAccountScreen.class);
@@ -1023,6 +1028,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                 if (validation_mobile_Details()) {
 
+                    tv_nextClick.setClickable(false);
 
                     if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 

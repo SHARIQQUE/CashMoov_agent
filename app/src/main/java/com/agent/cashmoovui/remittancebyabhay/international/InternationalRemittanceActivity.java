@@ -131,6 +131,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
         edittext_amount.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.amountLength)});
+
+
+        edittext_amount_pay.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -878,6 +882,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
 
+                                        System.out.println("get amount sdf"+amount);
+
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -974,7 +980,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
 
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
-
+                                        System.out.println("get amount sdf"+amount);
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -1076,6 +1082,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                                             Double amountpay_temp_double = Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",","")) / Double.parseDouble(rate);
                                             amountpay_temp_str = df.format(amountpay_temp_double);
+                                            System.out.println("get abhi"+amountpay);
+
+                                            MyApplication.saveString("amount",edittext_amount.getText().toString(),getApplicationContext());
 
 
 

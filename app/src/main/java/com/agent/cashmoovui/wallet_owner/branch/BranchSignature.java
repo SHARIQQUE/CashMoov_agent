@@ -358,6 +358,8 @@ public class BranchSignature extends AppCompatActivity implements View.OnClickLi
 
 
                                     JSONObject jsonObject1=jsonObject_walletOwner;
+                                    jsonObject1.put("state","U");
+                                    jsonObject1.put("status","N");
 
                                     callApiWalletListput(jsonObject1);
 

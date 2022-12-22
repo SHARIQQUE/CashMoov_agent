@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 05-12-2022</string>
+    <string name="version">Version : 22-12-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -940,6 +940,7 @@
     <string name="Commisionwallet">Commision wallet</string>
     <string name="Viewwallet">View wallet</string>
     <string name="Creditlimit">Credit limit</string>
+    <string name="subscriberpin">Subscriber PIN :</string>
 
 </resources>
 

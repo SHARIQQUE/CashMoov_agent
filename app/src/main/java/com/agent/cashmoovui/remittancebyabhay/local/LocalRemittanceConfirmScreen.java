@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -201,6 +202,8 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
             case R.id.btnConfirm:
                 if(pinlinear.getVisibility()==View.VISIBLE) {
 
+
+
                     if (etPin.getText().toString().trim().isEmpty()) {
                         MyApplication.showErrorToast(LocalRemittanceConfirmScreen.this, getString(R.string.val_pin));
                         return;
@@ -210,7 +213,10 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                         return;
                     }
 
-                    btnConfirm.setVisibility(View.GONE);
+                    btnConfirm.setEnabled(false);
+                    Log.d("click","1");
+
+                    //  btnConfirm.setVisibility(View.GONE);
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
                     try {
@@ -319,6 +325,8 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                     @Override
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
+
+                        btnConfirm.setEnabled(true);
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                             MyApplication.showToast(localremitconfirmC,jsonObject.optString("resultDescription"));
                             receiptJson=jsonObject;
@@ -344,6 +352,8 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                     public void failure(String aFalse) {
                         MyApplication.hideLoader();
                         etPin.setClickable(true);
+                        btnConfirm.setEnabled(true);
+
                         btnConfirm.setVisibility(View.VISIBLE);
                     }
                 });

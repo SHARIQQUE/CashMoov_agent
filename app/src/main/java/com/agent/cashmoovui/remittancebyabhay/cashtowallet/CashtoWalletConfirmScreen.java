@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -197,7 +198,8 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                 }
                 try {
                     etPin.setClickable(false);
-                    btnConfirm.setVisibility(View.GONE);
+                    btnConfirm.setEnabled(false);;
+                    Log.d("click","1");
                     String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
                         remitJson.put("walletOwnerCode",tvAgentCode.getText().toString());
@@ -259,6 +261,8 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                     @Override
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
+                        btnConfirm.setEnabled(true);
+
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                             MyApplication.showToast(cashtowalletconfirmC,jsonObject.optString("resultDescription"));
                             receiptJson=jsonObject;
@@ -284,6 +288,8 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                     public void failure(String aFalse) {
                         MyApplication.hideLoader();
                         etPin.setClickable(true);
+                        btnConfirm.setEnabled(true);
+
                         btnConfirm.setVisibility(View.VISIBLE);
                     }
                 });

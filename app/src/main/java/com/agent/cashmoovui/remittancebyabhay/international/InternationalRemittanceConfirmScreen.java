@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -75,11 +76,14 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
         String nameOwner=MyApplication.getSaveString("FIRSTNAME_USERINFO", internationalremitconfirmC)+
                 MyApplication.getSaveString("LASTNAME_USERINFO", internationalremitconfirmC);
         tvAgentCode.setText(nameOwner);
+
+     String transctionamout=MyApplication.getSaveString("amount",getApplicationContext());
+
         tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
         tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
         tvSendCurrency.setText(InternationalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(InternationalRemittanceActivity.toCurrency);
-        tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.amount));
+        tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+transctionamout);
         tvConvRate.setText(MyApplication.addDecimalfive(InternationalRemittanceActivity.rate));
         tvFee.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.fee));
         tvAmountPaid.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.currencyValue));
@@ -190,6 +194,9 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                             MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_valid_pin));
                             return;
                         }
+
+                        btnConfirm.setEnabled(false);
+                        Log.d("click","1");
 
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
@@ -307,6 +314,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                     @Override
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
+                        btnConfirm.setEnabled(true);
+
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                             MyApplication.showToast(internationalremitconfirmC,jsonObject.optString("resultDescription"));
                             receiptJson=jsonObject;
@@ -326,6 +335,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                         }else{
                             etPin.setClickable(true);
                             btnConfirm.setVisibility(View.VISIBLE);
+
                             MyApplication.showToast(internationalremitconfirmC,jsonObject.optString("resultDescription"));
                         }
                     }
@@ -334,6 +344,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                     public void failure(String aFalse) {
                         MyApplication.hideLoader();
                         etPin.setClickable(true);
+                        btnConfirm.setEnabled(true);
+
                         btnConfirm.setVisibility(View.VISIBLE);
                     }
                 });

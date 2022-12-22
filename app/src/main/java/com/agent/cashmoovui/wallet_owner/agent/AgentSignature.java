@@ -17,6 +17,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -24,6 +26,7 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
+import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
 import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
@@ -89,9 +92,12 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
         });
 
         setOnCLickListener();
+        callApiWalletList();
 
 
     }
+
+
 
     private void setOnCLickListener() {
         btnClear.setOnClickListener(agentsignatureC);
@@ -324,5 +330,124 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    private void callApiWalletList() {
+        try {
+            // MyApplication.showloader(MainActivity.this,"Please wait!");
+            API.GET("ewallet/api/v1/walletOwner/agent/"+ AgentKYC.agentWalletOwnerCode,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            System.out.println("MiniStatement response======="+jsonObject.toString());
+                            // walletownercode=MyApplication.getSaveString("walletOwnerCode", getApplicationContext());
+
+
+                            try {
+
+
+                                //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
+
+
+                                String resultCode = jsonObject.getString("resultCode");
+                                String resultDescription = jsonObject.getString("resultDescription");
+
+                                if (resultCode.equalsIgnoreCase("0")) {
+
+                                    JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+
+
+                                    JSONObject jsonObject1=jsonObject_walletOwner;
+                                    jsonObject1.put("state","U");
+                                    jsonObject1.put("status","N");
+
+                                    callApiWalletListput(jsonObject1);
+
+
+                                    System.out.println("get json soneeeee"+jsonObject1);
+
+
+                                } else {
+                                    Toast.makeText(AgentSignature.this, resultDescription, Toast.LENGTH_LONG).show();
+                                }
+
+
+                            } catch (Exception e) {
+                                Toast.makeText(AgentSignature.this, e.toString(), Toast.LENGTH_LONG).show();
+                                e.printStackTrace();
+                                finish();
+
+                            }
+
+
+
+
+
+                                            /*   tvName.setText(data.optString("walletOwnerName"));
+                                                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+                                                    DecimalFormat df = new DecimalFormat("0.00",symbols);
+                                                    tvBalance.setText(	MyApplication.addDecimal(""+data.optDouble("value")) + " " + data.optString("currencySymbol"));
+                                                    System.out.println("get value"+data.optString("value"));
+*/
+
+
+
+
+
+
+
+                        }
+
+
+
+
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
+
+    private void callApiWalletListput(JSONObject jsonObject) {
+
+
+
+        API.PUT("ewallet/api/v1/walletOwner/branch/"+AgentKYC.agentWalletOwnerCode, jsonObject, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+                // MyApplication.hideLoader();
+
+                System.out.println("final response======="+jsonObject.toString());
+
+                if (jsonObject != null) {
+                    if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
+                        //MyApplication.showToast(getString(R.string.address_add_msg));
+
+
+                    }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
+                        MyApplication.showToast(AgentSignature.this,getString(R.string.technical_failure));
+                    } else {
+                        MyApplication.showToast(AgentSignature.this,jsonObject.optString("resultDescription", "N/A"));
+                    }
+                }
+            }
+
+            @Override
+            public void failure(String aFalse) {
+
+            }
+        });
+
+
+
+    }
 
 }

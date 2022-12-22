@@ -60,6 +60,8 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CashOutAgent extends AppCompatActivity implements View.OnClickListener {
 
@@ -78,6 +80,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     String currencySymbol_sender="";
     String mobilelength,currencySymbol_receiver="";
+    boolean flag=true;
 
 
     TextView taxvalueText,tvAmtCurr,tvContinue,tv_nextClick, rp_tv_senderName, rp_tv_mobileNumber, rp_tv_businessType, rp_tv_email, rp_tv_country, rp_tv_receiverName,receiptPage_tv_financialtaxvalue, rp_tv_transactionAmount, rp_tv_fees_reveiewPage, receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
@@ -90,7 +93,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     String selectClickType="",desWalletOwnerCode_from_currency="";
 
     MyApplication applicationComponentClass;
+    public String  clickbutton="1";
     String languageToUse = "";
+    private TextView subscriberText;
 
     EditText edittext_mobileNuber, edittext_amount, et_mpin, et_otp;
 
@@ -154,9 +159,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
-            edittext_mobileNuber.setFilters(new InputFilter[] {
+            subscriberText=findViewById(R.id.subscriberText);
+         /*   edittext_mobileNuber.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-
+*/
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
@@ -208,8 +214,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                     }
-                        if(s.length()<=9){
-                            etName.setText("");
+                    if(s.length()<=9){
+                        etName.setText("");
 
 
 
@@ -280,17 +286,18 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
             confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
 
-             tvFinger =findViewById(R.id.tvFinger);
+            tvFinger =findViewById(R.id.tvFinger);
             if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
                 if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
                     //tvFinger.setVisibility(View.VISIBLE);
                 } else {
-                   // tvFinger.setVisibility(View.GONE);
+                    // tvFinger.setVisibility(View.GONE);
                 }
             }else{
-               // tvFinger.setVisibility(View.VISIBLE);
+                // tvFinger.setVisibility(View.VISIBLE);
             }
             tvFinger.setVisibility(View.GONE);
+/*
             tvFinger.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -325,6 +332,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     });
                 }
             });
+*/
 
 
             //    Receipt page
@@ -366,11 +374,30 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             ll_resendOtp.setOnClickListener(this);
 //nn
             confirm_reviewClick_textview.setText(getString(R.string.otp_verification));
-             selectClickType="select_otp";
-          //  agent_details_api_walletownerUser();
+            selectClickType="select_otp";
+            //  agent_details_api_walletownerUser();
 
 
 
+
+
+
+
+            et_otp.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable s) {}
+
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start,
+                                          int before, int count) {
+                    if(s.length() >= 6)
+                        MyApplication.hideKeyboard(CashOutAgent.this);            }
+            });
 
 
             et_mpin.addTextChangedListener(new TextWatcher() {
@@ -487,7 +514,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     if (resultCode.equalsIgnoreCase("0")) {
 
                         JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
-                       // rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
+                        // rp_tv_businessType.setText(jsonObject_walletOwner.getString("businessTypeName"));
 
                     } else {
                         Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -578,12 +605,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 //            return false;
 //        }
 
-          if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashOutMinAmount) {
+        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCashOutMinAmount) {
             MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCashOutMinAmount);
             return false;
         }
 
-           if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashOutMaxAmount) {
+        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashOutMaxAmount) {
             MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCashOutMaxAmount);
             return false;
 
@@ -628,7 +655,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
                             receivernameStr = jsonObject2.getString("ownerName");
-                           etName.setText(receivernameStr);
+                            etName.setText(receivernameStr);
 
 //                                JSONObject walletTransfer = jsonObject.getJSONObject("walletTransfer");
 //                                JSONObject srcWalletOwner = walletTransfer.getJSONObject("srcWalletOwner");
@@ -637,7 +664,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-                       // api_currency_sender();
+                        // api_currency_sender();
 
                     } else {
                         etName.setText("");
@@ -703,7 +730,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             agentCode_subscriber = jsonObject2.getString("code");
 
                             rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", CashOutAgent.this));
-                          //  rp_tv_email.setText(jsonObject2.getString("email"));
+                            //  rp_tv_email.setText(jsonObject2.getString("email"));
 
                             rp_tv_country.setText(countryName_agent);
 
@@ -722,7 +749,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         }
 
-                      api_currency_sender();
+                        api_currency_sender();
 
                     } else {
                         MyApplication.hideLoader();
@@ -829,69 +856,69 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     }
 
-        private void service_Provider_api() {
+    private void service_Provider_api() {
 
-            // Hard Code Final Deepak
+        // Hard Code Final Deepak
 
-            API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100012&status=Y", languageToUse, new Api_Responce_Handler() {
-                @Override
-                public void success(JSONObject jsonObject) {
-
-
-                    try {
-
-                        // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
-
-                        String resultCode = jsonObject.getString("resultCode");
-                        String resultDescription = jsonObject.getString("resultDescription");
-
-                        if (resultCode.equalsIgnoreCase("0")) {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100012&status=Y", languageToUse, new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
 
 
-                            JSONArray jsonArray = jsonObject.getJSONArray("serviceProviderList");
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
 
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                    // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1789408\",\"requestTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"responseTime\":\"Wed Oct 20 16:05:19 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2171,\"code\":\"101917\",\"firstName\":\"TATASnegal\",\"userName\":\"TATASnegal5597\",\"mobileNumber\":\"8888888882\",\"email\":\"kundan.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002606\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"idProofNumber\":\"44444444444\",\"creationDate\":\"2021-10-01T09:04:07.330+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-20T14:59:00.791+0530\",\"modifiedBy\":\"100308\",\"addressList\":[{\"id\":3569,\"walletOwnerUserCode\":\"101917\",\"addTypeCode\":\"100001\",\"addTypeName\":\"Commercial\",\"regionCode\":\"100068\",\"regionName\":\"Boke\",\"countryCode\":\"100092\",\"countryName\":\"Guinea\",\"city\":\"100022\",\"cityName\":\"Dubreka\",\"addressLine1\":\"delhi\",\"status\":\"Inactive\",\"creationDate\":\"2021-10-01T09:04:07.498+0530\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-03T09:52:57.407+0530\",\"modifiedBy\":\"100308\"}],\"workingDaysList\":[{\"id\":3597,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100000\",\"weekdaysName\":\"Monday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.518+0530\"},{\"id\":3598,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100001\",\"weekdaysName\":\"Tuesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.528+0530\"},{\"id\":3599,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100002\",\"weekdaysName\":\"Wednesday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.538+0530\"},{\"id\":3600,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100003\",\"weekdaysName\":\"Thursday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.547+0530\"},{\"id\":3601,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100004\",\"weekdaysName\":\"Friday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.556+0530\"},{\"id\":3602,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100005\",\"weekdaysName\":\"Saturday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"6:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.565+0530\"},{\"id\":3603,\"walletOwnerUserCode\":\"101917\",\"weekdaysCode\":\"100006\",\"weekdaysName\":\"Sunday\",\"openingTime\":\"10:00 AM\",\"closingTime\":\"2:00 PM\",\"creationDate\":\"2021-10-01T09:04:07.573+0530\"}],\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
 
-                                serviceCode_from_serviceCategory = jsonObject2.getString("serviceCode");
-                                serviceCategoryCode_from_serviceCategory = jsonObject2.getString("serviceCategoryCode");
-                                serviceProviderCode_from_serviceCategory = jsonObject2.getString("code");
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
 
-                            }
-
-                            agent_details_api_walletownerUser();
+                    if (resultCode.equalsIgnoreCase("0")) {
 
 
-                        } else {
-                            MyApplication.hideLoader();
+                        JSONArray jsonArray = jsonObject.getJSONArray("serviceProviderList");
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                            Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
-                            finish();
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+
+                            serviceCode_from_serviceCategory = jsonObject2.getString("serviceCode");
+                            serviceCategoryCode_from_serviceCategory = jsonObject2.getString("serviceCategoryCode");
+                            serviceProviderCode_from_serviceCategory = jsonObject2.getString("code");
+
                         }
 
+                        agent_details_api_walletownerUser();
 
-                    } catch (Exception e) {
+
+                    } else {
                         MyApplication.hideLoader();
 
-                        Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
+                        Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
-                }
 
-
-                @Override
-                public void failure(String aFalse) {
-
+                } catch (Exception e) {
                     MyApplication.hideLoader();
-                    Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
-                    finish();
 
+                    Toast.makeText(CashOutAgent.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
                 }
-            });
+
+            }
 
 
-        }
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
 
 
     private void agent_details_api_walletownerUser() {
@@ -934,7 +961,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         }
                         rp_tv_senderName.setText(senderNameAgent);
 
-                       // etName.setText(senderNameAgent);
+                        // etName.setText(senderNameAgent);
 
                         subscriber_details_api_walletownerUser();
 
@@ -1068,6 +1095,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
         try {
 
+
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("transactionType", "100001");         // Hard Code according  to Deepak
 
@@ -1099,11 +1127,15 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void success(JSONObject jsonObject) {
 
+                    confirm_reviewClick_textview.setClickable(true);
 
                     try {
 
+                        MyApplication.hideLoader();
 
-                       // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"116510\",\"requestTime\":\"Thu Oct 21 23:44:26 IST 2021\",\"responseTime\":\"Thu Oct 21 23:44:27 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletTransfer\":{\"code\":\"116510\",\"srcWalletCode\":\"1000022471\",\"desWalletCode\":\"1000024941\",\"srcWalletOwnerCode\":\"1000002488\",\"desWalletOwnerCode\":\"1000002606\",\"srcWalletTypeCode\":\"100008\",\"desWalletTypeCode\":\"100008\",\"srcCurrencyCode\":\"100062\",\"desCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"desCurrencyName\":\"GNF\",\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"value\":11469,\"createdBy\":\"101917\",\"creationDate\":\"2021-10-21 23:44:27\",\"fee\":1300,\"finalAmount\":10000,\"srcWalletOwner\":{\"id\":110382,\"code\":\"1000002488\",\"walletOwnerCategoryCode\":\"100010\",\"ownerName\":\"Kundan\",\"mobileNumber\":\"118110111\",\"idProofNumber\":\"vc12345\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100006\",\"idProofTypeName\":\"OTHER\",\"idExpiryDate\":\"2021-09-29\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-26\",\"lastName\":\"New\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100375\",\"modifiedBy\":\"100322\",\"creationDate\":\"2021-09-16T17:08:49.796+0530\",\"modificationDate\":\"2021-10-21T23:22:25.514+0530\",\"walletExists\":true,\"profileTypeCode\":\"100001\",\"profileTypeName\":\"tier2\",\"walletOwnerCatName\":\"Subscriber\",\"occupationTypeCode\":\"100002\",\"occupationTypeName\":\"Others\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"issuingCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002488\"},\"desWalletOwner\":{\"id\":110500,\"code\":\"1000002606\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"TATASnegal\",\"mobileNumber\":\"8888888882\",\"businessTypeCode\":\"100001\",\"businessTypeName\":\"Telecom\",\"idProofNumber\":\"44444444444\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-01T09:01:15.968+0530\",\"modificationDate\":\"2021-10-01T09:10:25.037+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100014\",\"100013\",\"100012\",\"100007\",\"100010\",\"100008\",\"100005\",\"100002\",\"100001\",\"100003\",\"100069\",\"100062\",\"100004\",\"100000\",\"100028\",\"100027\",\"100026\",\"100024\",\"100021\",\"100020\",\"100019\",\"100017\",\"100015\",\"100018\",\"100058\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002606\"},\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":169,\"taxAvailBy\":\"Fee Amount\"}],\"transactionType\":\"CASH-OUT\"}}");
+
+
+                        // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"116510\",\"requestTime\":\"Thu Oct 21 23:44:26 IST 2021\",\"responseTime\":\"Thu Oct 21 23:44:27 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletTransfer\":{\"code\":\"116510\",\"srcWalletCode\":\"1000022471\",\"desWalletCode\":\"1000024941\",\"srcWalletOwnerCode\":\"1000002488\",\"desWalletOwnerCode\":\"1000002606\",\"srcWalletTypeCode\":\"100008\",\"desWalletTypeCode\":\"100008\",\"srcCurrencyCode\":\"100062\",\"desCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"desCurrencyName\":\"GNF\",\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"value\":11469,\"createdBy\":\"101917\",\"creationDate\":\"2021-10-21 23:44:27\",\"fee\":1300,\"finalAmount\":10000,\"srcWalletOwner\":{\"id\":110382,\"code\":\"1000002488\",\"walletOwnerCategoryCode\":\"100010\",\"ownerName\":\"Kundan\",\"mobileNumber\":\"118110111\",\"idProofNumber\":\"vc12345\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100006\",\"idProofTypeName\":\"OTHER\",\"idExpiryDate\":\"2021-09-29\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-26\",\"lastName\":\"New\",\"issuingCountryCode\":\"100092\",\"issuingCountryName\":\"Guinea\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100375\",\"modifiedBy\":\"100322\",\"creationDate\":\"2021-09-16T17:08:49.796+0530\",\"modificationDate\":\"2021-10-21T23:22:25.514+0530\",\"walletExists\":true,\"profileTypeCode\":\"100001\",\"profileTypeName\":\"tier2\",\"walletOwnerCatName\":\"Subscriber\",\"occupationTypeCode\":\"100002\",\"occupationTypeName\":\"Others\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"issuingCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002488\"},\"desWalletOwner\":{\"id\":110500,\"code\":\"1000002606\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"TATASnegal\",\"mobileNumber\":\"8888888882\",\"businessTypeCode\":\"100001\",\"businessTypeName\":\"Telecom\",\"idProofNumber\":\"44444444444\",\"email\":\"kundan.kumar@esteltelecom.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100004\",\"idProofTypeName\":\"MILITARY ID CARD\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"registerCountryCode\":\"100092\",\"registerCountryName\":\"Guinea\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-01T09:01:15.968+0530\",\"modificationDate\":\"2021-10-01T09:10:25.037+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100014\",\"100013\",\"100012\",\"100007\",\"100010\",\"100008\",\"100005\",\"100002\",\"100001\",\"100003\",\"100069\",\"100062\",\"100004\",\"100000\",\"100028\",\"100027\",\"100026\",\"100024\",\"100021\",\"100020\",\"100019\",\"100017\",\"100015\",\"100018\",\"100058\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+224\",\"walletOwnerCode\":\"1000002606\"},\"taxConfigurationList\":[{\"taxTypeCode\":\"100133\",\"taxTypeName\":\"Financial Tax\",\"value\":169,\"taxAvailBy\":\"Fee Amount\"}],\"transactionType\":\"CASH-OUT\"}}");
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
@@ -1148,12 +1180,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                             receiptPage_tv_receiver_name.setText(receivernameStr+" "+receiverlastnameStr);
                             receiptPage_tv_receiver_phoneNo.setText(mobileNoStr);
 
-                            MyApplication.hideLoader();
+                          //  MyApplication.hideLoader();
 
 
                         } else {
                             MyApplication.hideLoader();
-
+                            confirm_reviewClick_textview.setClickable(true);
                             Toast.makeText(CashOutAgent.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
@@ -1182,7 +1214,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                         Toast.makeText(CashOutAgent.this, aFalse, Toast.LENGTH_SHORT).show();
                     }
-                    }
+                }
             });
 
         } catch (Exception e) {
@@ -1219,6 +1251,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
+
             break;
 
             case R.id.confirm_reviewClick_textview: {
@@ -1250,55 +1283,60 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                     }
                 } else if (selectClickType.equalsIgnoreCase("select_mpin")) {
 
-                    if(ll_pin.getVisibility()==View.VISIBLE){
+                    if(ll_pin.getVisibility()==View.VISIBLE) {
                         if (validation_mpin_detail()) {
+                           confirm_reviewClick_textview.setClickable(false);
 
                             if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                               // MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+
+                                MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+
 
                                 mpin_final_api();
 
                             } else {
                                 Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+
                             }
-                        }
-                    }else {
 
-                        MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
-                            @Override
-                            public void success(String success) {
-                                try {
+                        } else {
 
-                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+                            MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
+                                @Override
+                                public void success(String success) {
+                                    try {
 
-                                    if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                     //   MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+                                        //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                        mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
 
-                                        mpin_final_api();
+                                        if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                    } else {
-                                        Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                            // MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+
+                                            mpin_final_api();
+
+                                        } else {
+                                            Toast.makeText(CashOutAgent.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                        }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
                                 }
-                            }
 
-                            @Override
-                            public void failure(String failure) {
-                                MyApplication.showToast(CashOutAgent.this, failure);
+                                @Override
+                                public void failure(String failure) {
+                                    MyApplication.showToast(CashOutAgent.this, failure);
 
-                                ll_pin.setVisibility(View.VISIBLE);
+                                    ll_pin.setVisibility(View.VISIBLE);
 
 
-                            }
+                                }
 
-                        });
+                            });
+                        }
                     }
-
 
 
 /*
@@ -1329,7 +1367,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             }
             break;
 
-                case R.id.tvContinue: {
+            case R.id.tvContinue: {
 
                 ll_page_1.setVisibility(View.GONE);
                 ll_reviewPage.setVisibility(View.GONE);
@@ -1480,14 +1518,14 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     private void api_exchange() {
 
 
-             API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
-                    "&receiveCurrencyCode="+currencyCode_subscriber+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_subscriber+
-                    "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
-            serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_subs + "&remitAgentCode=" +
-                     walletOwnerCode_mssis_agent + "&payAgentCode="+agentCode_subscriber,languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + currencyCode_agent +
+                "&receiveCurrencyCode="+currencyCode_subscriber+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+countryCode_subscriber+
+                "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" + serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+                serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_subs + "&remitAgentCode=" +
+                walletOwnerCode_mssis_agent + "&payAgentCode="+agentCode_subscriber,languageToUse, new Api_Responce_Handler() {
 
 
-                @Override
+            @Override
             public void success(JSONObject jsonObject) {
 
 
@@ -1541,7 +1579,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
 
 
-                      //  rp_tv_financialTax.setText(currencySymbol_sender+" "  +MyApplication.addDecimal(tax_financial));
+                        //  rp_tv_financialTax.setText(currencySymbol_sender+" "  +MyApplication.addDecimal(tax_financial));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         fees_amount_double = Double.parseDouble(fees_amount);
@@ -1728,7 +1766,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
              */
 
             jsonObject.put("transTypeCode","100001");
-           // jsonObject.put("transTypeCode","101813");
+            // jsonObject.put("transTypeCode","101813");
             jsonObject.put("subscriberWalletOwnerCode",walletOwnerCode_subs);
             jsonObject.put("transAmount",amountstr);
 
@@ -1891,6 +1929,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
                                 ll_pin.setVisibility(View.VISIBLE);
+                                subscriberText.setText(getString(R.string.subscriberpin));
 
 
                             }
@@ -1981,6 +2020,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                                 selectClickType="select_mpin";
                                 confirm_reviewClick_textview.setText(getString(R.string.Submit));
                                 ll_otp.setVisibility(View.GONE);
+                                subscriberText.setText(getString(R.string.pin_capital));
+
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
                                 ll_pin.setVisibility(View.VISIBLE);
@@ -2032,7 +2073,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         ll_receiptPage.setVisibility(View.GONE);
         ll_pin.setVisibility(View.GONE);
 
-          super.onBackPressed();
+        super.onBackPressed();
     }
 
     @Override

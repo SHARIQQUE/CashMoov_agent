@@ -3,6 +3,7 @@ package com.agent.cashmoovui.remittancebyabhay.cashtowallet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -124,6 +125,9 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
         tax_first_page = findViewById(R.id.tax_first_page);
         amountTobeCharged_first_page = findViewById(R.id.amountTobeCharged_first_page);
         tvNext = findViewById(R.id.tvNext);
+
+        edittext_amount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
 
         edittext_amount_pay.setEnabled(false);
         spinner_receiverCurrency.setText("GNF");

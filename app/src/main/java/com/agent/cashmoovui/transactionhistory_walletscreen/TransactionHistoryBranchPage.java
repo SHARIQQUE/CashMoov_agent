@@ -911,8 +911,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
 
-        maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
-        minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+        maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+        minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
         alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
 
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;

@@ -1106,8 +1106,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
 
-         maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
-         minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+         maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+         minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
          alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
 
         mainwallet_textview.setText(MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
