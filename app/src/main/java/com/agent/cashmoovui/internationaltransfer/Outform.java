@@ -209,6 +209,8 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
 
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLengthpartners)});
         callApiCountry();
         spinner_destinaioncountry.setOnClickListener(new View.OnClickListener() {
             @Override

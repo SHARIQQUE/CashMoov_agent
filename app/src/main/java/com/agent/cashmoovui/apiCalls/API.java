@@ -326,6 +326,8 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+
+
                                     //MyApplication.showToast("Unauthorized Request......");
                                  //   MyApplication.getInstance().callLogin();
 

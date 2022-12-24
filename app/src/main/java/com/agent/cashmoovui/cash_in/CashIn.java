@@ -167,9 +167,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             et_mpin = (EditText)findViewById(R.id.et_mpin);
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
             System.out.println("get lengh new"+mobilelength);
-          /*  edittext_mobileNuber.setFilters(new InputFilter[] {
+            edittext_mobileNuber.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-*/
+
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
             et_mpin.addTextChangedListener(new TextWatcher() {
@@ -1145,6 +1145,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void success(JSONObject jsonObject) {
 
+                    confirm_reviewClick_textview.setClickable(true);
 
                     try {
 
@@ -1220,6 +1221,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     } catch (Exception e) {
                         MyApplication.hideLoader();
+                        confirm_reviewClick_textview.setClickable(true);
 
                         Toast.makeText(CashIn.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
@@ -1232,6 +1234,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
+                    confirm_reviewClick_textview.setClickable(true);
+
 
                     if (aFalse.equalsIgnoreCase("1251")) {
                         Intent i = new Intent(CashIn.this, VerifyLoginAccountScreen.class);
@@ -1443,9 +1447,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
             case R.id.confirm_reviewClick_textview: {
 
-                System.out.println("get click");
                 if(pinLinear.getVisibility()==View.VISIBLE){
                     if (validation_mpin_detail()) {
+
+                        confirm_reviewClick_textview.setClickable(false);
+                        Log.d("click","1");
 
                         if (new InternetCheck().isConnected(CashIn.this)) {
 

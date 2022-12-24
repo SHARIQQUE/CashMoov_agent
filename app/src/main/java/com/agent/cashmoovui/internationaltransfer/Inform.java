@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -217,6 +218,8 @@ public class Inform extends AppCompatActivity implements View.OnClickListener {
         //  agent_mob_no.setText("9078678111");
         //agent_mob_no.setText("");
 
+        etAmount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         callApiCountry();
         spCountry.setOnClickListener(new View.OnClickListener() {
             @Override

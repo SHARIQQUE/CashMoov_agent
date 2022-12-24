@@ -171,6 +171,9 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
         System.out.println("get lengh new"+mobilelength);
 
+
+        String bb= MyApplication.getSaveString("engamout",getApplicationContext());
+        System.out.println("get bb"+bb);
         et_sender_phoneNumber.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 

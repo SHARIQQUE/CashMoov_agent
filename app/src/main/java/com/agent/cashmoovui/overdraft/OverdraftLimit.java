@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -115,6 +116,9 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
         setBackMenu();
+
+        edittext_amount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLengthpartners)});
 
         linearLayout_record.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);

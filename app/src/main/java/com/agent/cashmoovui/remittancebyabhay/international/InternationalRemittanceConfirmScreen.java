@@ -2,6 +2,7 @@ package com.agent.cashmoovui.remittancebyabhay.international;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -21,6 +22,7 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.cash_in.CashIn;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,6 +41,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
     private Button btnCancel,btnConfirm;
     boolean  isPasswordVisible;
     double finalamount;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,21 +80,31 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                 MyApplication.getSaveString("LASTNAME_USERINFO", internationalremitconfirmC);
         tvAgentCode.setText(nameOwner);
 
-     String transctionamout=MyApplication.getSaveString("amount",getApplicationContext());
+     String transctionamout=MyApplication.getSaveString("amount1",getApplicationContext());
+        String amountformat=MyApplication.getSaveString("amountformat",getApplicationContext());
+
 
         tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
         tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("mobileNumber"));
         tvSendCurrency.setText(InternationalRemittanceActivity.fromCurrency);
         tvBenefiCurrency.setText(InternationalRemittanceActivity.toCurrency);
-        tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+transctionamout);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
+
+        if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+            tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(transctionamout));
+        }else{
+            tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+(MyApplication.addDecimal(InternationalRemittanceActivity.amount)));
+
+        }
         tvConvRate.setText(MyApplication.addDecimalfive(InternationalRemittanceActivity.rate));
         tvFee.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.fee));
         tvAmountPaid.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.currencyValue));
         tvComment.setText(InternationalRemittanceBenefiKYC.etComment.getText().toString());
 
         finalamount=Double.parseDouble(InternationalRemittanceActivity.fee)+Double.parseDouble(InternationalRemittanceActivity.amount);
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
-        DecimalFormat df = new DecimalFormat("0.00",symbols);
+
         if(InternationalRemittanceActivity.taxConfigurationList!=null){
             if(InternationalRemittanceActivity.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -185,6 +198,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
 
                 if(pinLenear.getVisibility()==View.VISIBLE) {
 
+
                     try {
                         if (etPin.getText().toString().trim().isEmpty()) {
                             MyApplication.showErrorToast(internationalremitconfirmC, getString(R.string.val_pin));
@@ -195,39 +209,61 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                             return;
                         }
 
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
+
+
                         btnConfirm.setEnabled(false);
-                        Log.d("click","1");
+                        btnConfirm.setClickable(false);
+                        MyApplication.showloader(InternationalRemittanceConfirmScreen.this,"Please Wait...");
+                        etPin.setClickable(false);
 
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
-                        remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
-                        JSONObject put = remitJson.put("transactionType", "SENDREMITTANCE");
+                            remitJson.put("walletOwnerCode", MyApplication.getSaveString("walletOwnerCode", internationalremitconfirmC));
+                            JSONObject put = remitJson.put("transactionType", "SENDREMITTANCE");
 
-                        remitJson.put("senderCode", InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
-                        remitJson.put("receiverCode", InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
-                        remitJson.put("fromCurrencyCode", InternationalRemittanceActivity.fromCurrencyCode);
-                        remitJson.put("toCurrencyCode", InternationalRemittanceActivity.toCurrencyCode);
-                        remitJson.put("amount", InternationalRemittanceActivity.amount);
-                        remitJson.put("conversionRate", InternationalRemittanceActivity.rate);
-                        remitJson.put("pin", encryptionDatanew);
-                        remitJson.put("comments", tvComment.getText().toString());
-                        remitJson.put("exchangeRateCode", InternationalRemittanceActivity.exRateCode);
-                        remitJson.put("channelTypeCode", MyApplication.channelTypeCode);
-                        remitJson.put("serviceCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
-                        remitJson.put("serviceCategoryCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
-                        remitJson.put("serviceProviderCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
-                        remitJson.put("sendCountryCode", InternationalRemittanceActivity.sendCountryCode);
-                        remitJson.put("receiveCountryCode", InternationalRemittanceActivity.recCountryCode);
-                        remitJson.put("remitType", getString(R.string.International_Remittance));
-
-                        System.out.println("get json remit"+remitJson);
+                            remitJson.put("senderCode", InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                            remitJson.put("receiverCode", InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+                            remitJson.put("fromCurrencyCode", InternationalRemittanceActivity.fromCurrencyCode);
+                            remitJson.put("toCurrencyCode", InternationalRemittanceActivity.toCurrencyCode);
 
 
-                        tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
-                        tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+                            String amountfrench = MyApplication.getSaveString("amount1", getApplicationContext());
+                            System.out.println("get bb" + amountfrench);
+                            String amountformat = MyApplication.getSaveString("amountformat", getApplicationContext());
+
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+                                remitJson.put("amount", amountfrench);
+                            } else {
+                                remitJson.put("amount", amountformat);
+
+                            }
+
+                            remitJson.put("conversionRate", InternationalRemittanceActivity.rate);
+                            remitJson.put("pin", encryptionDatanew);
+                            remitJson.put("comments", tvComment.getText().toString());
+                            remitJson.put("exchangeRateCode", InternationalRemittanceActivity.exRateCode);
+                            remitJson.put("channelTypeCode", MyApplication.channelTypeCode);
+                            remitJson.put("serviceCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                            remitJson.put("serviceCategoryCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                            remitJson.put("serviceProviderCode", InternationalRemittanceActivity.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                            remitJson.put("sendCountryCode", InternationalRemittanceActivity.sendCountryCode);
+                            remitJson.put("receiveCountryCode", InternationalRemittanceActivity.recCountryCode);
+                            remitJson.put("remitType", getString(R.string.International_Remittance));
+
+                            System.out.println("get json remit" + remitJson);
 
 
-                        callPostAPI();
+                            tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                            tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
+
+
+                            callPostAPI();
+
+
                     }catch (Exception e){
 
                     }
@@ -238,6 +274,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                         public void success(String success) {
 
                             try {
+
+
                                 etPin.setClickable(false);
                                 btnConfirm.setVisibility(View.GONE);
 
@@ -249,7 +287,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                                 remitJson.put("receiverCode", InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
                                 remitJson.put("fromCurrencyCode", InternationalRemittanceActivity.fromCurrencyCode);
                                 remitJson.put("toCurrencyCode", InternationalRemittanceActivity.toCurrencyCode);
-                                remitJson.put("amount", InternationalRemittanceActivity.amount);
+                                remitJson.put("amount", MyApplication.getSaveString("amount",getApplicationContext()));
                                 remitJson.put("conversionRate", InternationalRemittanceActivity.rate);
                                 remitJson.put("pin", encryptionDatanew);
                                 remitJson.put("comments", tvComment.getText().toString());
@@ -299,7 +337,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
     public static JSONArray taxConfigList;
     public void callPostAPI(){
 
-        MyApplication.showloader(internationalremitconfirmC,"Please Wait...");
+     //   MyApplication.showloader(internationalremitconfirmC,"Please Wait...");
 
         String requestNo=AESEncryption.getAESEncryption(remitJson.toString());
         JSONObject jsonObjectA=null;
@@ -315,6 +353,8 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                     public void success(JSONObject jsonObject) {
                         MyApplication.hideLoader();
                         btnConfirm.setEnabled(true);
+                        btnConfirm.setClickable(true);
+
 
                         if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                             MyApplication.showToast(internationalremitconfirmC,jsonObject.optString("resultDescription"));
@@ -325,29 +365,38 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                             }else{
                                 taxConfigList=null;
                             }
-                            btnConfirm.setVisibility(View.VISIBLE);
+                          //  btnConfirm.setVisibility(View.VISIBLE);
                             Intent intent=new Intent(internationalremitconfirmC, TransactionSuccessScreen.class);
                             intent.putExtra("SENDINTENT","INTERNATIONAL");
                             intent.putExtra("rate",tvConvRate.getText());
 
                             startActivity(intent);
                             // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
-                        }else{
-                            etPin.setClickable(true);
-                            btnConfirm.setVisibility(View.VISIBLE);
+                        }else {
 
-                            MyApplication.showToast(internationalremitconfirmC,jsonObject.optString("resultDescription"));
-                        }
+                                etPin.setClickable(true);
+                              //  btnConfirm.setVisibility(View.VISIBLE);
+
+                            btnConfirm.setEnabled(true);
+                            btnConfirm.setClickable(true);
+                                ;
+
+                                MyApplication.showToast(internationalremitconfirmC, jsonObject.optString("resultDescription"));
+                            }
+
                     }
 
                     @Override
                     public void failure(String aFalse) {
                         MyApplication.hideLoader();
                         etPin.setClickable(true);
-                        btnConfirm.setEnabled(true);
 
-                        btnConfirm.setVisibility(View.VISIBLE);
-                    }
+                        btnConfirm.setEnabled(true);
+                        btnConfirm.setClickable(true);
+
+                        };
+
+
                 });
 
     }

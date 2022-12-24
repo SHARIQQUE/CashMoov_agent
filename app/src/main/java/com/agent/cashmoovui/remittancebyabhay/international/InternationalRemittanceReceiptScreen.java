@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
@@ -172,17 +174,24 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
             tvBenefiName.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("firstName") + " " +
                     InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("lastName"));
             tvBenefiPhoneNo.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("receiver").optString("mobileNumber"));
+            String transctionamout=MyApplication.getSaveString("amountformat",getApplicationContext());
 
             String[] arr = InternationalRemittanceConfirmScreen.tvTransAmount.getText().toString().split(" ");
-            tvTransAmount.setText(arr[0]+" "+(arr[1]));
+            //tvTransAmount.setText(arr[0]+" "+(arr[1]));
 
-           // tvTransAmount.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
+            if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+                tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(transctionamout));
+            }else{
+                tvTransAmount.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+(MyApplication.addDecimal(InternationalRemittanceActivity.amount)));
+
+            }
+            tvFee.setText(InternationalRemittanceActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.fee));
 
             tvConvRate.setText(MyApplication.addDecimalfiveinternatonal(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("conversionRate")));
-           /* tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " "
+          /* tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " "
                     + MyApplication.addDecimal(""+InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("fee")));
-           */
-           tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") +" " + MyApplication.addDecimal(InternationalRemittanceActivity.fee));
+*/
+          // tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") +" " + MyApplication.addDecimal(InternationalRemittanceActivity.fee));
             tvAmountPaid.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.currencyValue));
             String val= MyApplication.getSaveString("amountchagre",getApplicationContext());
 

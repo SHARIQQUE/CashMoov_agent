@@ -191,7 +191,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             calenderIconidproff_Image = findViewById(R.id.calenderIconidproff_Image);
             mCalenderIcon_Image = findViewById(R.id.calenderIcon_Image);
 
-
+            edittext_amount.setEnabled(false);
             mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

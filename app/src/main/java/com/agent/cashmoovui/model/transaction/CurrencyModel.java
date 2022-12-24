@@ -8,13 +8,14 @@ public class CurrencyModel {
     public String currencyCode;
     public String currencyName;
     public String currencySymbol;
+    public String walletTypeCode;
+    public String minValue;
+    public String maxValue;
     public String commisionWalletValue;
     public String overdraftWalletValue;
     public String mainWalletValue;
     public String walletOwnerName;
     public String allocatedValue;
-    public String minValue;
-    public String maxValue;
     public String alertValue;
 
     public String getWalletOwnerName() {
@@ -34,30 +35,44 @@ public class CurrencyModel {
                 ", currencyCode='" + currencyCode + '\'' +
                 ", currencyName='" + currencyName + '\'' +
                 ", currencySymbol='" + currencySymbol + '\'' +
+                ", walletTypeCode='" + walletTypeCode + '\'' +
+                ", minValue='" + minValue + '\'' +
+                ", maxValue='" + maxValue + '\'' +
                 ", commisionWalletValue='" + commisionWalletValue + '\'' +
                 ", overdraftWalletValue='" + overdraftWalletValue + '\'' +
                 ", mainWalletValue='" + mainWalletValue + '\'' +
                 ", walletOwnerName='" + walletOwnerName + '\'' +
                 ", allocatedValue='" + allocatedValue + '\'' +
+                ", alertValue='" + alertValue + '\'' +
+
                 '}';
     }
 
-    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName, String allocatedValue,String maxValue,String minValue,String alertValue) {
+    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String walletTypeCode,String maxValue,String minValue,String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName, String allocatedValue,String alertValue) {
         this.code = code;
         Ccode = ccode;
         Ocode = ocode;
         this.currencyCode = currencyCode;
         this.currencyName = currencyName;
         this.currencySymbol = currencySymbol;
+        this.walletTypeCode = walletTypeCode;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
         this.commisionWalletValue = commisionWalletValue;
         this.overdraftWalletValue = overdraftWalletValue;
         this.mainWalletValue = mainWalletValue;
         this.walletOwnerName = walletOwnerName;
         this.allocatedValue = allocatedValue;
-        this.maxValue = maxValue;
-        this.minValue = minValue;
         this.alertValue = alertValue;
 
+    }
+
+    public String getWalletTypeCode() {
+        return walletTypeCode;
+    }
+
+    public void setWalletTypeCode(String walletTypeCode) {
+        this.walletTypeCode = walletTypeCode;
     }
 
     public String getMinValue() {

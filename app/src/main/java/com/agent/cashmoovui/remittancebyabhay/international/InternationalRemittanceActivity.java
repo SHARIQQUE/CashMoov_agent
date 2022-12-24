@@ -848,6 +848,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
     private void callApiExchangeRate() {
         try {
+            MyApplication.saveString("amount1",edittext_amount.getText().toString().replace(",",""),getApplicationContext());
+
             //MyApplication.showloader(cashinC, "Please wait!");
             API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
                             sendCurrencyModelList.get((Integer) spinner_senderCurrency.getTag()).getCurrencyCode()
@@ -882,7 +884,13 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
 
+                                        amountpay_temp_str=amount;
+                                        MyApplication.saveString("amount",amountpay_temp_str,getApplicationContext());
+
                                         System.out.println("get amount sdf"+amount);
+                                        MyApplication.saveString("amountformat",amount,getApplicationContext());
+                                        MyApplication.saveString("engamout",amountpay_temp_str,getApplicationContext());
+                                        System.out.println("get sonufff"+amountpay_temp_str);
 
 
 //                                    int tax = receiverFee+receiverTax;
@@ -941,7 +949,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
     private void callApiExchangeRate_again() {
         try {
 
-
+            MyApplication.saveString("amount1",amountpay_temp_str,getApplicationContext());
 
 
             //MyApplication.showloader(cashinC, "Please wait!");
@@ -981,6 +989,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
                                         System.out.println("get amount sdf"+amount);
+                                        MyApplication.saveString("amountformat",amountpay_temp_str,getApplicationContext());
+
+                                      //  MyApplication.saveString("amountformat",edittext_amount.getText().toString(),getApplicationContext());
+
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -1084,7 +1096,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             amountpay_temp_str = df.format(amountpay_temp_double);
                                             System.out.println("get abhi"+amountpay);
 
-                                            MyApplication.saveString("amount",edittext_amount.getText().toString(),getApplicationContext());
+                                            MyApplication.saveString("amount",amountpay_temp_str,getApplicationContext());
 
 
 
@@ -1092,6 +1104,11 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
 
                                             amount = edittext_amount.getText().toString().trim().replace(",","");
+
+
+
+                                            MyApplication.saveString("amount",edittext_amount.getText().toString(),getApplicationContext());
+
                                         }
                                         catch (Exception e)
                                         {

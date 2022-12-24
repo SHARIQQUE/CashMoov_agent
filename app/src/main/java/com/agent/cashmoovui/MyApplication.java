@@ -162,6 +162,7 @@ public class MyApplication extends Application {
     public static int amountLength=13;
     public static int ToReceiveMoneyMinAmount;
     public static int ToReceiveMoneyMaxAmount;
+    public static int amountLengthpartners=10;
 
     public static ArrayList<CurrencyModel> currencyModelArrayList = new ArrayList<>();
     public static ArrayList<CurrencyModel> currencyModelArrayList_temp = new ArrayList<>();
