@@ -151,7 +151,7 @@ public class MyApplication extends Application {
 
     public static String ImageURL;
     public static String AgentCode = "100002";
-    public static String BranchCode = "100001";
+    public static String    BranchCode = "100001";
     public static String InstituteCode = "100000";
         public static String MerchatCode = "100011";
     public static String OutletCode = "100012";

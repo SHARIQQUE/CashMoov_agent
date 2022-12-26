@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 22-12-2022</string>
+    <string name="version">Version : 27-12-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -510,6 +510,8 @@
     <string name="amount_to_be_credit_receiptPage">Amount to be Credit :</string>
     <string name="name_receiptPage">Name :</string>
     <string name="transactionAmount_receiptPage">Transaction Amount :</string>
+    <string name="transactionamountcredit_receiptPage">Amount credited :</string>
+
     <string name="transactionReferenceNo_receiptPage">Transaction Reference Number :</string>
     <string name="transactionType_receiptPage">Transaction Type :</string>
     <string name="dateOfTransaction_receiptPage">Date of Transaction :</string>
@@ -522,6 +524,10 @@
     <string name="transaction_receiptNo_receiptPage">Transaction Id :</string>
     <string name="amount_to_paid_receiptpage">Amount paid :</string>
     <string name="amount_to_be_charged_receiptpage">Amount to be Charged :</string>
+    <string name="amount_to_be_amounbtcredited_receiptpage">Amount to be credited :</string>
+
+
+
     <string name="upload_success">Profile image uploaded successfully</string>
     <string name="logout">Logout</string>
     <string name="this_action_logout">This action will logout from the application</string>

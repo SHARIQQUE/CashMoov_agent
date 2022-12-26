@@ -70,17 +70,22 @@
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/cashout_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/commision_transfer.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/dialog_agent_branch.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/dialog_view_trans_details.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/fragment_bottom_sheet_full.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/fragment_second.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/fraisdeserviceretrait.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/include_home_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/include_transaction_history_agent_page.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/item_transaction_list_new.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/item_transaction_list_new_agent.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/item_wallet.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/login_msis.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/login_pin.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/overdraft_viewconfig.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/remitance_receive.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/row_item_simple.xml" value="0.19947916666666668" />
+        <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/search_transaction_agent_new.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/search_transaction_agent_recycle.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/search_transaction_branch.xml" value="0.19947916666666668" />
         <entry key="..\:/Cashmoov_Agent/app/src/main/res/layout/sellfloat.xml" value="0.1995831162063575" />

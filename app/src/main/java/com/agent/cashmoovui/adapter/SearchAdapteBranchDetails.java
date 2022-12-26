@@ -39,6 +39,7 @@ public class SearchAdapteBranchDetails extends RecyclerView.Adapter<SearchAdapte
         arrayListTemp.addAll(arrayList_modalUserData);
 
         this.callBackRecycleViewClick = callBackRecycleViewClick;
+
     }
 
     @Override
@@ -55,6 +56,7 @@ public class SearchAdapteBranchDetails extends RecyclerView.Adapter<SearchAdapte
             public void onClick(View v) {
                 callBackRecycleViewClick.callBackReycleView(arrayList_modalUserData.get(i).getWalletOwnerCode(),
                         arrayList_modalUserData.get(i).getRegisterCountryCode());
+
 
             }
         });

@@ -778,12 +778,21 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                                         if (MyApplication.AgentCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
                                             userDetailAgent = new UserDetailAgent();
 
-                                            if (jsonObject1.has("ownerName")) {
+                                            String state = jsonObject1.getString("state");
 
+                                            if(state.equalsIgnoreCase("Created")){
                                                 String ownerName = jsonObject1.getString("ownerName");
                                                 userDetailAgent.setOwnerName(ownerName);
-                                                arraylistAgentStr.add(ownerName);
+                                                arraylistAgentStr.remove(ownerName);
+                                            }else {
 
+                                                if (jsonObject1.has("ownerName")) {
+
+                                                    String ownerName = jsonObject1.getString("ownerName");
+                                                    userDetailAgent.setOwnerName(ownerName);
+                                                    arraylistAgentStr.add(ownerName);
+
+                                                }
                                             }
 
                                             if (jsonObject1.has("mobileNumber")) {

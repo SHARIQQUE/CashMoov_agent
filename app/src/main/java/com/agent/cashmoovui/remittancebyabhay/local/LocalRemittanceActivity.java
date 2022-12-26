@@ -467,7 +467,8 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
-                                        if(data.optBoolean("outBound")) {
+
+                                        if(data.optBoolean("inBound")) {
                                             sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
                                                     data.optInt("id"),
                                                     data.optString("code"),
@@ -492,7 +493,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
                                             sendCurrencyList.add(data.optString("currCode").trim());
                                         }
-                                        if(data.optBoolean("inBound")) {
+                                        if(data.optBoolean("outBound")) {
                                             recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
                                                     data.optInt("id"),
                                                     data.optString("code"),

@@ -550,10 +550,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                             "0.0",
                             "0.0",
                             data.optString("walletOwnerName"),
-                           alloctedValue,
-                            data.optString("minValue"),
-                            data.optString("maxValue"),
-                            data.optString("alertValue")
+                           alloctedValue
                     ));
 
 
@@ -587,10 +584,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue,
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
-                                    data.optString("alertValue")
+                                    alloctedValue
                             ));
                         }
 
@@ -623,10 +617,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
-                                    alloctedValue,
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
-                                    data.optString("alertValue")
+                                    alloctedValue
                             ));
                         }
                     }
@@ -661,10 +652,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
-                                    alloctedValue,
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
-                                    data.optString("alertValue")
+                                    alloctedValue
 
                             ));
                         }
@@ -702,7 +690,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
         }
 
-        CurrencyListCommisionTransaction arraadapter2 = new CurrencyListCommisionTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList_temp);
+        CurrencyListCommisionTransaction arraadapter2 = new CurrencyListCommisionTransaction(CommissionTransfer.this, MyApplication.currencyModelArrayList);
         spinner_currency.setAdapter(arraadapter2);
 
 
@@ -1290,17 +1278,17 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 try {
 
                      SpinnerPos = i;
-                     walletCode = MyApplication.currencyModelArrayList_temp.get(i).code;
-                     select_currencySymbol = MyApplication.currencyModelArrayList_temp.get(i).currencySymbol;
-                     select_currencyCode = MyApplication.currencyModelArrayList_temp.get(i).currencyCode;
-                    Double main=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).mainWalletValue);
-                    Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList_temp.get(i).allocatedValue);
+                     walletCode = MyApplication.currencyModelArrayList.get(i).code;
+                     select_currencySymbol = MyApplication.currencyModelArrayList.get(i).currencySymbol;
+                     select_currencyCode = MyApplication.currencyModelArrayList.get(i).currencyCode;
+                    Double main=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
+                    Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue);
                    /* mainbalance_textview.setText(MyApplication.addDecimal(""+main)+" / "+
                             MyApplication.addDecimal(""+allocate));*/
-                    main_wallet.setText(getString(R.string.commision_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue));
+                    main_wallet.setText(getString(R.string.commision_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).commisionWalletValue));
                    // mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
                     tvAmtCurr.setText(select_currencySymbol);
-                    comiisionValueCheck=MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue;
+                    comiisionValueCheck=MyApplication.currencyModelArrayList.get(i).commisionWalletValue;
                     // available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
                     System.out.println("get comiisionValueCheck"+comiisionValueCheck);
 

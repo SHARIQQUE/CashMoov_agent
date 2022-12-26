@@ -459,6 +459,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                         @Override
                         public void success(JSONObject jsonObject) {
                             MyApplication.hideLoader();
+                            System.out.println("get wallet");
 
                             if (jsonObject != null) {
                                 sendCurrencyList.clear();
@@ -470,7 +471,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
-                                        if(data.optBoolean("outBound")) {
+                                        if(data.optBoolean("inBound")) {
                                             sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
                                                     data.optInt("id"),
                                                     data.optString("code"),
@@ -495,7 +496,8 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 
                                             sendCurrencyList.add(data.optString("currCode").trim());
                                         }
-                                        if(data.optBoolean("inBound")) {
+
+                                        if(data.optBoolean("outBound")) {
                                             recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
                                                     data.optInt("id"),
                                                     data.optString("code"),

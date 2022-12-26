@@ -60,6 +60,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -104,7 +106,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             edittext_currencyName, edittext_firstName, edittext_gender;
     public static EditText et_sender_dob, et_sender_idproof_expiry;
     public static TextView mDobText, mDobidproffText;
-    String mobileNoStr = "", amountstr = "", confirmationCodeStr;
+    String mobileNoStr = "", amountstr = "", confirmationCodeStr,amountfr="";
     String walletOwnerCode_mssis_agent = "", walletOwnerCode_subs, senderNameAgent = "";
     String currencyCode_agent = "", countryCode_agent = "", currencyName_agent = "";
     String tax_financial = "", fees_amount, totalAmount_str, senderName_susbcriber = "";
@@ -564,9 +566,18 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
     boolean validation_mobile_Details() {
 
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("0.00",symbols);
         mobileNoStr = edittext_mobileNuber.getText().toString().trim();
         amountstr = edittext_amount.getText().toString().trim().replace(",", "");
         confirmationCodeStr = edittext_confirmationCode.getText().toString().trim();
+
+        amountfr = edittext_amount.getText().toString().trim().replace(".","").replace(",",".");
+
+        Double amountpay_temp_double = Double.parseDouble(amountfr);
+
+        System.out.println("get amount fr"+df.format(amountpay_temp_double));
+        System.out.println("get amount eng"+amountstr);
 
         // mpinStr = et_mpin.getText().toString();
 
@@ -1186,7 +1197,17 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             jsonObject.put("firstName", firstName_from_confcode);
             jsonObject.put("lastName", lastName_from_confcode);
             jsonObject.put("toCurrencyCode", currencyCode_from_confcode);
-            jsonObject.put("amount", amountstr);
+
+
+            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+
+                jsonObject.put("amount", amountfr);
+
+            } else {
+                jsonObject.put("amount", amountstr);
+
+            }
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin", encryptionDatanew);
 

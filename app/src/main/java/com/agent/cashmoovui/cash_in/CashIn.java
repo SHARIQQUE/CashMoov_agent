@@ -81,7 +81,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     EditText etPin;
     LinearLayout financialTax_receiptPageLinear,linear_layout_businessType,taxcashinLinear,receipt_Linear,pinLinear;
-    TextView financialTax_receiptPage,receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView financialTax_receiptPage,receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,receiptPage_tv_amountcredit,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
@@ -326,6 +326,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             rp_tv_country = (TextView) findViewById(R.id.rp_tv_country);
             rp_tv_receiverName = (TextView) findViewById(R.id.rp_tv_receiverName);
             rp_tv_transactionAmount = (TextView) findViewById(R.id.rp_tv_transactionAmount);
+            receiptPage_tv_amountcredit=findViewById(R.id.receiptPage_tv_amountcredit);
             rp_tv_fees_reveiewPage = (TextView) findViewById(R.id.rp_tv_fees_reveiewPage);
             rp_tv_financialTax = (TextView) findViewById(R.id.rp_tv_financialTax);
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
@@ -1381,7 +1382,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         amountstr = String.valueOf(amountstr_double);
                         rp_tv_transactionAmount.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
                         rp_tv_amount_to_be_credit.setText(currencySymbol_receiver+" "+MyApplication.addDecimal(amountstr_double+""));
-
+                        receiptPage_tv_amountcredit.setText(currencySymbol_sender+" "+MyApplication.addDecimal(amountstr));
                         allByCriteria_walletOwnerCode_api();
 
                     }

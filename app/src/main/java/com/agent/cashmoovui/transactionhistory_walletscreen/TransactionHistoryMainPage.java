@@ -397,8 +397,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 MyApplication.hideLoader();
 
-                System.out.println("get dddd"+jsonObject);
-
                 try {
 
                     arrayList_modalDetails=new ArrayList<>();
@@ -557,7 +555,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            //MyApplication.hideLoader();
+                            MyApplication.hideLoader();
 
                             if (jsonObject != null) {
                                 miniStatementTransList.clear();
@@ -747,6 +745,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 break;
 
             case R.id.cardMainWallet:
+                MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
@@ -757,6 +756,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 break;
             case R.id.cardCommissionWallet:
+                MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
+
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ccode;
@@ -765,6 +766,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
                 break;
             case R.id.cardOverdraftWallet:
+                MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
+
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).Ocode;
@@ -859,8 +862,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         arrayList.clear();
         MyApplication.currencyModelArrayList.clear();
 
-        System.out.println("get json"+jsonObject);
-
         JSONArray jsonArray=jsonObject.optJSONArray("walletList");
         if(jsonArray.length()>0){
             for(int i=0;i<jsonArray.length();i++){
@@ -882,15 +883,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 data.optString("currencyName"),
                                 data.optString("currencySymbol"),
                                 data.optString("walletTypeCode"),
-                                data.optString("minValue"),
-                                data.optString("maxValue"),
                                 "0.0",
                                 "0.0",
                                 data.optString("value"),
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
-                                data.optString("alertValue")
-
+                                data.optDouble("minValue"),
+                                data.optDouble("maxValue"),
+                                data.optDouble("alertValue")
                                 ));
                         //Commission Wallet
                     }
@@ -904,15 +904,15 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 data.optString("currencyName"),
                                 data.optString("currencySymbol"),
                                 data.optString("walletTypeCode"),
-                                data.optString("minValue"),
-                                data.optString("maxValue"),
+
                                 data.optString("value"),
                                 "0.0",
                                 "0.0",
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
-                                data.optString("alertValue")
-
+                                data.optDouble("minValue"),
+                                data.optDouble("maxValue"),
+                                data.optDouble("alertValue")
                         ));//Commission Wallet
                     }
 
@@ -925,16 +925,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 data.optString("currencyName"),
                                 data.optString("currencySymbol"),
                                 data.optString("walletTypeCode"),
-                                data.optString("minValue"),
-                                data.optString("maxValue"),
                                 "0.0",
                                 data.optString("value"),
                                 "0.0",
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
-
-                                data.optString("alertValue")
-
+                                data.optDouble("minValue"),
+                                data.optDouble("maxValue"),
+                                data.optDouble("alertValue")
                         ));//oveerdraft Wallet
                     }
 
@@ -947,9 +945,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
                                     MyApplication.currencyModelArrayList.get(j).setCommisionWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCcode(data.optString("code"));
-                                    MyApplication.currencyModelArrayList.get(j).setMaxValue(data.optString("maxValue"));
-                                    MyApplication.currencyModelArrayList.get(j).setMinValue(data.optString("minValue"));
-                                    MyApplication.currencyModelArrayList.get(j).setAlertValue(data.optString("alertValue"));
 
                                 }
                             }
@@ -969,14 +964,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     data.optString("currencyName"),
                                     data.optString("currencySymbol"),
                                     data.optString("walletTypeCode"),
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
                                     data.optString("value"),
                                     "0.0",
                                     "0.0",
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
-                                    data.optString("alertValue")
+                                    data.optDouble("minValue"),
+                                    data.optDouble("maxValue"),
+                                    data.optDouble("alertValue")
 
 
                             ));
@@ -989,10 +984,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
                                     MyApplication.currencyModelArrayList.get(j).setOverdraftWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setOcode(data.optString("code"));
-                                    MyApplication.currencyModelArrayList.get(j).setMaxValue(data.optString("maxValue"));
-                                    MyApplication.currencyModelArrayList.get(j).setMinValue(data.optString("minValue"));
-                                    MyApplication.currencyModelArrayList.get(j).setAlertValue(data.optString("alertValue"));
-
 
                                 }
                             }
@@ -1012,14 +1003,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     data.optString("currencyName"),
                                     data.optString("currencySymbol"),
                                     data.optString("walletTypeCode"),
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
                                     "0.0",
                                     data.optString("value"),
                                     "0.0",
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
-                                    data.optString("alertValue")
+                                    data.optDouble("minValue"),
+                                    data.optDouble("maxValue"),
+                                    data.optDouble("alertValue")
 
 
                             ));
@@ -1029,12 +1020,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                         if(arrayList.contains(data.optString("currencyName"))){
                             for(int j=0;j<MyApplication.currencyModelArrayList.size();j++){
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
-                                    MyApplication.currencyModelArrayList.get(j).setMaxValue(data.optString("maxValue"));
-                                    MyApplication.currencyModelArrayList.get(j).setMinValue(data.optString("minValue"));
                                     MyApplication.currencyModelArrayList.get(j).setMainWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCode(data.optString("code"));
                                     MyApplication.currencyModelArrayList.get(j).setAllocatedValue(data.optString("allocatedValue"));
-                                    MyApplication.currencyModelArrayList.get(j).setAlertValue(data.optString("alertValue"));
 
 
                                 }
@@ -1055,14 +1043,14 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                     data.optString("currencyName"),
                                     data.optString("currencySymbol"),
                                     data.optString("walletTypeCode"),
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
                                     "0.0",
                                     "0.0",
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
-                                    data.optString("alertValue")
+                                    data.optDouble("minValue"),
+                                    data.optDouble("maxValue"),
+                                    data.optDouble("alertValue")
 
                             ));
                         }
@@ -1084,7 +1072,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         spinner_currency.setAdapter(arraadapter2);
 */
 
-        System.out.println("get list"+arrayList);
+
         spinnerDialogCurrency = new SpinnerDialog(TransactionHistoryMainPage.this, arrayList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
         spinnerDialogCurrency.setCancellable(true); // for cancellable
@@ -1129,8 +1117,6 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
 
-        System.out.println("get new list"+MyApplication.currencyModelArrayList.get(i));
-
 
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
@@ -1138,18 +1124,33 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
 
-
+     /*   maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
+        minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+        alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
+*/
         mainwallet_textview.setText(MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
         " / "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
         commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
         overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
 
-    //    maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
-       /* minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
-        alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
-*/
 
+
+/*
+
+        if(MyApplication.currencyModelArrayList.get(i).getCurrencyName().equalsIgnoreCase("USD")){
+            maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
+            minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+            alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
+
+        }else{
+            maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+            minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
+            alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
+
+        }
+
+*/
 
 
         System.out.println("get max"+maxvalue);
@@ -1358,9 +1359,30 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
             TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
 
-            maxvalueText.setText(maxvalue);
-            minvalueText.setText(minvalue);
-            alertvalueText.setText(alertvalue);
+
+            System.out.println("get list"+MyApplication.currencyModelArrayList);
+
+
+            for(int i=0; i<MyApplication.currencyModelArrayList.size(); i++){
+                    System.out.println("get max"+MyApplication.currencyModelArrayList.get(i).getMaxValue());
+
+                    if (MyApplication.currencySymbol.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencySymbol())) {
+
+                        Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValue()+"");
+
+                        String str = String.format("%.2f", dblValue);
+
+                        minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValue() + ""));
+                        maxvalueText.setText(str);
+
+                        alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValue() + ""));
+
+                    }
+
+
+            }
+
+
 
 
 

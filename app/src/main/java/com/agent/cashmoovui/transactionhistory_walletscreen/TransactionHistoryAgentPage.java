@@ -701,9 +701,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 data.optString("value"),
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
-                                data.optString("minValue"),
-                                data.optString("maxValue"),
-                                data.optString("alertValue")
+                                data.optDouble("minValue"),
+                                data.optDouble("maxValue"),
+                                data.optDouble("alertValue")
+
 
                         ));
                         //Commission Wallet
@@ -723,9 +724,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 "0.0",
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
-                                data.optString("minValue"),
-                                data.optString("maxValue"),
-                                data.optString("alertValue")
+                                data.optDouble("minValue"),
+                                data.optDouble("maxValue"),
+                                data.optDouble("alertValue")
+
                         ));//Commission Wallet
                     }
 
@@ -743,9 +745,9 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                 "0.0",
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
-                                data.optString("minValue"),
-                                data.optString("maxValue"),
-                                data.optString("alertValue")
+                                data.optDouble("minValue"),
+                                data.optDouble("maxValue"),
+                                data.optDouble("alertValue")
                         ));//oveerdraft Wallet
                     }
 
@@ -781,9 +783,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     "0.0",
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
-                                    data.optString("alertValue")
+                                    data.optDouble("minValue"),
+                                    data.optDouble("maxValue"),
+                                    data.optDouble("alertValue")
+
                             ));
                         }
 
@@ -818,9 +821,9 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     data.optString("walletOwnerName")
                                     ,
                                     alloctedValue,
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
-                                    data.optString("alertValue")
+                                    data.optDouble("minValue"),
+                                    data.optDouble("maxValue"),
+                                    data.optDouble("alertValue")
                             ));
                         }
                     }
@@ -854,9 +857,9 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                     data.optString("value"),
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
-                                    data.optString("minValue"),
-                                    data.optString("maxValue"),
-                                    data.optString("alertValue")
+                                    data.optDouble("minValue"),
+                                    data.optDouble("maxValue"),
+                                    data.optDouble("alertValue")
                             ));
                         }
                     }
@@ -919,10 +922,10 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
 
-        maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
+      /*  maxvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
         minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).maxValue));
         alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
-
+*/
         MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
 
@@ -1121,9 +1124,30 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
             TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
             TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
 
-            maxvalueText.setText(maxvalue);
-            minvalueText.setText(minvalue);
-            alertvalueText.setText(alertvalue);
+
+            System.out.println("get list"+MyApplication.currencyModelArrayList);
+
+
+            for(int i=0; i<MyApplication.currencyModelArrayList.size(); i++){
+                System.out.println("get max"+MyApplication.currencyModelArrayList.get(i).getMaxValue());
+
+                if (MyApplication.currencySymbol.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencySymbol())) {
+
+                    Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValue()+"");
+
+                    String str = String.format("%.2f", dblValue);
+
+                    minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValue() + ""));
+                    maxvalueText.setText(str);
+
+                    alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValue() + ""));
+
+                }
+
+
+            }
+
+
 
 
 
