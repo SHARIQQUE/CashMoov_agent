@@ -322,7 +322,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         });
 
 
-        callApiserviceProvider();
+        callApiSendCurrencynew();
 
         setOnCLickListener();
 
@@ -570,29 +570,31 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
                                         if( data.optBoolean("inBound")) {
-                                            sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
-                                                    data.optInt("id"),
-                                                    data.optString("code"),
-                                                    data.optString("countryCode"),
-                                                    data.optString("countryName"),
-                                                    data.optString("createdBy"),
-                                                    data.optString("creationDate"),
-                                                    data.optString("currCode"),
-                                                    data.optString("currencyCode"),
-                                                    data.optString("currencyName"),
-                                                    data.optString("currencySymbol"),
-                                                    data.optString("dialCode"),
-                                                    data.optInt("mobileLength"),
-                                                    data.optString("modificationDate"),
-                                                    data.optString("modifiedBy"),
-                                                    data.optString("state"),
-                                                    data.optString("status"),
-                                                    data.optBoolean("inBound"),
-                                                    data.optBoolean("outBound")
+                                            if (compareCurrency.contains(data.optString("currencyCode"))) {
+                                                sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                        data.optInt("id"),
+                                                        data.optString("code"),
+                                                        data.optString("countryCode"),
+                                                        data.optString("countryName"),
+                                                        data.optString("createdBy"),
+                                                        data.optString("creationDate"),
+                                                        data.optString("currCode"),
+                                                        data.optString("currencyCode"),
+                                                        data.optString("currencyName"),
+                                                        data.optString("currencySymbol"),
+                                                        data.optString("dialCode"),
+                                                        data.optInt("mobileLength"),
+                                                        data.optString("modificationDate"),
+                                                        data.optString("modifiedBy"),
+                                                        data.optString("state"),
+                                                        data.optString("status"),
+                                                        data.optBoolean("inBound"),
+                                                        data.optBoolean("outBound")
 
-                                            ));
+                                                ));
 
-                                            sendCurrencyList.add(data.optString("currCode").trim());
+                                                sendCurrencyList.add(data.optString("currCode").trim());
+                                            }
                                         }
                                     }
 
@@ -1281,6 +1283,66 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
+    }
+
+    ArrayList<String> compareCurrency=new ArrayList<>();
+
+
+    private void callApiSendCurrencynew() {
+        try {
+
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/"+MyApplication.getSaveString("walletOwnerCode", internationalC),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                compareCurrency.clear();
+                                JSONArray jsonArraynew=jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+                                        for(int i=0; i<jsonArraynew.length(); i++) {
+                                            try {
+                                                JSONObject data = jsonArraynew.getJSONObject(i);
+                                                compareCurrency.add(data.optString("currencyCode"));
+
+
+                                             }catch(Exception e){
+
+                                            }
+
+
+
+
+                                }
+
+
+
+
+                                callApiserviceProvider();
+
+                                    // callApiRecCountry();
+
+                                } else {
+                                   // MyApplication.showToast(localC,jsonObject.optString("resultDescription", "  "));
+                                }
+
+
+                            }
+
+
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 

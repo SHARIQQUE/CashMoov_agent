@@ -420,7 +420,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
 
 
 
-        API.PUT("ewallet/api/v1/walletOwner/branch/"+AgentKYC.agentWalletOwnerCode, jsonObject, new Api_Responce_Handler() {
+        API.PUT("ewallet/api/v1/walletOwner/agent/"+AgentKYC.agentWalletOwnerCode, jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 // MyApplication.hideLoader();

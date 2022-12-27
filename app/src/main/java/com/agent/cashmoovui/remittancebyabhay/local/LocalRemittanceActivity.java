@@ -136,6 +136,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
             }
         });
 
+
 //        spinner_senderCountry.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -994,6 +995,10 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
             e.printStackTrace();
         }
     }
+
+
+
+
 
 
 

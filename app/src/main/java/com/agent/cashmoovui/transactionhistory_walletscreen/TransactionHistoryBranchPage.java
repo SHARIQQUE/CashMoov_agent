@@ -171,6 +171,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         if (getIntent().getExtras() != null) {
             walletOwnerCode = (getIntent().getStringExtra("WALLETOWNERCODE"));
             registerCountryCode = (getIntent().getStringExtra("REGISTERCOUNTRYCODE"));
+            MyApplication.userCodeTransaction=walletOwnerCode;
         }
 
 
