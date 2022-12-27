@@ -693,6 +693,8 @@
     <string name="acc_number_colon">Numéro de compte</string>
     <string name="operator_colon">Opérateur :</string>
     <string name="amount_charged_colon">Montant à facturer:</string>
+    <string name="amount_charged_colon_only">Montant facturé :</string>
+
     <string name="amount_paid_colon">Montant facturé :</string>
     <string name="trans_amount_colon">Montant de la transaction :</string>
     <string name="val_acc_no">Veuillez saisir le numéro de compte</string>
@@ -932,7 +934,7 @@
     <string name="Commisionwallet">"Portefeuille de commissions"</string>
     <string name="Viewwallet">"Voir le portefeuille"</string>
     <string name="Creditlimit">Limite de crédit</string>
-    <string name="subscriberpin">NIP d\'abonné :</string>
+    <string name="subscriberpin">Épingle abonné :</string>
 
 </resources>
 

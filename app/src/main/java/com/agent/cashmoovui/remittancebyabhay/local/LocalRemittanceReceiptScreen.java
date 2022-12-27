@@ -172,6 +172,8 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
             tvTransAmount.setText(MyApplication.addDecimal(arr[2]));
 */
             //tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("amountToPaid"));
+
+
             tvTransAmount.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " +
                     MyApplication.addDecimal(""+LocalRemittanceActivity.amount));
             tvConvRate.setText(MyApplication.addDecimalfiveinternatonal(LocalRemittanceActivity.rate));
@@ -182,18 +184,23 @@ public class LocalRemittanceReceiptScreen extends AppCompatActivity implements V
 
 
             tvAmountPaid.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid")));
-            tvAmountCharged.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
-
-            Double tamount=Double.parseDouble(LocalRemittanceActivity.amount);
-             Double paid=LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amountToPaid");
 
 
-            if(tamount!=paid){
+
+            String tamount=tvTransAmount.getText().toString();
+            String paid=tvAmountPaid.getText().toString();
+            System.out.println("get amount"+tamount);
+            System.out.println("get paid"+paid);
+
+
+            if(!tamount.equalsIgnoreCase(paid)){
                 amoutnpaidLinear.setVisibility(View.VISIBLE);
             }else{
                 amoutnpaidLinear.setVisibility(View.GONE);
-
             }
+            tvAmountCharged.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") + " " + MyApplication.addDecimal(""+LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optDouble("amount")));
+
+
 
             if (LocalRemittanceConfirmScreen.taxConfigList != null) {
                 if (LocalRemittanceConfirmScreen.taxConfigList.length() == 1) {

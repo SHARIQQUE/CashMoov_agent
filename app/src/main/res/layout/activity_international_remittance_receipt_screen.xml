@@ -601,7 +601,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="@string/amount_charged_colon"
+                    android:text="@string/amount_charged_colon_only"
                     android:textColor="#000"
                     android:textSize="@dimen/_13sdp" />
 
@@ -619,11 +619,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/amountpaidLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="left"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <ImageView

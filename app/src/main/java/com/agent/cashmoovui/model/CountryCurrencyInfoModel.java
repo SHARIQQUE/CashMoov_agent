@@ -38,6 +38,20 @@ public class CountryCurrencyInfoModel {
         public boolean inBound;
         public boolean outBound;
 
+
+        public CountryCurrency(int id, String code, String countryCode, String countryName, String currencyCode, String currencyName, String currencySymbol, String status, boolean inBound, boolean outBound) {
+            this.id = id;
+            this.code = code;
+            this.countryCode = countryCode;
+            this.countryName = countryName;
+            this.currencyCode = currencyCode;
+            this.currencyName = currencyName;
+            this.currencySymbol = currencySymbol;
+            this.status = status;
+            this.inBound = inBound;
+            this.outBound = outBound;
+        }
+
         public CountryCurrency(int id, String code, String countryCode, String countryName, String createdBy, String creationDate, String currCode, String currencyCode, String currencyName, String currencySymbol, String dialCode, int mobileLength, String modificationDate, String modifiedBy, String state, String status, boolean inBound, boolean outBound) {
             this.id = id;
             this.code = code;

@@ -377,6 +377,16 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
 
     public void call(double Amount,int pos){
+        if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105218")){
+            return;
+
+        }
+
+        if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105217")){
+            return;
+
+        }
+
         MyApplication.currencySymbol=miniStatementTransList.get(pos).getFromCurrencySymbol();
         if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100002")
         ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100001")) {

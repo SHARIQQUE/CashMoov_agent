@@ -146,14 +146,17 @@ public class WalletOwner extends AppCompatActivity {
 
 
                     if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.AgentCode)) {
-                        tvProofTypename.setText("Agent");
+                        tvProofTypename.setText("Golden");
 
                     }else if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.BranchCode)) {
-                        tvProofTypename.setText("Branch");
+                        tvProofTypename.setText("Standard");
 
 
                 }else if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.InstituteCode)) {
-                    tvProofTypename.setText("Institute");
+                    tvProofTypename.setText("Standard");
+
+                    }else if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletOwner.this).equalsIgnoreCase(MyApplication.SubscriberCode)) {
+                        tvProofTypename.setText(getString(R.string.tier));
                 }else {
 
                     tvProofTypename.setText(getString(R.string.all));

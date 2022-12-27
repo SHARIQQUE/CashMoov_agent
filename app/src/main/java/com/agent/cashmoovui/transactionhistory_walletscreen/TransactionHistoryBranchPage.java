@@ -1095,6 +1095,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("WALLETTYPECODE",wallettypecode);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("srcpostbalance",srcpostbalance);
+
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }

@@ -716,6 +716,8 @@
     <string name="acc_number_colon">Account number :</string>
     <string name="operator_colon">Operator :</string>
     <string name="amount_charged_colon">Amount to be Charged :</string>
+    <string name="amount_charged_colon_only">Amount Charged :</string>
+
     <string name="amount_paid_colon">Amount paid :</string>
     <string name="trans_amount_colon">Transaction Amount :</string>
     <string name="val_acc_no">Please enter account number</string>

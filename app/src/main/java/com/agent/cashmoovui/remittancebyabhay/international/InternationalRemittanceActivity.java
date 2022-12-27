@@ -757,7 +757,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                     JSONArray countryCurrencyListArr = countryCurrObj.optJSONArray("countryCurrencyList");
                                     for (int i = 0; i < countryCurrencyListArr.length(); i++) {
                                         JSONObject data = countryCurrencyListArr.optJSONObject(i);
-                                        if(data.optBoolean("inBound")) {
+                                        if(data.optBoolean("outBound")) {
                                             recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
                                                     data.optInt("id"),
                                                     data.optString("code"),

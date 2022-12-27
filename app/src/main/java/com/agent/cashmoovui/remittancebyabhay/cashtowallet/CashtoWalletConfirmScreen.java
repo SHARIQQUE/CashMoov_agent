@@ -79,7 +79,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
 
         tvSenderMSISDN.setText(CashtoWalletSenderKYC.senderNumber);
         tvBenefiMSISDN.setText(CashtoWalletReceiverKYC.recNumber);
-        tvSendCurrency.setText(LocalRemittanceCashtowalletActivity.fromCurrency);
+        tvSendCurrency.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol);
         tvBenefiCurrency.setText("GNF");
         tvTransAmount.setText(LocalRemittanceCashtowalletActivity.fromCurrencySymbol+" "+MyApplication.addDecimal(LocalRemittanceCashtowalletActivity.amount));
         tvConvRate.setText(MyApplication.addDecimalfive(LocalRemittanceCashtowalletActivity.rate));

@@ -30,7 +30,7 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
             tvSendCountry,tvRecCountry,tvTransAmount,tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,
             tvSendName,tvSendPhoneNo,tvBenefiName,tvBenefiPhoneNo,
             tax1_lable,tax1_value,tax2_lable,tax2_value,agentName;
-    private LinearLayout linConfCode,tax1_layout,tax2_layout;
+    private LinearLayout linConfCode,tax1_layout,tax2_layout,amountpaidLinear;
     private Button btnCloseReceipt,btnShareReceipt;
     View rootView;
     private String mRate;
@@ -152,6 +152,7 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
             tax1_value = findViewById(R.id.tax1_value);
             tax2_lable = findViewById(R.id.tax2_lable);
             tax2_value = findViewById(R.id.tax2_value);
+            amountpaidLinear=findViewById(R.id.amountpaidLinear);
 
             if (getIntent().getExtras() != null) {
                 mRate = (getIntent().getStringExtra("rate"));
@@ -193,6 +194,20 @@ public class InternationalRemittanceReceiptScreen extends AppCompatActivity impl
 */
           // tvFee.setText(InternationalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencySymbol") +" " + MyApplication.addDecimal(InternationalRemittanceActivity.fee));
             tvAmountPaid.setText(InternationalRemittanceActivity.toCurrencySymbol+" "+MyApplication.addDecimal(InternationalRemittanceActivity.currencyValue));
+
+
+            String tamount=tvTransAmount.getText().toString();
+            String paid=tvAmountPaid.getText().toString();
+            System.out.println("get amount"+tamount);
+            System.out.println("get paid"+paid);
+
+
+            if(!tamount.equalsIgnoreCase(paid)){
+                amountpaidLinear.setVisibility(View.VISIBLE);
+            }else{
+                amountpaidLinear.setVisibility(View.GONE);
+            }
+
             String val= MyApplication.getSaveString("amountchagre",getApplicationContext());
 
 
