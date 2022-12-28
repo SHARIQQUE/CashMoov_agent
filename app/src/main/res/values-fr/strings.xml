@@ -222,8 +222,11 @@
     <string name="acc_number">N° de Compte :</string>
     <string name="montant_a_envoyer">Montant a envoyer</string>
     <string name="fees">Frais :</string>
-    <string name="amount_to_paid">Montant facturé :</string>
-    <string name="amount_paid">Montant facturé :</string>
+    <string name="amount_to_paid">Montant payé :</string>
+    <string name="amount_paid">Montant payé :</string>
+    <string name="maximumLimitCount">Nombre de limites globales</string>
+    <string name="pay_month_limit_count">Nombre limite de mois</string>
+    <string name="pay_month_limit_amount">Montant limite mensuel</string>
 
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>
@@ -935,6 +938,7 @@
     <string name="Viewwallet">"Voir le portefeuille"</string>
     <string name="Creditlimit">Limite de crédit</string>
     <string name="subscriberpin">Épingle abonné :</string>
+    <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
 
 </resources>
 

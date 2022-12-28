@@ -59,6 +59,7 @@
                 android:textColor="#29304d"
                 android:textSize="@dimen/_15sdp" />
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -67,6 +68,21 @@
 
 
         </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/validationtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aileron_bold"
+            android:lineSpacingExtra="3sp"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+
+            android:text="@string/cash_In"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_15sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"

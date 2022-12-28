@@ -50,6 +50,7 @@ import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.aldoapps.autoformatedittext.AutoFormatUtilFrench;
 import com.blikoon.qrcodescanner.QrCodeActivity;
@@ -81,7 +82,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
     EditText etPin;
     LinearLayout financialTax_receiptPageLinear,linear_layout_businessType,taxcashinLinear,receipt_Linear,pinLinear;
-    TextView financialTax_receiptPage,receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,receiptPage_tv_amountcredit,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView validationText,financialTax_receiptPage,receiptPage_tv_financialtaxvaluecashin,taxvalueText,tvAmtCurr,tvContinue,exportReceipt_textview,tv_nextClick,rp_tv_senderName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,receiptPage_tv_amountcredit,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
@@ -103,7 +104,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String tax_financialnew,tax_financialtypename,tax_financial="",fees_amount,receivermobileNumberStr,totalAmount_str,receivernameStr="",receiverlastnameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,tax_financialnewDouble=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
-    String mpinStr="";
+    String mpinStr="",currecycode="";
     public Double feeDouble;
 
 
@@ -153,7 +154,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             tvContinue.setOnClickListener(this);
             financialTax_receiptPageLinear=findViewById(R.id.financialTax_receiptPageLinear);
             financialTax_receiptPage=findViewById(R.id.financialTax_receiptPage);
-
+            validationText=findViewById(R.id.validationtext);
             etName = findViewById(R.id.etName);
 
             etName.setEnabled(false);
@@ -412,9 +413,11 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             close_receiptPage_textview.setOnClickListener(this);
 
             edittext_mobileNuber.setEnabled(true);
+            String usecode=MyApplication.getSaveString("userCountryCode", CashIn.this);
 
-
+            callApiFromCurrency(usecode);
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CashIn.this);
+
 
 
             if (new InternetCheck().isConnected(CashIn.this)) {
@@ -1435,6 +1438,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if (new InternetCheck().isConnected(CashIn.this)) {
 
+
+
                         MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
                         service_Provider_api();
 
@@ -2063,4 +2068,90 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         pinLinear.setVisibility(View.GONE);
 
     }
+
+
+
+    private void callApiFromCurrency(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            System.out.println("get json currency"+jsonObject);
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+                                    //fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
+
+
+                                    JSONObject jsonObject1_walletOwner = jsonObject.optJSONObject("country");
+
+                                    JSONArray jsonArray=jsonObject1_walletOwner.optJSONArray("countryCurrencyList");
+                                    if(jsonArray.length()>0) {
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject data = jsonArray.optJSONObject(i);
+
+                                            String currCode = data.optString("currCode");
+                                            System.out.println("get data"+currCode);
+
+
+
+                                              //  currecycode=currCode;
+
+                                                if(!currCode.equalsIgnoreCase("GNF")){
+
+
+
+                                                    validationText.setVisibility(View.GONE);
+                                                    tv_nextClick.setClickable(true);
+
+
+                                                }else{
+
+
+
+                                                    validationText.setVisibility(View.VISIBLE);
+                                                    tv_nextClick.setClickable(false);
+
+                                                    System.out.println("get bbbb"+currCode);
+                                                    validationText.setText(getString(R.string.gnfvalidation));
+
+
+
+                                                    //  validationText.setText(getString(R.string.gnfvalidation));
+
+
+                                                System.out.println("get datavv"+currCode);
+
+                                            }
+                                        }
+                                    }
+
+
+
+                                } else {
+                                    MyApplication.showToast(CashIn.this,jsonObject.optString("resultDescription", "  "));
+                                }
+                            }
+
+                            // callApiBenefiCurrency();
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
+
 }

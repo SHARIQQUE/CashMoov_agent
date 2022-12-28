@@ -1,11 +1,13 @@
 package com.agent.cashmoovui.settings;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,15 +28,20 @@ import com.agent.cashmoovui.pin_change.ChangePin;
 import com.agent.cashmoovui.servicecharge.ServiceCharge;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.transactionhistory_walletscreen.WalletScreen;
+import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.bumptech.glide.BuildConfig;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -44,7 +51,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ImageView imgNotification,imgQR;
     TextView tvBadge;
     SmoothBottomBar bottomBar;
-    LinearLayout linServiceCharge,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
+
+    TextView spinner_currency;
+    LinearLayout linGloballimitcount,linServiceCharge,linBeneficiary,linChangeLang,linConfidentiality,linShareApp,
             linTermCondition,linAbout,linChangePin,linEditProfile,linReset;
 
     TextView currency,number,etAddress,name;
@@ -55,6 +64,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
+
+    String currencyName_from_currency="",walletOwnerCode_destination="",walletOwnerCode_source="";
+    String countryCurrencyCode_from_currency="";
+    ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
+    ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
+    ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
+    ArrayList<String> arrayList_desWalletOwnerCode = new ArrayList<String>();
+    private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,7 +203,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         linChangePin = findViewById(R.id.linChangePin);
         linEditProfile = findViewById(R.id.linEditProfile);
         linReset = findViewById(R.id.linReset);
-
+        linGloballimitcount = findViewById(R.id.linGloballimitcount);
+        linGloballimitcount.setOnClickListener(this);
         currency = findViewById(R.id.currency);
         number = findViewById(R.id.number);
         etAddress = findViewById(R.id.etAddress);
@@ -336,6 +355,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
 
+
+            case R.id.linGloballimitcount:
+                alertdialougeGlobalLimit();
+                break;
+
             case R.id.linEditProfile:
 
 
@@ -460,6 +484,165 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    public void alertdialougeGlobalLimit() {
+
+        try {
+
+
+            Dialog operationDialog = new Dialog(Profile.this);
+            operationDialog.setContentView(R.layout.dialog_global_limit);
+
+            Button closeButton;
+            closeButton = operationDialog.findViewById(R.id.closeButton);
+             spinner_currency= operationDialog.findViewById(R.id.spinner_currency);
+
+
+           apicurrency();
+
+            spinner_currency.setText(getString(R.string.select_currency));
+
+            spinner_currency.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (spinnerDialogCurrency!=null)
+                        spinnerDialogCurrency.showSpinerDialog();
+                }
+            });
+
+
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    operationDialog.dismiss();
+                }
+            });
+            //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            operationDialog.show();
+        } catch (Exception e) {
+
+            Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+    private void apicurrency() {
+
+        String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE", Profile.this);
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwnerCountryCurrency/"+userCode_agentCode_from_mssid,languageToUse,new Api_Responce_Handler() {
+
+            @Override
+            public void success(JSONObject jsonObject) {
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+
+                      /*  arrayList_currecnyName.add(0,getString(R.string.select_currency_star));
+                        arrayList_currecnyCode.add(0,getString(R.string.select_currency_star));
+                       arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
+                       arrayList_desWalletOwnerCode.add(0,getString(R.string.select_currency_star));
+
+*/
+
+                        JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
+                        for(int i=0;i<jsonArray.length();i++)
+                        {
+
+                            JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+
+                            currencyName_from_currency = jsonObject3.getString("currencyName");
+                            countryCurrencyCode_from_currency = jsonObject3.getString("currencyCode");
+                            walletOwnerCode_destination = jsonObject3.getString("walletOwnerCode");
+
+                            String currencySymbol = jsonObject3.getString("currencySymbol");
+
+
+
+
+                            if(jsonObject3.has("currencyName")) {
+
+                                String  currencyName_subscriber_temp = jsonObject3.getString("currencyName");
+
+                            }
+
+                            arrayList_currecnyName.add(currencyName_from_currency);
+                            arrayList_currecnyCode.add(countryCurrencyCode_from_currency);
+                            arrayList_currencySymbol.add(currencySymbol);
+                            arrayList_desWalletOwnerCode.add(walletOwnerCode_destination);
+
+
+                        }
+
+
+                      /*  CommonBaseAdapterSecond arraadapter2 = new CommonBaseAdapterSecond(TransferFloats.this, arrayList_currecnyName);
+                        spinner_currency.setAdapter(arraadapter2);
+*/
+
+                        spinnerDialogCurrency = new SpinnerDialog(Profile.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+
+                        spinnerDialogCurrency.setCancellable(true); // for cancellable
+                        spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
+                        spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
+                            @Override
+                            public void onClick(String item, int position) {
+                                //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                setSelctionCurrency(position);
+                                // spBusinessType.setTag(position);
+
+                            }
+                        });
+                    }
+
+                    else {
+                        Toast.makeText(Profile.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(Profile.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(Profile.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
+    public void setSelctionCurrency(int pos){
+        spinner_currency.setText(arrayList_currecnyName.get(pos));
+
+      /*  tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
+        selectCurrecnyName = arrayList_currecnyName.get(pos);
+        selectCurrecnyCode = arrayList_currecnyCode.get(pos);
+
+        currencySymbol_receiver = arrayList_currencySymbol.get(pos);
+        walletOwnerCode_destination = arrayList_desWalletOwnerCode.get(pos);
+        spinner_currency.setText(arrayList_currecnyName.get(pos));*/
+        // edittext_amount.requestFocus();
+
+    }
 
 
 

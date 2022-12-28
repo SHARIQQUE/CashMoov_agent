@@ -229,6 +229,11 @@
     <string name="fees">Fees :</string>
     <string name="amount_to_paid">Amount paid :</string>
     <string name="amount_paid">Amount paid :</string>
+    <string name="maximumLimitCount">Global limit count</string>
+    <string name="pay_month_limit_count">Month limit count</string>
+    <string name="pay_month_limit_amount">Month limit amount</string>
+
+
 
     <string name="send">Send</string>
     <string name="choose_operation">Choose the operation</string>
@@ -949,6 +954,7 @@
     <string name="Viewwallet">View wallet</string>
     <string name="Creditlimit">Credit limit</string>
     <string name="subscriberpin">Subscriber PIN :</string>
+    <string name="gnfvalidation">Sending currency field required GNF currency</string>
 
 </resources>
 

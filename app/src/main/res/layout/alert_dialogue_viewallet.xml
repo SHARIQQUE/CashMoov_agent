@@ -241,6 +241,7 @@
                 android:layout_weight=".5"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12sdp"
+                android:text="0.00"
                 android:fontFamily="@font/aileron_bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"

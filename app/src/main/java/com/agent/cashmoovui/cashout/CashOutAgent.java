@@ -87,7 +87,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             receiptPage_tv_amount_to_be_paid, receiptPage_tv_fee, receiptPage_tv_financialtax,receipt_tv_amount_to_be_charge,
             receiptPage_tv_transaction_receiptNo, receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,
-            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
+            receiptPage_tv_receiver_name, receiptPage_tv_receiver_phoneNo, close_receiptPage_textview,validationText, rp_tv_financialTax, rp_tv_amount_to_be_charge, rp_tv_amount_to_be_paid, previous_reviewClick_textview, confirm_reviewClick_textview;
     LinearLayout taxLinear,ll_page_1, ll_reviewPage, ll_receiptPage, ll_pin, ll_otp, ll_resendOtp,ll_successPage;
 
     String selectClickType="",desWalletOwnerCode_from_currency="";
@@ -160,8 +160,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
             subscriberText=findViewById(R.id.subscriberText);
-           edittext_mobileNuber.setFilters(new InputFilter[] {
-                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+          /* edittext_mobileNuber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});*/
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
             edittext_mobileNuber.setOnTouchListener(new View.OnTouchListener() {
@@ -278,6 +278,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             rp_tv_amount_to_be_charge = (TextView) findViewById(R.id.rp_tv_amount_to_be_charge);
             rp_tv_amount_to_be_paid = (TextView) findViewById(R.id.rp_tv_amount_to_be_paid);
             etName = findViewById(R.id.etName);
+            validationText=findViewById(R.id.validationtext);
 
             etName.setEnabled(false);
 
@@ -361,7 +362,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             close_receiptPage_textview.setOnClickListener(this);
 
             edittext_mobileNuber.setEnabled(true);
+            String usecode=MyApplication.getSaveString("userCountryCode", CashOutAgent.this);
 
+            callApiFromCurrency(usecode);
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CashOutAgent.this);
 
@@ -2277,6 +2280,87 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    private void callApiFromCurrency(String code) {
+        try {
+
+            API.GET("ewallet/api/v1/countryCurrency/country/"+code,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            System.out.println("get json currency"+jsonObject);
+
+                            if (jsonObject != null) {
+
+                                if(jsonObject.optString("resultCode", "  ").equalsIgnoreCase("0")){
+                                    //fromCurrencySymbol = jsonObject.optJSONObject("country").optString("currencySymbol");
+
+
+                                    JSONObject jsonObject1_walletOwner = jsonObject.optJSONObject("country");
+
+                                    JSONArray jsonArray=jsonObject1_walletOwner.optJSONArray("countryCurrencyList");
+                                    if(jsonArray.length()>0) {
+                                        for (int i = 0; i < jsonArray.length(); i++) {
+                                            JSONObject data = jsonArray.optJSONObject(i);
+
+                                            String currCode = data.optString("currCode");
+                                            System.out.println("get data"+currCode);
+
+
+
+                                            //  currecycode=currCode;
+
+                                            if(!currCode.equalsIgnoreCase("GNF")){
+
+
+
+                                                validationText.setVisibility(View.GONE);
+                                                tv_nextClick.setClickable(true);
+
+                                            }else{
+
+
+
+                                                validationText.setVisibility(View.VISIBLE);
+                                                tv_nextClick.setClickable(false);
+
+                                                System.out.println("get bbbb"+currCode);
+                                                validationText.setText(getString(R.string.gnfvalidation));
+
+
+
+                                                //  validationText.setText(getString(R.string.gnfvalidation));
+
+
+                                                System.out.println("get datavv"+currCode);
+
+                                            }
+                                        }
+                                    }
+
+
+
+                                } else {
+                                    MyApplication.showToast(CashOutAgent.this,jsonObject.optString("resultDescription", "  "));
+                                }
+                            }
+
+                            // callApiBenefiCurrency();
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
 
 }

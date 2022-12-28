@@ -17,7 +17,85 @@ public class CurrencyModel {
     public Double minValue;
     public Double maxValue;
     public Double alertValue;
+    public Double minValueComission;
+    public Double maxValueComission;
+    public Double alertValueComission;
 
+    public Double minValueOverdraft;
+    public Double maxValueOverdraft;
+    public Double alertValueOverdraft;
+
+    public CurrencyModel(String code, String ccode, String ocode, String currencyCode, String currencyName, String currencySymbol, String walletTypeCode, String commisionWalletValue, String overdraftWalletValue, String mainWalletValue, String walletOwnerName, String allocatedValue, Double minValue, Double maxValue, Double alertValue, Double minValueComission, Double maxValueComission, Double alertValueComission, Double minValueOverdraft, Double maxValueOverdraft, Double alertValueOverdraft) {
+        this.code = code;
+        Ccode = ccode;
+        Ocode = ocode;
+        this.currencyCode = currencyCode;
+        this.currencyName = currencyName;
+        this.currencySymbol = currencySymbol;
+        this.walletTypeCode = walletTypeCode;
+        this.commisionWalletValue = commisionWalletValue;
+        this.overdraftWalletValue = overdraftWalletValue;
+        this.mainWalletValue = mainWalletValue;
+        this.walletOwnerName = walletOwnerName;
+        this.allocatedValue = allocatedValue;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        this.alertValue = alertValue;
+        this.minValueComission = minValueComission;
+        this.maxValueComission = maxValueComission;
+        this.alertValueComission = alertValueComission;
+        this.minValueOverdraft = minValueOverdraft;
+        this.maxValueOverdraft = maxValueOverdraft;
+        this.alertValueOverdraft = alertValueOverdraft;
+    }
+
+    public Double getMinValueComission() {
+        return minValueComission;
+    }
+
+    public void setMinValueComission(Double minValueComission) {
+        this.minValueComission = minValueComission;
+    }
+
+    public Double getMaxValueComission() {
+        return maxValueComission;
+    }
+
+    public void setMaxValueComission(Double maxValueComission) {
+        this.maxValueComission = maxValueComission;
+    }
+
+    public Double getAlertValueComission() {
+        return alertValueComission;
+    }
+
+    public void setAlertValueComission(Double alertValueComission) {
+        this.alertValueComission = alertValueComission;
+    }
+
+    public Double getMinValueOverdraft() {
+        return minValueOverdraft;
+    }
+
+    public void setMinValueOverdraft(Double minValueOverdraft) {
+        this.minValueOverdraft = minValueOverdraft;
+    }
+
+    public Double getMaxValueOverdraft() {
+        return maxValueOverdraft;
+    }
+
+    public void setMaxValueOverdraft(Double maxValueOverdraft) {
+        this.maxValueOverdraft = maxValueOverdraft;
+    }
+
+    public Double getAlertValueOverdraft() {
+        return alertValueOverdraft;
+    }
+
+    public void setAlertValueOverdraft(Double alertValueOverdraft) {
+        this.alertValueOverdraft = alertValueOverdraft;
+    }
 
     public String getWalletOwnerName() {
         return walletOwnerName;
@@ -87,6 +165,12 @@ public class CurrencyModel {
                 ", minValue=" + minValue +
                 ", maxValue=" + maxValue +
                 ", alertValue=" + alertValue +
+                ", minValueComission=" + minValueComission +
+                ", maxValueComission=" + maxValueComission +
+                ", alertValueComission=" + alertValueComission +
+                ", minValueOverdraft=" + minValueOverdraft +
+                ", maxValueOverdraft=" + maxValueOverdraft +
+                ", alertValueOverdraft=" + alertValueOverdraft +
                 '}';
     }
 

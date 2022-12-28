@@ -703,7 +703,13 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 alloctedValue,
                                 data.optDouble("minValue"),
                                 data.optDouble("maxValue"),
-                                data.optDouble("alertValue")
+                                data.optDouble("alertValue"),
+                                0.00,
+                                0.00,
+                                0.00,
+                                0.00,
+                                0.00,
+                                0.00
 
                         ));
                         //Commission Wallet
@@ -723,9 +729,15 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 "0.0",
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
+                                0.00,
+                                0.00,
+                                0.00,
                                 data.optDouble("minValue"),
                                 data.optDouble("maxValue"),
-                                data.optDouble("alertValue")
+                                data.optDouble("alertValue"),
+                                0.00,
+                                0.00,
+                                0.00
                         ));//Commission Wallet
                     }
 
@@ -743,6 +755,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 "0.0",
                                 data.optString("walletOwnerName"),
                                 alloctedValue,
+                                0.00,
+                                0.00,
+                                0.00,
+                                0.00,
+                                0.00,
+                                0.00,
                                 data.optDouble("minValue"),
                                 data.optDouble("maxValue"),
                                 data.optDouble("alertValue")
@@ -758,6 +776,11 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
                                     MyApplication.currencyModelArrayList.get(j).setCommisionWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCcode(data.optString("code"));
+                                    MyApplication.currencyModelArrayList.get(j).setMinValueComission(data.optDouble("minValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setMaxValueComission(data.optDouble("maxValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setAlertValueComission(data.optDouble("alertValue"));
+
+
                                 }
                             }
                         }else{
@@ -781,9 +804,15 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     "0.0",
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
+                                    0.00,
+                                    0.00,
+                                    0.00,
                                     data.optDouble("minValue"),
                                     data.optDouble("maxValue"),
-                                    data.optDouble("alertValue")
+                                    data.optDouble("alertValue"),
+                                    0.00,
+                                    0.00,
+                                    0.00
                             ));
                         }
 
@@ -794,6 +823,11 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                 if(MyApplication.currencyModelArrayList.get(j).currencyName.equalsIgnoreCase(data.optString("currencyName"))){
                                     MyApplication.currencyModelArrayList.get(j).setOverdraftWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setOcode(data.optString("code"));
+                                    MyApplication.currencyModelArrayList.get(j).setMinValueOverdraft(data.optDouble("minValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setMaxValueOverdraft(data.optDouble("maxValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setAlertValueOverdraft(data.optDouble("alertValue"));
+
+
                                 }
                             }
                         }else{
@@ -817,6 +851,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     "0.0",
                                     data.optString("walletOwnerName"),
                                     alloctedValue,
+                                    0.00,
+                                    0.00,
+                                    0.00,
+                                    0.00,
+                                    0.00,
+                                    0.00,
                                     data.optDouble("minValue"),
                                     data.optDouble("maxValue"),
                                     data.optDouble("alertValue")
@@ -830,6 +870,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     MyApplication.currencyModelArrayList.get(j).setMainWalletValue(data.optString("value"));
                                     MyApplication.currencyModelArrayList.get(j).setCode(data.optString("code"));
                                     MyApplication.currencyModelArrayList.get(j).setAllocatedValue(data.optString("allocatedValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setMinValue(data.optDouble("minValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setMaxValue(data.optDouble("maxValue"));
+                                    MyApplication.currencyModelArrayList.get(j).setAlertValue(data.optDouble("alertValue"));
+
                                 }
                             }
                         }else{
@@ -855,7 +899,13 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     alloctedValue,
                                     data.optDouble("minValue"),
                                     data.optDouble("maxValue"),
-                                    data.optDouble("alertValue")
+                                    data.optDouble("alertValue"),
+                                    0.00,
+                                    0.00,
+                                    0.00,
+                                    0.00,
+                                    0.00,
+                                    0.00
                             ));
                         }
                     }
@@ -899,6 +949,9 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                 walletCode = MyApplication.currencyModelArrayList.get(i).code;
                 setSelctionCurrency(i);
                 MyApplication.currencySymbol=MyApplication.currencyModelArrayList.get(i).currencySymbol;
+                checkCurrencyCode=MyApplication.currencyModelArrayList.get(i).getCurrencyCode();
+
+
             }
         }
 
@@ -915,6 +968,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     }
 
     int SpinnerPos;
+    String checkCurrencyCode="";
+
     public void setSelctionCurrency(int i){
         SpinnerPos = i;
 
@@ -1124,22 +1179,233 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
             for(int i=0; i<MyApplication.currencyModelArrayList.size(); i++){
                 System.out.println("get max"+MyApplication.currencyModelArrayList.get(i).getMaxValue());
+                if(MyApplication.currencyModelArrayList.get(i).getWalletTypeCode().equalsIgnoreCase("100008")){
 
-                if (MyApplication.currencySymbol.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencySymbol())) {
+                    if (checkCurrencyCode.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyCode())) {
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValue()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValue()+"");
 
-                    Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValue()+"");
+                            String str = String.format("%.2f", dblValue);
 
-                    String str = String.format("%.2f", dblValue);
+                            maxvalueText.setText(str);
 
-                    minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValue() + ""));
-                    maxvalueText.setText(str);
+                        }
 
-                    alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValue() + ""));
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValue()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValue() + ""));
 
+
+                        }else{
+                            minvalueText.setText("0.00");
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValue()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValue() + ""));
+
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValueComission()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValueComission()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValueComission()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValueComission() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValueComission()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValueComission() + ""));
+
+
+
+                        }
+
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValueOverdraft()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValueOverdraft()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValueOverdraft()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValueOverdraft() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValueOverdraft()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValueOverdraft() + ""));
+
+
+                        }
+
+
+
+
+                    }
+
+                }
+                if(MyApplication.currencyModelArrayList.get(i).getWalletTypeCode().equalsIgnoreCase("100009")){
+
+
+
+                    if (checkCurrencyCode.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyCode())) {
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValue()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValue()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValue()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValue() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValue()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValue() + ""));
+
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValueComission()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValueComission()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValueComission()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValueComission() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValueComission()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValueComission() + ""));
+
+
+
+                        }
+
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValueOverdraft()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValueOverdraft()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValueOverdraft()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValueOverdraft() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValueOverdraft()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValueOverdraft() + ""));
+
+
+                        }
+
+
+
+
+                    }
+
+
+
+                }
+                if(MyApplication.currencyModelArrayList.get(i).getWalletTypeCode().equalsIgnoreCase("100011")){
+
+                    if (checkCurrencyCode.equalsIgnoreCase(MyApplication.currencyModelArrayList.get(i).getCurrencyCode())) {
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValue()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValue()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValue()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValue() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValue()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValue() + ""));
+
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValueComission()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValueComission()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValueComission()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValueComission() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValueComission()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValueComission() + ""));
+
+
+
+                        }
+
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMaxValueOverdraft()>0){
+                            Double dblValue = Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getMaxValueOverdraft()+"");
+
+                            String str = String.format("%.2f", dblValue);
+
+                            maxvalueText.setText(str);
+
+                        }
+
+                        if(MyApplication.currencyModelArrayList.get(i).getMinValueOverdraft()>0) {
+                            minvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getMinValueOverdraft() + ""));
+
+
+                        }
+                        if(MyApplication.currencyModelArrayList.get(i).getAlertValueOverdraft()>0) {
+                            alertvalueText.setText(MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).getAlertValueOverdraft() + ""));
+
+
+                        }
+
+
+
+
+
+
+                    }
                 }
 
 
+
             }
+
 
 
 
