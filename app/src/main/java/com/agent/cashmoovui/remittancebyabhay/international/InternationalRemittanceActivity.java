@@ -903,6 +903,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
+
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
@@ -913,7 +914,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",","")+
+                                                    jsonObjectAmountDetails.optDouble("fee"))));
                                             MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
