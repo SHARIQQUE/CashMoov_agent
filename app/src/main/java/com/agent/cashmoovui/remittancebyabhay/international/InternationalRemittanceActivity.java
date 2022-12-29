@@ -885,7 +885,6 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         fees_first_page.setText(MyApplication.addDecimal(fee+""));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
-
                                         amountpay_temp_str=amount;
                                         MyApplication.saveString("amount",amountpay_temp_str,getApplicationContext());
 
@@ -907,15 +906,15 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",","")))
                                                     + taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                    jsonObjectAmountDetails.optDouble("fee"))));
+                                                    jsonObjectAmountDetails.optDouble("fee")));
                                           MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim().replace(",","")+
-                                                    jsonObjectAmountDetails.optDouble("fee"))));
+                                            Double teret=Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))+ jsonObjectAmountDetails.optDouble("fee");
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(teret+""));
                                             MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
@@ -1018,7 +1017,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(amountpay_temp_str)));
+                                            Double teret=Double.parseDouble(amountpay_temp_str)+ jsonObjectAmountDetails.optDouble("fee");
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(teret+""));
+
+                                           // amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(amountpay_temp_str)));
                                             MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
