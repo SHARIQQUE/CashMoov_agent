@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 27-12-2022</string>
+    <string name="version">Version : 29-12-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -225,8 +225,8 @@
     <string name="amount_to_paid">Montant payé :</string>
     <string name="amount_paid">Montant payé :</string>
     <string name="maximumLimitCount">Nombre de limites globales</string>
-    <string name="pay_month_limit_count">Nombre limite de mois</string>
-    <string name="pay_month_limit_amount">Montant limite mensuel</string>
+    <string name="pay_month_limit_count">Nombre limite de mois :</string>
+    <string name="pay_month_limit_amount">Montant limite mensuel :</string>
 
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>
@@ -393,6 +393,7 @@
     <string name="uploadimage">veuillez télécharger l\'image avant</string>
     <string name="uploadbackimage">veuillez télécharger à nouveau l\'image</string>
     <string name="Tax"> Taxe : 0,00</string>
+    <string name="postbalance"> Publier le solde : 0.00</string>
 
     <string name="session_expire_60">La session expire dans 60 secondes</string>
     <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>
@@ -573,6 +574,9 @@
     <string name="trasfer_of_mode"> Mode de Transfert</string>
     <string name="wallet_capital">Compte</string>
     <string name="sending_currencey_star">Devise d\'envoi*</string>
+
+    <string name="select_currencey_star">Sélectionnez la devise*</string>
+
     <string name="sending_currencey">Devise d\'envoi*</string>
     <string name="send_remitance_intenational">Envoyer un virement international</string>
     <string name="remitance_intenational">Transfert de fonds international</string>
@@ -939,6 +943,7 @@
     <string name="Creditlimit">Limite de crédit</string>
     <string name="subscriberpin">Épingle abonné :</string>
     <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
+    <string name="activity">Activité</string>
 
 </resources>
 

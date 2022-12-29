@@ -24,6 +24,10 @@ import com.agent.cashmoovui.activity.NotificationList;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.cashout.CashOutAgent;
+import com.agent.cashmoovui.login.LoginMsis;
+import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
+import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.pin_change.ChangePin;
 import com.agent.cashmoovui.servicecharge.ServiceCharge;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
@@ -65,13 +69,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     MyApplication applicationComponentClass;
     String languageToUse = "";
 
-    String currencyName_from_currency="",walletOwnerCode_destination="",walletOwnerCode_source="";
+    String currencyName_from_currency="",profiletypecode="",currencycode="",walletownercode="",walletOwnerCode_destination="",walletOwnerCode_source="";
     String countryCurrencyCode_from_currency="";
     ArrayList<String> arrayList_currecnyName = new ArrayList<String>();
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
     ArrayList<String> arrayList_desWalletOwnerCode = new ArrayList<String>();
     private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
+    private TextView paymonthcountText,paymonthlimitAccountText;
 
 
     @Override
@@ -213,7 +218,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
 
-        String lastName= MyApplication.getSaveString("firstName",profileC)+" "+MyApplication.getSaveString("lastName",profileC);
+
+
+        profiletypecode= MyApplication.getSaveString("profiletypecode",profileC);
+
+
         //String add= MyApplication.getSaveString("issuingCountryName",profileC);
         //String num= MyApplication.getSaveString("mobile",profileC);
         String firstName= MyApplication.getSaveString("firstName",profileC);
@@ -404,6 +413,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     etAddress.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryName","N/A"));
                     number.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
 
+
+
+                    walletownercode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCategoryCode");
+
+
+                    System.out.println("get walletcode"+walletownercode);
                     callApiFromCurrency(jsonObject.optJSONObject("walletOwner").optString("registerCountryCode"));
                 }else{
                     MyApplication.showToast(profileC,jsonObject.optString("resultDescription"));
@@ -495,7 +510,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             Button closeButton;
             closeButton = operationDialog.findViewById(R.id.closeButton);
              spinner_currency= operationDialog.findViewById(R.id.spinner_currency);
-
+            paymonthcountText=operationDialog.findViewById(R.id.paymonthcountText);
+            paymonthlimitAccountText=operationDialog.findViewById(R.id.paymonthlimitAccountText);
 
            apicurrency();
 
@@ -633,6 +649,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public void setSelctionCurrency(int pos){
         spinner_currency.setText(arrayList_currecnyName.get(pos));
 
+        currencycode = arrayList_currecnyCode.get(pos);
+
+        callAPIGloballimitCount();
+
       /*  tvAmtCurr.setText(arrayList_currencySymbol.get(pos));
         selectCurrecnyName = arrayList_currecnyName.get(pos);
         selectCurrecnyCode = arrayList_currecnyCode.get(pos);
@@ -641,6 +661,72 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         walletOwnerCode_destination = arrayList_desWalletOwnerCode.get(pos);
         spinner_currency.setText(arrayList_currecnyName.get(pos));*/
         // edittext_amount.requestFocus();
+
+    }
+
+    private void callAPIGloballimitCount() {
+        try {
+
+            API.GET("ewallet/api/v1/globallimitconfiguration/getProfileAndWltOwrCat?profileTypeCode="+profiletypecode+"&wltOwrCatCode="+walletownercode+"&currencyCode="+currencycode,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            try {
+
+                                if (jsonObject != null) {
+
+                                System.out.println("get json"+jsonObject);
+
+
+                                    String resultCode =  jsonObject.getString("resultCode");
+
+                                    System.out.println("get code"+resultCode);
+
+                                    if (jsonObject.has("globalLimitConfiguration")) {
+                                        paymonthcountText.setText(jsonObject.optJSONObject("globalLimitConfiguration").optString("perMonthLimitCount"));
+
+                                        paymonthlimitAccountText.setText(MyApplication.addDecimal(jsonObject.optJSONObject("globalLimitConfiguration").optString("perMonthLimitAmount")));
+
+                                    }
+                                    else
+                                    {
+                                        paymonthcountText.setText("0");
+                                        paymonthlimitAccountText.setText("0.00");
+
+                                    }
+
+
+
+
+
+
+
+
+                                    // callApiRecCountry();
+
+                                } else {
+                                    MyApplication.showToast(Profile.this,jsonObject.optString("resultDescription", "  "));
+                                }
+
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+
+
+        } catch (Exception e) {
+
+        }
 
     }
 

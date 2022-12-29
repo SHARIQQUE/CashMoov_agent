@@ -629,7 +629,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                             String transactionTypeNAme=data.optString("transactionTypeName");
                                             if (data.optString("transactionTypeCode").equalsIgnoreCase("105218")) {
-                                                transactionTypeNAme=data.optString("incentiveTransactionType");
+                                                transactionTypeNAme=data.optString("transactionTypeName")+"\n ( "  +data.optString("incentiveTransactionType")+" ) " ;
                                             }else{
                                                 transactionTypeNAme=data.optString("transactionTypeName");
                                             }
@@ -1437,7 +1437,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1460,7 +1460,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1483,7 +1483,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1514,7 +1514,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1534,7 +1534,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1556,7 +1556,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1587,7 +1587,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1607,7 +1607,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 
@@ -1629,7 +1629,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(str);
+                                maxvalueText.setText(MyApplication.addDecimal(str));
 
                             }
 

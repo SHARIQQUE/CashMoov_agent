@@ -189,7 +189,7 @@
                 />
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight=".5"
+                android:layout_weight=".3"
                 android:layout_height="wrap_content"
                 android:text="@string/maxvaluewallet"
                 android:textColor="#000"
@@ -201,9 +201,10 @@
             <TextView
                 android:id="@+id/maxvalueText"
                 android:layout_width="0dp"
-                android:layout_weight=".5"
+                android:layout_weight=".7"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12sdp"
+                android:text="0.00"
                 android:fontFamily="@font/aileron_bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -217,6 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_3sdp"
             android:layout_gravity="center_vertical"
             >
 
@@ -227,7 +229,7 @@
                 app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight=".5"
+                android:layout_weight=".3"
                 android:layout_height="wrap_content"
                 android:text="@string/minvaluewallet"
                 android:textColor="#000"
@@ -238,7 +240,7 @@
             <TextView
                 android:id="@+id/minvalueText"
                 android:layout_width="0dp"
-                android:layout_weight=".5"
+                android:layout_weight=".7"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12sdp"
                 android:text="0.00"
@@ -257,7 +259,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/_5sdp">
+            android:layout_marginTop="@dimen/_3sdp">
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -268,7 +270,7 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight=".5"
+                android:layout_weight=".3"
                 android:layout_height="wrap_content"
                 android:text="@string/alertvalue"
                 android:textColor="#000"
@@ -280,9 +282,10 @@
             <TextView
                 android:id="@+id/alertvalueText"
                 android:layout_width="0dp"
-                android:layout_weight=".5"
+                android:layout_weight=".7"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_12sdp"
+                android:text="0.00"
                 android:fontFamily="@font/aileron_bold"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"

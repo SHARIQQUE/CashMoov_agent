@@ -169,60 +169,60 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
             }
         });*/
 
-        
-   edittext_amount.addTextChangedListener(new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        edittext_amount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 
-        }
+            }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        }
+            }
 
-        @Override
-        public void afterTextChanged(Editable s) {
+            @Override
+            public void afterTextChanged(Editable s) {
 
-            if (new InternetCheck().isConnected(localC)) {
+                if (new InternetCheck().isConnected(localC)) {
 
 //                    if (spinner_receiverCurrency.getSelectedItem()==null||spinner_receiverCurrency.getSelectedItem().toString().isEmpty()||spinner_receiverCurrency.getSelectedItem().toString().equals("Receiving Currency")) {
 //                        MyApplication.showErrorToast(InternationalRemittance.this, getString(R.string.plz_select_receive_currency));
 //                        return;
 //                    }
-                if (isFormatting) {
-                    return;
-                }
+                    if (isFormatting) {
+                        return;
+                    }
 
-                if (s.length()>1) {
-                    formatInput(edittext_amount, s, s.length(), s.length());
-                    callApiExchangeRate();
+                    if (s.length()>1) {
+                        formatInput(edittext_amount, s, s.length(), s.length());
+                        callApiExchangeRate();
+
+                    } else {
+                        convertionRate_first_page.setText("");
+                        fees_first_page.setText("");
+                        tax_first_page.setText("");
+                        //amountTobePaid_first_page.setText("");
+                        amountTobeCharged_first_page.setText("");
+                        edittext_amount_pay.getText().clear();
+                    }
+
+                    isFormatting = false;
 
                 } else {
-                    convertionRate_first_page.setText("");
-                    fees_first_page.setText("");
-                    tax_first_page.setText("");
-                    //amountTobePaid_first_page.setText("");
-                    amountTobeCharged_first_page.setText("");
-                    edittext_amount_pay.getText().clear();
+                    Toast.makeText(localC, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                 }
-
-                isFormatting = false;
-
-            } else {
-                Toast.makeText(localC, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
             }
-        }
-    });
-    
+        });
 
 
-    callApiserviceProvider();
 
-    setOnCLickListener();
+        callApiserviceProvider();
 
-}
+        setOnCLickListener();
+
+    }
 
 
     private void setOnCLickListener() {
@@ -392,10 +392,15 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             sendCountryName = data.optString("name");
                                             recCountryCode = recCountryCode;
                                             recCountryName = sendCountryName;
+                                            System.out.println("get list"+data.optString("currencyCode"));
+
+
+
 
 
                                         }
                                     }
+
 
                                     spinnerDialogSendingCountry= new SpinnerDialog(localC, sendingCountryList, getString(R.string.valid_select_country), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogSendingCountry.setCancellable(true); // for cancellable
@@ -406,12 +411,12 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_senderCountry.setText(item);
                                             spinner_senderCountry.setTag(position);
-                                            spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
+                                           // spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
                                             sendigncurrecncyText.setVisibility(View.VISIBLE);
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
 
                                             callApiSendCurrencynew();
-                                           // callApiSendCurrency(sendCountryModelList.get(position).getCode());
+                                            // callApiSendCurrency(sendCountryModelList.get(position).getCode());
                                         }
                                     });
 
@@ -426,13 +431,13 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             spinner_receiverCountry.setTag(position);
                                             spinner_receiverCountry.setText(getString(R.string.sending_currencey_star));
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
-                                           // callApiSendCurrency(recCountryModelList.get(position).getCode());
+                                            // callApiSendCurrency(recCountryModelList.get(position).getCode());
                                             callApiSendCurrencynew();
                                         }
                                     });
 
                                     callApiSendCurrencynew();
-                                   // callApiSendCurrency(MyApplication.getSaveString("COUNTRYCODE_AGENT", localC));
+                                    // callApiSendCurrency(MyApplication.getSaveString("COUNTRYCODE_AGENT", localC));
 
                                 } else {
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
@@ -455,6 +460,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 
     }
 
+/*
     private void callApiSendCurrency(String code) {
         try {
 
@@ -577,13 +583,13 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                         if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
                                                 recCurrencyModelList.get(i).getCurrencySymbol()
                                         )){
-                                          //  spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
-                                          //  spinner_receiverCurrency.setTag(i);
+                                            //  spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
+                                            //  spinner_receiverCurrency.setTag(i);
                                             receivingcurrecncyText.setVisibility(View.VISIBLE);
                                             toCurrency = recCurrencyModelList.get(i).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
-                                          //  tvAmtPaidCurr.setText(toCurrencySymbol);
+                                            //  tvAmtPaidCurr.setText(toCurrencySymbol);
                                             // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
 
                                             edittext_amount.getText().clear();
@@ -605,14 +611,14 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             toCurrency = recCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();
-                                          //  tvAmtPaidCurr.setText(toCurrencySymbol);
+                                            //  tvAmtPaidCurr.setText(toCurrencySymbol);
                                             // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
                                             edittext_amount.getText().clear();
                                             edittext_amount_pay.getText().clear();
                                         }
                                     });
 
-                                   // callApiRecCountry();
+                                    // callApiRecCountry();
 
                                 } else {
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "  "));
@@ -634,6 +640,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
         }
 
     }
+*/
 
 
 
@@ -695,10 +702,18 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                         recCurrencyList.add(data.optString("currencyName").trim());
                                     }
 
+                                    sendigncurrecncyText.setVisibility(View.VISIBLE);
 
+                                    System.out.println("get name"+data.optString("currencyName"));
+                                   /* if(data.optString("currencyName").equalsIgnoreCase("GNF")) {
+                                        spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrencyName());
+                                        tvAmtCurr.setText(sendCurrencyModelList.get(i).getCurrencyName());
+                                    }
+*/
                                 }
 
-                                tvAmtCurr.setText("");
+                                //tvAmtCurr.setText("");
+
 /*
                                 for(int i=0;i<sendCurrencyModelList.size();i++){
                                     if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
@@ -978,7 +993,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 //        }
 //
 //    }
-DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
     DecimalFormat df = new DecimalFormat("0.00",symbols);
     public static JSONArray taxConfigurationList;
 
@@ -1033,7 +1048,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(
                                                     df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))
-                                                    + taxConfigurationList.optJSONObject(0).optDouble("value")+
+                                                            + taxConfigurationList.optJSONObject(0).optDouble("value")+
                                                             jsonObjectAmountDetails.optDouble("fee"))));
 
                                         } else {

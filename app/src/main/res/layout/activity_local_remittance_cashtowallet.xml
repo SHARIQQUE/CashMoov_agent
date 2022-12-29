@@ -107,7 +107,7 @@
 
                         <TextView
                             android:id="@+id/spinner_senderCurrency"
-                            android:text="@string/sending_currencey_star"
+                            android:text="@string/select_currencey_star"
                             style="@style/SpinnerStyleNew1"/>
 
                         <TextView

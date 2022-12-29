@@ -43,6 +43,21 @@
                 <TextView
                     android:id="@+id/spinner_currency"
                     style="@style/SpinnerStyleNew1" />
+                <TextView
+                    android:id="@+id/viewwallet_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_blue"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="3sp"
+                    android:paddingLeft="29dp"
+                    android:paddingTop="13dp"
+                    android:paddingRight="29dp"
+                    android:paddingBottom="13dp"
+                    android:text="@string/Viewwallet"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_bold"/>
 
 
                 <HorizontalScrollView

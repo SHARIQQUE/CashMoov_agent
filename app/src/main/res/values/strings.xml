@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 27-12-2022</string>
+    <string name="version">Version : 29-12-2022</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -230,8 +230,8 @@
     <string name="amount_to_paid">Amount paid :</string>
     <string name="amount_paid">Amount paid :</string>
     <string name="maximumLimitCount">Global limit count</string>
-    <string name="pay_month_limit_count">Month limit count</string>
-    <string name="pay_month_limit_amount">Month limit amount</string>
+    <string name="pay_month_limit_count">Month limit count :</string>
+    <string name="pay_month_limit_amount">Month limit amount :</string>
 
 
 
@@ -410,6 +410,7 @@
     <string name="entries">Entries</string>
     <string name="uploadimage">please upload front Image</string>
     <string name="uploadbackimage"> please upload back Image</string>
+    <string name="postbalance"> Post Balance : 0.00</string>
 
 
 
@@ -595,6 +596,9 @@
     <string name="wallet_capital">WALLET</string>
 
     <string name="sending_currencey_star">Sending Currency*</string>
+
+    <string name="select_currencey_star">Select Currency*</string>
+
     <string name="sending_currencey">Sending Currency*</string>
     <string name="send_remitance_intenational">Send Remittance International</string>
     <string name="remitance_intenational">Remittance International</string>
@@ -955,6 +959,7 @@
     <string name="Creditlimit">Credit limit</string>
     <string name="subscriberpin">Subscriber PIN :</string>
     <string name="gnfvalidation">Sending currency field required GNF currency</string>
+    <string name="activity">Activity</string>
 
 </resources>
 

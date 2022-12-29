@@ -107,7 +107,12 @@ public class WalletTransactionDetails extends AppCompatActivity {
             double  srcpostbalance = b.getDouble("srcpostbalance");
             double  fee = b.getDouble("fee");
 
+
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
+            System.out.println("get va"+commissionAmount);
+
+
+
             String walletTypeCode="100008";
            if((getIntent().getStringExtra("WALLETTYPECODE")!=null) ){
                  walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
@@ -126,6 +131,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
                 txt_postbalance.setVisibility(View.VISIBLE);
             }else{
                 txt_postbalance.setVisibility(View.VISIBLE);
+
                 txt_postbalance.setText(getString(R.string.post_balance_colon) + " "+MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+srcpostbalance));
 
             }

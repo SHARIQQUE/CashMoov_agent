@@ -137,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:gravity="center_vertical"
-                    android:text="N/A"
+                    android:text="@string/postbalance"
                     android:fontFamily="@font/aileron_semibold"
                     android:textColor="@color/textcolor"
                     android:textSize="@dimen/_13sdp" />

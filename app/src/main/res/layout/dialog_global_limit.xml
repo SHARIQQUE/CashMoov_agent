@@ -175,6 +175,7 @@
             </LinearLayout>
 
 
+<!--
             <LinearLayout
                 android:gravity="left"
                 android:layout_width="match_parent"
@@ -207,6 +208,7 @@
                     android:layout_weight=".5"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12sdp"
+                    android:text="0"
                     android:fontFamily="@font/aileron_bold"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -215,11 +217,58 @@
 
 
             </LinearLayout>
+-->
+
+
+
             <LinearLayout
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_8sdp">
+
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".8"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pay_month_limit_count"
+                    android:textColor="#000"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:id="@+id/paymonthcountText"
+                    android:layout_width="0dp"
+                    android:layout_weight=".7"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="0.00"
+                    android:fontFamily="@font/aileron_bold"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_vertical"
                 >
 
@@ -229,19 +278,19 @@
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_weight=".5"
+                    android:layout_width="0dp"
+                    android:layout_weight=".8"
                     android:layout_height="wrap_content"
                     android:text="@string/pay_month_limit_amount"
                     android:textColor="#000"
                     android:layout_gravity="center_vertical"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     android:fontFamily="@font/aileron_semibold"
                     android:layout_marginLeft="@dimen/_5sdp"/>
                 <TextView
                     android:id="@+id/paymonthlimitAccountText"
                     android:layout_width="0dp"
-                    android:layout_weight=".5"
+                    android:layout_weight=".7"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12sdp"
                     android:text="0.00"

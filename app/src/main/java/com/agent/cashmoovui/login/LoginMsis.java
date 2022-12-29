@@ -641,6 +641,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 //                            String USERCODE = walletOwnerUser.getString("userCode");
 //                            String CODE_AGENT = walletOwnerUser.getString("code");
 //                            String NTTYPECODE = walletOwnerUser.getString("notificationTypeCode");
+
+                            MyApplication.saveString("profiletypecode", walletOwner.getString("profileTypeCode"), LoginMsis.this);
 //
 //
 //

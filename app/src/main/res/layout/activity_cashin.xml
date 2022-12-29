@@ -1125,6 +1125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_5sdp">
 
@@ -1227,6 +1228,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
                     />
+
 
                 <TextView
                     android:id="@+id/receiptPage_tv_fee"

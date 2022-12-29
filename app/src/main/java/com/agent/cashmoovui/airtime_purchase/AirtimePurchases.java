@@ -1133,12 +1133,15 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         }
 
                         rp_tv_convertionrate.setText(currencySymbol_sender+" " +"0.0");
-                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount));
-                        rp_tv_excise_tax.setText(currencySymbol_sender+" " +MyApplication.addDecimal(tax_financial));
+                        rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount+""));
+
+
+                        rp_tv_excise_tax.setText(currencySymbol_sender+" " +MyApplication.addDecimal(tax_financial+""));
                        TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
                         receiptPage_tv_financialtaxl.setText(rp_tv_excise_tax_l.getText().toString());
-                        receiptPage_tv_financialtax.setText(MyApplication.addDecimal(tax_financial));
-                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr));
+
+                        receiptPage_tv_financialtax.setText(MyApplication.addDecimal(tax_financial+""));
+                        rp_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr+""));
 
                         tax_financial_double = Double.parseDouble(tax_financial);
                         amountstr_double = Double.parseDouble(amountstr);
@@ -1146,9 +1149,9 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
                         totalAmount_str = String.valueOf(totalAmount_double);
-                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" " +MyApplication.addDecimal(totalAmount_str));
+                        rp_tv_amount_to_be_charge.setText(currencySymbol_sender+" " +MyApplication.addDecimal(totalAmount_str+""));
 
-                        rp_tv_totalAmount.setText(currencySymbol_sender+" " + MyApplication.addDecimal(totalAmount_str));
+                        rp_tv_totalAmount.setText(currencySymbol_sender+" " + MyApplication.addDecimal(totalAmount_str+""));
 
 
                         ll_page_1.setVisibility(View.GONE);
