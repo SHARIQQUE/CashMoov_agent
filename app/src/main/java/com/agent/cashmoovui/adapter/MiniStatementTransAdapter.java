@@ -92,6 +92,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             String formattedDate = outputFormat.format(date);
             holder.tvCreationDate.setText(formattedDate);
         } catch (ParseException e) {
+
             e.printStackTrace();
         }
 
