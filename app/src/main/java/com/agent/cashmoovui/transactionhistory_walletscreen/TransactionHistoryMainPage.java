@@ -561,6 +561,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                 miniStatementTransList.clear();
                                 String name,msisdn,toName,tomssisdn,taxAsJson;
 
+
                                 if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
                                     if(walletTypeCode.equalsIgnoreCase("100008")){
                                         //tvViewHide.setText("Main Wallet transaction history");
