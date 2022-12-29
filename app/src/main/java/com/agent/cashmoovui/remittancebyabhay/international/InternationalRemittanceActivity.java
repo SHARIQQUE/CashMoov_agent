@@ -903,12 +903,14 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 //                                    }
 
 
+
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(df.format(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",","")))
-                                                    + taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                    jsonObjectAmountDetails.optDouble("fee")));
+                                             Double amountcharge=Double.parseDouble(amount)+ taxConfigurationList.optJSONObject(0).optDouble("value")+
+                                                     jsonObjectAmountDetails.optDouble("fee");
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(amountcharge+""));
+
                                           MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
                                         } else {
                                             taxConfigurationList = null;
@@ -1032,6 +1034,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
+
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
