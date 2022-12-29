@@ -354,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
         MyApplication.hideKeyboard(this);
+        MyApplication.bioMetricCounter=0;
 
         if(MyApplication.getSaveString("walletOwnerCategoryCode", MainActivity.this).equalsIgnoreCase(MyApplication.MerchatCode)){
             ll_cashIn.setVisibility(View.GONE);

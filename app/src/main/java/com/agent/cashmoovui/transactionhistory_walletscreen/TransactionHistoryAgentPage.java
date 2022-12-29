@@ -489,6 +489,15 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                 taxAsJson = data.optString("taxAsJson");
                                             }
 
+
+                                            String transactionTypeNAme=data.optString("transactionTypeName");
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105218")) {
+                                                transactionTypeNAme=data.optString("incentiveTransactionType");
+                                            }else{
+                                                transactionTypeNAme=data.optString("transactionTypeName");
+                                            }
+
+
                                             if (data.optString("transactionTypeCode").equalsIgnoreCase("106443")) {
 
                                             } else {
@@ -510,7 +519,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
                                                         data.optString("fromCurrencySymbol").trim(),
                                                         data.optString("toCurrencySymbol").trim(),
                                                         data.optString("transactionTypeCode").trim(),
-                                                        data.optString("transactionTypeName").trim(),
+                                                        transactionTypeNAme.trim(),
                                                         data.optString("creationDate").trim(),
                                                         data.optString("comReceiveWalletCode").trim(),
                                                         taxAsJson,

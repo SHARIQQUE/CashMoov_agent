@@ -626,6 +626,13 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                 fee = data.optDouble("fee");
                                             }
 
+                                            String transactionTypeNAme=data.optString("transactionTypeName");
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105218")) {
+                                                transactionTypeNAme=data.optString("incentiveTransactionType");
+                                            }else{
+                                                transactionTypeNAme=data.optString("transactionTypeName");
+                                            }
+
                                             if (data.optString("transactionTypeCode").equalsIgnoreCase("106443")) {
 
                                             } else {
@@ -650,7 +657,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                         data.optString("fromCurrencySymbol").trim(),
                                                         data.optString("toCurrencySymbol").trim(),
                                                         data.optString("transactionTypeCode").trim(),
-                                                        data.optString("transactionTypeName").trim(),
+                                                        transactionTypeNAme.trim(),
                                                         data.optString("creationDate").trim(),
                                                         data.optString("comReceiveWalletCode").trim(),
                                                         taxAsJson,

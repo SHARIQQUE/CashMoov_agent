@@ -851,6 +851,19 @@ public static String addDecimal(String number) {
     public static Activity activityNew;
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
+
+        MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", activity);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+
+            }else {
+                bioMetric_responce_handler.failure("");
+               return;
+            }
+        }else{
+
+        }
+
         activityNew=activity;
         FingerprintManager fingerprintManager = (FingerprintManager) activity.getSystemService(Context.FINGERPRINT_SERVICE);
 
