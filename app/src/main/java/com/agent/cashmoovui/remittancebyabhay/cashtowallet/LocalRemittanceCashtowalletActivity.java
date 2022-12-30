@@ -130,6 +130,8 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                 new InputFilter.LengthFilter(MyApplication.amountLength)});
 
         edittext_amount_pay.setEnabled(false);
+        receivingcurrecncyText.setVisibility(View.VISIBLE);
+        receivingcurrecncyText.setText(getString(R.string.receive_courency));
         spinner_receiverCurrency.setText("GNF");
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
