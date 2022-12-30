@@ -131,8 +131,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         cardMainWallet.setEnabled(true);
         cardCommissionWallet.setEnabled(true);
         cardOverdraftWallet.setEnabled(false);
-      /*  viewwallet_textview=findViewById(R.id.viewwallet_textview);
-        viewwallet_textview.setOnClickListener(this);*/
+        viewwallet_textview=findViewById(R.id.viewwallet_textview);
+        viewwallet_textview.setOnClickListener(this);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
 
