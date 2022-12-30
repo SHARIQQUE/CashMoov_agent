@@ -212,7 +212,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
 
                 }
-                if(s.length()<9){
+                if(s.length()<Integer.parseInt(mobilelength)){
                     clearData();
                     tvNext.setVisibility(View.VISIBLE);
                 }

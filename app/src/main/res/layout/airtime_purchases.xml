@@ -232,9 +232,10 @@
 
             <LinearLayout
                 android:gravity="left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -242,27 +243,31 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".01"
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/mobileNo_reveiewPage"
                     android:textColor="#000"
-                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".54"
                     android:layout_marginLeft="@dimen/_5sdp"
+
+                    android:layout_gravity="center_vertical"
                     android:textSize="@dimen/_13sdp"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_mobileNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:layout_weight=".45"
+
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -383,9 +388,10 @@
 
             <LinearLayout
                 android:gravity="left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -393,15 +399,19 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".01"
+
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/Operator_reviewPage"
                     android:textColor="#000"
+                    android:layout_weight=".54"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
@@ -409,11 +419,12 @@
 
                 <TextView
                     android:id="@+id/rp_tv_operator"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:layout_weight=".45"
+
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -425,6 +436,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -433,29 +445,33 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".01"
+
+
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
                 <TextView
-                    android:layout_weight=".45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/transactionAmount_reveiewPage"
                     android:textColor="#000"
+                    android:layout_weight=".54"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
                     />
 
                 <TextView
-                    android:layout_weight=".5"
                     android:id="@+id/rp_tv_transactionAmount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:layout_weight=".45"
+
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -465,9 +481,10 @@
 
             <LinearLayout
                 android:gravity="left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -475,15 +492,19 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".01"
+
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/fee_reveiewPage"
                     android:textColor="#000"
+                    android:layout_weight=".54"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
@@ -491,11 +512,12 @@
 
                 <TextView
                     android:id="@+id/rp_tv_fees_reveiewPage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:layout_weight=".45"
+
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -503,9 +525,10 @@
             </LinearLayout>
             <LinearLayout
                 android:gravity="left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -513,16 +536,20 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".01"
+
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
                 <TextView
                     android:id="@+id/rp_tv_excise_tax_l"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/tax"
                     android:textColor="#000"
+                    android:layout_weight=".54"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
@@ -530,11 +557,12 @@
 
                 <TextView
                     android:id="@+id/rp_tv_excise_tax"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:layout_weight=".45"
+
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -543,9 +571,10 @@
 
             <LinearLayout
                 android:gravity="left"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:weightSum="1"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -553,15 +582,19 @@
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".01"
+
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/total_amount_reveiewPage"
+                    android:text="@string/amount_charged_colon"
                     android:textColor="#000"
+                    android:layout_weight=".54"
+
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textSize="@dimen/_13sdp"
@@ -569,11 +602,12 @@
 
                 <TextView
                     android:id="@+id/rp_tv_totalAmount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_13sdp"
+                    android:layout_weight=".45"
+
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:textColor="#000"
                     />
 
@@ -1069,7 +1103,7 @@
         <LinearLayout
             android:gravity="left"
             android:weightSum="1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center_vertical"
@@ -1080,23 +1114,26 @@
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_weight=".01"
+
                 android:layout_gravity="center_vertical"
                 app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
                 />
 
             <TextView
-                android:layout_weight=".6"
+                android:layout_weight=".54"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/vendor_transaction_id_receiptn"
                 android:textColor="#000"
+
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:textSize="@dimen/_13sdp"
                 />
 
             <TextView
-                android:layout_weight=".35"
+                android:layout_weight=".45"
                 android:id="@+id/vendorTransId_tv_receiptPagen"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -1214,7 +1251,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/amount_simple"
+                android:text="@string/amount_charged_colon_only"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"
@@ -1369,7 +1406,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/transaction_amount_receiptPage"
+                android:text="@string/trans_amount_colon"
                 android:textColor="#000"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_5sdp"

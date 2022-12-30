@@ -237,7 +237,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                 if (new InternetCheck().isConnected(cashtowalletbenefikycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=9 && m.matches()){
+                    if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{

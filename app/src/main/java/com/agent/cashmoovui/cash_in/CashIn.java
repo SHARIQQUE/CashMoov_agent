@@ -264,12 +264,12 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         return;
                     }
 
-                    if (s.length() >=9) {
+                    if (s.length() ==Integer.parseInt(mobilelength)) {
                         subscriber_details_api_walletownerUserNew();
 
 
                     }
-                    if(s.length()<=9){
+                    if(s.length()<Integer.parseInt(mobilelength)){
                         etName.setText("");
 
 

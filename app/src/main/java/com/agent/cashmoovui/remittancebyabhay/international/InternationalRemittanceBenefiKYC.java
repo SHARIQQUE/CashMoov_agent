@@ -283,7 +283,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                 if (new InternetCheck().isConnected(internationalremitbenefikycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=9 && m.matches()){
+                    if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{

@@ -208,12 +208,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                         return;
                     }
 
-                    if (s.length() >=9) {
+                    if (s.length() ==Integer.parseInt(mobilelength)) {
                         subscriber_details_api_walletownerUserNew();
 
 
                     }
-                    if(s.length()<=9){
+                    if(s.length()<Integer.parseInt(mobilelength)){
                         etName.setText("");
 
 

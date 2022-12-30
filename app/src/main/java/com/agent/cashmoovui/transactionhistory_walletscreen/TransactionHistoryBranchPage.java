@@ -1149,7 +1149,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("TRANSTYPE",transactionTypeName);
         intent.putExtra("FROMWALLETOWNERNAME",fromWalletOwnerName);
         intent.putExtra("TOWALLETOWNERNAME",toWalletOwnerName);
-        intent.putExtra("FROMAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
+        intent.putExtra("FROMAMOUNT",currencySymbol+" "+MyApplication.addDecimal(""+fromAmount));
         intent.putExtra("TRANSID",transactionId);
         intent.putExtra("CREATIONDATE",creationDate);
         intent.putExtra("STATUS",status);
@@ -1157,11 +1157,16 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("WALLETTYPECODE",wallettypecode);
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+        intent.putExtra("taxvalue",tax);
+        intent.putExtra("fee",fee);
         intent.putExtra("srcpostbalance",srcpostbalance);
-
         intent.putExtra("TRANSACTIONAMOUNT",MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+transactionAmount));
         startActivity(intent);
     }
+
+
+
 
 
     public void alertdialouge_viewwallet() {
@@ -1205,7 +1210,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
 
                         }else{
-                            minvalueText.setText("0.00");
+                           // minvalueText.setText("0.00");
 
                         }
                         if(MyApplication.currencyModelArrayList.get(i).getAlertValue()>0) {

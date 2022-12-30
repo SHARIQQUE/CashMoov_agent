@@ -311,7 +311,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 if (new InternetCheck().isConnected(internationalremitsenderkycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=9 && m.matches()){
+                    if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{

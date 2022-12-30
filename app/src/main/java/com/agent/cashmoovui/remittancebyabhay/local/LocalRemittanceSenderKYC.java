@@ -294,7 +294,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             if (new InternetCheck().isConnected(localremitsenderkycC)) {
 
                 Matcher m = p.matcher(s);
-                if(s.length()>=9 && m.matches()){
+                if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
                     if(isSet) {
                         isSet=false;
                     }else{

@@ -1450,7 +1450,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
                             }else{
-                                minvalueText.setText("0.00");
+                               // minvalueText.setText("0.00");
 
                             }
                             if(MyApplication.currencyModelArrayList.get(i).getAlertValue()>0) {

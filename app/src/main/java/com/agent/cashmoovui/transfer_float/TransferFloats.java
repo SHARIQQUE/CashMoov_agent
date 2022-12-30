@@ -109,6 +109,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
     String mpinStr="";
+    LinearLayout amountpaidLinear;
 
 
     String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
@@ -124,7 +125,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
-
+    String mobilelength="";
 
 
     @Override
@@ -169,7 +170,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
 
 
-            String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
             edittext_mobileNo.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
@@ -219,12 +220,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         return;
                     }
 
-                    if (s.length() >=9) {
+                    if (s.length() ==Integer.parseInt(mobilelength)) {
                         api_walletOwner_msisdnNew();
 
 
                     }
-                    if(s.length()<=9){
+                    if(s.length()<Integer.parseInt(mobilelength)){
                         etName.setText("");
 
 
@@ -291,7 +292,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             ll_successPage = (LinearLayout) findViewById(R.id.ll_successPage);
             tvContinue = (TextView) findViewById(R.id.tvContinue);
             tvContinue.setOnClickListener(this);
-
+            amountpaidLinear=findViewById(R.id.amountpaidLinear);
             et_mpin = (EditText) findViewById(R.id.et_mpin);
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
             confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
@@ -1495,6 +1496,20 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getJSONObject("walletTransfer").getString("creationDate")));
                             receiptPage_tv_amount_to_be_credit.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
+
+                            String tamount=receiptPage_tv_transactionAmount.getText().toString();
+                            String paid=receiptPage_tv_amount_to_be_credit.getText().toString();
+                            System.out.println("get amount"+tamount);
+                            System.out.println("get paid"+paid);
+
+
+                            if(!tamount.equalsIgnoreCase(paid)){
+                                amountpaidLinear.setVisibility(View.VISIBLE);
+                            }else{
+                                amountpaidLinear.setVisibility(View.GONE);
+                            }
+
+
 
                             receiptPage_tv_sender_name.setText(agentName_from_walletOwner);
                             receiptPage_tv_sender_phoneNo.setText(MyApplication.getSaveString("USERNAME", TransferFloats.this));

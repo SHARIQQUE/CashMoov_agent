@@ -344,7 +344,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                 if (new InternetCheck().isConnected(cashtowalletsenderkycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=9 && m.matches()){
+                    if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{

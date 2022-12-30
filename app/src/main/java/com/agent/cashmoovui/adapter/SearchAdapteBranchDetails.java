@@ -131,6 +131,10 @@ public class SearchAdapteBranchDetails extends RecyclerView.Adapter<SearchAdapte
                 if (wp.getOwnerName().toLowerCase(Locale.getDefault()).contains(charText)) {
                     arrayList_modalUserData.add(wp);
                 }
+
+                if (wp.getMobileNumber().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    arrayList_modalUserData.add(wp);
+                }
             }
         }
         notifyDataSetChanged();

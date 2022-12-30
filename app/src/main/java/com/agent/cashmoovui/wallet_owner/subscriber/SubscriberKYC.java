@@ -207,7 +207,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
 
 
                 }
-                if(s.length()<9){
+                if(s.length()<Integer.parseInt(mobilelength)){
                     clearData();
                     tvNext.setVisibility(View.VISIBLE);
                 }

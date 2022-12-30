@@ -146,6 +146,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
     String currencySymbol_sender = "";
     String currencySymbol_receiver = "";
+    String mobilelength="";
 
 
     @Override
@@ -196,6 +197,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     startActivityForResult(intent , REQUEST_CODE);
                 }
             });*/
+
+        mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
 
         edittext_amount.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.amountLength)});
@@ -333,7 +337,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() >= 9) {
+                if (s.length() >= Integer.parseInt(mobilelength)) {
                     mInstitutenameEdittext.setText("");
                     for (int i = 0; i < arrayList_instititueCode.size(); i++) {
                         if (mEnterinstituteEdittext.getText().toString().equalsIgnoreCase(arrayList_instititueCode.get(i))) {
@@ -358,7 +362,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                     }
 
                 }else {
-                    if(s.length()<=9){
+                    if(s.length()<=Integer.parseInt(mobilelength)){
                         tv_nextClick.setVisibility(View.GONE);
                         mInstitutenameEdittext.setText("");
 
@@ -452,7 +456,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             if (new InternetCheck().isConnected(SellFloat.this)) {
 
 
-                api_insititute();
+               // api_insititute();
+
+                callApiSendCurrencynew();
 
 
 
@@ -792,24 +798,26 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         arrayList_currencySymbol.add(0,getString(R.string.select_currency_star));
 */
                         JSONArray jsonArray = jsonObject.getJSONArray("walletOwnerCountryCurrencyList");
-                        for(int i=0;i<jsonArray.length();i++)
-                        {
+                        for(int i=0;i<jsonArray.length();i++) {
+
 
                             JSONObject jsonObject3 = jsonArray.getJSONObject(i);
 
-                            String currencyName = jsonObject3.getString("currencyName");
-                            String currencyCode = jsonObject3.getString("currencyCode");
-                            String currencySymbol = jsonObject3.getString("currencySymbol");
+                            if (compareCurrency.contains(jsonObject3.optString("currencyCode"))) {
+
+                                String currencyName = jsonObject3.getString("currencyName");
+                                String currencyCode = jsonObject3.getString("currencyCode");
+                                String currencySymbol = jsonObject3.getString("currencySymbol");
 
 
-                            arrayList_currecnyName.add(currencyName);
-                            arrayList_currecnyCode.add(currencyCode);
-                            arrayList_currencySymbol.add(currencySymbol);
+                                arrayList_currecnyName.add(currencyName);
+                                arrayList_currecnyCode.add(currencyCode);
+                                arrayList_currencySymbol.add(currencySymbol);
 
+
+                            }
 
                         }
-
-
 
 
                         spinnerDialogCurrency = new SpinnerDialog(SellFloat.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
@@ -2622,6 +2630,66 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
+    }
+
+
+    ArrayList<String> compareCurrency=new ArrayList<>();
+
+
+    private void callApiSendCurrencynew() {
+        try {
+
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/"+MyApplication.getSaveString("walletOwnerCode", SellFloat.this),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+
+                                compareCurrency.clear();
+                                JSONArray jsonArraynew=jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+                                for(int i=0; i<jsonArraynew.length(); i++) {
+                                    try {
+                                        JSONObject data = jsonArraynew.getJSONObject(i);
+                                        compareCurrency.add(data.optString("currencyCode"));
+
+
+                                    }catch(Exception e){
+
+                                    }
+
+
+
+
+                                }
+
+
+
+                            api_insititute();
+
+                                // callApiRecCountry();
+
+                            } else {
+                                // MyApplication.showToast(localC,jsonObject.optString("resultDescription", "  "));
+                            }
+
+
+                        }
+
+
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
+
     }
 
 }
