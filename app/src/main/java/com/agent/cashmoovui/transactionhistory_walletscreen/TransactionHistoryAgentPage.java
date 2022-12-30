@@ -1406,11 +1406,6 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                         }
 
-
-
-
-
-
                     }
                 }
 

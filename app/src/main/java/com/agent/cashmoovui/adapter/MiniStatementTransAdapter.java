@@ -204,14 +204,32 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     if(MyApplication.AgentPage) {
 
                             MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForAgent());
-                            holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForAgent()) + " " + MyApplication.currencySymbol);
+                            if(miniStatementTrans.getCommissionAmountForAgent()>0){
+                                holder.linItem.setVisibility(View.VISIBLE);
+                                holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForAgent()) + " " + MyApplication.currencySymbol);
+                            }else{
+                               LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                        ViewGroup.LayoutParams.WRAP_CONTENT);
+                               params.height=0;
+                                holder.linItem.setLayoutParams(params);
+                            }
+
 
                     }
                     String institutecomission=String.valueOf(miniStatementTrans.getCommissionAmountForInstitute());
                     if(MyApplication.InstPage) {
 
                             MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForInstitute());
+                        if(miniStatementTrans.getCommissionAmountForInstitute()>0){
+                            holder.linItem.setVisibility(View.VISIBLE);
                             holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForInstitute()) + " " + MyApplication.currencySymbol);
+                        }else{
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.height=0;
+                            holder.linItem.setLayoutParams(params);
+                        }
+
 
                     }
                     String branchcomission=String.valueOf(miniStatementTrans.getCommissionAmountForBranch());
@@ -219,7 +237,18 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     if(MyApplication.BranchPage) {
 
                             MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForBranch());
+
+                        if(miniStatementTrans.getCommissionAmountForBranch()>0){
+                            holder.linItem.setVisibility(View.VISIBLE);
                             holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForBranch()) + " " + MyApplication.currencySymbol);
+                        }else{
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.height=0;
+                            holder.linItem.setLayoutParams(params);
+                        }
+
+
                         }
 
 
