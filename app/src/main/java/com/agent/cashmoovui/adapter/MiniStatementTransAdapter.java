@@ -184,17 +184,12 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         if(walletTypeCode.equalsIgnoreCase("100009")){
             if(miniStatementTrans.getFromWalletTypeCode().equalsIgnoreCase("100009")){
                 holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-                if(comissionagent.equalsIgnoreCase("0.0")){
-                    holder.linItem.setVisibility(View.GONE);
-
-                }else{
-                    holder.linItem.setVisibility(View.VISIBLE);
 
                     holder.tvAmount.setText(MyApplication.addDecimal(miniStatementTrans.getFromAmount()+"")+" "+ MyApplication.currencySymbol);
                     MyApplication.Amount=	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount());
                     //  holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
                     holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
-                }
+
 
 
             }else{
@@ -207,41 +202,26 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                    // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
                 }else {
                     if(MyApplication.AgentPage) {
-                        if (comissionagent.equalsIgnoreCase("0.0")) {
-                            holder.linItem.setVisibility(View.GONE);
-
-                        } else {
-                            holder.linItem.setVisibility(View.VISIBLE);
 
                             MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForAgent());
                             holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForAgent()) + " " + MyApplication.currencySymbol);
-                        }
+
                     }
                     String institutecomission=String.valueOf(miniStatementTrans.getCommissionAmountForInstitute());
                     if(MyApplication.InstPage) {
-                        if (institutecomission.equalsIgnoreCase("0.0")) {
-                            holder.linItem.setVisibility(View.GONE);
-
-                        } else {
-                            holder.linItem.setVisibility(View.VISIBLE);
 
                             MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForInstitute());
                             holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForInstitute()) + " " + MyApplication.currencySymbol);
-                        }
+
                     }
                     String branchcomission=String.valueOf(miniStatementTrans.getCommissionAmountForBranch());
 
                     if(MyApplication.BranchPage) {
-                        if (branchcomission.equalsIgnoreCase("0.0")) {
-                            holder.linItem.setVisibility(View.GONE);
-
-                        } else {
-                            holder.linItem.setVisibility(View.VISIBLE);
 
                             MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForBranch());
                             holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForBranch()) + " " + MyApplication.currencySymbol);
                         }
-                    }
+
 
                     //holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + miniStatementTrans.getToCurrencySymbol());
                 }

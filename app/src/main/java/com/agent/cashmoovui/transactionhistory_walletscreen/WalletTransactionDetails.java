@@ -125,10 +125,13 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             DecimalFormat df = new DecimalFormat("0.00",symbols);
 
+            System.out.println("get walletcode"+MyApplication.checkWalletTypeCode);
+
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
             txt_fee.setText(getString(R.string.fee_colon)+" " +MyApplication.addDecimal(""+fee));
             if(MyApplication.checkWalletTypeCode.equalsIgnoreCase("100009")){
-                txt_postbalance.setVisibility(View.VISIBLE);
+                txt_postbalance.setVisibility(View.GONE);
+
             }else{
                 txt_postbalance.setVisibility(View.VISIBLE);
 

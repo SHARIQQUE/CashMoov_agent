@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 29-12-2022</string>
+    <string name="version">Version : 30-12-2022</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -185,7 +185,7 @@
     <string name="share_app">Recommander l\'application</string>
     <string name="terms_conditions">Conditions générales</string>
     <string name="about">A propos</string>
-    <string name="change_pin">Changer de Code PIN</string>
+    <string name="change_pin">Changer de code PIN</string>
     <string name="edit_profile">Modifier la photo de profile</string>
     <string name="reset">Reinitialisation</string>
     <string name="hello_this_is_your">Hello ceci est votre</string>
@@ -357,7 +357,7 @@
     <string name="set_pin">Définir la code pin</string>
     <string name="set_pin_message">Veuillez definir un code pin a 4 chiffres pour votre compte</string>
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
-    <string name="val_re_pin">Veuillez saisir une nouvelle épingle</string>
+    <string name="val_re_pin">Veuillez saisir une nouvelle  code PIN</string>
     <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>
     <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin doivent être identiques]]></string>
     <string name="val_select_gender">Veuillez sélectionner le sexe</string>
@@ -430,7 +430,7 @@
     <string name="verification_register_otpback">Veuillez contacter votre service client pour générer l\'OTP et veuillez entrer l\'OTP pour vérifier votre compte.</string>
     <string name="otp_verify">Vérification OTP</string>
     <string name="verify_subscriber_pin">Vérifier le code PIN d abonné</string>
-    <string name="subscriber_pin">Épingle d abonné</string>
+    <string name="subscriber_pin"> Code PIN d abonné</string>
     <string name="otp_subscriber_success_plz_enter_pin">Vérification OTP réussie Veuillez saisir le code PIN de l abonné</string>
     <string name="Submit">Soumettre </string>
 
@@ -818,7 +818,7 @@
     <string name="hint_otp">Entrez l\'OTP</string>
     <string name="generate_credential_via">Générer des informations d\'identification via</string>
     <string name="self">Soi</string>
-    <string name="gen_pin">Générer une épingle</string>
+    <string name="gen_pin">Générer une  Code PIN</string>
     <string name="save">Enregistrer</string>
     <string name="hint_new_pin">Nouveau code PIN</string>
     <string name="hint_conf_pin">Confirmer le nouveau code PIN</string>
@@ -941,7 +941,7 @@
     <string name="Commisionwallet">"Portefeuille de commissions"</string>
     <string name="Viewwallet">"Voir le portefeuille"</string>
     <string name="Creditlimit">Limite de crédit</string>
-    <string name="subscriberpin">Épingle abonné :</string>
+    <string name="subscriberpin"> Code PIN abonné :</string>
     <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
     <string name="activity">Activité</string>
 
