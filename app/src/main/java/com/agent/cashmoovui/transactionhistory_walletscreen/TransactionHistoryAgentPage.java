@@ -45,6 +45,7 @@ import com.google.gson.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -1198,7 +1199,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1221,7 +1222,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1244,7 +1245,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1275,7 +1276,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(str);
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1295,7 +1296,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1317,7 +1318,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1348,7 +1349,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1368,7 +1369,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(MyApplication.addDecimal(str));
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 
@@ -1390,7 +1391,7 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
 
                             String str = String.format("%.2f", dblValue);
 
-                            maxvalueText.setText(str);
+                            maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                         }
 

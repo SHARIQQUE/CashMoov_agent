@@ -41,6 +41,8 @@ import com.google.gson.JsonArray;
 import com.skhugh.simplepulltorefresh.PullToRefreshLayout;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -1437,7 +1439,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1460,7 +1462,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1483,7 +1485,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1514,7 +1516,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1534,7 +1536,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1556,7 +1558,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1587,7 +1589,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1607,7 +1609,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
@@ -1629,7 +1631,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                                 String str = String.format("%.2f", dblValue);
 
-                                maxvalueText.setText(MyApplication.addDecimal(str));
+                                maxvalueText.setText(MyApplication.addDecimal(BigDecimal.valueOf(dblValue)+""));
 
                             }
 
