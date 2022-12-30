@@ -1427,7 +1427,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
 
             System.out.println("get list"+MyApplication.currencyModelArrayList);
-
+            maxvalueText.setText(MyApplication.addDecimal("0.00"));
+            minvalueText.setText(MyApplication.addDecimal("0.00"));
+            alertvalueText.setText(MyApplication.addDecimal("0.00"));
 
             for(int i=0; i<MyApplication.currencyModelArrayList.size(); i++){
                     System.out.println("get max"+MyApplication.currencyModelArrayList.get(i).getMaxValue());

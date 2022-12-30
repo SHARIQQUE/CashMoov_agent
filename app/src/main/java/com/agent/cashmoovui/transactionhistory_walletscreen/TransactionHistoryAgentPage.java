@@ -1185,7 +1185,9 @@ public class TransactionHistoryAgentPage extends AppCompatActivity implements Ad
             TextView  minvalueText=operationDialog.findViewById(R.id.minvalueText);
             TextView  alertvalueText=operationDialog.findViewById(R.id.alertvalueText);
 
-
+            maxvalueText.setText(MyApplication.addDecimal("0.00"));
+            minvalueText.setText(MyApplication.addDecimal("0.00"));
+            alertvalueText.setText(MyApplication.addDecimal("0.00"));
             System.out.println("get list"+MyApplication.currencyModelArrayList);
 
 
