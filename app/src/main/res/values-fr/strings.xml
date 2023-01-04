@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 30-12-2022</string>
+    <string name="version">Version : 04-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -119,6 +119,8 @@
     <string name="money_transfer">Transfert d\'argent</string>
     <string name="airtime_purchase">Achat de credit</string>
     <string name="payment">Paiements</string>
+    <string name="paymentnew">Paiement</string>
+
     <string name="merchant_payment">Paiments Marchand</string>
     <string name="cash_withdrawal">Retrait d\'argent</string>
     <string name="receive_remittance">Reception d\'argent</string>
@@ -397,7 +399,7 @@
 
     <string name="session_expire_60">La session expire dans 60 secondes</string>
     <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>
-    <string name="please_enter_otp_code">Veuillez entrer le code OTP</string>
+    <string name="please_enter_otp_code"> Valider le PIN client</string>
     <string name="plz_enter_6_digit_otp_code">Veuillez entrer le code OTP à 6 chiffres</string>
 
     <string name="cash_In">Dépôt</string>
@@ -471,6 +473,8 @@
     <string name="amount_to_be_charged_reveiewPage">Montant à facturer:</string>
     <string name="amount_to_be_credit_reveiewPage">Montant à facturer :</string>
     <string name="mobileNo_reveiewPage">Numéro de telephone:</string>
+    <string name="mobileNo_reveiewPagecashout_new">Numéro du bénéficiaire:</string>
+
     <string name="country_reviewPage">Pays :</string>
     <string name="amount_to_paid_review_page">Montant facturé :</string>
     <string name="Address_Type_star">Type d\'adresse *</string>
@@ -524,7 +528,7 @@
     <string name="logout">Deconnexion</string>
     <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
     <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application?</string>
-    <string name="benificiary_currency_receiptpage">Devise du bénéficiaire :</string>
+    <string name="benificiary_currency_receiptpage">Devise de réception :</string>
     <string name="total_amount_receiptpage">Montant total</string>
 
 
@@ -551,7 +555,7 @@
     <string name="share_screenshot">Partager une capture d écran</string>
     <string name="no_app_available">Aucune application disponible</string>
     <string name="send_remittance_local">Envoyer un versement local</string>
-    <string name="send_cashtowallet">Envoyer de l\'argent au portefeuille  </string>
+    <string name="send_cashtowallet">De l\'argent au portefeuille  </string>
 
     <string name="amount_to_pay">Montant à payer</string>
     <string name="destination_details">Détails de la destination</string>
@@ -682,7 +686,7 @@
     <string name="valid_agent_name">Nom d\'agent*</string>
     <string name="valid_select_region">Selectionnez une région*</string>
     <string name="valid_select_business_type">Sélectionnez le type d\'entreprise*</string>
-    <string name="agent">Nom de l\'agent</string>
+    <string name="agent">Agent</string>
     <string name="val_agent_name">Veuillez saisir le nom de l\'agent</string>
     <string name="val_agent_name_len">Le nom de l\'agent doit comporter au moins 3 caractères</string>
     <string name="val_select_business_type">Veuillez sélectionner le type d\'entreprise</string>
@@ -859,7 +863,7 @@
 
     <string name="benefi_code_colon">Code bénéficiaire :</string>
     <string name="send_curr_colon">Devise d\'envoi :</string>
-    <string name="benefi_curr_colon">Devise du bénéficiaire :</string>
+    <string name="benefi_curr_colon">Devise de réception :</string>
     <string name="conversion_rate_colon">Taux de conversion :</string>
     <string name="comment_colon">Commentaires :</string>
     <string name="trans_ref_no_colon">Numéro de référence de la transaction :</string>
@@ -939,9 +943,9 @@
     <string name="minvaluewallet">Valeur minimale</string>
     <string name="alertvalue">Valeur d\'alerte</string>
     <string name="Commisionwallet">"Portefeuille de commissions"</string>
-    <string name="Viewwallet">"Voir le portefeuille"</string>
+    <string name="Viewwallet">"Voir les limites"</string>
     <string name="Creditlimit">Limite de crédit</string>
-    <string name="subscriberpin"> Code PIN abonné :</string>
+    <string name="subscriberpin"> PIN Client :</string>
     <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
     <string name="activity">Activité</string>
 

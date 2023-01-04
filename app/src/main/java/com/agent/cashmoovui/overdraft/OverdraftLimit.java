@@ -198,19 +198,24 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
 
+
                 if (validation_mobile_Details()) {
 
                     if (new InternetCheck().isConnected(OverdraftLimit.this)) {
 
                         MyApplication.showloader(OverdraftLimit.this, getString(R.string.please_wait));
 
+                        System.out.println("get value"+Double.parseDouble(repleaceString(amountstr)));
+                        System.out.println("get value new "+Double.parseDouble(maximumLimit));
 
                         if (Double.parseDouble(repleaceString(amountstr)) > Double.parseDouble(maximumLimit)) {
                             MyApplication.showToast(OverdraftLimit.this, "Please enter the correct amount");
                             return;
+                        }else{
+                            api_creditLimitAllocation();
+
                         }
 
-                        api_creditLimitAllocation();
 
 
                     } else {
@@ -1103,6 +1108,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         amountstr = edittext_amount.getText().toString().trim();
         validityDaysStr = edittext_validity.getText().toString().trim();
 
+        System.out.println("get amount"+Double.parseDouble(amountStrcheck));
+        System.out.println("get amount1"+Double.parseDouble(amountstr));
 
         if (spinner_currency.getText().equals(getString(R.string.select_currency))) {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
@@ -1115,7 +1122,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             return false;
         }
 
-         else if (amountStrcheck.length()< amountstr.length()) {
+
+         else if (Double.parseDouble(amountStrcheck)< Double.parseDouble(amountstr)) {
             MyApplication.showErrorToast(this, getString(R.string.overdraftvalidation));
             return false;
         }

@@ -746,6 +746,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                         spinner_senderCurrency.setText(item);
                                         spinner_senderCurrency.setTag(position);
                                         sendigncurrecncyText.setVisibility(View.VISIBLE);
+                                        fromCurrency=sendCurrencyModelList.get(position).getCountryName();
                                         fromCurrencynew = sendCurrencyModelList.get(position).getCurrCode();
                                         fromCurrencySymbol = sendCurrencyModelList.get(position).getCurrencySymbol();
                                         fromCurrencyCode = sendCurrencyModelList.get(position).getCurrencyCode();
@@ -754,6 +755,8 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                         edittext_amount.getText().clear();
                                         edittext_amount_pay.getText().clear();
                                         toCurrencySymbolnew ="GNF";
+
+                                        System.out.println("get sending"+fromCurrencySymbol);
 
                                     }
                                 });

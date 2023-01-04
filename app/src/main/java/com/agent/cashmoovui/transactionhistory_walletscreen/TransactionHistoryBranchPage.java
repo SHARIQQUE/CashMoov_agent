@@ -990,10 +990,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         walletCode = MyApplication.currencyModelArrayList.get(i).code;
         Double main=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
         Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue);
-        mainwallet_textview.setText(MyApplication.addDecimal(""+main)+" / "+
-                MyApplication.addDecimal(""+allocate));
-        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
-        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
+        mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
+                " / "+MyApplication.currencyModelArrayList.get(i).currencyName+" "+ MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
+        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
+        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
 
         callApiMiniStatementTrans(walletCode,walletTypeCode);

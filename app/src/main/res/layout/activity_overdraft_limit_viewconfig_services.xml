@@ -23,7 +23,18 @@
             <include layout="@layout/toolbar_active" />
 
 
-<LinearLayout
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/servicecatname"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="#000"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/aileron_bold"/>
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

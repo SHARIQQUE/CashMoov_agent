@@ -101,6 +101,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     private String maxvalue,minvalue,alertvalue;
     int page = 0, limit = 20;
 
+    private String iclick="";
+
 
 
     @Override
@@ -727,13 +729,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvRefresh:
-                walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
-                page = 0;
-                limit = 20;
-                loadingPB.setVisibility(View.VISIBLE);
-                callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
-                break;
+
             case R.id.tvView:
                 tvViewHide.setVisibility(View.VISIBLE);
                 tvView.setVisibility(View.GONE);
@@ -755,6 +751,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 break;
 
             case R.id.cardMainWallet:
+
+                iclick="mainwallet";
                 MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
                 page = 0;
                 limit = 20;
@@ -766,6 +764,9 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 break;
             case R.id.cardCommissionWallet:
+                iclick="comissionwallet";
+
+
                 MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
 
                 page = 0;
@@ -774,6 +775,15 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 MyApplication.checkWalletTypeCode="100009";
                 walletTypeCode="100009";
                 callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
+                break;
+
+            case R.id.tvRefresh:
+                MyApplication.showloader(TransactionHistoryMainPage.this,"Please wait");
+                page = 0;
+                limit = 20;
+                loadingPB.setVisibility(View.VISIBLE);
+                callApiMiniStatementTrans(walletCode,walletTypeCode, page, limit);
+
                 break;
             case R.id.cardOverdraftWallet:
                 MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
@@ -1194,10 +1204,10 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         minvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).minValue));
         alertvalue=MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).alertValue));
 */
-        mainwallet_textview.setText(MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
-        " / "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
-        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
-        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
+        mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
+        " / "+MyApplication.currencyModelArrayList.get(i).currencyName+" "+ MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
+        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
+        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
 
 

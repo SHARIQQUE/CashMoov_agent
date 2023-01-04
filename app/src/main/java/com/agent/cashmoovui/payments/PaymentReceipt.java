@@ -132,7 +132,7 @@ public class PaymentReceipt extends AppCompatActivity implements View.OnClickLis
         tax2_value = findViewById(R.id.tax2_value);
 
         tvSubscriberMobile.setText(Payments.mobile);
-        tvTransType.setText(getString(R.string.airtime_purchase));
+        tvTransType.setText(getString(R.string.paymentnew));
         transId.setText(getString(R.string.vendor_trans_id_colom));
         tvMobile.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("accountNumber"));
 

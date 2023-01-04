@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 30-12-2022</string>
+    <string name="version">Version : 04-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -125,6 +125,8 @@
     <string name="money_transfer">Money Transfer</string>
     <string name="airtime_purchase">Airtime Purchase</string>
     <string name="payment">Payments</string>
+    <string name="paymentnew">Payment</string>
+
     <string name="merchant_payment">Pay</string>
     <string name="cash_withdrawal">Cash Withdrawal</string>
     <string name="receive_remittance">Receive Remittance</string>
@@ -475,6 +477,8 @@
 
 
     <string name="mobileNo_reveiewPage">Mobile Number :</string>
+    <string name="mobileNo_reveiewPagecashout_new">Mobile Number:</string>
+
     <string name="senderName_reveiewPage">Sender Name :</string>
     <string name="business_type_reveiewPage">Business Type :</string>
     <string name="email_reveiewPage">Email :</string>
@@ -569,7 +573,7 @@
     <string name="share_screenshot">share screenshot</string>
     <string name="no_app_available">No app available</string>
     <string name="send_remittance_local">Send Remittance Local</string>
-    <string name="send_cashtowallet">Send Cash to wallet  </string>
+    <string name="send_cashtowallet">Cash to wallet  </string>
 
     <string name="amount_to_pay">Amount to pay</string>
     <string name="destination_details">Destination details</string>
