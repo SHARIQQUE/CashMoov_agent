@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 09-01-2023</string>
+    <string name="version">Version : 11-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -674,7 +674,7 @@
     <string name="enterinstitute">Please enter institute </string>
 
     <string name="commision_Transfer">Commision Transfer</string>
-    <string name="currency_Name">Currency name</string>
+    <string name="currency_Name">Currency name :</string>
     <string name="main_Wallet">Main Wallet / Reserve Amount </string>
 
     <string name="main_Wallet_single">Main Wallet :</string>
@@ -751,7 +751,7 @@
     <string name="agent_history">Agent</string>
     <string name="view_branch">View Branch</string>
 
-    <string name="commision_wallet">Commision wallet</string>
+    <string name="commision_wallet">Commision wallet :</string>
     <string name="overdraft_wallet">Over draft</string>
 
     <string name="report">Report</string>
@@ -832,7 +832,7 @@
     <string name="send_remittance">Send Remittance</string>
     <string name="range_value_not_available"><![CDATA[No range & value available]]></string>
     <string name="mobile_recharge">Mobile Recharge</string>
-    <string name="wallet_owner_name">Wallet owner name</string>
+    <string name="wallet_owner_name">Wallet owner name :</string>
     <string name="hint_otp">Enter OTP*</string>
     <string name="generate_credential_via">Generate Credential Via</string>
     <string name="self">Self</string>
@@ -964,7 +964,7 @@
     <string name="subscriberpin">Subscriber PIN :</string>
     <string name="gnfvalidation">Sending currency field required GNF currency</string>
     <string name="activity">Activity</string>
-    <string name="agentname_star_error">"Entrez veuillez nom d agent "</string>
+    <string name="agentname_star_error">"please enter agent name"</string>
     <string name="agentname_star_error_length">"agent name must be at least 3 characters long "</string>
     <string name="surname_star_error">"Please enter surname "</string>
     <string name="surname_star_error_length">"Surname must be at least 3 characters long"</string>

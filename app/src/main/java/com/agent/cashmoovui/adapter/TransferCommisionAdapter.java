@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
@@ -38,8 +39,8 @@ public class TransferCommisionAdapter extends RecyclerView.Adapter<TransferCommi
         viewHolder.currencyName_textview.setText(arrayList_modalUserData.get(i).getCurrencyName());
 
 
-        viewHolder.mainWallet_textview.setText(arrayList_modalUserData.get(i).getMainWalletValue());
-        viewHolder.acommision_textview.setText(arrayList_modalUserData.get(i).getCommisionWalletValue());
+        viewHolder.mainWallet_textview.setText(MyApplication.addDecimalfour(arrayList_modalUserData.get(i).getMainWalletValue()));
+        viewHolder.acommision_textview.setText(MyApplication.addDecimalfour(arrayList_modalUserData.get(i).getCommisionWalletValue()));
 
        // viewHolder.mainWallet_textview.setText(value_string);
       //  viewHolder.acommision_textview.setText(value_string);

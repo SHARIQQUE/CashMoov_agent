@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 09-01-2023</string>
+    <string name="version">Version : 11-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -295,7 +295,7 @@
     <string name="beneficiary_details">Details du beneficiaire</string>
     <string name="valid_beneficiairy_name">Nom du beneficiaire*</string>
     <string name="valid_confirmation_code">Code de confirmation</string>
-    <string name="valid_beneficiary_currency">Devise du beneficiaire*</string>
+    <string name="valid_beneficiary_currency">Devise de reception *</string>
     <string name="locate_agency">Localiser une agence</string>
     <string name="search_results">Resultat de la recherche</string>
     <string name="agency_found">Agence trouvée</string>
@@ -586,7 +586,7 @@
     <string name="remitance_intenational">Transfert de fonds international</string>
     <string name="remitance_local">Versement local</string>
     <string name="genderSelect_fixed">Veuillez sélectionner le sexe</string>
-    <string name="receive_country">Pays d\'accueil*</string>
+    <string name="receive_country">Pays de reception *</string>
     <string name="operatingCountry">Pays d\'exploitation*</string>
 
 
@@ -657,7 +657,7 @@
     <string name="amount_to_paid_star">Montant facturé*</string>
     <string name="amount_to_paid_without_star">Montant facturé</string>
     <string name="commision_Transfer">Transfert de commission</string>
-    <string name="currency_Name">Nom de la devise</string>
+    <string name="currency_Name">Nom de la devise :</string>
     <string name="main_Wallet">Compte principal / Montant réservé</string>
     <string name="commision_Wallet">Compte commission:</string>
 
@@ -738,7 +738,7 @@
     <string name="agent_history">Agent</string>
     <string name="view_branch">Voir Agence</string>
 
-    <string name="commision_wallet">Compte commission</string>
+    <string name="commision_wallet">Compte commission :</string>
     <string name="overdraft_wallet">Découvert</string>
 
 
@@ -818,7 +818,7 @@
     <string name="range_value_not_available"><![CDATA[Aucune plage et valeur disponibles]]></string>
     <string name="mobile_recharge">Recharge mobile</string>
 
-    <string name="wallet_owner_name">Nom du titulaire de compte</string>
+    <string name="wallet_owner_name">Nom du titulaire de compte :</string>
     <string name="hint_otp">Entrez l\'OTP</string>
     <string name="generate_credential_via">Générer des informations d\'identification via</string>
     <string name="self">Soi</string>

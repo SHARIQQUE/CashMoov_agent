@@ -556,6 +556,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showTipError(this, getString(R.string.enter_phone_no), etPhone);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
+
                 }
                 if (etPhone.getText().toString().trim().length() < 9) {
                     //MyApplication.showErrorToast(branchkycC,getString(R.string.val_phone));

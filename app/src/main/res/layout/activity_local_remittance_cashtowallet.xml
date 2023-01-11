@@ -127,10 +127,32 @@
 
                             android:text="@string/receive_courency_start"/>
 
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="50dp"
+                           android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+
+                            android:background="@drawable/btn_edittextname"
+                            android:backgroundTint="@color/bgColorHint">
+
+
+
                         <TextView
                             android:id="@+id/spinner_receiverCurrency"
-                            android:text="@string/receive_courency"
+                            android:background="@null"
+                            android:layout_gravity="top"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="left"
+
+                               android:text="@string/receive_courency"
                             style="@style/SpinnerStyleNew1"/>
+                        </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
