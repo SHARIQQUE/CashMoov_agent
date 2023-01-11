@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 04-01-2023</string>
+    <string name="version">Version : 09-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -492,7 +492,7 @@
     <string name="sender_currency_receiptpage">Devise de l\'expéditeur</string>
     <string name="senderCode_receiptpage">Code expéditeur</string>
     <string name="benificiary_no_receiptpage">Bénéficiaire Non :</string>
-    <string name="receiver_currency_reviewPage"> Devise du destinataire :</string>
+    <string name="receiver_currency_reviewPage"> Devise de réception :</string>
     <string name="receiver_msisdn_reviewPage"> Réceveur MSISDN :</string>
     <string name="agentName_reveiewPage">Nom d\'agent :</string>
     <string name="excise_tax_reveiewPage">Taxe d\'accise :</string>
@@ -551,7 +551,7 @@
     <string name="benificairay_mssidn">Numéro du bénéficiaire</string>
     <string name="conversion_rate">Taux de conversion</string>
 
-    <string name="export_receipt">Reçu d\'exportation</string>
+    <string name="export_receipt">Exporter</string>
     <string name="share_screenshot">Partager une capture d écran</string>
     <string name="no_app_available">Aucune application disponible</string>
     <string name="send_remittance_local">Envoyer un versement local</string>
@@ -625,7 +625,7 @@
     <string name="choose_the_operation">Choisir l\'operation</string>
     <string name="owner_management">Gestion du titulaire</string>
     <string name="wallet_owner">Titulaire de compte</string>
-    <string name="add_agent_branch">Ajouter un agent/une agence</string>
+    <string name="add_agent_branch">Ajouter agent/Ajouter branche</string>
     <string name="sell_float">Vente de stock</string>
     <string name="transfer_float">Transfert de Stock</string>
     <string name="transfer_commission">Transfert de Commission</string>
@@ -679,7 +679,7 @@
     <string name="val_lname_len">Le nom de famille doit comporter au moins 3 caractères</string>
     <string name="enter_phone_no_val">Le numéro de portable doit comporter au moins 9 chiffres</string>
     <string name="add_agent">Ajouter agent</string>
-    <string name="add_branch">Ajouter une succursale</string>
+    <string name="add_branch">Ajouter branche</string>
     <string name="enter_info">Saisir les informations</string>
     <string name="user_info_msg">Pour terminez l\'inscriptions nous avons besoin de toutes les informations sur le futur utilisateur.</string>
     <string name="valid_select_acc_type">Type de compte*</string>
@@ -858,7 +858,7 @@
     <string name="agent_code_colon">Code agent :</string>
     <string name="sender_code_colon">Code expéditeur :</string>
     <string name="sender_currency_code">Code de devise de l\'expéditeur :</string>
-    <string name="receiver_currency_code">Code de devise du destinataire :</string>
+    <string name="receiver_currency_code">Code de Devise de réception :</string>
 
 
     <string name="benefi_code_colon">Code bénéficiaire :</string>
@@ -870,7 +870,7 @@
     <string name="sending_country_colon">Pays d\'envoi :</string>
     <string name="rec_country_colon">Pays de réception :</string>
     <string name="date_of_transaction_colon">Date de la transaction :</string>
-        <string name="name_colon">Nom :</string>
+    <string name="name_colon">Nom :</string>
     <string name="phone_no_colon">Numero de téléphone:</string>
     <string name="more">Plus</string>
     <string name="choose_the_plan">Choisissez le forfait</string>

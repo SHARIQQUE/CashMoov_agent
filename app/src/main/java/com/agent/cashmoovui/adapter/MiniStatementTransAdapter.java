@@ -2,6 +2,7 @@ package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -385,8 +386,16 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
     }
 
+    private long mLastClickTime = 0;
+
 
     public void call(double Amount,int pos){
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
+
         if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105218")){
             return;
 
@@ -474,6 +483,9 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 fee=0.00;
                 taxJSON="";
             }
+
+
+
             miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
                     miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
                     miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),

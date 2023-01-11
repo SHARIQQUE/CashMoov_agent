@@ -617,8 +617,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                 taxAsJson = data.optString("taxAsJson");
                                             }
 
-                                            Double fee = 0.00;
-                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
+                                            Double fee = data.optDouble("fee");
+                                           /* if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
                                                 if (data.has("receiverBearer") && !data.optBoolean("receiverBearer")) {
                                                     taxAsJson = "";
                                                 } else {
@@ -629,7 +629,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                 fee = 0.00;
                                             } else {
                                                 fee = data.optDouble("fee");
-                                            }
+                                            }*/
 
                                             String transactionTypeNAme=data.optString("transactionTypeName");
                                             if (data.optString("transactionTypeCode").equalsIgnoreCase("105218")) {

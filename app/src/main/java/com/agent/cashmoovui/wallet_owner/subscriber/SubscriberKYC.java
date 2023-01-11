@@ -454,8 +454,9 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                             jsonObject.put("notificationTypeCode", "100002");
                             jsonObject.put("profileTypeCode", "100000");
                             jsonObject.put("occupationTypeCode", occupationTypeModelList.get((Integer) spOccupation.getTag()).getCode());
-                            jsonObject.put("state", "U");
-                            jsonObject.put("status", "N");
+                        /////Sandep will remove 2 things 10-01-23
+                          /*  jsonObject.put("state", "U");
+                            jsonObject.put("status", "N");*/
                             jsonObject.put("walletOwnerCategoryCode", MyApplication.SubscriberCode);
 
                         } catch (JSONException e) {

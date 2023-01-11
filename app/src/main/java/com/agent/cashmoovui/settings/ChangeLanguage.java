@@ -41,7 +41,7 @@ public class ChangeLanguage extends AppCompatActivity implements View.OnClickLis
             languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
 
             if (languageToUse.trim().length() == 0) {
-                languageToUse = "en";
+                languageToUse = "fr";
             }
 
 

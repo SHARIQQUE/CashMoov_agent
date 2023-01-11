@@ -167,6 +167,7 @@ public class MyApplication extends Application {
     public static ArrayList<CurrencyModel> currencyModelArrayList = new ArrayList<>();
     public static ArrayList<CurrencyModel> currencyModelArrayList_temp = new ArrayList<>();
 
+    String languageToUse = "";
 
 
 
@@ -211,7 +212,22 @@ public class MyApplication extends Application {
         super.onCreate();
         appInstance = this;
         tinyDB = new TinyDB(appInstance);
-        setLocale("en");
+        setLocale("fr");
+
+        languageToUse = appInstance.getmSharedPreferences().getString("languageToUse", "");
+
+        if (languageToUse.trim().length() == 0) {
+            MyApplication.changeLocale(appInstance, "fr");
+            MyApplication.saveString("Locale", "fr", appInstance);
+            appInstance.getmSharedPreferences().edit().putString("languageToUse", "fr").commit();
+
+
+        }else {
+            MyApplication.changeLocale(appInstance, languageToUse);
+            MyApplication.saveString("Locale", languageToUse, appInstance);
+
+
+        }
 
         ImageURL = API.BASEURL + "ewallet/api/v1/fileUpload/download/" +
                 getSaveString("walletOwnerCode", appInstance) + "/";

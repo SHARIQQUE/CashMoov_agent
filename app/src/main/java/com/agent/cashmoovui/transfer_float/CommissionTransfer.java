@@ -1030,9 +1030,60 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                     } else {
                         Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+
                     }
+                } else {
+                    MyApplication.biometricAuth(CommissionTransfer.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+                            try {
+
+                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                            //    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+
+                                    //  MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+
+                                    mpin_final_api();
+
+                                } else {
+                                    Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+
+                            MyApplication.showToast(CommissionTransfer.this, failure);
+
+                            //  pinLinear.setVisibility(View.VISIBLE);
+
+
+                        }
+                    });
                 }
             }
+
+
+             /*   if (validation_mobile_Details()) {
+
+                    tv_nextClick.setClickable(false);
+
+                    if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+
+                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
+
+                        mpin_final_api();
+
+                    } else {
+                        Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }*/
 
             break;
 

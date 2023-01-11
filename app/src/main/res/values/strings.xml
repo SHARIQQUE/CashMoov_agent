@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">PCashmoov Agent</string>
+    <string name="app_name">Cashmoov Agent</string>
     <string name="language_select">English</string>
     <string name="language_name">English</string>
     <string name="language_code">EN</string>
@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 04-01-2023</string>
+    <string name="version">Version : 09-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -136,7 +136,7 @@
     <string name="complet_70">70% complete</string>
     <string name="out_8_10_complete">8 out of 10 complete</string>
     <string name="recharge_payment">Recharge &amp; Payment</string>
-        <string name="next">Next</string>
+    <string name="next">Next</string>
     <string name="ignore">Ignore</string>
     <string name="to_start">Start</string>
     <string name="to_end">End</string>

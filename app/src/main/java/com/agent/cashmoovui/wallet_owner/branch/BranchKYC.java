@@ -565,17 +565,17 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 }
                 if (etBranchName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this, getString(R.string.plz_enter_firstName), etBranchName);
+                  //  MyApplication.showTipError(this, getString(R.string.valid_branch_name_new_empyty_error), etBranchName);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
                 if (etBranchName.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this, getString(R.string.val_branch_name_len), etBranchName);
+                  //  MyApplication.showTipError(this, getString(R.string.val_branch_name_len_new), etBranchName);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
-                if (etLname.getText().toString().trim().isEmpty()) {
+               /* if (etLname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_lname));
                     MyApplication.showTipError(this, getString(R.string.val_lname), etLname);
                     MyApplication.hideKeyboard(branchkycC);
@@ -586,7 +586,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                     MyApplication.showTipError(this, getString(R.string.val_lname_len), etLname);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
-                }
+                }*/
                 if (etEmail.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_email));
                     MyApplication.showTipError(this, getString(R.string.val_email_valid), etEmail);
@@ -658,8 +658,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         JSONObject jsonObject = new JSONObject();
                         try {
                             jsonObject.put("code", Agentcode);
-                            jsonObject.put("ownerName", etBranchName.getText().toString().trim());
-                            jsonObject.put("lastName", etLname.getText().toString().trim());
+                            jsonObject.put("ownerName","");
+                            jsonObject.put("lastName", "");
                             jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
                             jsonObject.put("idExpiryDate", "");
 

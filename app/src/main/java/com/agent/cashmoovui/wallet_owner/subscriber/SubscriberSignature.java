@@ -360,6 +360,9 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                                 try {
                                     JSONObject jsonObjectSubscriber = new JSONObject();
 
+
+                                    ////Sandeep will add Status and state  10-01-23
+
                                     jsonObjectSubscriber.put("id",jsonObjectWalletOwner.optString("id"));
                                     jsonObjectSubscriber.put("code", jsonObjectWalletOwner.optString("code"));
                                     jsonObjectSubscriber.put("walletOwnerCategoryCode", jsonObjectWalletOwner.optString("walletOwnerCategoryCode"));
@@ -367,7 +370,7 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
                                     jsonObjectSubscriber.put("mobileNumber",  jsonObjectWalletOwner.optString("mobileNumber"));
                                     jsonObjectSubscriber.put("idProofNumber",  jsonObjectWalletOwner.optString("idProofNumber"));
                                     jsonObjectSubscriber.put("email",  jsonObjectWalletOwner.optString("email"));
-                                    jsonObjectSubscriber.put("status", "Y");
+                                    jsonObjectSubscriber.put("status", "N");
                                     jsonObjectSubscriber.put("state", "U");
                                     jsonObjectSubscriber.put("stage",  jsonObjectWalletOwner.optString("stage"));
                                     jsonObjectSubscriber.put("idProofTypeCode", jsonObjectWalletOwner.optString("idProofTypeCode"));

@@ -47,7 +47,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
     public static AgentKYC agentkycC;
     DatePickerDialog picker;
     TextView spAccType, spBusinessType, spCountry, spRegion, spCity, spGender, spIdProof, tvNext;
-    public static EditText etAgentName, etLname, etEmail, etPhone, etAddress, etDob, etProofNo;
+    public static EditText etAgentName, etLname, etsirname,etEmail, etPhone, etAddress, etDob, etProofNo;
     private ArrayList<String> businessTypeList = new ArrayList<>();
     private ArrayList<BusinessTypeModel.BusinessType> businessTypeModelList = new ArrayList<>();
     private ArrayList<String> idProofTypeList = new ArrayList<>();
@@ -478,26 +478,26 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
                 if (etAgentName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this, getString(R.string.plz_enter_firstName), etAgentName);
+                //    MyApplication.showTipError(this, getString(R.string.agentname_star_error), etAgentName);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
                 if (etAgentName.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_fname));
-                    MyApplication.showTipError(this, getString(R.string.val_agent_name_len), etAgentName);
+                  //  MyApplication.showTipError(this, getString(R.string.agentname_star_error_length), etAgentName);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
 
-                if (etLname.getText().toString().trim().isEmpty()) {
+                if (etsirname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_lname));
-                    MyApplication.showTipError(this, getString(R.string.val_lname), etLname);
+                 //   MyApplication.showTipError(this, getString(R.string.surname_star_error), etsirname);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
-                if (etLname.getText().toString().trim().length() < 3) {
+                if (etsirname.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_lname));
-                    MyApplication.showTipError(this, getString(R.string.val_lname_len), etLname);
+                  //  MyApplication.showTipError(this, getString(R.string.surname_star_error_length), etsirname);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
@@ -571,7 +571,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     try {
                         jsonObject.put("code", Agentcode);
                         jsonObject.put("ownerName", etAgentName.getText().toString().trim());
-                        jsonObject.put("lastName", etLname.getText().toString().trim());
+                        jsonObject.put("lastName", etsirname.getText().toString().trim());
                         jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
                         jsonObject.put("idExpiryDate", "");
                         jsonObject.put("email", etEmail.getText().toString().trim());

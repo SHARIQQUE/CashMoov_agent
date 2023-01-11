@@ -117,6 +117,46 @@
                     android:textColor="@color/textColorLBlack"
                     android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/aileron_semibold"  />
+                <EditText
+                    android:id="@+id/etsirname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint"
+                    android:inputType="text"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:hint="@string/surname_star"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+
+                    android:textColor="@color/textColorLBlack"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
+
+                <EditText
+                    android:id="@+id/etLname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint"
+                    android:inputType="text"
+                    android:lineSpacingExtra="10sp"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_12sdp"
+                    android:paddingBottom="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:visibility="gone"
+                    android:hint="@string/valid_lname"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+
+                    android:textColor="@color/textColorLBlack"
+                    android:textSize="@dimen/_13sdp"
+                    android:fontFamily="@font/aileron_semibold"  />
 
 
                 <EditText
@@ -132,7 +172,7 @@
                     android:paddingTop="@dimen/_12sdp"
                     android:paddingBottom="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/first_name_star"
+                    android:hint="@string/agentName"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
 
                     android:textColor="@color/textColorLBlack"
@@ -140,25 +180,6 @@
                     android:fontFamily="@font/aileron_semibold"  />
 
 
-                <EditText
-                    android:id="@+id/etLname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/btn_edittextname"
-                    android:backgroundTint="@color/bgColorHint"
-                    android:inputType="text"
-                    android:lineSpacingExtra="10sp"
-                    android:paddingLeft="@dimen/_15sdp"
-                    android:paddingTop="@dimen/_12sdp"
-                    android:paddingBottom="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_15sdp"
-                    android:hint="@string/valid_lname"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-
-                    android:textColor="@color/textColorLBlack"
-                    android:textSize="@dimen/_13sdp"
-                    android:fontFamily="@font/aileron_semibold"  />
 
                 <EditText
                     android:id="@+id/etEmail"
