@@ -892,7 +892,7 @@
     <string name="choose_the_plan">Choose the plan</string>
     <string name="receive">Receive</string>
     <string name="subscriber_number_star">Subscriber Number*</string>
-    <string name="surname_star">Surname*</string>
+    <string name="surname_star">Surname *</string>
 
     <string name="receiver_msisdn_colon">Receiver MSISDN :</string>
     <string name="beneficiary_msisdn_colon">Beneficiary MSISDN :</string>
@@ -964,6 +964,12 @@
     <string name="subscriberpin">Subscriber PIN :</string>
     <string name="gnfvalidation">Sending currency field required GNF currency</string>
     <string name="activity">Activity</string>
+    <string name="agentname_star_error">"Entrez veuillez nom d agent "</string>
+    <string name="agentname_star_error_length">"agent name must be at least 3 characters long "</string>
+    <string name="surname_star_error">"Please enter surname "</string>
+    <string name="surname_star_error_length">"Surname must be at least 3 characters long"</string>
+    <string name="valid_branch_name_new_empyty_error">"Please enter branch name "</string>
+    <string name="val_branch_name_len_new">"branch name must be at least 3 characters long "</string>
 
 </resources>
 

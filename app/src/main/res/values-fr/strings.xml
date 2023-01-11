@@ -694,7 +694,7 @@
     <string name="other_documents">Autre documents</string>
     <string name="ex_doc">Ex: doc</string>
     <string name="branch">Agence</string>
-    <string name="valid_branch_name">Nom de l\'agence</string>
+    <string name="valid_branch_name">Nom de la filiale *</string>
     <string name="val_branch_name">Veuillez entrer le nom de l\'agence</string>
     <string name="val_branch_name_len">Le nom de l\'agence doit comporter au moins 3 caractères</string>
     <string name="agent_added">Agent ajouté avec succès !</string>
@@ -753,7 +753,7 @@
     <string name="sending_country_star">Pays d\'envoi*</string>
     <string name="subscriber_added">Abonné ajouté avec succès !</string>
     <string name="transaction_type">Type de transaction</string>
-    <string name="agentName">Nom d\'agent</string>
+    <string name="agentName">Nom d agent *</string>
     <string name="agentName_colon">Nom d\'agent :</string>
     <string name="agent_mobileNumber">Agent mobile non</string>
     <string name="agent_details">Détails de l\'agent</string>
@@ -876,7 +876,7 @@
     <string name="choose_the_plan">Choisissez le forfait</string>
     <string name="receive">Recevoir</string>
     <string name="subscriber_number_star">Numero de l\'abonné*</string>
-    <string name="surname_star">Nom de famille*</string>
+    <string name="surname_star">Nom de la filiale *</string>
 
     <string name="receiver_msisdn_colon">MSISDN Réceveur :</string>
     <string name="beneficiary_msisdn_colon">MSISDNBénéficiaire :</string>
@@ -948,6 +948,12 @@
     <string name="subscriberpin"> PIN Client :</string>
     <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
     <string name="activity">Activité</string>
+    <string name="agentname_star_error">"Entrez veuillez nom d agent "</string>
+    <string name="agentname_star_error_length">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>
+    <string name="surname_star_error">"entrez veuillez prenom"</string>
+    <string name="surname_star_error_length">"prenom la doit etre d' une longueur d'au moins 3 caracteres "</string>
+    <string name="valid_branch_name_new_empyty_error">"entrez veuillez nom de la filiale"</string>
+    <string name="val_branch_name_len_new">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>
 
 </resources>
 

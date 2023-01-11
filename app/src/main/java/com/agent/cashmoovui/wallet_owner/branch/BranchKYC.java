@@ -565,7 +565,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                 }
                 if (etBranchName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
-                  //  MyApplication.showTipError(this, getString(R.string.valid_branch_name_new_empyty_error), etBranchName);
+                    MyApplication.showTipError(this, getString(R.string.valid_branch_name_new_empyty_error), etBranchName);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
@@ -573,7 +573,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                 if (etBranchName.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(branchkycC,getString(R.string.val_fname));
-                  //  MyApplication.showTipError(this, getString(R.string.val_branch_name_len_new), etBranchName);
+                    MyApplication.showTipError(this, getString(R.string.val_branch_name_len_new), etBranchName);
                     MyApplication.hideKeyboard(branchkycC);
                     return;
                 }
@@ -660,7 +660,7 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
                         JSONObject jsonObject = new JSONObject();
                         try {
                             jsonObject.put("code", Agentcode);
-                            jsonObject.put("ownerName","");
+                            jsonObject.put("ownerName",etBranchName.getText().toString());
                             jsonObject.put("lastName", "");
                             jsonObject.put("dateOfBirth", etDob.getText().toString().trim());
                             jsonObject.put("idExpiryDate", "");

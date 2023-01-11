@@ -478,26 +478,26 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
                 if (etAgentName.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_fname));
-                //    MyApplication.showTipError(this, getString(R.string.agentname_star_error), etAgentName);
+                    MyApplication.showTipError(this, getString(R.string.agentname_star_error), etAgentName);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
                 if (etAgentName.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_fname));
-                  //  MyApplication.showTipError(this, getString(R.string.agentname_star_error_length), etAgentName);
+                    MyApplication.showTipError(this, getString(R.string.agentname_star_error_length), etAgentName);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
 
                 if (etsirname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_lname));
-                 //   MyApplication.showTipError(this, getString(R.string.surname_star_error), etsirname);
+                    MyApplication.showTipError(this, getString(R.string.surname_star_error), etsirname);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
                 if (etsirname.getText().toString().trim().length() < 3) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_lname));
-                  //  MyApplication.showTipError(this, getString(R.string.surname_star_error_length), etsirname);
+                    MyApplication.showTipError(this, getString(R.string.surname_star_error_length), etsirname);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
