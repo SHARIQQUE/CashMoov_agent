@@ -538,21 +538,72 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     }else{
                         alloctedValue=data.optString("allocatedValue");
                     }
-                    MyApplication.currencyModelArrayList.add(new CurrencyModel(
-                            data.optString("code"),
-                            data.optString("code"),
-                            data.optString("code"),
-                            data.optString("currencyCode"),
-                            data.optString("currencyName"),
-                            data.optString("currencySymbol"),
-                            data.optString("walletTypeCode"),
-                            data.optString("value"),
-                            "0.0",
-                            "0.0",
-                            data.optString("walletOwnerName"),
-                           alloctedValue
-                    ));
 
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100009")) {//Commission Wallet
+
+
+                        MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("currencyCode"),
+                                data.optString("currencyName"),
+                                data.optString("currencySymbol"),
+                                data.optString("walletTypeCode"),
+                                data.optString("value"),
+                                "0.0",
+                                "0.0",
+                                data.optString("walletOwnerName"),
+                                alloctedValue
+                        ));
+
+
+                    }
+
+
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100008")) {//Commission Wallet
+
+
+                        MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("currencyCode"),
+                                data.optString("currencyName"),
+                                data.optString("currencySymbol"),
+                                data.optString("walletTypeCode"),
+                                "0.0",
+                                "0.0",
+                                 data.optString("value"),
+                                data.optString("walletOwnerName"),
+                                alloctedValue
+                        ));
+
+
+                    }
+
+
+
+                    if(data.optString("walletTypeCode").equalsIgnoreCase("100011")) {//Commission Wallet
+
+
+                        MyApplication.currencyModelArrayList.add(new CurrencyModel(
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("code"),
+                                data.optString("currencyCode"),
+                                data.optString("currencyName"),
+                                data.optString("currencySymbol"),
+                                data.optString("walletTypeCode"),
+                                "0.0",
+                                data.optString("value"),
+                                "0.0",
+                                data.optString("walletOwnerName"),
+                                alloctedValue
+                        ));
+
+
+                    }
 
 
                 }else{
@@ -1341,7 +1392,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     tvAmtCurr.setText(select_currencySymbol);
                     comiisionValueCheck=MyApplication.currencyModelArrayList.get(i).commisionWalletValue;
                     // available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
-                    System.out.println("get comiisionValueCheck"+comiisionValueCheck);
+                    System.out.println("get comiisfionValueCheck"+comiisionValueCheck);
 
                 }
                 catch (Exception e)

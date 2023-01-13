@@ -237,12 +237,14 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
             MyApplication.showErrorToast(localC,getString(R.string.plz_select_provider));
             return;
         }
+
+
         if(spinner_senderCountry.getText().toString().equals(getString(R.string.sending_country_star))) {
             MyApplication.showErrorToast(localC,getString(R.string.sending_country_star));
             return;
         }
-        if(spinner_senderCurrency.getText().toString().equals(getString(R.string.sending_currencey_star))) {
-            MyApplication.showErrorToast(localC,getString(R.string.sending_currencey_star));
+        if(spinner_senderCurrency.getText().toString().equals(getString(R.string.select_currencey_star))) {
+            MyApplication.showErrorToast(localC,getString(R.string.send_curr_empyty));
             return;
         }
         if(spinner_receiverCountry.getText().toString().equals(getString(R.string.receive_country))) {

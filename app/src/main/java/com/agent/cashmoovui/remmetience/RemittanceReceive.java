@@ -51,6 +51,7 @@ import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceConfirmScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -197,6 +198,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     DialogFragment dialogfragment = new DatePickerDialogTheme();
 
                     dialogfragment.show(getSupportFragmentManager(), "");

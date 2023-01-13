@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -39,6 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
@@ -102,6 +104,12 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
         if (languageToUse.trim().length() == 0) {
             languageToUse = "en";
         }
+        Locale locale = new Locale(languageToUse);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_agent);
@@ -140,16 +148,24 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
         etPhone.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
+        System.out.println("get languange"+languageToUse);
+
 
 
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+               // MyApplication.changeLocale(AgentKYC.this, "en");
+
+
                 DialogFragment dialogfragment = new DatePickerDialogTheme();
 
-                dialogfragment.show(getSupportFragmentManager(), "");
+                    dialogfragment.show(getSupportFragmentManager(), "");
 
-                // ffffff
+                    // ffffff
+
+
 
             }
         });
@@ -449,12 +465,22 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
         etEmail.setText("");
         Agentcode="";
 
-    }
+
+
+
+
+
+}
+
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
+        Locale locale = new Locale(languageToUse);
 
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
 
     }
 
@@ -1179,9 +1205,12 @@ ArrayList<String>walletCurrencyList;
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
+
             int month = calendar.get(Calendar.MONTH);
+
             int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            int year = calendar.get(Calendar.YEAR);
             calendar.add(Calendar.YEAR, -18);
 
             DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),

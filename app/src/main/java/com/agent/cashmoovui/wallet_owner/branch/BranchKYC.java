@@ -35,6 +35,7 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.model.UserDetailAgent;
+import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
@@ -164,6 +165,8 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 DialogFragment dialogfragment = new DatePickerDialogTheme();
 
                 dialogfragment.show(getSupportFragmentManager(), "");
@@ -522,12 +525,6 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
 
     private void setOnCLickListener() {
         tvNext.setOnClickListener(branchkycC);

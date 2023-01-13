@@ -1206,8 +1206,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 */
         mainwallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue))+
         " / "+MyApplication.currencyModelArrayList.get(i).currencyName+" "+ MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue)));
-        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.currencyModelArrayList.get(i).commisionWalletValue);
-        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.currencyModelArrayList.get(i).overdraftWalletValue);
+        commision_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).commisionWalletValue)));
+        overdraft_wallet_textview.setText(MyApplication.currencyModelArrayList.get(i).currencyName+" "+MyApplication.addDecimal(""+Double.parseDouble(MyApplication.currencyModelArrayList.get(i).overdraftWalletValue)));
         spinner_currency.setText(MyApplication.currencyModelArrayList.get(i).currencyName);
 
 

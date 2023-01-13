@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -57,6 +58,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
+
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
@@ -114,6 +117,13 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         if (languageToUse.trim().length() == 0) {
             languageToUse = "en";
         }
+        Locale locale = new Locale(languageToUse);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_abonne_one);
         subscriberkycC=this;
@@ -149,6 +159,8 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 DialogFragment dialogfragment = new DatePickerDialogTheme();
 
                 dialogfragment.show(getSupportFragmentManager(), "");

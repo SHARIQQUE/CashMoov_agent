@@ -280,7 +280,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/benificiary_currency_receiptpage"
+                    android:text="@string/benefi_curr_colon"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="#000"

@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 11-01-2023</string>
+    <string name="version">Version : 13-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -879,6 +879,8 @@
 
     <string name="benefi_code_colon">Beneficiary Code :</string>
     <string name="send_curr_colon">Sending Currency :</string>
+    <string name="send_curr_empyty">Please select sending Currency *</string>
+
     <string name="benefi_curr_colon">Beneficiary Currency :</string>
     <string name="conversion_rate_colon">Conversion Rate :</string>
     <string name="comment_colon">Comment :</string>

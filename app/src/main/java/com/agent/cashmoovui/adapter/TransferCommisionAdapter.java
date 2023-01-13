@@ -39,8 +39,8 @@ public class TransferCommisionAdapter extends RecyclerView.Adapter<TransferCommi
         viewHolder.currencyName_textview.setText(arrayList_modalUserData.get(i).getCurrencyName());
 
 
-        viewHolder.mainWallet_textview.setText(MyApplication.addDecimalfour(arrayList_modalUserData.get(i).getMainWalletValue()));
-        viewHolder.acommision_textview.setText(MyApplication.addDecimalfour(arrayList_modalUserData.get(i).getCommisionWalletValue()));
+        viewHolder.mainWallet_textview.setText(MyApplication.addDecimal(arrayList_modalUserData.get(i).getMainWalletValue()));
+        viewHolder.acommision_textview.setText(MyApplication.addDecimal(arrayList_modalUserData.get(i).getCommisionWalletValue()));
 
        // viewHolder.mainWallet_textview.setText(value_string);
       //  viewHolder.acommision_textview.setText(value_string);

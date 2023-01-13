@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 11-01-2023</string>
+    <string name="version">Version : 13-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -263,8 +263,8 @@
     <string name="valid_select_gender">Sélectionnez le sexe*</string>
     <string name="valid_select_occupation">Sélectionnez la profession*</string>
     <string name="valid_dob">Date de naissance*</string>
-    <string name="valid_select_id_proof">Sélectionnez la piece d\'identité*</string>
-    <string name="valid_select_id_proofnew">Sélectionnez la piece d\'identité*</string>
+    <string name="valid_select_id_proof">Type de pièce*</string>
+    <string name="valid_select_id_proofnew">Type de pièce*</string>
     <string name="vaild_id_proof_nonew">Numero de piece</string>
     <string name="valid_id_proof_expiryDatenew">Date d\'expiration de la piece d\'identité</string>
 
@@ -863,6 +863,9 @@
 
     <string name="benefi_code_colon">Code bénéficiaire :</string>
     <string name="send_curr_colon">Devise d\'envoi :</string>
+
+    <string name="send_curr_empyty">Veuillez sélectionner la devise d\'envoi *</string>
+
     <string name="benefi_curr_colon">Devise de réception :</string>
     <string name="conversion_rate_colon">Taux de conversion :</string>
     <string name="comment_colon">Commentaires :</string>
@@ -876,7 +879,7 @@
     <string name="choose_the_plan">Choisissez le forfait</string>
     <string name="receive">Recevoir</string>
     <string name="subscriber_number_star">Numero de l\'abonné*</string>
-    <string name="surname_star">Nom de la filiale *</string>
+    <string name="surname_star">Prenom  *</string>
 
     <string name="receiver_msisdn_colon">MSISDN Réceveur :</string>
     <string name="beneficiary_msisdn_colon">MSISDNBénéficiaire :</string>
@@ -950,7 +953,7 @@
     <string name="activity">Activité</string>
     <string name="agentname_star_error">"Entrez veuillez nom d agent "</string>
     <string name="agentname_star_error_length">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>
-    <string name="surname_star_error">"entrez veuillez prenom"</string>
+    <string name="surname_star_error">"Entrez veuillez prenom"</string>
     <string name="surname_star_error_length">"prenom la doit etre d' une longueur d'au moins 3 caracteres "</string>
     <string name="valid_branch_name_new_empyty_error">"entrez veuillez nom de la filiale"</string>
     <string name="val_branch_name_len_new">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>

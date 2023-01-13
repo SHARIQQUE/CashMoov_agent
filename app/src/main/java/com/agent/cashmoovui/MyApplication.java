@@ -684,29 +684,6 @@ public static String addDecimal(String number) {
         return df.format(Double.parseDouble(number));
     }
 
-    public static String addDecimalfour(String number) {
-        String data="00.0000";
-       /* DecimalFormat df = new DecimalFormat("0.00", symbols);
-        System.out.println(("get datatype" + (Object) number).getClass().getName());
-        data = formatInput(df.format(Double.parseDouble(number)), 0, 0);*/
-        if(MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
-            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-            symbols.setDecimalSeparator(',');
-            symbols.setGroupingSeparator('.');
-            NumberFormat goodNumberFormat1 = new DecimalFormat("#,##0.0000#", symbols);
-            data = goodNumberFormat1.format(Double.parseDouble(number));
-
-        }else{
-            DecimalFormat df = new DecimalFormat("00.0000", symbols);
-            System.out.println(("get datatype" + (Object) number).getClass().getName());
-            data = formatInput(df.format(Double.parseDouble(number)), 0, 0);
-        }
-        return data;
-
-
-       /* DecimalFormat df = new DecimalFormat("0.000",symbols);
-        return df.format(Double.parseDouble(number));*/
-    }
 
 
     public static void setrequired(TextView textView, String str) {
