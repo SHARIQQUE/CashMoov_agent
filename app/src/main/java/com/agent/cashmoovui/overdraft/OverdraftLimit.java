@@ -393,14 +393,17 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             spinner_currency.setText(selectCurrecnyName);
 
         } else {
+            amountstr = maximumLimit;
+
+            amountStrcheck = maximumLimit;
 
             insideLoop = false;
             for (int i = 0; i < arrayList_overdraft.size(); i++) {
                 System.out.println(arrayList_overdraft.get(i).getCurrencyName() + "  " + pos + "  " + arrayList_currecnyName.get(pos));
                 if (arrayList_overdraft.get(i).getCurrencyName().equalsIgnoreCase(arrayList_currecnyName.get(pos))) {
-                    amountstr = arrayList_overdraft.get(i).getMaximumLimit();
-                    validityDaysStr = arrayList_overdraft.get(i).getValidityMaxDays();
-                    amountStrcheck = arrayList_overdraft.get(i).getMaximumLimit();
+                   // amountstr = arrayList_overdraft.get(i).getMaximumLimit();
+                   validityDaysStr = arrayList_overdraft.get(i).getValidityMaxDays();
+                  //  amountStrcheck = arrayList_overdraft.get(i).getMaximumLimit();
 
 
                     //   edittext_amount.setEnabled(false);

@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Cashmoov Agent</string>
+    <string name="app_name">PCashmoov Agent</string>
     <string name="language_select">English</string>
     <string name="language_name">English</string>
     <string name="language_code">EN</string>
@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 13-01-2023</string>
+    <string name="version">Version : 16-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -703,6 +703,8 @@
     <string name="val_fname_len">First Name must be at least 3 characters long</string>
     <string name="val_lname_len">Last Name must be at least 3 characters long</string>
     <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
+    <string name="enter_phone_no_valnew">Mobile number must be at least 7 digits long</string>
+
     <string name="add_agent">Add Agent</string>
     <string name="add_branch">Add Branch</string>
     <string name="enter_info">Enter information</string>
@@ -972,6 +974,7 @@
     <string name="surname_star_error_length">"Surname must be at least 3 characters long"</string>
     <string name="valid_branch_name_new_empyty_error">"Please enter branch name "</string>
     <string name="val_branch_name_len_new">"branch name must be at least 3 characters long "</string>
+
 
 </resources>
 

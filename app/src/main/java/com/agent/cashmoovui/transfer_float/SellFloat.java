@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -148,6 +149,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     String currencySymbol_receiver = "";
     String mobilelength="";
 
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -339,20 +341,25 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             public void afterTextChanged(Editable s) {
                 if (s.length() >= Integer.parseInt(mobilelength)) {
                     mInstitutenameEdittext.setText("");
-                    for (int i = 0; i < arrayList_instititueCode.size(); i++) {
-                        if (mEnterinstituteEdittext.getText().toString().equalsIgnoreCase(arrayList_instititueCode.get(i))) {
-                            String institutename = arrayList_instititueName.get(i).replaceAll("[0-9]", "");// prints awhefqoakwfn
-                            String institutenamenew = institutename.replaceAll("[(){}]","");
+                    try {
+                        for (int i = 0; i < arrayList_instititueCode.size(); i++) {
+                            if (mEnterinstituteEdittext.getText().toString().equalsIgnoreCase(arrayList_instititueCode.get(i))) {
+                                String institutename = arrayList_instititueName.get(i).replaceAll("[0-9]", "");// prints awhefqoakwfn
+                                String institutenamenew = institutename.replaceAll("[(){}]", "");
 
 
-                           // Toast.makeText(applicationComponentClass, "get name"+institutenamenew, Toast.LENGTH_SHORT).show();
-                            mInstitutenameEdittext.setText(institutenamenew);
-                            tv_nextClick.setVisibility(View.VISIBLE);
-                            MyApplication.hideKeyboard(SellFloat.this);
-                            setSelction(i);
+                                // Toast.makeText(applicationComponentClass, "get name"+institutenamenew, Toast.LENGTH_SHORT).show();
+                                mInstitutenameEdittext.setText(institutenamenew);
+                                tv_nextClick.setVisibility(View.VISIBLE);
+                                MyApplication.hideKeyboard(SellFloat.this);
+                                setSelction(i);
 
+
+                            }
 
                         }
+
+                    }catch (Exception e){
 
                     }
                     if(mInstitutenameEdittext.getText().toString().trim().isEmpty()){
@@ -1549,7 +1556,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                         String resultCode = jsonObject.getString("resultCode");
                         String resultDescription = jsonObject.getString("resultDescription");
-
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
                         if (resultCode.equalsIgnoreCase("0")) {
 
                             api_mpin();
@@ -1561,6 +1569,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                     } catch (Exception e) {
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
                         Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1572,7 +1582,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
-
+                    confirm_reviewClick_textview.setEnabled(true);
+                    confirm_reviewClick_textview.setClickable(true);
                     if (aFalse.equalsIgnoreCase("1251")) {
                         Intent i = new Intent(SellFloat.this, VerifyLoginAccountScreen.class);
                         startActivity(i);
@@ -1817,7 +1828,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     try {
 
-
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
                         //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1930978\",\"requestTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"responseTime\":\"Tue Nov 02 15:27:01 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOperation\":{\"code\":\"1000152390\",\"featureCode\":\"100076\",\"desWalletCode\":\"1000028686\",\"srcWalletCode\":\"1000028522\",\"srcWalletOwnerCode\":\"1000002785\",\"srcWalletOwnerName\":\"sharique agent\",\"srcCurrencyCode\":\"100062\",\"srcCurrencyName\":\"GNF\",\"srcWalletTypeCode\":\"100008\",\"srcWalletTypeName\":\"Main Wallet\",\"desWalletTypeCode\":\"100008\",\"desWalletTypeName\":\"Main Wallet\",\"desWalletOwnerCode\":\"1000002817\",\"desWalletOwnerName\":\"Rahul Inst\",\"desWalletOwnerNumber\":\"9910859186\",\"amount\":1500,\"channelTypeCode\":\"100000\",\"desCurrencyCode\":\"100062\",\"desCurrencyName\":\"GNF\",\"status\":\"Pending\",\"createdBy\":\"102068\",\"creationDate\":\"2021-11-02T15:27:01.364+0530\",\"tax\":0,\"fee\":0,\"finalAmount\":1500,\"srcCurrencySymbol\":\"Fr\",\"desCurrencySymbol\":\"Fr\",\"transactionType\":\"101611\",\"serviceCode\":\"100020\",\"serviceCategoryCode\":\"ALL011\",\"serviceProviderCode\":\"100109\"}}");
 
                         String resultCode = jsonObject.getString("resultCode");
@@ -1848,12 +1860,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
 
                         } else {
+                            confirm_reviewClick_textview.setEnabled(true);
+                            confirm_reviewClick_textview.setClickable(true);
                             Toast.makeText(SellFloat.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
 
 
                     } catch (Exception e) {
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
                         Toast.makeText(SellFloat.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1934,10 +1950,16 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
                     if(pinLinearselffloat.getVisibility()==View.VISIBLE){
                         if (validation_mpin_detail()) {
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                                return;
+                            }
+                            confirm_reviewClick_textview.setEnabled(false);
+                            confirm_reviewClick_textview.setClickable(false);
+                            mLastClickTime = SystemClock.elapsedRealtime();
 
                                 if (new InternetCheck().isConnected(SellFloat.this)) {
 
-                              //  MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
+                                MyApplication.showloader(SellFloat.this, getString(R.string.please_wait));
 
                                 mpin_verify();
 

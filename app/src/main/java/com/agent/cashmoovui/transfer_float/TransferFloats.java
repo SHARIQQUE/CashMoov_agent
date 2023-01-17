@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -126,6 +127,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
     String mobilelength="";
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -1365,6 +1367,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
+                            confirm_reviewClick_textview.setEnabled(true);
+                            confirm_reviewClick_textview.setClickable(true);
+
                             mpin_final_api();
 
                         } else {
@@ -1374,6 +1379,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                     } catch (Exception e) {
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
+
                         Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1468,6 +1476,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         String resultDescription = jsonObject.getString("resultDescription");
 
                         if (resultCode.equalsIgnoreCase("0")) {
+                            confirm_reviewClick_textview.setEnabled(true);
+                            confirm_reviewClick_textview.setClickable(true);
 
 
                             ll_page_1.setVisibility(View.GONE);
@@ -1541,6 +1551,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         } else {
                             MyApplication.hideLoader();
 
+                            confirm_reviewClick_textview.setEnabled(true);
+                            confirm_reviewClick_textview.setClickable(true);
+
                             Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
@@ -1548,6 +1561,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                     } catch (Exception e) {
                         MyApplication.hideLoader();
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
 
                         Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
@@ -1560,6 +1575,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
+                    confirm_reviewClick_textview.setEnabled(true);
+                    confirm_reviewClick_textview.setClickable(true);
 
                     if (aFalse.equalsIgnoreCase("1251")) {
                         Intent i = new Intent(TransferFloats.this, VerifyLoginAccountScreen.class);
@@ -1575,6 +1592,9 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
         }
         catch (Exception e)
         {
+            confirm_reviewClick_textview.setEnabled(true);
+            confirm_reviewClick_textview.setClickable(true);
+
             Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
@@ -1627,10 +1647,16 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                     if (pinLinear.getVisibility() == View.VISIBLE) {
                         if (validation_mpin_detail()) {
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                                return;
+                            }
+                            confirm_reviewClick_textview.setEnabled(false);
+                            confirm_reviewClick_textview.setClickable(false);
+
 
                             if (new InternetCheck().isConnected(TransferFloats.this)) {
 
-                               // MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                                MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
                                 mpin_verify();
 

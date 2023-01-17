@@ -123,7 +123,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
         tax_first_page = findViewById(R.id.tax_first_page);
         amountTobeCharged_first_page = findViewById(R.id.amountTobeCharged_first_page);
         tvNext = findViewById(R.id.tvNext);
-
+        tvNext.setEnabled(false);
         edittext_amount_pay.setEnabled(false);
 
         edittext_amount.setFilters(new InputFilter[] {

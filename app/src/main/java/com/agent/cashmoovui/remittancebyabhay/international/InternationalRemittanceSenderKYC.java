@@ -169,14 +169,14 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
         calenderIcon_Image_dobexpiry=findViewById(R.id.calenderIcon_Image_dobexpiry);
 
-        mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
-        System.out.println("get lengh new"+mobilelength);
+      /*  mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        System.out.println("get lengh new"+mobilelength);*/
 
 
         String bb= MyApplication.getSaveString("engamout",getApplicationContext());
         System.out.println("get bb"+bb);
         et_sender_phoneNumber.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
 
         calenderIcon_Image_dobexpiry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,7 +313,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 if (new InternetCheck().isConnected(internationalremitsenderkycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
+                    if(s.length()>=(MyApplication.mobileLengthinternational) && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{
@@ -380,8 +380,8 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.val_phone));
                     return;
                 }
-                if (et_sender_phoneNumber.getText().toString().trim().length() < 9) {
-                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.enter_phone_no_val));
+                if (et_sender_phoneNumber.getText().toString().trim().length() < 7) {
+                    MyApplication.showErrorToast(internationalremitsenderkycC, getString(R.string.enter_phone_no_valnew));
                     return;
                 }
                 if (et_sender_firstName.getText().toString().trim().isEmpty()) {

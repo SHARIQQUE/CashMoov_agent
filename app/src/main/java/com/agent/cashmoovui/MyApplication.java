@@ -160,6 +160,8 @@ public class MyApplication extends Application {
     public static boolean isContact=false;
     public static boolean isFirstTime=false;
     public static int amountLength=13;
+    public static int mobileLengthinternational=14;
+
     public static int ToReceiveMoneyMinAmount;
     public static int ToReceiveMoneyMaxAmount;
     public static int amountLengthpartners=10;

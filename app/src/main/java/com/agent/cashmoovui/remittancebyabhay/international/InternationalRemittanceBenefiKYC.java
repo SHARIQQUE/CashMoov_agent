@@ -145,11 +145,11 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         mDobText=findViewById(R.id.dobText);
 
 
-        mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
-        System.out.println("get lengh new"+mobilelength);
+       /* mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        System.out.println("get lengh new"+mobilelength);*/
 
         et_destination_mobileNumber.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
 
         mCalenderIcon_Image=findViewById(R.id.calenderIcon_Image);
         mCalenderIcon_Image.setOnClickListener(new View.OnClickListener() {
@@ -285,7 +285,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                 if (new InternetCheck().isConnected(internationalremitbenefikycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=Integer.parseInt(mobilelength) && m.matches()){
+                    if(s.length()>=(MyApplication.mobileLengthinternational) && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{
@@ -368,8 +368,8 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                     MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.val_phone));
                     return;
                 }
-                if (et_destination_mobileNumber.getText().toString().trim().length() < 9) {
-                    MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.enter_phone_no_val));
+                if (et_destination_mobileNumber.getText().toString().trim().length() < 7) {
+                    MyApplication.showErrorToast(internationalremitbenefikycC, getString(R.string.enter_phone_no_valnew));
                     return;
                 }
                 if (et_destination_firstName.getText().toString().trim().isEmpty()) {
