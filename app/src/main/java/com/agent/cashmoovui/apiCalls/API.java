@@ -161,7 +161,7 @@ public class API {
                     .addBodyParameter("password",jsonObject.optString("password"))
                     .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
                     .addBodyParameter("grant_type","password")
-                    // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel","APP")
                     .addHeaders("source","AGENT")
 

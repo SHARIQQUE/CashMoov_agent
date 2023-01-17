@@ -89,11 +89,40 @@
                             android:visibility="gone"
                             android:id="@+id/spinner_provider"
                             android:text="@string/valid_select_provider"
+
                             style="@style/SpinnerStyleNew1"/>
-                        <TextView
-                            android:id="@+id/spinner_senderCountry"
-                            android:text="@string/sending_country_star"
-                            style="@style/SpinnerStyleNew1"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:orientation="vertical"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+
+                            android:background="@drawable/btn_edittextname"
+                            android:backgroundTint="@color/bgColorHint">
+
+
+
+                            <TextView
+                                android:id="@+id/spinner_senderCountry"
+                                android:background="@null"
+                                android:layout_gravity="top"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="left"
+
+                                android:text="@string/sending_country_star"
+                                style="@style/SpinnerStyleNew1"/>
+                        </LinearLayout>
+
+                        <!--
+
+                                                <TextView
+                                                    android:id="@+id/spinner_senderCountry"
+                                                    android:text="@string/sending_country_star"
+                                                    style="@style/SpinnerStyleNew1"/>
+                        -->
                         <TextView
                             android:id="@+id/spinner_senderCurrency"
                             android:text="@string/sending_currencey_star"

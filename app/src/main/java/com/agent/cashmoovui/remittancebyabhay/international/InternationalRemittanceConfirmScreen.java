@@ -257,9 +257,9 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                             System.out.println("get json remit" + remitJson);
 
 
-                            tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                         /*   tvSenderCode.setText(InternationalRemittanceSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
                             tvBenefiCode.setText(InternationalRemittanceBenefiKYC.benefiCustomerJsonObj.optJSONObject("customer").optString("code"));
-
+*/
 
                             callPostAPI();
 
