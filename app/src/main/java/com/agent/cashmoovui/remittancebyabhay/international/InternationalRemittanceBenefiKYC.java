@@ -929,7 +929,7 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
                         }
                     });
         }else{
-            MyApplication.showloader(internationalremitbenefikycC,"Please Wait...");
+            MyApplication.showloader(internationalremitbenefikycC,getString(R.string.pleasewait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/receiver",benefiJson,
                     new Api_Responce_Handler() {
                         @Override

@@ -917,7 +917,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
             e.printStackTrace();
         }
         if(isCustomerData) {
-            MyApplication.showloader(localremitbenefikycC,"Please Wait...");
+            MyApplication.showloader(localremitbenefikycC,getString(R.string.pleasewait));
             API.PUT("ewallet/api/v1/customer/receiver",benefiJson,
                     new Api_Responce_Handler() {
                         @Override
@@ -940,7 +940,7 @@ public class LocalRemittanceBenefiKYC extends AppCompatActivity implements View.
                         }
                     });
         }else{
-            MyApplication.showloader(localremitbenefikycC,"Please Wait...");
+            MyApplication.showloader(localremitbenefikycC,getString(R.string.pleasewait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/receiver",benefiJson,
                     new Api_Responce_Handler() {
                         @Override

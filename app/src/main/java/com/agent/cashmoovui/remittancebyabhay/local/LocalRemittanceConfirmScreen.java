@@ -226,7 +226,7 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
 
                         btnConfirm.setEnabled(false);
                         btnConfirm.setClickable(false);
-                        MyApplication.showloader(LocalRemittanceConfirmScreen.this,"Please Wait...");
+                        MyApplication.showloader(LocalRemittanceConfirmScreen.this,getString(R.string.pleasewait));
                         etPin.setClickable(false);
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 

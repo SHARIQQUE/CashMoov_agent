@@ -208,7 +208,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
 
                         btnConfirm.setEnabled(false);
                         btnConfirm.setClickable(false);
-                    MyApplication.showloader(cashtowalletconfirmC,"Please Wait...");
+                    MyApplication.showloader(cashtowalletconfirmC,getString(R.string.pleasewait));
                     etPin.setClickable(false);
 
                     Log.d("click", "1");

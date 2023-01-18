@@ -217,7 +217,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
 
                         btnConfirm.setEnabled(false);
                         btnConfirm.setClickable(false);
-                        MyApplication.showloader(InternationalRemittanceConfirmScreen.this,"Please Wait...");
+                        MyApplication.showloader(InternationalRemittanceConfirmScreen.this,getString(R.string.pleasewait));
                         etPin.setClickable(false);
 
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());

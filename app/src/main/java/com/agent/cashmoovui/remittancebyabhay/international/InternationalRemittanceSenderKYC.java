@@ -439,7 +439,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                     return;
                 }
                 if (!isFrontUpload) {
-                    MyApplication.showErrorToast(this, "please upload front Image");
+                    MyApplication.showErrorToast(this, getString(R.string.uploadimage));
                     return;
                 }
                 if (spinner_sender_issuingCountry.getText().toString().equals(getString(R.string.valid_select_issuing_country))) {

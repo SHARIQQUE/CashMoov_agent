@@ -1153,7 +1153,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
     private void callApiSubsriberList() {
         try {
 
-            // MyApplication.showloader(TransferToAccountActivity.this, "Please wait!");
+            // MyApplication.showloader(TransferToAccountActivity.this, "getString(R.string.pleasewait)!");
             API.GET("ewallet/api/v1/customer/allByCriteria?mobileNumber="+et_sender_phoneNumber.getText().toString()+"&countryCode="+
                             sendCountryCode,
                     new Api_Responce_Handler() {
@@ -1532,7 +1532,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
             e.printStackTrace();
         }
         if(isCustomerData) {
-            MyApplication.showloader(cashtowalletsenderkycC,"Please Wait...");
+            MyApplication.showloader(cashtowalletsenderkycC,getString(R.string.pleasewait));
             API.PUT("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
@@ -1553,7 +1553,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
                     });
 
         }else{
-            MyApplication.showloader(cashtowalletsenderkycC,"Please Wait...");
+            MyApplication.showloader(cashtowalletsenderkycC,getString(R.string.pleasewait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override

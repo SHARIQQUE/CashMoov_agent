@@ -109,7 +109,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 17-01-2023</string>
+    <string name="version">Version : 18-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -176,7 +176,7 @@
     <string name="id_proof_no">Id Proof Number</string>
     <string name="verification">Verification</string>
     <string name="verification_message">Enter the 4-digit OTP code we sent to +224 621 123 123.</string>
-    <string name="session_expired_send_back">The session expires in 60 seconds. Haven\'t received a code? Send it back</string>
+    <string name="session_expired_send_back">The session expires in 60 minutes. Haven\'t received a code? Send it back</string>
     <string name="my_account">My Account</string>
     <string name="your_currency">Your Currency: GNF</string>
     <string name="acc_statement">Account Statements</string>
@@ -416,7 +416,7 @@
 
 
 
-    <string name="session_expire_60">Session expires in 60 seconds</string>
+    <string name="session_expire_60">Session expires in 60 minutes</string>
     <string name="havenot_receive">Haven\'t received a code? Send it back</string>
     <string name="please_enter_otp_code">Please enter otp code</string>
     <string name="otp_capital">OTP :</string>
@@ -974,6 +974,7 @@
     <string name="surname_star_error_length">"Surname must be at least 3 characters long"</string>
     <string name="valid_branch_name_new_empyty_error">"Please enter branch name "</string>
     <string name="val_branch_name_len_new">"branch name must be at least 3 characters long "</string>
+    <string name="pleasewait">Please Wait...</string>
 
 
 </resources>

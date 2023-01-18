@@ -96,7 +96,7 @@ public class BillPayFeeActivity extends AppCompatActivity implements View.OnClic
     private ArrayList<OperatorModel> operatorBillPayList = new ArrayList<>();
     private void callBillPayOperatorProvider() {
         try {
-            MyApplication.showloader(billpayfeeC,"Please Wait...");
+            MyApplication.showloader(billpayfeeC,getString(R.string.pleasewait));
             API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100001&serviceCategoryCode=100028&status=Y&offset=0&limit=200",
                     new Api_Responce_Handler() {
                         @Override

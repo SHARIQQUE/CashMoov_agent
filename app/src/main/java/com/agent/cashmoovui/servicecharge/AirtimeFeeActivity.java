@@ -97,7 +97,7 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
     private void callApiAirtimeOperatorProvider() {
         try {
 
-            MyApplication.showloader(airtimefeeC,"Please Wait...");
+            MyApplication.showloader(airtimefeeC,getString(R.string.pleasewait));
             API.GET("ewallet/api/v1/operator/allByCriteria?serviceCode=100009&serviceCategoryCode=100021&status=Y&offset=0&limit=200",
                     new Api_Responce_Handler() {
                         @Override

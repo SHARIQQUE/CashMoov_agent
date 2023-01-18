@@ -911,7 +911,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
 
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(receivemoneyconfirmationscreenC,"Please Wait...");
+        MyApplication.showloader(receivemoneyconfirmationscreenC,getString(R.string.pleasewait));
 
       //  System.out.println("ReceiveMoney Request :"+ReceiveMoneyDetailScreen.dataToSend.toString());
        // String requestNo=AESEncryption.getAESEncryption(ReceiveMoneyDetailScreen.dataToSend.toString());

@@ -352,7 +352,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
-        MyApplication.showloader(paymentconfirmC,"Please Wait...");
+        MyApplication.showloader(paymentconfirmC,getString(R.string.pleasewait));
         String requestNo=AESEncryption.getAESEncryption(PaymentDetails.dataToSend.toString());
         JSONObject jsonObjectA=null;
         try{

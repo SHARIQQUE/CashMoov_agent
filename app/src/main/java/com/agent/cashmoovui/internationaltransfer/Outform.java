@@ -577,7 +577,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
 
     private void callsaveDataApi(JSONObject jsonObject) {
 
-        MyApplication.showloader(Outform.this,"Please wait...");
+        MyApplication.showloader(Outform.this,getString(R.string.pleasewait));
         API.POST_REQEST_TransferAMount("ewallet/api/v1/intech/transferOut", jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
@@ -615,7 +615,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
 
     public void callwalletOwner(){
 
-        MyApplication.showloader(tosubscriberC,"Please Wait...");
+        MyApplication.showloader(tosubscriberC,getString(R.string.pleasewait));
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

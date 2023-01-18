@@ -1116,7 +1116,7 @@ ArrayList<String>walletCurrencyList;
     public static JSONObject walletOwnerJson=new JSONObject();
     public void callRegisterApi(JSONObject jsonObject){
 
-        MyApplication.showloader(agentkycC,"Please wait...");
+        MyApplication.showloader(agentkycC,getString(R.string.pleasewait));
         API.POST_REQEST_REGISTER("ewallet/api/v1/walletOwner/agent", jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

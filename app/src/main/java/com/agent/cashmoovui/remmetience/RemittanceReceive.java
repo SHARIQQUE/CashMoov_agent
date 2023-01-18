@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.MotionEvent;
@@ -313,7 +314,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             close_receiptPage_textview.setOnClickListener(this);
 
             edittext_mobileNuber.setEnabled(true);
-
+            edittext_mobileNuber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
 
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", RemittanceReceive.this);
 
@@ -625,9 +627,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             MyApplication.showErrorToast(this, getString(R.string.val_phone));
 
             return false;
-        } else if (mobileNoStr.length() < 9) {
+        } else if (mobileNoStr.length() < 7) {
 
-            MyApplication.showErrorToast(this, getString(R.string.val_phone));
+            MyApplication.showErrorToast(this, getString(R.string.enter_phone_no_valnew));
 
             return false;
         } else if (remitType.equalsIgnoreCase("Local Remit") ||remitType.equalsIgnoreCase("Wallet to Cash Local")) {

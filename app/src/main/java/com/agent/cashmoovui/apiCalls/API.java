@@ -904,7 +904,7 @@ public class API {
             AndroidNetworking.post(BASEURL + URL)
                     .setOkHttpClient(okHttpClient)
                     .addJSONObjectBody(jsonObject) // posting json
-                    //.addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("mac", MyApplication.getUniqueId())
@@ -2243,7 +2243,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                    // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -3988,7 +3988,7 @@ public class API {
                     .addJSONObjectBody(jsonObject) // posting json
                     .setTag("test")
                     .setOkHttpClient(client)
-                    // .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "SUBSCRIBER")
                     .addHeaders("mac", MyApplication.getUniqueId())

@@ -691,7 +691,7 @@ callApiWalletCountryCurrencyJSOn();
 
     private void callsaveDataApi(JSONObject jsonObject) {
 
-            MyApplication.showloader(Inform.this,"Please wait...");
+            MyApplication.showloader(Inform.this,getString(R.string.pleasewait));
             API.POST_REQEST_TransferAMount("ewallet/api/v1/intech/transferOut", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
@@ -731,7 +731,7 @@ callApiWalletCountryCurrencyJSOn();
 
     public void callwalletOwner(){
 
-        MyApplication.showloader(tosubscriberC,"Please Wait...");
+        MyApplication.showloader(tosubscriberC,getString(R.string.pleasewait));
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

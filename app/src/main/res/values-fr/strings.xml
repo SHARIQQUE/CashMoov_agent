@@ -103,7 +103,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 17-01-2023</string>
+    <string name="version">Version : 18-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -172,7 +172,7 @@
     <string name="id_proof_no">Numero de piece</string>
     <string name="verification">Vérification</string>
     <string name="verification_message">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123.</string>
-    <string name="session_expired_send_back">La session expire dans 60 secondes. Vous n\'avez pas reçu de code? Renvoyer le</string>
+    <string name="session_expired_send_back">La session expire dans 60 minutes. Vous n\'avez pas reçu de code? Renvoyer le</string>
     <string name="my_account">Mon compte</string>
     <string name="your_currency">Votre devise : GNF</string>
     <string name="acc_statement">Relevés de compte</string>
@@ -397,7 +397,7 @@
     <string name="Tax"> Taxe : 0,00</string>
     <string name="postbalance"> Publier le solde : 0.00</string>
 
-    <string name="session_expire_60">La session expire dans 60 secondes</string>
+    <string name="session_expire_60">La session expire dans 60 minutes</string>
     <string name="havenot_receive">Vous n\'avez pas reçu de code? Renvoyer le</string>
     <string name="please_enter_otp_code"> Valider le PIN client</string>
     <string name="plz_enter_6_digit_otp_code">Veuillez entrer le code OTP à 6 chiffres</string>
@@ -555,7 +555,7 @@
     <string name="share_screenshot">Partager une capture d écran</string>
     <string name="no_app_available">Aucune application disponible</string>
     <string name="send_remittance_local">Envoyer un versement local</string>
-    <string name="send_cashtowallet">De l\'argent au portefeuille  </string>
+    <string name="send_cashtowallet">Cash a compte </string>
 
     <string name="amount_to_pay">Montant à payer</string>
     <string name="destination_details">Détails de la destination</string>
@@ -959,6 +959,7 @@
     <string name="surname_star_error_length">"prenom la doit etre d' une longueur d'au moins 3 caracteres "</string>
     <string name="valid_branch_name_new_empyty_error">"entrez veuillez nom de la filiale"</string>
     <string name="val_branch_name_len_new">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>
+    <string name="pleasewait">S\'il vous plaît, attendez...</string>
 
 </resources>
 

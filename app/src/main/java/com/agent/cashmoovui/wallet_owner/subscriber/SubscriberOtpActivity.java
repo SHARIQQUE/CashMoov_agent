@@ -437,7 +437,7 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        MyApplication.showloader(subscriberotpC,"Please Wait...");
+        MyApplication.showloader(subscriberotpC,getString(R.string.pleasewait));
         API.PUT_SET_PASS("ewallet/api/v1/walletOwnerUser/setPin",jsonObjectA,
                 new Api_Responce_Handler() {
                     @Override

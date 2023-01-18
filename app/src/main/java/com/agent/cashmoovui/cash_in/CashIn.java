@@ -168,9 +168,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             et_mpin = (EditText)findViewById(R.id.et_mpin);
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
             System.out.println("get lengh new"+mobilelength);
-          /* edittext_mobileNuber.setFilters(new InputFilter[] {
+           edittext_mobileNuber.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-*/
+
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
             et_mpin.addTextChangedListener(new TextWatcher() {
@@ -1047,6 +1047,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         ll_successPage.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
+                        et_mpin.setText("");
+
                         MyApplication.hideLoader();
 
 
@@ -1457,7 +1459,6 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                     if (validation_mpin_detail()) {
 
                         confirm_reviewClick_textview.setClickable(false);
-                        Log.d("click","1");
 
                         if (new InternetCheck().isConnected(CashIn.this)) {
 

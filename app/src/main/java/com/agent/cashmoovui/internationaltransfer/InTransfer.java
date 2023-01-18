@@ -91,7 +91,7 @@ public class InTransfer extends AppCompatActivity implements OperatorListenersne
 
     public void callwalletOwner(){
 
-        MyApplication.showloader(billpayC,"Please Wait...");
+        MyApplication.showloader(billpayC,getString(R.string.pleasewait));
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

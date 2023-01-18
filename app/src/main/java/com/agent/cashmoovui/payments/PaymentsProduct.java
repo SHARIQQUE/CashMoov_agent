@@ -78,7 +78,7 @@ public class PaymentsProduct extends AppCompatActivity implements ProductListene
     private void callApiProductProvider() {
 
         try {
-            MyApplication.showloader(paymentsproductC,"Please Wait...");
+            MyApplication.showloader(paymentsproductC,getString(R.string.pleasewait));
             API.GET("ewallet/api/v1/productMaster/allByCriteria?operatorCode="+ Payments.operatorCode+"&status=Y",
                     new Api_Responce_Handler() {
                         @Override

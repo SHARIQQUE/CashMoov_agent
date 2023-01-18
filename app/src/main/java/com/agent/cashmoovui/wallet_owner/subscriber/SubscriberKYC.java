@@ -804,7 +804,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
     public static JSONObject walletOwnerJson=new JSONObject();
     public void callRegisterApi(JSONObject jsonObject){
 
-        MyApplication.showloader(subscriberkycC,"Please wait...");
+        MyApplication.showloader(subscriberkycC,getString(R.string.pleasewait));
         API.POST_REQEST_REGISTER("ewallet/api/v1/walletOwner/subscriber", jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

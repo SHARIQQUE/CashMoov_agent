@@ -76,7 +76,7 @@ public class PaymentPlanList extends AppCompatActivity implements PlanListeners 
 
     private void callApiPlanList() {
         try {
-            MyApplication.showloader(paymentplanlistC,"Please Wait...");
+            MyApplication.showloader(paymentplanlistC,getString(R.string.pleasewait));
             API.GET("ewallet/api/v1/product/allByCriteria?operatorCode="+PaymentsProduct.operatorCode+"&serviceCategoryCode=100028&productMasterCode="+
                             PaymentsProduct.productCode+"&status=Y",
                     new Api_Responce_Handler() {

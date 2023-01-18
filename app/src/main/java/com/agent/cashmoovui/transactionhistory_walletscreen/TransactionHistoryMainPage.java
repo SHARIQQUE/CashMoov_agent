@@ -753,7 +753,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             case R.id.cardMainWallet:
 
                 iclick="mainwallet";
-                MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
+                MyApplication.showloader(TransactionHistoryMainPage.this,getString(R.string.pleasewait));
                 page = 0;
                 limit = 20;
                 walletCode = MyApplication.currencyModelArrayList.get(SpinnerPos).code;
@@ -767,7 +767,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 iclick="comissionwallet";
 
 
-                MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
+                MyApplication.showloader(TransactionHistoryMainPage.this,getString(R.string.pleasewait));
 
                 page = 0;
                 limit = 20;
@@ -786,7 +786,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
                 break;
             case R.id.cardOverdraftWallet:
-                MyApplication.showloader(TransactionHistoryMainPage.this,"Please Wait...");
+                MyApplication.showloader(TransactionHistoryMainPage.this,getString(R.string.pleasewait));
 
                 page = 0;
                 limit = 20;

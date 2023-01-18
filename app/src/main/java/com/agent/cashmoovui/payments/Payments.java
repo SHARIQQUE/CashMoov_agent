@@ -86,7 +86,7 @@ public class Payments extends AppCompatActivity implements OperatorListeners {
 
     public void callwalletOwner(){
 
-        MyApplication.showloader(paymentsC,"Please Wait...");
+        MyApplication.showloader(paymentsC,getString(R.string.pleasewait));
         API.GET("ewallet/api/v1/wallet/walletOwner/"+MyApplication.getSaveString("walletOwnerCode",getApplicationContext()), new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {

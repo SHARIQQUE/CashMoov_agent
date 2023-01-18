@@ -1031,7 +1031,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
             e.printStackTrace();
         }
         if(isCustomerData) {
-            MyApplication.showloader(localremitsenderkycC,"Please Wait...");
+            MyApplication.showloader(localremitsenderkycC,getString(R.string.pleasewait));
             API.PUT("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
@@ -1056,7 +1056,7 @@ public class LocalRemittanceSenderKYC extends AppCompatActivity implements View.
                     });
 
         }else{
-            MyApplication.showloader(localremitsenderkycC,"Please Wait...");
+            MyApplication.showloader(localremitsenderkycC,getString(R.string.pleasewait));
             API.POST_REQEST_WH_NEW("ewallet/api/v1/customer/sender",senderJson,
                     new Api_Responce_Handler() {
                         @Override
