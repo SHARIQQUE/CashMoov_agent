@@ -61,7 +61,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
     private SpinnerDialog spinnerDialogSerProvider,spinnerDialogSendingCountry,spinnerDialogSendingCurr,
             spinnerDialogRecCountry,spinnerDialogRecCurr;
-
+  private String nextbtn="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +123,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
         tax_first_page = findViewById(R.id.tax_first_page);
         amountTobeCharged_first_page = findViewById(R.id.amountTobeCharged_first_page);
         tvNext = findViewById(R.id.tvNext);
-        tvNext.setEnabled(false);
+       // tvNext.setEnabled(false);
         edittext_amount_pay.setEnabled(false);
 
         edittext_amount.setFilters(new InputFilter[] {
@@ -177,6 +177,11 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            convertionRate_first_page.setText("");
+            edittext_amount_pay.setText("");
+            fees_first_page.setText("");
+            tax_first_page.setText("");
+            amountTobeCharged_first_page.setText("");
 
         }
 
@@ -195,7 +200,9 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
                 if (s.length()>1) {
                     formatInput(edittext_amount, s, s.length(), s.length());
-                    callApiExchangeRate();
+
+                    tvNext.setText(getString(R.string.Calculate));
+                    nextbtn="calculation";
 
                 } else {
                     convertionRate_first_page.setText("");
@@ -271,8 +278,18 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 
         }
 
-        Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
-        startActivity(i);
+        MyApplication.showloader(LocalRemittanceActivity.this,getString(R.string.pleasewait));
+        callApiExchangeRate();
+
+        if(nextbtn.equalsIgnoreCase("next")){
+            Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
+            startActivity(i);
+        }else if(nextbtn.equalsIgnoreCase("calculation")){
+            callApiExchangeRate();
+        }
+
+       /* Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
+        startActivity(i);*/
     }
 
     private void callApiserviceProvider() {
@@ -814,7 +831,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -832,8 +849,9 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         fees_first_page.setText(MyApplication.addDecimal(fee));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
+                                         tvNext.setText(getString(R.string.next));
 
-
+                                        nextbtn="next";
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
 //                                        tvSend.setVisibility(View.GONE);
@@ -865,10 +883,10 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                                         }
 
-                                        tvNext.setEnabled(true);
+                                       // tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                   // tvNext.setEnabled(false);
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }

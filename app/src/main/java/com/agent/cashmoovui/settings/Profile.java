@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -77,6 +78,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ArrayList<String> arrayList_desWalletOwnerCode = new ArrayList<String>();
     private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
     private TextView paymonthcountText,paymonthlimitAccountText;
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -366,6 +368,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
             case R.id.linGloballimitcount:
+
                 alertdialougeGlobalLimit();
                 break;
 
@@ -513,13 +516,17 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             paymonthcountText=operationDialog.findViewById(R.id.paymonthcountText);
             paymonthlimitAccountText=operationDialog.findViewById(R.id.paymonthlimitAccountText);
 
-           apicurrency();
 
             spinner_currency.setText(getString(R.string.select_currency));
 
             spinner_currency.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     if (spinnerDialogCurrency!=null)
                         spinnerDialogCurrency.showSpinerDialog();
                 }
@@ -535,6 +542,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             });
             //myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             operationDialog.show();
+
+            apicurrency();
+
         } catch (Exception e) {
 
             Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_LONG).show();
@@ -603,13 +613,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         spinner_currency.setAdapter(arraadapter2);
 */
 
-                        spinnerDialogCurrency = new SpinnerDialog(Profile.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, "CANCEL");// With 	Animation
+                        spinnerDialogCurrency = new SpinnerDialog(Profile.this, arrayList_currecnyName, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
 
                         spinnerDialogCurrency.setCancellable(true); // for cancellable
                         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
                         spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
                             @Override
                             public void onClick(String item, int position) {
+
+
                                 //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                 setSelctionCurrency(position);
                                 // spBusinessType.setTag(position);

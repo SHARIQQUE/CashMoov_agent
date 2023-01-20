@@ -11,11 +11,17 @@
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/sellfloat.xml" value="0.16621376811594202" />
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/toolbar.xml" value="0.165625" />
         <entry key="..\:/Abhay/Workspace/CashMoovAgent/app/src/main/res/layout/transaction_history_agentpage.xml" value="0.165625" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_sender_kyc.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_local_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_local_remittance_cashtowallet.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_local_remittance_receipt_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_otp_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_profile.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_receive_money_confirmation_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_receive_money_kyc_receipt.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_verify_login_otp_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/dialog_global_limit.xml" value="0.1" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/otp_page.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/pin_change.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/remitance_receive.xml" value="0.19947916666666668" />

@@ -175,7 +175,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
         String bb= MyApplication.getSaveString("engamout",getApplicationContext());
         System.out.println("get bb"+bb);
-        et_sender_phoneNumber.setFilters(new InputFilter[] {
+       et_sender_phoneNumber.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
 
         calenderIcon_Image_dobexpiry.setOnClickListener(new View.OnClickListener() {
@@ -313,7 +313,7 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
                 if (new InternetCheck().isConnected(internationalremitsenderkycC)) {
 
                     Matcher m = p.matcher(s);
-                    if(s.length()>=(MyApplication.mobileLengthinternational) && m.matches()){
+                    if(s.length()>=s.length() && m.matches()){
                         if(isSet) {
                             isSet=false;
                         }else{

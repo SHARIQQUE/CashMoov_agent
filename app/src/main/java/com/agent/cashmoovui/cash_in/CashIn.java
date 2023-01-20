@@ -1185,6 +1185,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 receiptPage_tv_dateOfTransaction.setText((MyApplication.convertUTCToLocaldate(jsonObject_walletTransfer.
                                         getString("creationDate"))));
+                                System.out.println("get date "+jsonObject_walletTransfer.getString("creationDate"));
 
 
 
@@ -1306,7 +1307,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                         fees_amount = exchangeRate.getString("fee");
                          feeDouble= Double.parseDouble(fees_amount);
-                        tax_financial = exchangeRate.getString("value");
+                       // tax_financial = exchangeRate.getString("value");
                         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                         DecimalFormat df = new DecimalFormat("0.00",symbols);
 
@@ -1352,7 +1353,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                                 }
                             } else {
-                                tax_financial = exchangeRate.getString("value");
+                              //  tax_financial = exchangeRate.getString("value");
                                 tax_financialnew = exchangeRate.getString("value");
 
                             }
@@ -1367,7 +1368,14 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         fees_amount_double = Double.parseDouble((fees_amount));
                         amountstr_double = Double.parseDouble(amountstr);
                         try{
-                        tax_financialnewDouble=Double.parseDouble(tax_financialnew);
+                            if(exchangeRate.has("taxConfigurationList")){
+                                tax_financialnewDouble=Double.parseDouble(tax_financialnew);
+                                System.out.println("get tax_financialnewDouble"+tax_financialnew);
+
+                            }else{
+                                tax_financialnewDouble=0.0;
+                            }
+
 
                         }  catch (Exception e) {
                             e.printStackTrace();

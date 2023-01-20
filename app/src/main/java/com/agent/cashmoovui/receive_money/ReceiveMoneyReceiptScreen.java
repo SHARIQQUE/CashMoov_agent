@@ -97,7 +97,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity implements View
         tvReceivercurrency.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol"));
         tvSendCurrencycode.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencyCode"));
         tvReceiverCurrencyCode.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencyCode"));
-        tvAmount.setText(MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount));
+        tvAmount.setText(ReceiveMoneyConfirmScreen.tvTransAmounts.getText().toString());
         tvAmounttobpaid.setText(ReceiveMoneyConfirmScreen.tvAmountPaid.getText().toString());
         tvTransAmount.setText(ReceiveMoneyConfirmScreen.tvTransAmounts.getText().toString());
         tvFee.setText(ReceiveMoneyConfirmScreen.tvFee.getText().toString());
@@ -119,13 +119,15 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity implements View
 
             tvSendemail.setText(emailstr);
 
+            System.out.println("get date "+creationDate);
+
 
             tvSendName.setText(ownerName + " "+lastName);
             tvSendPhoneNo.setText(mobileNumber);
             tvReceiverName.setText(ownerNamerec+ " "+lastNamerec);
             tvReceiverPhoneNo.setText(mobileNumberrec);
             tvReceiveremail.setText(emailrec);
-            tvDateOfTrans.setText(MyApplication.convertUTCToLocaldate(creationDate));
+            tvDateOfTrans.setText(MyApplication.convertUTCToLocalTime(creationDate));
         }
        // tvSendName.setText(ReceiveMoneyConfirmScreen.walletTransfernew.optJSONObject("srcWalletOwner").optString("ownerName")+ " "+ ReceiveMoneyConfirmScreen.walletTransfernew.optJSONObject("srcWalletOwner").optString("lastName"));
        /* tvSendPhoneNo.setText(ReceiveMoneyConfirmScreen.mobilenumber);

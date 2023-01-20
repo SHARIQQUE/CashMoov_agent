@@ -100,6 +100,9 @@
     <string name="home">Home</string>
     <string name="wallet">Wallet</string>
     <string name="setting">Setting</string>
+    <string name="Calculate">Calculate</string>
+
+
 
     <string name="val_amount_min">Please enter minimum amount </string>
     <string name="val_amount_max">Please enter maximum amount </string>
@@ -109,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 18-01-2023</string>
+    <string name="version">Version : 19-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>

@@ -156,7 +156,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         tvTransAmounts.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount));
         tvAmountPaid.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+(ReceiveMoneyDetailScreen.currencyValue));
         tvFee.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+(ReceiveMoneyDetailScreen.fee));
-        tvrate.setText(MyApplication.addDecimalthreenew(ReceiveMoneyDetailScreen.rate));
+        tvrate.setText(MyApplication.addDecimalfive(ReceiveMoneyDetailScreen.rate));
 //        finalamount=Double.parseDouble(ReceiveMoney.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTReceiveMoney",receivemoneyconfirmationscreenC));
 
         btnConfirm.setText(getString(R.string.otp_verification));

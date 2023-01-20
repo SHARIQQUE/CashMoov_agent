@@ -96,7 +96,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/_5sdp"
-                                android:text="N/A"
+                                android:text=""
                                 android:textColor="#000"
                                 android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold" />
@@ -120,7 +120,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="@dimen/_5sdp"
-                                android:text="621 788 789"
+                                android:text=""
                                 android:textColor="#000"
                                 android:textSize="@dimen/_13sdp"
                                 android:fontFamily="@font/aileron_semibold" />
