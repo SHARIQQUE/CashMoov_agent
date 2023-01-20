@@ -44,10 +44,11 @@ public class MiniStatementTrans {
     private String fromWalletTypeCode;
     private boolean isReverse;
     private boolean bearerSender;
+    private Double receiverFee;
 
 
     public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode,
-                              boolean isReverse,double fee,boolean bearerSender) {
+                              boolean isReverse,double fee,boolean bearerSender,Double receiverFee) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -92,6 +93,7 @@ public class MiniStatementTrans {
         this.fee=fee;
         this.bearerSender=bearerSender;
 
+        this.receiverFee=receiverFee;
     }
 
     public boolean isBearerSender() {
@@ -436,5 +438,13 @@ public class MiniStatementTrans {
 
     public void setReverse(boolean reverse) {
         isReverse = reverse;
+    }
+
+    public Double getReceiverFee() {
+        return receiverFee;
+    }
+
+    public void setReceiverFee(Double receiverFee) {
+        this.receiverFee = receiverFee;
     }
 }

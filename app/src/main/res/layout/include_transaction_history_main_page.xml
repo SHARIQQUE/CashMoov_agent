@@ -65,6 +65,7 @@
 
 
                 <HorizontalScrollView
+                    android:id="@+id/allview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -311,7 +312,7 @@
                                             android:textColor="#ffffff"
                                             android:fontFamily="@font/aileron_bold"
                                             android:lineSpacingExtra="10sp"
-                                            android:text="@string/commision_wallet"
+                                            android:text="@string/Commisionwallet"
                                             />
 
                                         <TextView

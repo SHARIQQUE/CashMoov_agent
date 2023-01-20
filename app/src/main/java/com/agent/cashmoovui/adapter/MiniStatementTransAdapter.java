@@ -18,6 +18,9 @@ import com.agent.cashmoovui.model.MiniStatementTrans;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -253,6 +256,27 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                         }
 
 
+
+
+                    if(MyApplication.MerchantPage) {
+
+                        MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForMerchant());
+
+                        if(miniStatementTrans.getCommissionAmountForMerchant()>0){
+                            holder.linItem.setVisibility(View.VISIBLE);
+                            holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForMerchant()) + " " + MyApplication.currencySymbol);
+                        }else{
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.height=0;
+                            holder.linItem.setLayoutParams(params);
+                        }
+
+
+                    }
+
+
+
                     //holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + miniStatementTrans.getToCurrencySymbol());
                 }
                 holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
@@ -260,32 +284,88 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             }
         }
 
-        if(walletTypeCode.equalsIgnoreCase("100008")){
-            if(miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
+        if(walletTypeCode.equalsIgnoreCase("100008")) {
+
+
+            if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
                 holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
                 //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
 
-                holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
+                holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getFromAmount()) + " " + MyApplication.currencySymbol);
                 holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
-                MyApplication.Amount=	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount());
+                MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getFromAmount());
             }
-            if(miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)){
+            if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
                 holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
-                if(miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
-                    holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount())+" "+MyApplication.currencySymbol);
-                    MyApplication.Amount=	MyApplication.addDecimal(""+miniStatementTrans.getFromAmount());
+                if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                    holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getFromAmount()) + " " + MyApplication.currencySymbol);
+                    MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getFromAmount());
                     // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
-                }else {
-                    holder.tvAmount.setText(	MyApplication.addDecimal(""+miniStatementTrans.getToAmount()) + " " + MyApplication.currencySymbol);
-                    MyApplication.Amount=	MyApplication.addDecimal(""+miniStatementTrans.getToAmount());
+                } else {
+                    holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getToAmount()) + " " + MyApplication.currencySymbol);
+                    MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getToAmount());
                     // holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
                 }
                 holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
 
             }
 
+            if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("105068")) {
+                if (miniStatementTrans.isBearerSender()) {
+                    //    Double fees=
+                    String taxJSON = "";
+                    Double fee = 0.00;
+                    Double tax = 0.00;
+                    Double total = 0.00;
+                    if (miniStatementTrans.isBearerSender()) {
+                        taxJSON = miniStatementTrans.getTaxAsJson();
+                        fee = miniStatementTrans.getFee();
+
+                        try {
+                            JSONArray jsonArray = new JSONArray(taxJSON);
+                            if (jsonArray.length() > 0) {
+                                JSONObject jsonObject = jsonArray.optJSONObject(0);
+                                tax = Double.parseDouble(jsonObject.optString("value"));
 
 
+                            }
+                        } catch (Exception e) {
+
+                        }
+
+                    } else {
+                        fee = 0.00;
+                        taxJSON = "";
+                    }
+                    total = fee + tax + miniStatementTrans.getReceiverFee();
+                    total=miniStatementTrans.getToAmount()-total;
+
+                    if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+                        holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                        //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+
+                        holder.tvAmount.setText(MyApplication.addDecimal(total+"") + " " + MyApplication.currencySymbol);
+                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+                        MyApplication.Amount = MyApplication.addDecimal("" + total);
+                    }
+                    if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                        if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                            holder.tvAmount.setText(MyApplication.addDecimal(total+"") + " " + MyApplication.currencySymbol);
+                            MyApplication.Amount = MyApplication.addDecimal("" + total);
+                            // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                        } else {
+                            holder.tvAmount.setText((MyApplication.addDecimal(total+"") + " " + MyApplication.currencySymbol));
+                            MyApplication.Amount = MyApplication.addDecimal("" + total);
+                            // holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
+                        }
+                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+
+                    }
+                }
+
+
+            }
         }
         if(holder.tvMsisdn.getText().toString().isEmpty()){
             holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerName());
@@ -408,7 +488,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
         MyApplication.currencySymbol=miniStatementTransList.get(pos).getFromCurrencySymbol();
         if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100002")
-        ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100001")) {
+        ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100001")){
             miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
                     miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
                     miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
@@ -418,8 +498,63 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                     miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
                     miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
                             getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
-        }else  if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101611")
+        }
+        else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105068")) {
+            if(miniStatementTransList.get(pos).isBearerSender()){
+            //    Double fees=
+                String taxJSON="";
+                Double fee=0.00;
+                Double tax=0.00;
+                Double total=0.00;
+                if (miniStatementTransList.get(pos).isBearerSender()){
+                    taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
+                    fee=miniStatementTransList.get(pos).getFee();
+
+                    try{
+                        JSONArray jsonArray=new JSONArray(taxJSON);
+                        if(jsonArray.length()>0){
+                            JSONObject jsonObject=jsonArray.optJSONObject(0);
+                            tax=Double.parseDouble(jsonObject.optString("value"));
+
+
+                        }
+                    }catch (Exception e){
+
+                    }
+
+                }else{
+                    fee=0.00;
+                    taxJSON="";
+                }
+                total=fee-tax-miniStatementTransList.get(pos).getReceiverFee();
+
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                        miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
+                                getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+
+
+            }else{
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                        miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
+                                getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+                   }
+
+                   } else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101611")
         ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101612")) {
+
+
 
 
 
@@ -476,14 +611,16 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             MyApplication.currencySymbol=miniStatementTransList.get(pos).getToCurrencySymbol();
             String taxJSON="";
             Double fee=0.00;
+
             if (miniStatementTransList.get(pos).isBearerSender()){
                 taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
                 fee=miniStatementTransList.get(pos).getFee();
+
+
             }else{
                 fee=0.00;
                 taxJSON="";
             }
-
 
 
             miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),

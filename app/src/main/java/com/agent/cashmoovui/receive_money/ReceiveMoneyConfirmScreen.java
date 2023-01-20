@@ -38,6 +38,7 @@ import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletReceiverK
 import com.agent.cashmoovui.set_pin.AESEncryption;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
@@ -94,7 +95,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
             //setBackMenu();
             getIds();
         } finally {
-            
+
         }
     }
 
@@ -154,8 +155,8 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         //  tvConfCode.setText(ReceiveMoney.mobileNo);
         tvCurrency.setText(ReceiveMoneyDetailScreen.fromCurrency);
         tvTransAmounts.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount));
-        tvAmountPaid.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+(ReceiveMoneyDetailScreen.currencyValue));
-        tvFee.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+(ReceiveMoneyDetailScreen.fee));
+        tvAmountPaid.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+MyApplication.addDecimal(ReceiveMoneyDetailScreen.currencyValue));
+        tvFee.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(ReceiveMoneyDetailScreen.fee));
         tvrate.setText(MyApplication.addDecimalfive(ReceiveMoneyDetailScreen.rate));
 //        finalamount=Double.parseDouble(ReceiveMoney.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTReceiveMoney",receivemoneyconfirmationscreenC));
 
@@ -183,7 +184,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         }
         fees_amount_double = Double.parseDouble(ReceiveMoneyDetailScreen.fee);
         amountstr_double = Double.parseDouble(ReceiveMoneyDetailScreen.amount);
-        tax_financialnewDouble = Double.parseDouble(ReceiveMoneyDetailScreen.tax_first_page.getText().toString());
+        tax_financialnewDouble = Double.parseDouble(ReceiveMoneyDetailScreen.tax_first_page.getText().toString().replace(",",""));
 
         totalAmount_double = tax_financialnewDouble + amountstr_double + fees_amount_double;
         totalAmount_str = String.valueOf(totalAmount_double);
@@ -284,7 +285,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
 
     }
 
-   
+
 
     private void setOnCLickListener() {
         btnConfirm.setOnClickListener(receivemoneyconfirmationscreenC);
@@ -424,10 +425,10 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
 
             JSONObject dataObjectrequest = new JSONObject();
 
-            dataObjectrequest.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this) );
+            dataObjectrequest.put("srcWalletOwnerCode",ReceiveMoneyDetailScreen.receiverCode);
             dataObjectrequest.put("desWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this));
-            dataObjectrequest.put("srcCurrencyCode", "100062");
-            dataObjectrequest.put("desCurrencyCode", "100062");
+            dataObjectrequest.put("srcCurrencyCode", ReceiveMoneyDetailScreen.fromCurrencyCode);
+            dataObjectrequest.put("desCurrencyCode", ReceiveMoneyDetailScreen.toCurrencyCode);
             dataObjectrequest.put("value", MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount).replace(",",""));
             dataObjectrequest.put("transactionType", "113092");
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
@@ -494,7 +495,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                             intent.putExtra("mobileNumber",walletTransfersrcWalletOwner.getString("mobileNumber"));
                             intent.putExtra("ownerName",walletTransfersrcWalletOwner.getString("ownerName"));
                             intent.putExtra("lastName",walletTransfersrcWalletOwner.getString("lastName"));
-                            intent.putExtra("creationDate",walletTransfersrcWalletOwner.getString("creationDate"));
+                            intent.putExtra("creationDate",walletTransfer.getString("creationDate"));
 
                             intent.putExtra("emailrec",walletTransferdesWalletOwner.getString("email"));
                             intent.putExtra("mobileNumberrec",walletTransferdesWalletOwner.getString("mobileNumber"));
@@ -786,25 +787,12 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
 
             JSONObject jsonObject=new JSONObject();
 
-            String USERNAME =  MyApplication.getSaveString("USERNAME",ReceiveMoneyConfirmScreen.this);
-            String PASSWORD = MyApplication.getSaveString("PASSWORD",ReceiveMoneyConfirmScreen.this);
-            String EMAIL = MyApplication.getSaveString("EMAIL",ReceiveMoneyConfirmScreen.this);
-            String NTTYPECODE = MyApplication.getSaveString("NTTYPECODE",ReceiveMoneyConfirmScreen.this);
-            String USERCODE = MyApplication.getSaveString("USERCODE",ReceiveMoneyConfirmScreen.this);
 
-            /*
-            jsonObject.put("email",EMAIL);
-            jsonObject.put("notificationTypeCode",NTTYPECODE);
-            jsonObject.put("transTypeCode","101813");      // Temporary Hard Code acording to Praveen
-            jsonObject.put("status","Active");
-            String USER_CODE_FROM_TOKEN_AGENTDETAILS =  MyApplication.getSaveString("userCode", ReceiveMoneyConfirmScreen.this);
-            jsonObject.put("walletOwnerUserCode",USER_CODE_FROM_TOKEN_AGENTDETAILS);
-
-             */
 
             jsonObject.put("transTypeCode","113092");
-            jsonObject.put("subscriberWalletOwnerCode","1000003966");
-            jsonObject.put("subscriberWalletOwnerCode","1000003966");
+            jsonObject.put("subscriberWalletOwnerCode",ReceiveMoneyDetailScreen.receiverCode);
+
+
 
 
             API.POST_GET_OTP("ewallet/api/v1/otp",jsonObject,new Api_Responce_Handler() {
@@ -910,57 +898,84 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
     }
 
     public static JSONArray taxConfigList;
-    public void callPostAPI(){
-        MyApplication.showloader(receivemoneyconfirmationscreenC,getString(R.string.pleasewait));
+    public void callPostAPI() {
+        MyApplication.showloader(receivemoneyconfirmationscreenC, getString(R.string.pleasewait));
 
-      //  System.out.println("ReceiveMoney Request :"+ReceiveMoneyDetailScreen.dataToSend.toString());
-       // String requestNo=AESEncryption.getAESEncryption(ReceiveMoneyDetailScreen.dataToSend.toString());
-        JSONObject jsonObjectA=null;
-        try{
-            jsonObjectA=new JSONObject();
-          //  jsonObjectA.put("request",requestNo);
-        }catch (Exception e){
+        //  System.out.println("ReceiveMoney Request :"+ReceiveMoneyDetailScreen.dataToSend.toString());
 
-        }
-        API.POST_REQEST_WH_NEW("ewallet/api/v1/remittance/subscriberP2C", jsonObjectA,
-                new Api_Responce_Handler() {
-                    @Override
-                    public void success(JSONObject jsonObject) {
-                        MyApplication.hideLoader();
-                        if(jsonObject.optString("resultCode").equalsIgnoreCase("0")){
-                            MyApplication.showToast(receivemoneyconfirmationscreenC,jsonObject.optString("resultDescription"));
-                            receiptJson=jsonObject;
-                            JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("remittance");
+
+        try {
+
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("srcWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this));
+            jsonObject.put("desWalletOwnerCode", ReceiveMoneyDetailScreen.receiverCode);
+            jsonObject.put("srcCurrencyCode", "100062");
+            jsonObject.put("desCurrencyCode", "100062");
+            jsonObject.put("value", ReceiveMoneyDetailScreen.amount);
+            String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
+            jsonObject.put("pin", encryptionDatanew);
+            jsonObject.put("transactionType", "100000");         // Hard Code according  to Deepak
+            jsonObject.put("channelTypeCode", "100000");           // Hard Code according  to Deepak
+            jsonObject.put("serviceCode", serviceCode_from_serviceCategory);
+            jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
+            jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
+
+
+            System.out.println("Receive money REQUEST================" + jsonObject.toString());
+           /* String requestNo = AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA = null;
+            try {
+                jsonObjectA = new JSONObject();
+                jsonObjectA.put("request", requestNo);
+            } catch (Exception e) {
+
+            }*/
+/*
+            API.POST_REQEST_WH_NEW("ewallet/api/v1/walletTransfer/merchantCashOut", jsonObjectA,
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+                            if (jsonObject.optString("resultCode").equalsIgnoreCase("0")) {
+                                MyApplication.showToast(receivemoneyconfirmationscreenC, jsonObject.optString("resultDescription"));
+                                receiptJson = jsonObject;
+                           */
+/* JSONObject jsonObjectAmountDetails = jsonObject.optJSONObject("remittance");
                             if(jsonObjectAmountDetails.has("taxConfigurationList")) {
                                 taxConfigList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                             }else{
                                 taxConfigList=null;
+                            }*//*
+
+                                btnConfirm.setVisibility(View.VISIBLE);
+                                Intent intent = new Intent(receivemoneyconfirmationscreenC, TransactionSuccessScreen.class);
+                                intent.putExtra("ReceiveMoney", "ReceiveMoney");
+                                startActivity(intent);
+                                // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
+                            } else {
+                                btnConfirm.setVisibility(View.VISIBLE);
+                                MyApplication.showToast(receivemoneyconfirmationscreenC, jsonObject.optString("resultDescription"));
                             }
-                            btnConfirm.setVisibility(View.VISIBLE);
-                            Intent intent=new Intent(receivemoneyconfirmationscreenC, TransactionSuccessScreen.class);
-                            intent.putExtra("ReceiveMoney","ReceiveMoney");
-                            startActivity(intent);
-                            // {"transactionId":"2432","requestTime":"Fri Dec 25 05:51:11 IST 2020","responseTime":"Fri Dec 25 05:51:12 IST 2020","resultCode":"0","resultDescription":"Transaction Successful","remittance":{"code":"1000000327","walletOwnerCode":"1000000750","transactionType":"SEND REMITTANCE","senderCode":"1000000750","receiverCode":"AGNT202012","fromCurrencyCode":"100069","fromCurrencyName":"INR","fromCurrencySymbol":"₹","toCurrencyCode":"100069","toCurrencyName":"INR","toCurrencySymbol":"₹","amount":200,"amountToPaid":200,"fee":0,"tax":"0.0","conversionRate":0,"confirmationCode":"MMZJBJHYAAX","transactionReferenceNo":"1000000327","transactionDateTime":"2020-12-25 05:51:12","sender":{"id":1887,"code":"1000000750","firstName":"mahi","lastName":"kumar","mobileNumber":"88022255363","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"3333","idExpiryDate":"2025-12-20","dateOfBirth":"1960-01-05","email":"infomahendra2009@gmail.com","issuingCountryCode":"100001","issuingCountryName":"Albania","status":"Active","creationDate":"2020-12-14 11:17:33","registerCountryCode":"100102","registerCountryName":"India","ownerName":"mahi"},"receiver":{"id":1895,"code":"AGNT202012","firstName":"Rajesh","lastName":"Kumar","mobileNumber":"9821184601","gender":"M","idProofTypeCode":"100000","idProofTypeName":"Passport","idProofNumber":"DFZ123456","idExpiryDate":"2030-09-08","dateOfBirth":"1989-01-05","email":"abhishek.kumar2@esteltelecom.com","issuingCountryCode":"100102","issuingCountryName":"India","status":"Active","creationDate":"2020-12-14 14:00:23","createdBy":"100250","modificationDate":"2020-12-14 14:00:56","modifiedBy":"100250","registerCountryCode":"100102","registerCountryName":"India","ownerName":"Rajesh"}}}
-                        }else{
-                            btnConfirm.setVisibility(View.VISIBLE);
-                            MyApplication.showToast(receivemoneyconfirmationscreenC,jsonObject.optString("resultDescription"));
                         }
-                    }
 
-                    @Override
-                    public void failure(String aFalse) {
-                        MyApplication.hideLoader();
-                        btnConfirm.setVisibility(View.VISIBLE);
-                    }
-                });
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+                            btnConfirm.setVisibility(View.VISIBLE);
+                        }
+                    });
+*/
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
-
-    private void service_Provider_api() {
+        private void service_Provider_api() {
 
         // Hard Code Final Deepak
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100003&serviceCategoryCode=100012&status=Y", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/serviceProvider/serviceCategory?serviceCode=100015&serviceCategoryCode=REMON&status=Y", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

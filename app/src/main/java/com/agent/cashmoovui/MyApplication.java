@@ -86,6 +86,9 @@ public class MyApplication extends Application {
     public static boolean AgentPage = false;
     public static boolean InstPage = false;
     public static boolean BranchPage = false;
+    public static boolean MerchantPage = false;
+    public static boolean OutletPage = false;
+
     public static String Amount = "0.00";
     public static boolean isNotification = false;
     public static TinyDB tinyDB;

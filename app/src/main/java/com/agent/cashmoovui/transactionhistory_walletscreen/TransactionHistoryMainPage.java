@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -103,7 +104,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
 
     private String iclick="";
 
-
+HorizontalScrollView allview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +131,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
         imgNotification = findViewById(R.id.imgNotification);
         imgNotification.setOnClickListener(this);
         tvBadge = findViewById(R.id.tvBadge);
+        allview=findViewById(R.id.allview);
         imgQR = findViewById(R.id.imgQR);
         imgQR.setOnClickListener(this);
         MyApplication.hideKeyboard(this);
@@ -362,6 +364,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                 MyApplication.AgentPage=false;
                 MyApplication.BranchPage=false;
                 MyApplication.InstPage=true;
+                MyApplication.MerchantPage=false;
+
 
 
             }
@@ -373,6 +377,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             MyApplication.AgentPage=true;
             MyApplication.BranchPage=false;
             MyApplication.InstPage=false;
+            MyApplication.MerchantPage=false;
+
 
         }
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.BranchCode)){
@@ -384,8 +390,20 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
             MyApplication.AgentPage=false;
             MyApplication.BranchPage=true;
             MyApplication.InstPage=false;
+            MyApplication.MerchantPage=false;
+
         }
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.MerchatCode)){
+
+            allview.setVisibility(View.GONE);
+            MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
+            MyApplication.MerchantPage=true;
+            MyApplication.BranchPage=false;
+            MyApplication.InstPage=false;
+            MyApplication.AgentPage=false;
+
+        }
 
 
     }
@@ -612,10 +630,16 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                             }
 
                                             if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
-                                                taxAsJson = "";
-                                            } else {
-                                                taxAsJson = data.optString("taxAsJson");
-                                            }
+                                                if (data.optString("transactionTypeCode").equalsIgnoreCase("105068")) {
+                                                    taxAsJson = data.optString("taxAsJson");
+
+                                                }else{
+                                                    taxAsJson = "";
+                                                }
+                                                } else {
+                                                    taxAsJson = data.optString("taxAsJson");
+                                                }
+
 
                                             Double fee = data.optDouble("fee");
                                            /* if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
@@ -687,13 +711,16 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
                                                         data.optString("fromWalletTypeCode").trim(),
                                                         data.optBoolean("isReverse"),
                                                         fee,
-                                                        data.optBoolean("bearerSender")));
+                                                        data.optBoolean("receiverBearer"),
+                                                        data.optDouble("receiverFee")));
+
                                             }
 
                                             setData(miniStatementTransList, walletTypeCode);
                                             loadingPB.setVisibility(View.GONE);
                                         }
                                     }
+
 
                                 } else {
                                     loadingPB.setVisibility(View.GONE);

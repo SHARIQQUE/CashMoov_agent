@@ -32,7 +32,7 @@
                 android:fontFamily="@font/aileron_bold"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="10sp"
-                android:text="@string/deposit"
+                android:text="N/A"
                 android:textColor="#3a3a3a"
                 android:textSize="@dimen/_13sdp" />
 
@@ -76,7 +76,7 @@
                 android:fontFamily="@font/aileron_bold"
                 android:gravity="center"
                 android:lineSpacingExtra="10sp"
-                android:text="+2000 GNF"
+                android:text="N/A"
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:textColor="@color/green_700"
@@ -88,7 +88,7 @@
                 android:fontFamily="@font/aileron_bold"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="10sp"
-                android:text="11/07/2015"
+                android:text="N/A"
                 android:textColor="#3a3a3a"
                 android:textSize="@dimen/_9sdp" />
         </LinearLayout>

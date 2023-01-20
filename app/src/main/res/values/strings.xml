@@ -858,7 +858,7 @@
     <string name="search_here">Search here...</string>
     <string name="go">Go</string>
     <string name="first_name_star">First Name*</string>
-    <string name="merchant_name">Merchant Name</string>
+    <string name="merchant_name">Merchant Name :</string>
     <string name="outlet_name_star">Outlet Name *</string>
 
     <string name="choose_product">Choose the product</string>
@@ -978,6 +978,7 @@
     <string name="valid_branch_name_new_empyty_error">"Please enter branch name "</string>
     <string name="val_branch_name_len_new">"branch name must be at least 3 characters long "</string>
     <string name="pleasewait">Please Wait...</string>
+    <string name="feetaxvalidation"><![CDATA[Fee & tax amount is greater than transaction amount]]></string>
 
 
 </resources>

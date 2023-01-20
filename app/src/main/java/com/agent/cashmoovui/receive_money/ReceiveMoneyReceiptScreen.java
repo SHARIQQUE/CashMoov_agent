@@ -127,7 +127,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity implements View
             tvReceiverName.setText(ownerNamerec+ " "+lastNamerec);
             tvReceiverPhoneNo.setText(mobileNumberrec);
             tvReceiveremail.setText(emailrec);
-            tvDateOfTrans.setText(MyApplication.convertUTCToLocalTime(creationDate));
+            tvDateOfTrans.setText((creationDate));
         }
        // tvSendName.setText(ReceiveMoneyConfirmScreen.walletTransfernew.optJSONObject("srcWalletOwner").optString("ownerName")+ " "+ ReceiveMoneyConfirmScreen.walletTransfernew.optJSONObject("srcWalletOwner").optString("lastName"));
        /* tvSendPhoneNo.setText(ReceiveMoneyConfirmScreen.mobilenumber);

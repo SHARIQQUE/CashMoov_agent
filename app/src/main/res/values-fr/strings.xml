@@ -843,7 +843,7 @@
     <string name="search_here">Cherche ici...</string>
     <string name="go">Aller</string>
     <string name="first_name_star">Prénom*</string>
-    <string name="merchant_name">Nom du commerçant</string>
+    <string name="merchant_name">Nom du commerçant :</string>
     <string name="outlet_name_star">Nom du point de vente *</string>
 
     <string name="choose_product">Choisissez le produit</string>
@@ -962,6 +962,7 @@
     <string name="valid_branch_name_new_empyty_error">"entrez veuillez nom de la filiale"</string>
     <string name="val_branch_name_len_new">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>
     <string name="pleasewait">S\'il vous plaît, attendez...</string>
+    <string name="feetaxvalidation"><![CDATA[Le montant des frais et taxes est supérieur au montant de la transaction]]></string>
 
 </resources>
 
