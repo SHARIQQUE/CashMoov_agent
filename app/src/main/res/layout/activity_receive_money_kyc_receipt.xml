@@ -279,7 +279,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:text="@string/amount"
+                    android:text="@string/amount_colon"
                     android:textColor="#000"
                     android:textSize="@dimen/_13sdp" />
 

@@ -263,7 +263,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                             String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
                            // ReceiveMoneyDetailScreen.dataToSend.put( "pin",encryptionDatanew);
 
-                            callPostAPI();
+                            mpin_final_api();
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -429,7 +429,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
             dataObjectrequest.put("desWalletOwnerCode", MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyConfirmScreen.this));
             dataObjectrequest.put("srcCurrencyCode", ReceiveMoneyDetailScreen.fromCurrencyCode);
             dataObjectrequest.put("desCurrencyCode", ReceiveMoneyDetailScreen.toCurrencyCode);
-            dataObjectrequest.put("value", MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount).replace(",",""));
+            dataObjectrequest.put("value", ReceiveMoneyDetailScreen.amount);
             dataObjectrequest.put("transactionType", "113092");
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
 
@@ -508,12 +508,12 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                             }
 
 
-                       /* } else {
+                         else {
                             MyApplication.hideLoader();
 
                             Toast.makeText(ReceiveMoneyConfirmScreen.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
-                        }*/
+                        }
 
 
                     } catch (Exception e) {

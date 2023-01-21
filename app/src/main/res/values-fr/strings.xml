@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 19-01-2023</string>
+    <string name="version">Version : 21-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -244,7 +244,7 @@
     <string name="scanner">Scanner</string>
     <string name="details_du_receveur">Détails du réceveur</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
-    <string name="amount">Montant</string>
+    <string name="amount">Montant </string>
     <string name="Parteners">Les partenaires</string>
     <string name="val_subscriber_no">Veuillez saisir le numéro d\'abonné</string>
     <string name="enter_subscriber_no_val">Le numéro d\'abonné doit comporter au moins 9 chiffres</string>
@@ -312,7 +312,7 @@
     <string name="user_colon">Utilisateur :</string>
     <string name="confirmation_code_colon">Code de confirmation :</string>
     <string name="currency_colon">Devise :</string>
-    <string name="amount_colon">montant:</string>
+    <string name="amount_colon">montant :</string>
     <string name="fee_colon">Frais :</string>
     <string name="i_bear_fees">Je supporte les frais</string>
     <string name="pin_colon">Code PIN :</string>
@@ -491,7 +491,7 @@
     <string name="convertionRate_reviewPage"> Taux de conversion :</string>
     <string name="comment_reviewPage"> Commentaires :</string>
     <string name="amount_to_paid_reviewPage">Montant facturé : </string>
-    <string name="sender_currency_receiptpage">Devise de l\'expéditeur</string>
+    <string name="sender_currency_receiptpage">Devise de l\'expéditeur :</string>
     <string name="senderCode_receiptpage">Code expéditeur</string>
     <string name="benificiary_no_receiptpage">Bénéficiaire Non :</string>
     <string name="receiver_currency_reviewPage"> Devise de réception :</string>
@@ -594,7 +594,7 @@
 
     <string name="plz_select_receive_country">Pays d\'accueil</string>
     <string name="plz_select_receive_currency">Devise de réception</string>
-    <string name="receive_courency">Devise de réception</string>
+    <string name="receive_courency">Devise de réception :</string>
     <string name="receive_courency_start">Devise de réception*</string>
 
 

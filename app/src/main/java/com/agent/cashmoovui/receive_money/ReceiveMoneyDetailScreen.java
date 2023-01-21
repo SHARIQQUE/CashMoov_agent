@@ -73,7 +73,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
     private ArrayList<CountryCurrencyInfoModel.CountryCurrency> recCurrencyModelList = new ArrayList<>();
 
     private SpinnerDialog spinnerDialogSendingCurr,spinnerDialogRecCurr;
-    public static String receiverFee,serviceProvider,sendCountryCode,sendCountryName,recCountryCode,recCountryName;
+    public static String receiverFee="",serviceProvider,sendCountryCode,sendCountryName,recCountryCode,recCountryName;
     String languageToUse = "";
     MyApplication applicationComponentClass;
     private String serviceCode_from_serviceCategory,serviceCategoryCode_from_serviceCategory,serviceProviderCode_from_serviceCategory;
@@ -374,13 +374,19 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                 }
 
 
-                Double fee;
-                Double amout;
-                fee=Double.parseDouble(receiverFee);
-                amout=Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""));
-                System.out.println("get feeval"+fee);
-                System.out.println("get amoutval"+amout);
+                Double fee=0.00;
+                Double amout=0.00;
+                if(receiverFee.isEmpty()&&receiverFee==null){
+
+                }else {
+                    fee = Double.parseDouble(receiverFee)+taxtest;
+                    amout = Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", ""));
+                    System.out.println("get feeval" + fee);
+                    System.out.println("get amoutval" + amout);
+
+                }
                 if(fee>amout){
+                    System.out.println("check amount"+fee+"   "+amout);
                     MyApplication.showErrorToast(cashtowalletbenefikycC,getString(R.string.feetaxvalidation));
                     return;
 
@@ -448,6 +454,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
                             if (resultCode.equalsIgnoreCase("0"))
                             {
+
 
                                 Intent i = new Intent(ReceiveMoneyDetailScreen.this, ReceiveMoneyConfirmScreen.class);
                                 startActivity(i);
@@ -1014,8 +1021,12 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
 
     }
+    Double taxtest=0.00;
     private void callApiExchangeRate() {
         try {
+
+
+
             //MyApplication.showloader(cashinC, "Please wait!");
             API.GET("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode="+
                             sendCurrencyModelList.get((Integer) spinner_senderCurrency.getTag()).getCurrencyCode()
@@ -1026,7 +1037,10 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                             "&serviceCode=" + serviceCode_from_serviceCategory+
                             "&serviceCategoryCode=" +"REMON"
                             + "&serviceProviderCode=" + serviceProviderCode_from_serviceCategory
-                            + "&walletOwnerCode=" + "1000007201",
+                            + "&walletOwnerCode=" + receiverCode+
+                    "&payAgentCode=" + receiverCode+
+                    "&remitAgentCode=" + MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyDetailScreen.this),
+
 
 
   /*  private void callApiExchangeRate() {
@@ -1061,7 +1075,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                                         //etAmountNew.setText(currencyValue);
                                         fees_first_page.setText((fee+""));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(""+currencyValue));
-                                        amount = edittext_amount.getText().toString().trim().replace(",","");
+                                        amount = jsonObjectAmountDetails.optDouble("currencyValue")+"";
                                          receiverFee=jsonObjectAmountDetails.optString("receiverFee");
 
                                          System.out.println("get fee"+receiverFee);
@@ -1077,12 +1091,14 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
+                                            taxtest=taxConfigurationList.optJSONObject(0).optDouble("value");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
                                             // amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim()) + taxConfigurationList.optJSONObject(0).optDouble("value")));
 
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
+                                            taxtest=0.00;
                                             //amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim())));
 
                                         }
