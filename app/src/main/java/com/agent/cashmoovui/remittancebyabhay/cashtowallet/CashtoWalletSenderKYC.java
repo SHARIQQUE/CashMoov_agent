@@ -43,7 +43,6 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.ServiceProviderModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 
 import org.json.JSONArray;
 import org.json.JSONException;

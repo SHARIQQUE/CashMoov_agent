@@ -25,9 +25,6 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
-import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
 import org.json.JSONArray;
@@ -125,7 +122,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
                     addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                     if(photoSend!=null){
-                        callupload(photoSend, "100044",AgentKYC.agentWalletOwnerCode);
+                        callupload(photoSend, "100044", AgentKYC.agentWalletOwnerCode);
                     }else{
                         MyApplication.showToast(AgentSignature.this,getString(R.string.please_enter_signature));
                     }
@@ -420,7 +417,7 @@ public class AgentSignature extends AppCompatActivity implements View.OnClickLis
 
 
 
-        API.PUT("ewallet/api/v1/walletOwner/agent/"+AgentKYC.agentWalletOwnerCode, jsonObject, new Api_Responce_Handler() {
+        API.PUT("ewallet/api/v1/walletOwner/agent/"+ AgentKYC.agentWalletOwnerCode, jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 // MyApplication.hideLoader();

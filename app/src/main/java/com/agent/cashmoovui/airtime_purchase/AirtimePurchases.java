@@ -1163,6 +1163,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
                         ll_successPage.setVisibility(View.GONE);
+                        et_mpin.setText("");
 
 
 

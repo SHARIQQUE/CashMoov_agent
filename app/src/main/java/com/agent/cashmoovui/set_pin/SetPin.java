@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -21,10 +20,6 @@ import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginMsis;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYCAttached;
-import com.agent.cashmoovui.wallet_owner.agent.AgentSignature;
-import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberSignature;
 
 import org.json.JSONObject;
 import java.util.Locale;

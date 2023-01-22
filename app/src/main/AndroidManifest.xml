@@ -75,20 +75,16 @@ x
                 android:screenOrientation="portrait"
                 android:theme="@style/AppThemeNew"/>
 
-        <activity android:name=".addoutlet.AddOutletKYC"
-            android:windowSoftInputMode="adjustResize|stateVisible"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeNew"/>
-
-
-        <activity android:name=".addoutlet.AddOutletKYCAttached"
+        <activity android:name=".wallet_owner.outlet.OutletKYC"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
 
 
 
-        <activity android:name=".addoutlet.AddOutletSignature"
+
+
+        <activity android:name=".wallet_owner.outlet.OutletSignature"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
@@ -179,7 +175,7 @@ x
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>
-        <activity android:name=".wallet_owner.agent.AgentSignature"
+        <activity android:name=".wallet_owner.agent.OutletSignature"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNew"/>

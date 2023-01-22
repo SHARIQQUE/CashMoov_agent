@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 21-01-2023</string>
+    <string name="version">Version : 22-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -125,7 +125,7 @@
 
     <string name="merchant_payment">Paiments Marchand</string>
     <string name="cash_withdrawal">Retrait d\'argent</string>
-    <string name="receive_remittance">Reception d\'argent</string>
+    <string name="receive_remittance">Réception de fonds</string>
     <string name="fee">Frais</string>
     <string name="service_point">Point de service</string>
     <string name="complete_profile">Completez le profile</string>
@@ -422,7 +422,7 @@
     <string name="you_have_choose_french_language">Vous avez choisir la langue française</string>
     <string name="pin">Code PIN :</string>
     <string name="please_enter_pin">Veuillez saisir le code PIN</string>
-    <string name="verification_register_otp">Veuillez entrer l\'OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l\'identifiant de messagerie enregistré et au numéro de téléphone portable</string>
+    <string name="verification_register_otp">Veuillez contacter votre service clientele pour reinitialiser le code PIN</string>
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
     <string name="please_enter_mobileno">Veuillez entrer le numero de telephone</string>
     <string name="you_make_withdrwarl">Vous effectuez un retrait</string>
@@ -431,7 +431,7 @@
     <string name="qr_code_of_the">Code Qr de abonné</string>
     <string name="scanbarcode">Scannez un code-barres ou un code QR</string>
 
-    <string name="verification_register_otpback">Veuillez contacter votre service client pour générer l\'OTP et veuillez entrer l\'OTP pour vérifier votre compte.</string>
+    <string name="verification_register_otpback">Veuillez contacter votre service clientele pour reinitialiser le code PIN</string>
     <string name="otp_verify">Vérification OTP</string>
     <string name="verify_subscriber_pin">Vérifier le code PIN d abonné</string>
     <string name="subscriber_pin"> Code PIN d abonné</string>
@@ -899,7 +899,7 @@
     <string name="reset_pin">Réinitialiser le code PIN</string>
 
 
-    <string name="verification_login_otp">Veuillez contacter votre service client pour Login OTP et veuillez entrer l\'OTP pour vérifier votre compte.</string>
+    <string name="verification_login_otp">Veuillez contacter votre service clientele pour reinitialiser le code PIN.</string>
     <string name="verification_reset_pin_otp">Veuillez contacter votre service clientèle pour réinitialiser le code PIN OTP et veuillez saisir l\'OTP pour vérifier votre compte</string>
     <string name="due_date">Date d\'echeance</string>
 
@@ -960,7 +960,11 @@
     <string name="surname_star_error">"Entrez veuillez prenom"</string>
     <string name="surname_star_error_length">"prenom la doit etre d' une longueur d'au moins 3 caracteres "</string>
     <string name="valid_branch_name_new_empyty_error">"entrez veuillez nom de la filiale"</string>
+    <string name="valid_outlet_name_new_empyty_error">"Veuillez saisir le nom du point de vente"</string>
+
     <string name="val_branch_name_len_new">"nom de la filiale la doit etre d' une longueur d'au moins 3 caracteres"</string>
+    <string name="val_outlet_name_len_new">"le nom du point de vente doit comporter au moins 3 caractères"</string>
+
     <string name="pleasewait">S\'il vous plaît, attendez...</string>
     <string name="feetaxvalidation"><![CDATA[Le montant des frais et taxes est supérieur au montant de la transaction]]></string>
 

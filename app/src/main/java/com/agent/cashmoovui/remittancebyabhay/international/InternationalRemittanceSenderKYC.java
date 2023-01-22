@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +32,6 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -42,7 +40,6 @@ import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -171,12 +168,16 @@ public class InternationalRemittanceSenderKYC extends AppCompatActivity implemen
 
       /*  mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
         System.out.println("get lengh new"+mobilelength);*/
+        int mobilelength = 0;
 
 
-        String bb= MyApplication.getSaveString("engamout",getApplicationContext());
-        System.out.println("get bb"+bb);
+        String mobilelengthstr= MyApplication.getSaveString("mobilelength",getApplicationContext());
+        System.out.println("get bb"+mobilelengthstr);
+        mobilelength=Integer.parseInt(mobilelengthstr);
+
+
        et_sender_phoneNumber.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
+                new InputFilter.LengthFilter(mobilelength)});
 
         calenderIcon_Image_dobexpiry.setOnClickListener(new View.OnClickListener() {
             @Override

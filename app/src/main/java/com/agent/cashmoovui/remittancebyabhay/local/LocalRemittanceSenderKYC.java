@@ -33,7 +33,6 @@ import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
-import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -42,8 +41,6 @@ import com.agent.cashmoovui.model.GenderModel;
 import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
-import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +20,8 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.set_pin.SetPin;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
-import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
-import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYCAttached;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -401,7 +396,7 @@ public class AgentKYCAttached extends AppCompatActivity implements View.OnClickL
 
         MyApplication.showloader(agentkycattachedC, "uploading file...");
         //idProofTypeModelList.get((Integer) spIdProof.getTag()).getCode()
-        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file, idProofTypeCode,AgentKYC.agentWalletOwnerCode,
+        API.Upload_REQEST_WH_NEW("ewallet/api/v1/fileUpload",file, idProofTypeCode, AgentKYC.agentWalletOwnerCode,
                 new Api_Responce_Handler() {
 
                     @Override

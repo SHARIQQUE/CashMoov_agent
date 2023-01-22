@@ -45,6 +45,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
     private EditText edittext_amount,edittext_amount_pay;
 
     String amountpay_temp_str="";
+    String mobilelength="";
 
     Double amount_reverse=0.0;
 
@@ -396,6 +397,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         }
 
         Intent i = new Intent(internationalC, InternationalRemittanceSenderKYC.class);
+        MyApplication.saveString("mobilelength",mobilelength,InternationalRemittanceActivity.this);
         startActivity(i);
     }
 
@@ -715,6 +717,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
                                             recCountryCode = recCountryModelList.get(position).getCountryCode();
                                             recCountryName = recCountryModelList.get(position).getCountryName();
+                                            mobilelength=String.valueOf(recCountryModelList.get(position).getMobileLength());
+                                            System.out.println("get length"+mobilelength);
+
                                             callApiRecCurrency(recCountryCode);
                                         }
                                     });

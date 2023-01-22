@@ -45,7 +45,7 @@
                     android:layout_marginTop="30dp"
                     android:fontFamily="@font/aileron_regular"
                     android:lineSpacingExtra="10sp"
-                    android:text="@string/verification_register_otp"
+                    android:text="@string/verification_register_otpback"
                     />
 
                 <com.mukesh.OtpView

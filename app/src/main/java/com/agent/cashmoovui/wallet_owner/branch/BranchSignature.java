@@ -25,10 +25,6 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
-import com.agent.cashmoovui.cash_in.CashIn;
-import com.agent.cashmoovui.cashout.CashOutAgent;
-import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
-import com.agent.cashmoovui.wallet_owner.agent.AgentSignature;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,10 +35,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class BranchSignature extends AppCompatActivity implements View.OnClickListener{
     public static BranchSignature branchsignatureC;

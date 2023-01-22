@@ -55,16 +55,16 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
-    String strPhoneNo = "",strPasword;
+    String strPhoneNo = "", strPasword;
 
-    EditText et_phoneNo,et_password;
-    TextView tv_continue,tv_pin,tv_Or,tv_fingurePrint;
+    EditText et_phoneNo, et_password;
+    TextView tv_continue, tv_pin, tv_Or, tv_fingurePrint;
     LinearLayout ll_password;
-    String selectButtonType="0";
+    String selectButtonType = "0";
 
-    boolean  isPasswordVisible;
+    boolean isPasswordVisible;
 
-    private static final int PERMISSION_REQUEST_CODE = 200,READ_EXTERNAL_STORAGE=201,WRITE_EXTERNAL_STORAGE=202;
+    private static final int PERMISSION_REQUEST_CODE = 200, READ_EXTERNAL_STORAGE = 201, WRITE_EXTERNAL_STORAGE = 202;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         }
 
 
-
         Locale locale = new Locale(languageToUse);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -91,14 +90,13 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.login_msis);
 
         et_phoneNo = (EditText) findViewById(R.id.et_phoneNo);
-        et_password = (EditText)findViewById(R.id.et_password);
-        tv_continue = (TextView)findViewById(R.id.tv_continue);
+        et_password = (EditText) findViewById(R.id.et_password);
+        tv_continue = (TextView) findViewById(R.id.tv_continue);
 
 
-
-        tv_pin = (TextView)findViewById(R.id.tv_pin);
-        tv_Or = (TextView)findViewById(R.id.tv_Or);
-        tv_fingurePrint = (TextView)findViewById(R.id.tv_fingurePrint);
+        tv_pin = (TextView) findViewById(R.id.tv_pin);
+        tv_Or = (TextView) findViewById(R.id.tv_Or);
+        tv_fingurePrint = (TextView) findViewById(R.id.tv_fingurePrint);
 
 
         tv_continue.setOnClickListener(this);
@@ -110,7 +108,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         et_password.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
@@ -120,12 +119,13 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if(s.length() >= 4)
-                    MyApplication.hideKeyboard(LoginMsis.this);            }
+                if (s.length() >= 4)
+                    MyApplication.hideKeyboard(LoginMsis.this);
+            }
         });
 
 
-        HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
+        HiddenPassTransformationMethod hiddenPassTransformationMethod = new HiddenPassTransformationMethod();
         et_password.setTransformationMethod(hiddenPassTransformationMethod);
 
         et_password.setOnTouchListener(new View.OnTouchListener() {
@@ -141,7 +141,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             // hide Password
                             et_password.setTransformationMethod(hiddenPassTransformationMethod);
                             isPasswordVisible = false;
-                        } else  {
+                        } else {
                             // set drawable image
                             et_password.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_visibility_black_24dp, 0);
                             // show Password
@@ -157,8 +157,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         });
 
 
-
-
         tv_pin.setVisibility(View.GONE);
         tv_fingurePrint.setVisibility(View.GONE);
         tv_fingurePrint.setVisibility(View.GONE);
@@ -167,15 +165,9 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
         if (firstRunApp.trim().length() == 0) {
             tv_pin.setVisibility(View.GONE);
-        }
-
-        else if (firstRunApp.equalsIgnoreCase("YES")) {
+        } else if (firstRunApp.equalsIgnoreCase("YES")) {
             tv_pin.setVisibility(View.GONE);
-        }
-
-
-
-        else if (firstRunApp.equalsIgnoreCase("NO")) {
+        } else if (firstRunApp.equalsIgnoreCase("NO")) {
 
             tv_pin.setVisibility(View.VISIBLE);
 
@@ -183,16 +175,13 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             startActivity(i);
             finish();
 
-        }
-
-        else if (firstRunApp.equalsIgnoreCase("NO_LOGINPIN")) {
+        } else if (firstRunApp.equalsIgnoreCase("NO_LOGINPIN")) {
             tv_pin.setVisibility(View.VISIBLE);
 
             Intent i = new Intent(LoginMsis.this, LoginPin.class);
             startActivity(i);
             finish();
         }
-
 
 
         BiometricManager biometricManager = androidx.biometric.BiometricManager.from(LoginMsis.this);
@@ -207,7 +196,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                MyApplication.showErrorToast(this,getString(R.string.no_fingerprint_senser));
+                MyApplication.showErrorToast(this, getString(R.string.no_fingerprint_senser));
 
                 tv_fingurePrint.setVisibility(View.GONE);
                 break;
@@ -215,7 +204,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
 
-                MyApplication.showErrorToast(this,getString(R.string.no_biometric_senser));
+                MyApplication.showErrorToast(this, getString(R.string.no_biometric_senser));
 
                 tv_fingurePrint.setVisibility(View.GONE);
                 break;
@@ -223,7 +212,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
 
-                MyApplication.showErrorToast(this,getString(R.string.device_not_contain_fingerprint));
+                MyApplication.showErrorToast(this, getString(R.string.device_not_contain_fingerprint));
 
                 tv_fingurePrint.setVisibility(View.GONE);
                 break;
@@ -265,12 +254,10 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         });
 
 
-
-
-
     }
 
     String FCM_TOKEN;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -290,48 +277,40 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    boolean validation_mobile_Details()
-    {
+    boolean validation_mobile_Details() {
 
         strPhoneNo = et_phoneNo.getText().toString();
 
-        if(strPhoneNo.isEmpty()) {
-            MyApplication.showErrorToast(LoginMsis.this,getString(R.string.val_phone));
+        if (strPhoneNo.isEmpty()) {
+            MyApplication.showErrorToast(LoginMsis.this, getString(R.string.val_phone));
+
+            return false;
+        } else if (strPhoneNo.length() < 9) {
+
+            MyApplication.showErrorToast(LoginMsis.this, getString(R.string.val_phone));
 
             return false;
         }
-
-        else if(strPhoneNo.length() < 9) {
-
-            MyApplication.showErrorToast(LoginMsis.this,getString(R.string.val_phone));
-
-            return false;
-        }
-
 
 
         return true;
     }
 
 
-    boolean validation_password_Details()
-    {
+    boolean validation_password_Details() {
 
         strPasword = et_password.getText().toString();
 
-        if(strPasword.isEmpty()) {
+        if (strPasword.isEmpty()) {
 
             MyApplication.showErrorToast(LoginMsis.this, getString(R.string.please_enter_4_digit_mpin));
 
             return false;
-        }
-
-        else if(strPasword.length() == 4) {
+        } else if (strPasword.length() == 4) {
 
 
             return true;
-        }
-        else {
+        } else {
             MyApplication.showErrorToast(LoginMsis.this, getString(R.string.please_enter_4_digit_mpin));
 
             return false;
@@ -343,19 +322,14 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
-            case R.id.tv_continue:
-            {
+        switch (view.getId()) {
+            case R.id.tv_continue: {
 
-                if(selectButtonType.equalsIgnoreCase("0")) {
+
+                if (selectButtonType.equalsIgnoreCase("0")) {
 
                     if (validation_mobile_Details()) {
                         if (new InternetCheck().isConnected(LoginMsis.this)) {
-
-
-
-
 
 
                             if (checkPermission_camera()) {
@@ -384,29 +358,24 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             Toast.makeText(LoginMsis.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                         }
                     }
-                }
-                else
-                {
+                } else {
                     if (validation_password_Details()) {
                         if (new InternetCheck().isConnected(LoginMsis.this)) {
                             MyApplication.showloader(LoginMsis.this, getString(R.string.getting_user_info));
 
                             token_api();
 
-                        }
-                        else {
+                        } else {
                             Toast.makeText(LoginMsis.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
                         }
                     }
                 }
 
 
-
             }
             break;
 
-            case R.id.tv_pin:
-            {
+            case R.id.tv_pin: {
                 Intent i = new Intent(LoginMsis.this, LoginPin.class);
                 startActivity(i);
             }
@@ -415,11 +384,12 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
         }
     }
+
     private void all_api() {
-        try{
+        try {
 
 
-            API.GET_ALL("ewallet/public/notificationType/all/",languageToUse,new Api_Responce_Handler() {
+            API.GET_ALL("ewallet/public/notificationType/all/", languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -430,27 +400,20 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         // JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1772020\",\"requestTime\":\"Mon Oct 18 18:19:09 IST 2021\",\"responseTime\":\"Mon Oct 18 18:19:09 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":2215,\"code\":\"101961\",\"firstName\":\"EstelPune\",\"userName\":\"EstelPune0370\",\"mobileNumber\":\"5555555556\",\"email\":\"sharique9718@gmail.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002666\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"idProofTypeCode\":\"100001\",\"idProofTypeName\":\"NATIONAL IDENTITY CARD\",\"idProofNumber\":\"AD12334\",\"creationDate\":\"2021-10-09T23:05:59.169+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100308\",\"modificationDate\":\"2021-10-18T18:15:10.865+0530\",\"modifiedBy\":\"100250\",\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":true,\"notificationTypeCode\":\"100000\"}}");
 
 
-                        String resultCode =  jsonObject.getString("resultCode");
-                        String resultDescription =  jsonObject.getString("resultDescription");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                        if(resultCode.equalsIgnoreCase("0"))
-                        {
+                        if (resultCode.equalsIgnoreCase("0")) {
 
 
-                        }
-
-                        else
-                        {
-                            Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LoginMsis.this, resultDescription, Toast.LENGTH_LONG).show();
 
                         }
 
 
-
-                    }
-                    catch (Exception e)
-                    {
-                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
 
@@ -461,24 +424,24 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
-                    MyApplication.showToast(LoginMsis.this,aFalse);
+                    MyApplication.showToast(LoginMsis.this, aFalse);
 
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             MyApplication.hideLoader();
-            MyApplication.showToast(LoginMsis.this,e.toString());
+            MyApplication.showToast(LoginMsis.this, e.toString());
         }
 
     }
 
     private void mssidn_api() {
-        try{
+        try {
 
 
-            API.GET_MSDIN("ewallet/public/walletOwner/msisdn/"+strPhoneNo,languageToUse,new Api_Responce_Handler() {
+            API.GET_MSDIN("ewallet/public/walletOwner/msisdn/" + strPhoneNo, languageToUse, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -488,107 +451,94 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1725124\",\"requestTime\":\"Mon Oct 11 18:06:30 IST 2021\",\"responseTime\":\"Mon Oct 11 18:06:30 IST 2021\",\"firstLoginStatus\":\"N\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":1728,\"code\":\"101458\",\"firstName\":\"Mahendra\",\"userName\":\"Mahendra2355\",\"mobileNumber\":\"989898899\",\"email\":\"tarun.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002094\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-15\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idProofNumber\":\"1111111111111111\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"idExpiryDate\":\"2021-06-23\",\"creationDate\":\"2021-06-08T14:53:57.853+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-11T16:18:02.389+0530\",\"modifiedBy\":\"100250\",\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
 
 
-                        String resultCode =  jsonObject.getString("resultCode");
-                        String resultDescription =  jsonObject.getString("resultDescription");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                        if(resultCode.equalsIgnoreCase("0"))
-                        {
+                        if (resultCode.equalsIgnoreCase("0")) {
 
 
-                            JSONObject walletOwnerUser =  jsonObject.getJSONObject("walletOwnerUser");
+                            JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
                             String EMAIL = walletOwnerUser.getString("email");
                             String USERCODE = walletOwnerUser.getString("userCode");
                             String CODE_AGENT = walletOwnerUser.getString("code");
                             String NTTYPECODE = walletOwnerUser.getString("notificationTypeCode");
-                            String firstLoginStatus="Y";
-                            if(walletOwnerUser.has("pinLoginStatus")) {
-                                 firstLoginStatus = walletOwnerUser.getString("pinLoginStatus");
-                            }else{
-                                 firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+                            String firstLoginStatus = "Y";
+                            if (walletOwnerUser.has("pinLoginStatus")) {
+                                firstLoginStatus = walletOwnerUser.getString("pinLoginStatus");
+                            } else {
+                                firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
                             }
 
-                            if(!walletOwnerUser.optBoolean("isPinAlreadySet") &&walletOwnerUser.getString("firstLoginStatus").equalsIgnoreCase("y")) {
+                            if (!walletOwnerUser.optBoolean("isPinAlreadySet") && walletOwnerUser.getString("firstLoginStatus").equalsIgnoreCase("y")) {
                                 firstLoginStatus = "y";
-                            }else{
+                            } else {
                                 firstLoginStatus = "n";
                             }
 
 
-
-                           // firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
+                            // firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
 
                             //  String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                             // String countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
-                            MyApplication.saveString("COUNTRYNAME_AGENT","",LoginMsis.this);
-                            MyApplication.saveString("COUNTRYCODE_AGENT","",LoginMsis.this);
+                            MyApplication.saveString("COUNTRYNAME_AGENT", "", LoginMsis.this);
+                            MyApplication.saveString("COUNTRYCODE_AGENT", "", LoginMsis.this);
                            /* String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                             String countryName_agent = walletOwnerUser.getString("issuingCountryName");*/
                             // MyApplication.getSaveString("COUNTRYCODE_AGENT"
-                            MyApplication.saveString("COUNTRYNAME_AGENT","",LoginMsis.this);
-                            MyApplication.saveString("COUNTRYCODE_AGENT","",LoginMsis.this);
+                            MyApplication.saveString("COUNTRYNAME_AGENT", "", LoginMsis.this);
+                            MyApplication.saveString("COUNTRYCODE_AGENT", "", LoginMsis.this);
 
 
-                            MyApplication.saveString("USERNAME",strPhoneNo,LoginMsis.this);
-                            MyApplication.saveString("PASSWORD",strPasword,LoginMsis.this);
-                            MyApplication.saveString("CODE_AGENT",CODE_AGENT,LoginMsis.this);
-                            MyApplication.saveString("EMAIL",EMAIL,LoginMsis.this);
-                            MyApplication.saveString("USERCODE",USERCODE,LoginMsis.this);
-                            MyApplication.saveString("NTTYPECODE",NTTYPECODE,LoginMsis.this);
+                            MyApplication.saveString("USERNAME", strPhoneNo, LoginMsis.this);
+                            MyApplication.saveString("PASSWORD", strPasword, LoginMsis.this);
+                            MyApplication.saveString("CODE_AGENT", CODE_AGENT, LoginMsis.this);
+                            MyApplication.saveString("EMAIL", EMAIL, LoginMsis.this);
+                            MyApplication.saveString("USERCODE", USERCODE, LoginMsis.this);
+                            MyApplication.saveString("NTTYPECODE", NTTYPECODE, LoginMsis.this);
                             MyApplication.hideLoader();
 
-                            if(walletOwnerUser.optBoolean("reSetPinCredRequest")) {
+                            if (walletOwnerUser.optBoolean("reSetPinCredRequest")) {
                                 Intent i = new Intent(LoginMsis.this, RESETPINOtpPage.class);
                                 startActivity(i);
                                 return;
                             }
 
-                            if (firstLoginStatus.equalsIgnoreCase("Y"))
-                            {
+                            if (firstLoginStatus.equalsIgnoreCase("Y")) {
                                 Intent i = new Intent(LoginMsis.this, OtpPage.class);
                                 startActivity(i);
                                 return;
                                 // finish();
                             }
 
-                             if (firstLoginStatus.equalsIgnoreCase("N")) {
+                            if (firstLoginStatus.equalsIgnoreCase("N")) {
 
                                 ll_password.setVisibility(View.VISIBLE);
                                 selectButtonType = "1";
 
-                            }
+                            } else {
+                                MyApplication.hideLoader();
 
-                            else {
-                                 MyApplication.hideLoader();
-
-                                 Toast.makeText(LoginMsis.this, firstLoginStatus, Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginMsis.this, firstLoginStatus, Toast.LENGTH_LONG).show();
                                 finish();
                             }
 
 
-
-
-                        }
-
-                        else
-                        {
-                          //  selectButtonType = "0";
+                        } else {
+                            //  selectButtonType = "0";
                             MyApplication.hideLoader();
 
-                            Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginMsis.this, resultDescription, Toast.LENGTH_LONG).show();
 
 
                         }
 
 
-
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         MyApplication.hideLoader();
 
-                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
 
@@ -599,29 +549,27 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
-                    MyApplication.showToast(LoginMsis.this,aFalse);
+                    MyApplication.showToast(LoginMsis.this, aFalse);
 
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             MyApplication.hideLoader();
-            MyApplication.showToast(LoginMsis.this,e.toString());
+            MyApplication.showToast(LoginMsis.this, e.toString());
         }
 
     }
 
 
     private void userInfo_api(String userCode) {
-        try{
+        try {
 
             MyApplication.currencyModelArrayList.clear();
-            API.GET("ewallet/api/v1/walletOwner/"+userCode,new Api_Responce_Handler() {
+            API.GET("ewallet/api/v1/walletOwner/" + userCode, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
-
-
 
 
                     try {
@@ -629,10 +577,10 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1725124\",\"requestTime\":\"Mon Oct 11 18:06:30 IST 2021\",\"responseTime\":\"Mon Oct 11 18:06:30 IST 2021\",\"firstLoginStatus\":\"N\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwnerUser\":{\"id\":1728,\"code\":\"101458\",\"firstName\":\"Mahendra\",\"userName\":\"Mahendra2355\",\"mobileNumber\":\"989898899\",\"email\":\"tarun.kumar@esteltelecom.com\",\"walletOwnerUserTypeCode\":\"100000\",\"walletOwnerUserTypeName\":\"Supervisor\",\"walletOwnerCategoryCode\":\"100000\",\"walletOwnerCategoryName\":\"Institute\",\"userCode\":\"1000002094\",\"status\":\"Active\",\"state\":\"Approved\",\"gender\":\"M\",\"dateOfBirth\":\"1960-01-15\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idProofNumber\":\"1111111111111111\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"idExpiryDate\":\"2021-06-23\",\"creationDate\":\"2021-06-08T14:53:57.853+0530\",\"notificationName\":\"EMAIL\",\"notificationLanguage\":\"en\",\"createdBy\":\"100250\",\"modificationDate\":\"2021-10-11T16:18:02.389+0530\",\"modifiedBy\":\"100250\",\"macEnabled\":false,\"ipEnabled\":false,\"resetCredReqInit\":false,\"notificationTypeCode\":\"100000\"}}");
 
 
-                        String resultCode =  jsonObject.getString("resultCode");
-                        String resultDescription =  jsonObject.getString("resultDescription");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                        if(resultCode.equalsIgnoreCase("0")) {
+                        if (resultCode.equalsIgnoreCase("0")) {
 
 
                             JSONObject walletOwner = jsonObject.getJSONObject("walletOwner");
@@ -647,23 +595,23 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 //
 //
 
-                            if (walletOwner.has("profileImageName")){
-                                MyApplication.saveString("ImageName", API.BASEURL+"ewallet/api/v1/fileUpload/download/" +
-                                        userCode+"/"+
-                                        walletOwner.optString("profileImageName"),LoginMsis.this);
+                            if (walletOwner.has("profileImageName")) {
+                                MyApplication.saveString("ImageName", API.BASEURL + "ewallet/api/v1/fileUpload/download/" +
+                                        userCode + "/" +
+                                        walletOwner.optString("profileImageName"), LoginMsis.this);
                             }
-                            if(walletOwner.has("registerCountryName")){
+                            if (walletOwner.has("registerCountryName")) {
                                 MyApplication.saveString("COUNTRY_NAME_USERINFO", walletOwner.getString("registerCountryName"), LoginMsis.this);
-                                MyApplication.saveString("COUNTRYNAME_AGENT",walletOwner.getString("registerCountryName"),LoginMsis.this);
-                            }else{
+                                MyApplication.saveString("COUNTRYNAME_AGENT", walletOwner.getString("registerCountryName"), LoginMsis.this);
+                            } else {
                                 MyApplication.saveString("COUNTRY_NAME_USERINFO", "", LoginMsis.this);
                             }
 
 
-                            if(walletOwner.has("registerCountryCode")){
+                            if (walletOwner.has("registerCountryCode")) {
                                 MyApplication.saveString("COUNTRY_CODE_USERINFO", walletOwner.getString("registerCountryCode"), LoginMsis.this);
-                                MyApplication.saveString("COUNTRYCODE_AGENT",walletOwner.getString("registerCountryCode"),LoginMsis.this);
-                            }else{
+                                MyApplication.saveString("COUNTRYCODE_AGENT", walletOwner.getString("registerCountryCode"), LoginMsis.this);
+                            } else {
                                 MyApplication.saveString("COUNTRY_CODE_USERINFO", "", LoginMsis.this);
                             }
 
@@ -679,15 +627,15 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 //
 //
 
-                            if(walletOwner.has("ownerName")){
+                            if (walletOwner.has("ownerName")) {
                                 MyApplication.saveString("FIRSTNAME_USERINFO", walletOwner.getString("ownerName"), LoginMsis.this);
-                            }else{
+                            } else {
                                 MyApplication.saveString("FIRSTNAME_USERINFO", "", LoginMsis.this);
                             }
 
-                            if(walletOwner.has("lastName")){
+                            if (walletOwner.has("lastName")) {
                                 MyApplication.saveString("LASTNAME_USERINFO", walletOwner.getString("lastName"), LoginMsis.this);
-                            }else{
+                            } else {
                                 MyApplication.saveString("LASTNAME_USERINFO", "", LoginMsis.this);
                             }
 
@@ -695,28 +643,19 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             sender_currency_api(walletOwner.getString("registerCountryCode"));
 
 
-                        }
-
-
-
-
-                        else
-                        {
+                        } else {
                             MyApplication.hideLoader();
                             selectButtonType = "0";
 
-                            Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginMsis.this, resultDescription, Toast.LENGTH_LONG).show();
 
 
                         }
 
 
-
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         MyApplication.hideLoader();
-                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
 
@@ -727,24 +666,24 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
-                    MyApplication.showToast(LoginMsis.this,aFalse);
+                    MyApplication.showToast(LoginMsis.this, aFalse);
 
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             MyApplication.hideLoader();
-            MyApplication.showToast(LoginMsis.this,e.toString());
+            MyApplication.showToast(LoginMsis.this, e.toString());
         }
 
     }
 
     private void sender_currency_api(String countryName) {
-        try{
+        try {
 
 
-            API.GET("ewallet/api/v1/countryCurrency/country/"+countryName,new Api_Responce_Handler() {
+            API.GET("ewallet/api/v1/countryCurrency/country/" + countryName, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -752,67 +691,58 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                     try {
 
 
-                        String resultCode =  jsonObject.getString("resultCode");
-                        String resultDescription =  jsonObject.getString("resultDescription");
+                        String resultCode = jsonObject.getString("resultCode");
+                        String resultDescription = jsonObject.getString("resultDescription");
 
-                        if(resultCode.equalsIgnoreCase("0")) {
+                        if (resultCode.equalsIgnoreCase("0")) {
 
 
                             JSONObject jsonObject_country = jsonObject.getJSONObject("country");
 
-                            if(jsonObject_country.has("mobileLength")) {
+                            if (jsonObject_country.has("mobileLength")) {
 
                                 MyApplication.saveString("MobileLength", jsonObject_country.getString("mobileLength"), LoginMsis.this);
-                            }else{
+                            } else {
                                 MyApplication.saveString("MobileLength", "11", LoginMsis.this);
                             }
 
-                            System.out.println("get length"+jsonObject_country.getString("mobileLength"));
-                            if(jsonObject_country.has("currencySymbol")){
+                            System.out.println("get length" + jsonObject_country.getString("mobileLength"));
+                            if (jsonObject_country.has("currencySymbol")) {
                                 MyApplication.saveString("currencySymbol_Loginpage", jsonObject_country.getString("currencySymbol"), LoginMsis.this);
-                            }else{
+                            } else {
                                 MyApplication.saveString("currencySymbol_Loginpage", "", LoginMsis.this);
                             }
 
 
-                         if(jsonObject_country.has("currencyCode")){
+                            if (jsonObject_country.has("currencyCode")) {
                                 MyApplication.saveString("currencyCode_Loginpage", jsonObject_country.getString("currencyCode"), LoginMsis.this);
-                            }else{
+                            } else {
                                 MyApplication.saveString("currencyCode_Loginpage", "", LoginMsis.this);
                             }
 
-                            if(jsonObject_country.has("currencyRefCode")){
+                            if (jsonObject_country.has("currencyRefCode")) {
                                 MyApplication.saveString("countryCode_Loginpage", jsonObject_country.getString("currencyRefCode"), LoginMsis.this);
-                            }else{
+                            } else {
                                 MyApplication.saveString("countryCode_Loginpage", "", LoginMsis.this);
                             }
 
 
-                           api_walletOwnerUser();
+                            api_walletOwnerUser();
 
-                        }
-
-
-
-
-                        else
-                        {
+                        } else {
                             selectButtonType = "0";
                             MyApplication.hideLoader();
 
-                            Toast.makeText(LoginMsis.this,resultDescription,Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginMsis.this, resultDescription, Toast.LENGTH_LONG).show();
 
 
                         }
 
 
-
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         MyApplication.hideLoader();
 
-                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
 
@@ -823,41 +753,39 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 public void failure(String aFalse) {
 
                     MyApplication.hideLoader();
-                    MyApplication.showToast(LoginMsis.this,aFalse);
+                    MyApplication.showToast(LoginMsis.this, aFalse);
 
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             MyApplication.hideLoader();
-            MyApplication.showToast(LoginMsis.this,e.toString());
+            MyApplication.showToast(LoginMsis.this, e.toString());
         }
 
     }
 
 
     private void token_api() {
-        try{
+        try {
             strPhoneNo = et_phoneNo.getText().toString();
-            JSONObject jsonObject=new JSONObject();
+            JSONObject jsonObject = new JSONObject();
 
             //  jsonObject.put("scope","read write");
-            jsonObject.put("username",strPhoneNo);
-            jsonObject.put("password",strPasword);
-            jsonObject.put("grant_type","password");
-            jsonObject.put("scope","read write");
-            jsonObject.put("fcmToken",FCM_TOKEN);
-            jsonObject.put("country",MyApplication.getSaveString("COUNTRY",LoginMsis.this));
-            jsonObject.put("cc",MyApplication.getSaveString("CC",LoginMsis.this));
+            jsonObject.put("username", strPhoneNo);
+            jsonObject.put("password", strPasword);
+            jsonObject.put("grant_type", "password");
+            jsonObject.put("scope", "read write");
+            jsonObject.put("fcmToken", FCM_TOKEN);
+            jsonObject.put("country", MyApplication.getSaveString("COUNTRY", LoginMsis.this));
+            jsonObject.put("cc", MyApplication.getSaveString("CC", LoginMsis.this));
 
 
-            MyApplication.saveString("USERNAME",strPhoneNo,LoginMsis.this);
+            MyApplication.saveString("USERNAME", strPhoneNo, LoginMsis.this);
 
 
-
-
-            API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token",jsonObject,new Api_Responce_Handler() {
+            API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -876,102 +804,96 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
                                 MyApplication.saveString("pin", strPasword, LoginMsis.this);
                                 Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
-                                i.putExtra("ERROR1251","1251");
+                                i.putExtra("ERROR1251", "1251");
                                 startActivity(i);
 
-                            }
-
-                            else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
+                            } else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
 
                                 Toast.makeText(LoginMsis.this, getString(R.string.invalid_pin_toast), Toast.LENGTH_LONG).show();
 
-                            }
-
-                            else if (jsonObject.getString("error_message").equalsIgnoreCase("User Not Found")) {
+                            } else if (jsonObject.getString("error_message").equalsIgnoreCase("User Not Found")) {
 
 
                                 Toast.makeText(LoginMsis.this, "User Not Found", Toast.LENGTH_LONG).show();
 
-                            }else{
+                            } else {
                                 Toast.makeText(LoginMsis.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
-                        }
+                        } else {
 
-                        else {
-
-                            ArrayList<ServiceList.serviceListMain> dataM=new ArrayList<>();
+                            ArrayList<ServiceList.serviceListMain> dataM = new ArrayList<>();
                             MyApplication.saveString("pin", strPasword, LoginMsis.this);
-                                MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
+                            MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
 
 
-                                System.out.println("Login response=======" + jsonObject.toString());
-                                MyApplication.saveString("pin", strPasword, LoginMsis.this);
-                                MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
-                                MyApplication.saveString("firstName", jsonObject.optString("firstName"), LoginMsis.this);
-                                MyApplication.saveString("lastName", jsonObject.optString("lastName"), LoginMsis.this);
-                                MyApplication.saveString("email", jsonObject.optString("email"), LoginMsis.this);
-                                MyApplication.saveString("mobile", jsonObject.optString("mobile"), LoginMsis.this);
-                                MyApplication.saveString("walletOwnerCategoryCode", jsonObject.optString("walletOwnerCategoryCode"), LoginMsis.this);
-                                MyApplication.saveString("walletOwnerCode", jsonObject.optString("walletOwnerCode"), LoginMsis.this);
-                                MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
-                                MyApplication.saveString("userCode", jsonObject.optString("userCode"), LoginMsis.this);
-                                MyApplication.saveString("username", jsonObject.optString("username"), LoginMsis.this);
-                                MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
-                                MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), LoginMsis.this);
+                            System.out.println("Login response=======" + jsonObject.toString());
+                            MyApplication.saveString("pin", strPasword, LoginMsis.this);
+                            MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
+                            MyApplication.saveString("firstName", jsonObject.optString("firstName"), LoginMsis.this);
+                            MyApplication.saveString("lastName", jsonObject.optString("lastName"), LoginMsis.this);
+                            MyApplication.saveString("email", jsonObject.optString("email"), LoginMsis.this);
+                            MyApplication.saveString("mobile", jsonObject.optString("mobile"), LoginMsis.this);
+                            MyApplication.saveString("walletOwnerCategoryCode", jsonObject.optString("walletOwnerCategoryCode"), LoginMsis.this);
+                            MyApplication.saveString("walletOwnerCode", jsonObject.optString("walletOwnerCode"), LoginMsis.this);
+                            MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
                             MyApplication.saveString("userCode", jsonObject.optString("userCode"), LoginMsis.this);
-                                // #################### serviceList Add  serviceCategoryList add  serviceCode
+                            MyApplication.saveString("username", jsonObject.optString("username"), LoginMsis.this);
+                            MyApplication.saveString("userCountryCode", jsonObject.optString("userCountryCode"), LoginMsis.this);
+                            MyApplication.saveString("issuingCountryName", jsonObject.optString("issuingCountryName"), LoginMsis.this);
+                            MyApplication.saveString("userCode", jsonObject.optString("userCode"), LoginMsis.this);
+                            // #################### serviceList Add  serviceCategoryList add  serviceCode
 
-                                if (jsonObject.has("serviceList") &&jsonObject.optJSONArray("serviceList")!=null) {
-                                    JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
+                            if (jsonObject.has("serviceList") && jsonObject.optJSONArray("serviceList") != null) {
+                                JSONArray jsonArray_serviceList = jsonObject.getJSONArray("serviceList");
 
-                                    for (int i = 0; i < jsonArray_serviceList.length(); i++) {
-                                        JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
+                                for (int i = 0; i < jsonArray_serviceList.length(); i++) {
+                                    JSONObject jsonObject1 = jsonArray_serviceList.getJSONObject(i);
 
-                                        if (jsonObject1.has("serviceCategoryList")&&jsonObject1.optJSONArray("serviceCategoryList")!=null) {
-                                            JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
-                                            for (int j = 0; j < jsonArray_serviceCategoryList.length(); j++) {
-                                                JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
+                                    if (jsonObject1.has("serviceCategoryList") && jsonObject1.optJSONArray("serviceCategoryList") != null) {
+                                        JSONArray jsonArray_serviceCategoryList = jsonObject1.getJSONArray("serviceCategoryList");
+                                        for (int j = 0; j < jsonArray_serviceCategoryList.length(); j++) {
+                                            JSONObject jsonObject2 = jsonArray_serviceCategoryList.getJSONObject(j);
 
-                                                if (jsonObject2.has("serviceName")) {
-                                                    String serviceName = jsonObject2.getString("serviceName");
+                                            if (jsonObject2.has("serviceName")) {
+                                                String serviceName = jsonObject2.getString("serviceName");
 
-                                                    if (serviceName.equalsIgnoreCase("Money Transfer")) {
-                                                        if (jsonObject2.has("serviceCode")) {
-                                                            String serviceCode = jsonObject2.getString("serviceCode");
+                                                if (serviceName.equalsIgnoreCase("Money Transfer")) {
+                                                    if (jsonObject2.has("serviceCode")) {
+                                                        String serviceCode = jsonObject2.getString("serviceCode");
 
-                                                            MyApplication.saveString("serviceCode_LoginApi", serviceCode, LoginMsis.this);
-                                                        } else {
-                                                            MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
+                                                        MyApplication.saveString("serviceCode_LoginApi", serviceCode, LoginMsis.this);
+                                                    } else {
+                                                        MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
 
-                                                        }
                                                     }
-
                                                 }
-                                            }
 
+                                            }
                                         }
 
                                     }
 
-                                } else {
-                                    MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
-
                                 }
 
+                            } else {
+                                MyApplication.saveString("serviceCode_LoginApi", "", LoginMsis.this); // not coming from server
+
+                            }
+
                             try {
-                                JSONArray serviceListResponceArray=jsonObject.optJSONArray("serviceList");
-                                if(serviceListResponceArray!=null&&serviceListResponceArray.length()>0){
+                                JSONArray serviceListResponceArray = jsonObject.optJSONArray("serviceList");
+                                if (serviceListResponceArray != null && serviceListResponceArray.length() > 0) {
 
                                     dataM.clear();
-                                    for (int i=0;i<serviceListResponceArray.length();i++){
+                                    for (int i = 0; i < serviceListResponceArray.length(); i++) {
 
-                                        JSONObject jsonObjectServiceList=serviceListResponceArray.optJSONObject(i);
-                                        JSONArray serviceCategoryListResArray=jsonObjectServiceList.optJSONArray("serviceCategoryList");
-                                        if(serviceCategoryListResArray!=null&&serviceCategoryListResArray.length()>0){
-                                            ArrayList<ServiceList.serviceCategoryList> data=new ArrayList<>();
+                                        JSONObject jsonObjectServiceList = serviceListResponceArray.optJSONObject(i);
+                                        JSONArray serviceCategoryListResArray = jsonObjectServiceList.optJSONArray("serviceCategoryList");
+                                        if (serviceCategoryListResArray != null && serviceCategoryListResArray.length() > 0) {
+                                            ArrayList<ServiceList.serviceCategoryList> data = new ArrayList<>();
                                             data.clear();
-                                            for (int j=0;j<serviceCategoryListResArray.length();j++){
-                                                JSONObject jsonObjectServiceListResponceArray=serviceCategoryListResArray.optJSONObject(j);
+                                            for (int j = 0; j < serviceCategoryListResArray.length(); j++) {
+                                                JSONObject jsonObjectServiceListResponceArray = serviceCategoryListResArray.optJSONObject(j);
 
                                                 data.add(new ServiceList.serviceCategoryList(
                                                         jsonObjectServiceListResponceArray.optInt("id"),
@@ -982,7 +904,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                                         jsonObjectServiceListResponceArray.optString("status"),
                                                         jsonObjectServiceListResponceArray.optString("creationDate"),
                                                         jsonObjectServiceListResponceArray.optBoolean("productAllowed")
-                                                       ,
+                                                        ,
                                                         jsonObjectServiceListResponceArray.optInt("minTransValue"),
                                                         jsonObjectServiceListResponceArray.optInt("maxTransValue")));
                                             }
@@ -1000,10 +922,10 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                         }
                                     }
 
-                                    ServiceList serviceList=new ServiceList(dataM);
-                                    MyApplication.tinyDB.putObject("ServiceList",serviceList);
+                                    ServiceList serviceList = new ServiceList(dataM);
+                                    MyApplication.tinyDB.putObject("ServiceList", serviceList);
                                 }
-                            }catch (Exception e){
+                            } catch (Exception e) {
 
                             }
 
@@ -1016,11 +938,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             }
 
                         }
-                    }
-
-                    catch (Exception e)
-                    {
-                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
                 }
@@ -1034,35 +953,33 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             MyApplication.hideLoader();
-            MyApplication.showToast(LoginMsis.this,e.toString());
+            MyApplication.showToast(LoginMsis.this, e.toString());
         }
 
     }
 
 
     private void token_api_old() {
-        try{
+        try {
 
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("fcmToken",FCM_TOKEN);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("fcmToken", FCM_TOKEN);
             //  jsonObject.put("scope","read write");
-            jsonObject.put("username",strPhoneNo);
-            jsonObject.put("password",strPasword);
-            jsonObject.put("grant_type","password");
-            jsonObject.put("scope","read write");
-            jsonObject.put("country",MyApplication.getSaveString("COUNTRY",LoginMsis.this));
-            jsonObject.put("cc",MyApplication.getSaveString("CC",LoginMsis.this));
+            jsonObject.put("username", strPhoneNo);
+            jsonObject.put("password", strPasword);
+            jsonObject.put("grant_type", "password");
+            jsonObject.put("scope", "read write");
+            jsonObject.put("country", MyApplication.getSaveString("COUNTRY", LoginMsis.this));
+            jsonObject.put("cc", MyApplication.getSaveString("CC", LoginMsis.this));
 
             //  applicationComponentClass.getmSharedPreferences().edit().putString("USERNAME", strPhoneNo).commit();
             //  applicationComponentClass.getmSharedPreferences().edit().putString("PASSWORD", strPasword).commit();
 
 
-
-
-            API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token",jsonObject,new Api_Responce_Handler() {
+            API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -1080,32 +997,24 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             if (jsonObject.getString("error").equalsIgnoreCase("1251")) {
                                 MyApplication.saveString("pin", strPasword, LoginMsis.this);
                                 Intent i = new Intent(LoginMsis.this, VerifyLoginOTPScreen.class);
-                                i.putExtra("ERROR1251","1251");
+                                i.putExtra("ERROR1251", "1251");
                                 startActivity(i);
-                            }
-
-                            else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
+                            } else if (jsonObject.getString("error_message").equalsIgnoreCase("Invalid credentials")) {
 
                                 Toast.makeText(LoginMsis.this, getString(R.string.invalid_pin_toast), Toast.LENGTH_LONG).show();
 
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(LoginMsis.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
-                        }
-
-                        else {
+                        } else {
 
                             String firstLoginStatus = jsonObject.getString("firstLoginStatus");
 
-                            MyApplication.saveString("token",jsonObject.optString("access_token"),LoginMsis.this);
+                            MyApplication.saveString("token", jsonObject.optString("access_token"), LoginMsis.this);
 
-                            if (firstLoginStatus.equalsIgnoreCase("Y"))
-                            {
+                            if (firstLoginStatus.equalsIgnoreCase("Y")) {
                                 // otp_generate_api();
-                            }
-
-                            else if (firstLoginStatus.equalsIgnoreCase("N")) {
+                            } else if (firstLoginStatus.equalsIgnoreCase("N")) {
 
                                 Toast.makeText(LoginMsis.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
 
@@ -1113,19 +1022,14 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                                 startActivity(i);
                                 finish();
 
-                            }
-
-                            else {
+                            } else {
 
                                 Toast.makeText(LoginMsis.this, firstLoginStatus, Toast.LENGTH_LONG).show();
                                 finish();
                             }
                         }
-                    }
-
-                    catch (Exception e)
-                    {
-                        Toast.makeText(LoginMsis.this,e.toString(),Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
                 }
@@ -1139,10 +1043,10 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             MyApplication.hideLoader();
-            MyApplication.showToast(LoginMsis.this,e.toString());
+            MyApplication.showToast(LoginMsis.this, e.toString());
         }
 
     }
@@ -1245,7 +1149,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
  */
 
 
-
     ////////////////////////////// Permission  /////////////////////////////////////
 
     private boolean checkPermission_camera() {
@@ -1281,7 +1184,6 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
     }
 
 
-
     private void requestPermission_camera() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CODE);
     }
@@ -1294,13 +1196,13 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
     ///////////////////////////////////////////////////////////////////////////////
 
     int doubleBackToExitPressed = 1;
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressed == 2) {
             finishAffinity();
             System.exit(0);
-        }
-        else {
+        } else {
             doubleBackToExitPressed++;
             Toast.makeText(this, "Please press Back again to exit", Toast.LENGTH_SHORT).show();
         }
@@ -1308,11 +1210,10 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doubleBackToExitPressed=1;
+                doubleBackToExitPressed = 1;
             }
         }, 2000);
     }
-
 
 
     private void api_walletOwnerUser() {
@@ -1320,7 +1221,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         String USER_CODE_FROM_TOKEN_AGENTDETAILS = MyApplication.getSaveString("userCode", LoginMsis.this);
 
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/loginSecurity" , languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/loginSecurity", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

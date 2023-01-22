@@ -43,6 +43,7 @@ import org.json.JSONObject;
 import com.agent.cashmoovui.transfer_float.CommissionTransfer;
 import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.agent.cashmoovui.transfer_float.TransferOption;
+import com.agent.cashmoovui.wallet_owner.outlet.OutletKYC;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.location.LocationCallback;
@@ -370,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ll_outlet.setVisibility(View.VISIBLE);
             ll_commissionTransfer.setVisibility(View.VISIBLE);
             ll_receivemoneycard.setVisibility(View.VISIBLE);
-            ll_addoutletcard.setVisibility(View.GONE);
+            ll_addoutletcard.setVisibility(View.VISIBLE);
             ll_commissionTransfercard.setVisibility(View.VISIBLE);
             ll_transferFloatcard.setVisibility(View.VISIBLE);
             ll_creditcardnew.setVisibility(View.VISIBLE);
@@ -569,8 +570,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_outlet:
-                /*Intent ll_outlet = new Intent(MainActivity.this, AddOutletKYC.class);
-                startActivity(ll_outlet);*/
+                Intent ll_outlet = new Intent(MainActivity.this, OutletKYC.class);
+                startActivity(ll_outlet);
                 break;
 
         }

@@ -356,7 +356,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
 
                         if(json2.getString("stage").equalsIgnoreCase("Document")){
                             agentWalletOwnerCode=json2.optString("walletOwnerCode");
-                            Intent i = new Intent(agentkycC,AgentSignature.class);
+                            Intent i = new Intent(agentkycC, AgentSignature.class);
                             startActivity(i);
                             return;
                         }

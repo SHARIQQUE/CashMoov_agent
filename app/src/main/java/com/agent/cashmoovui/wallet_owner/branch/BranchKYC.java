@@ -35,7 +35,6 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.model.UserDetailAgent;
-import com.agent.cashmoovui.wallet_owner.agent.AgentKYC;
 import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
