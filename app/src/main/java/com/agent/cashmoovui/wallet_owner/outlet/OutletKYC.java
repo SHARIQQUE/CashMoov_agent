@@ -149,7 +149,7 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
 
         agentTypeLay = findViewById(R.id.agentTypeLay);
 
-        callApiCurrencyListnew1();
+        // callApiCurrencyListnew1();
 
 
         String mobilelength = MyApplication.getSaveString("MobileLength", MyApplication.appInstance);
@@ -653,9 +653,12 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                     try {
                         jsonObject.put("code", Agentcode);
                         jsonObject.put("ownerName", etOutletName.getText().toString());
-                        jsonObject.put("lastName", "");
+                        jsonObject.put("lastName", etLname.getText().toString());
                         jsonObject.put("dateOfBirth", etDob_outlet.getText().toString().trim());
                         jsonObject.put("idExpiryDate", "");
+
+                        jsonObject.put("walletExists", true);
+                        jsonObject.put("walletOwnerParentCode", MyApplication.getSaveString("walletOwnerCode", outletkycC));
 
                         jsonObject.put("email", etEmail.getText().toString().trim());
                         jsonObject.put("gender", genderModelList.get((Integer) spGender.getTag()).getCode());
@@ -692,14 +695,15 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                         e.printStackTrace();
                     }
 
+                    callRegisterApi(jsonObject);
 
-                    if (MyApplication.getSaveString("walletOwnerCategoryCode", OutletKYC.this).equalsIgnoreCase(MyApplication.AgentCode)) {
+                 /*   if (MyApplication.getSaveString("walletOwnerCategoryCode", OutletKYC.this).equalsIgnoreCase(MyApplication.AgentCode)) {
                         callApiCurrencyListnew(MyApplication.getSaveString("walletOwnerCode", outletkycC), jsonObject);
 
                     } else {
                         callApiCurrencyListnew(MyApplication.getSaveString("walletOwnerCode", outletkycC), jsonObject);
 
-                    }
+                    }*/
 
 
                 }
@@ -1515,9 +1519,9 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                     if (jsonObject != null) {
                         if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")) {
                             //MyApplication.showToast(getString(R.string.address_add_msg));
-                          /*  Intent i = new Intent(outletkycC, BranchKYCAttached.class);
+                            Intent i = new Intent(outletkycC, OutletSignature.class);
                             startActivity(i);
-                            finish();*/
+                            finish();
 
                         } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                             MyApplication.showToast(outletkycC, getString(R.string.technical_failure));

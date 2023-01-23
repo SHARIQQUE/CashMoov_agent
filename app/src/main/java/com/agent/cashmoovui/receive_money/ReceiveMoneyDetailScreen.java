@@ -31,6 +31,7 @@ import com.agent.cashmoovui.model.ServiceProviderModel;
 import com.agent.cashmoovui.model.SubscriberInfoModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
+import com.agent.cashmoovui.remittancebyabhay.cashtowallet.LocalRemittanceCashtowalletActivity;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 
 import org.json.JSONArray;
@@ -155,7 +156,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
         et_destination_lastName.setEnabled(false);
 
-
+        spinner_senderCurrency.setText("GNF");
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -313,7 +314,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
         callApiCountry();
 
-        callApiSendCurrency();
+      //  callApiSendCurrency();
         setOnCLickListener();
         callApiRecCountry();
         service_Provider_api();
@@ -565,6 +566,8 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                                             //  spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
                                             //callApiSendCurrency(sendCountryModelList.get(i).getCode());
+
+                                          //  callApiSendCurrencynew();
 
                                         }
                                     }
@@ -1395,6 +1398,191 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
             }
         });
 
+
+    }
+    private void callApiSendCurrencynew() {
+        try {
+
+            API.GET("ewallet/api/v1/walletOwnerCountryCurrency/"+MyApplication.getSaveString("walletOwnerCode", ReceiveMoneyDetailScreen.this),
+                    new Api_Responce_Handler() {
+                        @Override
+                        public void success(JSONObject jsonObject) {
+                            MyApplication.hideLoader();
+
+                            if (jsonObject != null) {
+                                sendCurrencyList.clear();
+                                sendCurrencyModelList.clear();
+                                recCurrencyList.clear();
+                                recCurrencyModelList.clear();
+
+                                JSONArray countryCurrencyListArr=jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
+                                for (int i = 0; i < countryCurrencyListArr.length(); i++) {
+
+
+
+
+                                    JSONObject data = countryCurrencyListArr.optJSONObject(i);
+                                    if(data.optBoolean("outBound")) {
+                                        sendCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("countryCode"),
+                                                data.optString("countryName"),
+                                                data.optString("currencyCode"),
+                                                data.optString("currencyName"),
+                                                data.optString("currencySymbol"),
+                                                data.optString("status"),
+                                                data.optBoolean("inBound"),
+                                                data.optBoolean("outBound")
+
+                                        ));
+
+                                        sendCurrencyList.add(data.optString("currencyName").trim());
+                                    }
+
+                                    if(data.optBoolean("inBound")) {
+                                        recCurrencyModelList.add(new CountryCurrencyInfoModel.CountryCurrency(
+                                                data.optInt("id"),
+                                                data.optString("code"),
+                                                data.optString("countryCode"),
+                                                data.optString("countryName"),
+                                                data.optString("currencyCode"),
+                                                data.optString("currencyName"),
+                                                data.optString("currencySymbol"),
+                                                data.optString("status"),
+                                                data.optBoolean("inBound"),
+                                                data.optBoolean("outBound")
+                                        ));
+
+                                        recCurrencyList.add(data.optString("currencyName").trim());
+                                    }
+
+                                   // sendCountryName.setVisibility(View.VISIBLE);
+
+                                    System.out.println("get name"+data.optString("currencyName"));
+                                   /* if(data.optString("currencyName").equalsIgnoreCase("GNF")) {
+                                        spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrencyName());
+                                        tvAmtCurr.setText(sendCurrencyModelList.get(i).getCurrencyName());
+                                    }
+*/
+                                }
+
+                                //tvAmtCurr.setText("");
+
+/*
+                                for(int i=0;i<sendCurrencyModelList.size();i++){
+                                    if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+                                            sendCurrencyModelList.get(i).getCurrencySymbol()
+                                    )){
+                                        spinner_senderCurrency.setText(sendCurrencyModelList.get(i).getCurrCode());
+                                        spinner_senderCurrency.setTag(i);
+                                        sendigncurrecncyText.setVisibility(View.VISIBLE);
+                                        fromCurrency = sendCurrencyModelList.get(i).getCurrCode();
+                                        fromCurrencySymbol = sendCurrencyModelList.get(i).getCurrencySymbol();
+                                        fromCurrencyCode = sendCurrencyModelList.get(i).getCurrencyCode();
+                                        tvAmtCurr.setText(fromCurrencySymbol);
+                                        // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                        edittext_amount.getText().clear();
+                                        edittext_amount_pay.getText().clear();
+
+                                    }
+                                }
+*/
+
+                                spinnerDialogSendingCurr = new SpinnerDialog(ReceiveMoneyDetailScreen.this, sendCurrencyList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
+                                spinnerDialogSendingCurr.setCancellable(true); // for cancellable
+                                spinnerDialogSendingCurr.setShowKeyboard(false);// for open keyboard by default
+                                spinnerDialogSendingCurr.bindOnSpinerListener(new OnSpinerItemClick() {
+                                    @Override
+                                    public void onClick(String item, int position) {
+                                        //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                        spinner_senderCurrency.setText(item);
+                                        spinner_senderCurrency.setTag(position);
+                                       // sendCountryName.setVisibility(View.VISIBLE);
+                                        fromCurrency=sendCurrencyModelList.get(position).getCountryName();
+                                      //  fromCurrencynew = sendCurrencyModelList.get(position).getCurrCode();
+                                        fromCurrencySymbol = sendCurrencyModelList.get(position).getCurrencySymbol();
+                                        fromCurrencyCode = sendCurrencyModelList.get(position).getCurrencyCode();
+                                        tvAmtCurr.setText(fromCurrencySymbol);
+                                        // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                        edittext_amount.getText().clear();
+                                        edittext_amount_pay.getText().clear();
+                                       // toCurrencySymbolnew ="GNF";
+
+                                        System.out.println("get sending"+fromCurrencySymbol);
+
+                                    }
+                                });
+
+                                System.out.println("Rece list Local  "+recCurrencyModelList.toString());
+                                System.out.println("Send list Local  "+sendCountryModelList.toString());
+
+                                tvAmtPaidCurr.setText("GNF");
+/*
+                                for(int i=0;i<recCurrencyModelList.size();i++){
+                                    if(countryCurrObj.optString("currencySymbol").equalsIgnoreCase(
+                                            recCurrencyModelList.get(i).getCurrencySymbol()
+                                    )){
+                                        //  spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
+                                        //  spinner_receiverCurrency.setTag(i);
+                                        receivingcurrecncyText.setVisibility(View.VISIBLE);
+                                        toCurrency = recCurrencyModelList.get(i).getCurrCode();
+                                        toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
+                                        toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
+                                        //  tvAmtPaidCurr.setText(toCurrencySymbol);
+                                        // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                        toCurrencySymbolnew ="GNF";
+
+                                        edittext_amount.getText().clear();
+                                        edittext_amount_pay.getText().clear();
+
+                                    }
+                                }
+*/
+
+                                spinnerDialogRecCurr = new SpinnerDialog(ReceiveMoneyDetailScreen.this, recCurrencyList, getString(R.string.select_currency), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
+                                spinnerDialogRecCurr.setCancellable(true); // for cancellable
+                                spinnerDialogRecCurr.setShowKeyboard(false);// for open keyboard by default
+                                spinnerDialogRecCurr.bindOnSpinerListener(new OnSpinerItemClick() {
+                                    @Override
+                                    public void onClick(String item, int position) {
+                                        //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
+                                        spinner_receiverCurrency.setText(item);
+                                        spinner_receiverCurrency.setTag(position);
+                                       // receivingcurrecncyText.setVisibility(View.VISIBLE);
+                                        toCurrency = recCurrencyModelList.get(position).getCurrCode();
+                                        toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
+                                        toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();
+                                        //  tvAmtPaidCurr.setText(toCurrencySymbol);
+                                        // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
+                                        edittext_amount.getText().clear();
+                                        edittext_amount_pay.getText().clear();
+                                    }
+                                });
+
+                                // callApiRecCountry();
+
+                            } else {
+                                MyApplication.showToast(ReceiveMoneyDetailScreen.this,jsonObject.optString("resultDescription", "  "));
+                            }
+                        }
+
+
+
+
+
+
+
+                        @Override
+                        public void failure(String aFalse) {
+                            MyApplication.hideLoader();
+
+                        }
+                    });
+
+        } catch (Exception e) {
+
+        }
 
     }
 

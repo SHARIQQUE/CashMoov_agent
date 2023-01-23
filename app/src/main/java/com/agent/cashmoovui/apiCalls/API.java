@@ -38,7 +38,9 @@ public class API {
 
 
     private static final String TAG = "API CALLS";
+    private static  String Loggedweb = "";
 
+    
 
     //################ IP DETAILS  #######################################
 
@@ -205,7 +207,7 @@ public class API {
 
                                 if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                     MyApplication.getInstance().callLogin();
-                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                    MyApplication.showAPIToast(Loggedweb);
                                 }
                                 responce_handler.failure(error.toString());
 
@@ -308,7 +310,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             responce_handler.failure(error.getErrorDetail());
                             if (error.getErrorCode() != 0) {
@@ -383,7 +385,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             responce_handler.failure(error.getErrorDetail());
                             if (error.getErrorCode() != 0) {
@@ -462,7 +464,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             MyApplication.hideLoader();
                             try {
@@ -556,7 +558,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -647,7 +649,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -742,7 +744,7 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
 
@@ -844,7 +846,7 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
 
@@ -940,7 +942,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1019,7 +1021,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             responce_handler.failure(error.getErrorDetail());
                             if (error.getErrorCode() != 0) {
@@ -1094,7 +1096,7 @@ public class API {
                            MyApplication.hideLoader();
                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                MyApplication.getInstance().callLogin();
-                               MyApplication.showAPIToast("Logged in on WEB...");
+                               MyApplication.showAPIToast(Loggedweb);
                            }
                            try {
 
@@ -1174,7 +1176,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1260,7 +1262,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1341,7 +1343,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1419,7 +1421,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1496,7 +1498,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1578,7 +1580,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -1659,7 +1661,7 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
 
@@ -1735,7 +1737,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1814,7 +1816,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1824,7 +1826,7 @@ public class API {
 
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             if (error.getErrorCode() != 0) {
                                 if (error.getErrorCode() == 401) {
@@ -1894,7 +1896,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1970,7 +1972,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2047,7 +2049,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2123,7 +2125,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2195,7 +2197,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2280,7 +2282,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2382,7 +2384,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2485,7 +2487,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2587,7 +2589,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2688,7 +2690,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2790,7 +2792,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2891,7 +2893,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2991,7 +2993,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -3086,7 +3088,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -3162,7 +3164,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -3240,7 +3242,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 
@@ -3316,7 +3318,7 @@ public class API {
                     public void onError(ANError error) {
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
 
@@ -3390,7 +3392,7 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
 
@@ -3462,7 +3464,7 @@ public class API {
                     public void onError(ANError error) {
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         responce_handler.failure(error.getErrorDetail());
                         if (error.getErrorCode() != 0) {
@@ -3543,7 +3545,7 @@ public class API {
                         }
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
 
                         if (error.getErrorCode() != 0) {
@@ -3613,7 +3615,7 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
                             JSONObject error1=new JSONObject(error.getErrorBody());
@@ -3700,7 +3702,7 @@ public class API {
                     public void onError(ANError error) {
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
                             responce_handler.failure(error.toString());
@@ -3777,7 +3779,7 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast("Logged in on WEB...");
+                            MyApplication.showAPIToast(Loggedweb);
                         }
                         try {
                             JSONObject jsonObject1=new JSONObject(error.getErrorBody());
@@ -3852,7 +3854,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject jsonObject1 = new JSONObject(error.getErrorBody());
@@ -3889,7 +3891,16 @@ public class API {
 
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
+        
+        
+        
 
+    }
+
+
+
+    public static void getString(Context mContext){
+        Loggedweb = mContext.getString(R.string.loggedinweb);
     }
 
 
@@ -3932,7 +3943,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast("Logged in on WEB...");
+                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
 

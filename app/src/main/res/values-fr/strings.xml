@@ -119,7 +119,7 @@
     <string name="balance">Solde</string>
     <string name="our_operations">Nos operations</string>
     <string name="money_transfer">Transfert d\'argent</string>
-    <string name="airtime_purchase">Achat de credit</string>
+    <string name="airtime_purchase">Achat de crédits</string>
     <string name="payment">Paiements</string>
     <string name="paymentnew">Paiement</string>
 
@@ -967,6 +967,8 @@
 
     <string name="pleasewait">S\'il vous plaît, attendez...</string>
     <string name="feetaxvalidation"><![CDATA[Le montant des frais et taxes est supérieur au montant de la transaction]]></string>
+    <string name="loggedinweb">Connecté sur le WEB...</string>
+    <string name="outletWorkinprogress">Ouverture de session en cours</string>
 
 </resources>
 

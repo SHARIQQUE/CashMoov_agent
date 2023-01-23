@@ -379,6 +379,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ll_creditcard.setVisibility(View.GONE);
             ll_paymentcard.setVisibility(View.GONE);
         }
+
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", MainActivity.this).equalsIgnoreCase(MyApplication.OutletCode)){
+            ll_cashIn.setVisibility(View.GONE);
+            ll_cashIncard.setVisibility(View.GONE);
+            ll_cashoutcard.setVisibility(View.GONE);
+            ll_cashout.setVisibility(View.GONE);
+            ll_remitencecard.setVisibility(View.GONE);
+            ll_morecard.setVisibility(View.GONE);
+            ll_remitence.setVisibility(View.GONE);
+            ll_more.setVisibility(View.GONE);
+            ll_receivemoney.setVisibility(View.VISIBLE);
+            ll_transferFloat.setVisibility(View.VISIBLE);
+            ll_outlet.setVisibility(View.GONE);
+            ll_commissionTransfer.setVisibility(View.VISIBLE);
+            ll_receivemoneycard.setVisibility(View.VISIBLE);
+            ll_addoutletcard.setVisibility(View.GONE);
+            ll_commissionTransfercard.setVisibility(View.VISIBLE);
+            ll_transferFloatcard.setVisibility(View.VISIBLE);
+            ll_creditcardnew.setVisibility(View.VISIBLE);
+            ll_paymentnewcard.setVisibility(View.VISIBLE);
+            ll_creditcard.setVisibility(View.GONE);
+            ll_paymentcard.setVisibility(View.GONE);
+        }
+
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.profil)

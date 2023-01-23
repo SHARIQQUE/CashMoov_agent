@@ -1235,11 +1235,22 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                     String resultCode = jsonObject.getString("resultCode");
                     String resultDescription = jsonObject.getString("resultDescription");
 
+
+
                     if (resultCode.equalsIgnoreCase("0")) {
-                        Toast.makeText(LoginMsis.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(LoginMsis.this, MainActivity.class);
-                        startActivity(i);
-                        finish();
+                        String code=MyApplication.getSaveString("walletOwnerCategoryCode",LoginMsis.this);
+                        if(code.equalsIgnoreCase(MyApplication.OutletCode)){
+                            MyApplication.hideLoader();
+                            Toast.makeText(LoginMsis.this, getString(R.string.outletWorkinprogress), Toast.LENGTH_LONG).show();
+
+                        }else{
+                            Toast.makeText(LoginMsis.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(LoginMsis.this, MainActivity.class);
+                            startActivity(i);
+                            finish();
+
+                        }
+
 
 
                     } else {

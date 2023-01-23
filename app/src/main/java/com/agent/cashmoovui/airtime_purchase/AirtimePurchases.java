@@ -119,7 +119,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     String  currencyCode_agent="",countryCode_agent="",currencyName_agent="",countryName_agent="";
 
-    String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
+    String tax_financial="0.00",fees_amount,totalAmount_str,receivernameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
     String mpinStr="";
@@ -1119,9 +1119,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         TextView rp_tv_excise_tax_l=findViewById(R.id.rp_tv_excise_tax_l);
 
-                        if(exchangeRate.has("receiverTax")){
+                     /*   if(exchangeRate.has("receiverTax")){
                             tax_financial=MyApplication.addDecimal("0.00");
-                        }
+                        }*/
+
+
+
                         if(!exchangeRate.has("receiverTax")) {
                             if (exchangeRate.has("taxConfigurationList")) {
                                 JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
@@ -1138,9 +1141,11 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         }
 
                         rp_tv_convertionrate.setText(currencySymbol_sender+" " +"0.0");
+
+
+
+
                         rp_tv_fees_reveiewPage.setText(currencySymbol_sender+" " +MyApplication.addDecimal(fees_amount+""));
-
-
                         rp_tv_excise_tax.setText(currencySymbol_sender+" " +MyApplication.addDecimal(Double.parseDouble(tax_financial)+""));
                        TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
                         receiptPage_tv_financialtaxl.setText(rp_tv_excise_tax_l.getText().toString());

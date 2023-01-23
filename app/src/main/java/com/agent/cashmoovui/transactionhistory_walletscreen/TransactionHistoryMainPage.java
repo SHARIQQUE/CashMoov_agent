@@ -365,6 +365,8 @@ HorizontalScrollView allview;
                 MyApplication.BranchPage=false;
                 MyApplication.InstPage=true;
                 MyApplication.MerchantPage=false;
+                MyApplication.OutletPage=false;
+
 
 
 
@@ -378,6 +380,8 @@ HorizontalScrollView allview;
             MyApplication.BranchPage=false;
             MyApplication.InstPage=false;
             MyApplication.MerchantPage=false;
+            MyApplication.OutletPage=false;
+
 
 
         }
@@ -391,6 +395,8 @@ HorizontalScrollView allview;
             MyApplication.BranchPage=true;
             MyApplication.InstPage=false;
             MyApplication.MerchantPage=false;
+            MyApplication.OutletPage=false;
+
 
         }
 
@@ -402,9 +408,22 @@ HorizontalScrollView allview;
             MyApplication.BranchPage=false;
             MyApplication.InstPage=false;
             MyApplication.AgentPage=false;
+            MyApplication.OutletPage=false;
+
 
         }
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.OutletCode)){
+
+            allview.setVisibility(View.GONE);
+            MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
+            MyApplication.MerchantPage=false;
+            MyApplication.BranchPage=false;
+            MyApplication.InstPage=false;
+            MyApplication.AgentPage=false;
+            MyApplication.OutletPage=true;
+
+        }
 
     }
 

@@ -258,7 +258,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
 
 
-                    if(MyApplication.MerchantPage) {
+                    if(MyApplication.MerchantPage || MyApplication.OutletPage) {
 
                         MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForMerchant());
 

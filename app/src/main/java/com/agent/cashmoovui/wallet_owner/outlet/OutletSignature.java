@@ -90,7 +90,6 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
         });
 
         setOnCLickListener();
-        callApiWalletList();
 
 
     }
@@ -123,7 +122,7 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
                     addJpgSignatureToGallery(signatureBitmapBillElectricity, "BillElectricity");
 
                     if(photoSend!=null){
-                       // callupload(photoSend, "100044", OutletKYC.agentWalletOwnerCode);
+                        callupload(photoSend, "100044", OutletKYC.outletWalletOwnerCode);
                     }else{
                         MyApplication.showToast(OutletSignature.this,getString(R.string.please_enter_signature));
                     }
@@ -252,7 +251,9 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
 
                                // MyApplication.showToast(agentsignatureC,"upload success");
                                 // callApiUpdateDataApproval();
-                                callApiAddAgentDataApproval();
+
+                                callApiWalletList();
+
 
                             } else if (jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")) {
                                 MyApplication.showToast(agentsignatureC,getString(R.string.technical_failure));
@@ -271,6 +272,9 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
                 });
     }
 
+
+
+
     private void callApiAddAgentDataApproval() {
         try {
             JSONObject jsonObjectn = new JSONObject();
@@ -278,8 +282,8 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
             jsonObjectn.put("actionType", "Created");
             jsonObjectn.put("assignTo", "");
             jsonObjectn.put("comments", "");
-            /*jsonObjectn.put("entityCode", OutletKYC.agentWalletOwnerCode);
-            jsonObjectn.put("entityName", OutletKYC.etAgentName.getText().toString());*/
+            jsonObjectn.put("entityCode", OutletKYC.outletWalletOwnerCode);
+            jsonObjectn.put("entityName", OutletKYC.etOutletName.getText().toString());
             jsonObjectn.put("featureCode", "100006");
             jsonObjectn.put("status", "U");
             JSONObject ja=new JSONObject();
@@ -300,7 +304,7 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                             //MyApplication.showToast(agentkycattachedC,jsonObject.optString("resultDescription", "N/A"));
-                            MyApplication.showToast(agentsignatureC,getString(R.string.agent_added));
+                            MyApplication.showToast(agentsignatureC,getString(R.string.addoutlet_added));
                             Intent intent = new Intent(agentsignatureC, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -418,7 +422,7 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
 
 
 
-        API.PUT("ewallet/api/v1/walletOwner/employer/"+ "", jsonObject, new Api_Responce_Handler() {
+        API.PUT("ewallet/api/v1/walletOwner/employer/"+ OutletKYC.outletWalletOwnerCode, jsonObject, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
                 // MyApplication.hideLoader();
@@ -429,6 +433,7 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
                     if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                         //MyApplication.showToast(getString(R.string.address_add_msg));
 
+                        callApiAddAgentDataApproval();
 
                     }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                         MyApplication.showToast(OutletSignature.this,getString(R.string.technical_failure));
