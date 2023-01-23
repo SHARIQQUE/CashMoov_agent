@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 22-01-2023</string>
+    <string name="version">Version : 23-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -424,7 +424,7 @@
     <string name="please_enter_pin">Veuillez saisir le code PIN</string>
     <string name="verification_register_otp">Veuillez contacter votre service clientele pour reinitialiser le code PIN</string>
     <string name="u_don_t_have_an_account_signup_u"><u>Don\'t have an account? SignUp</u>></string>
-    <string name="please_enter_mobileno">Veuillez entrer le numero de telephone</string>
+    <string name="please_enter_mobileno">Veuillez entrer le numero de telephone*</string>
     <string name="you_make_withdrwarl">Vous effectuez un retrait</string>
     <string name="receipt_details">Details du receveur</string>
     <string name="scan_details">Scanner les details</string>
@@ -873,6 +873,8 @@
     <string name="benefi_curr_colon">Devise de réception :</string>
     <string name="conversion_rate_colon">Taux de conversion :</string>
     <string name="comment_colon">Commentaires :</string>
+    <string name="comment_colonnew">Commentaires </string>
+
     <string name="trans_ref_no_colon">Numéro de référence de la transaction :</string>
     <string name="sending_country_colon">Pays d\'envoi :</string>
     <string name="rec_country_colon">Pays de réception :</string>

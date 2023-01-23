@@ -1308,7 +1308,19 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                             receiptPage_amount_to_paid_receiptpage.setText(currencySymbol_receiver + " " + MyApplication.addDecimal(remittance_object.optDouble("amountToPaid") + ""));
                             receiptPage_tv_transactionAmount.setText(currencySymbol_sender + " " + MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
 
-                           /* Double tamount=Double.parseDouble(MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
+
+                            String tamount=receiptPage_tv_transactionAmount.getText().toString();
+                            String paid=receiptPage_amount_to_paid_receiptpage.getText().toString();
+                            System.out.println("get amount"+tamount);
+                            System.out.println("get paid"+paid);
+
+
+                            if(!tamount.equalsIgnoreCase(paid)){
+                                amoutnpaidLinear.setVisibility(View.VISIBLE);
+                            }else{
+                                amoutnpaidLinear.setVisibility(View.GONE);
+                            }
+                          /*  Double tamount=Double.parseDouble(MyApplication.addDecimal(remittance_object.optDouble("amount")+""));
                             Double paid= Double.parseDouble(MyApplication.addDecimal(remittance_object.optDouble("amountToPaid") + ""));
 
 
