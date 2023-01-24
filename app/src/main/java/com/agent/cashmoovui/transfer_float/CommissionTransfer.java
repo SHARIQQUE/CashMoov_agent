@@ -119,7 +119,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     String tax_financial="",fees_amount,totalAmount_str,receivernameStr="";
     Double tax_financial_double=0.0,amountstr_double=0.0,fees_amount_double=0.0,totalAmount_double=0.0;
 
-   String mpinStr="";
+    String mpinStr="";
 
 
     String  serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
@@ -235,7 +235,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                                     if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-                                       // MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
+                                        // MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 
                                         mpin_final_api();
 
@@ -389,7 +389,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-              //  MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
+                //  MyApplication.showloader(CommissionTransfer.this, getString(R.string.getting_user_info));
 
 
 
@@ -574,7 +574,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                                 data.optString("walletTypeCode"),
                                 "0.0",
                                 "0.0",
-                                 data.optString("value"),
+                                data.optString("value"),
                                 data.optString("walletOwnerName"),
                                 alloctedValue
                         ));
@@ -725,10 +725,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             {
                 if(!MyApplication.currencyModelArrayList.get(i).getCommisionWalletValue().equalsIgnoreCase("0.0"))
                 {
-               //  MyApplication.currencyModelArrayList_temp=MyApplication.currencyModelArrayList.get(i);
+                    //  MyApplication.currencyModelArrayList_temp=MyApplication.currencyModelArrayList.get(i);
 
                     if(Double.parseDouble(MyApplication.currencyModelArrayList.get(i).getCommisionWalletValue())>0.0)
-                         MyApplication.currencyModelArrayList_temp.add(MyApplication.currencyModelArrayList.get(i));
+                        MyApplication.currencyModelArrayList_temp.add(MyApplication.currencyModelArrayList.get(i));
                 }
             }
 
@@ -881,7 +881,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
 
-      return true;
+        return true;
 
     }
 
@@ -916,7 +916,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                      //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
+                        //String  issuingCountryName = walletOwnerUser.getString("issuingCountryName");
 
                         rp_tv_agentName.setText(agentName_from_walletOwner);
                         rp_tv_mobileNumber.setText(MyApplication.getSaveString("USERNAME", CommissionTransfer.this));
@@ -970,8 +970,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             jsonObject.put("value",amountstr);
             jsonObject.put("channelTypeCode","100000");
 
-             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
-              jsonObject.put("pin",encryptionDatanew);
+            String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
+            jsonObject.put("pin",encryptionDatanew);
 
 
             // String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
@@ -1090,11 +1090,11 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                             try {
 
                                 //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                            //    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+                                //    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
 
                                 if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-                                    //  MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+                                      MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 
                                     mpin_final_api();
 
@@ -1156,7 +1156,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 //store(bitmap, "test.jpg");
             }
 
-                break;
+            break;
 
             case R.id.previous_reviewClick_textview: {
 
@@ -1180,19 +1180,19 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             break;
 
             case R.id.close_receiptPage_textview:
-                 {
+            {
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);
 
-                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                     startActivity(intent);
-                     finish();
+                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
 
-                 }
+            }
 
             break;
 
@@ -1222,10 +1222,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     String str = result.getContents();
 
                     if (str.equalsIgnoreCase("")) {
-                       // 1000002786:TarunMwTest
+                        // 1000002786:TarunMwTest
 
                         Toast.makeText(this, "QR Code Not Valid", Toast.LENGTH_LONG).show();
-                       // edittext_mobileNuber.setEnabled(true);
+                        // edittext_mobileNuber.setEnabled(true);
 
                     }
                     else {
@@ -1233,12 +1233,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                         String[] qrData = str.split("\\:");
 
-                       // mobileNoStr=qrData[0];
-                       // edittext_mobileNuber.setText(mobileNoStr);
-                       // edittext_mobileNuber.setEnabled(false);
+                        // mobileNoStr=qrData[0];
+                        // edittext_mobileNuber.setText(mobileNoStr);
+                        // edittext_mobileNuber.setEnabled(false);
                         // Toast.makeText(this, "QR Code  Valid", Toast.LENGTH_LONG).show();
 
-                       }
+                    }
 
                 }
 
@@ -1297,7 +1297,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             //   Log.i("LOAD", root + fname);
             try {
                 FileOutputStream out = new FileOutputStream(image);
-              //  bm.compress(Bitmap.CompressFormat.PNG, 90, out);
+                //  bm.compress(Bitmap.CompressFormat.PNG, 90, out);
                 out.flush();
                 out.close();
             } catch (Exception e) {
@@ -1349,7 +1349,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.transaction_details))
-              //  .setIcon(R.drawable.ic_baseline_translate_blue)
+                //  .setIcon(R.drawable.ic_baseline_translate_blue)
                 .setMessage(transactionSuccess)
                 .setCancelable(false)
 
@@ -1363,7 +1363,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                       finish();
+                        finish();
                     }
                 }).create().show();
     }
@@ -1379,20 +1379,21 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                 try {
 
-                     SpinnerPos = i;
-                     walletCode = MyApplication.currencyModelArrayList.get(i).code;
-                     select_currencySymbol = MyApplication.currencyModelArrayList.get(i).currencySymbol;
-                     select_currencyCode = MyApplication.currencyModelArrayList.get(i).currencyCode;
+                    SpinnerPos = i;
+                    walletCode = MyApplication.currencyModelArrayList.get(i).code;
+                    select_currencySymbol = MyApplication.currencyModelArrayList.get(i).currencySymbol;
+                    select_currencyCode = MyApplication.currencyModelArrayList.get(i).currencyCode;
                     Double main=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).mainWalletValue);
                     Double allocate=Double.parseDouble(MyApplication.currencyModelArrayList.get(i).allocatedValue);
                    /* mainbalance_textview.setText(MyApplication.addDecimal(""+main)+" / "+
                             MyApplication.addDecimal(""+allocate));*/
                     main_wallet.setText(getString(R.string.commision_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(i).commisionWalletValue));
-                   // mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
+                    // mainbalance_textview.setText(getString(R.string.reserve_Wallet)+" "+select_currencySymbol+" "+MyApplication.addDecimal(""+allocate));
                     tvAmtCurr.setText(select_currencySymbol);
                     comiisionValueCheck=MyApplication.currencyModelArrayList.get(i).commisionWalletValue;
                     // available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
                     System.out.println("get comiisfionValueCheck"+comiisionValueCheck);
+                    edittext_amount.setText("");
 
                 }
                 catch (Exception e)

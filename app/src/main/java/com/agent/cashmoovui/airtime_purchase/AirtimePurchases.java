@@ -432,6 +432,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    edittext_amount.setText("");
+                    spinner_operator.setSelection(0);
 
                 }
 
@@ -1150,7 +1152,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                        TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
                         receiptPage_tv_financialtaxl.setText(rp_tv_excise_tax_l.getText().toString());
 
-                        receiptPage_tv_financialtax.setText(MyApplication.addDecimal(tax_financial+""));
+                        receiptPage_tv_financialtax.setText(currencySymbol_sender+" " +MyApplication.addDecimal(tax_financial+""));
                         rp_tv_transactionAmount.setText(currencySymbol_sender+" " +MyApplication.addDecimal(amountstr+""));
 
                         tax_financial_double = Double.parseDouble(tax_financial);

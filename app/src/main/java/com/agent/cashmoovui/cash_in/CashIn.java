@@ -1479,6 +1479,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 }else {
+
                     MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
                         @Override
                         public void success(String success) {

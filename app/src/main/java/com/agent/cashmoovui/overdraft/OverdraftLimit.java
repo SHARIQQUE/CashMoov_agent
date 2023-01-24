@@ -1111,9 +1111,9 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
         amountstr = edittext_amount.getText().toString().trim();
         validityDaysStr = edittext_validity.getText().toString().trim();
 
-        System.out.println("get amount"+Double.parseDouble(amountStrcheck));
+        /*System.out.println("get amount"+Double.parseDouble(amountStrcheck));
         System.out.println("get amount1"+Double.parseDouble(amountstr));
-
+*/
         if (spinner_currency.getText().equals(getString(R.string.select_currency))) {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
             return false;

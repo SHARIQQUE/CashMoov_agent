@@ -14,6 +14,8 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/acticity_subscriber_signature.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_addoutlet_one.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_cashin.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_change_language.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_international_remittance_sender_kyc.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_local_remittance.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_local_remittance_cashtowallet.xml" value="0.19947916666666668" />
@@ -30,6 +32,8 @@
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_verify_login_otp_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/airtime_purchases.xml" value="0.19947916666666668" />
+        <entry key="..\:/CashMoov_agent/app/src/main/res/layout/commision_transfer.xml" value="0.19947916666666668" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/dialog_global_limit.xml" value="0.1" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/include_home_screen.xml" value="0.17306823316764572" />
         <entry key="..\:/CashMoov_agent/app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.19947916666666668" />

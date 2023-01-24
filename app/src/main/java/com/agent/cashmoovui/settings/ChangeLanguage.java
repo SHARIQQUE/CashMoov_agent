@@ -100,7 +100,7 @@ public class ChangeLanguage extends AppCompatActivity implements View.OnClickLis
             sbEnglish.setChecked(true);
         } else {
             sbFrench.setChecked(true);
-            languageText.setText("English");
+           // languageText.setText("English");
             //sbFrench.setChecked(false);
         }
 

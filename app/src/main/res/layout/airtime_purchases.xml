@@ -84,11 +84,35 @@
                 android:textColor="#323232"
                 android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/aileron_semibold"  />
+<!--
             <Spinner
                 android:id="@+id/spinner_operator"
                 android:clickable="false"
                 style="@style/SpinnerStyleNew" />
-            <Spinner
+-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint">
+
+
+
+                    <Spinner
+                        android:id="@+id/spinner_operator"       android:background="@null"
+                        android:layout_gravity="top"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="left"
+
+                        style="@style/SpinnerStyleNew"/>
+                </LinearLayout>
+
+                <Spinner
                 android:visibility="gone"
                 android:id="@+id/spinner_senderCountry"
                 style="@style/SpinnerStyleNew"

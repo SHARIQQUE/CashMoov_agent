@@ -213,6 +213,11 @@ HorizontalScrollView allview;
             insitute_branch.setVisibility(View.GONE);
         }
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.MerchatCode)){
+            cardOverdraftWallet.setVisibility(View.GONE);
+
+        }
+
         bottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public boolean onItemSelect(int bottomId) {

@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 23-01-2023</string>
+    <string name="version">Version : 24-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -488,7 +488,7 @@
     <string name="sending_currency_reviewPage">Devise d\'envoi :</string>
     <string name="beneficiary_currency_reviewPage"> Devise du bénéficiaire  :</string>
     <string name="beneficiary_sendingCurrency_reviewPage"> Devise d\'envoi :</string>
-    <string name="convertionRate_reviewPage"> Taux de conversion :</string>
+    <string name="convertionRate_reviewPage"> Taux de change :</string>
     <string name="comment_reviewPage"> Commentaires :</string>
     <string name="amount_to_paid_reviewPage">Montant facturé : </string>
     <string name="sender_currency_receiptpage">Devise de l\'expéditeur :</string>
@@ -551,7 +551,7 @@
     <string name="transaction_no">Identifiant de la  transaction:</string>
     <string name="sender_mssidn">Numéro de l\'expéditeur</string>
     <string name="benificairay_mssidn">Numéro du bénéficiaire</string>
-    <string name="conversion_rate">Taux de conversion</string>
+    <string name="conversion_rate">Taux de change</string>
 
     <string name="export_receipt">Exporter</string>
     <string name="share_screenshot">Partager une capture d écran</string>
@@ -871,7 +871,7 @@
     <string name="send_curr_empyty">Veuillez sélectionner la devise d\'envoi *</string>
 
     <string name="benefi_curr_colon">Devise de réception :</string>
-    <string name="conversion_rate_colon">Taux de conversion :</string>
+    <string name="conversion_rate_colon">Taux de change :</string>
     <string name="comment_colon">Commentaires :</string>
     <string name="comment_colonnew">Commentaires </string>
 
