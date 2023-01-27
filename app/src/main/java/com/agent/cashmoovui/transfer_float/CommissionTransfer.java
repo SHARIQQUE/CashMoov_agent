@@ -35,6 +35,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.adapter.CurrencyListCommisionTransaction;
+import com.agent.cashmoovui.adapter.RecordAdapter;
 import com.agent.cashmoovui.adapter.TransferCommisionAdapter;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
@@ -44,6 +45,7 @@ import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
+import com.agent.cashmoovui.overdraft.OverdraftLimit;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.google.gson.Gson;
@@ -67,6 +69,9 @@ import java.util.StringTokenizer;
 public class CommissionTransfer extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
 
+    String[] strArray = {"10", "25", "50", "100"};
+
+    String recordString = "10";
     ImageView imgBack,imgHome;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
@@ -95,6 +100,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
     View rootView;
+    Spinner spinner_record;
 
     EditText etPin;
     TextView tvContinue,mainbalance_textview,available_balance,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
@@ -185,6 +191,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             spinner_currency = (Spinner) findViewById(R.id.spinner_currency);
             main_wallet= (TextView) findViewById(R.id.main_wallet);
             spinner_currency.setOnItemSelectedListener(this);
+            spinner_record = (Spinner) findViewById(R.id.spinner_record);
 
             //    Reveiw page
 
@@ -208,6 +215,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             previous_reviewClick_textview = (TextView) findViewById(R.id.previous_reviewClick_textview);
             confirm_reviewClick_textview = (TextView) findViewById(R.id.confirm_reviewClick_textview);
 
+            RecordAdapter recordAdapter = new RecordAdapter(CommissionTransfer.this, strArray);
+            spinner_record.setAdapter(recordAdapter);
 
             TextView tvFinger =findViewById(R.id.tvFinger);
             if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
@@ -1083,7 +1092,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                         Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
 
                     }
-                } else {
+                } /*else {
                     MyApplication.biometricAuth(CommissionTransfer.this, new BioMetric_Responce_Handler() {
                         @Override
                         public void success(String success) {
@@ -1116,7 +1125,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                         }
                     });
-                }
+                }*/
             }
 
 
@@ -1394,6 +1403,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     // available_balance.setText(getString(R.string.available_balnce)+select_currencySymbol+" "+MyApplication.currencyModelArrayList_temp.get(i).commisionWalletValue+" )");
                     System.out.println("get comiisfionValueCheck"+comiisionValueCheck);
                     edittext_amount.setText("");
+                    et_mpin.setText("");
+
 
                 }
                 catch (Exception e)

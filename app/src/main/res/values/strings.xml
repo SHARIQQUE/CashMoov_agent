@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 24-01-2023</string>
+    <string name="version">Version : 27-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -249,6 +249,9 @@
     <string name="wallet_to_bank">wallet to Bank</string>
     <string name="money_transfer_to_subscriber">Money transfer to subscriber</string>
     <string name="subscriber_details">Subscriber details</string>
+    <string name="users_details">User details</string>
+
+
     <string name="scanner">Scanner</string>
     <string name="details_du_receveur">Receiver details</string>
     <string name="numero_du_destinataire">Recipient number</string>
@@ -821,6 +824,8 @@
     <string name="tax_type">Tax Type</string>
     <string name="trans_reversed">Transaction Reversed</string>
     <string name="trans_date">Transaction Date</string>
+    <string name="trans_datecolon">Transaction Date :</string>
+
     <string name="view_deatils">View Details</string>
 
 

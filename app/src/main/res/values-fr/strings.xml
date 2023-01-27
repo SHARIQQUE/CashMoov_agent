@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 24-01-2023</string>
+    <string name="version">Version : 27-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -241,6 +241,8 @@
     <string name="wallet_to_bank">Mobille vers banque</string>
     <string name="money_transfer_to_subscriber">Transfert d\'argent vers abonné</string>
     <string name="subscriber_details">Détails de l\'abonné</string>
+    <string name="users_details">Détails de l\'utilisateur</string>
+
     <string name="scanner">Scanner</string>
     <string name="details_du_receveur">Détails du réceveur</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
@@ -288,7 +290,7 @@
     <string name="recharge_another_number">recharger un autre numero</string>
     <string name="you_make_an_invoice_payment">Vous effectuez un paiement de facture</string>
     <string name="recharge_tv_star_time">Rechargement Tv Star Time</string>
-    <string name="valid_acc_number">Numero de compte</string>
+    <string name="valid_acc_number">Numero de compte*</string>
     <string name="valid_amount">Montant*</string>
     <string name="you_make_significant_payment">Vous effectuez un paiement marchand</string>
     <string name="receiver_details">Détails du réceveur</string>
@@ -803,6 +805,8 @@
     <string name="tax_type">Type de taxe</string>
     <string name="trans_reversed">Transaction annulée</string>
     <string name="trans_date">Date de la transaction</string>
+    <string name="trans_datecolon">Date de la transaction :</string>
+
     <string name="view_deatils">Afficher les détails</string>
     <string name="post_balance">Solde apres</string>
     <string name="receiving_country">Pays d\'accueil</string>

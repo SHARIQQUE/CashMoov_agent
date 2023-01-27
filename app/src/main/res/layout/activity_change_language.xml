@@ -7,18 +7,37 @@
     android:orientation="vertical"
     android:padding="@dimen/_15sdp"
    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <include layout="@layout/toolbar_active" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:padding="@dimen/_10sdp">
 
-        <ImageView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/ic_baseline_translate_24" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/aileron_bold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:lineSpacingExtra="10sp"
+                app:srcCompat="@drawable/logo200x70"
+
+                />
+        </FrameLayout>
 
     </RelativeLayout>
 
@@ -161,6 +180,7 @@
 
 
 
+    </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

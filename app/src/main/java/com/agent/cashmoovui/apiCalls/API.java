@@ -38,25 +38,23 @@ public class API {
 
 
     private static final String TAG = "API CALLS";
-    private static  String Loggedweb = "";
 
-    
 
     //################ IP DETAILS  #######################################
 
-     //public static String BASEURrL="http://202.131.144.130:8081/";       // ##### QA ######
-     //public static String BASEURL="http://202.131.144.129:8081/";    // ##### UAT ######
-   //  public static String BASEURL="http://180.179.201.110:8081/";  //Production
-   // public static String BASEURL="https://cashmoovmm.com:8081/";
-   //public static String BASEURL="http://180.179.201.109:8081/";
+    //public static String BASEURrL="http://202.131.144.130:8081/";       // ##### QA ######
+    //public static String BASEURL="http://202.131.144.129:8081/";    // ##### UAT ######
+    //  public static String BASEURL="http://180.179.201.110:8081/";  //Production
+    // public static String BASEURL="https://cashmoovmm.com:8081/";
+    //public static String BASEURL="http://180.179.201.109:8081/";
 
 
-  //  mujhe remiitance local /international  benficairy detail  email id remove karni h jab prod pe build dena hoga to
+    //  mujhe remiitance local /international  benficairy detail  email id remove karni h jab prod pe build dena hoga to
 
-   public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
+    public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
 
     //###############################################################
-   public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
+    public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
 
 
 
@@ -163,7 +161,7 @@ public class API {
                     .addBodyParameter("password",jsonObject.optString("password"))
                     .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
                     .addBodyParameter("grant_type","password")
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel","APP")
                     .addHeaders("source","AGENT")
 
@@ -207,8 +205,14 @@ public class API {
 
                                 if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                     MyApplication.getInstance().callLogin();
-                                    MyApplication.showAPIToast(Loggedweb);
+                                    if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                        MyApplication.showAPIToast("Connecté sur le WEB...");
+                                    }else{
+                                        MyApplication.showAPIToast("Logged in on WEB...");
+                                    }
                                 }
+
                                 responce_handler.failure(error.toString());
 
                                 JSONObject error1=new JSONObject(error.getErrorBody());
@@ -308,9 +312,14 @@ public class API {
 
                         @Override
                         public void onError(ANError error) {
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             responce_handler.failure(error.getErrorDetail());
                             if (error.getErrorCode() != 0) {
@@ -331,7 +340,7 @@ public class API {
 
 
                                     //MyApplication.showToast("Unauthorized Request......");
-                                 //   MyApplication.getInstance().callLogin();
+                                    //   MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -383,9 +392,14 @@ public class API {
 
                         @Override
                         public void onError(ANError error) {
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             responce_handler.failure(error.getErrorDetail());
                             if (error.getErrorCode() != 0) {
@@ -404,7 +418,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -462,9 +476,14 @@ public class API {
 
                         @Override
                         public void onError(ANError error) {
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             MyApplication.hideLoader();
                             try {
@@ -497,7 +516,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -556,9 +575,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -590,7 +614,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -647,9 +671,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -681,7 +710,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -710,7 +739,7 @@ public class API {
                 .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("deviceId",MyApplication.getUniqueId())
                 .addHeaders("Authorization","Bearer "+ACCESS_TOKEN)
-              // .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("ACCESS_TOKEN",MyApplication.getInstance()))
+                // .addHeaders("Authorization","bearer "+ MyApplication.getSaveString("ACCESS_TOKEN",MyApplication.getInstance()))
                 .setOkHttpClient(okHttpClient)
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
@@ -742,9 +771,14 @@ public class API {
                     @Override
                     public void onError(ANError error) {
                         MyApplication.hideLoader();
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
 
@@ -806,7 +840,7 @@ public class API {
                 .addBodyParameter("username",jsonObject.optString("username")) // posting json
                 .addBodyParameter("password",jsonObject.optString("password"))
                 .addBodyParameter("grant_type","password")
-                 .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                 .addHeaders("channel","APP")
                 .addHeaders("source","AGENT")
                 //.addHeaders("Accept-Language",MyApplication.getLang())
@@ -844,9 +878,14 @@ public class API {
                     @Override
                     public void onError(ANError error) {
                         MyApplication.hideLoader();
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
 
@@ -940,9 +979,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -967,7 +1011,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1019,9 +1063,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             responce_handler.failure(error.getErrorDetail());
                             if (error.getErrorCode() != 0) {
@@ -1040,7 +1089,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1057,83 +1106,88 @@ public class API {
 
 
     // String idProofTypeCode, String customerCode,
-   public static void Upload_REQUEST_WH(String URL, File file,String idProofTypeCode,String customerCode, final Api_Responce_Handler responce_handler){
-       if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+    public static void Upload_REQUEST_WH(String URL, File file,String idProofTypeCode,String customerCode, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
 
-           AndroidNetworking.upload(BASEURL + URL)
-                   .addHeaders("channel", "APP")
-                   .addMultipartFile("file", file)
-                   .addMultipartParameter("idProofTypeCode", idProofTypeCode)
-                   .addMultipartParameter("customerCode", customerCode)
-                   .setTag("uploadTest")
-                   .setPriority(Priority.HIGH)
-                   .setOkHttpClient(okClientfileUpload)
-                   .setContentType("multipart/form-data")
-                   .addHeaders("mac", MyApplication.getUniqueId())
-                   .addHeaders("deviceId", MyApplication.getUniqueId())
-                   .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                   .addHeaders("source", "AGENT")
-                   .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-                   .build()
-                   // setting an executor to get response or completion on that executor thread
-                   /* .setUploadProgressListener(new UploadProgressListener() {
+            AndroidNetworking.upload(BASEURL + URL)
+                    .addHeaders("channel", "APP")
+                    .addMultipartFile("file", file)
+                    .addMultipartParameter("idProofTypeCode", idProofTypeCode)
+                    .addMultipartParameter("customerCode", customerCode)
+                    .setTag("uploadTest")
+                    .setPriority(Priority.HIGH)
+                    .setOkHttpClient(okClientfileUpload)
+                    .setContentType("multipart/form-data")
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("source", "AGENT")
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+                    .build()
+                    // setting an executor to get response or completion on that executor thread
+                    /* .setUploadProgressListener(new UploadProgressListener() {
+                         @Override
+                         public void onProgress(long bytesUploaded, long totalBytes) {
+                             // do anything with progress
+                         }
+                     })*/
+                    .getAsJSONObject(new JSONObjectRequestListener() {
                         @Override
-                        public void onProgress(long bytesUploaded, long totalBytes) {
-                            // do anything with progress
+                        public void onResponse(JSONObject response) {
+                            responce_handler.success(response);
+                            // below code will be executed in the executor provided
+                            // do anything with response
                         }
-                    })*/
-                   .getAsJSONObject(new JSONObjectRequestListener() {
-                       @Override
-                       public void onResponse(JSONObject response) {
-                           responce_handler.success(response);
-                           // below code will be executed in the executor provided
-                           // do anything with response
-                       }
 
-                       @Override
-                       public void onError(ANError error) {
-                           MyApplication.hideLoader();
-                           if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
-                               MyApplication.getInstance().callLogin();
-                               MyApplication.showAPIToast(Loggedweb);
-                           }
-                           try {
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
 
-                               JSONObject errorJ = new JSONObject(error.getErrorBody());
-                               responce_handler.failure(errorJ.optString("error_message"));
-                           } catch (Exception e) {
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
 
-                           }
-                           if (error.getErrorCode() != 0) {
-                               if (error.getErrorCode() == 401) {
-                                   MyApplication.showAPIToast("Unauthorized Request......");
-                                   MyApplication.getInstance().callLogin();
+                                JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                responce_handler.failure(errorJ.optString("error_message"));
+                            } catch (Exception e) {
 
-                               }
-                               Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                               Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                               Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                            }
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
 
-                           } else {
-                               // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                               Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-                               if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                   //MyApplication.showToast("Unauthorized Request......");
-                                 //  MyApplication.getInstance().callLogin();
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    //  MyApplication.getInstance().callLogin();
 
-                               }
-                           }
-                       }
-                   });
-       }
-       else{
-           MyApplication.hideLoader();
+                                }
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
 
-           MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-       }
-   }
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+    }
 
     public static void Upload_REQEST(String URL, File file,String docTypeCode, final Api_Responce_Handler responce_handler){
         if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
@@ -1174,9 +1228,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -1260,9 +1319,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -1287,7 +1351,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1303,12 +1367,12 @@ public class API {
 
 
     public static void Upload_REQEST_WH_NEW(String URL, File file,String docTypeCode,String walletOwnerCode, final Api_Responce_Handler responce_handler)
-        {
+    {
 
 
-            if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
 
-                AndroidNetworking.upload(BASEURL + URL)
+            AndroidNetworking.upload(BASEURL + URL)
                     .addHeaders("channel", "APP")
                     .addMultipartFile("file", file)
                     .addHeaders("mac", MyApplication.getUniqueId())
@@ -1341,9 +1405,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -1368,18 +1437,18 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
                         }
                     });
         }
-            else{
-                MyApplication.hideLoader();
+        else{
+            MyApplication.hideLoader();
 
-                MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-            }
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
 
     }
 
@@ -1419,9 +1488,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -1446,7 +1520,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1496,9 +1570,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -1528,7 +1607,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1578,9 +1657,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -1610,7 +1694,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1636,7 +1720,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("deviceId",MyApplication.getUniqueId())
-               .setTag("test")
+                .setTag("test")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .setAnalyticsListener(new AnalyticsListener() {
@@ -1661,7 +1745,12 @@ public class API {
                         MyApplication.hideLoader();
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
 
@@ -1737,7 +1826,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1759,7 +1853,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1816,7 +1910,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1826,7 +1925,12 @@ public class API {
 
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             if (error.getErrorCode() != 0) {
                                 if (error.getErrorCode() == 401) {
@@ -1843,7 +1947,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1896,7 +2000,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1918,7 +2027,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -1972,7 +2081,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -1994,7 +2108,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2049,7 +2163,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2071,7 +2190,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                 //   MyApplication.getInstance().callLogin();
+                                    //   MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2125,7 +2244,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2147,7 +2271,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2197,7 +2321,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -2219,7 +2348,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -2245,7 +2374,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2282,7 +2411,12 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2310,7 +2444,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                 //   MyApplication.getInstance().callLogin();
+                                    //   MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2320,7 +2454,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                   // MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.showToast("Unauthorized Request......");
                                     //MyApplication.getInstance().callLogin();
 
                                 }
@@ -2347,7 +2481,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2384,516 +2518,12 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
-                            }
-                            try {
-                                JSONObject error1 = new JSONObject(error.getErrorBody());
-                                if (error1.optString("error").equalsIgnoreCase("1251")) {
-                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                    responce_handler.failure("1251");
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
                                 } else {
-                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
-                                    responce_handler.failure(errorJ.optString("error_message"));
+                                    MyApplication.showAPIToast("Logged in on WEB...");
                                 }
-
-                            } catch (Exception e) {
-                                System.out.println(e.toString());
-                            }
-
-                            if (error.getErrorCode() != 0) {
-                                if (error.getErrorCode() == 401) {
-                                    MyApplication.showAPIToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
-
-                                }
-                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
-
-                                }
-
-
-                            } else {
-                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
-
-                                }
-
-                            }
-                        }
-                    });
-        }
-        else{
-            MyApplication.hideLoader();
-
-            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-        }
-
-    }
-
-
-    public static void POST_TRANSFERDETAILS(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
-
-        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
-
-            AndroidNetworking.post(BASEURL + URL)
-
-                    .addJSONObjectBody(jsonObject)
-
-                    // .addBodyParameter(jsonObject)
-
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                    .addHeaders("channel", "APP")
-                    .addHeaders("source", "AGENT")
-                    .addHeaders("Accept-Language", languageToUse)
-                    .addHeaders("mac", MyApplication.getUniqueId())
-                    .addHeaders("deviceId", MyApplication.getUniqueId())
-                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-
-                    .setOkHttpClient(okHttpClient)
-                    .setTag("test")
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .setAnalyticsListener(new AnalyticsListener() {
-                        @Override
-                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                            Log.d(TAG, " bytesSent : " + bytesSent);
-                            Log.d(TAG, " bytesReceived : " + bytesReceived);
-                            Log.d(TAG, " isFromCache : " + isFromCache);
-                        }
-                    })
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            MyApplication.hideLoader();
-
-
-                            responce_handler.success(response);
-
-                            Log.d(TAG, "onResponse object : " + response.toString());
-                        }
-
-                        @Override
-                        public void onError(ANError error) {
-                            MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
-                                MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
-                            }
-                            try {
-                                JSONObject error1 = new JSONObject(error.getErrorBody());
-                                if (error1.optString("error").equalsIgnoreCase("1251")) {
-                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                    responce_handler.failure("1251");
-                                } else {
-                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
-                                    responce_handler.failure(errorJ.optString("error_message"));
-                                }
-
-                            } catch (Exception e) {
-                                System.out.println(e.toString());
-                            }
-
-                            if (error.getErrorCode() != 0) {
-                                if (error.getErrorCode() == 401) {
-                                    MyApplication.showAPIToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
-
-                                }
-                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-
-                            } else {
-                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-                            }
-                        }
-                    });
-        }
-        else{
-            MyApplication.hideLoader();
-
-            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-        }
-
-    }
-
-    public static void POST_REMMIT_CASHTOWALLET(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
-
-        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
-
-            AndroidNetworking.post(BASEURL + URL)
-
-                    .addJSONObjectBody(jsonObject)
-
-                    // .addBodyParameter(jsonObject)
-
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                    .addHeaders("channel", "APP")
-                    .addHeaders("source", "AGENT")
-                    .addHeaders("Accept-Language", languageToUse)
-                    .addHeaders("mac", MyApplication.getUniqueId())
-                    .addHeaders("deviceId", MyApplication.getUniqueId())
-                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-
-                    .setOkHttpClient(okHttpClient)
-                    .setTag("test")
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .setAnalyticsListener(new AnalyticsListener() {
-                        @Override
-                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                            Log.d(TAG, " bytesSent : " + bytesSent);
-                            Log.d(TAG, " bytesReceived : " + bytesReceived);
-                            Log.d(TAG, " isFromCache : " + isFromCache);
-                        }
-                    })
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            MyApplication.hideLoader();
-
-
-                            responce_handler.success(response);
-
-                            Log.d(TAG, "onResponse object : " + response.toString());
-                        }
-
-                        @Override
-                        public void onError(ANError error) {
-                            MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
-                                MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
-                            }
-                            try {
-                                JSONObject error1 = new JSONObject(error.getErrorBody());
-                                if (error1.optString("error").equalsIgnoreCase("1251")) {
-                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                    responce_handler.failure("1251");
-                                } else {
-                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
-                                    responce_handler.failure(errorJ.optString("error_message"));
-                                }
-
-                            } catch (Exception e) {
-                                System.out.println(e.toString());
-                            }
-
-                            if (error.getErrorCode() != 0) {
-                                if (error.getErrorCode() == 401) {
-                                    MyApplication.showAPIToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
-
-                                }
-                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-
-                            } else {
-                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-                            }
-                        }
-                    });
-        }
-        else{
-            MyApplication.hideLoader();
-
-            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-        }
-
-    }
-
-    public static void POST_REMIT_SENDER_RECEIVER(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
-        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
-
-            AndroidNetworking.post(BASEURL + URL)
-
-                    .addJSONObjectBody(jsonObject)
-
-                    // .addBodyParameter(jsonObject)
-
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                    .addHeaders("channel", "APP")
-                    .addHeaders("source", "AGENT")
-                    .addHeaders("Accept-Language", languageToUse)
-                    .addHeaders("mac", MyApplication.getUniqueId())
-                    .addHeaders("deviceId", MyApplication.getUniqueId())
-                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-
-                    .setOkHttpClient(okHttpClient)
-                    .setTag("test")
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .setAnalyticsListener(new AnalyticsListener() {
-                        @Override
-                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                            Log.d(TAG, " bytesSent : " + bytesSent);
-                            Log.d(TAG, " bytesReceived : " + bytesReceived);
-                            Log.d(TAG, " isFromCache : " + isFromCache);
-                        }
-                    })
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            MyApplication.hideLoader();
-
-
-                            responce_handler.success(response);
-
-                            Log.d(TAG, "onResponse object : " + response.toString());
-                        }
-
-                        @Override
-                        public void onError(ANError error) {
-                            MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
-                                MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
-                            }
-                            try {
-                                JSONObject error1 = new JSONObject(error.getErrorBody());
-                                if (error1.optString("error").equalsIgnoreCase("1251")) {
-                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                    responce_handler.failure("1251");
-                                } else {
-                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
-                                    responce_handler.failure(errorJ.optString("resultDescription"));
-                                }
-
-                            } catch (Exception e) {
-                                System.out.println(e.toString());
-                            }
-
-                            if (error.getErrorCode() != 0) {
-                                if (error.getErrorCode() == 401) {
-                                    MyApplication.showAPIToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
-
-                                }
-                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-                            } else {
-                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-                            }
-                        }
-                    });
-        }
-        else{
-            MyApplication.hideLoader();
-
-            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-        }
-
-    }
-
-
-
-    public static void POST_REMMIT_LOCAL(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
-        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
-
-            AndroidNetworking.post(BASEURL + URL)
-
-                    .addJSONObjectBody(jsonObject)
-
-                    // .addBodyParameter(jsonObject)
-
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                    .addHeaders("channel", "APP")
-                    .addHeaders("source", "AGENT")
-                    .addHeaders("Accept-Language", languageToUse)
-                    .addHeaders("mac", MyApplication.getUniqueId())
-                    .addHeaders("deviceId", MyApplication.getUniqueId())
-                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-
-                    .setOkHttpClient(okHttpClient)
-                    .setTag("test")
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .setAnalyticsListener(new AnalyticsListener() {
-                        @Override
-                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                            Log.d(TAG, " bytesSent : " + bytesSent);
-                            Log.d(TAG, " bytesReceived : " + bytesReceived);
-                            Log.d(TAG, " isFromCache : " + isFromCache);
-                        }
-                    })
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            MyApplication.hideLoader();
-
-
-                            responce_handler.success(response);
-
-                            Log.d(TAG, "onResponse object : " + response.toString());
-                        }
-
-                        @Override
-                        public void onError(ANError error) {
-                            MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
-                                MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
-                            }
-                            try {
-                                JSONObject error1 = new JSONObject(error.getErrorBody());
-                                if (error1.optString("error").equalsIgnoreCase("1251")) {
-                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
-                                    responce_handler.failure("1251");
-                                } else {
-                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
-                                    responce_handler.failure(errorJ.optString("error_message"));
-                                }
-
-                            } catch (Exception e) {
-                                System.out.println(e.toString());
-                            }
-
-                            if (error.getErrorCode() != 0) {
-                                if (error.getErrorCode() == 401) {
-                                    MyApplication.showAPIToast("Unauthorized Request......");
-                                    MyApplication.getInstance().callLogin();
-
-                                }
-                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
-                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                 //   MyApplication.getInstance().callLogin();
-
-                                }
-
-
-                            } else {
-                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
-                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
-
-                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
-                                    //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
-
-                                }
-
-                            }
-                        }
-                    });
-        }
-        else{
-            MyApplication.hideLoader();
-
-            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
-        }
-
-    }
-
-    public static void POST_CASHOUT_MPIN(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
-        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
-
-            AndroidNetworking.post(BASEURL + URL)
-
-                    .addJSONObjectBody(jsonObject)
-
-                    // .addBodyParameter(jsonObject)
-
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
-                    .addHeaders("channel", "APP")
-                    .addHeaders("source", "AGENT")
-                    .addHeaders("Accept-Language", languageToUse)
-                    .addHeaders("mac", MyApplication.getUniqueId())
-                    .addHeaders("deviceId", MyApplication.getUniqueId())
-                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
-
-                    .setOkHttpClient(okHttpClient)
-                    .setTag("test")
-                    .setPriority(Priority.MEDIUM)
-                    .build()
-                    .setAnalyticsListener(new AnalyticsListener() {
-                        @Override
-                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
-                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
-                            Log.d(TAG, " bytesSent : " + bytesSent);
-                            Log.d(TAG, " bytesReceived : " + bytesReceived);
-                            Log.d(TAG, " isFromCache : " + isFromCache);
-                        }
-                    })
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            MyApplication.hideLoader();
-
-
-                            responce_handler.success(response);
-
-                            Log.d(TAG, "onResponse object : " + response.toString());
-                        }
-
-                        @Override
-                        public void onError(ANError error) {
-                            MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
-                                MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -2932,7 +2562,541 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
+
+                                }
+
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
+
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
+    }
+
+
+    public static void POST_TRANSFERDETAILS(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.post(BASEURL + URL)
+
+                    .addJSONObjectBody(jsonObject)
+
+                    // .addBodyParameter(jsonObject)
+
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "AGENT")
+                    .addHeaders("Accept-Language", languageToUse)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            MyApplication.hideLoader();
+
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
+                                System.out.println(e.toString());
+                            }
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
+
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
+    }
+
+    public static void POST_REMMIT_CASHTOWALLET(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.post(BASEURL + URL)
+
+                    .addJSONObjectBody(jsonObject)
+
+                    // .addBodyParameter(jsonObject)
+
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "AGENT")
+                    .addHeaders("Accept-Language", languageToUse)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            MyApplication.hideLoader();
+
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
+                                System.out.println(e.toString());
+                            }
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
+
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
+    }
+
+    public static void POST_REMIT_SENDER_RECEIVER(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.post(BASEURL + URL)
+
+                    .addJSONObjectBody(jsonObject)
+
+                    // .addBodyParameter(jsonObject)
+
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "AGENT")
+                    .addHeaders("Accept-Language", languageToUse)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            MyApplication.hideLoader();
+
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("resultDescription"));
+                                }
+
+                            } catch (Exception e) {
+                                System.out.println(e.toString());
+                            }
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
+
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
+    }
+
+
+
+    public static void POST_REMMIT_LOCAL(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.post(BASEURL + URL)
+
+                    .addJSONObjectBody(jsonObject)
+
+                    // .addBodyParameter(jsonObject)
+
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "AGENT")
+                    .addHeaders("Accept-Language", languageToUse)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            MyApplication.hideLoader();
+
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
+                                System.out.println(e.toString());
+                            }
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    //   MyApplication.getInstance().callLogin();
+
+                                }
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    // MyApplication.getInstance().callLogin();
+
+                                }
+
+                            }
+                        }
+                    });
+        }
+        else{
+            MyApplication.hideLoader();
+
+            MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
+        }
+
+    }
+
+    public static void POST_CASHOUT_MPIN(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+        if(MyApplication.isConnectingToInternet(MyApplication.getInstance().getApplicationContext())) {
+
+            AndroidNetworking.post(BASEURL + URL)
+
+                    .addJSONObjectBody(jsonObject)
+
+                    // .addBodyParameter(jsonObject)
+
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("channel", "APP")
+                    .addHeaders("source", "AGENT")
+                    .addHeaders("Accept-Language", languageToUse)
+                    .addHeaders("mac", MyApplication.getUniqueId())
+                    .addHeaders("deviceId", MyApplication.getUniqueId())
+                    .addHeaders("Authorization", "Bearer " + MyApplication.getSaveString("token", MyApplication.getInstance()))
+
+                    .setOkHttpClient(okHttpClient)
+                    .setTag("test")
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .setAnalyticsListener(new AnalyticsListener() {
+                        @Override
+                        public void onReceived(long timeTakenInMillis, long bytesSent, long bytesReceived, boolean isFromCache) {
+                            Log.d(TAG, " timeTakenInMillis : " + timeTakenInMillis);
+                            Log.d(TAG, " bytesSent : " + bytesSent);
+                            Log.d(TAG, " bytesReceived : " + bytesReceived);
+                            Log.d(TAG, " isFromCache : " + isFromCache);
+                        }
+                    })
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            MyApplication.hideLoader();
+
+
+                            responce_handler.success(response);
+
+                            Log.d(TAG, "onResponse object : " + response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError error) {
+                            MyApplication.hideLoader();
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                                MyApplication.getInstance().callLogin();
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
+                            }
+                            try {
+                                JSONObject error1 = new JSONObject(error.getErrorBody());
+                                if (error1.optString("error").equalsIgnoreCase("1251")) {
+                                    //    JSONObject errorJ=new JSONObject(error.getErrorBody());
+                                    responce_handler.failure("1251");
+                                } else {
+                                    JSONObject errorJ = new JSONObject(error.getErrorBody());
+                                    responce_handler.failure(errorJ.optString("error_message"));
+                                }
+
+                            } catch (Exception e) {
+                                System.out.println(e.toString());
+                            }
+
+                            if (error.getErrorCode() != 0) {
+                                if (error.getErrorCode() == 401) {
+                                    MyApplication.showAPIToast("Unauthorized Request......");
+                                    MyApplication.getInstance().callLogin();
+
+                                }
+                                Log.d(TAG, "onError errorCode : " + error.getErrorCode());
+                                Log.d(TAG, "onError errorBody : " + error.getErrorBody());
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    //  MyApplication.getInstance().callLogin();
+
+                                }
+
+
+                            } else {
+                                // error.getErrorDetail() : connectionError, parseError, requestCancelledError
+                                Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
+
+                                if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
+                                    //MyApplication.showToast("Unauthorized Request......");
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -2957,7 +3121,7 @@ public class API {
 
                     // .addBodyParameter(jsonObject)
 
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "AGENT")
                     .addHeaders("Accept-Language", languageToUse)
@@ -2993,7 +3157,7 @@ public class API {
                             MyApplication.hideLoader();
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                MyApplication.showAPIToast("Logged in on WEB...");
                             }
                             try {
                                 JSONObject error1 = new JSONObject(error.getErrorBody());
@@ -3021,7 +3185,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                 //   MyApplication.getInstance().callLogin();
+                                    //   MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -3032,7 +3196,7 @@ public class API {
 
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -3088,7 +3252,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 responce_handler.failure(error.toString());
@@ -3106,7 +3275,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -3114,7 +3283,7 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3164,7 +3333,12 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
 
@@ -3184,7 +3358,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -3192,7 +3366,7 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3242,7 +3416,7 @@ public class API {
                         public void onError(ANError error) {
                             if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                MyApplication.showAPIToast("Logged in on WEB...");
                             }
                             try {
 
@@ -3262,7 +3436,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
 
@@ -3270,7 +3444,7 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3316,9 +3490,14 @@ public class API {
 
                     @Override
                     public void onError(ANError error) {
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
 
@@ -3390,9 +3569,14 @@ public class API {
                     @Override
                     public void onError(ANError error) {
                         MyApplication.hideLoader();
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
 
@@ -3462,9 +3646,14 @@ public class API {
 
                     @Override
                     public void onError(ANError error) {
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         responce_handler.failure(error.getErrorDetail());
                         if (error.getErrorCode() != 0) {
@@ -3502,7 +3691,7 @@ public class API {
                 .addHeaders("Accept-Language",languageToUse)
                 .addHeaders("channel","APP")
                 //.addHeaders("channel","APP")
-               // .addHeaders("type","LOGINOTP")
+                // .addHeaders("type","LOGINOTP")
                 .addHeaders("source","AGENT")
                 .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("deviceId",MyApplication.getUniqueId())
@@ -3543,9 +3732,14 @@ public class API {
                         {
                             responce_handler.failure(error.toString());
                         }
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
 
                         if (error.getErrorCode() != 0) {
@@ -3572,7 +3766,7 @@ public class API {
 
     }
 
-        public static void POST_REQEST_OTP_VERIFY(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
+    public static void POST_REQEST_OTP_VERIFY(String URL, JSONObject jsonObject,String languageToUse, final Api_Responce_Handler responce_handler){
 
         AndroidNetworking.post(BASEURL+URL)
                 .addBodyParameter("username",jsonObject.optString("username"))
@@ -3613,9 +3807,14 @@ public class API {
                     @Override
                     public void onError(ANError error) {
                         MyApplication.hideLoader();
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
                             JSONObject error1=new JSONObject(error.getErrorBody());
@@ -3702,7 +3901,7 @@ public class API {
                     public void onError(ANError error) {
                         if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            MyApplication.showAPIToast("Logged in on WEB...");
                         }
                         try {
                             responce_handler.failure(error.toString());
@@ -3748,7 +3947,7 @@ public class API {
                 .addHeaders("channel","APP")
                 .addHeaders("mac",MyApplication.getUniqueId())
                 .addHeaders("deviceId",MyApplication.getUniqueId())
-               // .addHeaders("Authorization", "Basic Y2FzaG1vb3Y6MTIzNDU2")
+                // .addHeaders("Authorization", "Basic Y2FzaG1vb3Y6MTIzNDU2")
                 .addHeaders("source","AGENT")
                 .addHeaders("type", "LOGINOTP")
                 .setOkHttpClient(okHttpClient)
@@ -3777,9 +3976,14 @@ public class API {
                     @Override
                     public void onError(ANError error) {
                         MyApplication.hideLoader();
-                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                        if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                             MyApplication.getInstance().callLogin();
-                            MyApplication.showAPIToast(Loggedweb);
+                            if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                MyApplication.showAPIToast("Connecté sur le WEB...");
+                            } else {
+                                MyApplication.showAPIToast("Logged in on WEB...");
+                            }
                         }
                         try {
                             JSONObject jsonObject1=new JSONObject(error.getErrorBody());
@@ -3852,9 +4056,14 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
                             try {
                                 JSONObject jsonObject1 = new JSONObject(error.getErrorBody());
@@ -3879,7 +4088,7 @@ public class API {
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                  //  MyApplication.getInstance().callLogin();
+                                    //  MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3891,16 +4100,7 @@ public class API {
 
             MyApplication.showToastNew(MyApplication.getInstance().getApplicationContext(),MyApplication.getInstance().getApplicationContext().getString(R.string.please_check_internet));
         }
-        
-        
-        
 
-    }
-
-
-
-    public static void getString(Context mContext){
-        Loggedweb = mContext.getString(R.string.loggedinweb);
     }
 
 
@@ -3941,10 +4141,16 @@ public class API {
                         @Override
                         public void onError(ANError error) {
                             MyApplication.hideLoader();
-                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")){
+                            if(error.toString().equalsIgnoreCase("com.androidnetworking.error.ANError: com.androidnetworking.error.ANError: java.net.ProtocolException: Too many follow-up requests: 21")) {
                                 MyApplication.getInstance().callLogin();
-                                MyApplication.showAPIToast(Loggedweb);
+                                if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
+
+                                    MyApplication.showAPIToast("Connecté sur le WEB...");
+                                } else {
+                                    MyApplication.showAPIToast("Logged in on WEB...");
+                                }
                             }
+
                             try {
 
                                 JSONObject errorJ = new JSONObject(error.getErrorBody());
@@ -3972,13 +4178,13 @@ public class API {
                                 // error.getErrorDetail() : connectionError, parseError, requestCancelledError
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                                 Log.d(TAG, "onError errorDetail : " + error.getErrorDetail());
                                 if (error.getErrorDetail().equalsIgnoreCase("connectionError")) {
                                     //MyApplication.showToast("Unauthorized Request......");
-                                   // MyApplication.getInstance().callLogin();
+                                    // MyApplication.getInstance().callLogin();
 
                                 }
                             }
@@ -3999,7 +4205,7 @@ public class API {
                     .addJSONObjectBody(jsonObject) // posting json
                     .setTag("test")
                     .setOkHttpClient(client)
-                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
+                    .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("source", "SUBSCRIBER")
                     .addHeaders("mac", MyApplication.getUniqueId())

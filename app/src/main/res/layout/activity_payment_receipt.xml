@@ -55,7 +55,7 @@
                     android:textColor="#29304d"
                     android:fontFamily="@font/aileron_semibold"
                     android:lineSpacingExtra="3sp"
-                    android:text="@string/subscriber_details"
+                    android:text="@string/users_details"
                     />
 
 
@@ -181,6 +181,48 @@
 
 
             </LinearLayout>
+
+
+
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <ImageView
+                    android:id="@+id/imageViewtype"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@string/trans_datecolon"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"/>
+
+                <TextView
+                    android:id="@+id/tvTransDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    />
+
+
+            </LinearLayout>
+
             <LinearLayout
                 android:gravity="left"
                 android:layout_width="match_parent"

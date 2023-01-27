@@ -390,6 +390,18 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105068")) {
                     call(miniStatementTrans.getFromAmount(),pos);
                 }
+
+                if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101777")) {
+                    call(miniStatementTrans.getFromAmount(),pos);
+                }
+
+                if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101612")) {
+                    call(miniStatementTrans.getFromAmount(),pos);
+                }
+                if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105219")) {
+                    call(miniStatementTrans.getFromAmount(),pos);
+                }
+
                 if(walletTypeCode.equalsIgnoreCase("100009")){
                     if(miniStatementTransList.get(pos).getFromWalletTypeCode().equalsIgnoreCase("100009")){
                         call(miniStatementTransList.get(pos).getFromAmount(),pos);
@@ -425,6 +437,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                         }else {
                             call(miniStatementTransList.get(pos).getToAmount(),pos);
                         }
+
 
 
                     }

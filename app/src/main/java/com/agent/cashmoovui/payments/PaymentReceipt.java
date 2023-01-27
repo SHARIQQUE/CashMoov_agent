@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 public class PaymentReceipt extends AppCompatActivity implements View.OnClickListener {
     public static PaymentReceipt paymentreceiptC;
     Button btnShareReceipt,btnCloseReceipt;
-    TextView transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
+    TextView tvTransDate,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,
             tax1_lable,tax1_value,tax2_lable,tax2_value;
     LinearLayout tax1_layout,tax2_layout;
     View rootView;
@@ -116,6 +116,7 @@ public class PaymentReceipt extends AppCompatActivity implements View.OnClickLis
         btnCloseReceipt = findViewById(R.id.btnCloseReceipt);
         tvSubscriberMobile = findViewById(R.id.tvSubscriberMobile);
         tvTransType = findViewById(R.id.tvTransType);
+        tvTransDate=findViewById(R.id.tvTransDate);
         tvMobile = findViewById(R.id.tvMobile);
         tvOperatorName = findViewById(R.id.tvOperatorName);
         tvTransId = findViewById(R.id.tvTransId);
@@ -146,6 +147,8 @@ public class PaymentReceipt extends AppCompatActivity implements View.OnClickLis
 //        tvTransAmount.setText(Payments.currencySymbol+" "+ MyApplication.addDecimal(PaymentConfirm.tvTransAmount.getText().toString()));
 //        tvAmountPaid.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentConfirm.receiptJson.optJSONObject("remittance").optString("amountToPaid")));
 //        tvAmountCharged.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentConfirm.receiptJson.optJSONObject("remittance").optString("amount")));
+
+        tvTransDate.setText(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("creationDate"));
 
         tvTransAmount.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("amount")));
         tvAmountCharged.setText(Payments.currencySymbol+" "+MyApplication.addDecimal(PaymentConfirm.receiptJson.optJSONObject("recharge").optString("totalAmount")));
