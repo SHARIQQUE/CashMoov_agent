@@ -40,7 +40,7 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
     String searchStr="";
     EditText edittext_search;
     ImageView search_imageView;
-    TextView main_wallet_value_textview;
+    TextView main_wallet_value_textview,titlenameText;
     ArrayList<UserDetailBranch> arrayList_modalDetails;
     ImageView imgBack,imgHome;
     RecyclerView recyclerView_agent;
@@ -107,9 +107,13 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
         commisionwallet_value_textview = (TextView) findViewById(R.id.commisionwallet_value_textview);
         overdraft_value_heding_textview = (TextView) findViewById(R.id.overdraft_value_heding_textview);
 
-
+        titlenameText=findViewById(R.id.titlenameText);
         edittext_search = (EditText) findViewById(R.id.edittext_search);
-        edittext_search.addTextChangedListener(new TextWatcher() {
+
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryBranch.this).equalsIgnoreCase(MyApplication.MerchatCode)) {
+            titlenameText.setText(getString(R.string.outlet_details));
+        }
+            edittext_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -201,10 +205,19 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
         }
 
+        String url;
 
-         // String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryBranch.this);
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryBranch.this).equalsIgnoreCase(MyApplication.MerchatCode)){
+            url="ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis+"?walletOwnerCategoryCode=100012&offset=0&limit=300";
+        }else{
+            url="ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis;
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis,languageToUse,new Api_Responce_Handler() {
+        }
+
+
+            // String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryBranch.this);
+
+        API.GET_TRANSFER_DETAILS(url,languageToUse,new Api_Responce_Handler() {
 
             @Override
             public void success(JSONObject jsonObject) {
@@ -291,6 +304,52 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
                                     }
 
+                                    if (MyApplication.OutletCode.equalsIgnoreCase(jsonObject1.getString("walletOwnerCategoryCode"))) {
+                                        userDetailBranch = new UserDetailBranch();
+
+
+                                        if (jsonObject1.has("ownerName")) {
+
+                                            String ownerName = jsonObject1.getString("ownerName");
+                                            userDetailBranch.setOwnerName(ownerName);
+
+                                        }
+
+                                        if (jsonObject1.has("mobileNumber")) {
+                                            String mobileNumber = jsonObject1.getString("mobileNumber");
+
+                                            userDetailBranch.setMobileNumber(mobileNumber);
+
+                                        }
+
+                                        if (jsonObject1.has("email")) {
+                                            String email = jsonObject1.getString("email");
+
+                                            userDetailBranch.setEmail(email);
+                                        }
+                                        if (jsonObject1.has("issuingCountryName")) {
+                                            String issuingCountryName = jsonObject1.getString("issuingCountryName");
+                                            userDetailBranch.setIssuingCountryName(issuingCountryName);
+
+
+                                        }
+                                        if (jsonObject1.has("walletOwnerCode")) {
+
+                                            String walletOwnerCode = jsonObject1.getString("walletOwnerCode");
+                                            userDetailBranch.setWalletOwnerCode(walletOwnerCode);
+
+                                        }
+
+                                        if (jsonObject1.has("registerCountryCode")) {
+
+                                            String registerCountryCode = jsonObject1.getString("registerCountryCode");
+                                            userDetailBranch.setRegisterCountryCode(registerCountryCode);
+
+                                        }
+
+                                        arrayList_modalDetails.add(userDetailBranch);
+
+                                    }
 
                                 }
                                 recyclerView_agent.setLayoutManager(new LinearLayoutManager(TransactionHistoryBranch.this));

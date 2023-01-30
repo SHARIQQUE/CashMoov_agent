@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +69,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     private List<MiniStatementTrans> miniStatementTransList = new ArrayList<>();
     TransactionListAdapterNew transactionListAdapterNew;
     ImageView imgBack,imgHome;
+    private LinearLayout linearcurrecy;
 
     private List<TransactionModel> transactionList = new ArrayList<>();
 
@@ -85,7 +87,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
     TextView t1,insitute_textview,agent_textview,insitute_branch,mainwallet_textview,overdraft_value_heding_textview,commision_wallet_textview,overdraft_wallet_textview,commisionwallet_value_textview;
 
-    TextView spinner_currency;
+    TextView spinner_currency,spinner_Currency;
     private SpinnerDialog spinnerDialogCurrency;
 
     SearchAdapterTransactionDetails adpter;
@@ -135,6 +137,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         viewwallet_textview.setOnClickListener(this);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
+        linearcurrecy=findViewById(R.id.linearcurrecy);
 
         spinner_currency= findViewById(R.id.spinner_currency);
         spinner_currency.setText(getString(R.string.select_currency));
@@ -159,15 +162,34 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         search_imageView =(ImageView) findViewById(R.id.search_imageView);
         search_imageView.setOnClickListener(this);
         tvName = findViewById(R.id.tvName);
+
         tvName.setText(getString(R.string.branch_details));
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.MerchatCode)) {
+            tvName.setText(getString(R.string.outlet_details));
+            cardOverdraftWallet.setVisibility(View.GONE);
+            agent_textview.setText(getString(R.string.outlet));
+
+        }
         overdraft_wallet_textview =(TextView)findViewById(R.id.overdraft_wallet_textview);
         main_wallet_value_textview =(TextView)findViewById(R.id.main_wallet_value_textview);
         commisionwallet_value_textview =(TextView)findViewById(R.id.commisionwallet_value_textview);
         overdraft_value_heding_textview =(TextView)findViewById(R.id.overdraft_value_heding_textview);
+        spinner_Currency=findViewById(R.id.spinner_Currency);
 
         insitute_textview.setVisibility(View.GONE);
         agent_textview.setVisibility(View.GONE);
         insitute_branch.setVisibility(View.GONE);
+
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+            cardOverdraftWallet.setVisibility(View.GONE);
+            agent_textview.setClickable(true);
+            agent_textview.setVisibility(View.VISIBLE);
+            linearcurrecy.setVisibility(View.VISIBLE);
+            spinner_currency.setVisibility(View.GONE);
+            spinner_Currency.setText("GNF");
+
+
+        }
 
         if (getIntent().getExtras() != null) {
             walletOwnerCode = (getIntent().getStringExtra("WALLETOWNERCODE"));
@@ -221,6 +243,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         }
 
     }
+
+
 
     @Override
     protected void onStart() {

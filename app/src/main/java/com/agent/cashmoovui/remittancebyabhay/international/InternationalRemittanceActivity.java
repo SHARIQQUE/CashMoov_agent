@@ -912,11 +912,11 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
-                                             Double amountcharge=Double.parseDouble(amount)+ taxConfigurationList.optJSONObject(0).optDouble("value")+
-                                                     jsonObjectAmountDetails.optDouble("fee");
+                                            Double amountcharge=Double.parseDouble(amount)+ taxConfigurationList.optJSONObject(0).optDouble("value")+
+                                                    jsonObjectAmountDetails.optDouble("fee");
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(amountcharge+""));
 
-                                          MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
+                                            MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
@@ -1001,7 +1001,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         System.out.println("get amount sdf"+amount);
                                         MyApplication.saveString("amountformat",amountpay_temp_str,getApplicationContext());
 
-                                      //  MyApplication.saveString("amountformat",edittext_amount.getText().toString(),getApplicationContext());
+                                        //  MyApplication.saveString("amountformat",edittext_amount.getText().toString(),getApplicationContext());
 
 
 //                                    int tax = receiverFee+receiverTax;
@@ -1027,7 +1027,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                             Double teret=Double.parseDouble(amountpay_temp_str)+ jsonObjectAmountDetails.optDouble("fee");
                                             amountTobeCharged_first_page.setText(MyApplication.addDecimal(teret+""));
 
-                                           // amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(amountpay_temp_str)));
+                                            // amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(amountpay_temp_str)));
                                             MyApplication.saveString("amountchagre",amountTobeCharged_first_page.getText().toString(),getApplicationContext());
 
                                         }
@@ -1313,15 +1313,15 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                                 compareCurrency.clear();
                                 JSONArray jsonArraynew=jsonObject.optJSONArray("walletOwnerCountryCurrencyList");
-                                        for(int i=0; i<jsonArraynew.length(); i++) {
-                                            try {
-                                                JSONObject data = jsonArraynew.getJSONObject(i);
-                                                compareCurrency.add(data.optString("currencyCode"));
+                                for(int i=0; i<jsonArraynew.length(); i++) {
+                                    try {
+                                        JSONObject data = jsonArraynew.getJSONObject(i);
+                                        compareCurrency.add(data.optString("currencyCode"));
 
 
-                                             }catch(Exception e){
+                                    }catch(Exception e){
 
-                                            }
+                                    }
 
 
 
@@ -1333,14 +1333,14 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                                 callApiserviceProvider();
 
-                                    // callApiRecCountry();
+                                // callApiRecCountry();
 
-                                } else {
-                                   // MyApplication.showToast(localC,jsonObject.optString("resultDescription", "  "));
-                                }
-
-
+                            } else {
+                                // MyApplication.showToast(localC,jsonObject.optString("resultDescription", "  "));
                             }
+
+
+                        }
 
 
 

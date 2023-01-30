@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 27-01-2023</string>
+    <string name="version">Version : 30-01-2023</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -411,7 +411,7 @@
     <string name="remittance">Transfert de fonds</string>
     <string name="payments">Paiements</string>
     <string name="transfer">Transfert</string>
-    <string name="credit_purchase">Achat de credit</string>
+    <string name="credit_purchase">Achat de crédits</string>
     <string name="overdraft">Découvert</string>
     <string name="service_charge">Frais de service</string>
 
@@ -636,7 +636,7 @@
     <string name="overdraft_limit">Limite de découvert</string>
     <string name="viewcongigservices">Afficher les services de configuration</string>
     <string name="receive_money">Recevoir de l\'argent</string>
-    <string name="add_outlet">Ajouter une prise</string>
+    <string name="add_outlet">Ajouter caisse</string>
     <string name="maximumoverdraft">Limite de découvert maximum</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
@@ -764,6 +764,8 @@
     <string name="agent_mobileNumber">Agent mobile non</string>
     <string name="agent_details">Détails de l\'agent</string>
     <string name="branch_details">Bronc Détails</string>
+
+
     <string name="SendingAgentName">Nom de l\'agent expéditeur:</string>
 
     <string name="total_amount_colon">Montant total :</string>
@@ -849,6 +851,7 @@
     <string name="first_name_star">Prénom*</string>
     <string name="merchant_name">Nom du commerçant :</string>
     <string name="outlet_name_star">Nom du point de vente *</string>
+    <string name="outlet">Sortie</string>
 
     <string name="choose_product">Choisissez le produit</string>
     <string name="login_with_otp">Se connecter avec un OTP</string>

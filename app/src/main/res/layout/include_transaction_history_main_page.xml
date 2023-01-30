@@ -47,6 +47,33 @@
                     android:inputType="textEmailAddress"
                     style="@style/SpinnerStyleNew1"
                     />
+
+                <LinearLayout
+                    android:id="@+id/linearcurrecy"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="gone"
+
+                    android:background="@drawable/btn_edittextname"
+                    android:backgroundTint="@color/bgColorHint">
+
+
+
+                    <TextView
+                        android:id="@+id/spinner_Currency"
+                        android:background="@null"
+                        android:layout_gravity="top"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="left"
+
+                        android:text="GNF"
+                        style="@style/SpinnerStyleNew1"/>
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/viewwallet_textview"
                     android:layout_width="wrap_content"

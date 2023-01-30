@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 27-01-2023</string>
+    <string name="version">Version : 30-01-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -779,6 +779,7 @@
     <string name="agent_mobileNumber">Agent mobile no</string>
     <string name="agent_details">Agent details</string>
     <string name="branch_details">Branch details</string>
+
     <string name="total_amount_colon">Total Amount :</string>
     <string name="vendor_trans_id_colom">Transaction ID :</string>
     <string name="gnf_fixed">GNF Fixed</string>
@@ -865,6 +866,7 @@
     <string name="first_name_star">First Name*</string>
     <string name="merchant_name">Merchant Name :</string>
     <string name="outlet_name_star">Outlet Name *</string>
+    <string name="outlet">Outlet</string>
 
     <string name="choose_product">Choose the product</string>
     <string name="login_with_otp">Login With Otp</string>

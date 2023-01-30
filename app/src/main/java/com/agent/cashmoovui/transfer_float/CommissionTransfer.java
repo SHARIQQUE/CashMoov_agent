@@ -83,6 +83,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
     String select_currencySymbol="";
     String select_currencyCode="";
+    private LinearLayout linearcurrecy;
+    private TextView spinner_Currency;
 
     String currencyName_from_currency="";
     String countryCurrencyCode_from_currency="";
@@ -287,6 +289,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             receiptPage_tv_receiver_phoneNo = (TextView) findViewById(R.id.receiptPage_tv_receiver_phoneNo);
             close_receiptPage_textview = (TextView) findViewById(R.id.close_receiptPage_textview);
             qrCode_imageButton = (ImageButton) findViewById(R.id.qrCode_imageButton);
+            linearcurrecy=findViewById(R.id.linearcurrecy);
+            spinner_Currency=findViewById(R.id.spinner_Currency);
 
             qrCode_imageButton.setOnClickListener(this);
             tv_nextClick.setOnClickListener(this);
@@ -297,6 +301,15 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             walletOwnerCode_mssis_agent = MyApplication.getSaveString("walletOwnerCode", CommissionTransfer.this);
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
+
+
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", CommissionTransfer.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", CommissionTransfer.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+                linearcurrecy.setVisibility(View.VISIBLE);
+                spinner_currency.setVisibility(View.GONE);
+                spinner_Currency.setText("GNF");
+
+
+            }
             edittext_amount.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -726,7 +739,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             JsonArray myCustomArray = gson.toJsonTree(MyApplication.currencyModelArrayList).getAsJsonArray();
 
             System.out.println("Array List"+myCustomArray.toString());
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", CommissionTransfer.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", CommissionTransfer.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
 
+                main_wallet.setText(getString(R.string.commision_Wallet) + " " + select_currencySymbol + " " + MyApplication.addDecimal(MyApplication.currencyModelArrayList.get(0).commisionWalletValue));
+            }
 
             MyApplication.currencyModelArrayList_temp.clear();
 
@@ -743,7 +759,6 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
             System.out.println("-------------Array List---------------------"+ MyApplication.currencyModelArrayList_temp.toString());
-
 
 
 
@@ -975,7 +990,13 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             jsonObject.put("transactionType","113093"); // Hard code
             jsonObject.put("srcWalletOwnerCode",MyApplication.getSaveString("walletOwnerCode", CommissionTransfer.this));
-            jsonObject.put("srcCurrencyCode",select_currencyCode);
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", CommissionTransfer.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", CommissionTransfer.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+                jsonObject.put("srcCurrencyCode","100062");
+
+            }else{
+                jsonObject.put("srcCurrencyCode",select_currencyCode);
+
+            }
             jsonObject.put("value",amountstr);
             jsonObject.put("channelTypeCode","100000");
 
@@ -1404,6 +1425,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     System.out.println("get comiisfionValueCheck"+comiisionValueCheck);
                     edittext_amount.setText("");
                     et_mpin.setText("");
+
 
 
                 }

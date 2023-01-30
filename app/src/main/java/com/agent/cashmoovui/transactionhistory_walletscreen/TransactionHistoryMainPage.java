@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ import com.agent.cashmoovui.model.transaction.CurrencyModel;
 import com.agent.cashmoovui.model.UserDetail;
 import com.agent.cashmoovui.settings.Profile;
 import com.agent.cashmoovui.transfer_float.SellFloat;
+import com.agent.cashmoovui.transfer_float.TransferFloats;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -103,6 +105,8 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     int page = 0, limit = 20;
 
     private String iclick="";
+    private LinearLayout linearcurrecy;
+    private TextView spinner_Currency;
 
 HorizontalScrollView allview;
 
@@ -166,6 +170,8 @@ HorizontalScrollView allview;
         loadingPB = findViewById(R.id.loadingPB);
         nestedSV = findViewById(R.id.nestedSV);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        linearcurrecy=findViewById(R.id.linearcurrecy);
+        spinner_Currency=findViewById(R.id.spinner_Currency);
 
         spinner_currency= findViewById(R.id.spinner_currency);
         spinner_currency.setText(getString(R.string.select_currency));
@@ -176,6 +182,7 @@ HorizontalScrollView allview;
                     spinnerDialogCurrency.showSpinerDialog();
             }
         });
+
 
         insitute_textview =(TextView)findViewById(R.id.insitute_textview);
         insitute_branch =(TextView)findViewById(R.id.insitute_branch);
@@ -213,8 +220,14 @@ HorizontalScrollView allview;
             insitute_branch.setVisibility(View.GONE);
         }
 
-        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.MerchatCode)){
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
             cardOverdraftWallet.setVisibility(View.GONE);
+            agent_textview.setClickable(true);
+            agent_textview.setVisibility(View.VISIBLE);
+            linearcurrecy.setVisibility(View.VISIBLE);
+            spinner_currency.setVisibility(View.GONE);
+            spinner_Currency.setText("GNF");
+
 
         }
 
@@ -407,7 +420,12 @@ HorizontalScrollView allview;
 
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryMainPage.this).equalsIgnoreCase(MyApplication.MerchatCode)){
 
-            allview.setVisibility(View.GONE);
+          //  allview.setVisibility(View.GONE);
+            agent_textview.setVisibility(View.VISIBLE);
+            insitute_branch.setVisibility(View.GONE);
+            insitute_textview.setVisibility(View.GONE);
+            agent_textview.setClickable(true);
+            agent_textview.setText(getString(R.string.outlet));
             MyApplication.userCodeTransaction=MyApplication.getSaveString("walletOwnerCode",TransactionHistoryMainPage.this);
             MyApplication.MerchantPage=true;
             MyApplication.BranchPage=false;
@@ -864,9 +882,15 @@ HorizontalScrollView allview;
                 break;
 
             case R.id.agent_textview:
+                if(agent_textview.getText().toString().equalsIgnoreCase(getString(R.string.outlet))){
+                    Intent i = new Intent(TransactionHistoryMainPage.this, TransactionHistoryBranch.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(TransactionHistoryMainPage.this, TransactionHistoryAgent.class);
+                    startActivity(i);
+                }
 
-                Intent i = new Intent(TransactionHistoryMainPage.this, TransactionHistoryAgent.class);
-                startActivity(i);
+
 
                 break;
 
@@ -1492,7 +1516,8 @@ HorizontalScrollView allview;
             minvalueText.setText(MyApplication.addDecimal("0.00"));
             alertvalueText.setText(MyApplication.addDecimal("0.00"));
 
-            for(int i=0; i<MyApplication.currencyModelArrayList.size(); i++){
+
+                for(int i=0; i<MyApplication.currencyModelArrayList.size(); i++){
                     System.out.println("get max"+MyApplication.currencyModelArrayList.get(i).getMaxValue());
                     if(MyApplication.currencyModelArrayList.get(i).getWalletTypeCode().equalsIgnoreCase("100008")){
 

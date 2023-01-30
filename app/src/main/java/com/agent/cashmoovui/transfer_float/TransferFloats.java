@@ -74,6 +74,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String mobileNoStr="";
     public static EditText etName;
     TextView tax_lab;
+    LinearLayout linearcurrecy;
 
 
     String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="",countryCode_agent="";
@@ -84,7 +85,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     View rootView;
 
     EditText etPin;
-    TextView rp_tv_comment,tvAmtCurr,spinner_currency,tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
+    TextView spinner_Currency,rp_tv_comment,tvAmtCurr,spinner_currency,tvContinue,receiptPage_tv_sender_emailId,receiptPage_tv_sender_country,receiptPage_tv_receiver_emailId,receiptPage_tv_receiver_country,rp_tv_convertionrate,exportReceipt_textview,tv_nextClick,rp_tv_agentName,rp_tv_mobileNumber,rp_tv_businessType,rp_tv_email,rp_tv_country,rp_tv_receiverName,rp_tv_transactionAmount
             ,rp_tv_fees_reveiewPage,receiptPage_tv_stransactionType, receiptPage_tv_dateOfTransaction, receiptPage_tv_transactionAmount,
             receiptPage_tv_amount_to_be_credit, receiptPage_tv_fee, receiptPage_tv_financialtax, receiptPage_tv_transaction_receiptNo,receiptPage_tv_sender_name,
             receiptPage_tv_sender_phoneNo,receiptPage_tv_amount_to_be_charged,
@@ -128,6 +129,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     String selectCurrecnyCode="";
     String mobilelength="";
     private long mLastClickTime = 0;
+    private String  currencySymbol;
 
 
     @Override
@@ -170,16 +172,19 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             tv_nextClick = (TextView) findViewById(R.id.tv_nextClick);
             edittext_amount = (EditText) findViewById(R.id.edittext_amount);
             edittext_mobileNo = (EditText) findViewById(R.id.edittext_mobileNo);
-
-
+            linearcurrecy=findViewById(R.id.linearcurrecy);
+            spinner_Currency=findViewById(R.id.spinner_Currency);
              mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
 
             edittext_mobileNo.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
             pinLinear=findViewById(R.id.pinLinear);
-            edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
+
+
+                edittext_mobileNo.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     final int DRAWABLE_LEFT = 0;
@@ -398,8 +403,14 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             });
 
 
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+                linearcurrecy.setVisibility(View.VISIBLE);
+                spinner_currency.setVisibility(View.GONE);
+                spinner_Currency.setText("GNF");
 
-           // in api currency Code is a country code
+            }
+
+           // in api currency Code is a country codefvalid
 
             //-------comment for testing uncomment this and comment to next sendCurrencyCode string----------
 
@@ -739,7 +750,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
 
-
        else if(spinner_currency.getText().equals(getString(R.string.select_currency)))
         {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
@@ -768,6 +778,48 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    boolean validation_mobile_DetailsNew() {
+
+        amountstr = edittext_amount.getText().toString().trim().replace(",","");
+        mobileNoStr = edittext_mobileNo.getText().toString().trim();
+
+        if(mobileNoStr.isEmpty()) {
+
+            MyApplication.showErrorToast(this,getString(R.string.val_phone));
+
+            return false;
+        }
+
+        else if(mobileNoStr.length() < 9) {
+
+            MyApplication.showErrorToast(this,getString(R.string.val_phone));
+
+            return false;
+        }
+
+
+
+
+        else if (amountstr.isEmpty()) {
+
+            MyApplication.showErrorToast(this, getString(R.string.amount_to_paid_without_star));
+
+            return false;
+        }
+        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToTransferFloatMinAmount) {
+            MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_min)+" "+MyApplication.ToTransferFloatMinAmount);
+            return false;
+        }
+
+        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToTransferFloatMaxAmount) {
+            MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_max)+" "+MyApplication.ToTransferFloatMaxAmount);
+            return false;
+
+
+        }
+
+        return true;
+    }
 
 
 
@@ -809,7 +861,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             countryCurrencyCode_from_currency = jsonObject3.getString("currencyCode");
                             walletOwnerCode_destination = jsonObject3.getString("walletOwnerCode");
 
-                            String currencySymbol = jsonObject3.getString("currencySymbol");
+                             currencySymbol = jsonObject3.getString("currencySymbol");
 
 
 
@@ -926,9 +978,14 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             }
                         }
 
+                        if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
 
-                        api_exchange_rate();
 
+                            api_exchange_ratenew();
+                        }else{
+                            api_exchange_rate();
+
+                        }
 
 
                     } else {
@@ -1120,6 +1177,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         ll_receiptPage.setVisibility(View.GONE);
                         ll_successPage.setVisibility(View.GONE);
                         MyApplication.hideLoader();
+                        et_mpin.setText("");
 
 
                     }
@@ -1158,6 +1216,125 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    private void api_exchange_ratenew() {
+
+
+        http://202.131.144.130:8081/ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=100062&receiveCurrencyCode=
+        // 100076&sendCountryCode=100092&receiveCountryCode=&currencyValue=1500&channelTypeCode=100002&serviceCode=100000&
+        // serviceCategoryCode=100017&serviceProviderCode=100108&walletOwnerCode=1000002692&
+        // remitAgentCode=1000002692&payAgentCode=1000002692
+
+
+
+
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/exchangeRate/getAmountDetails?sendCurrencyCode=" + "100062" +
+                "&receiveCurrencyCode="+"100062"+"&sendCountryCode=" + countryCode_agent + "&receiveCountryCode="+""+
+                "&currencyValue=" + amountstr + "&channelTypeCode=100002&serviceCode=" + serviceCode_from_serviceCategory + "&serviceCategoryCode=" +
+                serviceCategoryCode_from_serviceCategory + "&serviceProviderCode=" +
+                serviceProviderCode_from_serviceCategory + "&walletOwnerCode=" + walletOwnerCode_mssis_agent + "&remitAgentCode=" +
+                walletOwnerCode_mssis_agent + "&payAgentCode="+walletOwnerCode_source,languageToUse, new Api_Responce_Handler() {
+
+
+            @Override
+            public void success(JSONObject jsonObject) {
+
+
+                try {
+
+                    //JSONObject jsonObject = new JSONObject("{"transactionId":"1789322","requestTime":"Wed Oct 20 15:53:33 IST 2021","responseTime":"Wed Oct 20 15:53:33 IST 2021","resultCode":"0","resultDescription":"Transaction Successful","walletOwnerCountryCurrencyList":[{"id":7452,"code":"107451","walletOwnerCode":"1000002488","currencyCode":"100062","currencyName":"GNF","currencySymbol":"Fr","countryCurrencyCode":"100076","inBound":true,"outBound":true,"status":"Active"}]}");
+
+                    String resultCode =  jsonObject.getString("resultCode");
+                    String resultDescription =  jsonObject.getString("resultDescription");
+
+                    if(resultCode.equalsIgnoreCase("0")) {
+
+
+
+                        //Toast.makeText(CashIn.this, resultDescription, Toast.LENGTH_LONG).show();
+
+                        JSONObject exchangeRate = jsonObject.getJSONObject("exchangeRate");
+
+                        fees_amount = exchangeRate.getString("fee");
+
+                        tax_lab=findViewById(R.id.tax_lab);
+                        if(!exchangeRate.has("receiverTax")) {
+                            if (exchangeRate.has("taxConfigurationList")) {
+                                JSONArray jsonArray = exchangeRate.getJSONArray("taxConfigurationList");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    tax_financial = jsonObject2.getString("value");
+                                    tax_lab.setText(MyApplication.getTaxStringnew(jsonObject2.getString("taxTypeName")+" :"));
+                                }
+                            } else {
+                                tax_lab.setText(MyApplication.getTaxStringnew("TAX "));
+                                tax_financial = exchangeRate.getString("value");
+                            }
+                        }else{
+                            tax_lab.setText(MyApplication.getTaxStringnew("TAX "));
+                            tax_financial = exchangeRate.getString("value");
+                        }
+
+                        TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
+                        receiptPage_tv_financialtaxl.setText(tax_lab.getText().toString());
+
+                        rp_tv_convertionrate.setText(currencySymbol+" " +MyApplication.addDecimalthreenew("00.000"));
+                        rp_tv_fees_reveiewPage.setText(currencySymbol+" " +MyApplication.addDecimal(fees_amount));
+                        rp_tv_excise_tax.setText(currencySymbol+" " +MyApplication.addDecimal(tax_financial));
+                        //   rp_tv_amount_paid.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
+
+                        tax_financial_double = Double.parseDouble(tax_financial);
+                        amountstr_double = Double.parseDouble(amountstr);
+                        fees_amount_double = Double.parseDouble(fees_amount);
+                        rp_tv_transactionAmount.setText(currencySymbol+" " +MyApplication.addDecimal(amountstr));
+
+                        totalAmount_double = tax_financial_double+amountstr_double+fees_amount_double;
+                        totalAmount_str = String.valueOf(totalAmount_double);
+                        rp_tv_amount_to_be_charge.setText(currencySymbol+" " +MyApplication.addDecimal(totalAmount_str));
+                        rp_tv_comment.setText(et_fp_reason_sending.getText().toString());
+
+
+                        ll_page_1.setVisibility(View.GONE);
+                        ll_reviewPage.setVisibility(View.VISIBLE);
+                        ll_receiptPage.setVisibility(View.GONE);
+                        ll_successPage.setVisibility(View.GONE);
+                        MyApplication.hideLoader();
+                        et_mpin.setText("");
+
+
+                    }
+
+                    else {
+                        MyApplication.hideLoader();
+
+                        Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+
+                }
+                catch (Exception e)
+                {
+                    MyApplication.hideLoader();
+
+                    Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(TransferFloats.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+
+
+    }
 
 
     private void api_serviceProvider() {
@@ -1350,7 +1527,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
-            jsonObject.put("mobileNumber",mobileNumber_login);
+            jsonObject.put("mobileNumber",edittext_mobileNo.getText().toString());
 
             API.POST_TRANSFERDETAILS("ewallet/api/v1/walletOwnerUser/verifyMPin/", jsonObject, languageToUse, new Api_Responce_Handler() {
                 @Override
@@ -1439,9 +1616,21 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             jsonObject.put("transactionType","101612"); // Hard code
 
             jsonObject.put("srcWalletOwnerCode",walletOwnerCode_destination); // walletOwnerCode_source // acording to portal
-            jsonObject.put("desWalletOwnerCode",walletOwnerCode_source); //walletOwnerCode_destination // acording to portal
-            jsonObject.put("srcCurrencyCode",selectCurrecnyCode);
-            jsonObject.put("desCurrencyCode",selectCurrecnyCode);
+            jsonObject.put("desWalletOwnerCode",walletOwnerCode_source);
+            //walletOwnerCode_destination // acording to portal
+            if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+                jsonObject.put("srcCurrencyCode","100062");
+                jsonObject.put("desCurrencyCode","100062");
+
+
+            }else{
+                jsonObject.put("srcCurrencyCode",selectCurrecnyCode);
+                jsonObject.put("desCurrencyCode",selectCurrecnyCode);
+
+
+            }
+
+
             jsonObject.put("mobileNumber",mobileNoStr);
             jsonObject.put("value",amountstr);
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
@@ -1497,15 +1686,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
                             receiptPage_tv_stransactionType.setText(getString(R.string.transfer_float));
-                            receiptPage_tv_transactionAmount.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
-                            receiptPage_tv_fee.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(fees_amount));
+                            receiptPage_tv_transactionAmount.setText(jsonObject.getJSONObject("walletTransfer").getString("srcCurrencySymbol")+" " +MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_fee.setText(jsonObject.getJSONObject("walletTransfer").getString("srcCurrencySymbol")+" " +MyApplication.addDecimal(fees_amount));
 
-                            receiptPage_tv_financialtax.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(tax_financial));
-                            receiptPage_tv_amount_to_be_charged.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(totalAmount_str));
+                            receiptPage_tv_financialtax.setText(jsonObject.getJSONObject("walletTransfer").getString("srcCurrencySymbol")+" " +MyApplication.addDecimal(tax_financial));
+                            receiptPage_tv_amount_to_be_charged.setText(jsonObject.getJSONObject("walletTransfer").getString("srcCurrencySymbol")+" " +MyApplication.addDecimal(totalAmount_str));
 
                             receiptPage_tv_transaction_receiptNo.setText(jsonObject.getString("transactionId"));
                             receiptPage_tv_dateOfTransaction.setText(MyApplication.convertUTCToLocaldate(jsonObject.getJSONObject("walletTransfer").getString("creationDate")));
-                            receiptPage_tv_amount_to_be_credit.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(amountstr));
+                            receiptPage_tv_amount_to_be_credit.setText(jsonObject.getJSONObject("walletTransfer").getString("srcCurrencySymbol")+" " +MyApplication.addDecimal(amountstr));
 
                             String tamount=receiptPage_tv_transactionAmount.getText().toString();
                             String paid=receiptPage_tv_amount_to_be_credit.getText().toString();
@@ -1609,23 +1798,46 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             case R.id.tv_nextClick: {
 
-
-                if (validation_mobile_Details()) {
-
-
-                    if (new InternetCheck().isConnected(TransferFloats.this)) {
-
-                        MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+                    if (validation_mobile_DetailsNew()) {
 
 
-                        api_walletOwner_msisdn();
+                        if (new InternetCheck().isConnected(TransferFloats.this)) {
+
+                            MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+
+
+                            api_walletOwner_msisdn();
 
 
 
-                    } else {
-                        Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        }
                     }
+
+                }else{
+                    if (validation_mobile_Details()) {
+
+
+                        if (new InternetCheck().isConnected(TransferFloats.this)) {
+
+                            MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+
+
+                            api_walletOwner_msisdn();
+
+
+
+                        } else {
+                            Toast.makeText(TransferFloats.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
                 }
+
+
+
             }
 
             break;
@@ -1650,6 +1862,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
                                 return;
                             }
+                            mLastClickTime = SystemClock.elapsedRealtime();
+
                             confirm_reviewClick_textview.setEnabled(false);
                             confirm_reviewClick_textview.setClickable(false);
 
