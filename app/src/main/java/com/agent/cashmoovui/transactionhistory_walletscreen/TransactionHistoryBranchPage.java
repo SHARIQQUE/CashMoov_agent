@@ -249,10 +249,17 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
     @Override
     protected void onStart() {
         super.onStart();
+        if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.MerchatCode)) {
+            MyApplication.OutletPage=true;
+
+        }else{
+            MyApplication.BranchPage=true;
+
+        }
         MyApplication.hideKeyboard(this);
         MyApplication.AgentPage=false;
-        MyApplication.BranchPage=true;
         MyApplication.InstPage=false;
+
     }
 
     @Override

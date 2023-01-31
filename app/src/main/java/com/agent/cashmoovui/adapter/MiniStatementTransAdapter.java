@@ -258,7 +258,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
 
 
-                    if(MyApplication.MerchantPage || MyApplication.OutletPage) {
+                    if(MyApplication.MerchantPage) {
 
                         MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForMerchant());
 
@@ -275,6 +275,22 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
                     }
 
+                    if(MyApplication.OutletPage) {
+
+                        MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForOutlet());
+
+                        if(miniStatementTrans.getCommissionAmountForOutlet()>0){
+                            holder.linItem.setVisibility(View.VISIBLE);
+                            holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getCommissionAmountForOutlet()) + " " + MyApplication.currencySymbol);
+                        }else{
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                            params.height=0;
+                            holder.linItem.setLayoutParams(params);
+                        }
+
+
+                    }
 
 
                     //holder.tvAmount.setText(df.format(miniStatementTrans.getCommissionAmountForInstitute()) + " " + miniStatementTrans.getToCurrencySymbol());
@@ -548,8 +564,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                         Amount, miniStatementTransList.get(pos).getTransactionId(),
                         miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
                         miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                        miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                                getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+                        miniStatementTransList.get(pos).getFee(),"", miniStatementTransList.get(pos).getDestPostBalance());
 
 
             }else{
