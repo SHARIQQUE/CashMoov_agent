@@ -229,11 +229,13 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                     if (s.length() ==Integer.parseInt(mobilelength)) {
                         api_walletOwner_msisdnNew();
+                        edittext_amount.requestFocus();
 
 
                     }
                     if(s.length()<Integer.parseInt(mobilelength)){
                         etName.setText("");
+                        edittext_amount.setText("");
 
 
 
@@ -1527,7 +1529,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
-            jsonObject.put("mobileNumber",edittext_mobileNo.getText().toString());
+            jsonObject.put("mobileNumber",mobileNumber_login);
 
             API.POST_TRANSFERDETAILS("ewallet/api/v1/walletOwnerUser/verifyMPin/", jsonObject, languageToUse, new Api_Responce_Handler() {
                 @Override
@@ -2067,14 +2069,16 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onBackPressed() {
 
-        ll_page_1.setVisibility(View.VISIBLE);
-        ll_reviewPage.setVisibility(View.GONE);
-        ll_successPage.setVisibility(View.GONE);
-        ll_receiptPage.setVisibility(View.GONE);
-        pinLinear.setVisibility(View.GONE);
-          super.onBackPressed();
+        if(ll_reviewPage.getVisibility()==View.VISIBLE) {
+            ll_page_1.setVisibility(View.VISIBLE);
+            ll_reviewPage.setVisibility(View.GONE);
+            ll_successPage.setVisibility(View.GONE);
+            ll_receiptPage.setVisibility(View.GONE);
+            pinLinear.setVisibility(View.GONE);
+            return;
+        }
+        super.onBackPressed();
     }
-
 
   /*  @Override
     public void onBackPressed() {

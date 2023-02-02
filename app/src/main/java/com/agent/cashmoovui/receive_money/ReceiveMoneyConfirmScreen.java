@@ -48,8 +48,8 @@ import java.util.Locale;
 public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View.OnClickListener {
     public static ReceiveMoneyConfirmScreen receivemoneyconfirmationscreenC;
     // ImageView imgBack;
-    TextView btnConfirm,btnCancel,tvFinger;
-    public static TextView tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
+    TextView pinText,btnConfirm,btnCancel,tvFinger;
+    public static TextView tvrecCurrency,tvrate,tvProvider,tvMobile,tvName,tvConfCode,tvCurrency,tvTransAmounts,tvAmountPaid,tvAmountCharged,tvFee,tax_label,tax_r,vat_label,vat_r;
     EditText etPin;
     double finalamount;
     LinearLayout tax_label_layout,vat_label_layout,pinLinear,ll_resendOtp,ll_successPage,linera_all;
@@ -148,8 +148,10 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         vat_label_layout=findViewById(R.id.vat_label_layout);
         btnConfirm.setOnClickListener(this);
         ll_otp=findViewById(R.id.ll_otp);
-
-       // tvProvider.setText(ReceiveMoney.serviceProvider);
+        pinText=findViewById(R.id.pinText);
+        tvrecCurrency=findViewById(R.id.tvrecCurrency);
+        tvrecCurrency.setText(ReceiveMoneyDetailScreen.spinner_receiverCurrency.getText().toString());
+       // tvProvider.setText(ReceiveMoney.serviceProv;ider);
        tvMobile.setText(ReceiveMoneyDetailScreen.et_destination_mobileNumber.getText().toString());
         tvName.setText(ReceiveMoneyDetailScreen.et_destination_firstName.getText().toString()+" "+ReceiveMoneyDetailScreen.et_destination_lastName.getText().toString());
         //  tvConfCode.setText(ReceiveMoney.mobileNo);
@@ -167,19 +169,20 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         if(ReceiveMoneyDetailScreen.taxConfigurationList!=null){
             if(ReceiveMoneyDetailScreen.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax_r.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optDouble("value"))));
-                finalamount=Double.parseDouble(ReceiveMoneyDetailScreen.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTReceiveMoney",receivemoneyconfirmationscreenC))+Double.parseDouble(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("value"));
-            }
+               /*finalamount=Double.parseDouble(ReceiveMoneyDetailScreen.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTReceiveMoney",receivemoneyconfirmationscreenC))+
+                       Double.parseDouble(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("value"));
+*/            }
             if(ReceiveMoneyDetailScreen.taxConfigurationList.length()==2){
                 tax_label_layout.setVisibility(View.VISIBLE);
-                tax_label.setText(MyApplication.getTaxString(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" :");
+                tax_label.setText(MyApplication.getTaxString(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("taxTypeName"))+" ");
                 tax_r.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optDouble("value"))));
 
                 vat_label_layout.setVisibility(View.VISIBLE);
-                vat_label.setText(MyApplication.getTaxString(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" :");
+                vat_label.setText(MyApplication.getTaxString(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(1).optString("taxTypeName"))+" ");
                 vat_r.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(String.valueOf(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(1).optDouble("value"))));
-                finalamount=Double.parseDouble(ReceiveMoneyDetailScreen.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTReceiveMoney",receivemoneyconfirmationscreenC))+Double.parseDouble(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(1).optString("value"));
+              //  finalamount=Double.parseDouble(ReceiveMoneyDetailScreen.fee)+Double.parseDouble(MyApplication.getSaveString("AMOUNTReceiveMoney",receivemoneyconfirmationscreenC))+Double.parseDouble(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(0).optString("value"))+Double.parseDouble(ReceiveMoneyDetailScreen.taxConfigurationList.optJSONObject(1).optString("value"));
             }
         }
         fees_amount_double = Double.parseDouble(ReceiveMoneyDetailScreen.fee);
@@ -603,7 +606,8 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                                 mpinStr="";
 
                                 selectClickType="select_mpin";
-                                btnConfirm.setText(getString(R.string.pin_capital_new));
+                                pinText.setText(getString(R.string.pin_capital));
+                                btnConfirm.setText(getString(R.string.Submit));
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
                                 pinLinear.setVisibility(View.VISIBLE);

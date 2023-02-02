@@ -864,12 +864,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
         }
 
-        else if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>Double.parseDouble(comiisionValueCheck)) {
+     /*   else if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>Double.parseDouble(comiisionValueCheck)) {
             MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.commisssion_bal_insufficient));
             return false;
 
 
-        }
+        }*/
 
         else if(mpinStr.trim().isEmpty()) {
 

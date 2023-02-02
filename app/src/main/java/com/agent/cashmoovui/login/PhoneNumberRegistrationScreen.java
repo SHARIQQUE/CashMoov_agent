@@ -346,7 +346,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
             JSONObject loginJson=new JSONObject();
             loginJson.put("fcmToken",FCM_TOKEN);
             loginJson.put("username",etPhoneNo.getText().toString().trim());
-            loginJson.put("password",etPass.getText().toString().trim());
+            loginJson.put("password",MyApplication.getEncript(etPass.getText().toString().trim()));
             loginJson.put("grant_type","password");
             loginJson.put("country",MyApplication.getSaveString("COUNTRY",PhoneNumberRegistrationScreen.this));
             loginJson.put("cc",MyApplication.getSaveString("CC",PhoneNumberRegistrationScreen.this));

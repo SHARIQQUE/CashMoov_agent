@@ -167,7 +167,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.MerchatCode)) {
             tvName.setText(getString(R.string.outlet_details));
             cardOverdraftWallet.setVisibility(View.GONE);
-            agent_textview.setText(getString(R.string.outlet));
+            agent_textview.setVisibility(View.GONE);
 
         }
         overdraft_wallet_textview =(TextView)findViewById(R.id.overdraft_wallet_textview);
@@ -183,7 +183,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         if(MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransactionHistoryBranchPage.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
             cardOverdraftWallet.setVisibility(View.GONE);
             agent_textview.setClickable(true);
-            agent_textview.setVisibility(View.VISIBLE);
+            agent_textview.setVisibility(View.GONE);
             linearcurrecy.setVisibility(View.VISIBLE);
             spinner_currency.setVisibility(View.GONE);
             spinner_Currency.setText("GNF");
@@ -650,7 +650,9 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
             case R.id.agent_textview:
 
-                Intent i = new Intent(TransactionHistoryBranchPage.this, TransactionHistoryAgent.class);
+
+
+                    Intent i = new Intent(TransactionHistoryBranchPage.this, TransactionHistoryAgent.class);
                 startActivity(i);
 
                 break;

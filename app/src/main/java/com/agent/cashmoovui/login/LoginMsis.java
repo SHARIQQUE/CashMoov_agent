@@ -774,7 +774,8 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
             //  jsonObject.put("scope","read write");
             jsonObject.put("username", strPhoneNo);
-            jsonObject.put("password", strPasword);
+
+            jsonObject.put("password", MyApplication.getEncript(strPasword));
             jsonObject.put("grant_type", "password");
             jsonObject.put("scope", "read write");
             jsonObject.put("fcmToken", FCM_TOKEN);
@@ -969,7 +970,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("fcmToken", FCM_TOKEN);
             //  jsonObject.put("scope","read write");
             jsonObject.put("username", strPhoneNo);
-            jsonObject.put("password", strPasword);
+            jsonObject.put("password", MyApplication.getEncript(strPasword));
             jsonObject.put("grant_type", "password");
             jsonObject.put("scope", "read write");
             jsonObject.put("country", MyApplication.getSaveString("COUNTRY", LoginMsis.this));

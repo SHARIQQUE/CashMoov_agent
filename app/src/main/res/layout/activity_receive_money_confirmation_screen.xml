@@ -247,7 +247,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/currency_colon"
+                    android:text="@string/send_curr_colon"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="#000"
@@ -267,6 +267,47 @@
 
 
             </LinearLayout>
+
+            <LinearLayout
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:srcCompat="@drawable/ic_baseline_check_circle_outline_24"
+                    />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/receive_courency"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/tvrecCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="N/A"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_13sdp"
+                    />
+
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:gravity="left"
                 android:layout_width="match_parent"
@@ -502,6 +543,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_5sdp">
 
                 <ImageView
@@ -705,7 +747,7 @@
 
 
                 <TextView
-
+                    android:id="@+id/pinText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -713,7 +755,7 @@
                     android:gravity="left"
                     android:layout_marginLeft="@dimen/_10sdp"
 
-                    android:text="@string/pin_capital"
+                    android:text="@string/subscriber_pin_new"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_14sdp"
                     />
@@ -757,6 +799,7 @@
                     android:layout_height="60dp"
                     android:gravity="center"
                     android:padding="10dp"
+                    android:visibility="gone"
 
                     android:background="@drawable/round_yellow"
 

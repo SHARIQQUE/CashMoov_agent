@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,7 +55,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
     boolean isCustomerData;
     public static final int REQUEST_CODE = 1;
     DatePickerDialog picker;
-    public static TextView spinner_senderCurrency,spinner_receiverCurrency,tvAmtCurr,tvAmtPaidCurr,convertionRate_first_page,
+    public static TextView receivingcurrecncyText,spinner_senderCurrency,spinner_receiverCurrency,tvAmtCurr,tvAmtPaidCurr,convertionRate_first_page,
             fees_first_page,tax_first_page,tvNext;
     RadioGroup radio_group;
     RadioButton rb_wallet;
@@ -155,8 +156,15 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
         et_destination_firstName.setEnabled(false);
 
         et_destination_lastName.setEnabled(false);
+        receivingcurrecncyText=findViewById(R.id.receivingcurrecncyText);
+        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+
+        et_destination_mobileNumber.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
 
         spinner_senderCurrency.setText("GNF");
+        spinner_receiverCurrency.setText("GNF");
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,7 +223,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                     et_destination_firstName.setText("");
                     et_destination_lastName.setText("");
                     // spinner_senderCurrency.setText(getString(R.string.sending_currencey));
-                    spinner_receiverCurrency.setText(getString(R.string.receive_courency));
+                    spinner_receiverCurrency.setText("GNF");
                 }
 
             }
@@ -247,10 +255,12 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                         if(isSet) {
                             isSet=false;
                         }else{
+                            edittext_amount.requestFocus();
+
                             et_destination_firstName.setText("");
                             et_destination_lastName.setText("");
                             // spinner_senderCurrency.setText(getString(R.string.sending_currencey));
-                            spinner_receiverCurrency.setText(getString(R.string.receive_courency));
+                            spinner_receiverCurrency.setText("GNF");
                             callApiSubsriberList();
 
                         }
@@ -258,7 +268,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                         et_destination_firstName.setText("");
                         et_destination_lastName.setText("");
                         // spinner_senderCurrency.setText(getString(R.string.sending_currencey));
-                        spinner_receiverCurrency.setText(getString(R.string.receive_courency));
+                        spinner_receiverCurrency.setText("GNF");
 
                     }
 
@@ -360,7 +370,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.select_currency));
                     return;
                 }
-                if (spinner_receiverCurrency.getText().toString().equals(getString(R.string.receive_courency))) {
+                if (spinner_receiverCurrency.getText().toString().equals(getString(R.string.receiver_currency))) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.plz_select_receive_currency));
                     return;
                 }
@@ -375,18 +385,22 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                 }
 
 
-                Double fee=0.00;
+                Double fees=0.00;
                 Double amout=0.00;
-                if(receiverFee.isEmpty()&&receiverFee==null){
 
+                if(receiverFee.isEmpty()||receiverFee==null){
+                  /*  fees =taxtest+Double.parseDouble(fee);
+                    amout = Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", ""));
+*/
                 }else {
-                    fee = Double.parseDouble(receiverFee)+taxtest;
+
+                    fees = Double.parseDouble(receiverFee)+taxtest;
                     amout = Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", ""));
                     System.out.println("get feeval" + fee);
                     System.out.println("get amoutval" + amout);
 
                 }
-                if(fee>amout){
+                if(fees>amout){
                     System.out.println("check amount"+fee+"   "+amout);
                     MyApplication.showErrorToast(cashtowalletbenefikycC,getString(R.string.feetaxvalidation));
                     return;
@@ -822,7 +836,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
         et_destination_firstName.setText("");
         et_destination_lastName.setText("");
         //spinner_senderCurrency.setText(getString(R.string.sending_currencey));
-        spinner_receiverCurrency.setText(getString(R.string.receive_courency));
+        spinner_receiverCurrency.setText("GNF");
 
         receiverCode = "";
     }
@@ -901,6 +915,8 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                                         )){
                                             spinner_receiverCurrency.setText(recCurrencyModelList.get(i).getCurrCode() );
                                             spinner_receiverCurrency.setTag(i);
+                                            receivingcurrecncyText.setVisibility(View.VISIBLE);
+
                                             toCurrency = recCurrencyModelList.get(i).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(i).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(i).getCurrencyCode();
@@ -918,8 +934,8 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                                         @Override
                                         public void onClick(String item, int position) {
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
-                                            spinner_receiverCurrency.setText(item);
-                                            spinner_receiverCurrency.setTag(position);
+                                           // spinner_receiverCurrency.setText(item);
+                                           // spinner_receiverCurrency.setTag(position);
                                             toCurrency = recCurrencyModelList.get(position).getCurrCode();
                                             toCurrencySymbol = recCurrencyModelList.get(position).getCurrencySymbol();
                                             toCurrencyCode = recCurrencyModelList.get(position).getCurrencyCode();
@@ -1079,9 +1095,14 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                                         fees_first_page.setText((fee+""));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(""+currencyValue));
                                         amount = jsonObjectAmountDetails.optDouble("currencyValue")+"";
-                                         receiverFee=jsonObjectAmountDetails.optString("receiverFee");
-
                                          System.out.println("get fee"+receiverFee);
+                                         if(jsonObjectAmountDetails.has("receiverFee")){
+                                             receiverFee=jsonObjectAmountDetails.optString("receiverFee");
+
+                                         }else{
+                                             receiverFee="";
+
+                                         }
 
 
 //                                    int tax = receiverFee+receiverTax;

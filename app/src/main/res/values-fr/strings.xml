@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 30-01-2023</string>
+    <string name="version">Version : 02-02-2023 02:28pm</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -437,6 +437,8 @@
     <string name="otp_verify">Vérification OTP</string>
     <string name="verify_subscriber_pin">Vérifier le code PIN d abonné</string>
     <string name="subscriber_pin"> Code PIN d abonné</string>
+    <string name="subscriber_pin_new">Code PIN d abonné:</string>
+
     <string name="otp_subscriber_success_plz_enter_pin">Vérification OTP réussie Veuillez saisir le code PIN de l abonné</string>
     <string name="Submit">Soumettre </string>
 
@@ -547,7 +549,7 @@
     <string name="login_user_pin">Code d utilisateur de connexion</string>
     <string name="sender_details">Details de l\'expediteur</string>
     <string name="merchant_details">Détails du marchand</string>
-    <string name="outlet_details">Détails de la sortie</string>
+    <string name="outlet_details">Détails de la caisse</string>
 
     <string name="receiver_details_cashout">Détails du réceveur</string>
     <string name="transaction_no">Identifiant de la  transaction:</string>
@@ -851,7 +853,7 @@
     <string name="first_name_star">Prénom*</string>
     <string name="merchant_name">Nom du commerçant :</string>
     <string name="outlet_name_star">Nom du point de vente *</string>
-    <string name="outlet">Sortie</string>
+    <string name="outlet">Caisse</string>
 
     <string name="choose_product">Choisissez le produit</string>
     <string name="login_with_otp">Se connecter avec un OTP</string>
@@ -870,6 +872,8 @@
     <string name="sender_code_colon">Code expéditeur :</string>
     <string name="sender_currency_code">Code de devise de l\'expéditeur :</string>
     <string name="receiver_currency_code">Code de Devise de réception :</string>
+    <string name="receiver_currency">Devise du destinataire * </string>
+    <string name="receiver_currency_new">Devise du destinataire : </string>
 
 
     <string name="benefi_code_colon">Code bénéficiaire :</string>

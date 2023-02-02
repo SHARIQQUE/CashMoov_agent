@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -73,6 +74,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
     boolean  isPasswordVisible;
     String currencyName_subscriber="",currencyCode_subscriber="";
 
+    private long mLastClickTime = 0;
 
 
     String selectCountryName= "";
@@ -1293,11 +1295,15 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                         MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
 
 
                         mpin_final_api();
 
                     } else {
+                        confirm_reviewClick_textview.setEnabled(false);
+                        confirm_reviewClick_textview.setClickable(false);
 
                         if(resultDescription.equalsIgnoreCase("Operator Not Found"))
                         {
@@ -1309,6 +1315,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         else
                         {
                             Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
+                            confirm_reviewClick_textview.setEnabled(false);
+                            confirm_reviewClick_textview.setClickable(false);
 
                         }
                     }
@@ -1504,6 +1512,8 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                         if (resultCode.equalsIgnoreCase("0")) {
 
+                            confirm_reviewClick_textview.setEnabled(true);
+                            confirm_reviewClick_textview.setClickable(true);
 
                             ll_page_1.setVisibility(View.GONE);
                             ll_reviewPage.setVisibility(View.GONE);
@@ -1560,12 +1570,18 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                         } else {
+                            confirm_reviewClick_textview.setEnabled(true);
+                            confirm_reviewClick_textview.setClickable(true);
+
                             Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
                             //  finish();
                         }
 
 
                     } catch (Exception e) {
+                        confirm_reviewClick_textview.setEnabled(true);
+                        confirm_reviewClick_textview.setClickable(true);
+
                         Toast.makeText(AirtimePurchases.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -1628,6 +1644,13 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                     if(pinLinear.getVisibility()==View.VISIBLE){
                         if (validation_mpin_detail()) {
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                                return;
+                            }
+                            mLastClickTime = SystemClock.elapsedRealtime();
+                            confirm_reviewClick_textview.setEnabled(false);
+                            confirm_reviewClick_textview.setClickable(false);
+
 
                             if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 

@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 30-01-2023</string>
+    <string name="version">Version : 02-02-2023 02:28pm</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -429,6 +429,8 @@
     <string name="otp_verify">OTP Verify</string>
     <string name="verify_subscriber_pin">Verify Subscriber Pin</string>
     <string name="subscriber_pin">Subscriber Pin</string>
+    <string name="subscriber_pin_new">Subscriber Pin:</string>
+
     <string name="plz_enter_6_digit_otp_code">Please enter 6 digit OTP code</string>
 
     <string name="otp_subscriber_success_plz_enter_pin">OTP Verify Successfully Please enter subscriber PIN</string>
@@ -887,6 +889,8 @@
     <string name="sender_code_colon">Sender Code :</string>
     <string name="sender_currency_code">Sender Currency Code :</string>
     <string name="receiver_currency_code">Receiver Currency Code :</string>
+    <string name="receiver_currency">Receiver Currency * </string>
+    <string name="receiver_currency_new">Receiver Currency : </string>
 
 
     <string name="benefi_code_colon">Beneficiary Code :</string>

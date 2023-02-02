@@ -112,7 +112,6 @@ public class WalletTransactionDetails extends AppCompatActivity {
             System.out.println("get va"+commissionAmount);
 
 
-
             String walletTypeCode="100008";
            if((getIntent().getStringExtra("WALLETTYPECODE")!=null) ){
                  walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
@@ -128,7 +127,14 @@ public class WalletTransactionDetails extends AppCompatActivity {
             System.out.println("get walletcode"+MyApplication.checkWalletTypeCode);
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
+
+          /*  if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletTransactionDetails.this).equalsIgnoreCase(MyApplication.OutletCode)) {
+                txt_fee.setText(MyApplication.addDecimal("0.00"));
+
+            }*/
             txt_fee.setText(getString(R.string.fee_colon)+" " +MyApplication.addDecimal(""+fee));
+
+
             if(MyApplication.checkWalletTypeCode.equalsIgnoreCase("100009")){
                 txt_postbalance.setVisibility(View.GONE);
 

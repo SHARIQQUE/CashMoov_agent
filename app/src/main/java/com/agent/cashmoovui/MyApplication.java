@@ -40,6 +40,7 @@ import com.agent.cashmoovui.apiCalls.CommonData;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
+import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ConnectionQuality;
@@ -83,6 +84,8 @@ import okhttp3.Route;
 public class MyApplication extends Application {
 
     public static String currencySymbol;
+    public static boolean PasswordEncription = true;
+
     public static boolean AgentPage = false;
     public static boolean InstPage = false;
     public static boolean BranchPage = false;
@@ -1171,6 +1174,14 @@ public static String addDecimal(String number) {
         return test+" ";
     }
 
+   public static String getEncript(String dataencript) {
+       if (PasswordEncription) {
+           String encryptionDatanew = AESEncryption.getAESEncryption(dataencript);
+           return encryptionDatanew;
+
+       }
+       return dataencript;
+   }
 
 
 }

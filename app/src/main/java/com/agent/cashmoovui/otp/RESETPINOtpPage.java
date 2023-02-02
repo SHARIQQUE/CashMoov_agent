@@ -186,7 +186,7 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
             JSONObject loginJson=new JSONObject();
             
             loginJson.put("username",MyApplication.getSaveString("USERNAME", RESETPINOtpPage.this));
-            loginJson.put("password",otp);
+            loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             System.out.println("Login request"+loginJson.toString());

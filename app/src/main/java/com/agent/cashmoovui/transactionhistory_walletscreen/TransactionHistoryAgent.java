@@ -57,7 +57,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
     ArrayList<String> arrayList_walletTypeName = new ArrayList<String>();
     ArrayList<String> arrayList_wallet_value = new ArrayList<String>();
 
-    TextView close_receiptPage_textview, insitute_textview, insitute_branch, agent_textview, mainwallet_textview, overdraft_value_heding_textview, commision_wallet_textview, overdraft_wallet_textview, commisionwallet_value_textview;
+    TextView close_receiptPage_textview,agent_textviewdetail, insitute_textview, insitute_branch, agent_textview, mainwallet_textview, overdraft_value_heding_textview, commision_wallet_textview, overdraft_wallet_textview, commisionwallet_value_textview;
 
     Spinner spinner_currency;
 
@@ -110,9 +110,13 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
             main_wallet_value_textview = (TextView) findViewById(R.id.main_wallet_value_textview);
             commisionwallet_value_textview = (TextView) findViewById(R.id.commisionwallet_value_textview);
             overdraft_value_heding_textview = (TextView) findViewById(R.id.overdraft_value_heding_textview);
-
+            agent_textviewdetail=findViewById(R.id.agent_textviewdetail);
 
             edittext_search = (EditText) findViewById(R.id.edittext_search);
+
+            if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryAgent.this).equalsIgnoreCase(MyApplication.MerchatCode)) {
+                agent_textviewdetail.setText(getString(R.string.outlet_details));
+            }
             edittext_search.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

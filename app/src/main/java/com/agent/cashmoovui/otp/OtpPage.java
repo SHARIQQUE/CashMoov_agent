@@ -188,7 +188,7 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
             JSONObject loginJson=new JSONObject();
             
             loginJson.put("username",MyApplication.getSaveString("USERNAME",OtpPage.this));
-            loginJson.put("password",otp);
+            loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
             System.out.println("Login request"+loginJson.toString());
