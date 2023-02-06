@@ -71,7 +71,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
 
     private void getIds() {
         tvrate=findViewById(R.id.tvrate);
-        tvrate.setText(MyApplication.addDecimalthreenew(Outform.rate));
+        tvrate.setText(MyApplication.addDecimalfive(Outform.rate));
         pinLinear=findViewById(R.id.pinLinear);
         bearLay=findViewById(R.id.bearLay);
         bearLay.setVisibility(View.GONE);
@@ -103,7 +103,7 @@ public class OutFormConfirmation extends AppCompatActivity implements View.OnCli
         //  tvConfCode.setText(Outform.mobileNo);
         tvCurrency.setText(Outform.currency);
         tvTransAmount.setText(Outform.currencySymbol+" "+MyApplication.addDecimal(Outform.etAmount.getText().toString().replace(",","")));
-        tvAmountPaid.setText("XOF"+" "+Outform.currencyValue);
+        tvAmountPaid.setText(Outform.countrycode+" "+Outform.currencyValue);
 
         tvFee.setText(Outform.currencySymbol+" "+Outform.fee);
 

@@ -237,6 +237,7 @@
     <string name="maximumLimitCount">Global limit count</string>
     <string name="pay_month_limit_count">Month limit count :</string>
     <string name="pay_month_limit_amount">Month limit amount :</string>
+    <string name="amount_to_paid_intec">Amount to be Paid :</string>
 
 
 

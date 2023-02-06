@@ -231,6 +231,7 @@
     <string name="maximumLimitCount">Nombre de limites globales</string>
     <string name="pay_month_limit_count">Nombre limite de mois :</string>
     <string name="pay_month_limit_amount">Montant limite mensuel :</string>
+    <string name="amount_to_paid_intec">Montant à payer :</string>
 
     <string name="send">Envoyer</string>
     <string name="choose_operation">Choisir l\'operation</string>

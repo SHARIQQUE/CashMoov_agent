@@ -57,6 +57,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     public  static TextView spinner_destinaioncountry,tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
     AutoCompleteTextView etSubscriberNo;
+    private String mobilelength;
     public static EditText etFname,etLname,etAmount,etAmountN;
     TextView etName,etPhone;
     private boolean isQR;
@@ -71,7 +72,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<String> benefiCountryList = new ArrayList<>();
     public static ArrayList<CountryInfoModel.Country> benefiCountryModelList = new ArrayList<>();
     SpinnerDialog spinnerDialogCountry;
-    private String  countrycode;
+    public static String  countrycode;
     private LinearLayout xofAmountLinear;
     TextView tvAmtCurrN;
 
@@ -189,6 +190,9 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
         tvRate = findViewById(R.id.tvRate);
         xofAmountLinear=findViewById(R.id.xofAmountLinear);
         spinner_destinaioncountry=findViewById(R.id.spinner_destinaioncountry);
+
+        etSubscriberNo.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.mobileLengthinternational)});
 
          /*etSubscriberNo.setText("775389850");
           etFname.setText("Sandeep");
@@ -1032,7 +1036,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
+                                        tvRate.setText(MyApplication.addDecimalfive(rate));
                                         tvFee.setText(fee);
                                         // etAmountNew.setText(currencyValue);
                                         tvAmtPaid.setText(currencyValue);
@@ -1104,7 +1108,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
                                         //receiverFee= jsonObjectAmountDetails.optInt("receiverFee");
                                         //receiverTax = jsonObjectAmountDetails.optInt("receiverTax");
                                         //etAmountNew.setText(currencyValue);
-                                        tvRate.setText(MyApplication.addDecimalthreenew(rate));
+                                        tvRate.setText(MyApplication.addDecimalfive(rate));
                                         tvFee.setText(fee);
                                         etAmountN.setText(currencyValue);
                                         // tvAmtPaid.setText(currencyValue);
