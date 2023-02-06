@@ -61,6 +61,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
     RadioButton rb_wallet;
     public static AutoCompleteTextView et_destination_mobileNumber;
     public static EditText et_destination_firstName,et_destination_lastName,edittext_amount,edittext_amount_pay;
+    public static Double taxtest=0.00;
 
     private ArrayList<String> sendingCountryList = new ArrayList<>();
     private ArrayList<CountryInfoModel.Country> sendCountryModelList = new ArrayList<>();
@@ -162,7 +163,8 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
         et_destination_mobileNumber.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
-
+        edittext_amount.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(MyApplication.amountLength)});
         spinner_senderCurrency.setText("GNF");
         spinner_receiverCurrency.setText("GNF");
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
@@ -1040,7 +1042,6 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
 
     }
-    Double taxtest=0.00;
     private void callApiExchangeRate() {
         try {
 
@@ -1118,7 +1119,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                                             taxtest=taxConfigurationList.optJSONObject(0).optDouble("value");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
                                             // amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+Double.parseDouble(edittext_amount.getText().toString().trim()) + taxConfigurationList.optJSONObject(0).optDouble("value")));
-
+                                            System.out.println("get taxval"+taxtest);
                                         } else {
                                             taxConfigurationList = null;
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));

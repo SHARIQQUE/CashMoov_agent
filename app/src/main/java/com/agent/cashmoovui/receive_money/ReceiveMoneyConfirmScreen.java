@@ -187,9 +187,11 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
         }
         fees_amount_double = Double.parseDouble(ReceiveMoneyDetailScreen.fee);
         amountstr_double = Double.parseDouble(ReceiveMoneyDetailScreen.amount);
-        tax_financialnewDouble = Double.parseDouble(ReceiveMoneyDetailScreen.tax_first_page.getText().toString().replace(",",""));
+        tax_financialnewDouble = Double.parseDouble(String.valueOf(ReceiveMoneyDetailScreen.taxtest));
 
-        totalAmount_double = tax_financialnewDouble + amountstr_double + fees_amount_double;
+
+
+            totalAmount_double = tax_financialnewDouble + amountstr_double + fees_amount_double;
         totalAmount_str = String.valueOf(totalAmount_double);
 
         tvAmountCharged.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+MyApplication.addDecimal((totalAmount_str)));
