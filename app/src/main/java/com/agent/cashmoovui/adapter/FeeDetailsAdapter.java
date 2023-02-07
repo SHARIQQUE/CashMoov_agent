@@ -6,13 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.model.FeeDetailModel;
+import com.google.zxing.common.StringUtils;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class FeeDetailsAdapter extends RecyclerView.Adapter<FeeDetailsAdapter.ViewHolder>{
     private Context context;
@@ -39,8 +45,23 @@ public class FeeDetailsAdapter extends RecyclerView.Adapter<FeeDetailsAdapter.Vi
         df.setRoundingMode(RoundingMode.DOWN);
         FeeDetailModel feeDetailModel = feeDetailsList.get(position);
 
+
         holder.tvRange.setText(feeDetailModel.getRange());
-        holder.tvValue.setText(feeDetailModel.getValue());
+        if(feeDetailModel.getValue().contains("%")){
+            String string = feeDetailModel.getValue().substring(0, (feeDetailModel.getValue().length() - 1));
+
+            holder.tvValue.setText(((MyApplication.addDecimal(string)+"%")));
+
+        }else{
+            if(feeDetailModel.getValue().length()==0){
+                holder.tvValue.setText((feeDetailModel.getValue()));
+
+            }else{
+                holder.tvValue.setText(MyApplication.addDecimal(feeDetailModel.getValue()));
+
+            }
+
+        }
 
     }
 

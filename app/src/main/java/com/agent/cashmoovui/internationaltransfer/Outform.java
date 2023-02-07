@@ -46,6 +46,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
@@ -263,7 +264,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-               /* Matcher m = p.matcher(s);
+                Matcher m = p.matcher(s);
                 if(s.length()>=9 && m.matches()){
                     if(isSet) {
                         isSet=false;
@@ -276,7 +277,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
                 }else{
                     etFname.getText().clear();
                     etLname.getText().clear();
-                }*/
+                }
             }
         });
         callApiWalletCountryCurrencyJSOn();

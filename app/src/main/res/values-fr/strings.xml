@@ -983,6 +983,7 @@
     <string name="feetaxvalidation"><![CDATA[Le montant des frais et taxes est supérieur au montant de la transaction]]></string>
     <string name="loggedinweb">Connecté sur le WEB...</string>
     <string name="outletWorkinprogress">Ouverture de session en cours</string>
+    <string name="Percentage">Pourcentage</string>
 
 </resources>
 

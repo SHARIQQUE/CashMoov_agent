@@ -158,13 +158,13 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.linCashOut:
-                if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
+               /* if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
-                }else{
+                }else{*/
                     intent = new Intent(servicechargeC, CashOutFeeActivity.class);
                     startActivity(intent);
                     //showCashOutPopup(getString(R.string.cash_Out));
-                }
+               // }
                 break;
 
         }

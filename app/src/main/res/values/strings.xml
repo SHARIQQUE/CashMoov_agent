@@ -999,6 +999,7 @@
     <string name="feetaxvalidation"><![CDATA[Fee & tax amount is greater than transaction amount]]></string>
     <string name="loggedinweb">Connecté sur le WEB...</string>
     <string name="outletWorkinprogress">Outlet Loggin Work in Progress</string>
+    <string name="Percentage">Percentage</string>
 
 
 </resources>

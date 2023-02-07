@@ -182,18 +182,22 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
                                             for (int i=0;i<feeTemplateList.length();i++){
                                                 JSONObject feeObj=feeTemplateList.optJSONObject(i);
                                                 if(feeObj.has("calculationTypeName")) {
-                                                    Intent in = new Intent(airtimefeeC, ServiceChargeDetails.class);
+                                                   /* Intent in = new Intent(airtimefeeC, ServiceChargeDetails.class);
                                                     in.putExtra("FEEINTENT","Airtime Purchase");
                                                     //in.putExtra("OPERATORCODE",operatorCode);
-                                                    startActivity(in);
+                                                    startActivity(in);*/
                                                 }else{
                                                     MyApplication.showToast(airtimefeeC,getString(R.string.range_value_not_available));
                                                 }
 
                                             }
+                                            Intent in = new Intent(airtimefeeC, ServiceChargeDetails.class);
+                                            in.putExtra("FEEINTENT","Airtime Purchase");
+                                            //in.putExtra("OPERATORCODE",operatorCode);
+                                            startActivity(in);
 
-
-                                        }else{
+                                        }
+                                        else{
                                             MyApplication.showToast(airtimefeeC,getString(R.string.range_value_not_available));
                                         }
                                     }

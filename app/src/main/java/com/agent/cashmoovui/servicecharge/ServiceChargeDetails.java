@@ -62,7 +62,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             tvName.setText(checkIntent);
         }
 
-        if(checkIntent.equalsIgnoreCase("Send Remittance")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.send_remittance))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -74,7 +74,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100001")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),
@@ -98,7 +98,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Receive Remittance")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.receive_remittance))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -110,7 +110,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100018")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),
@@ -134,7 +134,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Cash to Wallet")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.cash_to_wallet))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -146,7 +146,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100061")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),
@@ -181,17 +181,17 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                        if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                             feeDetailModelArrayList.add(new FeeDetailModel(
-                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                            callf(childData.optDouble("minValue")) + "  -  " +
+                                            callf(childData.optDouble("maxValue")) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
                                     childData.optString("percentFeeValue")
                             ));
                         } else {
                             feeDetailModelArrayList.add(new FeeDetailModel(
-                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                    callf(childData.optDouble("minValue")) + "  -  " +
+                                            callf(childData.optDouble("maxValue")) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
                                     childData.optString("fixedFeeValue")
                             ));
@@ -218,7 +218,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                        if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                             feeDetailModelArrayList.add(new FeeDetailModel(
                                     String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
                                             String.format("%.2f", childData.optDouble("maxValue")) +
@@ -256,7 +256,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100016")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),
@@ -292,7 +292,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100017")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),
@@ -328,7 +328,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100011")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),
@@ -364,7 +364,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100012")){
-                            if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
                                         callf(childData.optDouble("minValue"))+"  -  "+
                                                 callf(childData.optDouble("maxValue")),

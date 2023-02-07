@@ -79,6 +79,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
     private TextView paymonthcountText,paymonthlimitAccountText;
     private long mLastClickTime = 0;
+    private String mNumber;
 
 
     @Override
@@ -167,6 +168,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     protected void onRestart() {
         super.onRestart();
         MyApplication.hideKeyboard(profileC);
+        number.setText(mNumber);
+
         bottomBar.setItemActiveIndex(2);
         bottomBar.setBarIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",profileC)!=0){
@@ -180,6 +183,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
+        number.setText(mNumber);
+
         MyApplication.hideKeyboard(this);
     }
     @Override
@@ -415,7 +420,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     //name.setText(jsonObject.optJSONObject("walletOwner").optString("ownerName","N/A"));
                     etAddress.setText(jsonObject.optJSONObject("walletOwner").optString("registerCountryName","N/A"));
                     number.setText(jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A"));
-
+                    mNumber=jsonObject.optJSONObject("walletOwner").optString("mobileNumber","N/A");
 
 
                     walletownercode = jsonObject.optJSONObject("walletOwner").optString("walletOwnerCategoryCode");

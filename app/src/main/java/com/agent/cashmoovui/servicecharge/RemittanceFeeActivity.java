@@ -81,17 +81,17 @@ public class RemittanceFeeActivity extends AppCompatActivity implements View.OnC
         switch(v.getId()){
             case R.id.cardSendRemit:
                 intent = new Intent(remittancefeeC, ServiceChargeDetails.class);
-                intent.putExtra("FEEINTENT","Send Remittance");
+                intent.putExtra("FEEINTENT",getString(R.string.send_remittance));
                 startActivity(intent);
                 break;
             case R.id.cardReceiveRemit:
                 intent = new Intent(remittancefeeC, ServiceChargeDetails.class);
-                intent.putExtra("FEEINTENT","Receive Remittance");
+                intent.putExtra("FEEINTENT",getString(R.string.receive_remittance));
                 startActivity(intent);
                 break;
             case R.id.cardCashToWallet:
                 intent = new Intent(remittancefeeC, ServiceChargeDetails.class);
-                intent.putExtra("FEEINTENT","Cash to Wallet");
+                intent.putExtra("FEEINTENT",getString(R.string.cash_to_wallet));
                 startActivity(intent);
                 break;
             case R.id.btnClose:
