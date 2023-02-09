@@ -54,7 +54,7 @@ public class FeeDetailsAdapter extends RecyclerView.Adapter<FeeDetailsAdapter.Vi
 
         }else{
             if(feeDetailModel.getValue().length()==0){
-                holder.tvValue.setText((feeDetailModel.getValue()));
+                //holder.tvValue.setText((feeDetailModel.getValue()));
 
             }else{
                 holder.tvValue.setText(MyApplication.addDecimal(feeDetailModel.getValue()));

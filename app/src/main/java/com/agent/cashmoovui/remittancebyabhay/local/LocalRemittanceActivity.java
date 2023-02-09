@@ -860,6 +860,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 //                                        tvSend.setVisibility(View.VISIBLE);
 //                                    }
 
+
                                         if (jsonObjectAmountDetails.has("taxConfigurationList")) {
                                             taxConfigurationList = jsonObjectAmountDetails.optJSONArray("taxConfigurationList");
                                             tax_first_page.setText(MyApplication.addDecimal(""+taxConfigurationList.optJSONObject(0).optDouble("value")));
@@ -869,10 +870,12 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                                             jsonObjectAmountDetails.optDouble("fee"))));
 
                                         } else {
+                                            Double doubletotal=Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))+
+                                                    Double.parseDouble(fee);
                                             taxConfigurationList = null;
+
                                             tax_first_page.setText(MyApplication.addDecimal("0.00"));
-                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+
-                                                    Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))));
+                                            amountTobeCharged_first_page.setText(MyApplication.addDecimal(""+doubletotal));
 
                                         }
                                         if(jsonObjectAmountDetails.has("receiverTax")) {

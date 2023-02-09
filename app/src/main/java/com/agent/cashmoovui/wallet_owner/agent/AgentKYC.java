@@ -905,6 +905,7 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spCity.setText(item);
                                             spCity.setTag(position);
+                                            etAddress.requestFocus();
                                         }
                                     });
 
@@ -1090,6 +1091,7 @@ ArrayList<String>walletCurrencyList;
                                             spIdProof.setText(item);
                                             spIdProof.setTag(position);
                                             idProofTypeCode = idProofTypeModelList.get(position).getCode();
+                                            etProofNo.requestFocus();
                                         }
                                     });
 

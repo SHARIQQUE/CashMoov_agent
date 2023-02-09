@@ -934,7 +934,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                                                        // tvFeeBillPayment.setText(getString(R.string.fee_colon)+" "+feeData.optJSONArray("child").optJSONObject(0).optString("fixedFeeValue")+" "+getString(R.string.gnf_transaction));
                                                     }
                                                 }
-                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100017")){
+                                                if(feeData.optString("serviceCode").equalsIgnoreCase("100000")){
                                                     if(feeData.optJSONArray("child").optJSONObject(0).optString("calculationTypeCode").equalsIgnoreCase("100002")){
                                                         tvFeeMoneyTransfer.setText(getString(R.string.paid_service));
                                                        // tvFeeMoneyTransfer.setText(feeData.optJSONArray("child").optJSONObject(0).optString("percentFeeValue")+" "+getString(R.string.on_the_transaction));

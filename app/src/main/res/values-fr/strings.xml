@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 06-02-2023 </string>
+    <string name="version">Version : 08-02-2023 </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -169,8 +169,8 @@
     <string name="repeat_pin">Répéter PIN Ex:1234</string>
     <string name="attach_your_id">Attachez votre piece d\'identité</string>
     <string name="attach_id_message">Avec votre appareil prenez une photo de votre pièce d\'identité.</string>
-    <string name="front">Ex: Recto</string>
-    <string name="ex_verso">Ex: Verso</string>
+    <string name="front">Ex: Recto*</string>
+    <string name="ex_verso">Ex: Verso*</string>
     <string name="id_proof_no">Numero de piece</string>
     <string name="verification">Vérification</string>
     <string name="verification_message">Entrez le code OTP à 4 chiffres que nous avons envoyé au +224 621 123 123.</string>

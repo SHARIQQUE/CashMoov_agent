@@ -181,12 +181,12 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                     for (int j = 0; j < ChildListArr.length(); j++) {
                         JSONObject childData = ChildListArr.optJSONObject(j);
 
-                        if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
+                        if (childData.optString("calculationTypeCode").equalsIgnoreCase("100002")) {
                             feeDetailModelArrayList.add(new FeeDetailModel(
                                             callf(childData.optDouble("minValue")) + "  -  " +
                                             callf(childData.optDouble("maxValue")) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
-                                    childData.optString("percentFeeValue")
+                                    childData.optString("percentFeeValue")+"%"
                             ));
                         } else {
                             feeDetailModelArrayList.add(new FeeDetailModel(
@@ -223,7 +223,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                                     String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
                                             String.format("%.2f", childData.optDouble("maxValue")) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
-                                    childData.optString("percentFeeValue")
+                                    childData.optString("percentFeeValue")+"%"
                             ));
                         } else {
                             feeDetailModelArrayList.add(new FeeDetailModel(

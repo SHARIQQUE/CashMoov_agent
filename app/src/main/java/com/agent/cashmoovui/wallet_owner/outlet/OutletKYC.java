@@ -78,6 +78,7 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
     LinearLayout agentTypeLay;
 
     MyApplication applicationComponentClass;
+    private EditText etbusiness;
     String languageToUse = "";
     public static final int REQUEST_CODE = 1;
     private boolean isFormatting;
@@ -128,7 +129,7 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
     private void getIds() {
 
         mDobText = findViewById(R.id.dobText);
-
+        etbusiness=findViewById(R.id.etbusiness);
         spAccType = findViewById(R.id.spAccType);
         spBusinessType = findViewById(R.id.spBusinessType);
         spCountry = findViewById(R.id.spCountry);
@@ -918,6 +919,7 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spBusinessType.setText(item);
                                             spBusinessType.setTag(position);
+                                            etbusiness.requestFocus();
 
                                         }
                                     });
@@ -1139,6 +1141,7 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spCity.setText(item);
                                             spCity.setTag(position);
+                                            etAddress.requestFocus();
                                         }
                                     });
 
@@ -1433,6 +1436,7 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                                             spIdProof.setText(item);
                                             spIdProof.setTag(position);
                                             idProofTypeCode = idProofTypeModelList.get(position).getCode();
+                                            etProofNo.requestFocus();
                                         }
                                     });
 

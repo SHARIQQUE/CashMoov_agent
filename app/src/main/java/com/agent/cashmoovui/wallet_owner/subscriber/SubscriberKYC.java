@@ -583,6 +583,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spCity.setText(item);
                                             spCity.setTag(position);
+                                            etAddress.requestFocus();
                                         }
                                     });
 
@@ -705,6 +706,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                                             spIdProof.setText(item);
                                             spIdProof.setTag(position);
                                             idProofTypeCode = idProofTypeModelList.get(position).getCode();
+                                            etProofNo.requestFocus();
                                         }
                                     });
 

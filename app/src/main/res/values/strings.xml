@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 06-02-2023 </string>
+    <string name="version">Version : 08-02-2023 </string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -174,8 +174,8 @@
     <string name="repeat_pin">Repeat PIN Ex: 1234</string>
     <string name="attach_your_id">Attach your ID</string>
     <string name="attach_id_message">Take a photo of your ID with your camera.</string>
-    <string name="front">Ex: Front</string>
-    <string name="ex_verso">Ex: Back</string>
+    <string name="front">Ex: Front*</string>
+    <string name="ex_verso">Ex: Back*</string>
     <string name="id_proof_no">Id Proof Number</string>
     <string name="verification">Verification</string>
     <string name="verification_message">Enter the 4-digit OTP code we sent to +224 621 123 123.</string>

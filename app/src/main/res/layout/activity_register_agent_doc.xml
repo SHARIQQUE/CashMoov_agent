@@ -115,7 +115,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_edittextname"
                         android:backgroundTint="@color/bgColorHint"
-                        android:hint="@string/front"
+                        android:hint="@string/valid_front"
                         android:inputType="text"
                         android:lineSpacingExtra="10sp"
                         android:paddingLeft="@dimen/_15sdp"

@@ -1278,6 +1278,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                         ll_page_1.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
+                        et_mpin.setText("");
 
                         MyApplication.hideLoader();
 

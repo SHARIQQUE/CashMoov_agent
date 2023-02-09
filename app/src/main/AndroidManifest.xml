@@ -555,6 +555,12 @@ x
                 android:theme="@style/AppThemeNew"/>
 
 
+        <activity android:name=".wallet_owner.agent.AgentSignature"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"/>
+
+
 
             <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
