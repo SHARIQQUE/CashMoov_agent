@@ -140,14 +140,12 @@ public class SubscriberKYCAttached extends AppCompatActivity implements View.OnC
 //                }
 
                 if(!isFrontUpload){
-                    MyApplication.showTipError(this,getString(R.string.uploadimage),btnFrontUpload);
-                    MyApplication.hideKeyboard(subscriberkycattachedC);
+                    MyApplication.showErrorToast(this,getString(R.string.uploadimage));
                     return;
                 }
 
                 if(!isBackUpload){
-                    MyApplication.showTipError(this,getString(R.string.uploadbackimage),btnBackUpload);
-                    MyApplication.hideKeyboard(subscriberkycattachedC);
+                    MyApplication.showErrorToast(this,getString(R.string.uploadbackimage));
                     return;
                 }
 

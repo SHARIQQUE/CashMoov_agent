@@ -23,6 +23,7 @@ import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.CountryRemittanceInfoModel;
 import com.agent.cashmoovui.model.ServiceProviderModel;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceSenderKYC;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 
@@ -64,6 +65,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
     private SpinnerDialog spinnerDialogSerProvider,spinnerDialogSendingCountry,spinnerDialogSendingCurr,
             spinnerDialogRecCountry,spinnerDialogRecCurr;
 
+    private String nextbtn="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +183,11 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                convertionRate_first_page.setText("");
+                edittext_amount_pay.setText("");
+                fees_first_page.setText("");
+                tax_first_page.setText("");
+                amountTobeCharged_first_page.setText("");
             }
 
             @Override
@@ -199,7 +205,9 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 
                     if (s.length()>1) {
                         formatInput(edittext_amount, s, s.length(), s.length());
-                        callApiExchangeRate();
+                        // callApiExchangeRate();
+                        tvNext.setText(getString(R.string.Calculate));
+                        nextbtn="calculation";
 
                     } else {
                         convertionRate_first_page.setText("");
@@ -276,9 +284,19 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
 
 
         }
+        MyApplication.showloader(localC,getString(R.string.pleasewait));
+        callApiExchangeRate();
 
-        Intent i = new Intent(localC, CashtoWalletSenderKYC.class);
-        startActivity(i);
+        if(nextbtn.equalsIgnoreCase("next")){
+            Intent i = new Intent(localC, CashtoWalletSenderKYC.class);
+            startActivity(i);
+        }else if(nextbtn.equalsIgnoreCase("calculation")){
+            callApiExchangeRate();
+        }
+
+
+      /*  Intent i = new Intent(localC, CashtoWalletSenderKYC.class);
+        startActivity(i);*/
     }
 
     private void callApiserviceProvider() {
@@ -415,7 +433,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                             //Toast.makeText(MainActivity.this, item + "  " + position+"", Toast.LENGTH_SHORT).show();
                                             spinner_senderCountry.setText(item);
                                             spinner_senderCountry.setTag(position);
-                                           // spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
+                                            // spinner_senderCurrency.setText(getString(R.string.sending_currencey_star));
                                             sendigncurrecncyText.setVisibility(View.VISIBLE);
                                             //   txt_benefi_phone.setText(benefiCountryModelList.get(position).dialCode);
 
@@ -1021,7 +1039,7 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                            MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1040,7 +1058,9 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
                                         fees_first_page.setText(MyApplication.addDecimal(fee));
                                         edittext_amount_pay.setText(MyApplication.addDecimal(currencyValue));
                                         amount = edittext_amount.getText().toString().trim().replace(",","");
+                                        tvNext.setText(getString(R.string.next));
 
+                                        nextbtn="next";
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){

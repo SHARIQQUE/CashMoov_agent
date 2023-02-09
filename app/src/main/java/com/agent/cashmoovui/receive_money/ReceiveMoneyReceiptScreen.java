@@ -109,7 +109,7 @@ public class ReceiveMoneyReceiptScreen extends AppCompatActivity implements View
         tvReceivercurrency.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencySymbol"));
         tvSendCurrencycode.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("srcCurrencyCode"));
         tvReceiverCurrencyCode.setText(ReceiveMoneyConfirmScreen.receiptJson.optJSONObject("walletTransfer").optString("desCurrencyCode"));
-        tvAmount.setText(ReceiveMoneyConfirmScreen.tvAmountCharged.getText().toString());
+        tvAmount.setText(ReceiveMoneyConfirmScreen.tvTransAmounts.getText().toString());
         tvAmounttobpaid.setText(ReceiveMoneyConfirmScreen.tvAmountPaid.getText().toString());
         tvTransAmount.setText(ReceiveMoneyConfirmScreen.tvTransAmounts.getText().toString());
         tvFee.setText(ReceiveMoneyConfirmScreen.tvFee.getText().toString());

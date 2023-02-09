@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -33,6 +34,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -1812,6 +1814,8 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
+            System.out.println("get json selffloat"+jsonObject.toString());
+
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA=null;
             try{
@@ -1905,6 +1909,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -2089,63 +2094,69 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+        try {
+            if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+
+                if(arrayList_instititueCode.size()==0 && arrayList_instititueCode!=null){
+                    MyApplication.showToast(this,getString(R.string.please_check_internet));
+                    return;
+                }
+
+                String requiredValue = data.getStringExtra("PHONE");
+
+                MyApplication.contactValidation(requiredValue, mEnterinstituteEdittext);
+
+                int position = arrayList_instititueCode.indexOf(requiredValue);
+
+                if (position == -1) {
+                    System.out.println("get position" + position);
+
+                    Toast.makeText(SellFloat.this, "Institute not found!", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    setSelction(position);
+                }
 
 
-            String requiredValue = data.getStringExtra("PHONE");
-
-            MyApplication.contactValidation(requiredValue,mEnterinstituteEdittext);
-
-            int position = arrayList_instititueCode.indexOf(requiredValue);
-
-            if (position == -1) {
-                System.out.println("get position"+position);
-
-                Toast.makeText(SellFloat.this, "Institute not found!", Toast.LENGTH_SHORT).show();
-
-            } else {
-                setSelction(position);
             }
-
-
-
-        }
-        if (resultCode != Activity.RESULT_OK) {
-            Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
-            if (data == null)
-                   return;
-            //Getting the passed result
-            String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
-            if (result != null) {
-                androidx.appcompat.app.AlertDialog alertDialog = new androidx.appcompat.app.AlertDialog.Builder(SellFloat.this).create();
-                alertDialog.setTitle(getString(R.string.scan_error));
-                alertDialog.setMessage(getString(R.string.val_scan_error_content));
-                alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
-            return;
-
-        }
-
-
-        if (requestCode == REQUEST_CODE_QR_SCAN) {
-
-            if (data == null)
+            if (resultCode != Activity.RESULT_OK) {
+                Log.d("LOGTAG", "COULD NOT GET A GOOD RESULT.");
+                if (data == null)
+                    return;
+                //Getting the passed result
+                String result = data.getStringExtra("com.blikoon.qrcodescanner.error_decoding_image");
+                if (result != null) {
+                    androidx.appcompat.app.AlertDialog alertDialog = new androidx.appcompat.app.AlertDialog.Builder(SellFloat.this).create();
+                    alertDialog.setTitle(getString(R.string.scan_error));
+                    alertDialog.setMessage(getString(R.string.val_scan_error_content));
+                    alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
                 return;
-            //Getting the passed result
-            String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
-            Log.d("LOGTAG", "Have scan result in your app activity :" + result);
 
-            String[] date=result.split(":");
-
-            callwalletOwnerDetailsQR(date[0]);
+            }
 
 
+            if (requestCode == REQUEST_CODE_QR_SCAN) {
+
+                if (data == null)
+                    return;
+                //Getting the passed result
+                String result = data.getStringExtra("com.blikoon.qrcodescanner.got_qr_scan_relult");
+                Log.d("LOGTAG", "Have scan result in your app activity :" + result);
+
+                String[] date = result.split(":");
+
+                callwalletOwnerDetailsQR(date[0]);
+
+
+            }
+        }catch (Exception e){
 
         }
     }
@@ -2716,3 +2727,4 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     }
 
 }
+

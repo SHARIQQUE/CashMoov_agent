@@ -702,7 +702,9 @@
     <string name="val_select_region">Veuillez sélectionner la région</string>
     <string name="other_documents">Autre documents</string>
     <string name="ex_doc">Ex: doc</string>
-    <string name="branch">Agence</string>
+    <string name="branch">Branche</string>
+    <string name="branchonboarding">Branche</string>
+
     <string name="valid_branch_name">Nom de la filiale *</string>
     <string name="val_branch_name">Veuillez entrer le nom de l\'agence</string>
     <string name="val_branch_name_len">Le nom de l\'agence doit comporter au moins 3 caractères</string>
@@ -766,7 +768,7 @@
     <string name="agentName_colon">Nom d\'agent :</string>
     <string name="agent_mobileNumber">Agent mobile non</string>
     <string name="agent_details">Détails de l\'agent</string>
-    <string name="branch_details">Bronc Détails</string>
+    <string name="branch_details">Branche Détails</string>
 
 
     <string name="SendingAgentName">Nom de l\'agent expéditeur:</string>
@@ -984,6 +986,7 @@
     <string name="loggedinweb">Connecté sur le WEB...</string>
     <string name="outletWorkinprogress">Ouverture de session en cours</string>
     <string name="Percentage">Pourcentage</string>
+    <string name="hierachynotfound">Hiérachy introuvable</string>
 
 </resources>
 

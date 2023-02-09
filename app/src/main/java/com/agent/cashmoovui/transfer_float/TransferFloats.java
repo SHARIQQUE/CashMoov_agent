@@ -43,6 +43,7 @@ import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
+import com.agent.cashmoovui.model.HierachyModel;
 import com.agent.cashmoovui.otp.VerifyLoginAccountScreen;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
@@ -77,7 +78,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     LinearLayout linearcurrecy;
 
 
-    String receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="",countryCode_agent="";
+    String loginuserMobileno="",receiver_name_str="",receiver_emailId_str="",receiver_country_str="",sender_emailId_str="",sender_country_str="",countryCode_agent="";
 
     boolean  isPasswordVisible;
 
@@ -124,6 +125,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
     ArrayList<String> arrayList_currecnyCode = new ArrayList<String>();
     ArrayList<String> arrayList_currencySymbol = new ArrayList<String>();
     ArrayList<String> arrayList_desWalletOwnerCode = new ArrayList<String>();
+    ArrayList<HierachyModel> arrayList_hierachy = new ArrayList<HierachyModel>();
 
     String selectCurrecnyName="";
     String selectCurrecnyCode="";
@@ -227,9 +229,34 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         return;
                     }
 
+                    boolean isexists=false;
                     if (s.length() ==Integer.parseInt(mobilelength)) {
-                        api_walletOwner_msisdnNew();
+                      //  api_walletOwner_msisdnNew();
+
+                        if(arrayList_hierachy.size()>0){
+                            for(int i=0; i<arrayList_hierachy.size(); i++){
+                                if(edittext_mobileNo.getText().toString().equalsIgnoreCase(arrayList_hierachy.get(i).mobileNumber)){
+                                    receiver_name_str = arrayList_hierachy.get(i).ownerName;
+                                    etName.setText(receiver_name_str);
+                                    isexists=true;
+
+
+                                        receiver_emailId_str = arrayList_hierachy.get(i).email;
+
+
+                                    receiver_country_str = arrayList_hierachy.get(i).registerCountryName;
+
+                                    walletOwnerCode_source = arrayList_hierachy.get(i).code;
+
+                                }
+                            }
+                        }
+                        if(!isexists){
+                            MyApplication.showToast(TransferFloats.this,getString(R.string.hierachynotfound));
+
+                        }
                         edittext_amount.requestFocus();
+
 
 
                     }
@@ -528,7 +555,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -543,6 +569,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         String walletOwnerCategoryCodeTemp="";
                         String ownerNameTemp="";
+
 
                         JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
 
@@ -559,6 +586,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }else{
                             sender_emailId_str = "N/A";
                         }
+
+                        if(jsonObject_walletOwner.has("mobileNumber")){
+                            loginuserMobileno = jsonObject_walletOwner.getString("mobileNumber");
+                        }else{
+                            loginuserMobileno = "N/A";
+                        }
+
+
+
                         if(jsonObject_walletOwner.has("registerCountryName")){
                             sender_country_str = jsonObject_walletOwner.getString("registerCountryName");
                         }else{
@@ -574,8 +610,123 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                         rp_tv_country.setText(sender_country_str);
                         rp_tv_email.setText(sender_emailId_str);
+                      api_walletOwnerhierarchy();
 
 
+                    } else {
+                        Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
+                        MyApplication.hideLoader();
+
+                    }
+
+
+                } catch (Exception e) {
+                    Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    MyApplication.hideLoader();
+
+                }
+
+            }
+
+
+            @Override
+            public void failure(String aFalse) {
+
+                MyApplication.hideLoader();
+                Toast.makeText(TransferFloats.this, aFalse, Toast.LENGTH_SHORT).show();
+                finish();
+
+
+            }
+        });
+
+
+    }
+
+    private void api_walletOwnerhierarchy() {
+
+
+
+
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/allhierachy/"+loginuserMobileno,languageToUse,new Api_Responce_Handler() {
+            @Override
+            public void success(JSONObject jsonObject) {
+
+
+
+                MyApplication.hideLoader();
+
+                try {
+
+
+                    //    JSONObject jsonObject1 = new JSONObject("{\"transactionId\":\"1927802\",\"requestTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"responseTime\":\"Tue Nov 02 13:03:30 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"walletOwner\":{\"id\":110679,\"code\":\"1000002785\",\"walletOwnerCategoryCode\":\"100000\",\"ownerName\":\"sharique agent\",\"mobileNumber\":\"9990063618\",\"businessTypeCode\":\"100008\",\"businessTypeName\":\"Goldsmith\",\"lineOfBusiness\":\"gffg\",\"idProofNumber\":\"trt465656\",\"email\":\"sharique9718@gmail.com\",\"status\":\"Active\",\"state\":\"Approved\",\"stage\":\"Document\",\"idProofTypeCode\":\"100005\",\"idProofTypeName\":\"COMPANY REGISTRATION NUMBER\",\"idExpiryDate\":\"2021-10-22\",\"notificationLanguage\":\"en\",\"notificationTypeCode\":\"100000\",\"notificationName\":\"EMAIL\",\"issuingCountryCode\":\"100102\",\"issuingCountryName\":\"India\",\"registerCountryCode\":\"100102\",\"registerCountryName\":\"India\",\"createdBy\":\"100250\",\"modifiedBy\":\"100308\",\"creationDate\":\"2021-10-19T22:38:48.969+0530\",\"modificationDate\":\"2021-11-01T13:49:14.892+0530\",\"walletExists\":true,\"profileTypeCode\":\"100000\",\"profileTypeName\":\"tier1\",\"walletCurrencyList\":[\"100018\",\"100017\",\"100069\",\"100020\",\"100004\",\"100029\",\"100062\",\"100003\"],\"walletOwnerCatName\":\"Institute\",\"requestedSource\":\"ADMIN\",\"regesterCountryDialCode\":\"+91\",\"issuingCountryDialCode\":\"+91\",\"walletOwnerCode\":\"1000002785\"}}");
+                    arrayList_hierachy.clear();
+
+                    String resultCode = jsonObject.getString("resultCode");
+                    String resultDescription = jsonObject.getString("resultDescription");
+
+                    if (resultCode.equalsIgnoreCase("0")) {
+
+                        JSONObject jsonObject_walletOwner = jsonObject.getJSONObject("walletOwner");
+                        JSONArray walletOwnerChildList=jsonObject_walletOwner.getJSONArray("walletOwnerChildList");
+
+
+
+                            if(walletOwnerChildList.length()>0){
+                            for(int i=0; i<walletOwnerChildList.length(); i++){
+                                JSONObject data=walletOwnerChildList.optJSONObject(i);
+                                arrayList_hierachy.add(new HierachyModel(
+                                        data.optString("id"),
+                                        data.optString("code"),
+                                        data.optString("walletOwnerCategoryCode"),
+                                        data.optString("ownerName"),
+                                        data.optString("mobileNumber"),
+                                        data.optString("businessTypeCode"),
+                                        data.optString("businessTypeName"),
+                                        data.optString("lineOfBusiness"),
+                                        data.optString("idProofNumber"),
+                                        data.optString("email"),
+                                        data.optString("status"),
+                                        data.optString("state"),
+                                        data.optString("stage"),
+                                        data.optString("idProofTypeCode"),
+                                        data.optString("idProofTypeName"),
+                                        data.optString("notificationLanguage"),
+                                        data.optString("notificationTypeCode"),
+                                        data.optString("notificationName"),
+                                        data.optString("gender"),
+                                        data.optString("dateOfBirth"),
+                                        data.optString("issuingCountryCode"),
+                                        data.optString("issuingCountryName"),
+                                        data.optString("registerCountryCode"),
+                                        data.optString("registerCountryName"),
+                                        data.optString("createdBy"),
+                                        data.optString("modifiedBy"),
+                                        data.optString("creationDate"),
+                                        data.optString("modificationDate"),
+                                        data.optString("walletExists"),
+                                        data.optString("modificationDate"),
+                                        data.optString("profileTypeCode"),
+                                        data.optString("profileTypeName"),
+                                        data.optString("walletOwnerCatName"),
+                                        data.optString("requestedSource"),
+                                        data.optString("regesterCountryDialCode"),
+                                        data.optString("walletOwnerCode"),
+                                        data.optString("hasChild"),
+                                        data.optString("loginWithOtpRequired"),
+                                        data.optString("timeZone")
+
+
+                                ));
+
+                            }
+
+                        }else{
+                            MyApplication.showToast(TransferFloats.this,getString(R.string.hierachynotfound));
+
+
+                        }
 
                     } else {
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
@@ -602,7 +753,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
     }
-
 
     private void api_walletOwner_msisdnNew() {
 
@@ -827,6 +977,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
     private void api_currency() {
+        MyApplication.showloader(TransferFloats.this,getString(R.string.pleasewait));
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE", TransferFloats.this);
 
@@ -835,7 +986,6 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -915,6 +1065,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                     else {
                         Toast.makeText(TransferFloats.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
+                        MyApplication.hideLoader();
                     }
 
 
@@ -923,6 +1074,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 {
                     Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    MyApplication.hideLoader();
+
                 }
 
             }
@@ -1173,12 +1326,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         rp_tv_amount_to_be_charge.setText(currencySymbol_receiver+" " +MyApplication.addDecimal(totalAmount_str));
                         rp_tv_comment.setText(et_fp_reason_sending.getText().toString());
 
+                        MyApplication.hideLoader();
 
                         ll_page_1.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
                         ll_successPage.setVisibility(View.GONE);
-                        MyApplication.hideLoader();
                         et_mpin.setText("");
 
 
@@ -1293,13 +1446,13 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         totalAmount_str = String.valueOf(totalAmount_double);
                         rp_tv_amount_to_be_charge.setText(currencySymbol+" " +MyApplication.addDecimal(totalAmount_str));
                         rp_tv_comment.setText(et_fp_reason_sending.getText().toString());
-
+                        MyApplication.hideLoader();
 
                         ll_page_1.setVisibility(View.GONE);
                         ll_reviewPage.setVisibility(View.VISIBLE);
                         ll_receiptPage.setVisibility(View.GONE);
                         ll_successPage.setVisibility(View.GONE);
-                        MyApplication.hideLoader();
+
                         et_mpin.setText("");
 
 
@@ -1341,7 +1494,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
     private void api_serviceProvider() {
 
-
+      // MyApplication.showloader(TransferFloats.this,getString(R.string.pleasewait));
         String serviceCategoryCode_hardcode="100017";   // 100017 is hard code according to praveen 19 Nov
 
         String serviceCode_LoginApi = MyApplication.getSaveString("serviceCode_LoginApi", TransferFloats.this);
@@ -1809,7 +1962,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
 
-                            api_walletOwner_msisdn();
+                           // api_walletOwner_msisdn();
+                            api_serviceProvider();
 
 
 
@@ -1827,7 +1981,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
 
 
-                            api_walletOwner_msisdn();
+                          //  api_walletOwner_msisdn();
+                            api_serviceProvider();
 
 
 

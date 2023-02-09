@@ -730,6 +730,8 @@
     <string name="other_documents">Other documents</string>
     <string name="ex_doc">Ex: doc</string>
     <string name="branch">Branch</string>
+    <string name="branchonboarding">Branch</string>
+
     <string name="valid_branch_name">Branch Name*</string>
     <string name="val_branch_name">Please enter branch name</string>
     <string name="val_branch_name_len">Branch Name must be at least 3 characters long</string>
@@ -1000,6 +1002,7 @@
     <string name="loggedinweb">Connecté sur le WEB...</string>
     <string name="outletWorkinprogress">Outlet Loggin Work in Progress</string>
     <string name="Percentage">Percentage</string>
+    <string name="hierachynotfound">Hierachy not found</string>
 
 
 </resources>

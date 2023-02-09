@@ -194,7 +194,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
             totalAmount_double = tax_financialnewDouble + amountstr_double + fees_amount_double;
         totalAmount_str = String.valueOf(totalAmount_double);
 
-        tvAmountCharged.setText(ReceiveMoneyDetailScreen.toCurrencySymbol+" "+MyApplication.addDecimal((totalAmount_str)));
+        tvAmountCharged.setText(ReceiveMoneyDetailScreen.fromCurrencySymbol+" "+MyApplication.addDecimal(ReceiveMoneyDetailScreen.amount));
 
 
         et_mpin.addTextChangedListener(new TextWatcher() {

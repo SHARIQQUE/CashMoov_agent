@@ -167,13 +167,13 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
                 new InputFilter.LengthFilter(MyApplication.amountLength)});
         spinner_senderCurrency.setText("GNF");
         spinner_receiverCurrency.setText("GNF");
-        spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
+     /*   spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (spinnerDialogSendingCurr!=null)
                     spinnerDialogSendingCurr.showSpinerDialog();
             }
-        });
+        });*/
 
 
         et_destination_mobileNumber.setOnTouchListener(new View.OnTouchListener() {

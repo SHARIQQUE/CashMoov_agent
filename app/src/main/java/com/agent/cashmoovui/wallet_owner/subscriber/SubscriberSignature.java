@@ -12,11 +12,14 @@ import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -423,6 +426,25 @@ public class SubscriberSignature extends AppCompatActivity implements View.OnCli
 
         }
 
+    }
+    int doubleBackToExitPressed = 1;
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressed == 2) {
+            Intent intent=new Intent(SubscriberSignature.this,MainActivity.class);
+            startActivity(intent);
+        }
+        else {
+            doubleBackToExitPressed++;
+            Toast.makeText(this, R.string.press_back_exit_toast, Toast.LENGTH_SHORT).show();
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressed=1;
+            }
+        }, 2000);
     }
 
 

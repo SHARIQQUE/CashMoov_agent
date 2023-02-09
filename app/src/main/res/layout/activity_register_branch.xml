@@ -118,7 +118,7 @@
                         android:padding="@dimen/_5sdp"
                         android:drawablePadding="@dimen/_5sdp"
                         android:drawableRight="@drawable/ic_arrow_down"
-                        android:text="@string/branch"
+                        android:text="@string/branchonboarding"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColorLBlack"

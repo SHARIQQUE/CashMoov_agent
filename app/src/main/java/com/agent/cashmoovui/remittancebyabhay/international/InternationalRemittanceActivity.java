@@ -22,6 +22,7 @@ import com.agent.cashmoovui.model.CountryCurrencyInfoModel;
 import com.agent.cashmoovui.model.CountryInfoModel;
 import com.agent.cashmoovui.model.CountryRemittanceInfoModel;
 import com.agent.cashmoovui.model.ServiceProviderModel;
+import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletSenderKYC;
 import com.aldoapps.autoformatedittext.AutoFormatUtil;
 
 import org.json.JSONArray;
@@ -69,6 +70,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
     private boolean isAmt=true;
     private boolean isAmtPaid=true;
     String amoutvalidationcheck="";
+    private String nextbtn="";
+    private boolean isCheckAmountPaid=true;
+    private boolean isCheckAmount=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,7 +189,17 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(isCheckAmount){
 
+
+               isAmt=true;
+                convertionRate_first_page.setText("");
+                fees_first_page.setText("");
+                tax_first_page.setText("");
+                //amountTobePaid_first_page.setText("");
+                amountTobeCharged_first_page.setText("");
+                edittext_amount_pay.getText().clear();
+            }
             }
 
             @Override
@@ -218,8 +233,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                         if (isAmt) {
                             edittext_amount_pay.setEnabled(false);
                             isAmtPaid = false;
-                            callApiExchangeRate();
+                          //  callApiExchangeRate();
                             amoutvalidationcheck="firstvalidation";
+                            tvNext.setText(getString(R.string.Calculate));
+                            nextbtn="calculation";
                         } else {
                             edittext_amount_pay.setEnabled(true);
                             isAmtPaid = true;
@@ -272,9 +289,18 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         edittext_amount_pay.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(isCheckAmountPaid){
 
+
+                isAmtPaid = true;
+                convertionRate_first_page.setText("");
+                fees_first_page.setText("");
+                tax_first_page.setText("");
+                //amountTobePaid_first_page.setText("");
+                amountTobeCharged_first_page.setText("");
+                edittext_amount.getText().clear();
             }
-
+            }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -295,9 +321,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                     if (isAmtPaid) {
                         edittext_amount.setEnabled(false);
                         isAmt = false;
-                        callApiExchangeRatenew();
+                        //callApiExchangeRatenew();
                         amoutvalidationcheck="secondvalidation";
-
+                        tvNext.setText(getString(R.string.Calculate));
+                        nextbtn="calculation";
                     } else {
                         edittext_amount.setEnabled(true);
                         isAmt = true;
@@ -337,7 +364,6 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
     public void onClick(View v) {
 
 
-
         if(spinner_provider.getText().toString().equals(getString(R.string.valid_select_provider))) {
             MyApplication.showErrorToast(internationalC,getString(R.string.plz_select_provider));
             return;
@@ -358,19 +384,18 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
             MyApplication.showErrorToast(internationalC,getString(R.string.receive_courency));
             return;
         }
-        if(edittext_amount.getText().toString().trim().replace(",","").isEmpty()) {
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
-            return;
-        }
-        if(edittext_amount.getText().toString().trim().replace(",","").equals("0")||edittext_amount.getText().toString().trim().replace(",","").equals(".")||edittext_amount.getText().toString().trim().replace(",","").equals(".0")||
-                edittext_amount.getText().toString().trim().replace(",","").equals("0.")||edittext_amount.getText().toString().trim().replace(",","").equals("0.0")||edittext_amount.getText().toString().trim().replace(",","").equals("0.00")){
-            MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
-            return;
-        }
 
-        if(amoutvalidationcheck.equalsIgnoreCase("firstvalidation")) {
-
-
+        if(isAmt){
+            //MyApplication.showToast(internationalC,"amount");
+            if(edittext_amount.getText().toString().trim().replace(",","").isEmpty()) {
+                MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
+                return;
+            }
+            if(edittext_amount.getText().toString().trim().replace(",","").equals("0")||edittext_amount.getText().toString().trim().replace(",","").equals(".")||edittext_amount.getText().toString().trim().replace(",","").equals(".0")||
+                    edittext_amount.getText().toString().trim().replace(",","").equals("0.")||edittext_amount.getText().toString().trim().replace(",","").equals("0.0")||edittext_amount.getText().toString().trim().replace(",","").equals("0.00")){
+                MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
+                return;
+            }
             if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
                 MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
                 return;
@@ -382,23 +407,61 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
 
             }
-        }else {
-            if (Double.parseDouble(amountpay_temp_str.replace(",", "")) < MyApplication.RemittanceMinValue) {
+            MyApplication.showloader(internationalC,getString(R.string.pleasewait));
+          //  callApiExchangeRate();
+
+            if(nextbtn.equalsIgnoreCase("calculation")){
+                isCheckAmountPaid=false;
+
+                callApiExchangeRate();
+                return;
+            }
+
+
+        }else{
+            //MyApplication.showToast(internationalC,"amountpay");
+            if(edittext_amount_pay.getText().toString().trim().replace(",","").isEmpty()) {
+                MyApplication.showErrorToast(internationalC,getString(R.string.val_amount));
+                return;
+            }
+            if(edittext_amount_pay.getText().toString().trim().replace(",","").equals("0")||edittext_amount_pay.getText().toString().trim().replace(",","").equals(".")||edittext_amount.getText().toString().trim().replace(",","").equals(".0")||
+                    edittext_amount_pay.getText().toString().trim().replace(",","").equals("0.")||edittext_amount_pay.getText().toString().trim().replace(",","").equals("0.0")||edittext_amount.getText().toString().trim().replace(",","").equals("0.00")){
+                MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
+                return;
+            }
+            if (Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
                 MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
                 return;
             }
 
-            if (Double.parseDouble(amountpay_temp_str.replace(",", "")) > MyApplication.RemittanceMaxValue) {
+            if (Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",", "")) > MyApplication.RemittanceMaxValue) {
                 MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
                 return;
 
 
             }
+            MyApplication.showloader(internationalC,getString(R.string.pleasewait));
+            //  callApiExchangeRate();
+
+            if(nextbtn.equalsIgnoreCase("calculation")){
+                isCheckAmount=false;
+                callApiExchangeRatenew();
+
+                return;
+            }
         }
+
 
         Intent i = new Intent(internationalC, InternationalRemittanceSenderKYC.class);
         MyApplication.saveString("mobilelength",mobilelength,InternationalRemittanceActivity.this);
         startActivity(i);
+
+
+
+
+      /*  Intent i = new Intent(internationalC, InternationalRemittanceSenderKYC.class);
+        MyApplication.saveString("mobilelength",mobilelength,InternationalRemittanceActivity.this);
+        startActivity(i);*/
     }
 
     private void callApiserviceProvider() {
@@ -872,7 +935,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -897,7 +960,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                                         MyApplication.saveString("amountformat",amount,getApplicationContext());
                                         MyApplication.saveString("engamout",amountpay_temp_str,getApplicationContext());
                                         System.out.println("get sonufff"+amountpay_temp_str);
+                                        tvNext.setText(getString(R.string.next));
 
+                                        nextbtn="next";
 
 //                                    int tax = receiverFee+receiverTax;
 //                                    if(currencyValue<tax){
@@ -1081,7 +1146,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1119,7 +1184,9 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
 
                                             amount = edittext_amount.getText().toString().trim().replace(",","");
 
+                                            tvNext.setText(getString(R.string.next));
 
+                                            nextbtn="next";
 
                                             MyApplication.saveString("amount",edittext_amount.getText().toString(),getApplicationContext());
 

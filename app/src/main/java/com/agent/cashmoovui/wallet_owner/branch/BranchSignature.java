@@ -12,6 +12,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -450,5 +451,24 @@ public class BranchSignature extends AppCompatActivity implements View.OnClickLi
 
 
 
+    int doubleBackToExitPressed = 1;
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressed == 2) {
+           Intent intent=new Intent(BranchSignature.this,MainActivity.class);
+           startActivity(intent);
+        }
+        else {
+            doubleBackToExitPressed++;
+            Toast.makeText(this, R.string.press_back_exit_toast, Toast.LENGTH_SHORT).show();
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressed=1;
+            }
+        }, 2000);
+    }
 
 }

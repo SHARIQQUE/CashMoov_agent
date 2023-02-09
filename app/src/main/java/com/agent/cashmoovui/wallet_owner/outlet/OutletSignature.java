@@ -12,6 +12,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
 import com.agent.cashmoovui.wallet_owner.outlet.OutletKYC;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
@@ -451,6 +453,25 @@ public class OutletSignature extends AppCompatActivity implements View.OnClickLi
 
 
 
+    }
+    int doubleBackToExitPressed = 1;
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressed == 2) {
+            Intent intent=new Intent(OutletSignature.this,MainActivity.class);
+            startActivity(intent);
+        }
+        else {
+            doubleBackToExitPressed++;
+            Toast.makeText(this, R.string.press_back_exit_toast, Toast.LENGTH_SHORT).show();
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressed=1;
+            }
+        }, 2000);
     }
 
 }
