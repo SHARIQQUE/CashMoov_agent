@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 08-02-2023 </string>
+    <string name="version">Version : 10-02-2023 02-10pm </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -622,7 +622,7 @@
 
     <string name="new_coinfirm_should_be_same">La nouvelle broche et la broche de confirmation doivent être identiques</string>
     <string name="view_balance">Afficher le solde</string>
-    <string name="my_branch">Mon Agence</string>
+    <string name="my_branch">Mon Branche</string>
     <string name="my_agents">Mes Agents</string>
     <string name="comissions">Comissions</string>
     <string name="over_draft">Découvert</string>
@@ -705,11 +705,11 @@
     <string name="branch">Branche</string>
     <string name="branchonboarding">Branche</string>
 
-    <string name="valid_branch_name">Nom de la filiale *</string>
-    <string name="val_branch_name">Veuillez entrer le nom de l\'agence</string>
-    <string name="val_branch_name_len">Le nom de l\'agence doit comporter au moins 3 caractères</string>
+    <string name="valid_branch_name">Nom de la Branche*</string>
+    <string name="val_branch_name">Veuillez entrer le nom de l\'branche</string>
+    <string name="val_branch_name_len">Le nom de l\'branche doit comporter au moins 3 caractères</string>
     <string name="agent_added">Agent ajouté avec succès !</string>
-    <string name="branch_added">Agence ajoutée avec succès !</string>
+    <string name="branch_added">Branche ajoutée avec succès !</string>
     <string name="addoutlet_added">Ajouter une prise enregistrée avec succès!</string>
 
     <string name="acc_number_colon">Numéro de compte</string>
@@ -745,9 +745,9 @@
     <string name="val_select_service_provider">Veuillez selectionner fournisseur de services</string>
 
     <string name="institue">Institut</string>
-    <string name="branch_history">Agence</string>
+    <string name="branch_history">Branche</string>
     <string name="agent_history">Agent</string>
-    <string name="view_branch">Voir Agence</string>
+    <string name="view_branch">Voir Branche</string>
 
     <string name="commision_wallet">Compte commission :</string>
     <string name="overdraft_wallet">Découvert</string>

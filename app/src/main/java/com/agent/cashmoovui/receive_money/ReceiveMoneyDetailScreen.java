@@ -1607,7 +1607,18 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
         }
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            String requiredValue = data.getStringExtra("PHONE");
+
+            MyApplication.contactValidation(requiredValue, et_destination_mobileNumber);
+
+            et_destination_firstName.requestFocus();
+        }
+    }
 
 }
 

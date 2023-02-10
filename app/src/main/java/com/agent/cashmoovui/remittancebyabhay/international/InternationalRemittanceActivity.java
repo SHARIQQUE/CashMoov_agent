@@ -199,6 +199,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                 //amountTobePaid_first_page.setText("");
                 amountTobeCharged_first_page.setText("");
                 edittext_amount_pay.getText().clear();
+                tvNext.setText(getString(R.string.Calculate));
             }
             }
 
@@ -292,14 +293,16 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                 if(isCheckAmountPaid){
 
 
-                isAmtPaid = true;
+                isAmt = true;
                 convertionRate_first_page.setText("");
                 fees_first_page.setText("");
                 tax_first_page.setText("");
                 //amountTobePaid_first_page.setText("");
                 amountTobeCharged_first_page.setText("");
                 edittext_amount.getText().clear();
-            }
+                    tvNext.setText(getString(R.string.Calculate));
+
+                }
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
