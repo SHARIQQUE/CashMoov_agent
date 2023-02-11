@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.FeeDetailsAdapter;
 import com.agent.cashmoovui.model.FeeDetailModel;
@@ -76,14 +78,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100001")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -112,14 +114,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100018")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -148,14 +150,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100061")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -170,7 +172,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Airtime Purchase")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.airtime_purchase))){
             feeDetailModelArrayList.clear();
             if (AirtimeFeeActivity.mainJsonObject != null) {
                 JSONArray FeeListArr = AirtimeFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
@@ -183,15 +185,15 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
 
                         if (childData.optString("calculationTypeCode").equalsIgnoreCase("100002")) {
                             feeDetailModelArrayList.add(new FeeDetailModel(
-                                            callf(childData.optDouble("minValue")) + "  -  " +
-                                            callf(childData.optDouble("maxValue")) +
+                                            MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue"))) + "  -  " +
+                                                    MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
                                     childData.optString("percentFeeValue")+"%"
                             ));
                         } else {
                             feeDetailModelArrayList.add(new FeeDetailModel(
-                                    callf(childData.optDouble("minValue")) + "  -  " +
-                                            callf(childData.optDouble("maxValue")) +
+                                    MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue"))) + "  -  " +
+                                            MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
                                     childData.optString("fixedFeeValue")
                             ));
@@ -207,7 +209,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
         }
 
 
-        if(checkIntent.equalsIgnoreCase("Bill Payment")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.bill_payment))){
             feeDetailModelArrayList.clear();
             if (BillPayFeeActivity.mainJsonObject != null) {
                 JSONArray FeeListArr = BillPayFeeActivity.mainJsonObject.optJSONArray("walletOwnerTemplateList");
@@ -220,15 +222,15 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
 
                         if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                             feeDetailModelArrayList.add(new FeeDetailModel(
-                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                    MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue"))) + "  -  " +
+                                            MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
                                     childData.optString("percentFeeValue")+"%"
                             ));
                         } else {
                             feeDetailModelArrayList.add(new FeeDetailModel(
-                                    String.format("%.2f", childData.optDouble("minValue")) + "  -  " +
-                                            String.format("%.2f", childData.optDouble("maxValue")) +
+                                    MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue"))) + "  -  " +
+                                            MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))) +
                                             "   (" + childData.optString("productName").replaceAll("Recharge ", "") + ")",
                                     childData.optString("fixedFeeValue")
                             ));
@@ -244,7 +246,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
         }
 
 
-        if(checkIntent.equalsIgnoreCase("Sell Float")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.sell_Float))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -258,14 +260,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100016")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -280,7 +282,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Transfer Float")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.transfer_float))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -294,14 +296,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100017")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -316,7 +318,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
-        if(checkIntent.equalsIgnoreCase("Cash In")){
+        if(checkIntent.equalsIgnoreCase(getString(R.string.cash_In))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
                 JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
@@ -330,14 +332,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100011")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }
@@ -366,14 +368,14 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
                         if(childData.optString("serviceCategoryCode").equalsIgnoreCase("100012")){
                             if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("percentFeeValue")
                                 ));
                             }else{
                                 feeDetailModelArrayList.add(new FeeDetailModel(
-                                        callf(childData.optDouble("minValue"))+"  -  "+
-                                                callf(childData.optDouble("maxValue")),
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
                                         childData.optString("fixedFeeValue")
                                 ));
                             }

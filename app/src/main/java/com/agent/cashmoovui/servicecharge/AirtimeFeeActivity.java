@@ -192,7 +192,7 @@ public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClic
 
                                             }
                                             Intent in = new Intent(airtimefeeC, ServiceChargeDetails.class);
-                                            in.putExtra("FEEINTENT","Airtime Purchase");
+                                            in.putExtra("FEEINTENT",getString(R.string.airtime_purchase));
                                             //in.putExtra("OPERATORCODE",operatorCode);
                                             startActivity(in);
 

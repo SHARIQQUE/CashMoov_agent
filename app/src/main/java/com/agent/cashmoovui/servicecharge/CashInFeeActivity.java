@@ -77,7 +77,7 @@ public class CashInFeeActivity extends AppCompatActivity implements View.OnClick
         switch(v.getId()){
             case R.id.cardCashIn:
                 intent = new Intent(cashinfeeC, ServiceChargeDetails.class);
-                intent.putExtra("FEEINTENT","Cash In");
+                intent.putExtra("FEEINTENT",getString(R.string.cash_In));
                 startActivity(intent);
                 break;
             case R.id.btnClose:

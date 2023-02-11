@@ -184,7 +184,7 @@ public class BillPayFeeActivity extends AppCompatActivity implements View.OnClic
                                             }
 
                                             Intent i = new Intent(billpayfeeC, ServiceChargeDetails.class);
-                                            i.putExtra("FEEINTENT","Bill Payment");
+                                            i.putExtra("FEEINTENT",getString(R.string.bill_payment));
                                             //i.putExtra("OPERATORCODE",operatorCode);
                                             startActivity(i);
                                         }

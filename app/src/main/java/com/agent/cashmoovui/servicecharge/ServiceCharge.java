@@ -149,13 +149,13 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.linCashIn:
-                if(tvFeeCashIn.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
+             /*   if(tvFeeCashIn.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
-                }else{
+                }else{*/
                     intent = new Intent(servicechargeC, CashInFeeActivity.class);
                     startActivity(intent);
                     //showCashInPopup(getString(R.string.cash_In));
-                }
+               // }
                 break;
             case R.id.linCashOut:
                /* if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
@@ -405,7 +405,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("FEEINTENT",getString(R.string.airtime_purchase));
                 i.putExtra("PRODUCTCODE","100029");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -415,7 +415,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("FEEINTENT",getString(R.string.airtime_purchase));
                 i.putExtra("PRODUCTCODE","100030");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -425,7 +425,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("FEEINTENT",getString(R.string.airtime_purchase));
                 i.putExtra("PRODUCTCODE","100031");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -435,7 +435,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Airtime Purchase");
+                i.putExtra("FEEINTENT",getString(R.string.airtime_purchase));
                 i.putExtra("PRODUCTCODE","ALLPRO");
                 startActivity(i);
                 feeDialog.dismiss();
@@ -501,7 +501,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Bill Payment");
+                i.putExtra("FEEINTENT",getString(R.string.bill_payment));
                 startActivity(i);
                 feeDialog.dismiss();
             }
@@ -648,7 +648,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Cash In");
+                i.putExtra("FEEINTENT",getString(R.string.cash_In));
                 startActivity(i);
                 feeDialog.dismiss();
             }
@@ -693,13 +693,13 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                     if (feeData.optString("ServiceName").equalsIgnoreCase("Cash")) {
                         if (childData.optString("calculationTypeName").equalsIgnoreCase("Percentage")) {
 
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Cash Out")) {
+                            if (childData.optString("serviceCategoryName").equalsIgnoreCase(getString(R.string.cash_Out))) {
                                 txt1_value.setText(childData.optString("percentFeeValue"));
                             }
 
                         }
                         if (childData.optString("calculationTypeName").equalsIgnoreCase("Fixed")) {
-                            if (childData.optString("serviceCategoryName").equalsIgnoreCase("Cash Out")) {
+                            if (childData.optString("serviceCategoryName").equalsIgnoreCase(getString(R.string.cash_Out))) {
                                 txt1_value.setText(childData.optString("fixedFeeValue")+" "+getString(R.string.gnf_fixed));
                             }
 
@@ -713,7 +713,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(servicechargeC,ServiceChargeDetails.class);
-                i.putExtra("FEEINTENT","Cash Out");
+                i.putExtra("FEEINTENT",getString(R.string.cash_Out));
                 startActivity(i);
                 feeDialog.dismiss();
             }

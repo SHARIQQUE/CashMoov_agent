@@ -323,7 +323,7 @@
               android:fontFamily="@font/aileron_bold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/free_service"
+              android:text="@string/paid_service"
               android:textColor="@color/bleu_cashmoov"
               android:textSize="@dimen/_11sdp"
               android:layout_marginTop="@dimen/_2sdp"/>
@@ -373,7 +373,7 @@
               android:fontFamily="@font/aileron_bold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/free_service"
+              android:text="@string/paid_service"
               android:textColor="@color/bleu_cashmoov"
               android:textSize="@dimen/_11sdp"
               android:layout_marginTop="@dimen/_2sdp"/>

@@ -80,12 +80,12 @@ public class MoneyTransferFeeActivity extends AppCompatActivity implements View.
         switch(v.getId()){
             case R.id.cardSellFloat:
                 intent = new Intent(moneytransferfeeC, ServiceChargeDetails.class);
-                intent.putExtra("FEEINTENT","Sell Float");
+                intent.putExtra("FEEINTENT",getString(R.string.sell_Float));
                 startActivity(intent);
                 break;
             case R.id.cardTransferFloat:
                 intent = new Intent(moneytransferfeeC, ServiceChargeDetails.class);
-                intent.putExtra("FEEINTENT","Transfer Float");
+                intent.putExtra("FEEINTENT",getString(R.string.transfer_float));
                 startActivity(intent);
                 break;
             case R.id.btnClose:
