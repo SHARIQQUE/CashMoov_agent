@@ -2,6 +2,7 @@ package com.agent.cashmoovui.servicecharge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ public class CashInFeeActivity extends AppCompatActivity implements View.OnClick
     CardView cardCashIn;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,11 @@ public class CashInFeeActivity extends AppCompatActivity implements View.OnClick
         Intent intent;
         switch(v.getId()){
             case R.id.cardCashIn:
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(cashinfeeC, ServiceChargeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.cash_In));
                 startActivity(intent);

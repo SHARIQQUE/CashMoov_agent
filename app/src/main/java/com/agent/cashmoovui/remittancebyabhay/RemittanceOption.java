@@ -3,6 +3,7 @@ package com.agent.cashmoovui.remittancebyabhay;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
     String languageToUse = "";
 
     LinearLayout ll_receiveRemitance, ll_sendRemitance,ll_cashToWallet;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,12 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
         switch (view.getId()) {
             case R.id.ll_receiveRemitance:
                 {
+
+
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showReceiveRemit){
                     MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
                 }else {
@@ -106,6 +114,12 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
 
             case R.id.ll_sendRemitance:
             {
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showSendRemit){
                     MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
                 }else {
@@ -117,6 +131,12 @@ public class RemittanceOption extends AppCompatActivity implements View.OnClickL
 
             case R.id.ll_cashToWallet:
                 {
+
+
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     if(!MyApplication.showCashtoWallet){
                         MyApplication.showToast(RemittanceOption.this,getString(R.string.service_not_available));
                     }else {

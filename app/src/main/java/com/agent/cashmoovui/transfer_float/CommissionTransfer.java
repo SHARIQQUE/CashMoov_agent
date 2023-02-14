@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -147,6 +148,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
     TextView main_wallet;
     private String comiisionValueCheck;
 
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1104,6 +1106,11 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                     tv_nextClick.setClickable(false);
 
                     if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
 
                         MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 

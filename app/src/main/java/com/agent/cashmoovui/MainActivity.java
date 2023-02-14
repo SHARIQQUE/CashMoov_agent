@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String languageToUse = "";
     int notificationCountCurrent;
     int notificationCountPrevious;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -492,6 +494,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.ll_cashIn:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCashIn){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -501,6 +507,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_cashout:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCashOut){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -510,6 +520,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_remitence:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showRemittance){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -519,6 +533,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_payment:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showPayment){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -528,6 +546,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_paymentnew:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showPayment){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -548,6 +570,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                break;
 
             case R.id.ll_credit:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCreditPurchase){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -570,6 +596,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                startActivity(i);
 //                break;
             case R.id.ll_more:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 i = new Intent(MainActivity.this, MoreActivity.class);
                 startActivity(i);
                 break;

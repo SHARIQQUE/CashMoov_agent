@@ -2,6 +2,7 @@ package com.agent.cashmoovui.servicecharge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
     String checkIntent,checkProductCodeIntent;
     ArrayList<FeeDetailModel>feeDetailModelArrayList= new ArrayList<>();
     RecyclerView rvFeeDetail;
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -60,8 +62,26 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
 
         if (getIntent().getExtras() != null) {
             checkIntent = (getIntent().getStringExtra("FEEINTENT"));
+                      System.out.println("get send"+checkIntent);
+
+
+            if(checkIntent.equalsIgnoreCase(getString(R.string.send_remittance))){
+                tvName.setText(getString(R.string.send));
+            }else if(checkIntent.equalsIgnoreCase(getString(R.string.receive_remittance))){
+
+                tvName.setText(getString(R.string.receive));
+
+
+            }else{
+                tvName.setText(checkIntent);
+
+            }
             checkProductCodeIntent = (getIntent().getStringExtra("PRODUCTCODE"));
-            tvName.setText(checkIntent);
+
+
+
+          //  if( MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")){
+
         }
 
         if(checkIntent.equalsIgnoreCase(getString(R.string.send_remittance))){
@@ -282,6 +302,77 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
             }
         }
 
+        if(checkIntent.equalsIgnoreCase(getString(R.string.international_transfer))){
+            feeDetailModelArrayList.clear();
+            if (ServiceCharge.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("TRTWLT")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+        if(checkIntent.equalsIgnoreCase(getString(R.string.commision_Transfer))){
+            feeDetailModelArrayList.clear();
+            if (ServiceCharge.jsonObjectTestMain != null) {
+                JSONArray FeeListArr = ServiceCharge.jsonObjectTestMain.optJSONArray("data");
+                for (int i = 0; i < FeeListArr.length(); i++) {
+                    JSONObject feeData = FeeListArr.optJSONObject(i);
+
+                    JSONArray ChildListArr = feeData.optJSONArray("child");
+                    for (int j = 0; j < ChildListArr.length(); j++) {
+                        JSONObject childData = ChildListArr.optJSONObject(j);
+
+                        if(childData.optString("serviceCategoryCode").equalsIgnoreCase("COMTRF")){
+                            if (childData.optString("calculationTypeName").equalsIgnoreCase(getString(R.string.Percentage))) {
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("percentFeeValue")
+                                ));
+                            }else{
+                                feeDetailModelArrayList.add(new FeeDetailModel(
+                                        MyApplication.addDecimal(String.valueOf(childData.optDouble("minValue")))+"  -  "+
+                                                MyApplication.addDecimal(String.valueOf(childData.optDouble("maxValue"))),
+                                        childData.optString("fixedFeeValue")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+
+                setData(feeDetailModelArrayList);
+                //System.out.println("FeeDetailLlist---"+feeDetailModelArrayList.toString());
+
+            }
+        }
+
         if(checkIntent.equalsIgnoreCase(getString(R.string.transfer_float))){
             feeDetailModelArrayList.clear();
             if (ServiceCharge.jsonObjectTestMain != null) {
@@ -411,6 +502,8 @@ public class ServiceChargeDetails extends AppCompatActivity implements View.OnCl
     }
 
     private void setData(List<FeeDetailModel> feeDetailModelArrayList){
+
+
         FeeDetailsAdapter feeDetailsAdapter = new FeeDetailsAdapter(servicechargedetailsC,feeDetailModelArrayList);
         rvFeeDetail.setHasFixedSize(true);
         rvFeeDetail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));

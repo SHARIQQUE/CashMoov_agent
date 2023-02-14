@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -111,6 +112,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
     String  mobilelength,serviceCode_from_serviceCategory="",serviceCategoryCode_from_serviceCategory="",serviceProviderCode_from_serviceCategory;
 
 
+    private long mLastClickTime = 0;
 
 
     public static final int REQUEST_CODE = 1;
@@ -1450,6 +1452,10 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
 
 
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
                         service_Provider_api();
 

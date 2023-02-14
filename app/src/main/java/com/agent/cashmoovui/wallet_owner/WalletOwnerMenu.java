@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
     MyApplication applicationComponentClass;
     String languageToUse = "";
     TextView addtext;
+    private long mLastClickTime = 0;
 
     LinearLayout ll_walletowner,ll_subscriber,ll_addAgentBranch;
 
@@ -115,6 +117,10 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         switch (view.getId())
         {
             case R.id.ll_walletowner: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent i = new Intent(WalletOwnerMenu.this, WalletOwner.class);
                 startActivity(i);
@@ -123,6 +129,10 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
 
             case R.id.ll_subscriber:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent i = new Intent(WalletOwnerMenu.this, SubscriberKYC.class);
                 startActivity(i);
             }
@@ -130,6 +140,10 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
 
             case R.id.ll_addAgentBranch:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 showDialog();
             }
             break;
@@ -164,6 +178,10 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         btnAddAgent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent i = new Intent(WalletOwnerMenu.this, AgentKYC.class);
                 startActivity(i);
                 operationDialog.dismiss();
@@ -172,6 +190,10 @@ public class WalletOwnerMenu extends  AppCompatActivity implements View.OnClickL
         btnAddBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent i = new Intent(WalletOwnerMenu.this, BranchKYC.class);
                 startActivity(i);
                 operationDialog.dismiss();

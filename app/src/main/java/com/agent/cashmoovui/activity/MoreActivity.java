@@ -2,6 +2,7 @@ package com.agent.cashmoovui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,8 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
     public static MoreActivity moreC;
     ImageView imgBack,imgHome;
     CardView cardTransfer,cardOverdraft,cardWalletOwner;
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +89,28 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 //                    i = new Intent(moreC, TransferOption.class);
 //                    startActivity(i);
 //                }
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 i = new Intent(moreC, TransferOption.class);
                 startActivity(i);
                 break;
             case R.id.cardOverdraft:
+
+
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 i = new Intent(moreC, OverdraftLimit.class);
                 startActivity(i);
                 break;
             case R.id.cardWalletOwner:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 i = new Intent(moreC, WalletOwnerMenu.class);
                 startActivity(i);
                 break;

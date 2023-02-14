@@ -941,7 +941,8 @@ public static String addDecimal(String number) {
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-              //  bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
+
+             //   bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
                // showToast(activity,"hardwatre 33");
 
                 break;

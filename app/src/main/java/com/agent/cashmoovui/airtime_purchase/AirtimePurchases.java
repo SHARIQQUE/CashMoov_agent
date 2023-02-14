@@ -1628,7 +1628,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
                     if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         api_walletOwnerUser();
 
                     } else {

@@ -3,6 +3,7 @@ package com.agent.cashmoovui.transfer_float;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +27,7 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
         String languageToUse = "";
 
         LinearLayout ll_sellFloat,ll_transferFloat,ll_commissionTransfer;
+    private long mLastClickTime = 0;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +115,10 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
         switch (view.getId())
         {
             case R.id.ll_sellFloat: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showSellFloat){
                     MyApplication.showToast(TransferOption.this,getString(R.string.service_not_available));
                 }else {
@@ -124,6 +130,10 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
 
             case R.id.ll_transferFloat:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showTransferFloat){
                     MyApplication.showToast(TransferOption.this,getString(R.string.service_not_available));
                 }else {
@@ -135,6 +145,10 @@ public class TransferOption extends AppCompatActivity implements View.OnClickLis
 
             case R.id.ll_commissionTransfer:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showTransferCommission){
                     MyApplication.showToast(TransferOption.this,getString(R.string.service_not_available));
                 }else {

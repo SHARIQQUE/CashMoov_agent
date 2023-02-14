@@ -117,7 +117,7 @@
                         android:fontFamily="@font/aileron_bold"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:gravity="center_vertical"
-                        android:text="@string/send_remittance"
+                        android:text="@string/send"
                         android:layout_gravity="start|center_vertical"/>
                     <!--                <View-->
                     <!--                    android:layout_width="match_parent"-->
@@ -204,7 +204,7 @@
                         android:fontFamily="@font/aileron_bold"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:gravity="center_vertical"
-                        android:text="@string/receive_remittance"
+                        android:text="@string/receive"
                         android:layout_gravity="start|center_vertical"/>
                     <!--                <View-->
                     <!--                    android:layout_width="match_parent"-->

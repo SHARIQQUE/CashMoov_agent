@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -114,6 +115,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
     String serviceCode_from_serviceCategory = "", serviceCategoryCode_from_serviceCategory = "", serviceProviderCode_from_serviceCategory;
     TextView tvFinger;
+    private long mLastClickTime = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1241,6 +1244,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
                 if (validation_mobile_Details()) {
 
                     if (new InternetCheck().isConnected(CashOutAgent.this)) {
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
 
                         MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 

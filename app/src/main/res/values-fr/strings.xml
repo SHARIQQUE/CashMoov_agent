@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PAgent Cashmoov</string>
+    <string name="app_name">Agent Cashmoov</string>
 
     <string-array name="Spinner_provider">
         <item>Select provider*</item>
@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 11-02-2023  04-00pm  </string>
+    <string name="version">Version : 15-02-2023   </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -210,6 +210,7 @@
     <string name="mobile_number_exits_with_agent">"Le numéro de portable existe avec l'agent</string>
     <string name="mobile_number_exits_with_branch">"Le numéro de portable existe avec la succursale</string>
     <string name="mobile_number_exits_with_subscriber">"Le numéro de mobile existe avec l'abonné</string>
+    <string name="ComingSoon">À venir.....</string>
 
     <string name="delete_configuration">Voulez-vous vraiment supprimer la configuration?</string>
     <string name="this_action_reset_all_settings">Cette action va réinitialiser l\'ensemble des paramètres de l\'application.</string>
@@ -280,6 +281,9 @@
     <string name="reason_for_sending">Motif de l\'envoi</string>
     <string name="international_money_transfer">Transfert d\'argent à l\'international</string>
     <string name="Rate">Taux :</string>
+    <string name="international_transfer">Transfert international</string>
+    <string name="commision_transfer">Transfert de commission</string>
+
     <string name="transfer_to_your_bank">Transfert vers votre Banque</string>
     <string name="valid_select_provider">Selectionner le fournisseur*</string>
     <string name="amount_to_send">Montant a envoyer</string>
@@ -653,7 +657,7 @@
 
 
 
-    <string name="sell_Float">Transfert intra agent</string>
+    <string name="sell_Float">Vente de stock</string>
     <string name="reciver_detail">Détails du réceveur</string>
 
     <string name="select_institute_star">Selectionnez l\'institution*</string>
@@ -663,7 +667,7 @@
 
     <string name="amount_to_paid_star">Montant facturé*</string>
     <string name="amount_to_paid_without_star">Montant facturé</string>
-    <string name="commision_Transfer">Transfert de commission</string>
+    <string name="commision_Transfer">Transfert de commissions</string>
     <string name="currency_Name">Nom de la devise :</string>
     <string name="main_Wallet">Compte principal / Montant réservé</string>
     <string name="commision_Wallet">Compte commission:</string>
@@ -681,6 +685,7 @@
 
     <string name="Operator_reviewPage">Opérateur :</string>
     <string name="Operator_receiptpage">Opérateur :</string>
+    <string name="Operator_not_found">Operator Not Found:</string>
 
     <string name="val_fname_len">Le prénom doit comporter au moins 3 caractères</string>
     <string name="val_lname_len">Le nom de famille doit comporter au moins 3 caractères</string>

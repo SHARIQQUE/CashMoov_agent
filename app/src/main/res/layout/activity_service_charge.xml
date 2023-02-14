@@ -134,7 +134,7 @@
             android:fontFamily="@font/aileron_bold"
             android:gravity="right"
             android:lineSpacingExtra="10sp"
-            android:text="@string/free_service"
+            android:text="NA"
             android:textColor="@color/bleu_cashmoov"
             android:textSize="@dimen/_11sdp" />
 
@@ -181,7 +181,7 @@
               android:fontFamily="@font/aileron_bold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/free_service"
+              android:text="NA"
               android:textColor="@color/bleu_cashmoov"
               android:textSize="@dimen/_11sdp"
               android:layout_marginTop="@dimen/_2sdp"/>
@@ -228,7 +228,7 @@
             android:fontFamily="@font/aileron_bold"
             android:gravity="right"
             android:lineSpacingExtra="10sp"
-            android:text="@string/free_service"
+            android:text="NA"
             android:textColor="@color/bleu_cashmoov"
             android:textSize="@dimen/_11sdp"
             android:layout_marginTop="@dimen/_2sdp"/>
@@ -264,7 +264,7 @@
             android:fontFamily="@font/aileron_bold"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="10sp"
-            android:text="@string/money_transfer"
+            android:text="@string/transfer"
             android:textColor="#3a3a3a"
             android:textSize="@dimen/_13sdp" />
 
@@ -275,7 +275,7 @@
               android:fontFamily="@font/aileron_bold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/free_service"
+              android:text="NA"
               android:textColor="@color/bleu_cashmoov"
               android:textSize="@dimen/_11sdp"
               android:layout_marginTop="@dimen/_2sdp"/>
@@ -323,7 +323,7 @@
               android:fontFamily="@font/aileron_bold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/paid_service"
+              android:text="NA"
               android:textColor="@color/bleu_cashmoov"
               android:textSize="@dimen/_11sdp"
               android:layout_marginTop="@dimen/_2sdp"/>
@@ -373,7 +373,7 @@
               android:fontFamily="@font/aileron_bold"
               android:gravity="right"
               android:lineSpacingExtra="10sp"
-              android:text="@string/paid_service"
+              android:text="NA"
               android:textColor="@color/bleu_cashmoov"
               android:textSize="@dimen/_11sdp"
               android:layout_marginTop="@dimen/_2sdp"/>

@@ -3,6 +3,7 @@ package com.agent.cashmoovui.remittancebyabhay;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +30,7 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
 
     LinearLayout ll_remitence_international,ll_remitence_local;
     CardView cardToreceiveinternational,mCardToPartners;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,10 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
         switch (view.getId())
         {
             case R.id.ll_remitence_international: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent i = new Intent(SendRemittanceOpt.this, InternationalRemittanceActivity.class);
                 MyApplication.saveOrUpdateValueInSharedPreferences(SendRemittanceOpt.this, "International","international");
@@ -108,6 +114,10 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
 
             case R.id.ll_remitence_local:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent i = new Intent(SendRemittanceOpt.this, LocalRemittanceActivity.class);
                 MyApplication.saveOrUpdateValueInSharedPreferences(SendRemittanceOpt.this, "Local","local");
 
@@ -116,6 +126,10 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
             break;
 
             case R.id.cardToreceiveinternational:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                     Intent intent = new Intent(SendRemittanceOpt.this, InTransfer.class);
                     startActivity(intent);
@@ -123,7 +137,10 @@ public class SendRemittanceOpt extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.cardToPartners:
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                     Intent intento = new Intent(SendRemittanceOpt.this, OutTransfer.class);
                     startActivity(intento);
 

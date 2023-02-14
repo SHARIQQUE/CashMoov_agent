@@ -266,10 +266,17 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             jsonObject.put("oldPin",encryption_old);
             jsonObject.put("pin",encryption_new);
 
+          /*  String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
+            JSONObject jsonObjectA=null;
+            try{
+                jsonObjectA=new JSONObject();
+                jsonObjectA.put("request",requestNo);
+            }catch (Exception e){
 
+            }*/
             MyApplication.showloader(ChangePin.this,"Please wait!");
 
-            API.POST_REQEST_CHANGEPIN("ewallet/api/v1/walletOwnerUser/changePin", jsonObject, new Api_Responce_Handler() {
+            API.PUT("ewallet/api/v1/walletOwnerUser/changePin", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {
 
@@ -279,21 +286,21 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                   //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1890125\",\"requestTime\":\"Thu Oct 28 12:15:22 IST 2021\",\"responseTime\":\"Thu Oct 28 12:15:23 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\"}");
 
                     if (jsonObject != null) {
-
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
-
-                            MyApplication.showToast(ChangePin.this,"Your Pin generate Successfully!");
+                            //MyApplication.showToast(changepinC,getString(R.string.pin_changed_msg));
+                            MyApplication.showToast(ChangePin.this,jsonObject.optString("resultDescription", "N/A"));
                             Intent intent = new Intent(ChangePin.this, LoginMsis.class);
                             startActivity(intent);
+                            finish();
 
-                        }
 
-                        else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001"))
-                        {
+                        }else if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("2001")){
                             MyApplication.showToast(ChangePin.this,getString(R.string.technical_failure));
-                        }
+                            MyApplication.hideLoader();
 
-                        else {
+                        } else {
+                            MyApplication.hideLoader();
+
                             MyApplication.showToast(ChangePin.this,jsonObject.optString("resultDescription", "N/A"));
                         }
                     }
@@ -301,11 +308,13 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
                 @Override
                 public void failure(String aFalse) {
+                    MyApplication.hideLoader();
 
                 }
             });
 
         }catch (Exception e){
+            MyApplication.hideLoader();
 
         }
 
