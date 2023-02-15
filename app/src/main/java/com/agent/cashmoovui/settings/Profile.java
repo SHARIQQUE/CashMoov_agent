@@ -327,6 +327,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.linServiceCharge:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, ServiceCharge.class);
                 startActivity(intent);
                 break;
@@ -365,10 +369,18 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.linTermCondition:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Toast.makeText(profileC,getString(R.string.ComingSoon), Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.linAbout:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, About.class);
                 startActivity(intent);
                 break;
@@ -393,7 +405,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.linEditProfile:
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 if(checkPermission_camera())
                 {
@@ -419,6 +434,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.linReset:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(profileC, Logout.class);
                 startActivity(intent);
                 break;

@@ -97,7 +97,7 @@ public class TransactionHistoryMainPage extends AppCompatActivity implements Ada
     TextView spinner_currency;
 
     SearchAdapterTransactionDetails adpter;
-    String walletCode;
+    String walletCode, receiverbearer;
     TextView tvRefresh,tvView,tvViewHide;
     private NestedScrollView nestedSV;
     private ProgressBar loadingPB;
@@ -670,6 +670,9 @@ HorizontalScrollView allview;
 
 
                                             }
+                                             receiverbearer=data.optString("receiverBearer");
+                                            System.out.println("get receiverbearer"+receiverbearer);
+
 
                                             if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
                                                 if (data.optString("transactionTypeCode").equalsIgnoreCase("105068")) {
@@ -1484,6 +1487,9 @@ HorizontalScrollView allview;
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+
+        intent.putExtra("receiverbearer",receiverbearer);
+
         intent.putExtra("taxvalue",tax);
         intent.putExtra("fee",fee);
         intent.putExtra("srcpostbalance",srcpostbalance);

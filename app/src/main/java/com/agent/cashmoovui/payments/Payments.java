@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ public class Payments extends AppCompatActivity implements OperatorListeners {
     private ArrayList<ServiceProviderModel.ServiceProvider> serviceProviderModelList = new ArrayList<>();
 
     private ArrayList<OperatorModel> operatorList = new ArrayList<>();
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -243,6 +245,11 @@ public class Payments extends AppCompatActivity implements OperatorListeners {
     public static String operatorCode,operatorName;
     @Override
     public void onOperatorListItemClick(String code, String name) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         operatorCode = code;
         operatorName = name;
         Intent intent = new Intent(paymentsC, PaymentsProduct.class);

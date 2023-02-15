@@ -2,6 +2,7 @@ package com.agent.cashmoovui.servicecharge;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ public class RemittanceFeeActivity extends AppCompatActivity implements View.OnC
     CardView cardSendRemit,cardReceiveRemit,cardCashToWallet;
     TextView tvServiceName;
     Button btnClose;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,16 +82,28 @@ public class RemittanceFeeActivity extends AppCompatActivity implements View.OnC
         Intent intent;
         switch(v.getId()){
             case R.id.cardSendRemit:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(remittancefeeC, ServiceChargeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.send_remittance));
                 startActivity(intent);
                 break;
             case R.id.cardReceiveRemit:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(remittancefeeC, ServiceChargeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.receive_remittance));
                 startActivity(intent);
                 break;
             case R.id.cardCashToWallet:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(remittancefeeC, ServiceChargeDetails.class);
                 intent.putExtra("FEEINTENT",getString(R.string.cash_to_wallet));
                 startActivity(intent);

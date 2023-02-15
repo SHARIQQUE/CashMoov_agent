@@ -108,6 +108,7 @@
                 android:fontFamily="@font/aileron_bold"
                 android:lineSpacingExtra="3sp"
                 android:text="@string/report"
+                android:visibility="gone"
                 android:textColor="#000"
                 android:textSize="@dimen/_14sdp" />
 

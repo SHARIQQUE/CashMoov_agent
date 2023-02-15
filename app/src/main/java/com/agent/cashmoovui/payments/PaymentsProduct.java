@@ -2,6 +2,7 @@ package com.agent.cashmoovui.payments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class PaymentsProduct extends AppCompatActivity implements ProductListene
     ImageView imgBack, imgHome;
     RecyclerView rvProduct;
     private ArrayList<ProductMasterModel> productList = new ArrayList<>();
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +146,10 @@ public class PaymentsProduct extends AppCompatActivity implements ProductListene
 
     @Override
     public void onProductListItemClick(String code, String opCode) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         productCode = code;
         operatorCode = opCode;
         Intent intent = new Intent(paymentsproductC, PaymentPlanList.class);

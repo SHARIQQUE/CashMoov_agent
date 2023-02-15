@@ -484,6 +484,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.linClickn:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvClick.isShown()) {
                     tvClick.setVisibility(View.GONE);
                     tvBalance.setVisibility(View.VISIBLE);

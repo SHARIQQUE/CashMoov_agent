@@ -3,10 +3,12 @@ package com.agent.cashmoovui.pin_change;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.set_pin.AESEncryption;
+import com.agent.cashmoovui.settings.Profile;
 
 import org.json.JSONObject;
 
@@ -34,9 +37,11 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
     EditText et_oldPin, et_newPin,et_confirmPin;
     TextView tv_continue;
+    Button btnCancel;
 
 
     boolean isPasswordVisible,isPasswordVisible2,isPasswordVisible3;
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -64,10 +69,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         et_oldPin = (EditText) findViewById(R.id.et_oldPin);
         et_newPin = (EditText) findViewById(R.id.et_newPin);
         et_confirmPin = (EditText) findViewById(R.id.et_confirmPin);
+        btnCancel = findViewById(R.id.btnCancel);
 
 
         tv_continue = (TextView) findViewById(R.id.tv_continue);
 
+        btnCancel.setOnClickListener(this);
 
         tv_continue.setOnClickListener(this);
         HiddenPassTransformationMethod hiddenPassTransformationMethod=new HiddenPassTransformationMethod();
@@ -163,11 +170,15 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+        Intent intent;
 
         switch (view.getId()) {
 
             case R.id.tv_continue: {
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if (validation_Details()) {
 
                     if (new InternetCheck().isConnected(ChangePin.this)) {
@@ -183,6 +194,15 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
                 break;
 
             }
+            case R.id.btnCancel:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                intent = new Intent(getApplicationContext(), Profile.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
         }
 
     }

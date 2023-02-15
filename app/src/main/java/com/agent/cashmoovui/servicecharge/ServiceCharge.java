@@ -3,6 +3,7 @@ package com.agent.cashmoovui.servicecharge;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     LinearLayout linRemittance,linCreditPurchase,linBillPay,linMoneyTransfer,linCashIn,linCashOut;
     TextView tvRemittance,tvFeeRemittance,tvCreditPurchase,tvFeeCreditPurchase,tvBillPayment,tvFeeBillPayment,
             tvMoneyTransfer,tvFeeMoneyTransfer,tvCashIn,tvFeeCashIn,tvCashOut,tvFeeCashOut;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +115,10 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         Intent intent;
         switch (view.getId()) {
             case R.id.linRemittance:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeRemittance.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
@@ -122,13 +128,20 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.linCreditPurchase:
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                     intent = new Intent(servicechargeC, AirtimeFeeActivity.class);
                     startActivity(intent);
                     //showAirtimePurchasePopup(getString(R.string.credit_purchase));
                 //}
                 break;
             case R.id.linBillPay:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeBillPayment.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
@@ -138,6 +151,10 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.linMoneyTransfer:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(tvFeeMoneyTransfer.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{
@@ -150,6 +167,10 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
              /*   if(tvFeeCashIn.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{*/
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                     intent = new Intent(servicechargeC, CashInFeeActivity.class);
                     startActivity(intent);
                     //showCashInPopup(getString(R.string.cash_In));
@@ -159,6 +180,10 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
                /* if(tvFeeCashOut.getText().toString().equalsIgnoreCase(getString(R.string.free_service))){
                     MyApplication.showToast(servicechargeC,getString(R.string.range_value_not_available));
                 }else{*/
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                     intent = new Intent(servicechargeC, CashOutFeeActivity.class);
                     startActivity(intent);
                     //showCashOutPopup(getString(R.string.cash_Out));

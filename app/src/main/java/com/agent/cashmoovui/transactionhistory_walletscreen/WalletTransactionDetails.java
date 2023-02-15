@@ -106,6 +106,13 @@ public class WalletTransactionDetails extends AppCompatActivity {
             String tax = (getIntent().getStringExtra("taxvalue"));
             double  srcpostbalance = b.getDouble("srcpostbalance");
             double  fee = b.getDouble("fee");
+            String receiverbearer = (getIntent().getStringExtra("receiverbearer"));
+            System.out.println("get va444"+receiverbearer);
+            if(receiverbearer.equalsIgnoreCase("true")){
+                txt_fee.setVisibility(View.GONE);
+                txt_financialtax.setVisibility(View.GONE);
+            }
+
 
 
             String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
@@ -127,6 +134,7 @@ public class WalletTransactionDetails extends AppCompatActivity {
             System.out.println("get walletcode"+MyApplication.checkWalletTypeCode);
 
             txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
+
 
           /*  if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletTransactionDetails.this).equalsIgnoreCase(MyApplication.OutletCode)) {
                 txt_fee.setText(MyApplication.addDecimal("0.00"));
@@ -150,6 +158,8 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
             if(walletTypeCode.equalsIgnoreCase("100009")){
                 txt_commission_amount.setText(commissionAmount);
+                txt_fee.setVisibility(View.GONE);
+                txt_financialtax.setVisibility(View.GONE);
             }else{
                 txt_commission_amount.setText(fromAmount);
             }
