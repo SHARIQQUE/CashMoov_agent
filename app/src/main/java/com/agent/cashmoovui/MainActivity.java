@@ -480,6 +480,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.imgProfile:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 i = new Intent(MainActivity.this, Profile.class);
                 startActivity(i);
                 break;
@@ -587,6 +591,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.ll_creditnew:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showCreditPurchase){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else{
@@ -610,12 +618,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 break;
             case R.id.ll_transferFloat:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 i = new Intent(MainActivity.this, TransferFloats.class);
                 startActivity(i);
                 break;
 
             case R.id.ll_commissionTransfer:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(!MyApplication.showTransferCommission){
                     MyApplication.showToast(MainActivity.this,getString(R.string.service_not_available));
                 }else {
@@ -625,11 +641,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
                 break;
             case R.id.ll_receivemoney:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                Intent inew = new Intent(MainActivity.this, ReceiveMoneyDetailScreen.class);
                 startActivity(inew);
                 break;
 
             case R.id.ll_outlet:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent ll_outlet = new Intent(MainActivity.this, OutletKYC.class);
                 startActivity(ll_outlet);
                 break;

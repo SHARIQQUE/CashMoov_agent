@@ -643,7 +643,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/aileron_bold"
                         android:gravity="center_horizontal"
-                        android:text="@string/payment" />
+                        android:text="@string/bill_payment" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView

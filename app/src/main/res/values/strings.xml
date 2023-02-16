@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 15-02-2023 07-20pm</string>
+    <string name="version">Version : 16-02-2023</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -1009,6 +1009,7 @@
     <string name="outletWorkinprogress">Outlet Loggin Work in Progress</string>
     <string name="Percentage">Percentage</string>
     <string name="hierachynotfound">Hierachy not found</string>
+    <string name="selectimage">Please select a new image.....</string>
 
 
 </resources>

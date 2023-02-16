@@ -431,6 +431,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
             jsonObject.put("transTypeCode","113092");
             jsonObject.put("subscriberWalletOwnerCode",receiverCode);
+            jsonObject.put("transAmount",edittext_amount.getText().toString().replace(",",""));
 
 
 

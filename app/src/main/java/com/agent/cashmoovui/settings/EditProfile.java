@@ -228,7 +228,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                 if(isSelect){
                     callupload(file);
                 }else{
-                    Toast.makeText(editprofileC,"Please select a new image.....", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(editprofileC,getString(R.string.selectimage), Toast.LENGTH_SHORT).show();
                 }
 
                 break;

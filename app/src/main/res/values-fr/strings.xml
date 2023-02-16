@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 15-02-2023  07-20pm  </string>
+    <string name="version">Version : 16-02-2023   </string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -513,8 +513,8 @@
 
     <!--    Receipt Page-->
 
-    <string name="senderName_receiptPage">Nom de texpéditeur :</string>
-    <string name="receiverName_receiptPage">Nom du destinataire</string>
+    <string name="senderName_receiptPage">Nom de l’expéditeur :</string>
+    <string name="receiverName_receiptPage">Nom du destinataire :</string>
     <string name="financialTax_receiptPage">Taxe financière :</string>
     <string name="fee_receiptPage">Frais :</string>
     <string name="amount_to_be_credit_receiptPage">Montant à facturer :</string>
@@ -554,7 +554,7 @@
     <string name="login_user_pin">Code d utilisateur de connexion</string>
     <string name="sender_details">Details de l\'expediteur</string>
     <string name="merchant_details">Détails du marchand</string>
-    <string name="outlet_details">Détails de la caisse</string>
+    <string name="outlet_details">Détails de la Point de vente</string>
 
     <string name="receiver_details_cashout">Détails du réceveur</string>
     <string name="transaction_no">Identifiant de la  transaction:</string>
@@ -643,7 +643,7 @@
     <string name="overdraft_limit">Limite de découvert</string>
     <string name="viewcongigservices">Afficher les services de configuration</string>
     <string name="receive_money">Recevoir de l\'argent</string>
-    <string name="add_outlet">Ajouter caisse</string>
+    <string name="add_outlet">Ajouter Point de vente</string>
     <string name="maximumoverdraft">Limite de découvert maximum</string>
 
     <string name="maximum_overdraft_limit_100_000_for_180_days">Limite de découvert maximum 100.000 pour 180 jours</string>
@@ -763,7 +763,7 @@
     <string name="our_operation">Nos Operation</string>
     <string name="cashout_option">Option de retrait</string>
     <string name="chooseOption">Choisir l\'operation</string>
-    <string name="Cash_Out">Encaisser</string>
+    <string name="Cash_Out">EnPoint de venter</string>
     <string name="cashout_code">Code de retrait</string>
     <string name="sending_country">Pays d\'envoi</string>
     <string name="sending_country_star">Pays d\'envoi*</string>
@@ -861,7 +861,7 @@
     <string name="first_name_star">Prénom*</string>
     <string name="merchant_name">Nom du commerçant :</string>
     <string name="outlet_name_star">Nom du point de vente *</string>
-    <string name="outlet">Caisse</string>
+    <string name="outlet">Point de vente</string>
 
     <string name="choose_product">Choisissez le produit</string>
     <string name="login_with_otp">Se connecter avec un OTP</string>
@@ -941,7 +941,7 @@
     <string name="otp_send_successfully">OTP envoyé avec succès..</string>
     <string name="upload_success_toast">Télécharger le succès</string>
     <string name="check_another_institute">Veuillez vérifier un autre numéro institut introuvable !</string>
-    <string name="cash_out">Encaissement</string>
+    <string name="cash_out">EnPoint de ventement</string>
     <string name="press_back_exit_toast">Veuillez appuyer à nouveau sur Retour pour quitter</string>
     <string name="od_req_success_toast">Votre demande de découvert a été créée avec succès et envoyée pour approbation</string>
     <string name="invalid_pin_toast">NIP invalide</string>
@@ -992,6 +992,7 @@
     <string name="outletWorkinprogress">Ouverture de session en cours</string>
     <string name="Percentage">Pourcentage</string>
     <string name="hierachynotfound">Hiérachy introuvable</string>
+    <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
 
 </resources>
 

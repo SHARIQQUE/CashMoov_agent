@@ -658,6 +658,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         spinnerDialogCurrency.setShowKeyboard(false);// for open keyboard by default
                         spinnerDialogCurrency.bindOnSpinerListener(new OnSpinerItemClick() {
                             @Override
+
                             public void onClick(String item, int position) {
 
 
