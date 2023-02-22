@@ -1120,7 +1120,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                         Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
 
                     }
-                } /*else {
+                } else {
                     MyApplication.biometricAuth(CommissionTransfer.this, new BioMetric_Responce_Handler() {
                         @Override
                         public void success(String success) {
@@ -1153,7 +1153,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                         }
                     });
-                }*/
+                }
             }
 
 

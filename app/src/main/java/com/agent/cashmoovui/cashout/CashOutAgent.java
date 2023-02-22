@@ -213,6 +213,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                     if (s.length() ==Integer.parseInt(mobilelength)) {
                         subscriber_details_api_walletownerUserNew();
+                        edittext_amount.requestFocus();
 
 
                     }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -68,6 +69,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
     public static JSONObject receiptJson=new JSONObject();
 
     private String serviceCode_from_serviceCategory,serviceCategoryCode_from_serviceCategory,serviceProviderCode_from_serviceCategory;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -327,7 +329,10 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
                     if (validation_otp_detail()) {
                         if (new InternetCheck().isConnected(ReceiveMoneyConfirmScreen.this)) {
                             MyApplication.showloader(ReceiveMoneyConfirmScreen.this, getString(R.string.please_wait));
-
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                                return;
+                            }
+                            mLastClickTime = SystemClock.elapsedRealtime();
                             otp_verify_api();
 
                         } else {

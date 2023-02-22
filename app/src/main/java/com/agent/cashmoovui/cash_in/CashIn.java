@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -170,9 +171,9 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
             et_mpin = (EditText)findViewById(R.id.et_mpin);
             mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
             System.out.println("get lengh new"+mobilelength);
-          /* edittext_mobileNuber.setFilters(new InputFilter[] {
+           edittext_mobileNuber.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
-*/
+
             edittext_amount.setFilters(new InputFilter[] {
                     new InputFilter.LengthFilter(MyApplication.amountLength)});
             et_mpin.addTextChangedListener(new TextWatcher() {
@@ -268,6 +269,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if (s.length() ==Integer.parseInt(mobilelength)) {
                         subscriber_details_api_walletownerUserNew();
+                        edittext_amount.requestFocus();
 
 
                     }
@@ -1485,39 +1487,43 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 }else {
+                    if (getSystemService(Context.FINGERPRINT_SERVICE) == null) {
+                        MyApplication.showToast(CashIn.this,"Fingerprint hs not been enabled in settings.");
+                    } else {
 
-                    MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
-                        @Override
-                        public void success(String success) {
-                            try {
+                        MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
 
-                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
 
-                                if (new InternetCheck().isConnected(CashIn.this)) {
+                                    if (new InternetCheck().isConnected(CashIn.this)) {
 
-                                  //  MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
+                                        //  MyApplication.showloader(CashIn.this, getString(R.string.please_wait));
 
-                                    mpin_final_api();
+                                        mpin_final_api();
 
-                                } else {
-                                    Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(CashIn.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
                             }
-                        }
 
-                        @Override
-                        public void failure(String failure) {
+                            @Override
+                            public void failure(String failure) {
 
-                            MyApplication.showToast(CashIn.this, failure);
+                                MyApplication.showToast(CashIn.this, failure);
 
-                            pinLinear.setVisibility(View.VISIBLE);
+                                pinLinear.setVisibility(View.VISIBLE);
 
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
 //new update
               /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);

@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +52,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,11 +222,19 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 //                        }).show(this);
                 break;
             case R.id.btnCancel:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 break;
             case R.id.btnConfirm:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if(isSelect){
                     callupload(file);
                 }else{

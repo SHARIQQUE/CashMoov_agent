@@ -355,7 +355,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                 tv_nextClick.setVisibility(View.VISIBLE);
                                 MyApplication.hideKeyboard(SellFloat.this);
                                 setSelction(i);
-
+                                edittext_amount.requestFocus();
 
                             }
 

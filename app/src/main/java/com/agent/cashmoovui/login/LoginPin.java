@@ -10,9 +10,11 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -107,7 +109,8 @@ public class LoginPin extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 if(s.length() >= 4)
-                    MyApplication.hideKeyboard(loginpinC);            }
+                    MyApplication.hideKeyboard(loginpinC);
+            }
         });
 
 
@@ -175,6 +178,9 @@ public class LoginPin extends AppCompatActivity {
         tvregister = findViewById(R.id.tvregister);
         nameText=findViewById(R.id.nameText);
         etmobile=findViewById(R.id.etmobile);
+        SpannableString content = new SpannableString(getString(R.string.reset_pin));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        tvFinger1.setText(content);
 
         mName=MyApplication.getSaveString("firstName", LoginPin.this);
         mMobile=MyApplication.getSaveString("mobile", LoginPin.this);
@@ -279,8 +285,20 @@ public class LoginPin extends AppCompatActivity {
         }else{
             tvFinger.setVisibility(View.GONE);
         }
-        setOnClickListener();
+
+
+            MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", LoginPin.this);
+        if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+            if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
+                setOnClickListener();
+            }else {
+
+            }
+        }else{
+
+        }
     }
+
 
     private void setOnClickListener() {
 
@@ -594,7 +612,7 @@ public class LoginPin extends AppCompatActivity {
                     }
 
                    else if(aFalse.contains("Failed to connect")){
-                         Toast.makeText(loginpinC, "Please try again later", Toast.LENGTH_LONG).show();
+                         Toast.makeText(loginpinC, getString(R.string.please_try_again_later), Toast.LENGTH_LONG).show();
 
                     }
                     else{
@@ -820,7 +838,7 @@ public class LoginPin extends AppCompatActivity {
 
 
                     else if(aFalse.contains("Failed to connect")){
-                        Toast.makeText(loginpinC, "Please try again later", Toast.LENGTH_LONG).show();
+                        Toast.makeText(loginpinC, getString(R.string.please_try_again_later), Toast.LENGTH_LONG).show();
 
                     }
 
@@ -1069,7 +1087,7 @@ public class LoginPin extends AppCompatActivity {
                                 Intent i = new Intent(LoginPin.this, RESETPINOtpPage.class);
                                 startActivity(i);
                             } else {
-                                Toast.makeText(LoginPin.this, "Please Contact Admin To Reset Pin", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginPin.this, getString(R.string.contactadmin), Toast.LENGTH_LONG).show();
 
                             }
 

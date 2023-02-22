@@ -260,6 +260,7 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
 
                 }
                 else {
+
                     MyApplication.biometricAuth(LocalRemittanceConfirmScreen.this, new BioMetric_Responce_Handler() {
                         @Override
                         public void success(String success) {

@@ -3,6 +3,7 @@ package com.agent.cashmoovui.settings;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ public class Confidentiality extends AppCompatActivity implements View.OnClickLi
     SwitchButton btnSwich;
     MyApplication applicationComponentClass;
     String languageToUse = "";
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -123,6 +126,10 @@ public class Confidentiality extends AppCompatActivity implements View.OnClickLi
         Intent intent;
         switch (view.getId()) {
             case R.id.btnCancel:
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 intent = new Intent(getApplicationContext(), Profile.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

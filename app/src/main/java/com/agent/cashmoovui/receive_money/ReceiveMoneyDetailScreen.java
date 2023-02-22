@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -80,6 +81,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
     String languageToUse = "";
     MyApplication applicationComponentClass;
     private String serviceCode_from_serviceCategory,serviceCategoryCode_from_serviceCategory,serviceProviderCode_from_serviceCategory;
+    private long mLastClickTime = 0;
 
 
     @Override
@@ -346,7 +348,10 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvNext:
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 if (et_destination_mobileNumber.getText().toString().trim().isEmpty()) {
                     MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_phone));
                     return;
