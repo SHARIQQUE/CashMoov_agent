@@ -1487,9 +1487,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 }else {
-                    if (getSystemService(Context.FINGERPRINT_SERVICE) == null) {
-                        MyApplication.showToast(CashIn.this,"Fingerprint hs not been enabled in settings.");
-                    } else {
+
 
                         MyApplication.biometricAuth(CashIn.this, new BioMetric_Responce_Handler() {
                             @Override
@@ -1523,7 +1521,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                             }
                         });
-                    }
+
                 }
 //new update
               /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(CashIn.this);

@@ -37,6 +37,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.CommonData;
+import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.login.LoginMsis;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
@@ -898,7 +899,10 @@ public static String addDecimal(String number) {
     public static Activity activityNew;
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
-
+        if (activity.getSystemService(Context.FINGERPRINT_SERVICE) == null) {
+            bioMetric_responce_handler.failure("");
+            return;
+        }
         MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", activity);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {

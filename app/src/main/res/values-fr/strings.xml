@@ -429,7 +429,7 @@
     <string name="you_have_choose_french_language">Vous avez choisir la langue française</string>
     <string name="pin">Code PIN :</string>
     <string name="please_enter_pin">Veuillez saisir le code PIN</string>
-    <string name="verification_register_otp">Veuillez contacter votre service clientele pour reinitialiser le code PIN</string>
+    <string name="verification_register_otp">Veuillez entrer l’OTP (mot de passe à usage unique) pour vérifier votre compte. Le code a été envoyé à l’adresse e-mail enregistrée et au numéro de téléphone portable</string>
     <string name="u_don_t_have_an_account_signup_u">Vous n\'avez pas de compte ? S’inscrire</string>
     <string name="please_enter_mobileno">Veuillez entrer le numero de telephone*</string>
     <string name="you_make_withdrwarl">Vous effectuez un retrait</string>
@@ -438,7 +438,7 @@
     <string name="qr_code_of_the">Code Qr de abonné</string>
     <string name="scanbarcode">Scannez un code-barres ou un code QR</string>
 
-    <string name="verification_register_otpback">Veuillez contacter votre service clientele pour reinitialiser le code PIN</string>
+    <string name="verification_register_otpback">Veuillez contacter votre service client pour Generate OTP et veuillez entrer le OTP pour vérifier votre compte</string>
     <string name="otp_verify">Vérification OTP</string>
     <string name="verify_subscriber_pin">Vérifier le code PIN d abonné</string>
     <string name="subscriber_pin"> Code PIN d abonné</string>

@@ -579,7 +579,9 @@ public class LoginPin extends AppCompatActivity {
                             if (jsonObject.optBoolean("loginWithOtpRequired")) {
                                 Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
                                 startActivity(i);
-                                finish();
+                                MyApplication.hideLoader();
+
+                                // finish();
                             } else {
                                 userInfo_api(jsonObject.optString("walletOwnerCode"));
                             }
@@ -809,7 +811,9 @@ public class LoginPin extends AppCompatActivity {
                             if (jsonObject.optBoolean("loginWithOtpRequired")) {
                                 Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
                                 startActivity(i);
-                                finish();
+                                MyApplication.hideLoader();
+
+                                //finish();
                             } else {
                                 userInfo_api(jsonObject.optString("walletOwnerCode"));
                             }
