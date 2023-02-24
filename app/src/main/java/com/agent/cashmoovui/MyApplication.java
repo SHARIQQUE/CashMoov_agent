@@ -926,7 +926,7 @@ public static String addDecimal(String number) {
             case BiometricManager.BIOMETRIC_SUCCESS:
 
 
-               // showToast(activity,"hardwatre unvaliba 00");
+                //showToast(activity,"hardwatre unvaliba 00");
 
                 // msgText.setText("You can use the fingerprint sensor to login");
                 // msgText.setTextColor(Color.parseColor("#fafafa"));
@@ -934,7 +934,7 @@ public static String addDecimal(String number) {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-               // showToast(activity,"hardwatre unvaliba 11");
+               //showToast(activity,"hardwatre unvaliba 11");
 
 
               //  bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
@@ -957,7 +957,7 @@ public static String addDecimal(String number) {
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
 
              //   bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
-               // showToast(activity,"hardwatre 33");
+              //  showToast(activity,"hardwatre 33");
 
                 break;
         }
@@ -968,11 +968,14 @@ public static String addDecimal(String number) {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-               // showToast(activity,"hardwatre "+errorCode);
+                //showToast(activity,"hardwatre "+errorCode);
                    // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
 
+                    checkCounter(bioMetric_responce_handler,activity.getResources().getString(R.string.please_enter_pin_bio));
+
+
                if(!fingerprintManager.hasEnrolledFingerprints()) {
-                    bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
+                    bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));
 
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
@@ -1002,7 +1005,7 @@ public static String addDecimal(String number) {
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
 
-                checkCounter(bioMetric_responce_handler,activity.getString(R.string.please_enter_pin_bio));
+                checkCounter(bioMetric_responce_handler,activity.getResources().getString(R.string.please_enter_pin_bio));
                 //showToast(activity,"hardwatre 66");
 
                 biometricPrompt.cancelAuthentication();
@@ -1024,7 +1027,7 @@ public static String addDecimal(String number) {
             bioMetric_responce_handler.failure(message);
         }else{
             bioMetricCounter=bioMetricCounter+1;
-            showToast(activityNew,appInstance.getString(R.string.tryagain));
+            showToast(activityNew,activityNew.getResources().getString(R.string.tryagain));
 
 
         }

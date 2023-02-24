@@ -1358,7 +1358,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                                 }
                             } else {
                               //  tax_financial = exchangeRate.getString("value");
-                                tax_financialnew = exchangeRate.getString("value");
+                                tax_financialnew = "0.00";
 
                             }
                         }

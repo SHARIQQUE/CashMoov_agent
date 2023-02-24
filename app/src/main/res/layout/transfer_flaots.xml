@@ -698,6 +698,7 @@
 
 
             <LinearLayout
+                android:id="@+id/fee_layout"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -743,6 +744,7 @@
 
 
             <LinearLayout
+                android:id="@+id/tax_layout"
                 android:gravity="left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

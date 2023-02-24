@@ -1301,12 +1301,15 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                                     tax_lab.setText(MyApplication.getTaxStringnew(jsonObject2.getString("taxTypeName")+" :"));
                                 }
                             } else {
-                                tax_lab.setText(MyApplication.getTaxStringnew("TAX "));
-                                tax_financial = exchangeRate.getString("value");
+                                findViewById(R.id.tax_layout).setVisibility(View.GONE);
+                                tax_lab.setText(MyApplication.getTaxStringnew(getString(R.string.tax)));
+                                tax_financial = "0.00";
                             }
                         }else{
-                            tax_lab.setText(MyApplication.getTaxStringnew("TAX "));
-                            tax_financial = exchangeRate.getString("value");
+                            findViewById(R.id.tax_layout).setVisibility(View.GONE);
+                            tax_lab.setText(MyApplication.getTaxStringnew(getString(R.string.tax)));
+                            tax_financial = "0.00";
+                           // tax_financial = exchangeRate.getString("value");
                         }
 
                         TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
@@ -1421,12 +1424,14 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                                     tax_lab.setText(MyApplication.getTaxStringnew(jsonObject2.getString("taxTypeName")+" :"));
                                 }
                             } else {
-                                tax_lab.setText(MyApplication.getTaxStringnew("TAX "));
-                                tax_financial = exchangeRate.getString("value");
+                                findViewById(R.id.tax_layout).setVisibility(View.GONE);
+                                tax_lab.setText(MyApplication.getTaxStringnew(getString(R.string.tax)));
+                                tax_financial = "0.00";
                             }
                         }else{
-                            tax_lab.setText(MyApplication.getTaxStringnew("TAX "));
-                            tax_financial = exchangeRate.getString("value");
+                            findViewById(R.id.tax_layout).setVisibility(View.GONE);
+                            tax_lab.setText(MyApplication.getTaxStringnew(getString(R.string.tax)));
+                            tax_financial = "0.00";
                         }
 
                         TextView receiptPage_tv_financialtaxl=findViewById(R.id.receiptPage_tv_financialtaxl);
@@ -1688,7 +1693,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
@@ -1809,7 +1814,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
@@ -1820,6 +1825,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         String resultDescription = jsonObject.getString("resultDescription");
 
                         if (resultCode.equalsIgnoreCase("0")) {
+                            MyApplication.hideLoader();
                             confirm_reviewClick_textview.setEnabled(true);
                             confirm_reviewClick_textview.setClickable(true);
 
@@ -2016,18 +2022,18 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                     if (pinLinear.getVisibility() == View.VISIBLE) {
                         if (validation_mpin_detail()) {
-                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
-                                return;
-                            }
-                            mLastClickTime = SystemClock.elapsedRealtime();
 
-                            confirm_reviewClick_textview.setEnabled(false);
+                          /*  confirm_reviewClick_textview.setEnabled(false);
                             confirm_reviewClick_textview.setClickable(false);
-
+*/
 
                             if (new InternetCheck().isConnected(TransferFloats.this)) {
 
                                 MyApplication.showloader(TransferFloats.this, getString(R.string.please_wait));
+                                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                                    return;
+                                }
+                                mLastClickTime = SystemClock.elapsedRealtime();
 
                                 mpin_verify();
 
