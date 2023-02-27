@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -1776,7 +1777,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
+    public static long mLastClickTime=0;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -1821,8 +1822,12 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             break;
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -1840,6 +1845,10 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
             break;
 
             case R.id.close_receiptPage_textview: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewpage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);

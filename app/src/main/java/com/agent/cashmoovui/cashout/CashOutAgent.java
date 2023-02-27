@@ -1404,7 +1404,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             break;
 
             case R.id.close_receiptPage_textview: {
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 //
 //                ll_page_1.setVisibility(View.VISIBLE);
 //                ll_reviewPage.setVisibility(View.GONE);
@@ -1437,6 +1440,10 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             break;
 
             case R.id.exportReceipt_textview: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 close_receiptPage_textview.setVisibility(View.VISIBLE);
                 exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);

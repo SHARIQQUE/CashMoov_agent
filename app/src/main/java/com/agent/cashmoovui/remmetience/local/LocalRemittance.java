@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -3415,7 +3416,7 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
+    public static long mLastClickTime = 0;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -3551,8 +3552,12 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
             break;
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -3634,6 +3639,10 @@ public class LocalRemittance extends AppCompatActivity implements View.OnClickLi
 
 
             case R.id.close_receiptPage_textview: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);

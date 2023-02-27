@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -3435,7 +3436,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
     }
 
 
-
+    public static long mLastClickTime = 0;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -3570,8 +3571,12 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
             break;
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -3653,6 +3658,11 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
 
 
             case R.id.close_receiptPage_textview: {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);

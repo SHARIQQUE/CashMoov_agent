@@ -197,6 +197,7 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/drawable/ic_arrow_down.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/drawable/spinner_background.xml" value="0.13" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_add_beneficiary.xml" value="0.165625" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_cash_to_wallet_confirm_screen.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_cashin.xml" value="0.165625" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_confidentiality.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_detail_abonne.xml" value="0.1171875" />
@@ -211,6 +212,7 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/airtime_purchases.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.17239583333333333" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_to_wallet.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/cashout_agent.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/commision_transfer.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/include_transaction_history_agent_page.xml" value="0.13125" />

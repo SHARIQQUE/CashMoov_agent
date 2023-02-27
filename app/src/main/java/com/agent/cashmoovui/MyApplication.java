@@ -14,6 +14,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.Html;
@@ -968,10 +969,10 @@ public static String addDecimal(String number) {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-                //showToast(activity,"hardwatre "+errorCode);
+               // showToast(activity,"hardwatre "+errorCode+"  "+errString);
                    // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
 
-                    checkCounter(bioMetric_responce_handler,activity.getResources().getString(R.string.please_enter_pin_bio));
+
 
 
                if(!fingerprintManager.hasEnrolledFingerprints()) {
@@ -980,6 +981,9 @@ public static String addDecimal(String number) {
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
                     // Everything is ready for fingerprint authentication
+                   if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
+                       onAuthenticationFailed();
+                   }
                 }
 
              //   checkCounter(bioMetric_responce_handler,errString+"");
@@ -1013,8 +1017,9 @@ public static String addDecimal(String number) {
         });
         // creating a variable for our promptInfo
         // BIOMETRIC DIALOG
-        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
-                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).setConfirmationRequired(false).build();
+         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("CASHMOOV")
+                .setDescription(activity.getString(R.string.use_finger_to_transaction)).setNegativeButtonText(activity.getString(R.string.cancel)).
+                         setConfirmationRequired(false).build();
 
         biometricPrompt.authenticate(promptInfo);
 
@@ -1199,6 +1204,14 @@ public static String addDecimal(String number) {
 
        }
        return dataencript;
+   }
+
+   public static void preventDoubleClick(long mLastClickTime){
+
+       if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+           return;
+       }
+       mLastClickTime = SystemClock.elapsedRealtime();
    }
 
 

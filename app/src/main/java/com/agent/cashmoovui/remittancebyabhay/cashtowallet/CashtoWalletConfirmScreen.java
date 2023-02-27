@@ -20,7 +20,11 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceActivity;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceBenefiKYC;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceConfirmScreen;
+import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceSenderKYC;
 import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,6 +43,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
     boolean  isPasswordVisible;
     double finalamount;
     private long mLastClickTime = 0;
+    LinearLayout  pinLinear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,8 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
 
 
     private void getIds() {
+
+        pinLinear=findViewById(R.id.pinLinear);
         tvAgentCode = findViewById(R.id.tvAgentCode);
         tvTransferMode = findViewById(R.id.tvTransferMode);
         tvSenderMSISDN = findViewById(R.id.tvSenderMSISDN);
@@ -190,28 +197,29 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
         Intent intent;
         switch (view.getId()) {
             case R.id.btnConfirm:
-                if (etPin.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(cashtowalletconfirmC, getString(R.string.val_pin));
-                    return;
-                }
-                if (etPin.getText().toString().trim().length() < 4) {
-                    MyApplication.showErrorToast(cashtowalletconfirmC, getString(R.string.val_valid_pin));
-                    return;
-                }
-                try {
-
-                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                if(pinLinear.getVisibility()==View.VISIBLE) {
+                    if (etPin.getText().toString().trim().isEmpty()) {
+                        MyApplication.showErrorToast(cashtowalletconfirmC, getString(R.string.val_pin));
                         return;
                     }
-                    mLastClickTime = SystemClock.elapsedRealtime();
+                    if (etPin.getText().toString().trim().length() < 4) {
+                        MyApplication.showErrorToast(cashtowalletconfirmC, getString(R.string.val_valid_pin));
+                        return;
+                    }
+                    try {
+
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
 
 
                         btnConfirm.setEnabled(false);
                         btnConfirm.setClickable(false);
-                    MyApplication.showloader(cashtowalletconfirmC,getString(R.string.pleasewait));
-                    etPin.setClickable(false);
+                        MyApplication.showloader(cashtowalletconfirmC, getString(R.string.pleasewait));
+                        etPin.setClickable(false);
 
-                    Log.d("click", "1");
+                        Log.d("click", "1");
                         String encryptionDatanew = AESEncryption.getAESEncryption(etPin.getText().toString().trim());
 
                         remitJson.put("walletOwnerCode", tvAgentCode.getText().toString());
@@ -241,11 +249,67 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                         callPostAPI();
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }  else {
+
+                    MyApplication.biometricAuth(CashtoWalletConfirmScreen.this, new BioMetric_Responce_Handler() {
+                        @Override
+                        public void success(String success) {
+
+                            try {
+                                etPin.setClickable(false);
+                                btnConfirm.setVisibility(View.GONE);
+                                String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance));
+
+
+                                remitJson.put("walletOwnerCode", tvAgentCode.getText().toString());
+                                remitJson.put("transactionType", "SENDREMITTANCE");
+                                remitJson.put("senderCode", CashtoWalletSenderKYC.sendorCustomerJsonObj.optJSONObject("customer").optString("code"));
+                                remitJson.put("receiverCode", CashtoWalletReceiverKYC.receiverCode);
+                                remitJson.put("fromCurrencyCode", LocalRemittanceCashtowalletActivity.fromCurrencyCode);
+                                remitJson.put("toCurrencyCode", "100062");
+                                remitJson.put("amount", LocalRemittanceCashtowalletActivity.amount);
+                                remitJson.put("receiveMode", "WALLET");
+                                remitJson.put("conversionRate", LocalRemittanceCashtowalletActivity.rate);
+                                remitJson.put("pin", encryptionDatanew);
+                                remitJson.put("comments", "");
+                                remitJson.put("exchangeRateCode", LocalRemittanceCashtowalletActivity.exRateCode);
+                                remitJson.put("channelTypeCode", MyApplication.channelTypeCode);
+                                remitJson.put("serviceCode", CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCode"));
+                                remitJson.put("serviceCategoryCode", CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("serviceCategoryCode"));
+                                remitJson.put("serviceProviderCode", CashtoWalletSenderKYC.serviceCategory.optJSONArray("serviceProviderList").optJSONObject(0).optString("code"));
+                                remitJson.put("sendCountryCode", CashtoWalletSenderKYC.sendCountryCode);
+                                remitJson.put("receiveCountryCode", "100092");
+                                remitJson.put("firstName", CashtoWalletSenderKYC.et_sender_firstName.getText().toString());
+                                remitJson.put("mobileNumber", CashtoWalletSenderKYC.et_sender_phoneNumber.getText().toString());
+                                // remitJso  n.put("remitType","International Remit");
+
+                                System.out.println("remitJson" + remitJson);
+
+                                callPostAPI();
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void failure(String failure) {
+
+                            MyApplication.showToast(CashtoWalletConfirmScreen.this, failure);
+
+                            pinLinear.setVisibility(View.VISIBLE);
+
+
+                        }
+                    });
                 }
 
-              //  System.out.println("dataToSend---" + cashtowalletconfirmC.dataToSend.toString());
+
+                //  System.out.println("dataToSend---" + cashtowalletconfirmC.dataToSend.toString());
 
                 break;
             case R.id.btnCancel:

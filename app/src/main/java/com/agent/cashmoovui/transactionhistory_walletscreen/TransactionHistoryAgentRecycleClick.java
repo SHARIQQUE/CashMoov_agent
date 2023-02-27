@@ -312,6 +312,7 @@ public class TransactionHistoryAgentRecycleClick extends AppCompatActivity imple
 
             case R.id.close_receiptPage_textview:
 
+
                 finish();
                 break;
 

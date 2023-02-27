@@ -1783,8 +1783,12 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             break;
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -1814,6 +1818,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             case R.id.close_receiptPage_textview:
             {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);

@@ -1597,7 +1597,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
 
-            et_sender_dob.setText(year + "-" + (month+1) + "-" + day);
+            et_sender_dob.setText(day + "-" + (month+1) + "-" + year);
             mDobText.setVisibility(View.VISIBLE);
             // etDob.setText(year + "-" + (month+1) + "-" + day);
 

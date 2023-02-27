@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -59,6 +60,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
     boolean  isPasswordVisible,isPasswordVisible2;
 
+    public static long mLastClickTime=0;
     public static LoginPin loginpinC;
     ImageButton qrCode_imageButton;
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -1113,8 +1115,12 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             break;
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -1196,7 +1202,10 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
             break;
 
             case R.id.close_receiptPage_textview: {
-
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
 //                ll_page_1.setVisibility(View.VISIBLE);
 //                ll_reviewPage.setVisibility(View.GONE);

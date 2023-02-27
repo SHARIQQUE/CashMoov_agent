@@ -84,7 +84,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
     String select_currencySymbol="";
     String select_currencyCode="";
-    private LinearLayout linearcurrecy;
+     LinearLayout linearcurrecy,pinlinear;
     private TextView spinner_Currency;
 
     String currencyName_from_currency="";
@@ -196,6 +196,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             main_wallet= (TextView) findViewById(R.id.main_wallet);
             spinner_currency.setOnItemSelectedListener(this);
             spinner_record = (Spinner) findViewById(R.id.spinner_record);
+            pinlinear= (LinearLayout) findViewById(R.id.pinlinear);
 
             //    Reveiw page
 
@@ -223,7 +224,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
             spinner_record.setAdapter(recordAdapter);
 
             TextView tvFinger =findViewById(R.id.tvFinger);
-            if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
+           /* if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
                 if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
                     tvFinger.setVisibility(View.VISIBLE);
                 } else {
@@ -231,7 +232,7 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
                 }
             }else{
                 tvFinger.setVisibility(View.VISIBLE);
-            }
+            }*/
             tvFinger.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -854,12 +855,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
             return false;
         }
-        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCommisionTransferMinAmount) {
+        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToCommisionTransferMinAmount) {
             MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.val_amount_min)+" "+MyApplication.ToCommisionTransferMinAmount);
             return false;
         }
 
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCommisionTransferMaxAmount) {
+        if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCommisionTransferMaxAmount) {
             MyApplication.showErrorToast(CommissionTransfer.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCommisionTransferMaxAmount);
             return false;
 
@@ -873,24 +874,8 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
         }*/
 
-        else if(mpinStr.trim().isEmpty()) {
 
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
-
-            return false;
-        }
-
-        else if(mpinStr.trim().length() == 4) {
-
-            return true;
-        }
-        else {
-
-            MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
-
-            return false;
-        }
-
+return true;
     }
 
     boolean validation_mobile_Detailsf() {
@@ -1103,56 +1088,73 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
                 if (validation_mobile_Details()) {
 
-                    tv_nextClick.setClickable(false);
 
-                    if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+                    if (pinlinear.getVisibility() == View.VISIBLE) {
 
-                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                         if(mpinStr.trim().isEmpty()) {
+
+                            MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
+
                             return;
                         }
-                        mLastClickTime = SystemClock.elapsedRealtime();
+                         if(mpinStr.trim().length() < 4) {
 
-                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
+                             MyApplication.showErrorToast(this, getString(R.string.please_enter_4_digit_mpin));
 
-                        mpin_final_api();
+                             return ;
+                        }
 
-                    } else {
-                        Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                        if (new InternetCheck().isConnected(CommissionTransfer.this)) {
 
-                    }
-                } else {
-                    MyApplication.biometricAuth(CommissionTransfer.this, new BioMetric_Responce_Handler() {
-                        @Override
-                        public void success(String success) {
-                            try {
-
-                                //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
-                                //    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
-
-                                if (new InternetCheck().isConnected(CommissionTransfer.this)) {
-
-                                      MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
-
-                                    mpin_final_api();
-
-                                } else {
-                                    Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                                return;
                             }
+                            mLastClickTime = SystemClock.elapsedRealtime();
+
+                            MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
+
+                            mpin_final_api();
+                            tv_nextClick.setClickable(false);
+
+                        } else {
+                            Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+
                         }
+                    } else {
+                        MyApplication.biometricAuth(CommissionTransfer.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
 
-                        @Override
-                        public void failure(String failure) {
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    //    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
 
-                            MyApplication.showToast(CommissionTransfer.this, failure);
+                                    if (new InternetCheck().isConnected(CommissionTransfer.this)) {
+                                        mpinStr=MyApplication.getSaveString("pin",MyApplication.appInstance);
+                                        MyApplication.showloader(CommissionTransfer.this, getString(R.string.please_wait));
 
-                            //  pinLinear.setVisibility(View.VISIBLE);
+                                        mpin_final_api();
+                                        tv_nextClick.setClickable(false);
+
+                                    } else {
+                                        Toast.makeText(CommissionTransfer.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+
+                                //MyApplication.showToast(CommissionTransfer.this, failure);
+
+                                  pinlinear.setVisibility(View.VISIBLE);
 
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             }
 
@@ -1186,8 +1188,12 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 
 
             case R.id.exportReceipt_textview: {
-                close_receiptPage_textview.setVisibility(View.GONE);
-                exportReceipt_textview.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                close_receiptPage_textview.setVisibility(View.VISIBLE);
+                exportReceipt_textview.setVisibility(View.VISIBLE);
                 Bitmap bitmap = getScreenShot(rootView);
                 createImageFile(bitmap);
                 //store(bitmap, "test.jpg");
@@ -1221,6 +1227,10 @@ public class CommissionTransfer extends AppCompatActivity implements View.OnClic
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
