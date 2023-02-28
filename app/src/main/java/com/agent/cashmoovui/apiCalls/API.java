@@ -44,14 +44,14 @@ public class API {
     //public static String BASEURrL="http://202.131.144.130:8081/";       // ##### QA ######
     //public static String BASEURL="http://202.131.144.129:8081/";    // ##### UAT ######
     //  public static String BASEURL="http://180.179.201.110:8081/";  //Production
-      //public static String BASEURL="https://cashmoovmm.com:8081/";
+      public static String BASEURL="https://cashmoovmm.com:8081/";
   //  public static String BASEURL="https://180.179.201.110:8081/";//Prod
 
     //public static String BASEURL="http://180.179.201.109:8081/";
 
 
     //  mujhe remiitance local /international  benficairy detail  email id remove karni h jab prod pe build dena hoga to
-    public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
+   // public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
 
     //###############################################################
     public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
@@ -161,6 +161,10 @@ public class API {
                     .addBodyParameter("username",jsonObject.optString("username")) // posting json
                     .addBodyParameter("password",jsonObject.optString("password"))
                     .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
+
+                    .addBodyParameter("cc", jsonObject.optString("cc"))
+                    .addBodyParameter("country", jsonObject.optString("country"))
+
                     .addBodyParameter("grant_type","password")
                     .addHeaders("Accept-Language",MyApplication.getSaveString("Locale",MyApplication.getInstance()))
                     .addHeaders("channel","APP")
@@ -442,6 +446,8 @@ public class API {
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
                     .addBodyParameter("grant_type", "password")
+                    .addBodyParameter("cc",jsonObject.optString("cc"))
+                    .addBodyParameter("country",jsonObject.optString("country"))
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "GENERATEOTP")
@@ -540,6 +546,8 @@ public class API {
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
                     .addBodyParameter("grant_type", "password")
+                    .addBodyParameter("cc",jsonObject.optString("cc"))
+                    .addBodyParameter("country",jsonObject.optString("country"))
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "RESETPIN")
@@ -636,6 +644,8 @@ public class API {
                     .addBodyParameter("password", jsonObject.optString("password"))
                     .addBodyParameter("fcmToken",jsonObject.optString("fcmToken"))
                     .addBodyParameter("grant_type", "password")
+                    .addBodyParameter("cc",jsonObject.optString("cc"))
+                    .addBodyParameter("country",jsonObject.optString("country"))
                     .addHeaders("Accept-Language", MyApplication.getSaveString("Locale", MyApplication.getInstance()))
                     .addHeaders("channel", "APP")
                     .addHeaders("type", "LOGINOTP")

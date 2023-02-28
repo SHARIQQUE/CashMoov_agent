@@ -970,7 +970,7 @@
     <string name="maxvaluewallet">Valeur max</string>
     <string name="minvaluewallet">Valeur minimale</string>
     <string name="alertvalue">Valeur d\'alerte</string>
-    <string name="Commisionwallet">"Portefeuille de commissions"</string>
+    <string name="Commisionwallet">"Compte commission"</string>
     <string name="Viewwallet">"Voir les limites"</string>
     <string name="Creditlimit">Limite de crédit</string>
     <string name="subscriberpin"> PIN Client :</string>

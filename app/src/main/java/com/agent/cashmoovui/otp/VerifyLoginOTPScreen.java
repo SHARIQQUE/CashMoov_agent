@@ -116,6 +116,9 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
             loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
+            loginJson.put("country",MyApplication.getSaveString("COUNTRY",VerifyLoginOTPScreen.this));
+            loginJson.put("cc",MyApplication.getSaveString("CC",VerifyLoginOTPScreen.this));
+
 //            loginJson.put("country",MyApplication.getSaveString("COUNTRY", VerifyLoginOTPScreen.this));
 //            loginJson.put("cc",MyApplication.getSaveString("CC",VerifyLoginOTPScreen.this));
             // loginJson.put("scope","read write");
