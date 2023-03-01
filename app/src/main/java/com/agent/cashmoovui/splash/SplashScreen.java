@@ -265,7 +265,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 //                            MyApplication.showToast(SplashScreen.this,getString(R.string.technical_failure));
                         } else {
                             loginPage();
-                           // MyApplication.showToast(SplashScreen.this,jsonObject.optString("resultDescription", "N/A"));
+                          MyApplication.showToast(SplashScreen.this,"API FAIL");
                         }
                     }
                 }
@@ -273,6 +273,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void failure(String aFalse) {
                     loginPage();
+                    MyApplication.showToast(SplashScreen.this,"API FAIL");
                 }
             });
 
