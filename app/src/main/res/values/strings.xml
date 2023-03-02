@@ -290,7 +290,7 @@
     <string name="gender">Gender</string>
     <string name="reason_for_sending">Reason for sending</string>
     <string name="international_money_transfer">International money transfer</string>
-    <string name="Rate">Rate :</string>
+    <string name="Rate">Conversion Rate :</string>
 
     <string name="international_transfer">International Transfer</string>
     <string name="commision_transfer">Commission Transfer</string>

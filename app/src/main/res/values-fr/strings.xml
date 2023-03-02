@@ -98,7 +98,7 @@
     <string name="please_see_our_term_condition">Veuillez consulter notre \nPolitique relative aux conditions d\'utilisation</string>
     <string name="start_now">Demarrer maintenant</string>
     <string name="home">Accueil</string>
-    <string name="wallet">Compte</string>
+    <string name="wallet">Portefeuille</string>
     <string name="setting">Réglage</string>
     <string name="Calculate">Calculer</string>
 
@@ -131,14 +131,14 @@
     <string name="complete_profile">Completez le profile</string>
     <string name="complet_70">Complet à 70 %</string>
     <string name="out_8_10_complete">8 sur 10 completet</string>
-    <string name="recharge_payment">Recharge &amp; Paiements</string>
+    <string name="recharge_payment">Paiements</string>
     <string name="next">Suivant</string>
     <string name="ignore">Ignorer</string>
     <string name="to_start">Demarrer</string>
     <string name="to_end">Terminer</string>
-    <string name="watch_video">Regarder la video</string>
+    <string name="watch_video">Suivre la video</string>
     <string name="video_tutorial_message">Si vous êtes nouveau et que vous avez besoin d\'aide, regardez ce court tutoriel pour commencer.</string>
-    <string name="already_acc_login">Vous avez déjà un compte? - connectez vous</string>
+    <string name="already_acc_login">Vous avez déjà un compte?</string>
     <string name="register">S\'enregistrer</string>
     <string name="register_message">Veuillez entrer votre numéro de téléphone valide. Nous vous enverrons un code à 4 chiffres pour vérifier le compte.</string>
     <string name="enter_location">Entrez votre emplacement</string>
@@ -249,6 +249,10 @@
     <string name="details_du_receveur">Détails du réceveur</string>
     <string name="numero_du_destinataire">Numero du destinataire</string>
     <string name="amount">Montant </string>
+    <string name="business">Entreprise, Nom</string>
+    <string name="enterbusiness">Veuillez saisir le nom de l’entreprise</string>
+    <string name="business_name">Nom de l’entreprise</string>
+
     <string name="Parteners">Les partenaires</string>
     <string name="val_subscriber_no">Veuillez saisir le numéro d\'abonné</string>
     <string name="enter_subscriber_no_val">Le numéro d\'abonné doit comporter au moins 9 chiffres</string>
@@ -280,7 +284,7 @@
     <string name="gender">Sexe</string>
     <string name="reason_for_sending">Motif de l\'envoi</string>
     <string name="international_money_transfer">Transfert d\'argent à l\'international</string>
-    <string name="Rate">Taux :</string>
+    <string name="Rate">Taux de change :</string>
     <string name="international_transfer">Transfert international</string>
     <string name="commision_transfer">Transfert de commission</string>
 
@@ -363,7 +367,7 @@
     <string name="or">OU</string>
     <string name="login_pin">Se connecter avec le code pin ?</string>
     <string name="val_phone">Veuillez entrer le numéro de téléphone</string>
-    <string name="val_pass">Veuillez entrer le mot de passe</string>
+    <string name="val_pass">Tapez votre mot de passe</string>
     <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
     <string name="set_pin">Définir la code pin</string>
     <string name="set_pin_message">Veuillez definir un code pin a 4 chiffres pour votre compte</string>
@@ -536,7 +540,7 @@
     <string name="amount_to_be_amounbtcredited_receiptpage">Montant a\' créditér :</string>
 
     <string name="upload_success">Image de profil téléchargée avec succès</string>
-    <string name="logout">Deconnexion</string>
+    <string name="logout">Se déconnecter</string>
     <string name="this_action_logout">Cette action se déconnectera de l\'application</string>
     <string name="logout_app">Êtes-vous sûr de vouloir vous déconnecter de l\'application?</string>
     <string name="benificiary_currency_receiptpage">Devise de réception :</string>
@@ -562,7 +566,7 @@
     <string name="benificairay_mssidn">Numéro du bénéficiaire</string>
     <string name="conversion_rate">Taux de change</string>
 
-    <string name="export_receipt">Exporter</string>
+    <string name="export_receipt">Exportez le reçu</string>
     <string name="share_screenshot">Partager une capture d écran</string>
     <string name="no_app_available">Aucune application disponible</string>
     <string name="send_remittance_local">Envoyer un versement local</string>
@@ -580,7 +584,7 @@
     <string name="vendor_result_description">Fournisseur Résultat Description :</string>
 
     <string name="cash_to_wallet">Cash a compte</string>
-    <string name="tax">Taxe :</string>
+    <string name="tax">Impôt :</string>
     <string name="total_amount_invoice">Montant total de la facture</string>
     <string name="rate">Taux</string>
     <string name="device_to_send">Appareil a envoyer</string>
@@ -625,7 +629,7 @@
     <string name="val_scan_error_content">Le QR code ne peut pas etre scanne</string>
 
     <string name="new_coinfirm_should_be_same">La nouvelle broche et la broche de confirmation doivent être identiques</string>
-    <string name="view_balance">Afficher le solde</string>
+    <string name="view_balance">Voir le solde</string>
     <string name="my_branch">Mon Branche</string>
     <string name="my_agents">Mes Agents</string>
     <string name="comissions">Comissions</string>
@@ -970,7 +974,7 @@
     <string name="maxvaluewallet">Valeur max</string>
     <string name="minvaluewallet">Valeur minimale</string>
     <string name="alertvalue">Valeur d\'alerte</string>
-    <string name="Commisionwallet">"Portefeuille de commissions"</string>
+    <string name="Commisionwallet">"Compte commission"</string>
     <string name="Viewwallet">"Voir les limites"</string>
     <string name="Creditlimit">Limite de crédit</string>
     <string name="subscriberpin"> PIN Client :</string>
