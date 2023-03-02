@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -66,6 +67,7 @@ public class LoginPin extends AppCompatActivity {
 
     MyApplication applicationComponentClass;
     String languageToUse = "",mName,mMobile,mLastName;
+    CardView pin_login_lay;
 
 
     @Override
@@ -182,6 +184,7 @@ public class LoginPin extends AppCompatActivity {
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         tvFinger1.setText(content);
 
+        pin_login_lay=findViewById(R.id.pin_login_lay);
         mName=MyApplication.getSaveString("firstName", LoginPin.this);
         mMobile=MyApplication.getSaveString("mobile", LoginPin.this);
         mLastName=MyApplication.getSaveString("lastName", LoginPin.this);
@@ -286,16 +289,17 @@ public class LoginPin extends AppCompatActivity {
             tvFinger.setVisibility(View.GONE);
         }
 
-
+        pin_login_lay.setVisibility(View.GONE);
             MyApplication.setProtection = MyApplication.getSaveString("ACTIVATEPROTECTION", LoginPin.this);
         if(MyApplication.setProtection!=null && !MyApplication.setProtection.isEmpty()) {
             if (MyApplication.setProtection.equalsIgnoreCase("Activate")) {
                 setOnClickListener();
+                pin_login_lay.setVisibility(View.GONE);
             }else {
-
+                pin_login_lay.setVisibility(View.VISIBLE);
             }
         }else{
-
+            pin_login_lay.setVisibility(View.VISIBLE);
         }
     }
 
@@ -342,6 +346,7 @@ public class LoginPin extends AppCompatActivity {
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
                 System.out.println("get failde"+errString);
+                pin_login_lay.setVisibility(View.VISIBLE);
 
             }
 
@@ -378,6 +383,7 @@ public class LoginPin extends AppCompatActivity {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
+                pin_login_lay.setVisibility(View.VISIBLE);
             }
         });
         // creating a variable for our promptInfo

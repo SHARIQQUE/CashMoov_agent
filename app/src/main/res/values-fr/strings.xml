@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 28-02-2023 11:18 PM</string>
+    <string name="version">Version : 02-03-2023 09:58 AM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -675,6 +675,7 @@
     <string name="commision_Transfer">Transfert de commissions</string>
     <string name="currency_Name">Nom de la devise :</string>
     <string name="main_Wallet">Compte principal / Montant réservé</string>
+    <string name="inst_not_found">Institut introuvable</string>
     <string name="commision_Wallet">Compte commission:</string>
 
     <string name="main_Wallet_single">Compte principal:</string>
@@ -971,14 +972,14 @@
     <string name="International_Remittance">Transfert international</string>
     <string name="tier">niveau1</string>
     <string name="all">Toute</string>
-    <string name="Mainwallet">Portefeuille principal</string>
+    <string name="Mainwallet">Compte principal</string>
     <string name="maxvaluewallet">Valeur max</string>
     <string name="minvaluewallet">Valeur minimale</string>
     <string name="alertvalue">Valeur d\'alerte</string>
     <string name="Commisionwallet">"Compte commission"</string>
     <string name="Viewwallet">"Voir les limites"</string>
     <string name="Creditlimit">Limite de crédit</string>
-    <string name="subscriberpin"> PIN Client :</string>
+    <string name="subscriberpin"> Code pin de l\'abonné :</string>
     <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
     <string name="activity">Activité</string>
     <string name="agentname_star_error">"Entrez veuillez nom d agent "</string>

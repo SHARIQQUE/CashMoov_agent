@@ -269,7 +269,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 
                     if (s.length() ==Integer.parseInt(mobilelength)) {
                         subscriber_details_api_walletownerUserNew();
-                        edittext_amount.requestFocus();
+
 
 
                     }
@@ -588,7 +588,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         walletOwnerCategoryCode ="100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+(edittext_mobileNuber.getText().toString()) + "&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+(edittext_mobileNuber.getText().toString()) + "&status=Y&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -609,13 +609,19 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                         for(int i=0;i<jsonArray.length();i++)
                         {
 
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            receivernameStr=jsonObject2.getString("ownerName");
-                            etName.setText(receivernameStr);
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                              receivernameStr = jsonObject2.getString("ownerName");
+                                etName.setText(receivernameStr);
+
 
                         }
 
+                        if(etName.getText().toString().isEmpty()||etName.getText().toString().trim().equalsIgnoreCase("")){
+                            etName.setText("");
+                        }else{
+                            edittext_amount.requestFocus();
+                        }
                        // api_currency_sender();
 
                     }
@@ -658,7 +664,8 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
         walletOwnerCategoryCode ="100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+(edittext_mobileNuber.getText().toString()) + "&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber=" +
+                ""+(edittext_mobileNuber.getText().toString()) + "&status=Y&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1661,10 +1668,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
 //                    ll_page_1.setVisibility(View.VISIBLE);
 //                    ll_reviewPage.setVisibility(View.GONE);
 //                    ll_receiptPage.setVisibility(View.GONE);
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) { // 1000 = 1second
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

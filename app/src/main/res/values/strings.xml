@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 28-02-2023 11:18 PM</string>
+    <string name="version">Version : 02-03-2023 09:58 AM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -690,7 +690,7 @@
     <string name="commision_Transfer">Commision Transfer</string>
     <string name="currency_Name">Currency name :</string>
     <string name="main_Wallet">Main Wallet / Reserve Amount </string>
-
+    <string name="inst_not_found">Institute not found</string>
     <string name="main_Wallet_single">Main Wallet :</string>
     <string name="commision_Wallet">Commision Wallet :</string>
     <string name="Parteners">Partners</string>

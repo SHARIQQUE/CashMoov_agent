@@ -253,10 +253,12 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
                         if(!isexists){
                             MyApplication.showToast(TransferFloats.this,getString(R.string.hierachynotfound));
-                            edittext_mobileNo.setText("");
 
+
+                        }else{
+                            edittext_amount.requestFocus();
                         }
-                        edittext_amount.requestFocus();
+
 
 
 
@@ -894,33 +896,39 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             return false;
         }
 
-        else if(mobileNoStr.length() < 9) {
+         if(mobileNoStr.length() < 9) {
 
             MyApplication.showErrorToast(this,getString(R.string.val_phone));
 
             return false;
         }
+        if(etName.getText().toString().trim().isEmpty()||etName.getText().toString().trim().equalsIgnoreCase("")) {
+
+            MyApplication.showErrorToast(this,getString(R.string.hierachynotfound));
+
+            return false;
+        }
 
 
 
-       else if(spinner_currency.getText().equals(getString(R.string.select_currency)))
+        if(spinner_currency.getText().equals(getString(R.string.select_currency)))
         {
             MyApplication.showErrorToast(this, getString(R.string.select_currency));
 
             return false;
         }
-        else if (amountstr.isEmpty()) {
+         if (amountstr.isEmpty()) {
 
             MyApplication.showErrorToast(this, getString(R.string.amount_to_paid_without_star));
 
             return false;
         }
-        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToTransferFloatMinAmount) {
+          if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToTransferFloatMinAmount) {
             MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_min)+" "+MyApplication.ToTransferFloatMinAmount);
             return false;
         }
 
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToTransferFloatMaxAmount) {
+           if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToTransferFloatMaxAmount) {
             MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_max)+" "+MyApplication.ToTransferFloatMaxAmount);
             return false;
 
@@ -943,28 +951,34 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
             return false;
         }
 
-        else if(mobileNoStr.length() < 9) {
+         if(mobileNoStr.length() < 9) {
 
             MyApplication.showErrorToast(this,getString(R.string.val_phone));
 
             return false;
         }
+         if(etName.getText().toString().trim().isEmpty()||etName.getText().toString().trim().equalsIgnoreCase("")) {
+
+            MyApplication.showErrorToast(this,getString(R.string.hierachynotfound));
+
+            return false;
+        }
 
 
 
 
-        else if (amountstr.isEmpty()) {
+         if (amountstr.isEmpty()) {
 
             MyApplication.showErrorToast(this, getString(R.string.amount_to_paid_without_star));
 
             return false;
         }
-        else  if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToTransferFloatMinAmount) {
+          if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))<MyApplication.ToTransferFloatMinAmount) {
             MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_min)+" "+MyApplication.ToTransferFloatMinAmount);
             return false;
         }
 
-        else   if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToTransferFloatMaxAmount) {
+           if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToTransferFloatMaxAmount) {
             MyApplication.showErrorToast(TransferFloats.this,getString(R.string.val_amount_max)+" "+MyApplication.ToTransferFloatMaxAmount);
             return false;
 
@@ -1960,7 +1974,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
             case R.id.tv_nextClick: {
 
-                if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.MerchatCode) || MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
+                if(MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.MerchatCode)
+                        || MyApplication.getSaveString("walletOwnerCategoryCode", TransferFloats.this).equalsIgnoreCase(MyApplication.OutletCode) ) {
                     if (validation_mobile_DetailsNew()) {
 
 

@@ -845,7 +845,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
     private void currency_api() {
 
-        MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
+        //MyApplication.showloader(AirtimePurchases.this, getString(R.string.please_wait));
 
         String userCode_agentCode_from_mssid =  MyApplication.getSaveString("USERCODE", AirtimePurchases.this);
 

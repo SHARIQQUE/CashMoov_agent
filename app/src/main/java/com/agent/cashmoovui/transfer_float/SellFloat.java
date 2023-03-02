@@ -2119,7 +2119,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                 if (position == -1) {
                     System.out.println("get position" + position);
 
-                    Toast.makeText(SellFloat.this, "Institute not found!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SellFloat.this, "Institute not found!", Toast.LENGTH_SHORT).show();
 
                 } else {
                     setSelction(position);
@@ -2190,7 +2190,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                                String select_insitute_code_temp = jsonObject_walletOwner.getString("mobileNumber");
 
                                  if(!select_insitute_code_temp.equalsIgnoreCase(arrayList_instititueCode.get(pos))){
-                                     Toast.makeText(SellFloat.this, "Wallet owner not found", Toast.LENGTH_SHORT).show();
+                                     Toast.makeText(SellFloat.this, getString(R.string.inst_not_found), Toast.LENGTH_SHORT).show();
                                      mEnterinstituteEdittext.setText(select_insitute_code_temp);
                                      mEnterinstituteEdittext.setEnabled(false);
 

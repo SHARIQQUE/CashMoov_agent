@@ -109,6 +109,7 @@
                         android:fontFamily="@font/aileron_bold"
                         android:layout_marginBottom="@dimen/_10sdp"/>
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/pin_login_lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"

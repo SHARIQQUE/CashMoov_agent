@@ -591,16 +591,12 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             return false;
         }
         if (mobileNoStr.length() < 9) {
-
             MyApplication.showErrorToast(this, getString(R.string.enter_phone_no_val));
-
             return false;
         }
 
         else if (amountstr.isEmpty()) {
-
             MyApplication.showErrorToast(this, getString(R.string.plz_enter_amount));
-
             return false;
         }
 
@@ -619,8 +615,6 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         if(Double.parseDouble(edittext_amount.getText().toString().trim().replace(",",""))>MyApplication.ToCashOutMaxAmount) {
             MyApplication.showErrorToast(CashOutAgent.this,getString(R.string.val_amount_max)+" "+MyApplication.ToCashOutMaxAmount);
             return false;
-
-
         }
 
 
