@@ -137,6 +137,7 @@
     <string name="to_start">Demarrer</string>
     <string name="to_end">Terminer</string>
     <string name="watch_video">Suivre la video</string>
+
     <string name="video_tutorial_message">Si vous êtes nouveau et que vous avez besoin d\'aide, regardez ce court tutoriel pour commencer.</string>
     <string name="already_acc_login">Vous avez déjà un compte?</string>
     <string name="register">S\'enregistrer</string>
