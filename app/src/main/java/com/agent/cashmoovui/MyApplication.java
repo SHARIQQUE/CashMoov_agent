@@ -84,7 +84,7 @@ import okhttp3.Route;
 
 
 public class MyApplication extends Application {
-
+    public static boolean ipEnable = false;
     public static String currencySymbol;
     public static boolean PasswordEncription = true;
 

@@ -14,6 +14,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.ServiceList;
 import com.agent.cashmoovui.set_pin.SetPin;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -189,6 +190,9 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
             loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
             loginJson.put("fcmToken",FCM_TOKEN);
+            loginJson.put("country",MyApplication.getSaveString("COUNTRY", RESETPINOtpPage.this));
+            loginJson.put("cc",MyApplication.getSaveString("CC",RESETPINOtpPage.this));
+
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(RESETPINOtpPage.this,"Verify OTP");
             API.POST_REQEST_RESETPIN("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {

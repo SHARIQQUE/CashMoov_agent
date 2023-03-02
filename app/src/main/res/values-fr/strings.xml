@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 28-02-2023 9:09 AM</string>
+    <string name="version">Version : 28-02-2023 11:18 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -911,7 +911,7 @@
     <string name="surname_star">Prenom  *</string>
 
     <string name="receiver_msisdn_colon">MSISDN Réceveur :</string>
-    <string name="beneficiary_msisdn_colon">MSISDNBénéficiaire :</string>
+    <string name="beneficiary_msisdn_colon">Numéro du bénéficiaire :</string>
     <string name="sender_mssidn_colon">Numéro de l\'expéditeur:</string>
     <string name="agent_mssidn_colon">Agent MSISDN :</string>
     <string name="transfer_of_mode_colon">Transfert de mode :</string>

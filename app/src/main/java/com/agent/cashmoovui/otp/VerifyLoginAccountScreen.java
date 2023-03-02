@@ -109,6 +109,9 @@ public class VerifyLoginAccountScreen extends AppCompatActivity implements OnOtp
             loginJson.put("username",MyApplication.getSaveString("USERNAME",VerifyLoginAccountScreen.this));
             loginJson.put("password",MyApplication.getEncript(otp));
             loginJson.put("grant_type","password");
+            loginJson.put("country",MyApplication.getSaveString("COUNTRY",VerifyLoginAccountScreen.this));
+            loginJson.put("cc",MyApplication.getSaveString("CC",VerifyLoginAccountScreen.this));
+
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());

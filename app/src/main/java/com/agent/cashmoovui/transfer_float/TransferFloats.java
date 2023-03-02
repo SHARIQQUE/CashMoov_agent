@@ -253,6 +253,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                         }
                         if(!isexists){
                             MyApplication.showToast(TransferFloats.this,getString(R.string.hierachynotfound));
+                            edittext_mobileNo.setText("");
 
                         }
                         edittext_amount.requestFocus();
