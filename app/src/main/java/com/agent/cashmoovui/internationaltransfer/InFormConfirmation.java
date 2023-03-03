@@ -280,7 +280,7 @@ public class InFormConfirmation extends AppCompatActivity implements View.OnClic
 
                         @Override
                         public void failure(String failure) {
-                            MyApplication.showToast(InFormConfirmation.this,failure);
+                           // MyApplication.showToast(InFormConfirmation.this,failure);
                             pinLinear.setVisibility(View.VISIBLE);
 
                         }

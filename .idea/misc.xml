@@ -208,13 +208,16 @@
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_abonne_one.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_agent.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_register_branch.xml" value="0.1921875" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_set_pin.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_verify_account_screen.xml" value="0.1" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/activity_wallet_transaction_details.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/airtime_purchases.xml" value="0.1921875" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_out_code_subscriber.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/cash_to_wallet.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/cashout_agent.xml" value="0.1921875" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/change_pin.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/commision_transfer.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/dialog_global_limit.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/include_transaction_history_agent_page.xml" value="0.13125" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/include_transaction_history_main_page.xml" value="0.17239583333333333" />
         <entry key="..\:/Users/user/StudioProjects/CashMoov_agent/app/src/main/res/layout/international_ramittance.xml" value="0.1" />

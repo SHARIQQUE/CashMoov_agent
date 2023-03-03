@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -166,6 +167,10 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         spinner_destination_gender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogBenefiGender != null)
                     spinnerDialogBenefiGender.showSpinerDialog();
             }
@@ -174,6 +179,10 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         spinner_destination_region.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogBenefiRegion != null)
                     spinnerDialogBenefiRegion.showSpinerDialog();
             }
@@ -185,6 +194,10 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         spinner_destination_idprooftype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogBenefiIdProofType != null)
                     spinnerDialogBenefiIdProofType.showSpinerDialog();
             }
@@ -193,6 +206,10 @@ public class InternationalRemittanceBenefiKYC extends AppCompatActivity implemen
         spinner_destination_issuingCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogIssuingCountry != null)
                     spinnerDialogIssuingCountry.showSpinerDialog();
             }

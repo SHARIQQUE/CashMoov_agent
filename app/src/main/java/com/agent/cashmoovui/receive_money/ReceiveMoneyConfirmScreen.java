@@ -392,7 +392,7 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
 
                             @Override
                             public void failure(String failure) {
-                                MyApplication.showToast(ReceiveMoneyConfirmScreen.this, failure);
+                              //  MyApplication.showToast(ReceiveMoneyConfirmScreen.this, failure);
 
                                 pinLinear.setVisibility(View.VISIBLE);
 

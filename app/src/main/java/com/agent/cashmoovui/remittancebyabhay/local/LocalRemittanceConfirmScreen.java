@@ -299,7 +299,7 @@ public class LocalRemittanceConfirmScreen extends AppCompatActivity implements V
                         @Override
                         public void failure(String failure) {
 
-                            MyApplication.showToast(LocalRemittanceConfirmScreen.this, failure);
+                           // MyApplication.showToast(LocalRemittanceConfirmScreen.this, failure);
 
                             pinlinear.setVisibility(View.VISIBLE);
 

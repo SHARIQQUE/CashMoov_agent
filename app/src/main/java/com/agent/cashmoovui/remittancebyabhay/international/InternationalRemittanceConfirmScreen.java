@@ -313,7 +313,7 @@ public class InternationalRemittanceConfirmScreen extends AppCompatActivity impl
                         @Override
                         public void failure(String failure) {
 
-                            MyApplication.showToast(InternationalRemittanceConfirmScreen.this, failure);
+                           // MyApplication.showToast(InternationalRemittanceConfirmScreen.this, failure);
 
                             pinLenear.setVisibility(View.VISIBLE);
 

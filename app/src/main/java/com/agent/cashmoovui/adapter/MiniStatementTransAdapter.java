@@ -396,6 +396,10 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             @Override
             public void onClick(View view) {
 
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                // MyApplication.showToast(MyApplication.getInstance(),holder.getAbsoluteAdapterPosition()+"");
                 System.out.println("pososososo+  "+holder.getAbsoluteAdapterPosition());
 

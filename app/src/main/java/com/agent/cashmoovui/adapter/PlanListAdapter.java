@@ -1,6 +1,7 @@
 package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,10 @@ public class PlanListAdapter extends RecyclerView.Adapter<PlanListAdapter.ViewHo
         holder.linPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if(productModel.getProductMasterCode()!=null)
                  planListeners.onPlanListItemClick(productModel.getCode(),productModel.getProductTypeCode(),productModel.getValue());
             }

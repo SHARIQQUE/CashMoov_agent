@@ -1191,6 +1191,9 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
         intent.putExtra("FROMMSISDN",fromWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
         intent.putExtra("TOMSISDN",toWalletOwnerMsisdn);
+
+        intent.putExtra("receiverbearer","");
+
         intent.putExtra("taxvalue",tax);
         intent.putExtra("fee",fee);
         intent.putExtra("srcpostbalance",srcpostbalance);

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -241,6 +242,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spRegion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogRegion!=null){
                     spinnerDialogRegion.showSpinerDialog();
                 }
@@ -250,6 +255,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogCity!=null){
                     spinnerDialogCity.showSpinerDialog();
                 }
@@ -260,6 +269,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spGender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogGender!=null)
                     spinnerDialogGender.showSpinerDialog();
             }
@@ -267,6 +280,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spIdProof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogIdProofType!=null)
                     spinnerDialogIdProofType.showSpinerDialog();
             }
@@ -274,6 +291,10 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
         spOccupation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogOccupation!=null)
                     spinnerDialogOccupation.showSpinerDialog();
             }

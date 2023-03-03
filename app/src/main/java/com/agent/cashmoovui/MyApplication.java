@@ -140,6 +140,7 @@ public class MyApplication extends Application {
     public static int mobileLengthnormal=10;
 
     public static  String checkWalletTypeCode="100008";
+    public static long mLastClickTime=0;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -224,6 +225,7 @@ public class MyApplication extends Application {
         tinyDB = new TinyDB(appInstance);
         setLocale("fr");
 
+        System.out.println("tetstshjlashhsa"+android.os.Build.VERSION.SDK_INT);
         languageToUse = appInstance.getmSharedPreferences().getString("languageToUse", "");
 
         if (languageToUse.trim().length() == 0) {
@@ -898,8 +900,10 @@ public static String addDecimal(String number) {
     public static int bioMetricCounter=0;
     public static BiometricPrompt biometricPrompt=null;
     public static Activity activityNew;
+    public static boolean isCancelCalled=false;
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static void biometricAuth(Activity activity, BioMetric_Responce_Handler bioMetric_responce_handler){
+        isCancelCalled=false;
         if (activity.getSystemService(Context.FINGERPRINT_SERVICE) == null) {
             bioMetric_responce_handler.failure("");
             return;
@@ -936,7 +940,7 @@ public static String addDecimal(String number) {
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
                //showToast(activity,"hardwatre unvaliba 11");
-
+                bioMetric_responce_handler.failure("");
 
               //  bioMetric_responce_handler.failure(activity.getString(R.string.no_fingerprint_senser));
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
@@ -945,7 +949,7 @@ public static String addDecimal(String number) {
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-
+                bioMetric_responce_handler.failure("");
                // bioMetric_responce_handler.failure(message);
                // showToast(activity,"hardwatre 22");
 
@@ -956,7 +960,7 @@ public static String addDecimal(String number) {
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-
+                bioMetric_responce_handler.failure("");
              //   bioMetric_responce_handler.failure(activity.getString(R.string.device_not_contain_fingerprint));
               //  showToast(activity,"hardwatre 33");
 
@@ -975,15 +979,23 @@ public static String addDecimal(String number) {
 
 
 
+
                if(!fingerprintManager.hasEnrolledFingerprints()) {
-                    bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));
+
+                   // bioMetric_responce_handler.failure(activity.getResources().getString(R.string.no_fingerprint_senser));
 
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
                     // Everything is ready for fingerprint authentication
                    if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
                        onAuthenticationFailed();
+                       isCancelCalled=true;
                    }
+                }
+
+                if (!isCancelCalled) {
+                    onAuthenticationFailed();
+                    isCancelCalled=false;
                 }
 
              //   checkCounter(bioMetric_responce_handler,errString+"");
@@ -1027,7 +1039,7 @@ public static String addDecimal(String number) {
     }
 
     public static void checkCounter(BioMetric_Responce_Handler bioMetric_responce_handler,String message){
-        if(bioMetricCounter==2){
+        if(bioMetricCounter==1){
             bioMetricCounter=0;
             bioMetric_responce_handler.failure(message);
         }else{

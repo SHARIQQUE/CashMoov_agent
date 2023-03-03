@@ -58,7 +58,7 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
     Spinner spinner_currency;
 
 
-    SearchAdapteBranchDetails adpter;
+    SearchAdapteBranchDetails adpter=null;
 
 
     @Override
@@ -132,6 +132,7 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
 
                     searchStr = edittext_search.getText().toString().trim();
 
+                    if(adpter!=null)
                     adpter.filter(s.toString());
 
 

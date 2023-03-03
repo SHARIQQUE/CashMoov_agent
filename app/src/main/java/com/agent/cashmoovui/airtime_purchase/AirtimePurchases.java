@@ -1691,7 +1691,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                             @Override
                             public void failure(String failure) {
 
-                                MyApplication.showToast(AirtimePurchases.this, failure);
+                               // MyApplication.showToast(AirtimePurchases.this, failure);
 
                                 pinLinear.setVisibility(View.VISIBLE);
 

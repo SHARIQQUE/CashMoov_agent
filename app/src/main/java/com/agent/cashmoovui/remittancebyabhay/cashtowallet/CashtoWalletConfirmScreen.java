@@ -299,7 +299,7 @@ public class CashtoWalletConfirmScreen extends AppCompatActivity implements View
                         @Override
                         public void failure(String failure) {
 
-                            MyApplication.showToast(CashtoWalletConfirmScreen.this, failure);
+                            //MyApplication.showToast(CashtoWalletConfirmScreen.this, failure);
 
                             pinLinear.setVisibility(View.VISIBLE);
 

@@ -2,6 +2,7 @@ package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,6 +113,10 @@ public class MiniStatementAgentTransAdapter extends RecyclerView.Adapter<MiniSta
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
               //  if(miniStatementTrans.getCode()!=null)
                 //MyApplication.showToast((TransactionHistoryAgentPage)context,miniStatementTrans.getFromWalletOwnerName());
 

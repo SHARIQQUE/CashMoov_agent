@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -229,7 +230,10 @@ public class LoginPin extends AppCompatActivity {
         tvregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 applicationComponentClass.getmSharedPreferences().edit().putString("isFirstRun", "YES").commit();
 
 
@@ -321,20 +325,20 @@ public class LoginPin extends AppCompatActivity {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                msgText.setText(getString(R.string.no_fingerprint_senser));
+                //msgText.setText(getString(R.string.no_fingerprint_senser));
                 tvFinger.setVisibility(View.GONE);
                 break;
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                msgText.setText(getString(R.string.no_biometric_senser));
+                //msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);
                 System.out.println("get sensor");
                 break;
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                msgText.setText(getString(R.string.device_not_contain_fingerprint));
+                //msgText.setText(getString(R.string.device_not_contain_fingerprint));
                 tvFinger.setVisibility(View.GONE);
                 break;
         }

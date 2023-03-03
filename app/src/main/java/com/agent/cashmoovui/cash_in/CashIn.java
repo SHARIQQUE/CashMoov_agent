@@ -1521,7 +1521,7 @@ public class CashIn  extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void failure(String failure) {
 
-                                MyApplication.showToast(CashIn.this, failure);
+                              //  MyApplication.showToast(CashIn.this, failure);
 
                                 pinLinear.setVisibility(View.VISIBLE);
 

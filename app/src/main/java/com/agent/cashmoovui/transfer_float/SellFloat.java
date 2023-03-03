@@ -517,7 +517,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
     private void api_insititute() {
 
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+sellfloat_walletOwnerCategoryCode,languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+sellfloat_walletOwnerCategoryCode + "&status=Y&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -2003,7 +2003,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             @Override
                             public void failure(String failure) {
 
-                                MyApplication.showToast(SellFloat.this, failure);
+                                //MyApplication.showToast(SellFloat.this, failure);
 
                                 pinLinearselffloat.setVisibility(View.VISIBLE);
 

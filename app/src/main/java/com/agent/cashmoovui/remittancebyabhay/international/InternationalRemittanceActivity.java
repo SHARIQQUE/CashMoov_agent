@@ -2,6 +2,7 @@ package com.agent.cashmoovui.remittancebyabhay.international;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -144,6 +145,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSerProvider!=null)
                     spinnerDialogSerProvider.showSpinerDialog();
             }
@@ -160,6 +165,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSendingCurr!=null)
                     spinnerDialogSendingCurr.showSpinerDialog();
             }
@@ -167,6 +176,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         spinner_receiverCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogRecCountry!=null)
                     spinnerDialogRecCountry.showSpinerDialog();
             }
@@ -174,6 +187,10 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
         spinner_receiverCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogRecCurr!=null)
                     spinnerDialogRecCurr.showSpinerDialog();
             }

@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 02-03-2023 09:58 AM</string>
+    <string name="version">Version : 03-03-2023 04:30 AM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -266,6 +266,7 @@
     <string name="non_subscribed_money_transfer">Transfert d\'argent non abonné</string>
     <string name="recipient_details">Details du destinataire</string>
     <string name="valid_fname">Prénom*</string>
+    <string name="outlet_name">Nom du point de vente*</string>
     <string name="valid_lname">Nom de famille*</string>
     <string name="valid_phone_number">Numéro de téléphone*</string>
     <string name="valid_email">Email*</string>
@@ -372,6 +373,13 @@
     <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
     <string name="set_pin">Définir la code pin</string>
     <string name="set_pin_message">Veuillez definir un code pin a 4 chiffres pour votre compte</string>
+
+    <string name="change_pin_message_new">Veuillez saisir l\'ancien code PIN et le nouveau code PIN pour changer votre code PIN.</string>
+    <string name="old_pin_msg">Entrez votre ancien code PIN</string>
+    <string name="new_pin_msg">Entrez votre nouveau code PIN</string>
+    <string name="re_pin_msg">Entrez à nouveau votre nouveau code PIN</string>
+
+
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
     <string name="val_re_pin">Veuillez saisir une nouvelle  code PIN</string>
     <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>
@@ -625,11 +633,12 @@
     <string name="plz_enter_new_pin">Veuillez saisir un nouveau code PIN</string>
 
     <string name="enter_confirm_pin">Entrez confirmer le code PIN</string>
-    <string name="plz_confirm_new_pin">Veuillez entrer confirmer le code PIN</string>
+    <string name="plz_confirm_new_pin">Veuillez saisir une nouvelle code pin</string>
     <string name="scan_error">Echec Scanning</string>
     <string name="val_scan_error_content">Le QR code ne peut pas etre scanne</string>
+    <string name="time_out">Votre requête a expiré, veuillez ressayer plu tard</string>
 
-    <string name="new_coinfirm_should_be_same">La nouvelle broche et la broche de confirmation doivent être identiques</string>
+    <string name="new_coinfirm_should_be_same">Le nouveau code pin et le code pin confirmé doivent être identiques</string>
     <string name="view_balance">Voir le solde</string>
     <string name="my_branch">Mon Branche</string>
     <string name="my_agents">Mes Agents</string>
@@ -979,7 +988,7 @@
     <string name="Commisionwallet">"Compte commission"</string>
     <string name="Viewwallet">"Voir les limites"</string>
     <string name="Creditlimit">Limite de crédit</string>
-    <string name="subscriberpin"> Code pin de l\'abonné :</string>
+    <string name="subscriberpin"> Code pin du client:</string>
     <string name="gnfvalidation">Champ de la devise d\'envoi obligatoire Devise GNF</string>
     <string name="activity">Activité</string>
     <string name="agentname_star_error">"Entrez veuillez nom d agent "</string>

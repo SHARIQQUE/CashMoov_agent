@@ -2086,7 +2086,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
                             @Override
                             public void failure(String failure) {
-                                MyApplication.showToast(TransferFloats.this, failure);
+                              //  MyApplication.showToast(TransferFloats.this, failure);
                                 pinLinear.setVisibility(View.VISIBLE);
 
                             }

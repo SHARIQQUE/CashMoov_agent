@@ -628,7 +628,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         walletOwnerCategoryCode = "100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber="+(edittext_mobileNuber.getText().toString()) +"&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber="+(edittext_mobileNuber.getText().toString())  + "&status=Y&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -702,7 +702,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
         walletOwnerCategoryCode = "100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + edittext_mobileNuber.getText().toString() + "&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + edittext_mobileNuber.getText().toString()  + "&status=Y&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 
@@ -1331,7 +1331,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                 @Override
                                 public void failure(String failure) {
-                                    MyApplication.showToast(CashOutAgent.this, failure);
+                                   // MyApplication.showToast(CashOutAgent.this, failure);
 
                                     ll_pin.setVisibility(View.VISIBLE);
 

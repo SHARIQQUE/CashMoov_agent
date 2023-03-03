@@ -1,6 +1,7 @@
 package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.listeners.OperatorListenersnew;
 import com.agent.cashmoovui.model.OutTransferModel;
@@ -78,6 +80,10 @@ public class OutAdapter extends RecyclerView.Adapter<OutAdapter.ViewHolder>{
         holder.linOperator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if(opearatorModel.getCode()!=null)
                  operatorListners.onOperatorListItemClick(opearatorModel.getCode(),opearatorModel.getName(),
                          opearatorModel.getServiceItemId());

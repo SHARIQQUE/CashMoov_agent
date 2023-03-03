@@ -38,14 +38,14 @@
                     android:textSize="@dimen/_20sdp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_semibold"
                     android:lineSpacingExtra="10sp"
-                    android:text="@string/set_pin_message"
+                    android:text="@string/change_pin_message_new"
                     android:textColor="#323232"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/aileron_bold"
                         android:lineSpacingExtra="3sp"
-                        android:text="@string/enter_old_pin"
+                        android:text="@string/old_pin_msg"
                         android:textColor="#29304d"
                         android:textSize="@dimen/_13sdp"
                         android:layout_marginBottom="@dimen/_10sdp"/>
@@ -98,7 +98,7 @@
                                 android:background="@null"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
                                 android:lineSpacingExtra="10sp"
-                                android:hint="@string/enter_old_pin"
+                                android:hint="0000"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/aileron_bold"
                         android:lineSpacingExtra="3sp"
-                        android:text="@string/enter_new_pin"
+                        android:text="@string/new_pin_msg"
                         android:textColor="#29304d"
                         android:textSize="@dimen/_13sdp"
                         android:layout_marginTop="@dimen/_20sdp"
@@ -155,7 +155,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:lineSpacingExtra="10sp"
-                                android:hint="@string/enter_new_pin"
+                                android:hint="0000"
                                 android:drawableRight="@drawable/ic_visibility_off_black_24dp"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/aileron_bold"
                         android:lineSpacingExtra="3sp"
-                        android:text="@string/enter_confirm_pin"
+                        android:text="@string/re_pin_msg"
                         android:textColor="#29304d"
                         android:textSize="@dimen/_13sdp"
                         android:layout_marginTop="@dimen/_20sdp"
@@ -216,7 +216,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@null"
                                 android:lineSpacingExtra="10sp"
-                                android:hint="@string/enter_confirm_pin"
+                                android:hint="0000"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="#323232"
                                 android:backgroundTint="#999999"

@@ -514,7 +514,7 @@ public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnC
 
 
 
-        API.GET_CASHOUT_CONFCODE_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + mobileNoStr + "&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
+        API.GET_CASHOUT_CONFCODE_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + mobileNoStr  + "&status=Y&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

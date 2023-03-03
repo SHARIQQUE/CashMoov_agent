@@ -555,7 +555,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             paymonthcountText=operationDialog.findViewById(R.id.paymonthcountText);
             paymonthlimitAccountText=operationDialog.findViewById(R.id.paymonthlimitAccountText);
 
-
+            paymonthcountText.setText("0");
+            paymonthlimitAccountText.setText(MyApplication.addDecimal("0.00"));
             spinner_currency.setText(getString(R.string.select_currency));
 
             spinner_currency.setOnClickListener(new View.OnClickListener() {
@@ -745,7 +746,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                                     else
                                     {
                                         paymonthcountText.setText("0");
-                                        paymonthlimitAccountText.setText("0.00");
+                                        paymonthlimitAccountText.setText(MyApplication.addDecimal("0.00"));
 
                                     }
 

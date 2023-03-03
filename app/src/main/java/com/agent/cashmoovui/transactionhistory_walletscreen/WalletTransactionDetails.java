@@ -78,144 +78,147 @@ public class WalletTransactionDetails extends AppCompatActivity {
 
 
     private void getIds() {
-        txt_trans_type_name = findViewById(R.id.txt_trans_type_name);
-        txt_from_owner_name = findViewById(R.id.txt_from_owner_name);
-        txt_from_amount = findViewById(R.id.txt_from_amount);
-        txt_trans_id = findViewById(R.id.txt_trans_id);
-        txt_creation_date = findViewById(R.id.txt_creation_date);
-        txt_status = findViewById(R.id.txt_status);
-        txt_success = findViewById(R.id.txt_success);
-        txt_financialtax=findViewById(R.id.txt_financialtax);
-        txt_fee=findViewById(R.id.txt_fee);
-        txt_commission_amount = findViewById(R.id.txt_commission_amount);
-        txt_postbalance=findViewById(R.id.txt_postbalance);
+        try {
+            txt_trans_type_name = findViewById(R.id.txt_trans_type_name);
+            txt_from_owner_name = findViewById(R.id.txt_from_owner_name);
+            txt_from_amount = findViewById(R.id.txt_from_amount);
+            txt_trans_id = findViewById(R.id.txt_trans_id);
+            txt_creation_date = findViewById(R.id.txt_creation_date);
+            txt_status = findViewById(R.id.txt_status);
+            txt_success = findViewById(R.id.txt_success);
+            txt_financialtax = findViewById(R.id.txt_financialtax);
+            txt_fee = findViewById(R.id.txt_fee);
+            txt_commission_amount = findViewById(R.id.txt_commission_amount);
+            txt_postbalance = findViewById(R.id.txt_postbalance);
 
 
-
-        Bundle b = getIntent().getExtras();
-
-
-        if (getIntent().getExtras() != null) {
-            String transType = (getIntent().getStringExtra("TRANSTYPE"));
-            String fromOwnerName = (getIntent().getStringExtra("FROMWALLETOWNERNAME"));
-            String toOwnerName = (getIntent().getStringExtra("TOWALLETOWNERNAME"));
-            String fromAmount = (getIntent().getStringExtra("FROMAMOUNT"));
-            String transId = (getIntent().getStringExtra("TRANSID"));
-            String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
-            String status = (getIntent().getStringExtra("STATUS"));
-            String tax = (getIntent().getStringExtra("taxvalue"));
-            double  srcpostbalance = b.getDouble("srcpostbalance");
-            double  fee = b.getDouble("fee");
-            String receiverbearer = (getIntent().getStringExtra("receiverbearer"));
-            System.out.println("get va444"+receiverbearer);
-            if(receiverbearer.equalsIgnoreCase("true")){
-                txt_fee.setVisibility(View.GONE);
-                txt_financialtax.setVisibility(View.GONE);
-            }
+            Bundle b = getIntent().getExtras();
 
 
+            if (getIntent().getExtras() != null) {
+                String transType = (getIntent().getStringExtra("TRANSTYPE"));
+                String fromOwnerName = (getIntent().getStringExtra("FROMWALLETOWNERNAME"));
+                String toOwnerName = (getIntent().getStringExtra("TOWALLETOWNERNAME"));
+                String fromAmount = (getIntent().getStringExtra("FROMAMOUNT"));
+                String transId = (getIntent().getStringExtra("TRANSID"));
+                String creationDate = (getIntent().getStringExtra("CREATIONDATE"));
+                String status = (getIntent().getStringExtra("STATUS"));
+                String tax = (getIntent().getStringExtra("taxvalue"));
+                double srcpostbalance = b.getDouble("srcpostbalance");
+                double fee = b.getDouble("fee");
+                String receiverbearer = (getIntent().getStringExtra("receiverbearer"));
+                System.out.println("get va444" + receiverbearer);
+                if (receiverbearer.equalsIgnoreCase("true")) {
+                    txt_fee.setVisibility(View.GONE);
+                    txt_financialtax.setVisibility(View.GONE);
+                }
 
-            String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
-            System.out.println("get va"+commissionAmount);
+
+                String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));
+                System.out.println("get va" + commissionAmount);
 
 
-            String walletTypeCode="100008";
-           if((getIntent().getStringExtra("WALLETTYPECODE")!=null) ){
-                 walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
-            }
+                String walletTypeCode = "100008";
+                if ((getIntent().getStringExtra("WALLETTYPECODE") != null)) {
+                    walletTypeCode = (getIntent().getStringExtra("WALLETTYPECODE"));
+                }
 
-            String fromWalletOwnerMsisdn = (getIntent().getStringExtra("FROMMSISDN"));
-            String toWalletOwnerMsisdn = (getIntent().getStringExtra("TOMSISDN"));
-            String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
-            DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
+                String fromWalletOwnerMsisdn = (getIntent().getStringExtra("FROMMSISDN"));
+                String toWalletOwnerMsisdn = (getIntent().getStringExtra("TOMSISDN"));
+                String transactionAmount = (getIntent().getStringExtra("TRANSACTIONAMOUNT"));
+                DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
-            DecimalFormat df = new DecimalFormat("0.00",symbols);
+                DecimalFormat df = new DecimalFormat("0.00", symbols);
 
-            System.out.println("get walletcode"+MyApplication.checkWalletTypeCode);
+                System.out.println("get walletcode" + MyApplication.checkWalletTypeCode);
 
-            txt_trans_type_name.setText(getString(R.string.transaction_type)+" - "+transType);
+                txt_trans_type_name.setText(getString(R.string.transaction_type) + " - " + transType);
 
 
           /*  if(MyApplication.getSaveString("walletOwnerCategoryCode", WalletTransactionDetails.this).equalsIgnoreCase(MyApplication.OutletCode)) {
                 txt_fee.setText(MyApplication.addDecimal("0.00"));
 
             }*/
-            txt_fee.setText(getString(R.string.fee_colon)+" " +MyApplication.addDecimal(""+fee));
+                txt_fee.setText(getString(R.string.fee_colon) + " " + MyApplication.addDecimal("" + fee));
 
 
-            if(MyApplication.checkWalletTypeCode.equalsIgnoreCase("100009")){
-                txt_postbalance.setVisibility(View.GONE);
+                if (MyApplication.checkWalletTypeCode.equalsIgnoreCase("100009")) {
+                    txt_postbalance.setVisibility(View.GONE);
 
-            }else{
-                txt_postbalance.setVisibility(View.VISIBLE);
+                } else {
+                    txt_postbalance.setVisibility(View.VISIBLE);
 
-                txt_postbalance.setText(getString(R.string.post_balance_colon) + " "+MyApplication.currencySymbol+" "+MyApplication.addDecimal(""+srcpostbalance));
+                    txt_postbalance.setText(getString(R.string.post_balance_colon) + " " + MyApplication.currencySymbol + " " + MyApplication.addDecimal("" + srcpostbalance));
 
-            }
-            String comission=fromOwnerName.toString().trim().replace(":","");
-            txt_from_owner_name.setText(getString(R.string.from)+" : "+fromWalletOwnerMsisdn+"("+comission+")"+" ,\n"+getString(R.string.to)+" : "+toWalletOwnerMsisdn+"("+toOwnerName+")");
-            txt_commission_amount.setVisibility(View.GONE);
+                }
+                String comission = fromOwnerName.toString().trim().replace(":", "");
+                txt_from_owner_name.setText(getString(R.string.from) + " : " + fromWalletOwnerMsisdn + "(" + comission + ")" + " ,\n" + getString(R.string.to) + " : " + toWalletOwnerMsisdn + "(" + toOwnerName + ")");
+                txt_commission_amount.setVisibility(View.GONE);
 
-            if(walletTypeCode.equalsIgnoreCase("100009")){
-                txt_commission_amount.setText(commissionAmount);
-                txt_fee.setVisibility(View.GONE);
-                txt_financialtax.setVisibility(View.GONE);
-            }else{
+                if (walletTypeCode.equalsIgnoreCase("100009")) {
+                    txt_commission_amount.setText(commissionAmount);
+                    txt_fee.setVisibility(View.GONE);
+                    txt_financialtax.setVisibility(View.GONE);
+                } else {
+                    txt_commission_amount.setText(fromAmount);
+                }
+
                 txt_commission_amount.setText(fromAmount);
-            }
-
-            txt_commission_amount.setText(fromAmount);
-            txt_from_amount.setText(getString(R.string.trans_amount_colon)+"  "+transactionAmount);
-            txt_trans_id.setText(getString(R.string.transaction_id_colon)+" "+transId);
-            txt_status.setText(getString(R.string.status)+" : "+status);
-            txt_success.setText(getString(R.string.transaction_successful));
-            try {
-                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-                Date date = null;
-                date = inputFormat.parse(creationDate);
-                String formattedDate = outputFormat.format(date);
-                txt_creation_date.setText(getString(R.string.date)+" : "+formattedDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
-
-                Gson gson = new Gson();
-
-                Type userListType = new TypeToken<ArrayList<Taxmodel>>(){}.getType();
-
-                ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
-                for(Taxmodel user : userArray) {
-                    String taxvaluename=user.getTaxTypeName();
-                    txt_financialtax.setText(taxvaluename + " :" + " " +MyApplication.addDecimal(user.getValue()));
-
-                    if(taxvaluename.equalsIgnoreCase("VAT")){
-                        txt_financialtax.setText(getString(R.string.Taxvat) + " :" + " " +MyApplication.addDecimal(user.getValue()));
-
-                    }else{
-                       if(taxvaluename.equalsIgnoreCase("Financial Tax")){
-                           txt_financialtax.setText(getString(R.string.Taxfinancial) + " :" + " " +MyApplication.addDecimal(user.getValue()));
-
-                       }
-                    }
-
-                    System.out.println("get user" + MyApplication.addDecimal(user.getTaxTypeName()));
+                txt_from_amount.setText(getString(R.string.trans_amount_colon) + "  " + transactionAmount);
+                txt_trans_id.setText(getString(R.string.transaction_id_colon) + " " + transId);
+                txt_status.setText(getString(R.string.status) + " : " + status);
+                txt_success.setText(getString(R.string.transaction_successful));
+                try {
+                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+                    Date date = null;
+                    date = inputFormat.parse(creationDate);
+                    String formattedDate = outputFormat.format(date);
+                    txt_creation_date.setText(getString(R.string.date) + " : " + formattedDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
 
 
-            } catch (Exception e) {
+                try {
+
+                    Gson gson = new Gson();
+
+                    Type userListType = new TypeToken<ArrayList<Taxmodel>>() {
+                    }.getType();
+
+                    ArrayList<Taxmodel> userArray = gson.fromJson(tax, userListType);
+                    for (Taxmodel user : userArray) {
+                        String taxvaluename = user.getTaxTypeName();
+                        txt_financialtax.setText(taxvaluename + " :" + " " + MyApplication.addDecimal(user.getValue()));
+
+                        if (taxvaluename.equalsIgnoreCase("VAT")) {
+                            txt_financialtax.setText(getString(R.string.Taxvat) + " :" + " " + MyApplication.addDecimal(user.getValue()));
+
+                        } else {
+                            if (taxvaluename.equalsIgnoreCase("Financial Tax")) {
+                                txt_financialtax.setText(getString(R.string.Taxfinancial) + " :" + " " + MyApplication.addDecimal(user.getValue()));
+
+                            }
+                        }
+
+                        System.out.println("get user" + MyApplication.addDecimal(user.getTaxTypeName()));
+                    }
+
+
+                } catch (Exception e) {
+
+                }
+                if (txt_financialtax.getText().toString().trim().equalsIgnoreCase("") ||
+                        txt_financialtax.getText().toString().trim().equalsIgnoreCase("N/A")) {
+                    txt_financialtax.setText(getString(R.string.tax) + " " + " " + MyApplication.addDecimal("0.00"));
+                }
 
             }
-            if (txt_financialtax.getText().toString().trim().equalsIgnoreCase("")||
-                    txt_financialtax.getText().toString().trim().equalsIgnoreCase("N/A")){
-                txt_financialtax.setText(getString(R.string.tax) + " " + " " + MyApplication.addDecimal("0.00"));
-            }
+
+        } catch (Exception e) {
 
         }
-
     }
 
 

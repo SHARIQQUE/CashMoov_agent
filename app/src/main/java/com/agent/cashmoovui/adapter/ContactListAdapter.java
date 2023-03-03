@@ -1,6 +1,7 @@
 package com.agent.cashmoovui.adapter;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.listeners.ContactListLisners;
 import com.agent.cashmoovui.R;
 
@@ -54,6 +56,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         holder.linItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                     contactListLisners.onContactViewItemClick(contactModel.getName(),
                             contactModel.getPhoneNumber());
             }

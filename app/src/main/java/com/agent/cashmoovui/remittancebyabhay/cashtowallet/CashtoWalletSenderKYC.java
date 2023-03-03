@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -207,6 +208,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSerProvider!=null)
                     spinnerDialogSerProvider.showSpinerDialog();
             }
@@ -215,6 +220,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         spinner_senderCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSendingCountry!=null)
                     spinnerDialogSendingCountry.showSpinerDialog();
             }
@@ -223,6 +232,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         spinner_sender_gender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSenderGender!=null)
                     spinnerDialogSenderGender.showSpinerDialog();
             }
@@ -231,6 +244,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         spinner_sender_region.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSenderRegion!=null)
                     spinnerDialogSenderRegion.showSpinerDialog();
             }
@@ -239,6 +256,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         spinner_issuingCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogIssuingCountry!=null)
                     spinnerDialogIssuingCountry.showSpinerDialog();
             }
@@ -249,6 +270,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         spinner_sender_idprooftype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSenderIdProofType!=null)
                     spinnerDialogSenderIdProofType.showSpinerDialog();
             }

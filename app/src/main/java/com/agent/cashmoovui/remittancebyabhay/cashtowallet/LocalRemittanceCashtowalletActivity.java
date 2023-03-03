@@ -2,6 +2,7 @@ package com.agent.cashmoovui.remittancebyabhay.cashtowallet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -138,6 +139,10 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
         spinner_provider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSerProvider!=null)
                     spinnerDialogSerProvider.showSpinerDialog();
             }
@@ -154,6 +159,10 @@ public class LocalRemittanceCashtowalletActivity extends AppCompatActivity imple
         spinner_senderCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 if (spinnerDialogSendingCurr!=null)
                     spinnerDialogSendingCurr.showSpinerDialog();
             }

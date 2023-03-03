@@ -733,7 +733,7 @@ public class CashToWallet extends AppCompatActivity implements View.OnClickListe
         walletOwnerCategoryCode = "100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + mobileNoStr + "&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
+        API.GET_REMMITANCE_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=" + walletOwnerCategoryCode + "&mobileNumber=" + mobileNoStr  + "&status=Y&offset=0&limit=500", languageToUse, new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

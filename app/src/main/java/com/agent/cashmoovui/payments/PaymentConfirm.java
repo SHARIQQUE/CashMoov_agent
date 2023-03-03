@@ -198,7 +198,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
 
                     @Override
                     public void failure(String failure) {
-                        MyApplication.showToast(PaymentConfirm.this,failure);
+                       // MyApplication.showToast(PaymentConfirm.this,failure);
                     }
                 });
             }
@@ -259,7 +259,7 @@ public class PaymentConfirm extends AppCompatActivity implements View.OnClickLis
 
                             @Override
                             public void failure(String failure) {
-                                MyApplication.showToast(PaymentConfirm.this, failure);
+                              //  MyApplication.showToast(PaymentConfirm.this, failure);
                                 pinLinear.setVisibility(View.VISIBLE);
                             }
 

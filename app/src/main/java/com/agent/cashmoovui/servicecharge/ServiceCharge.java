@@ -16,6 +16,8 @@ import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.OtherOption;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,6 +71,8 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
     }
 
     private void getIds() {
+
+
         linRemittance = findViewById(R.id.linRemittance);
         linCreditPurchase = findViewById(R.id.linCreditPurchase);
         linBillPay = findViewById(R.id.linBillPay);
@@ -90,6 +94,11 @@ public class ServiceCharge extends AppCompatActivity implements View.OnClickList
         tvCashOut = findViewById(R.id.tvCashOut);
         tvFeeCashOut = findViewById(R.id.tvFeeCashOut);
 
+        if(MyApplication.getSaveString("walletOwnerCategoryCode", ServiceCharge.this).equalsIgnoreCase(MyApplication.MerchatCode)){
+            linRemittance.setVisibility(View.GONE);
+            linCashIn.setVisibility(View.GONE);
+            linCashOut.setVisibility(View.GONE);
+        }
 
         setOnCLickListener();
 

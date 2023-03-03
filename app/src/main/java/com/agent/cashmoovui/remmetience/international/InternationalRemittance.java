@@ -819,7 +819,7 @@ public class InternationalRemittance extends AppCompatActivity implements View.O
         walletOwnerCategoryCode ="100010"; // HARD CODE FINAL ACORDING TO PARVEEN
 
 
-        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+mobileNumber_destination_string+"&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
+        API.GET_CASHIN_DETAILS("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode="+walletOwnerCategoryCode+"&mobileNumber="+mobileNumber_destination_string + "&status=Y&offset=0&limit=500",languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

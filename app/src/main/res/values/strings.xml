@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 02-03-2023 09:58 AM</string>
+    <string name="version">Version : 03-03-2023 04:30 AM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -392,6 +392,13 @@
     <string name="login_pin_message">Please enter your 4 digit pin to login the account.</string>
     <string name="set_pin">Set Pin</string>
     <string name="set_pin_message">Please set 4 digit pin for your account.</string>
+    <string name="change_pin_message_new">Please enter old pin and new pin to change your pin.</string>
+    <string name="old_pin_msg">Enter your old pin</string>
+    <string name="new_pin_msg">Enter your new pin</string>
+    <string name="re_pin_msg">Re-Enter your new pin</string>
+
+
+
     <string name="re_enter_pin">Re-Enter your pin</string>
     <string name="val_re_pin">Please enter re-pin</string>
     <string name="val_valid_re_pin">Re-Pin must be at least 4 digit</string>
@@ -640,10 +647,11 @@
 
     <string name="plz_enter_old_pin">Please enter old pin</string>
     <string name="plz_enter_new_pin">Please enter new pin</string>
-    <string name="plz_confirm_new_pin">Please enter confirm pin</string>
+    <string name="plz_confirm_new_pin">Please enter your new PIN code again</string>
     <string name="scan_error">Scan Error</string>
     <string name="val_scan_error_content">QR Code could not be scanned</string>
 
+    <string name="time_out">Connection time out, Please try again later</string>
     <string name="new_coinfirm_should_be_same">New pin and Confirm  pin should be same</string>
     <string name="view_balance">View balance</string>
     <string name="my_branch">My Branch</string>
