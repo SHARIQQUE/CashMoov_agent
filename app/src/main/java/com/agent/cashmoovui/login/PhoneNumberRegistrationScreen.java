@@ -53,7 +53,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
         setContentView(R.layout.activity_phone_number_registration_screen);
         phnoregistrationccreenC = this;
         getIds();
-        getIds();
+
     }
 
     String FCM_TOKEN;
@@ -119,7 +119,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
     }
 
     private void setOnCLickListener() {
-        // creating a variable for our BiometricManager
+     /*   // creating a variable for our BiometricManager
         // and lets check if our user can use biometric sensor or not
         BiometricManager biometricManager = BiometricManager.from(phnoregistrationccreenC);
         switch (biometricManager.canAuthenticate()) {
@@ -133,19 +133,19 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
 
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                msgText.setText(getString(R.string.no_fingerprint_senser));
+              //  msgText.setText(getString(R.string.no_fingerprint_senser));
                 tvFinger.setVisibility(View.GONE);
                 break;
 
             // this means that biometric sensor is not available
             case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
-                msgText.setText(getString(R.string.no_biometric_senser));
+                //msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);
                 break;
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                msgText.setText(getString(R.string.device_not_contain_fingerprint));
+                //msgText.setText(getString(R.string.device_not_contain_fingerprint));
                 tvFinger.setVisibility(View.GONE);
                 break;
         }
@@ -183,7 +183,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                 biometricPrompt.authenticate(promptInfo);
 
             }
-        });
+        });*/
 
         tvPin.setOnClickListener(new View.OnClickListener() {
             @Override

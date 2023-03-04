@@ -184,7 +184,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
         }
 
 
-        BiometricManager biometricManager = androidx.biometric.BiometricManager.from(LoginMsis.this);
+      /*  BiometricManager biometricManager = androidx.biometric.BiometricManager.from(LoginMsis.this);
         switch (biometricManager.canAuthenticate()) {
 
             // this means we can use biometric sensor
@@ -251,7 +251,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                 biometricPrompt.authenticate(promptInfo);
 
             }
-        });
+        });*/
 
 
     }
