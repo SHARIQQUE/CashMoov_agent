@@ -39,6 +39,7 @@ import com.agent.cashmoovui.model.UserDetailAgent;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYC;
 import com.agent.cashmoovui.wallet_owner.branch.BranchKYCAttached;
 import com.agent.cashmoovui.wallet_owner.branch.BranchSignature;
+import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
@@ -529,6 +530,9 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
 
                     } else {
                         clearData();
+                        if(resultCode.equalsIgnoreCase("1354")) {
+                            Toast.makeText(OutletKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                        }
 
                         //  Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();

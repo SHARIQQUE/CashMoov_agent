@@ -1076,7 +1076,9 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     } else {
                         clearData();
 
-                       // Toast.makeText(SubscriberKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                        if(resultCode.equalsIgnoreCase("1354")) {
+                            Toast.makeText(SubscriberKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                        }
                         //  finish();
                     }
 

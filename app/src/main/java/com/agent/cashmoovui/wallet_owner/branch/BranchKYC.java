@@ -36,6 +36,7 @@ import com.agent.cashmoovui.model.IDProofTypeModel;
 import com.agent.cashmoovui.model.RegionInfoModel;
 import com.agent.cashmoovui.model.RegistrationModel;
 import com.agent.cashmoovui.model.UserDetailAgent;
+import com.agent.cashmoovui.wallet_owner.subscriber.SubscriberKYC;
 import com.suke.widget.SwitchButton;
 
 import org.json.JSONArray;
@@ -531,7 +532,9 @@ public class BranchKYC extends AppCompatActivity implements View.OnClickListener
 
                     } else {
                         clearData();
-
+                        if(resultCode.equalsIgnoreCase("1354")) {
+                            Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
+                        }
                       //  Toast.makeText(BranchKYC.this, resultDescription, Toast.LENGTH_LONG).show();
                         //  finish();
                     }
