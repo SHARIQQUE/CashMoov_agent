@@ -658,7 +658,7 @@ public class Outform extends AppCompatActivity implements View.OnClickListener {
             // MyApplication.showloader(TransferToAccountActivity.this, "Please wait!");
             API.GET("ewallet/api/v1/walletOwner/all?" + "walletOwnerCategoryCode="
                             + "100010" +
-                            "&mobileNumber=" + (etSubscriberNo.getText().toString()) + "&offset=" + "0" + "&limit=" + "500",
+                            "&mobileNumber=" + (etSubscriberNo.getText().toString()) + "&status=Y&offset=" + "0" + "&limit=" + "500",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

@@ -518,7 +518,7 @@ HorizontalScrollView allview;
         String usercode_from_msis =  MyApplication.getSaveString("USERCODE", TransactionHistoryMainPage.this);
 
 
-        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis+"&offset=0&limit=100", new Api_Responce_Handler() {
+        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode="+usercode_from_msis+"&status=Y&offset=0&limit=100", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

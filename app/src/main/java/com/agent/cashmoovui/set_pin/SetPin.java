@@ -183,31 +183,26 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
 
         if(strPin.isEmpty()) {
 
-            MyApplication.showErrorToast(this,getString(R.string.enter_pin));
+            MyApplication.showErrorToast(this,getString(R.string.val_pin_new));
 
             return false;
         }
 
         else if(strPin.length() < 4) {
 
-            MyApplication.showErrorToast(this,getString(R.string.enter_pin));
+            MyApplication.showErrorToast(this,getString(R.string.val_valid_pin));
 
             return false;
         }
 
        else if(strRePin.isEmpty()) {
 
-            MyApplication.showErrorToast(this,getString(R.string.re_enter_pin));
+            MyApplication.showErrorToast(this,getString(R.string.val_re_pin));
 
             return false;
         }
 
-        else if(strRePin.length() < 4) {
 
-            MyApplication.showErrorToast(this,getString(R.string.re_enter_pin));
-
-            return false;
-        }
 
         else if(!strPin.equalsIgnoreCase(strRePin)) {
 

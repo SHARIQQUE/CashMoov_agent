@@ -362,6 +362,8 @@
     <string name="select_occupation">Select Occupation</string>
     <string name="select_id_proof">Select Id Proof</string>
     <string name="enter_pin">Enter pin</string>
+
+    <string name="val_pin_new"> Please enter new-pin</string>
     <string name="login_message">Please enter your phone number &amp; password to login the account.</string>
     <string name="login">Login</string>
     <string name="amount_to_paid_colon">Amount to be paid :</string>
@@ -400,7 +402,7 @@
 
 
     <string name="re_enter_pin">Re-Enter your pin</string>
-    <string name="val_re_pin">Please enter re-pin</string>
+    <string name="val_re_pin">Please enter your new PIN code again</string>
     <string name="val_valid_re_pin">Re-Pin must be at least 4 digit</string>
     <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin should be same]]></string>
     <string name="val_select_gender">Please select gender</string>
@@ -459,7 +461,7 @@
     <string name="overdraft">Overdraft</string>
     <string name="service_charge">Service Charge</string>
 
-    <string name="mpin_renter_shoud_be_same">Mpin and Re enter mpin should be same</string>
+    <string name="mpin_renter_shoud_be_same"> New PIN and the confirmation PIN must be identical</string>
     <string name="login_with_pin">Login With Pin</string>
     <string name="please_choose_language">Please choose language</string>
     <string name="you_have_choose_english_language">You have choose english language</string>
@@ -652,7 +654,7 @@
     <string name="val_scan_error_content">QR Code could not be scanned</string>
 
     <string name="time_out">Connection time out, Please try again later</string>
-    <string name="new_coinfirm_should_be_same">New pin and Confirm  pin should be same</string>
+    <string name="new_coinfirm_should_be_same">New PIN and the confirmation PIN must be identical</string>
     <string name="view_balance">View balance</string>
     <string name="my_branch">My Branch</string>
     <string name="my_agents">My Agents</string>

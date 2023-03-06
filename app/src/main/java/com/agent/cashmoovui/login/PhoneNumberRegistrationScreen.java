@@ -441,7 +441,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                             Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                             startActivity(i);
                             finish();
-                            Toast.makeText(phnoregistrationccreenC, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Toast.makeText(phnoregistrationccreenC, phnoregistrationccreenC.getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                         }
                     }else{
                         MyApplication.saveBool("FirstLogin",true,phnoregistrationccreenC);
@@ -456,7 +456,7 @@ public class PhoneNumberRegistrationScreen extends AppCompatActivity {
                             Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                             startActivity(i);
                             finish();
-                            Toast.makeText(phnoregistrationccreenC, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Toast.makeText(phnoregistrationccreenC, phnoregistrationccreenC.getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             }
                         }
 

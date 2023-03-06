@@ -1031,7 +1031,7 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
 
         String featureCode_hardCode="100076";   // 100076 is hard code according to praveen 19 Nov
 
-        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+featureCode_hardCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&offset=0&limit="+recordString,languageToUse,new Api_Responce_Handler() {
+        API.GET_TRANSFER_DETAILS("ewallet/api/v1/walletTransfer/allSellFloat?featureCode="+featureCode_hardCode+"&srcWalletOwnerCode="+userCode_agentCode_from_mssid+"&status=Y&offset=0&limit="+recordString,languageToUse,new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

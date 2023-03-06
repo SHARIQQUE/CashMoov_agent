@@ -249,12 +249,12 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             return false;
         }
 
-        else if(confirmPinStr.length() < 3) {
+       /* else if(confirmPinStr.length() < 3) {
 
             MyApplication.showErrorToast(this,getString(R.string.plz_confirm_new_pin));
 
             return false;
-        }
+        }*/
 
         else if(!newPinStr.equalsIgnoreCase(confirmPinStr)) {
 

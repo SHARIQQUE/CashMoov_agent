@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 04-03-2023 09:30 AM</string>
+    <string name="version">Version : 06-03-2023 08:00 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -355,7 +355,10 @@
     <string name="select_gender">Sélectionnez le sexe</string>
     <string name="select_occupation">Sélectionnez la profession</string>
     <string name="select_id_proof">Sélectionnez la piece d\'identité</string>
+    <string name="val_pin_new"> Veuillez saisir une nouvelle Code PIN</string>
     <string name="enter_pin">Veuillez saisir le code PIN</string>
+
+
     <string name="login_message">Veuillez entrer votre numéro de téléphone et votre mot de passe pour vous connecter au compte</string>
     <string name="login">Connexion</string>
     <string name="login_fingerprint">Connexion avec empreinte digitale ?</string>
@@ -371,7 +374,7 @@
     <string name="val_phone">Veuillez entrer le numéro de téléphone</string>
     <string name="val_pass">Tapez votre mot de passe</string>
     <string name="login_pin_message">Veuillez entrer votre code PIN à 4 chiffres pour vous connecter au compte.</string>
-    <string name="set_pin">Définir la code pin</string>
+    <string name="set_pin">Définir le code pin</string>
     <string name="set_pin_message">Veuillez definir un code pin a 4 chiffres pour votre compte</string>
 
     <string name="change_pin_message_new">Veuillez saisir l\'ancien code PIN et le nouveau code PIN pour changer votre code PIN.</string>
@@ -381,7 +384,7 @@
 
 
     <string name="re_enter_pin">Entrez à nouveau votre code PIN</string>
-    <string name="val_re_pin">Veuillez saisir une nouvelle  code PIN</string>
+    <string name="val_re_pin">Veuillez saisir une nouvelle code pin</string>
     <string name="val_valid_re_pin">Re-Pin doit être d\'au moins 4 chiffres</string>
     <string name="val_pin_re_pin"><![CDATA[Pin & Re-Pin doivent être identiques]]></string>
     <string name="val_select_gender">Veuillez sélectionner le sexe</string>
@@ -433,7 +436,7 @@
     <string name="overdraft">Découvert</string>
     <string name="service_charge">Frais de service</string>
 
-    <string name="mpin_renter_shoud_be_same">Le code PIN et le code PIN de confirmation doivent etre identiques</string>
+    <string name="mpin_renter_shoud_be_same">Le nouveau code PIN et le code PIN de confirmation doivent étre identiques </string>
 
     <string name="login_with_pin">Connectez-vous avec un code PIN</string>
     <string name="please_choose_language">Veuillez choisir la langue</string>
@@ -638,7 +641,7 @@
     <string name="val_scan_error_content">Le QR code ne peut pas etre scanne</string>
     <string name="time_out">Votre requête a expiré, veuillez ressayer plu tard</string>
 
-    <string name="new_coinfirm_should_be_same">Le nouveau code pin et le code pin confirmé doivent être identiques</string>
+    <string name="new_coinfirm_should_be_same"> Le nouveau code PIN et le code PIN de confirmation doivent être identiques</string>
     <string name="view_balance">Voir le solde</string>
     <string name="my_branch">Mon Branche</string>
     <string name="my_agents">Mes Agents</string>
@@ -969,7 +972,7 @@
     <string name="commission_transfer_success">Transfert de commission réussi vers le portefeuille principal</string>
     <string name="available_balnce">Solde disponible dans le portefeuille de commissions (</string>
     <string name="sell_float_added">\"Transfert intra agent ajouté avec succès et envoyé pour approbation"</string>
-    <string name="commisssion_bal_insufficient">Vous avez entré le montant ci-dessous a partir du compte commission</string>
+    <string name="commisssion_bal_insufficient">Solde insuffisant dans le portefeuille de la Commission</string>
     <string name="select_institute_type">Sélectionnez le type d\'institut</string>
     <string name="please_enter_signature">Veuillez saisir votre signature</string>
     <string name="please_add_agent_createbranch">Veuillez d\'abord ajouter un agent pour créer une succursale...</string>

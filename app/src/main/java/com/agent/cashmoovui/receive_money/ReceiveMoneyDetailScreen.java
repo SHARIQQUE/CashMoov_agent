@@ -726,7 +726,7 @@ public class ReceiveMoneyDetailScreen extends AppCompatActivity implements View.
 
             // MyApplication.showloader(TransferToAccountActivity.this, "Please wait!");
             API.GET("ewallet/api/v1/walletOwner/all?walletOwnerCategoryCode=100010&mobileNumber="+
-                            et_destination_mobileNumber.getText().toString()+"&offset=0&limit=500",
+                            et_destination_mobileNumber.getText().toString()+"&status=Y&offset=0&limit=500",
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {

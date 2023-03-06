@@ -993,7 +993,7 @@ public class LoginPin extends AppCompatActivity {
                             Intent i = new Intent(loginpinC, MainActivity.class);
                             startActivity(i);
                             finish();
-                            Toast.makeText(loginpinC, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Toast.makeText(loginpinC, loginpinC.getString(R.string.login_successful), Toast.LENGTH_LONG).show();
 
 
                         }

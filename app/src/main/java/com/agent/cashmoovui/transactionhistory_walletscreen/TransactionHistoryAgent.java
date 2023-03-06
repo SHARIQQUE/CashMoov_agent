@@ -338,7 +338,7 @@ public class TransactionHistoryAgent extends AppCompatActivity implements Adapte
     private void getTransactionList(String WalletOwnerCode_fromChild) {
 
 
-        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode=" + WalletOwnerCode_fromChild + "&offset=0&limit=100", new Api_Responce_Handler() {
+        API.GET("ewallet/api/v1/transaction/all?srcWalletOwnerCode=" + WalletOwnerCode_fromChild + "&status=Y&offset=0&limit=100", new Api_Responce_Handler() {
             @Override
             public void success(JSONObject jsonObject) {
 

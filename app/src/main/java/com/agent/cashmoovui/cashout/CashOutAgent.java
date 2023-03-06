@@ -1304,7 +1304,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                             }
 
-                        } else {
+                        } }else {
 
                             MyApplication.biometricAuth(CashOutAgent.this, new BioMetric_Responce_Handler() {
                                 @Override
@@ -1317,7 +1317,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                         if (new InternetCheck().isConnected(CashOutAgent.this)) {
 
-                                            // MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
+                                             MyApplication.showloader(CashOutAgent.this, getString(R.string.please_wait));
 
                                             mpin_final_api();
 
@@ -1340,7 +1340,7 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                             });
                         }
-                    }
+
 
 
 /*
@@ -2035,8 +2035,8 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
 
                                 ll_otp.setVisibility(View.GONE);
                                 ll_resendOtp.setVisibility(View.GONE);
-                                ll_pin.setVisibility(View.VISIBLE);
-                                tvFinger.setVisibility(View.VISIBLE);
+                                ll_pin.setVisibility(View.GONE);
+                                tvFinger.setVisibility(View.GONE);
 
                             }
 

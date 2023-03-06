@@ -42,6 +42,8 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
+import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
+import com.agent.cashmoovui.cashout.CashOutAgent;
 import com.agent.cashmoovui.internet.InternetCheck;
 import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.IDProofTypeModel;
@@ -668,7 +670,7 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+               // MyApplication.hideLoader();
 
                 try {
 
@@ -694,12 +696,14 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(RemittanceReceive.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(RemittanceReceive.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -743,11 +747,12 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
 
                         JSONObject walletOwnerUser = jsonObject.getJSONObject("walletOwnerUser");
 
-                        ll_pin.setVisibility(View.VISIBLE);
+                        ll_pin.setVisibility(View.GONE);
 
                         tv_nextClick.setText(getString(R.string.Submit));
 
                         buttonClick = "1";
+                        MyApplication.hideLoader();
 
 
                     } else {
@@ -1558,18 +1563,55 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                     }
                 } else {
 
-                    if (validation_mpin_detail()) {
+                    if (ll_pin.getVisibility() == View.VISIBLE) {
+                        if (validation_mpin_detail()) {
 
-                        if (new InternetCheck().isConnected(RemittanceReceive.this)) {
+                            if (new InternetCheck().isConnected(RemittanceReceive.this)) {
 
-                            MyApplication.showloader(RemittanceReceive.this, getString(R.string.please_wait));
+                                MyApplication.showloader(RemittanceReceive.this, getString(R.string.please_wait));
 
-                            mpin_final_api();
+                                mpin_final_api();
 
 
-                        } else {
-                            Toast.makeText(RemittanceReceive.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(RemittanceReceive.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                            }
                         }
+                    } else {
+
+                        MyApplication.biometricAuth(RemittanceReceive.this, new BioMetric_Responce_Handler() {
+                            @Override
+                            public void success(String success) {
+                                try {
+
+
+                                    //  String encryptionDatanew = AESEncryption.getAESEncryption(MyApplication.getSaveString("pin",MyApplication.appInstance).toString().trim());
+                                    mpinStr = MyApplication.getSaveString("pin", MyApplication.appInstance);
+
+                                    if (new InternetCheck().isConnected(RemittanceReceive.this)) {
+
+                                        MyApplication.showloader(RemittanceReceive.this, getString(R.string.please_wait));
+
+                                        mpin_final_api();
+
+                                    } else {
+                                        Toast.makeText(RemittanceReceive.this, getString(R.string.please_check_internet), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void failure(String failure) {
+                                // MyApplication.showToast(CashOutAgent.this, failure);
+
+                                ll_pin.setVisibility(View.VISIBLE);
+
+
+                            }
+
+                        });
                     }
                 }
 
@@ -2030,13 +2072,14 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
                         //JSONObject jsonObject = new JSONObject("");
 
                         if (jsonObject.has("error")) {
+                            MyApplication.hideLoader();
 
                             String error = jsonObject.getString("error");
                             String error_message = jsonObject.getString("error_message");

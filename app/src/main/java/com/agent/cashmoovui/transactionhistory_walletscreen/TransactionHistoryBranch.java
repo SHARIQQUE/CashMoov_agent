@@ -209,7 +209,7 @@ public class TransactionHistoryBranch extends AppCompatActivity implements Adapt
         String url;
 
         if(MyApplication.getSaveString("walletOwnerCategoryCode",TransactionHistoryBranch.this).equalsIgnoreCase(MyApplication.MerchatCode)){
-            url="ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis+"?walletOwnerCategoryCode=100012&offset=0&limit=300";
+            url="ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis+"?walletOwnerCategoryCode=100012&status=Y&offset=0&limit=300";
         }else{
             url="ewallet/api/v1/walletOwner/all/parent/"+usercode_from_msis;
 

@@ -1021,6 +1021,11 @@ public static String addDecimal(String number) {
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
 
+
+                if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 2000) { // 1000 = 1second
+                    return;
+                }
+                MyApplication.mLastClickTime = SystemClock.elapsedRealtime();
                 checkCounter(bioMetric_responce_handler,activity.getResources().getString(R.string.please_enter_pin_bio));
                 //showToast(activity,"hardwatre 66");
 
