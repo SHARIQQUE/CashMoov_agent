@@ -157,8 +157,9 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
         });
 
 
-        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        //String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
 
+        String mobilelength="9";
         et_destination_mobileNumber.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
 
@@ -384,7 +385,7 @@ public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.O
                     return;
                 }
                 if (et_destination_firstName.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_fname));
+                    MyApplication.showErrorToast(cashtowalletbenefikycC, getString(R.string.val_correct_mobile));
                     return;
                 }
 

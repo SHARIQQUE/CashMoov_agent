@@ -797,7 +797,7 @@ public class LocalRemittanceActivity extends AppCompatActivity implements View.O
 //                                            tvAmtPaidCurr.setText(toCurrencySymbol);
 //                                            // txt_curr_symbol_paid.setText(benefiCurrencyModelList.get(position).currencySymbol);
 //                                            edittext_amount.getText().clear();
-//                                            edittext_amount_pay.getText().clear();
+//                                            edittext_amount_pay.getText().clear();API
 //                                        }
 //                                    });
 //

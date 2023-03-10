@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 06-03-2023 08:00 PM</string>
+    <string name="version">Version : 10-03-2023 02:30 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -368,6 +368,7 @@
     <string name="device_not_contain_fingerprint">Votre appareil n\'a pas d\'empreinte digitale enregistrée, veuillez vérifier vos paramètres de sécurité</string>
     <string name="val_pin">Veuillez saisir le code PIN</string>
     <string name="val_valid_pin">Le code pin doit comporter au moins 4 chiffres</string>
+    <string name="val_valid_new_pin">Le nouveau code PIN doit comporter au moins 4 chiffres</string>
     <string name="enter_pass">Veuillez entrer votre mot de passe</string>
     <string name="or">OU</string>
     <string name="login_pin">Se connecter avec le code pin ?</string>
@@ -393,6 +394,7 @@
     <string name="val_fname">Veuillez saisir le prénom</string>
     <string name="val_lname">Veuillez saisir le nom de famille</string>
     <string name="val_email">Veuillez entrer l\'adresse email</string>
+    <string name="val_correct_mobile">Veuillez entrer le numéro d\'abonné correct</string>
     <string name="val_city">Veuillez entrer la ville</string>
     <string name="val_address">Veuillez saisir l\'adresse</string>
     <string name="val_proof_no">Veuillez entrer le numéro de piece d\'identité</string>
@@ -596,7 +598,7 @@
     <string name="vendor_result_description">Fournisseur Résultat Description :</string>
 
     <string name="cash_to_wallet">Cash a compte</string>
-    <string name="tax">Impôt :</string>
+    <string name="tax">Taxe :</string>
     <string name="total_amount_invoice">Montant total de la facture</string>
     <string name="rate">Taux</string>
     <string name="device_to_send">Appareil a envoyer</string>
@@ -1012,6 +1014,7 @@
     <string name="hierachynotfound">Hiérachy introuvable</string>
     <string name="selectimage">Veuillez sélectionner une nouvelle image.....</string>
     <string name="contactadmin">Veuillez contacter l’administrateur pour réinitialiser l’épingle</string>
+    <string name="your_pin_generated_success">Votre code PIN a été généré avec succès!</string>
 
 </resources>
 

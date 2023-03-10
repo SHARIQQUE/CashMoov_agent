@@ -209,7 +209,8 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                 if(isCheckAmount){
 
 
-               isAmt=true;
+               //isAmt=true;
+                    isAmtPaid = true;
                 convertionRate_first_page.setText("");
                 fees_first_page.setText("");
                 tax_first_page.setText("");
@@ -449,7 +450,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                 MyApplication.showErrorToast(internationalC,getString(R.string.val_valid_amount));
                 return;
             }
-            if (Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
+           /* if (Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
                 MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
                 return;
             }
@@ -459,7 +460,7 @@ public class InternationalRemittanceActivity extends AppCompatActivity implement
                 return;
 
 
-            }
+            }*/
             MyApplication.showloader(internationalC,getString(R.string.pleasewait));
             //  callApiExchangeRate();
 

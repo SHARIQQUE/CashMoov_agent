@@ -62,7 +62,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 
         String languageToUse = applicationComponentClass.getmSharedPreferences().getString("languageToUse", "");
         if (languageToUse.trim().length() == 0) {
-            languageToUse = "en";
+            languageToUse = "fr";
         }
 
 
@@ -244,7 +244,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
     private void callApi() {
 
 
-            MyApplication.showloader(SplashScreen.this,"Please wait!");
+            MyApplication.showloader(SplashScreen.this,getString(R.string.please_wait));
             try{
             API.GET_PUBLICN("https://ipapi.co/json/", new Api_Responce_Handler() {
                 @Override
@@ -265,7 +265,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
 //                            MyApplication.showToast(SplashScreen.this,getString(R.string.technical_failure));
                         } else {
                             loginPage();
-                          MyApplication.showToast(SplashScreen.this,"API FAIL");
+                         // MyApplication.showToast(SplashScreen.this,"API FAIL");
                         }
                     }
                 }
@@ -273,7 +273,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void failure(String aFalse) {
                     loginPage();
-                    MyApplication.showToast(SplashScreen.this,"API FAIL");
+                    //MyApplication.showToast(SplashScreen.this,"API FAIL");
                 }
             });
 

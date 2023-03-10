@@ -779,7 +779,7 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                                         occupationTypeList.add(data.optString("type").trim());
 
                                     }
-                                    spinnerDialogOccupation = new SpinnerDialog(subscriberkycC, occupationTypeList, "Select Occupation", R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
+                                    spinnerDialogOccupation = new SpinnerDialog(subscriberkycC, occupationTypeList, getString(R.string.select_occupation), R.style.DialogAnimations_SmileWindow, getString(R.string.cancel));// With 	Animation
                                     spinnerDialogOccupation.setCancellable(true); // for cancellable
                                     spinnerDialogOccupation.setShowKeyboard(false);// for open keyboard by default
                                     spinnerDialogOccupation.bindOnSpinerListener(new OnSpinerItemClick() {

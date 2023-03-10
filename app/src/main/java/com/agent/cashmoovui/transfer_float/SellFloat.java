@@ -1249,6 +1249,9 @@ public class SellFloat extends AppCompatActivity implements View.OnClickListener
                             } else {
                                 tax_financial = exchangeRate.getString("value");
                             }
+                        }else{
+                            tax_financial="0.00";
+                            tax_financialtypename=getString(R.string.tax);
                         }
                         taxselffloatLinear.setVisibility(View.VISIBLE);
 

@@ -201,7 +201,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="@color/bgColorHint"
-                    android:inputType="text"
+
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890/-"
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"

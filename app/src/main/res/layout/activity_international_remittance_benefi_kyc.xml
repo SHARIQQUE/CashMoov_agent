@@ -254,7 +254,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
-                    android:inputType="textPersonName"
+
+
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="@dimen/_15sdp"
                     android:paddingTop="@dimen/_12sdp"
@@ -262,7 +263,7 @@
                     android:paddingEnd="@dimen/_15sdp"
                     android:hint="@string/id_proof_no"
                     android:textColor="#323232"
-                    android:digits="0123456-/"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890/-"
 
                     android:textSize="@dimen/_15sdp"
                     android:fontFamily="@font/aileron_semibold"  />

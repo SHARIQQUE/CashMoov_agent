@@ -237,7 +237,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
         else if(newPinStr.length() < 3) {
 
-            MyApplication.showErrorToast(this,getString(R.string.plz_enter_new_pin));
+            MyApplication.showErrorToast(this,getString(R.string.val_valid_new_pin));
 
             return false;
         }

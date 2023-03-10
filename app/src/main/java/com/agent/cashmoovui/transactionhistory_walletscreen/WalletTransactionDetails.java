@@ -108,10 +108,13 @@ public class WalletTransactionDetails extends AppCompatActivity {
                 double fee = b.getDouble("fee");
                 String receiverbearer = (getIntent().getStringExtra("receiverbearer"));
                 System.out.println("get va444" + receiverbearer);
-                if (receiverbearer.equalsIgnoreCase("true")) {
+               /* if (receiverbearer.equalsIgnoreCase("true")) {
                     txt_fee.setVisibility(View.GONE);
                     txt_financialtax.setVisibility(View.GONE);
-                }
+                }else{
+                    txt_fee.setVisibility(View.VISIBLE);
+                    txt_financialtax.setVisibility(View.VISIBLE);
+                }*/
 
 
                 String commissionAmount = (getIntent().getStringExtra("COMMISSIONAMOUNT"));

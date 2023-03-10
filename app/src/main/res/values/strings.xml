@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 04-03-2023 09:30 AM</string>
+    <string name="version">Version : 10-03-2023 02:30 PM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -383,6 +383,7 @@
     <string name="device_not_contain_fingerprint">Your device doesn\'t have fingerprint saved,please check your security settings</string>
     <string name="val_pin">Please enter pin</string>
     <string name="val_valid_pin">Pin must be at least 4 digit</string>
+    <string name="val_valid_new_pin">New Pin must be at least 4 digit</string>
     <string name="enter_pass">Enter your password</string>
     <string name="or">OR</string>
     <string name="login_pin">Login with Pin?</string>
@@ -411,6 +412,7 @@
     <string name="val_fname">Please enter first name</string>
     <string name="val_lname">Please enter last name</string>
     <string name="val_email">Please enter email id</string>
+    <string name="val_correct_mobile">Please enter correct subscriber number</string>
     <string name="val_city">Please enter city</string>
     <string name="val_address">Please enter address</string>
     <string name="val_proof_no">Please enter id proof number</string>
@@ -1021,6 +1023,7 @@
     <string name="hierachynotfound">Hierachy not found</string>
     <string name="selectimage">Please select a new image.....</string>
     <string name="contactadmin">Please Contact Admin To Reset Pin</string>
+    <string name="your_pin_generated_success">Your Pin generate Successfully!</string>
 
 
 </resources>

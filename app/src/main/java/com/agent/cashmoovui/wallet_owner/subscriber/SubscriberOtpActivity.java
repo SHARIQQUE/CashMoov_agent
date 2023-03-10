@@ -257,21 +257,21 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
 //                break;
             case R.id.btn_submit_gen_pin:
                 if (et_new_pin.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.val_new_pin));
+                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.plz_enter_new_pin));
                     return;
                 }if (et_new_pin.getText().toString().trim().length()<4) {
-                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.val_valid_pin));
+                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.val_valid_new_pin));
                     return;
                 }
                 if (et_conf_new_pin.getText().toString().trim().isEmpty()) {
-                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.val_conf_pin));
+                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.plz_confirm_new_pin));
                     return;
-                }if (et_conf_new_pin.getText().toString().trim().length()<4) {
+                }/*if (et_conf_new_pin.getText().toString().trim().length()<4) {
                     MyApplication.showErrorToast(subscriberotpC,getString(R.string.val_valid_conf_pin));
                     return;
-                }
+                }*/
                 if (!et_new_pin.getText().toString().trim().equalsIgnoreCase(et_conf_new_pin.getText().toString().trim())) {
-                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.val_new_conf_pin));
+                    MyApplication.showErrorToast(subscriberotpC,getString(R.string.mpin_renter_shoud_be_same));
                     return;
                 }
 

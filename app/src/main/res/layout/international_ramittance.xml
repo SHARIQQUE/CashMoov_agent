@@ -492,13 +492,14 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
-                    android:inputType="textPersonName"
+
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="37.5dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:hint="@string/id_proof_no"
                     android:textColor="#323232"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890/-"
                     android:textSize="15sp" />
 
                 <LinearLayout
@@ -838,13 +839,14 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_edittextname"
                     android:backgroundTint="#999999"
-                    android:inputType="textPersonName"
+
                     android:lineSpacingExtra="10sp"
                     android:paddingLeft="37.5dp"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:hint="@string/id_proof_no"
                     android:textColor="#323232"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890/-"
                     android:textSize="15sp" />
 
                 <LinearLayout

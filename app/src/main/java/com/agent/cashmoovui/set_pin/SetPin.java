@@ -183,7 +183,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
 
         if(strPin.isEmpty()) {
 
-            MyApplication.showErrorToast(this,getString(R.string.val_pin_new));
+            MyApplication.showErrorToast(this,getString(R.string.val_pin));
 
             return false;
         }
@@ -244,7 +244,7 @@ public class SetPin extends AppCompatActivity implements View.OnClickListener {
                     if (jsonObject != null) {
                         if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
 
-                            MyApplication.showToast(SetPin.this,"Your Pin generate Successfully!");
+                            MyApplication.showToast(SetPin.this,getString(R.string.your_pin_generated_success));
 
 
 

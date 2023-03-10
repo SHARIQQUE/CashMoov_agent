@@ -51,11 +51,11 @@ public class API {
 
 
     //  mujhe remiitance local /international  benficairy detail  email id remove karni h jab prod pe build dena hoga to
-   // public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
+    public static String BASEURL="http://180.179.201.109:8081/"; //pre prod
 
     //###############################################################
     public static String BASEURL_AMOUNT="http://192.168.1.170:8081/";
-    public static String BASEURL="http://202.140.50.116:8081/"; //UAT
+   // public static String BASEURL="http://202.140.50.116:8081/"; //UAT
 
 
 

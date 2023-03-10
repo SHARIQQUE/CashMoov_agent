@@ -284,6 +284,7 @@
                         android:fontFamily="@font/aileron_bold"
                         android:layout_gravity="center_vertical"
                         android:layout_width="0dp"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890/-"
                         android:layout_weight=".5"
                         android:layout_height="wrap_content"
                         android:textColor="#000"

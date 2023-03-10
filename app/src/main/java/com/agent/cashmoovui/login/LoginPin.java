@@ -307,7 +307,7 @@ public class LoginPin extends AppCompatActivity {
         }
     }
 
-
+     BiometricPrompt biometricPrompt=null;
     private void setOnClickListener() {
 
 
@@ -326,6 +326,7 @@ public class LoginPin extends AppCompatActivity {
             // this means that the device doesn't have fingerprint sensor
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
                 //msgText.setText(getString(R.string.no_fingerprint_senser));
+                pin_login_lay.setVisibility(View.VISIBLE);
                 tvFinger.setVisibility(View.GONE);
                 break;
 
@@ -334,23 +335,26 @@ public class LoginPin extends AppCompatActivity {
                 //msgText.setText(getString(R.string.no_biometric_senser));
                 tvFinger.setVisibility(View.GONE);
                 System.out.println("get sensor");
+                pin_login_lay.setVisibility(View.VISIBLE);
                 break;
 
             // this means that the device doesn't contain your fingerprint
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
                 //msgText.setText(getString(R.string.device_not_contain_fingerprint));
+                pin_login_lay.setVisibility(View.VISIBLE);
                 tvFinger.setVisibility(View.GONE);
                 break;
         }
         // creating a variable for our Executor
         Executor executor = ContextCompat.getMainExecutor(this);
         // this will give us result of AUTHENTICATION
-        final BiometricPrompt biometricPrompt = new BiometricPrompt(loginpinC, executor, new BiometricPrompt.AuthenticationCallback() {
+         biometricPrompt = new BiometricPrompt(loginpinC, executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
                 System.out.println("get failde"+errString);
                 pin_login_lay.setVisibility(View.VISIBLE);
+                biometricPrompt.cancelAuthentication();
 
             }
 
@@ -388,6 +392,7 @@ public class LoginPin extends AppCompatActivity {
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
                 pin_login_lay.setVisibility(View.VISIBLE);
+                biometricPrompt.cancelAuthentication();
             }
         });
         // creating a variable for our promptInfo
@@ -410,6 +415,7 @@ public class LoginPin extends AppCompatActivity {
     private void callApiLoginPass() {
         try{
 
+            pin_login_lay.setVisibility(View.VISIBLE);
             JSONObject loginJson=new JSONObject();
 
            
@@ -647,7 +653,7 @@ public class LoginPin extends AppCompatActivity {
 
     private void callApiLoginPassF() {
         try{
-
+            pin_login_lay.setVisibility(View.VISIBLE);
             JSONObject loginJson=new JSONObject();
 
 
@@ -671,6 +677,7 @@ public class LoginPin extends AppCompatActivity {
                     try {
 
                         if (jsonObject.has("error")) {
+                           // pin_login_lay.setVisibility(View.VISIBLE);
 
                             //  String error_message = jsonObject.getString("error_message");
                             //  Toast.makeText(LoginMsis.this, error_message, Toast.LENGTH_LONG).show();
@@ -1078,6 +1085,11 @@ public class LoginPin extends AppCompatActivity {
                                 firstLoginStatus = walletOwnerUser.getString("firstLoginStatus");
                             }
 
+                            if (!walletOwnerUser.optBoolean("isPinAlreadySet") && walletOwnerUser.getString("firstLoginStatus").equalsIgnoreCase("y")) {
+                                firstLoginStatus = "y";
+                            } else {
+                                firstLoginStatus = "n";
+                            }
                             //  String countryCode_agent = walletOwnerUser.getString("issuingCountryCode");
                             // String countryName_agent = walletOwnerUser.getString("issuingCountryName");
 
@@ -1100,6 +1112,7 @@ public class LoginPin extends AppCompatActivity {
                             if(walletOwnerUser.optBoolean("reSetPinCredRequest")) {
                                 Intent i = new Intent(LoginPin.this, RESETPINOtpPage.class);
                                 startActivity(i);
+                                return;
                             } else {
                                 Toast.makeText(LoginPin.this, getString(R.string.contactadmin), Toast.LENGTH_LONG).show();
 
