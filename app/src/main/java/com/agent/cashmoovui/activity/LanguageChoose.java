@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -26,7 +26,7 @@ import org.w3c.dom.Text;
 import java.util.Locale;
 
 
-public class LanguageChoose extends AppCompatActivity implements View.OnClickListener {
+public class LanguageChoose extends LogoutAppCompactActivity implements View.OnClickListener {
 
 
     MyApplication applicationComponentClass;

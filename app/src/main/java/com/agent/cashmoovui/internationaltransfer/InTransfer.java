@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InTransfer extends AppCompatActivity implements OperatorListenersnew {
+public class InTransfer extends LogoutAppCompactActivity implements OperatorListenersnew {
     public static InTransfer billpayC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;

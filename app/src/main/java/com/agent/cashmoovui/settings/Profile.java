@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -50,7 +51,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener {
+public class Profile extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Profile profileC;
     ImageView imgBack,imgHome;
     ImageView imgNotification,imgQR;

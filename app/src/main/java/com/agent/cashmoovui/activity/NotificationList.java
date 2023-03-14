@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationList extends AppCompatActivity {
+public class NotificationList extends LogoutAppCompactActivity {
     public static NotificationList notificationlistC;
     ImageView imgBack,imgHome;
     RecyclerView rvNotification;

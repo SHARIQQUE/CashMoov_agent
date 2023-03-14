@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -27,7 +28,7 @@ import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
-public class WalletScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class WalletScreen extends LogoutAppCompactActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     SmoothBottomBar bottomBar;
     ImageView imgQR;
 

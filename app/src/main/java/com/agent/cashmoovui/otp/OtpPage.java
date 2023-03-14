@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class OtpPage extends AppCompatActivity implements OnOtpCompletionListener {
+public class OtpPage extends LogoutAppCompactActivity implements OnOtpCompletionListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

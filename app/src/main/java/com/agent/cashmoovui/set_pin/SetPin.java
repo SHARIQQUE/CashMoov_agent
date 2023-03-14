@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -24,7 +25,7 @@ import com.agent.cashmoovui.login.LoginMsis;
 import org.json.JSONObject;
 import java.util.Locale;
 
-public class SetPin extends AppCompatActivity implements View.OnClickListener {
+public class SetPin extends LogoutAppCompactActivity implements View.OnClickListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

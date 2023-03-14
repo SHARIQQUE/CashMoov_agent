@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MyApplication;
@@ -29,7 +30,7 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-public class ChangePin extends AppCompatActivity implements View.OnClickListener {
+public class ChangePin extends LogoutAppCompactActivity implements View.OnClickListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";
@@ -175,7 +176,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
         switch (view.getId()) {
 
             case R.id.tv_continue: {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1500){
                     return;
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
@@ -294,7 +295,7 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
             }catch (Exception e){
 
             }*/
-            MyApplication.showloader(ChangePin.this,"Please wait!");
+            MyApplication.showloader(ChangePin.this,getString(R.string.please_wait));
 
             API.PUT("ewallet/api/v1/walletOwnerUser/changePin", jsonObject, new Api_Responce_Handler() {
                 @Override
@@ -320,7 +321,6 @@ public class ChangePin extends AppCompatActivity implements View.OnClickListener
 
                         } else {
                             MyApplication.hideLoader();
-
                             MyApplication.showToast(ChangePin.this,jsonObject.optString("resultDescription", "N/A"));
                         }
                     }

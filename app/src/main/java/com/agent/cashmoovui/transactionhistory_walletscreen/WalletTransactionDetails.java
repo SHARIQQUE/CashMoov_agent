@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -27,7 +29,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class WalletTransactionDetails extends AppCompatActivity {
+public class WalletTransactionDetails extends LogoutAppCompactActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
     TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_financialtax,txt_fee,

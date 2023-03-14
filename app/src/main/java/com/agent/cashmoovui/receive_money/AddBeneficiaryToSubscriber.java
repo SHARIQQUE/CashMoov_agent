@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,7 @@ import java.util.HashSet;
 
 
 
-public class AddBeneficiaryToSubscriber extends AppCompatActivity implements View.OnClickListener, ContactListLisners {
+public class AddBeneficiaryToSubscriber extends LogoutAppCompactActivity implements View.OnClickListener, ContactListLisners {
 
     public static AddBeneficiaryToSubscriber addbeneficiaryC;
     ImageView imgBack,imgHome;

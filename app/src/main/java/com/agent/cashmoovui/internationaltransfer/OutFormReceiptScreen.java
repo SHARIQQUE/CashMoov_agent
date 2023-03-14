@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 
 import com.agent.cashmoovui.MainActivity;
@@ -26,7 +27,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class OutFormReceiptScreen extends AppCompatActivity implements View.OnClickListener {
+public class OutFormReceiptScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static OutFormReceiptScreen tosubscriberreceiptscreenC;
     Button btnClose,btnShareReceipt;
     TextView tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvTransId,tvCurrency,tvFee,tvTransAmt,tvAmountPaid,tvAmountCharged,

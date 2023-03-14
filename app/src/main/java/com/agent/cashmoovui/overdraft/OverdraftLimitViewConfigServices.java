@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +42,7 @@ import java.util.Locale;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class OverdraftLimitViewConfigServices extends AppCompatActivity {
+public class OverdraftLimitViewConfigServices extends LogoutAppCompactActivity {
 
     ImageView imgBack,imgHome;
    String profileTypeCode_fromServer="",profileTypeName_fromServer="",walletOwnerName_fromServer="",entityCode_from_creditLimitAllocation="";

@@ -1,7 +1,7 @@
 package com.agent.cashmoovui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.agent.cashmoovui.R;
 
-public class Showpopup extends AppCompatActivity {
+public class Showpopup extends LogoutAppCompactActivity {
 
     Dialog myDialog1;
     Dialog myDialog2;

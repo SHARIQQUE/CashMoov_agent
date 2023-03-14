@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -20,7 +21,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 
-public class PaymentReceipt extends AppCompatActivity implements View.OnClickListener {
+public class PaymentReceipt extends LogoutAppCompactActivity implements View.OnClickListener {
     public static PaymentReceipt paymentreceiptC;
     Button btnShareReceipt,btnCloseReceipt;
     TextView tvTransDate,transId,tvSubscriberMobile,tvProvider,tvTransType,tvMobile,tvName,tvOperatorName,tvTransId,tvCurrency,tvFee,tvTransAmount,tvAmountPaid,tvAmountCharged,

@@ -1,7 +1,7 @@
 package com.agent.cashmoovui.payments;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.StringTokenizer;
 
-public class PaymentDetails extends AppCompatActivity implements View.OnClickListener {
+public class PaymentDetails extends LogoutAppCompactActivity implements View.OnClickListener {
     public static PaymentDetails paymentdetailsC;
     ImageView imgBack, imgHome;
     TextView tvOperatorName,tvAmtCurr, tvSend;

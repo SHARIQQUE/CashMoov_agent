@@ -209,6 +209,14 @@ public class MyApplication extends Application {
         startActivity(intent);
     }
 
+    public   void callLogout() {
+        //saveBool("isLogin",false,getInstance());
+       /* Toast.makeText(getApplicationContext(),"Logout called",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getInstance(), LoginPin.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);*/
+    }
+
 
     public static void setLocale( String languageCode) {
         Locale locale = new Locale(languageCode);
@@ -988,7 +996,8 @@ public static String addDecimal(String number) {
                 } else {
                     // Everything is ready for fingerprint authentication
                    if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
-                       onAuthenticationFailed();
+                      // onAuthenticationFailed();
+                       bioMetric_responce_handler.failure("");
                        isCancelCalled=true;
                    }
                 }

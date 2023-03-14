@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.BillPayFeeOperatorAdapter;
@@ -22,7 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class BillPayFeeActivity extends AppCompatActivity implements View.OnClickListener, OperatorBillPayFeeListeners {
+public class BillPayFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener, OperatorBillPayFeeListeners {
     public static BillPayFeeActivity billpayfeeC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;

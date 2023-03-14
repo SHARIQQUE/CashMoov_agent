@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -52,7 +53,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class CashOutCodeSubscriber extends AppCompatActivity implements View.OnClickListener {
+public class CashOutCodeSubscriber extends LogoutAppCompactActivity implements View.OnClickListener {
 
 
     String currencySymbol_sender="";

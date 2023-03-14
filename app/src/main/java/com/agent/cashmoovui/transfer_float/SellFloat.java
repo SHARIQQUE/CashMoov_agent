@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.biometric.BiometricManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,7 +76,7 @@ import java.util.StringTokenizer;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class SellFloat extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener, CallBackSellFloatRecycleViewClick {
+public class SellFloat extends LogoutAppCompactActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener, CallBackSellFloatRecycleViewClick {
 
     String[] strArray = {"10", "25", "50", "100"};
 

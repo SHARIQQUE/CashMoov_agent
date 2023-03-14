@@ -8,10 +8,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.cardview.widget.CardView;
 import com.agent.cashmoovui.R;
 
-public class RemittanceFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class RemittanceFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static RemittanceFeeActivity remittancefeeC;
     ImageView imgBack,imgHome;
     CardView cardSendRemit,cardReceiveRemit,cardCashToWallet;

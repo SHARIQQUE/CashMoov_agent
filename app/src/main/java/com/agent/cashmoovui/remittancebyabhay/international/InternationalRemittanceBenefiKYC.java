@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.agent.cashmoovui.AddContact;
@@ -51,7 +52,7 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class InternationalRemittanceBenefiKYC extends AppCompatActivity implements View.OnClickListener {
+public class InternationalRemittanceBenefiKYC extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InternationalRemittanceBenefiKYC internationalremitbenefikycC;
     ImageView imgBack,imgHome;
     boolean isCustomerData;

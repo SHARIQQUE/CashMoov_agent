@@ -32,7 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
@@ -66,7 +66,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Locale;
 
-public class InternationalRemittance extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class InternationalRemittance extends LogoutAppCompactActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     boolean  isPasswordVisible;
 

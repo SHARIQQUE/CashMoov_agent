@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -40,7 +41,7 @@ import java.util.StringTokenizer;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class LocalRemittanceCashtowalletActivity extends AppCompatActivity implements View.OnClickListener {
+public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivity implements View.OnClickListener {
     public static LocalRemittanceCashtowalletActivity localC;
     ImageView imgBack,imgHome;
     private TextView receivingcurrecncyText,sendigncurrecncyText,spinner_provider,spinner_senderCountry,spinner_senderCurrency,

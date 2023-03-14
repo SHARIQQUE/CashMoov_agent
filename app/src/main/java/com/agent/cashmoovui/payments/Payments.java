@@ -2,6 +2,7 @@ package com.agent.cashmoovui.payments;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Payments extends AppCompatActivity implements OperatorListeners {
+public class Payments extends LogoutAppCompactActivity implements OperatorListeners {
     public static Payments paymentsC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;

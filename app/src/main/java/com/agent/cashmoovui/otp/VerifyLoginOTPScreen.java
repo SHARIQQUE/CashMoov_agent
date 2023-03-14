@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpCompletionListener {
+public class VerifyLoginOTPScreen extends LogoutAppCompactActivity implements OnOtpCompletionListener {
     public static VerifyLoginOTPScreen verifyloginotpscreenC;
     OtpView otp_view;
     TextView tvPhoneNoMsg;

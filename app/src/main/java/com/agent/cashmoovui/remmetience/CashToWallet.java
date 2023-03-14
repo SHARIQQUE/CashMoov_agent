@@ -21,7 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
@@ -48,7 +49,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CashToWallet extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class CashToWallet extends LogoutAppCompactActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     public static LoginPin loginpinC;
     View rootView;
     ImageView imgBack,imgHome;

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -16,7 +17,7 @@ import com.agent.cashmoovui.activity.OtherOption;
 
 import java.util.Locale;
 
-public class CashOutOpt extends AppCompatActivity implements View.OnClickListener {
+public class CashOutOpt extends LogoutAppCompactActivity implements View.OnClickListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

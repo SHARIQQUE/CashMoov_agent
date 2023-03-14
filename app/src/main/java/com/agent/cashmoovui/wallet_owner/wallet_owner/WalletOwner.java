@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -23,7 +25,7 @@ import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class WalletOwner extends AppCompatActivity {
+public class WalletOwner extends LogoutAppCompactActivity {
     public static WalletOwner walletownerC;
     ImageView imgBack,imgHome;
     MyApplication applicationComponentClass;

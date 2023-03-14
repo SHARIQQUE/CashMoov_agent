@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -34,7 +36,7 @@ import java.util.Calendar;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class SubscriberKYCAttached extends AppCompatActivity implements View.OnClickListener {
+public class SubscriberKYCAttached extends LogoutAppCompactActivity implements View.OnClickListener {
 
     public static SubscriberKYCAttached subscriberkycattachedC;
     TextView spIdProof,tvNext;

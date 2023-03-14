@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.R;
 
-public class CashOutFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class CashOutFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static CashOutFeeActivity cashoutfeeC;
     ImageView imgBack,imgHome;
     CardView cardCashOut;

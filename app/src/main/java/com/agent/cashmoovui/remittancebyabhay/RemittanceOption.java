@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -20,7 +21,7 @@ import com.agent.cashmoovui.remmetience.RemittanceReceive;
 
 import java.util.Locale;
 
-public class RemittanceOption extends AppCompatActivity implements View.OnClickListener {
+public class RemittanceOption extends LogoutAppCompactActivity implements View.OnClickListener {
     ImageView imgBack,imgHome;
     MyApplication applicationComponentClass;
     String languageToUse = "";

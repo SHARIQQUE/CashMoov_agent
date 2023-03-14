@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -21,7 +22,7 @@ import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 import java.util.Locale;
 
 
-public class TransferOption extends AppCompatActivity implements View.OnClickListener {
+public class TransferOption extends LogoutAppCompactActivity implements View.OnClickListener {
         ImageView imgBack,imgHome;
         MyApplication applicationComponentClass;
         String languageToUse = "";

@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -35,7 +36,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class TransactionHistoryBranch extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,CallBackRecycleViewClick {
+public class TransactionHistoryBranch extends LogoutAppCompactActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener,CallBackRecycleViewClick {
 
     String searchStr="";
     EditText edittext_search;

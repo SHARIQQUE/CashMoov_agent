@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -44,7 +45,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class SplashScreen extends AppCompatActivity implements View.OnClickListener  {
+public class SplashScreen extends LogoutAppCompactActivity implements View.OnClickListener  {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.biometric.BiometricManager;
 
 import com.agent.cashmoovui.AddContact;
@@ -59,7 +60,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class AirtimePurchases extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+public class AirtimePurchases extends LogoutAppCompactActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
     String currencySymbol_sender="";
     String operatorName_from_operatorList="",serviceProviderCode_from_operatorList="",serviceCategoryCode_from_operatorList="",sPName_from_operatorList="",sPCode_from_operatorList="";
@@ -457,7 +458,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
             if (new InternetCheck().isConnected(AirtimePurchases.this)) {
 
-               // MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
+                MyApplication.showloader(AirtimePurchases.this, getString(R.string.getting_user_info));
 
                 api_serviceCategoryCode_operatorList();
 
@@ -667,7 +668,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -735,6 +736,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     }
 
                     else {
+                        MyApplication.hideLoader();
                         Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -743,6 +745,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
                     Toast.makeText(AirtimePurchases.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -774,7 +777,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -815,6 +818,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                     }
 
                     else {
+                        MyApplication.hideLoader();
                         Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
@@ -823,8 +827,10 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 }
                 catch (Exception e)
                 {
+                    MyApplication.hideLoader();
                     Toast.makeText(AirtimePurchases.this,e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
 
             }
@@ -854,7 +860,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -890,14 +896,17 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
 
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
-                       // finish();
+                        finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(AirtimePurchases.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
 
             }
@@ -928,7 +937,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -982,14 +991,17 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                         api_master_PRODUCTTYPE();
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(AirtimePurchases.this, resultDescription, Toast.LENGTH_LONG).show();
-                        //  finish();
+                          finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(AirtimePurchases.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
 
             }
@@ -1254,6 +1266,7 @@ public class AirtimePurchases extends AppCompatActivity implements View.OnClickL
                 } catch (Exception e) {
                     Toast.makeText(AirtimePurchases.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
 
             }

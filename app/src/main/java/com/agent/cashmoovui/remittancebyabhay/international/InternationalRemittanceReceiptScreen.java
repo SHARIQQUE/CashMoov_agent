@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -25,7 +26,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class InternationalRemittanceReceiptScreen extends AppCompatActivity implements View.OnClickListener {
+public class InternationalRemittanceReceiptScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InternationalRemittanceReceiptScreen internationalremitreceiptscreenC;
     private TextView tvTransRefNo,tvConfCode,tvTransType,tvDateOfTrans,tvSendCurrency,tvBenefiCurrency,
             tvSendCountry,tvRecCountry,tvTransAmount,tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,

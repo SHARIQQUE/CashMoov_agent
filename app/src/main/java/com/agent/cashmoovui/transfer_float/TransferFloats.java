@@ -33,6 +33,7 @@ import androidx.biometric.BiometricManager;
 
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -62,7 +63,7 @@ import java.util.StringTokenizer;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class TransferFloats extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
+public class TransferFloats extends LogoutAppCompactActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener {
 
     private SpinnerDialog spinnerDialogImstitute,spinnerDialogCurrency;
     String currencySymbol_receiver="";
@@ -252,6 +253,8 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
                             }
                         }
                         if(!isexists){
+                            etName.setText("");
+                            edittext_amount.setText("");
                             MyApplication.showToast(TransferFloats.this,getString(R.string.hierachynotfound));
 
 
@@ -2173,6 +2176,7 @@ public class TransferFloats extends AppCompatActivity implements View.OnClickLis
 
 
             String requiredValue = data.getStringExtra("PHONE");
+
             MyApplication.contactValidation(requiredValue,edittext_mobileNo);
 
           //  edittext_mobileNo.setText(requiredValue);

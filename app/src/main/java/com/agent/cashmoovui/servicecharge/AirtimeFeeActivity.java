@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.adapter.AirtimeFeeOperatorAdapter;
@@ -23,7 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class AirtimeFeeActivity extends AppCompatActivity implements View.OnClickListener, OperatorAirtimeFeeListeners {
+public class AirtimeFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener, OperatorAirtimeFeeListeners {
     public static AirtimeFeeActivity airtimefeeC;
     ImageView imgBack,imgHome;
     RecyclerView rvOperator;

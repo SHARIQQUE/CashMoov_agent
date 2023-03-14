@@ -39,6 +39,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -67,7 +68,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class CashIn  extends AppCompatActivity implements View.OnClickListener {
+public class CashIn  extends LogoutAppCompactActivity implements View.OnClickListener {
     ImageButton qrCode_imageButton;
     ImageView imgBack,imgHome;
     View rootView;

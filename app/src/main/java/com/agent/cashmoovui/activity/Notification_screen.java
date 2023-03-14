@@ -3,7 +3,7 @@ package com.agent.cashmoovui.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.agent.cashmoovui.R;
 
-public class Notification_screen extends AppCompatActivity {
+public class Notification_screen extends LogoutAppCompactActivity {
     ListView listView;
     String mTitle[] = {"Facebook", "Whatsapp", "Twitter", "Instagram", "Youtube"};
     String mDescription[] = {"cash1 Description", "cash2 Description", "cash3 Description", "cash4 Description", "cash6 Description"};

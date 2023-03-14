@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.internationaltransfer.OutFormRecpt;
 import com.agent.cashmoovui.payments.PaymentReceipt;
@@ -14,7 +15,7 @@ import com.agent.cashmoovui.remittancebyabhay.cashtowallet.CashtoWalletReceiptSc
 import com.agent.cashmoovui.remittancebyabhay.international.InternationalRemittanceReceiptScreen;
 import com.agent.cashmoovui.remittancebyabhay.local.LocalRemittanceReceiptScreen;
 
-public class TransactionSuccessScreen extends AppCompatActivity implements View.OnClickListener {
+public class TransactionSuccessScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static TransactionSuccessScreen transSuccessscreenC;
     // ImageView imgBack;
     TextView tvContinue;

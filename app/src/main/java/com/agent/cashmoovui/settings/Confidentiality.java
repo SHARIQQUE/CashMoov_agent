@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.suke.widget.SwitchButton;
@@ -17,7 +18,7 @@ import com.suke.widget.SwitchButton;
 import java.util.Locale;
 
 
-public class Confidentiality extends AppCompatActivity implements View.OnClickListener {
+public class Confidentiality extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Confidentiality confidentialityC;
     Button btnCancel;
     SwitchButton btnSwich;

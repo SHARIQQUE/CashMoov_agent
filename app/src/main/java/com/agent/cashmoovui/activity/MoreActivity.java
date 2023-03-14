@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.cardview.widget.CardView;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -17,7 +18,7 @@ import com.agent.cashmoovui.transfer_float.TransferOption;
 import com.agent.cashmoovui.wallet_owner.WalletOwnerMenu;
 
 
-public class MoreActivity extends AppCompatActivity implements View.OnClickListener {
+public class MoreActivity extends LogoutAppCompactActivity implements View.OnClickListener {
     public static MoreActivity moreC;
     ImageView imgBack,imgHome;
     CardView cardTransfer,cardOverdraft,cardWalletOwner;

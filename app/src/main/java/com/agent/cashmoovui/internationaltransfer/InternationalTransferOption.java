@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.cardview.widget.CardView;
 
 import com.agent.cashmoovui.MainActivity;
@@ -13,7 +14,7 @@ import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 
 
-public class InternationalTransferOption extends AppCompatActivity implements View.OnClickListener {
+public class InternationalTransferOption extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InternationalTransferOption moneytransferC;
     ImageView imgBack,imgHome;
     CardView cardToSubscriber,cardToNonSubscriber,cardInternational,cardBankToWallet,cardWalletToBank;

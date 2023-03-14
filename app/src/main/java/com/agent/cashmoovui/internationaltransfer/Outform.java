@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -53,7 +54,7 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class Outform extends AppCompatActivity implements View.OnClickListener {
+public class Outform extends LogoutAppCompactActivity implements View.OnClickListener {
     //tr
     public static Outform tosubscriberC;
     ImageView imgBack,imgHome;

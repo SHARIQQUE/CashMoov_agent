@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +45,7 @@ import java.util.Locale;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class OverdraftLimit extends LogoutAppCompactActivity implements AdapterView.OnItemSelectedListener {
 
     ImageView imgBack, imgHome;
     EditText edittext_amount, edittext_validity;
@@ -260,7 +261,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -320,12 +321,14 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(OverdraftLimit.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -454,7 +457,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             public void success(JSONObject jsonObject) {
 
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -476,13 +479,17 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(OverdraftLimit.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
             }
 
@@ -589,7 +596,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -610,6 +617,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
 
 
@@ -617,6 +625,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
                     api_creditLimitAllocation_all_walletOwnerCode();
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(OverdraftLimit.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
@@ -646,8 +655,8 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
+                MyApplication.hideLoader();
                 try {
 
                     //  JSONObject jsonObject = new JSONObject("{\"transactionId\":\"1937292\",\"requestTime\":\"Wed Nov 03 11:27:43 IST 2021\",\"responseTime\":\"Wed Nov 03 11:27:43 IST 2021\",\"resultCode\":\"0\",\"resultDescription\":\"Transaction Successful\",\"pageable\":{\"totalRecords\":1},\"creditLimitAllocationList\":[{\"id\":313,\"code\":\"100330\",\"walletOwnerCode\":\"1000002785\",\"walletOwnerName\":\"sharique agent\",\"currencyCode\":\"100062\",\"currencyName\":\"GNF\",\"currencySymbol\":\"Fr\",\"amount\":1000.0,\"validityDays\":90,\"status\":\"Approved\",\"creationDate\":\"2021-11-01T13:54:19.122+0530\",\"modificationDate\":\"2021-11-01T13:54:19.122+0530\"}]}");
@@ -748,7 +757,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
                     } else {
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
-
+                        MyApplication.hideLoader();
                         recyclerView.setVisibility(View.GONE);
                         linearLayout_record.setVisibility(View.GONE);
 
@@ -757,8 +766,10 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
                     Toast.makeText(OverdraftLimit.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
+                    finish();
                 }
 
             }
@@ -1037,7 +1048,7 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
+
 
                 try {
 
@@ -1079,12 +1090,15 @@ public class OverdraftLimit extends AppCompatActivity implements AdapterView.OnI
 
 
                     } else {
+                        MyApplication.hideLoader();
                         Toast.makeText(OverdraftLimit.this, resultDescription, Toast.LENGTH_LONG).show();
-                        // finish();
+                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+                    finish();
                     Toast.makeText(OverdraftLimit.this, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

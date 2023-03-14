@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -22,7 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ServiceCharge extends AppCompatActivity implements View.OnClickListener {
+public class ServiceCharge extends LogoutAppCompactActivity implements View.OnClickListener {
     public static ServiceCharge servicechargeC;
     ImageView imgBack,imgHome;
     JSONObject feeData;

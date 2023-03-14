@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.agent.cashmoovui.MainActivity;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentPlanList extends AppCompatActivity implements PlanListeners {
+public class PaymentPlanList extends LogoutAppCompactActivity implements PlanListeners {
     public static PaymentPlanList paymentplanlistC;
     ImageView imgBack, imgHome;
     RecyclerView rvPlanList;

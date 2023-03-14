@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -15,7 +16,7 @@ import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.bumptech.glide.Glide;
 import org.json.JSONObject;
 
-public class ShowProfileQr extends AppCompatActivity {
+public class ShowProfileQr extends LogoutAppCompactActivity {
     public static ShowProfileQr showprofileqrcodeC;
     ImageView imgBack,imgHome,imgQR;
     TextView tvName;

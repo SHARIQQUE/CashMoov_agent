@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -30,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletionListener {
+public class RESETPINOtpPage extends LogoutAppCompactActivity implements OnOtpCompletionListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

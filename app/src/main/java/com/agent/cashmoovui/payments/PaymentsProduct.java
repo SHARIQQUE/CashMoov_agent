@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentsProduct extends AppCompatActivity implements ProductListeners {
+public class PaymentsProduct extends LogoutAppCompactActivity implements ProductListeners {
     public static PaymentsProduct paymentsproductC;
     ImageView imgBack, imgHome;
     RecyclerView rvProduct;

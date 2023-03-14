@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.biometric.BiometricManager;
 import androidx.cardview.widget.CardView;
 
@@ -30,7 +31,7 @@ import com.agent.cashmoovui.set_pin.AESEncryption;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class PaymentConfirm extends AppCompatActivity implements View.OnClickListener {
+public class PaymentConfirm extends LogoutAppCompactActivity implements View.OnClickListener {
     public static PaymentConfirm paymentconfirmC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;

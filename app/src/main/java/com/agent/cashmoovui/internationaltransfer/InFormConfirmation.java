@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
@@ -33,7 +33,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class InFormConfirmation extends AppCompatActivity implements View.OnClickListener {
+public class InFormConfirmation extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InFormConfirmation tosubscriberconfirmscreenC;
     // ImageView imgBack;
     Button btnConfirm,btnCancel;

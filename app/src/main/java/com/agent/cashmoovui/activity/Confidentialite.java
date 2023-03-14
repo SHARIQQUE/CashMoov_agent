@@ -1,12 +1,13 @@
 package com.agent.cashmoovui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import android.os.Bundle;
 
 import com.agent.cashmoovui.R;
 
-public class Confidentialite extends AppCompatActivity {
+public class Confidentialite extends LogoutAppCompactActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

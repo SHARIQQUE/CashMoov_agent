@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
@@ -39,7 +40,7 @@ import java.util.concurrent.Executor;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class PhoneNumberRegistrationScreen extends AppCompatActivity {
+public class PhoneNumberRegistrationScreen extends LogoutAppCompactActivity {
     public static PhoneNumberRegistrationScreen phnoregistrationccreenC;
     TextView spCountry,tvContinue,tvPin,tvOr,tvFinger,msgText;
     SpinnerDialog spinnerDialogCountry;

@@ -23,7 +23,7 @@ import com.agent.cashmoovui.listeners.ContactListLisners;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class AddContact extends AppCompatActivity implements View.OnClickListener, ContactListLisners {
+public class AddContact extends LogoutAppCompactActivity implements View.OnClickListener, ContactListLisners {
 
     public static AddContact addbeneficiaryC;
     ImageView imgBack,imgHome;

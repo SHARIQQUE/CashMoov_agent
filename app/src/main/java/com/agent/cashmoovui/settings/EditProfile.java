@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -42,7 +43,7 @@ import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfile extends AppCompatActivity implements View.OnClickListener, IPickResult {
+public class EditProfile extends LogoutAppCompactActivity implements View.OnClickListener, IPickResult {
     public static EditProfile editprofileC;
     Button btnCancel,btnConfirm;
     ImageButton btnChoose;

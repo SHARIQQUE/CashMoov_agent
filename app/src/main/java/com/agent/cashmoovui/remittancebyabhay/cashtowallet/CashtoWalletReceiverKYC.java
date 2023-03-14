@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.AddContact;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -49,7 +50,7 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class CashtoWalletReceiverKYC extends AppCompatActivity implements View.OnClickListener {
+public class CashtoWalletReceiverKYC extends LogoutAppCompactActivity implements View.OnClickListener {
     public static CashtoWalletReceiverKYC cashtowalletbenefikycC;
     ImageView imgBack,imgHome;
     boolean isCustomerData;

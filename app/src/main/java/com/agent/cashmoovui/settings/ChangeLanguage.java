@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -22,7 +23,7 @@ import java.util.Locale;
 
 ;
 
-public class ChangeLanguage extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class ChangeLanguage extends LogoutAppCompactActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     public static ChangeLanguage changelanguageC;
     MaterialRadioButton sbFrench, sbEnglish;
     TextView tvChange,languageText;

@@ -1,6 +1,7 @@
 package com.agent.cashmoovui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 
-public class HistoriqueTransaction extends AppCompatActivity {
+public class HistoriqueTransaction extends LogoutAppCompactActivity {
     ImageView imgBack,imgHome;
 
     @Override

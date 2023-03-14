@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -31,7 +32,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-public class InternationalRemittanceConfirmScreen extends AppCompatActivity implements View.OnClickListener {
+public class InternationalRemittanceConfirmScreen extends LogoutAppCompactActivity implements View.OnClickListener {
     public static InternationalRemittanceConfirmScreen internationalremitconfirmC;
     public static TextView tvTransAmount;
     private TextView tvAgentCode,tvSenderCode,tvBenefiCode,tvSendCurrency,tvBenefiCurrency,

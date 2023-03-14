@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
@@ -41,7 +43,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Calendar;
 
-public class AgentSignature extends AppCompatActivity implements View.OnClickListener{
+public class AgentSignature extends LogoutAppCompactActivity implements View.OnClickListener{
     public static AgentSignature agentsignatureC;
     private SignaturePad signaturePad_electricityBill;
     InputStream imageStream, imageStreamCamera;

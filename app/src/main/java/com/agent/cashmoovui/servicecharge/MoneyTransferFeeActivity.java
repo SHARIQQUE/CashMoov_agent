@@ -10,13 +10,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.transactionhistory_walletscreen.TransactionHistoryMainPage;
 import com.agent.cashmoovui.transfer_float.TransferOption;
 
 
-public class MoneyTransferFeeActivity extends AppCompatActivity implements View.OnClickListener{
+public class MoneyTransferFeeActivity extends LogoutAppCompactActivity implements View.OnClickListener{
     public static MoneyTransferFeeActivity moneytransferfeeC;
     ImageView imgBack,imgHome;
     CardView cardSellFloat,cardTransferFloat,cardinternationaltransfer,cardcommisiontransfer;

@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
@@ -52,7 +53,7 @@ import java.util.regex.Pattern;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class Inform extends AppCompatActivity implements View.OnClickListener {
+public class Inform extends LogoutAppCompactActivity implements View.OnClickListener {
     public static Inform tosubscriberC;
     ImageView imgBack,imgHome;
     public  static TextView spBenifiCurr,spCountry,tvAmtCurr,tvSend,headText,tvFee,tvAmtPaid,tvRate;
