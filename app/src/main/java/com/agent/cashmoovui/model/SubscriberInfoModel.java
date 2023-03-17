@@ -1,5 +1,9 @@
 package com.agent.cashmoovui.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class SubscriberInfoModel {
     public String transactionId;
     public String requestTime;
@@ -537,6 +541,15 @@ public class SubscriberInfoModel {
         }
 
         public String getDateOfBirth() {
+
+           /* try {
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date date1 = formatter.parse(dateOfBirth);
+                String date = new SimpleDateFormat("MM-dd-yyyy").format(date1);
+                return date;
+            }catch (Exception e){
+                return dateOfBirth;
+            }*/
             return dateOfBirth;
         }
 

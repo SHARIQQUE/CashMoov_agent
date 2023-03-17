@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 10-03-2023 02:30 PM</string>
+    <string name="version">Version : 14-03-2023 02:00 PM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -710,6 +710,7 @@
     <string name="val_fname_len">Le prénom doit comporter au moins 3 caractères</string>
     <string name="val_lname_len">Le nom de famille doit comporter au moins 3 caractères</string>
     <string name="enter_phone_no_val">Le numéro de portable doit comporter au moins 9 chiffres</string>
+    <string name="enter_phone_zero_val"> Le numéro de téléphone mobile ne doit pas commencer par 0</string>
     <string name="enter_phone_no_valnew">Le numéro de portable doit comporter au moins 7 chiffres</string>
 
     <string name="add_agent">Ajouter agent</string>

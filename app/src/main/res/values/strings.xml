@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 10-03-2023 02:30 PM</string>
+    <string name="version">Version : 14-03-2023 02:00 PM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -730,6 +730,9 @@
     <string name="val_fname_len">First Name must be at least 3 characters long</string>
     <string name="val_lname_len">Last Name must be at least 3 characters long</string>
     <string name="enter_phone_no_val">Mobile number must be at least 9 digits long</string>
+    <string name="enter_phone_zero_val"> Mobile number must not start with 0</string>
+
+
     <string name="enter_phone_no_valnew">Mobile number must be at least 7 digits long</string>
 
     <string name="add_agent">Add Agent</string>

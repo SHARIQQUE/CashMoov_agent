@@ -591,6 +591,12 @@ public class OutletKYC extends AppCompatActivity implements View.OnClickListener
                     return;
 
                 }
+                if(etPhone.getText().toString().trim().startsWith("0")) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_zero_val),etPhone);
+                    MyApplication.hideKeyboard(outletkycC);
+                    return;
+                }
                 if (etPhone.getText().toString().trim().length() < 9) {
                     //MyApplication.showErrorToast(branchkycC,getString(R.string.val_phone));
                     MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);

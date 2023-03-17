@@ -346,6 +346,12 @@ public class SubscriberKYC extends AppCompatActivity implements View.OnClickList
                     MyApplication.hideKeyboard(subscriberkycC);
                     return;
                 }
+                if(etPhone.getText().toString().trim().startsWith("0")) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_zero_val),etPhone);
+                    MyApplication.hideKeyboard(subscriberkycC);
+                    return;
+                }
                 if (etPhone.getText().toString().trim().length() < 9) {
                     //MyApplication.showErrorToast(subscriberkycC,getString(R.string.val_phone));
                     MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);

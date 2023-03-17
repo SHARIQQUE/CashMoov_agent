@@ -526,12 +526,19 @@ public class AgentKYC extends AppCompatActivity implements View.OnClickListener 
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
+                if(etPhone.getText().toString().trim().startsWith("0")) {
+                    //MyApplication.showErrorToast(registersteponeC,getString(R.string.val_phone));
+                    MyApplication.showTipError(this,getString(R.string.enter_phone_zero_val),etPhone);
+                    MyApplication.hideKeyboard(agentkycC);
+                    return;
+                }
                 if (etPhone.getText().toString().trim().length() < 9) {
                     //MyApplication.showErrorToast(agentkycC,getString(R.string.val_phone));
                     MyApplication.showTipError(this, getString(R.string.enter_phone_no_val), etPhone);
                     MyApplication.hideKeyboard(agentkycC);
                     return;
                 }
+
                 if (etsirname.getText().toString().trim().isEmpty()) {
                     // MyApplication.showErrorToast(agentkycC,getString(R.string.val_lname));
                     MyApplication.showTipError(this, getString(R.string.surname_star_error), etsirname);

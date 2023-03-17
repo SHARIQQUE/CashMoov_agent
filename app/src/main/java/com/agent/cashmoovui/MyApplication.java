@@ -784,12 +784,17 @@ public static String addDecimal(String number) {
 
     public static String convertUTCToLocaldate(String Date) {
 
-        return Date;
-       /* java.util.Date date = new Date(Date);
+
+      /*  java.util.Date date = new Date(Date);
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String format = formatter.format(date);
+
+
+
         System.out.println("get date" + format);
             return  format;*/
+
+        return Date;
         }
 
 
@@ -1058,9 +1063,7 @@ public static String addDecimal(String number) {
             bioMetric_responce_handler.failure(message);
         }else{
             bioMetricCounter=bioMetricCounter+1;
-            showToast(activityNew,activityNew.getResources().getString(R.string.tryagain));
-
-
+           // showToast(activityNew,activityNew.getResources().getString(R.string.tryagain));
         }
         
     }

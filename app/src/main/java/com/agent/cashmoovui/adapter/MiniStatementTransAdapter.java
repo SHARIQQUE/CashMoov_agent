@@ -522,15 +522,37 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
         MyApplication.currencySymbol=miniStatementTransList.get(pos).getFromCurrencySymbol();
         if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100002")
         ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100001")){
-            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                    miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                    Amount, miniStatementTransList.get(pos).getTransactionId(),
-                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                    miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                            getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+            String taxJSON="";
+            Double fee=0.00;
+
+            if (miniStatementTransList.get(pos).isBearerSender()){
+                taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
+                fee=miniStatementTransList.get(pos).getFee();
+
+
+            }else{
+                fee=0.00;
+                taxJSON="";
+            }
+            if(miniStatementTransList.get(pos).isReverse()) {
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                        fee,taxJSON, miniStatementTransList.get(pos).getSrcPostBalance());
+            }else{
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                        fee,taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+            }
         }
         else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("105068")) {
             if(miniStatementTransList.get(pos).isBearerSender()){
@@ -561,85 +583,173 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 }
                 total=fee-tax-miniStatementTransList.get(pos).getReceiverFee();
 
-                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                        Amount, miniStatementTransList.get(pos).getTransactionId(),
-                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                        miniStatementTransList.get(pos).getFee(),"", miniStatementTransList.get(pos).getDestPostBalance());
+                if(miniStatementTransList.get(pos).isReverse()) {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            miniStatementTransList.get(pos).getFee(), "", miniStatementTransList.get(pos).getSrcPostBalance());
+                }else{
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            miniStatementTransList.get(pos).getFee(), "", miniStatementTransList.get(pos).getDestPostBalance());
+                }
 
 
-            }else{
-                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                        Amount, miniStatementTransList.get(pos).getTransactionId(),
-                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                        miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                                getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+            }else {
+                if (miniStatementTransList.get(pos).isReverse()) {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
+                                    getTaxAsJson(), miniStatementTransList.get(pos).getSrcPostBalance());
+                }else{
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
+                                    getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+                }
+            }
+
                    }
-
-                   } else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101611")
+        else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101611")
         ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101612")) {
+            String taxJSON="";
+            Double fee=0.00;
 
-
-
-
-
-
-            if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
-                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                        Amount, miniStatementTransList.get(pos).getTransactionId(),
-                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                        miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                                getTaxAsJson(), miniStatementTransList.get(pos).getSrcPostBalance());
+            if (miniStatementTransList.get(pos).isBearerSender()){
+                taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
+                fee=miniStatementTransList.get(pos).getFee();
 
 
             }else{
-                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                        Amount, miniStatementTransList.get(pos).getTransactionId(),
-                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                        miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                                getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+                fee=0.00;
+                taxJSON="";
+            }
+            if(miniStatementTransList.get(pos).getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+
+                if(miniStatementTransList.get(pos).isReverse()) {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                           fee,taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+                }else{
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            fee,taxJSON, miniStatementTransList.get(pos).getSrcPostBalance());
+                }
+
+
+            }else{
+
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            fee,taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+
             }
 
 
-        }else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("113093")) {
+        }
+        else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("113093")) {
+            String taxJSON="";
+            Double fee=0.00;
 
-            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                    context.getString(R.string.commision_wallet), context.getString(R.string.main_Wallet_singlen),
-                    "",
-                    miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                    Amount, miniStatementTransList.get(pos).getTransactionId(),
-                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                   "", miniStatementTransList.get(pos).getTransactionAmount(),
-                    miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                            getTaxAsJson(), miniStatementTransList.get(pos).getDestPostBalance());
+            if (miniStatementTransList.get(pos).isBearerSender()){
+                taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
+                fee=miniStatementTransList.get(pos).getFee();
 
-        }else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101441")){
-            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                    miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                    Amount, miniStatementTransList.get(pos).getTransactionId(),
-                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getPrincipalAmount(),
-                    miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                            getTaxAsJson(), miniStatementTransList.get(pos).getSrcPostBalance());
 
-        }else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101442")){
+            }else{
+                fee=0.00;
+                taxJSON="";
+            }
+            if(miniStatementTransList.get(pos).isReverse()) {
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        context.getString(R.string.commision_wallet), context.getString(R.string.main_Wallet_singlen),
+                        "",
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        "", miniStatementTransList.get(pos).getTransactionAmount(),
+                        fee,taxJSON, miniStatementTransList.get(pos).getSrcPostBalance());
+            }else{
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        context.getString(R.string.commision_wallet), context.getString(R.string.main_Wallet_singlen),
+                        "",
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        "", miniStatementTransList.get(pos).getTransactionAmount(),
+                        fee,taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+            }
+
+        }
+        else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101441")){
+            String taxJSON="";
+            Double fee=0.00;
+
+            if (miniStatementTransList.get(pos).isBearerSender()){
+                taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
+                fee=miniStatementTransList.get(pos).getFee();
+
+
+            }else{
+                fee=0.00;
+                taxJSON="";
+            }
+            if(miniStatementTransList.get(pos).isReverse()) {
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getPrincipalAmount(),
+                       fee,taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+            }else{
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getPrincipalAmount(),
+                        fee,taxJSON, miniStatementTransList.get(pos).getSrcPostBalance());
+            }
+
+        }
+        else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101442")){
             MyApplication.currencySymbol=miniStatementTransList.get(pos).getToCurrencySymbol();
             String taxJSON="";
             Double fee=0.00;
@@ -653,28 +763,86 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 fee=0.00;
                 taxJSON="";
             }
+            if(miniStatementTransList.get(pos).isReverse()) {
+
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getToCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getToAmount(),
+                        fee, taxJSON
+                        , miniStatementTransList.get(pos).getSrcPostBalance());
+            }else{
+                miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                        miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                        miniStatementTransList.get(pos).getToCurrencySymbol(),
+                        Amount, miniStatementTransList.get(pos).getTransactionId(),
+                        miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                        miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getToAmount(),
+                        fee, taxJSON
+                        , miniStatementTransList.get(pos).getDestPostBalance());
+            }
+
+        }
+        else{
+            String taxJSON="";
+            Double fee=0.00;
+
+            if (miniStatementTransList.get(pos).isBearerSender()){
+                taxJSON=miniStatementTransList.get(pos).getTaxAsJson();
+                fee=miniStatementTransList.get(pos).getFee();
 
 
-            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                    miniStatementTransList.get(pos).getToCurrencySymbol(),
-                    Amount, miniStatementTransList.get(pos).getTransactionId(),
-                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getToAmount(),
-                   fee, taxJSON
-                           , miniStatementTransList.get(pos).getDestPostBalance());
+            }else{
+                fee=0.00;
+                taxJSON="";
+            }
+            if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101667")){
 
-        }else{
-            miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
-                    miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
-                    miniStatementTransList.get(pos).getFromCurrencySymbol(),
-                    Amount, miniStatementTransList.get(pos).getTransactionId(),
-                    miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
-                    miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
-                    miniStatementTransList.get(pos).getFee(), miniStatementTransList.get(pos).
-                            getTaxAsJson(), miniStatementTransList.get(pos).getSrcPostBalance());
+
+                if (miniStatementTransList.get(pos).isReverse()) {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            fee, taxJSON, miniStatementTransList.get(pos).getSrcPostBalance());
+                } else {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            fee, taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+                }
+            }else {
+                if (miniStatementTransList.get(pos).isReverse()) {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            fee, taxJSON, miniStatementTransList.get(pos).getDestPostBalance());
+                } else {
+                    miniStatemetListners.onMiniStatementListItemClick(miniStatementTransList.get(pos).getTransactionTypeName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerName(), miniStatementTransList.get(pos).getToWalletOwnerName(),
+                            miniStatementTransList.get(pos).getFromWalletOwnerMsisdn(),
+                            miniStatementTransList.get(pos).getFromCurrencySymbol(),
+                            Amount, miniStatementTransList.get(pos).getTransactionId(),
+                            miniStatementTransList.get(pos).getCreationDate(), miniStatementTransList.get(pos).getStatus(), 0.0,
+                            miniStatementTransList.get(pos).getToWalletOwnerMsisdn(), miniStatementTransList.get(pos).getTransactionAmount(),
+                            fee, taxJSON, miniStatementTransList.get(pos).getSrcPostBalance());
+                }
+            }
         }
     }
 

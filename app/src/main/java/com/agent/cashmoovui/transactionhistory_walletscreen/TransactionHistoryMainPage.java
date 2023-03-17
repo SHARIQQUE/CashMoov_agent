@@ -707,10 +707,17 @@ HorizontalScrollView allview;
                                                 transactionTypeNAme=data.optString("transactionTypeName");
                                             }
 
-                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("106443")) {
+                                            if (data.optString("transactionTypeCode").equalsIgnoreCase("106443")||
+                                                    data.optString("transactionTypeCode").equalsIgnoreCase("101677")) {
 
                                             } else {
 
+                                                boolean isSender=true;
+                                                if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
+                                                    isSender=false;
+                                                }else{
+                                                    isSender=true;
+                                                }
 
                                                 miniStatementTransList.add(new MiniStatementTrans(
                                                         data.optInt("id"),
@@ -756,7 +763,7 @@ HorizontalScrollView allview;
                                                         data.optString("fromWalletTypeCode").trim(),
                                                         data.optBoolean("isReverse"),
                                                         fee,
-                                                        data.optBoolean("receiverBearer"),
+                                                        isSender,
                                                         data.optDouble("receiverFee")));
 
                                             }

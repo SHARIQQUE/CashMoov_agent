@@ -160,7 +160,7 @@ public class LocalRemittanceReceiptScreen extends LogoutAppCompactActivity imple
             tvTransRefNo.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionReferenceNo"));
             tvConfCode.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("confirmationCode"));
             tvTransType.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionType"));
-            tvDateOfTrans.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionDateTime"));
+            tvDateOfTrans.setText(MyApplication.convertUTCToLocaldate(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("transactionDateTime")));
             tvSendCurrency.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("fromCurrencyName"));
             tvBenefiCurrency.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optString("toCurrencyName"));
             tvSendCountry.setText(LocalRemittanceConfirmScreen.receiptJson.optJSONObject("remittance").optJSONObject("sender").optString("countryName"));
