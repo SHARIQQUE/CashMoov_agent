@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
@@ -339,7 +340,13 @@ public class InternationalRemittanceConfirmScreen extends LogoutAppCompactActivi
     public void callPostAPI(){
 
      //   MyApplication.showloader(internationalremitconfirmC,"Please Wait...");
+        try {
+            remitJson.put("transactionCoordinate", MainActivity.transactionCoordinate);
+            remitJson.put("transactionArea",MainActivity.transactionArea);
+            remitJson.put("isGpsOn",true);
+        }catch (Exception e){
 
+        }
         String requestNo=AESEncryption.getAESEncryption(remitJson.toString());
         JSONObject jsonObjectA=null;
         try{

@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 14-03-2023 02:00 PM</string>
+    <string name="version">Version : 20-03-2023 10:00 AM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -800,6 +800,8 @@
     <string name="sending_country_star">Sending country*</string>
     <string name="subscriber_added">Subscriber added successfully!</string>
     <string name="transaction_type">Transaction type</string>
+    <string name="parent_id">Parent transaction id</string>
+
     <string name="agentName">Agent name</string>
     <string name="agentName_colon">Agent name :</string>
     <string name="agent_mobileNumber">Agent mobile no</string>

@@ -825,11 +825,11 @@ public class InternationalRemittanceSenderKYC extends LogoutAppCompactActivity i
         et_sender_address.setText(data.getAddress());
         spinner_sender_region.setText(data.getRegionName());
         spCity.setText(data.getCity());
-        spinner_sender_idprooftype.setText(data.getIdProofTypeName());
-        et_sender_idproofNumber.setText(data.getIdProofNumber());
-        et_sender_idproof_expiry.setText(data.getIdExpiryDate());
+      //  spinner_sender_idprooftype.setText(data.getIdProofTypeName());
+        //et_sender_idproofNumber.setText(data.getIdProofNumber());
+        //et_sender_idproof_expiry.setText(data.getIdExpiryDate());
         spinner_sender_issuingCountry.setText(data.getIssuingCountryName());
-        idprooftypecode = data.getIdProofTypeCode();
+        //idprooftypecode = data.getIdProofTypeCode();
         regioncode = data.getRegionCode();
         code = data.getCode();
 

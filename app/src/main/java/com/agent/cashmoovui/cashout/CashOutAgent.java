@@ -1113,7 +1113,9 @@ public class CashOutAgent extends AppCompatActivity implements View.OnClickListe
             jsonObject.put("serviceCode", serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
-
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
 
             System.out.println("cashout REQUEST================"+jsonObject.toString());
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());

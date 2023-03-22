@@ -29,6 +29,7 @@ import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
+import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.internet.InternetCheck;
@@ -261,6 +262,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.saveString("qrcode","", LoginMsis.this);
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -820,6 +822,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             } else {
                                 Toast.makeText(LoginMsis.this, jsonObject.getString("error_message"), Toast.LENGTH_LONG).show();
                             }
+
                         } else {
 
                             ArrayList<ServiceList.serviceListMain> dataM = new ArrayList<>();
@@ -943,7 +946,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                         }
                     } catch (Exception e) {
                         MyApplication.hideLoader();
-                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
                 }
@@ -1033,7 +1036,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             }
                         }
                     } catch (Exception e) {
-                        Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(LoginMsis.this, e.toString(), Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
                 }

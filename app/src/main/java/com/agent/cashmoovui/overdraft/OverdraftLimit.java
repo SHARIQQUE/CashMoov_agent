@@ -803,6 +803,9 @@ public class OverdraftLimit extends LogoutAppCompactActivity implements AdapterV
             jsonObject.put("amount", repleaceString(amountstr));   // Hard Code acording to Praveen
             jsonObject.put("validityDays", validityDaysStr);   // Hard Code acording to Praveen
 
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
         } catch (Exception e) {
 
         }

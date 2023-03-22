@@ -1565,7 +1565,9 @@ public class CashToWallet extends LogoutAppCompactActivity implements View.OnCli
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);
             jsonObject.put("firstName",firstname_destinationStr);
             jsonObject.put("mobileNumber",mobileNoStr);
-
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA=null;
             try{

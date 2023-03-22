@@ -683,7 +683,7 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
 
     private void callApiWalletList() {
         try {
-           // MyApplication.showloader(MainActivity.this,"Please wait!");
+            MyApplication.showloader(MainActivity.this,"Please wait!");
             API.GET("ewallet/api/v1/wallet/walletOwner/"+ MyApplication.getSaveString("walletOwnerCode", getApplicationContext()),
                     new Api_Responce_Handler() {
                         @Override

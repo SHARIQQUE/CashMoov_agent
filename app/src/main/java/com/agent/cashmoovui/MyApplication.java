@@ -141,6 +141,7 @@ public class MyApplication extends Application {
 
     public static  String checkWalletTypeCode="100008";
     public static long mLastClickTime=0;
+    public static String parentTransID="";
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);

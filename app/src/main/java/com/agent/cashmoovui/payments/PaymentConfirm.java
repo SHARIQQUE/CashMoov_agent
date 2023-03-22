@@ -19,6 +19,7 @@ import androidx.biometric.BiometricManager;
 import androidx.cardview.widget.CardView;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
@@ -354,6 +355,13 @@ public class PaymentConfirm extends LogoutAppCompactActivity implements View.OnC
     public static JSONArray taxConfigList;
     public void callPostAPI(){
         MyApplication.showloader(paymentconfirmC,getString(R.string.pleasewait));
+        try {
+            PaymentDetails.dataToSend.put("transactionCoordinate", MainActivity.transactionCoordinate);
+            PaymentDetails.dataToSend.put("transactionArea", MainActivity.transactionArea);
+            PaymentDetails.dataToSend.put("isGpsOn", true);
+        }catch (Exception e){
+
+        }
         String requestNo=AESEncryption.getAESEncryption(PaymentDetails.dataToSend.toString());
         JSONObject jsonObjectA=null;
         try{

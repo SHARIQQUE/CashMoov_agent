@@ -718,6 +718,12 @@ HorizontalScrollView allview;
                                                 }else{
                                                     isSender=true;
                                                 }
+                                                String  parentTransId="";
+                                                if (data.has("parentTransId") ) {
+                                                    parentTransId=data.optString("parentTransId");
+                                                }else{
+                                                    parentTransId="";
+                                                }
 
                                                 miniStatementTransList.add(new MiniStatementTrans(
                                                         data.optInt("id"),
@@ -764,7 +770,8 @@ HorizontalScrollView allview;
                                                         data.optBoolean("isReverse"),
                                                         fee,
                                                         isSender,
-                                                        data.optDouble("receiverFee")));
+                                                        data.optDouble("receiverFee"),
+                                                        parentTransId));
 
                                             }
 

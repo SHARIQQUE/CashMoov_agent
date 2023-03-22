@@ -33,7 +33,7 @@ public class WalletTransactionDetails extends LogoutAppCompactActivity {
     public static WalletTransactionDetails wallettransdetailsC;
     ImageView imgBack,imgHome;
     TextView txt_trans_type_name,txt_from_owner_name,txt_from_amount,txt_trans_id,txt_financialtax,txt_fee,
-            txt_creation_date,txt_status,txt_success,txt_postbalance,txt_commission_amount;
+            txt_creation_date,txt_status,txt_success,txt_postbalance,txt_commission_amount,txt_parentid;
 
 
     @Override
@@ -92,7 +92,7 @@ public class WalletTransactionDetails extends LogoutAppCompactActivity {
             txt_fee = findViewById(R.id.txt_fee);
             txt_commission_amount = findViewById(R.id.txt_commission_amount);
             txt_postbalance = findViewById(R.id.txt_postbalance);
-
+            txt_parentid= findViewById(R.id.txt_parentid);
 
             Bundle b = getIntent().getExtras();
 
@@ -172,6 +172,13 @@ public class WalletTransactionDetails extends LogoutAppCompactActivity {
                 txt_from_amount.setText(getString(R.string.trans_amount_colon) + "  " + transactionAmount);
                 txt_trans_id.setText(getString(R.string.transaction_id_colon) + " " + transId);
                 txt_status.setText(getString(R.string.status) + " : " + status);
+                if(MyApplication.parentTransID.equalsIgnoreCase("")){
+                    txt_parentid.setVisibility(View.GONE);
+
+                }else{
+                    txt_parentid.setVisibility(View.VISIBLE);
+                    txt_parentid.setText(getString(R.string.parent_id)  + " : " + MyApplication.parentTransID);
+                }
                 txt_success.setText(getString(R.string.transaction_successful));
                 try {
                     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

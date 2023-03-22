@@ -1818,6 +1818,9 @@ public class SellFloat extends LogoutAppCompactActivity implements View.OnClickL
             jsonObject.put("serviceCode",serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode",serviceCategoryCode_from_serviceCategory);
             jsonObject.put("serviceProviderCode",serviceProviderCode_from_serviceCategory);
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
             System.out.println("get json selffloat"+jsonObject.toString());
 
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());

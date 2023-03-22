@@ -25,6 +25,7 @@ import androidx.cardview.widget.CardView;
 
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
@@ -449,7 +450,9 @@ public class ReceiveMoneyConfirmScreen extends AppCompatActivity implements View
             dataObjectrequest.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);
             dataObjectrequest.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);
             dataObjectrequest.put("channelTypeCode", "100002");
-
+            dataObjectrequest.put("transactionCoordinate", MainActivity.transactionCoordinate);
+            dataObjectrequest.put("transactionArea",MainActivity.transactionArea);
+            dataObjectrequest.put("isGpsOn",true);
             System.out.println("ReceiveMoneyConfirmScreen REQUEST================"+dataObjectrequest.toString());
             String requestNo=AESEncryption.getAESEncryption(dataObjectrequest.toString());
             JSONObject jsonObjectA=null;

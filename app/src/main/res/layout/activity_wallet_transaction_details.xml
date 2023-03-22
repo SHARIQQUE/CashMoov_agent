@@ -167,6 +167,19 @@
                     android:gravity="center_vertical"
                     android:layout_marginTop="@dimen/_5sdp"/>
 
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/txt_parentid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="0.3"
+                    android:fontFamily="@font/aileron_semibold"
+                    android:textColor="@color/green_700"
+                    android:textSize="@dimen/_11sdp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
             </LinearLayout>
             </androidx.cardview.widget.CardView>
 

@@ -105,7 +105,7 @@
     <string name="profile">Profil</string>
     <string name="visit_our_site">Visitez notre site</string>
     <string name="about_cashmoov_app">A Propos de l\'Appli cash moov</string>
-    <string name="version">Version : 14-03-2023 02:00 PM</string>
+    <string name="version">Version : 20-03-2023 10:00 AM</string>
     <string name="platform_cash_moov">Plateforme : CASH MOOV</string>
     <string name="user_id">Identifiant : AR1234567890</string>
     <string name="acc_created">Compte créé!</string>
@@ -790,6 +790,8 @@
     <string name="sending_country_star">Pays d\'envoi*</string>
     <string name="subscriber_added">Abonné ajouté avec succès !</string>
     <string name="transaction_type">Type de transaction</string>
+    <string name="parent_id">Id de transaction parent</string>
+
     <string name="agentName">Nom d agent *</string>
     <string name="agentName_colon">Nom d\'agent :</string>
     <string name="agent_mobileNumber">Agent mobile non</string>

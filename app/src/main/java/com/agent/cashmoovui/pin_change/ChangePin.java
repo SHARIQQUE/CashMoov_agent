@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.LogoutAppCompactActivity;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -286,6 +287,9 @@ public class ChangePin extends LogoutAppCompactActivity implements View.OnClickL
             jsonObject.put("walletOwnerUserCode",walletOwnerUserCode);
             jsonObject.put("oldPin",encryption_old);
             jsonObject.put("pin",encryption_new);
+            jsonObject.put("transactionCoordinate", MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
 
           /*  String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA=null;

@@ -536,6 +536,12 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                                 }else{
                                                     isSender=true;
                                                 }
+                                                String  parentTransId="";
+                                                if (data.has("parentTransId") ) {
+                                                    parentTransId=data.optString("parentTransId");
+                                                }else{
+                                                    parentTransId="";
+                                                }
                                                 miniStatementTransList.add(new MiniStatementTrans(data.optInt("id"),
                                                         data.optString("code"),
                                                         data.optString("transactionId"),
@@ -579,7 +585,8 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                                         data.optBoolean("isReverse"),
                                                         data.optDouble("fee"),
                                                       isSender,
-                                                        data.optDouble("receiverFee")));                                            }
+                                                        data.optDouble("receiverFee"),
+                                                        parentTransId));                                            }
 
                                             setData(miniStatementTransList, walletTypeCode);
                                         }

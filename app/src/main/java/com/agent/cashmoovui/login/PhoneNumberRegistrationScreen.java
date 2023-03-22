@@ -61,6 +61,7 @@ public class PhoneNumberRegistrationScreen extends LogoutAppCompactActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        MyApplication.saveString("qrcode","", PhoneNumberRegistrationScreen.this);
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {

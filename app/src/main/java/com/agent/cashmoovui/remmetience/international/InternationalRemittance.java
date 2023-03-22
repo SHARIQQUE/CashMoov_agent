@@ -2878,7 +2878,9 @@ public class InternationalRemittance extends LogoutAppCompactActivity implements
             jsonObject.put("toCurrencyCode", select_receiver_currencyCode); // Hard Code according  to Deepak
             //   jsonObject.put("toCurrencyCode", selectReceiverCountryCode);
             jsonObject.put("remitType","International Remit");
-
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
 
             String requestNo=AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA=null;

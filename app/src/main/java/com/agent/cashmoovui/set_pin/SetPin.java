@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
 import com.agent.cashmoovui.LogoutAppCompactActivity;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -224,6 +225,13 @@ public class SetPin extends LogoutAppCompactActivity implements View.OnClickList
 
             JSONObject setPinJson=new JSONObject();
             setPinJson.put("pin",encryptionDatanew);
+                try{
+                    setPinJson.put("transactionCoordinate", MainActivity.transactionCoordinate);
+                    setPinJson.put("transactionArea",MainActivity.transactionArea);
+                    setPinJson.put("isGpsOn",true);
+                }catch (Exception e){
+
+                }
 
             String requestNo=AESEncryption.getAESEncryption(setPinJson.toString());
             JSONObject jsonObjectA=null;

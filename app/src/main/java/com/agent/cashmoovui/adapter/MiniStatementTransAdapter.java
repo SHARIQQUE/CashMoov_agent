@@ -396,6 +396,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             @Override
             public void onClick(View view) {
 
+
                 if (SystemClock.elapsedRealtime() - MyApplication.mLastClickTime < 1000) { // 1000 = 1second
                     return;
                 }
@@ -519,6 +520,11 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
         }
 
+        if(miniStatementTransList.get(pos).isReverse()) {
+            MyApplication.parentTransID = miniStatementTransList.get(pos).getParentTransId();
+        }else{
+            MyApplication.parentTransID="";
+        }
         MyApplication.currencySymbol=miniStatementTransList.get(pos).getFromCurrencySymbol();
         if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100002")
         ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("100001")){

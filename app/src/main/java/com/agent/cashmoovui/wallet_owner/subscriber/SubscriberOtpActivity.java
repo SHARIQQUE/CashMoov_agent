@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.apiCalls.API;
@@ -423,7 +424,9 @@ public class SubscriberOtpActivity extends AppCompatActivity implements View.OnC
 
             logiJson.put("pin", AESEncryption.getAESEncryption(pass));
             logiJson.put("walletOwnerCode",SubscriberKYC.subscriberWalletOwnerCode);
-
+            logiJson.put("transactionCoordinate", MainActivity.transactionCoordinate);
+            logiJson.put("transactionArea",MainActivity.transactionArea);
+            logiJson.put("isGpsOn",true);
 
             String requestNo=AESEncryption.getAESEncryption(logiJson.toString());
 

@@ -988,7 +988,9 @@ return true;
 
             String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             jsonObject.put("pin",encryptionDatanew);
-
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
 
             // String encryptionDatanew = AESEncryption.getAESEncryption(mpinStr);
             //  jsonObject.put("pin",encryptionDatanew);

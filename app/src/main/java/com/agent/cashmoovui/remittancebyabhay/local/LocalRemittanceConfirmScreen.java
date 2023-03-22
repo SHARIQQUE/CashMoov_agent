@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.agent.cashmoovui.LogoutAppCompactActivity;
 import com.agent.cashmoovui.HiddenPassTransformationMethod;
+import com.agent.cashmoovui.MainActivity;
 import com.agent.cashmoovui.MyApplication;
 import com.agent.cashmoovui.R;
 import com.agent.cashmoovui.activity.TransactionSuccessScreen;
@@ -322,7 +323,13 @@ public class LocalRemittanceConfirmScreen extends LogoutAppCompactActivity imple
     public static JSONObject receiptJson=new JSONObject();
     public static JSONArray taxConfigList;
     public void callPostAPI(){
+        try {
+            remitJson.put("transactionCoordinate", MainActivity.transactionCoordinate);
+            remitJson.put("transactionArea",MainActivity.transactionArea);
+            remitJson.put("isGpsOn",true);
+        }catch (Exception e){
 
+        }
        // MyApplication.showloader(localremitconfirmC,"Please Wait...");
         String requestNo=AESEncryption.getAESEncryption(remitJson.toString());
         JSONObject jsonObjectA=null;

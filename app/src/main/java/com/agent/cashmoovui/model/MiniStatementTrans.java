@@ -45,10 +45,11 @@ public class MiniStatementTrans {
     private boolean isReverse;
     private boolean bearerSender;
     private Double receiverFee;
+    private String parentTransId;
 
 
     public MiniStatementTrans(int id, String code, String transactionId, String fromWalletOwnerCode, String toWalletOwnerCode, String fromWalletOwnerName, String toWalletOwnerName, String fromWalletOwnerMsisdn, String toWalletOwnerMsisdn, String fromWalletCode, String fromWalletName, String fromCurrencyCode, String toCurrencyCode, String fromCurrencyName, String toCurrencyName, String fromCurrencySymbol, String toCurrencySymbol, String transactionTypeCode, String transactionTypeName, String creationDate, String comReceiveWalletCode, String taxAsJson, String holdingAccountCode, String status, double fromAmount, double toAmount, double comReceiveAmount, double srcPostBalance, double srcPreviousBalance, double destPreviousBalance, double destPostBalance, double commissionAmountForInstitute, double commissionAmountForAgent, double commissionAmountForBranch, double commissionAmountForMerchant, double commissionAmountForOutlet, double transactionAmount, double principalAmount, String fromWalletOwnerSurname, String fromWalletTypeCode,
-                              boolean isReverse,double fee,boolean bearerSender,Double receiverFee) {
+                              boolean isReverse,double fee,boolean bearerSender,Double receiverFee,String parentTransId) {
         this.id = id;
         this.code = code;
         this.transactionId = transactionId;
@@ -94,6 +95,15 @@ public class MiniStatementTrans {
         this.bearerSender=bearerSender;
 
         this.receiverFee=receiverFee;
+        this.parentTransId=parentTransId;
+    }
+
+    public String getParentTransId() {
+        return parentTransId;
+    }
+
+    public void setParentTransId(String parentTransId) {
+        this.parentTransId = parentTransId;
     }
 
     public boolean isBearerSender() {

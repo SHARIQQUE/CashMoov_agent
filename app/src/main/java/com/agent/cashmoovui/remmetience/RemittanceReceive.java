@@ -1222,7 +1222,9 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             jsonObject.put("serviceCode", serviceCode_from_serviceCategory);
             jsonObject.put("serviceCategoryCode", serviceCategoryCode_from_serviceCategory);  // Hard Code according  to Deepak
             jsonObject.put("serviceProviderCode", serviceProviderCode_from_serviceCategory);  // Hard Code according  to Deepak
-
+            jsonObject.put("transactionCoordinate",MainActivity.transactionCoordinate);
+            jsonObject.put("transactionArea",MainActivity.transactionArea);
+            jsonObject.put("isGpsOn",true);
             System.out.println("Receive request "+jsonObject.toString());
             String requestNo = AESEncryption.getAESEncryption(jsonObject.toString());
             JSONObject jsonObjectA = null;
