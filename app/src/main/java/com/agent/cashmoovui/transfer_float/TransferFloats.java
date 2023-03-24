@@ -627,7 +627,7 @@ public class TransferFloats extends LogoutAppCompactActivity implements View.OnC
 
 
                 } catch (Exception e) {
-                    Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(TransferFloats.this,"api_walletOwner  "+userCode_agentCode_from_mssid+ e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                     MyApplication.hideLoader();
 
@@ -740,7 +740,7 @@ public class TransferFloats extends LogoutAppCompactActivity implements View.OnC
 
 
                 } catch (Exception e) {
-                    Toast.makeText(TransferFloats.this, e.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(TransferFloats.this, "Heirarchy API  "+loginuserMobileno+e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
@@ -1090,7 +1090,7 @@ public class TransferFloats extends LogoutAppCompactActivity implements View.OnC
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(TransferFloats.this,e.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(TransferFloats.this,"api_currency()  "+userCode_agentCode_from_mssid+e.toString(),Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                     MyApplication.hideLoader();
 

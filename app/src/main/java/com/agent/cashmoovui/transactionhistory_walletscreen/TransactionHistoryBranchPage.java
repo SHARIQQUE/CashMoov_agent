@@ -464,8 +464,10 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
   /*  ///////////-----code by Abhay-----////////////*/
 
     String wallettypecode;
+
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode) {
         try {
+
 
             wallettypecode = walletTypeCode;
             miniStatementTransList.clear();
@@ -489,6 +491,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                     JSONObject jsonObjectMiniStatementTrans = jsonObject.optJSONObject("miniStatement");
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
+                                        double fee=0.00;
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
                                             if (data.has("receiverCustomer")) {
@@ -516,8 +519,17 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
 
                                             if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
                                                 taxAsJson = "";
+                                                fee=0.00;
                                             } else {
                                                 taxAsJson = data.optString("taxAsJson");
+                                                fee=data.optDouble("fee");
+                                            }
+                                            if (data.has("isReverse") && data.optBoolean("isReverse")) {
+                                                taxAsJson = "";
+                                                fee=0.00;
+                                            } else {
+                                                taxAsJson = data.optString("taxAsJson");
+                                                fee=data.optDouble("fee");
                                             }
                                             String transactionTypeNAme=data.optString("transactionTypeName");
                                             if (data.optString("transactionTypeCode").equalsIgnoreCase("105218")) {
@@ -583,7 +595,7 @@ public class TransactionHistoryBranchPage extends AppCompatActivity implements A
                                                         data.optString("fromWalletOwnerSurname").trim(),
                                                         data.optString("fromWalletTypeCode").trim(),
                                                         data.optBoolean("isReverse"),
-                                                        data.optDouble("fee"),
+                                                        fee,
                                                       isSender,
                                                         data.optDouble("receiverFee"),
                                                         parentTransId));                                            }

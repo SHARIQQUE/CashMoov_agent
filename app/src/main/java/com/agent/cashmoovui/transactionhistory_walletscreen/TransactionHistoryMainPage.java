@@ -637,6 +637,7 @@ HorizontalScrollView allview;
                                     JSONArray miniStatementTransListArr = jsonObjectMiniStatementTrans.optJSONArray("walletTransactionList");
                                     if(miniStatementTransListArr!=null&& miniStatementTransListArr.length()>0){
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
+                                            double fee=0.00;
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
                                             if (data.has("receiverCustomer")) {
                                                 tomssisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
@@ -644,7 +645,7 @@ HorizontalScrollView allview;
                                             } else {
                                                 tomssisdn = data.optString("toWalletOwnerMsisdn").trim();
                                                 toName = data.optString("toWalletOwnerName").trim();
-                                                String fee = data.optString("fee").trim();
+                                               // String fee = data.optString("fee").trim();
                                                 System.out.println("get fee" + fee);
 
 
@@ -677,16 +678,29 @@ HorizontalScrollView allview;
                                             if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
                                                 if (data.optString("transactionTypeCode").equalsIgnoreCase("105068")) {
                                                     taxAsJson = data.optString("taxAsJson");
+                                                    fee = data.optDouble("fee");
 
                                                 }else{
                                                     taxAsJson = "";
+                                                    fee=0.00;
                                                 }
                                                 } else {
+                                                fee = data.optDouble("fee");
                                                     taxAsJson = data.optString("taxAsJson");
                                                 }
 
 
-                                            Double fee = data.optDouble("fee");
+
+
+                                             fee = data.optDouble("fee");
+
+                                            if (data.has("isReverse") && data.optBoolean("isReverse")) {
+                                                taxAsJson = "";
+                                                fee=0.00;
+                                            } else {
+                                                fee = data.optDouble("fee");
+                                                taxAsJson = data.optString("taxAsJson");
+                                            }
                                            /* if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
                                                 if (data.has("receiverBearer") && !data.optBoolean("receiverBearer")) {
                                                     taxAsJson = "";

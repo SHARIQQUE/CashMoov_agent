@@ -1065,7 +1065,9 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    edittext_amount.setText("");
+                                    edittext_amount_pay.setText("");
+                                    tvNext.setEnabled(true);
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -1073,13 +1075,18 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                         @Override
                         public void failure(String aFalse) {
+                            tvNext.setEnabled(true);
+                            edittext_amount.setText("");
+                            edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            tvNext.setEnabled(true);
+            edittext_amount.setText("");
+            edittext_amount_pay.setText("");
         }
 
 
@@ -1172,7 +1179,10 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    tvNext.setEnabled(true);
+                                    edittext_amount.setText("");
+                                    edittext_amount_pay.setText("");
+
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -1180,13 +1190,18 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                         @Override
                         public void failure(String aFalse) {
+                            tvNext.setEnabled(true);
+                            edittext_amount.setText("");
+                            edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            tvNext.setEnabled(true);
+            edittext_amount.setText("");
+            edittext_amount_pay.setText("");
         }
 
 
@@ -1257,6 +1272,8 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         }
                                         catch (Exception e)
                                         {
+                                            edittext_amount.setText("");
+                                            edittext_amount_pay.setText("");
                                             e.printStackTrace();
                                         }
 
@@ -1298,7 +1315,9 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    edittext_amount.setText("");
+                                    edittext_amount_pay.setText("");
+                                    tvNext.setEnabled(true);
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -1306,13 +1325,18 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                         @Override
                         public void failure(String aFalse) {
+                            tvNext.setEnabled(true);
+                            edittext_amount.setText("");
+                            edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            tvNext.setEnabled(true);
+            edittext_amount.setText("");
+            edittext_amount_pay.setText("");
         }
 
 

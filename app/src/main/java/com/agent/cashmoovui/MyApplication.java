@@ -987,11 +987,16 @@ public static String addDecimal(String number) {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-               // showToast(activity,"hardwatre "+errorCode+"  "+errString);
+              //  showToast(activity,"hardwatre "+errorCode+"  "+errString);
                    // bioMetric_responce_handler.failure(activity.getString(R.string.no_biometric_senser));
 
 
-
+                if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString()) ||
+                        errString.toString().equalsIgnoreCase("Cancel")) {
+                    // onAuthenticationFailed();
+                    bioMetric_responce_handler.failure("");
+                    isCancelCalled=true;
+                }
 
 
                if(!fingerprintManager.hasEnrolledFingerprints()) {
@@ -1001,7 +1006,8 @@ public static String addDecimal(String number) {
                     // User hasn't enrolled any fingerprints to authenticate with
                 } else {
                     // Everything is ready for fingerprint authentication
-                   if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString())) {
+                   if (activity.getString(R.string.cancel).equalsIgnoreCase(errString.toString()) ||
+                           errString.toString().equalsIgnoreCase("Cancel")) {
                       // onAuthenticationFailed();
                        bioMetric_responce_handler.failure("");
                        isCancelCalled=true;

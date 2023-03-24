@@ -443,6 +443,7 @@ public class TransactionHistoryAgentPage extends LogoutAppCompactActivity implem
     String wallettypecodee;
     private void callApiMiniStatementTrans(String walletCode, String walletTypeCode) {
         try {
+            Double fee=0.00;
             miniStatementTransList.clear();
             setData(miniStatementTransList,walletTypeCode);
             //MyApplication.showloader(TransactionHistoryMainPage.this,"Please wait!");
@@ -468,6 +469,7 @@ public class TransactionHistoryAgentPage extends LogoutAppCompactActivity implem
 
                                         for (int i = 0; i < miniStatementTransListArr.length(); i++) {
                                             JSONObject data = miniStatementTransListArr.optJSONObject(i);
+                                            double fee=0.00;
                                             if (data.has("receiverCustomer")) {
                                                 tomssisdn = data.optJSONObject("receiverCustomer").optString("mobileNumber");
                                                 toName = data.optJSONObject("receiverCustomer").optString("firstName") + " " + data.optJSONObject("receiverCustomer").optString("lastName");
@@ -487,8 +489,17 @@ public class TransactionHistoryAgentPage extends LogoutAppCompactActivity implem
                                             }
                                             if (data.has("receiverBearer") && data.optBoolean("receiverBearer")) {
                                                 taxAsJson = "";
+                                                fee=0.00;
                                             } else {
                                                 taxAsJson = data.optString("taxAsJson");
+                                                fee=data.optDouble("fee");
+                                            }
+                                            if (data.has("isReverse") && data.optBoolean("isReverse")) {
+                                                taxAsJson = "";
+                                                fee=0.00;
+                                            } else {
+                                                taxAsJson = data.optString("taxAsJson");
+                                                fee=data.optDouble("fee");
                                             }
 
 
@@ -558,7 +569,7 @@ public class TransactionHistoryAgentPage extends LogoutAppCompactActivity implem
                                                         data.optString("fromWalletOwnerSurname").trim(),
                                                         data.optString("fromWalletTypeCode").trim(),
                                                         data.optBoolean("isReverse"),
-                                                        data.optDouble("fee"),
+                                                        fee,
                                                         isSender,
                                                         data.optDouble("receiverFee"),
                                                         parentTransId));                                            }

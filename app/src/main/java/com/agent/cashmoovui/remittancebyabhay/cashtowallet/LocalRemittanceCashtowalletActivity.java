@@ -457,7 +457,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
 
         }
-        Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
+        Intent i = new Intent(localC, CashtoWalletSenderKYC.class);
         startActivity(i);
 
 
@@ -1275,7 +1275,10 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    tvNext.setEnabled(true);
+                                    edittext_amount.setText("");
+                                    edittext_amount_pay.setText("");
+
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -1283,13 +1286,18 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
                         @Override
                         public void failure(String aFalse) {
+                            tvNext.setEnabled(true);
+                            edittext_amount.setText("");
+                            edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
 
                         }
                     });
 
         } catch (Exception e) {
-
+            tvNext.setEnabled(true);
+            edittext_amount.setText("");
+            edittext_amount_pay.setText("");
         }
 
 
@@ -1383,7 +1391,9 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    edittext_amount.setText("");
+                                    edittext_amount_pay.setText("");
+                                    tvNext.setEnabled(true);
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -1391,13 +1401,18 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
                         @Override
                         public void failure(String aFalse) {
+                            edittext_amount.setText("");
+                            edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
+                            tvNext.setEnabled(true);
 
                         }
                     });
 
         } catch (Exception e) {
-
+            edittext_amount.setText("");
+            edittext_amount_pay.setText("");
+            tvNext.setEnabled(true);
         }
 
 
@@ -1468,6 +1483,8 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                                         }
                                         catch (Exception e)
                                         {
+                                            edittext_amount.setText("");
+                                            edittext_amount_pay.setText("");
                                             e.printStackTrace();
                                         }
 
@@ -1509,7 +1526,9 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    edittext_amount.setText("");
+                                    edittext_amount_pay.setText("");
+                                    tvNext.setEnabled(true);
                                     MyApplication.showToast(localC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }
@@ -1517,13 +1536,18 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
                         @Override
                         public void failure(String aFalse) {
+                            edittext_amount.setText("");
+                            edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
+                            tvNext.setEnabled(true);
 
                         }
                     });
 
         } catch (Exception e) {
-
+            edittext_amount.setText("");
+            edittext_amount_pay.setText("");
+            tvNext.setEnabled(true);
         }
 
 
