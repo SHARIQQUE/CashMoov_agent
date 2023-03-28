@@ -31,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class RESETPINOtpPage extends LogoutAppCompactActivity implements OnOtpCompletionListener {
+public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletionListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class VerifyLoginAccountScreen extends LogoutAppCompactActivity implements OnOtpCompletionListener {
+public class VerifyLoginAccountScreen extends AppCompatActivity implements OnOtpCompletionListener {
     public static VerifyLoginAccountScreen verifyaccountscreenC;
     OtpView otp_view;
     TextView tvPhoneNoMsg;

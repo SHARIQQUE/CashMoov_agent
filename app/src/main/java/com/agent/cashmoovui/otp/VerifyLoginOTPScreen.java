@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class VerifyLoginOTPScreen extends LogoutAppCompactActivity implements OnOtpCompletionListener {
+public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpCompletionListener {
     public static VerifyLoginOTPScreen verifyloginotpscreenC;
     OtpView otp_view;
     TextView tvPhoneNoMsg;

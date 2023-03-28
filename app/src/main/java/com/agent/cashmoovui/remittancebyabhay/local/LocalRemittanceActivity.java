@@ -419,8 +419,9 @@ public class LocalRemittanceActivity extends LogoutAppCompactActivity implements
 
             }
 
-            MyApplication.showloader(LocalRemittanceActivity.this, getString(R.string.pleasewait));
+
             if(nextbtn.equalsIgnoreCase("calculation")){
+                MyApplication.showloader(LocalRemittanceActivity.this, getString(R.string.pleasewait));
                 isCheckAmountPaid=false;
 
                 callApiExchangeRate();
@@ -441,8 +442,9 @@ public class LocalRemittanceActivity extends LogoutAppCompactActivity implements
 
 
 
-            MyApplication.showloader(LocalRemittanceActivity.this, getString(R.string.pleasewait));
+
             if(nextbtn.equalsIgnoreCase("calculation")){
+                MyApplication.showloader(LocalRemittanceActivity.this, getString(R.string.pleasewait));
                 isCheckAmount=false;
                 callApiExchangeRateNew();
 
@@ -451,6 +453,41 @@ public class LocalRemittanceActivity extends LogoutAppCompactActivity implements
 
 
         }
+        String lang = MyApplication.getSaveString("Locale", localC);
+
+            if (lang.equalsIgnoreCase("en")) {
+                if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
+                    MyApplication.showErrorToast(localC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                    return;
+                }
+
+                if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) > MyApplication.RemittanceMaxValue) {
+                    MyApplication.showErrorToast(localC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                    return;
+
+                }
+                amount=edittext_amount.getText().toString().trim().replace(",", "");
+                currencyValue=edittext_amount_pay.getText().toString().trim().replace(",", "");
+            }else{
+                String test=edittext_amount.getText().toString().trim().replace(".", "");
+                test=test.replace(",", ".");
+                String test1=edittext_amount_pay.getText().toString().trim().replace(".", "");
+                test1=test1.replace(",", ".");
+                if (Double.parseDouble(test) < MyApplication.RemittanceMinValue) {
+                    MyApplication.showErrorToast(localC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                    return;
+                }
+
+                if (Double.parseDouble(test) > MyApplication.RemittanceMaxValue) {
+                    MyApplication.showErrorToast(localC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                    return;
+
+                }
+                amount=test;
+                currencyValue=test1;
+            }
+
+
         Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
         startActivity(i);
        /* Intent i = new Intent(localC, LocalRemittanceSenderKYC.class);
@@ -1246,6 +1283,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
 
                                         Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
+                                        String teghu= df.format(amountpay);
 
                                         try {
 
@@ -1259,7 +1297,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
 
 
-                                            edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
+                                            edittext_amount.setText(MyApplication.addDecimal(teghu+""));
 
                                             amount = edittext_amount.getText().toString().trim().replace(",","");
 
@@ -1551,6 +1589,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
         try {
             // Extract value without its comma
+            System.out.println("6666678+++++++++++++  "+s.toString());
             String digitAndDotText = s.toString().replace(",", "");
             int commaAmount = 0;
 

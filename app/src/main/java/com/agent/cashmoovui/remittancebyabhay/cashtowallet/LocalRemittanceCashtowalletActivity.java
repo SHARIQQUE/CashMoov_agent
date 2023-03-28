@@ -427,8 +427,9 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
 
             }
-            MyApplication.showloader(LocalRemittanceCashtowalletActivity.this, getString(R.string.pleasewait));
+
             if(nextbtn.equalsIgnoreCase("calculation")){
+                MyApplication.showloader(LocalRemittanceCashtowalletActivity.this, getString(R.string.pleasewait));
                 isCheckAmountPaid=false;
 
                 callApiExchangeRate();
@@ -447,8 +448,9 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
 
 
-            MyApplication.showloader(LocalRemittanceCashtowalletActivity.this, getString(R.string.pleasewait));
+
             if(nextbtn.equalsIgnoreCase("calculation")){
+                MyApplication.showloader(LocalRemittanceCashtowalletActivity.this, getString(R.string.pleasewait));
                 isCheckAmount=false;
                 callApiExchangeRateNew();
 
@@ -457,6 +459,43 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
 
         }
+
+        String lang = MyApplication.getSaveString("Locale", localC);
+
+        if (lang.equalsIgnoreCase("en")) {
+            if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(localC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
+
+            if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(localC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
+
+            }
+            amount=edittext_amount.getText().toString().trim().replace(",", "");
+            currencyValue=edittext_amount_pay.getText().toString().trim().replace(",", "");
+
+        }else{
+            String test=edittext_amount.getText().toString().trim().replace(".", "");
+            test=test.replace(",", ".");
+            String test1=edittext_amount_pay.getText().toString().trim().replace(".", "");
+            test1=test1.replace(",", ".");
+            if (Double.parseDouble(test) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(localC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
+
+            if (Double.parseDouble(test) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(localC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
+
+            }
+            amount=test;
+            currencyValue=test1;
+        }
+
+
         Intent i = new Intent(localC, CashtoWalletSenderKYC.class);
         startActivity(i);
 
@@ -1457,7 +1496,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
 
                                         Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
-
+                                        String yyyy=df.format(amountpay);
                                         try {
 
 
@@ -1470,7 +1509,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
 
 
 
-                                            edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
+                                            edittext_amount.setText(MyApplication.addDecimal(yyyy+""));
 
                                             amount = edittext_amount.getText().toString().trim().replace(",","");
 

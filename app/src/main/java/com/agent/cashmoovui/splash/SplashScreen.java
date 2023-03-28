@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class SplashScreen extends LogoutAppCompactActivity implements View.OnClickListener  {
+public class SplashScreen extends AppCompatActivity implements View.OnClickListener  {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

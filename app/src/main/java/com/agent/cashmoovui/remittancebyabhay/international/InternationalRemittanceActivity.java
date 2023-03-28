@@ -430,10 +430,11 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
 
 
             }
-            MyApplication.showloader(internationalC,getString(R.string.pleasewait));
+
           //  callApiExchangeRate();
 
             if(nextbtn.equalsIgnoreCase("calculation")){
+                MyApplication.showloader(internationalC,getString(R.string.pleasewait));
                 isCheckAmountPaid=false;
 
                 callApiExchangeRate();
@@ -463,15 +464,50 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
 
 
             }*/
-            MyApplication.showloader(internationalC,getString(R.string.pleasewait));
+
             //  callApiExchangeRate();
 
             if(nextbtn.equalsIgnoreCase("calculation")){
+                MyApplication.showloader(internationalC,getString(R.string.pleasewait));
                 isCheckAmount=false;
                 callApiExchangeRatenew();
 
                 return;
             }
+        }
+
+        String lang = MyApplication.getSaveString("Locale", internationalC);
+
+        if (lang.equalsIgnoreCase("en")) {
+            if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
+
+            if (Double.parseDouble(edittext_amount.getText().toString().trim().replace(",", "")) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
+
+            }
+            amount=edittext_amount.getText().toString().trim().replace(",", "");
+            currencyValue=edittext_amount_pay.getText().toString().trim().replace(",", "");
+        }else{
+            String test=edittext_amount.getText().toString().trim().replace(".", "");
+            test=test.replace(",", ".");
+            String test1=edittext_amount_pay.getText().toString().trim().replace(".", "");
+            test1=test1.replace(",", ".");
+            if (Double.parseDouble(test) < MyApplication.RemittanceMinValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_min) + " " + MyApplication.RemittanceMinValue);
+                return;
+            }
+
+            if (Double.parseDouble(test) > MyApplication.RemittanceMaxValue) {
+                MyApplication.showErrorToast(internationalC, getString(R.string.val_amount_max) + " " + MyApplication.RemittanceMaxValue);
+                return;
+
+            }
+            amount=test;
+            currencyValue=test1;
         }
 
 
@@ -1024,7 +1060,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                    //tvNext.setEnabled(false);
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
@@ -1136,7 +1172,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
-                                    tvNext.setEnabled(false);
+                                   // tvNext.setEnabled(false);
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
@@ -1200,7 +1236,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
 
 
                                         Double amountpay=Double.parseDouble(edittext_amount_pay.getText().toString().trim().replace(",",""))/Double.parseDouble(rate);
-
+                                        String yyyy=df.format(amountpay);
                                         try {
 
 
@@ -1213,7 +1249,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
 
 
 
-                                            edittext_amount.setText(MyApplication.addDecimal(amountpay+""));
+                                            edittext_amount.setText(MyApplication.addDecimal(yyyy+""));
 
                                             amount = edittext_amount.getText().toString().trim().replace(",","");
 
@@ -1271,7 +1307,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                                 } else {
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
-                                    tvNext.setEnabled(false);
+                                   // tvNext.setEnabled(false);
                                     MyApplication.showToast(internationalC,jsonObject.optString("resultDescription", "N/A"));
                                 }
                             }

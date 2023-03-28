@@ -40,6 +40,7 @@ import com.agent.cashmoovui.apiCalls.BioMetric_Responce_Handler;
 import com.agent.cashmoovui.apiCalls.CommonData;
 import com.agent.cashmoovui.cash_in.CashIn;
 import com.agent.cashmoovui.login.LoginMsis;
+import com.agent.cashmoovui.login.LoginPin;
 import com.agent.cashmoovui.model.transaction.CurrencyModel;
 
 import com.agent.cashmoovui.set_pin.AESEncryption;
@@ -212,10 +213,10 @@ public class MyApplication extends Application {
 
     public   void callLogout() {
         //saveBool("isLogin",false,getInstance());
-       /* Toast.makeText(getApplicationContext(),"Logout called",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), R.string.time_out_timer,Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getInstance(), LoginPin.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 
 

@@ -32,7 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class OtpPage extends LogoutAppCompactActivity implements OnOtpCompletionListener {
+public class OtpPage extends AppCompatActivity implements OnOtpCompletionListener {
 
     MyApplication applicationComponentClass;
     String languageToUse = "";

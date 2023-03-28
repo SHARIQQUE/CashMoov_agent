@@ -636,7 +636,8 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
                    }
         else if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101611")
-        ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101612")) {
+        ||miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101612")||
+                miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("106445")) {
             String taxJSON="";
             Double fee=0.00;
 
@@ -807,6 +808,7 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
                 taxJSON="";
             }
             if(miniStatementTransList.get(pos).getTransactionTypeCode().equalsIgnoreCase("101667")){
+
 
 
                 if (miniStatementTransList.get(pos).isReverse()) {

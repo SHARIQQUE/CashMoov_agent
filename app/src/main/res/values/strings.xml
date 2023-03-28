@@ -112,7 +112,7 @@
 
     <string name="visit_our_site">Visit our site</string>
     <string name="about_cashmoov_app">About Cashmoov App</string>
-    <string name="version">Version : 25-03-2023 9:00 AM</string>
+    <string name="version">Version : 27-03-2023 7:00 PM</string>
     <string name="platform_cash_moov">Platform : CASH MOOV</string>
     <string name="user_id">User ID : AR1234567890</string>
     <string name="acc_created">Account created!</string>
@@ -1029,6 +1029,7 @@
     <string name="selectimage">Please select a new image.....</string>
     <string name="contactadmin">Please Contact Admin To Reset Pin</string>
     <string name="your_pin_generated_success">Your Pin generate Successfully!</string>
+    <string name="time_out_timer">TimeOut Please Login Again!</string>
 
 
 </resources>
