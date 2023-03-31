@@ -1024,7 +1024,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             } else if (firstLoginStatus.equalsIgnoreCase("N")) {
 
                                 Toast.makeText(LoginMsis.this, LoginMsis.this.getString(R.string.login_successful), Toast.LENGTH_LONG).show();
-
+                                MyApplication.saveBool("FirstLoginCounter",true,LoginMsis.this);
                                 Intent i = new Intent(LoginMsis.this, MainActivity.class);
                                 startActivity(i);
                                 finish();
@@ -1254,6 +1254,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
                             Toast.makeText(LoginMsis.this, getString(R.string.outletWorkinprogress), Toast.LENGTH_LONG).show();
 
                         }else{
+                            MyApplication.saveBool("FirstLoginCounter",true,LoginMsis.this);
                             Toast.makeText(LoginMsis.this, LoginMsis.this.getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             Intent i = new Intent(LoginMsis.this, MainActivity.class);
                             startActivity(i);

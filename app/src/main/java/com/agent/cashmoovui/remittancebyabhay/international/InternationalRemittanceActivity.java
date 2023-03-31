@@ -1106,7 +1106,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1172,6 +1172,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
+                                    MyApplication.hideLoader();
                                    // tvNext.setEnabled(false);
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
@@ -1182,6 +1183,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
 
                         @Override
                         public void failure(String aFalse) {
+                            MyApplication.hideLoader();
                             edittext_amount.setText("");
                             edittext_amount_pay.setText("");
                             MyApplication.hideLoader();
@@ -1190,6 +1192,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                     });
 
         } catch (Exception e) {
+            MyApplication.hideLoader();
             edittext_amount.setText("");
             edittext_amount_pay.setText("");
         }
@@ -1215,7 +1218,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                             MyApplication.hideLoader();
+
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1262,6 +1265,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                                         }
                                         catch (Exception e)
                                         {
+                                            MyApplication.hideLoader();
                                             edittext_amount.setText("");
                                             edittext_amount_pay.setText("");
                                             e.printStackTrace();
@@ -1305,6 +1309,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
+                                    MyApplication.hideLoader();
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
                                    // tvNext.setEnabled(false);
@@ -1323,7 +1328,7 @@ public class InternationalRemittanceActivity extends LogoutAppCompactActivity im
                     });
 
         } catch (Exception e) {
-
+            MyApplication.hideLoader();
         }
 
 

@@ -116,6 +116,7 @@ public class Logout extends LogoutAppCompactActivity implements View.OnClickList
                             if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
                                 // MyApplication.saveString("Locale","",myprofileC);
                                 MyApplication.saveBool("FirstLogin",false,LogoutC);
+                                MyApplication.saveBool("FirstLoginCounter",true,LogoutC);
                                // MyApplication.saveString("ImageName", "1", LogoutC);
 
 
@@ -133,7 +134,7 @@ public class Logout extends LogoutAppCompactActivity implements View.OnClickList
 
 
                                 applicationComponentClass.getmSharedPreferences().edit().putString("isFirstRun", "YES").commit();
-
+                                MyApplication.saveBool("FirstLoginCounter",true,LogoutC);
                                 Intent i = new Intent(LogoutC, LoginMsis.class);
                                 startActivity(i);
                                 finish();
@@ -145,6 +146,7 @@ public class Logout extends LogoutAppCompactActivity implements View.OnClickList
                     @Override
                     public void failure(String aFalse) {
                         MyApplication.hideLoader();
+                        MyApplication.saveBool("FirstLoginCounter",true,LogoutC);
                         MyApplication.saveBool("FirstLogin",false,LogoutC);
                         // MyApplication.saveString("ImageName", "1", LogoutC);
 

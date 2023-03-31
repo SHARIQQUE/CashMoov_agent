@@ -435,7 +435,7 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
@@ -478,6 +478,7 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
 
                         else
                         {
+                            MyApplication.hideLoader();
 
                             Toast.makeText(OtpPage.this,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -489,6 +490,7 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
                         Toast.makeText(OtpPage.this,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -532,6 +534,8 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     if (resultCode.equalsIgnoreCase("0")) {
+
+                        MyApplication.saveBool("FirstLoginCounter",true,OtpPage.this);
                         Intent i = new Intent(OtpPage.this, MainActivity.class);
                         startActivity(i);
                         finish();

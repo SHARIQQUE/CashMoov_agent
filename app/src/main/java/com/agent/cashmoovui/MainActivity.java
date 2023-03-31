@@ -31,6 +31,7 @@ import com.agent.cashmoovui.location.FetchAddressIntentServices;
 import com.agent.cashmoovui.apiCalls.API;
 import com.agent.cashmoovui.apiCalls.Api_Responce_Handler;
 import com.agent.cashmoovui.model.ServiceList;
+import com.agent.cashmoovui.otp.OtpPage;
 import com.agent.cashmoovui.payments.Payments;
 import com.agent.cashmoovui.activity.ShowProfileQr;
 import com.agent.cashmoovui.airtime_purchase.AirtimePurchases;
@@ -863,23 +864,46 @@ public class MainActivity extends LogoutAppCompactActivity implements View.OnCli
                                         notificationCountCurrent = (apiCount-notificationCountPrevious);
                                         notificationCountPrevious = apiCount;
                                         if(MyApplication.isNotification&&MyApplication.getSaveInt("NOTIFICATIONCOUNTCURR",MainActivity.this)!=0){
-                                            tvBadge.setVisibility(View.VISIBLE);
-                                            tvBadge.setText(String.valueOf(notificationCountCurrent));
+
+                                            if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
+                                                MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
+                                                MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),MainActivity.this);
+                                                tvBadge.setVisibility(View.GONE);
+                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            }else{
+                                                tvBadge.setVisibility(View.VISIBLE);
+                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            }
                                         }else{
                                               // tvBadge.setVisibility(View.GONE);
                                         }
 
                                         if(notificationCountCurrent>notificationCountPrevious){
-                                            tvBadge.setVisibility(View.VISIBLE);
-                                            tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
+                                                MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
+                                                MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),MainActivity.this);
+                                                tvBadge.setVisibility(View.GONE);
+                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            }else{
+                                                tvBadge.setVisibility(View.VISIBLE);
+                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            }
                                         }else{
                                             // tvBadge.setVisibility(View.GONE);
                                         }
                                         MyApplication.saveInt("NOTIFICATIONCOUNTCURR",notificationCountCurrent,MainActivity.this);
 
                                         if(notificationCountCurrent>0){
-                                            tvBadge.setVisibility(View.VISIBLE);
-                                            tvBadge.setText(String.valueOf(notificationCountCurrent));
+
+                                            if( MyApplication.getSaveBool("FirstLoginCounter", MainActivity.this)) {
+                                                MyApplication.saveInt("NOTIFICATIONCOUNTPREV",walletOwnerListArr.length(),MainActivity.this);
+                                                MyApplication.saveBool("FirstLoginCounter",false,MainActivity.this);
+                                                tvBadge.setVisibility(View.GONE);
+                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            }else{
+                                                tvBadge.setVisibility(View.VISIBLE);
+                                                tvBadge.setText(String.valueOf(notificationCountCurrent));
+                                            }
                                         }else{
                                             tvBadge.setVisibility(View.GONE);
                                         }

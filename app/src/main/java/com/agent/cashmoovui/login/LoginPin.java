@@ -673,11 +673,12 @@ public class LoginPin extends AppCompatActivity {
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
                         if (jsonObject.has("error")) {
+                            MyApplication.hideLoader();
                            // pin_login_lay.setVisibility(View.VISIBLE);
 
                             //  String error_message = jsonObject.getString("error_message");
@@ -823,10 +824,11 @@ public class LoginPin extends AppCompatActivity {
                                     MyApplication.tinyDB.putObject("ServiceList",serviceList);
                                 }
                             }catch (Exception e){
-
+                                MyApplication.hideLoader();
                             }
 
                             if (jsonObject.optBoolean("loginWithOtpRequired")) {
+                                MyApplication.hideLoader();
                                 Intent i = new Intent(loginpinC, VerifyLoginOTPScreen.class);
                                 startActivity(i);
                                 MyApplication.hideLoader();
@@ -997,7 +999,8 @@ public class LoginPin extends AppCompatActivity {
                                 MyApplication.saveString("LASTNAME_USERINFO", "", LoginPin.this);
                             }
 
-
+                            MyApplication.saveBool("FirstLoginCounter",true,LoginPin.this);
+                            MyApplication.hideLoader();
                             Intent i = new Intent(loginpinC, MainActivity.class);
                             startActivity(i);
                             finish();

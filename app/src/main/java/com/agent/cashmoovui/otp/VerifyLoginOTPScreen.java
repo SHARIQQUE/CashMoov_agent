@@ -240,6 +240,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
                         userInfo_api(jsonObject.optString("walletOwnerCode"));
                         // Toast.makeText(VerifyRegisterOTP.this,getString(R.string.login_successful),Toast.LENGTH_LONG).show();
                     }catch (Exception e) {
+                        MyApplication.hideLoader();
                             Toast.makeText(verifyloginotpscreenC,e.toString(),Toast.LENGTH_LONG).show();
                             e.printStackTrace();
                         }
@@ -389,7 +390,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
                 @Override
                 public void success(JSONObject jsonObject) {
 
-                    MyApplication.hideLoader();
+
 
                     try {
 
@@ -431,7 +432,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
 
 
                         else
-                        {
+                        { MyApplication.hideLoader();
 
                             Toast.makeText(verifyloginotpscreenC,resultDescription,Toast.LENGTH_LONG).show();
 
@@ -443,6 +444,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
                     }
                     catch (Exception e)
                     {
+                        MyApplication.hideLoader();
                         Toast.makeText(verifyloginotpscreenC,e.toString(),Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
@@ -474,7 +476,6 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
             @Override
             public void success(JSONObject jsonObject) {
 
-                MyApplication.hideLoader();
 
                 try {
 
@@ -486,18 +487,24 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
                     String resultDescription = jsonObject.getString("resultDescription");
 
                     if (resultCode.equalsIgnoreCase("0")) {
+                        MyApplication.hideLoader();
+                        MyApplication.saveBool("FirstLoginCounter",true,VerifyLoginOTPScreen.this);
                         Intent i = new Intent(verifyloginotpscreenC, MainActivity.class);
                         startActivity(i);
                         finish();
 
 
                     } else {
+                        MyApplication.hideLoader();
+
                         Toast.makeText(verifyloginotpscreenC, resultDescription, Toast.LENGTH_LONG).show();
                         finish();
                     }
 
 
                 } catch (Exception e) {
+                    MyApplication.hideLoader();
+
                     Toast.makeText(verifyloginotpscreenC, e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }

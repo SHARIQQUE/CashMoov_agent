@@ -1364,7 +1364,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                             MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1475,7 +1475,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
+
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1522,6 +1522,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                                         }
                                         catch (Exception e)
                                         {
+                                            MyApplication.hideLoader();
                                             edittext_amount.setText("");
                                             edittext_amount_pay.setText("");
                                             e.printStackTrace();
@@ -1565,6 +1566,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
+                                    MyApplication.hideLoader();
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
                                     tvNext.setEnabled(true);
@@ -1584,6 +1586,7 @@ public class LocalRemittanceCashtowalletActivity extends LogoutAppCompactActivit
                     });
 
         } catch (Exception e) {
+            MyApplication.hideLoader();
             edittext_amount.setText("");
             edittext_amount_pay.setText("");
             tvNext.setEnabled(true);

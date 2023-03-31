@@ -439,7 +439,7 @@ public class PhoneNumberRegistrationScreen extends LogoutAppCompactActivity {
                             startActivity(i);
                             finish();
                         } else {
-
+                            MyApplication.saveBool("FirstLoginCounter",true,phnoregistrationccreenC);
                             Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                             startActivity(i);
                             finish();
@@ -455,6 +455,7 @@ public class PhoneNumberRegistrationScreen extends LogoutAppCompactActivity {
                             startActivity(i);
                             finish();
                         } else {
+                            MyApplication.saveBool("FirstLoginCounter",true,phnoregistrationccreenC);
                             Intent i = new Intent(phnoregistrationccreenC, MainActivity.class);
                             startActivity(i);
                             finish();

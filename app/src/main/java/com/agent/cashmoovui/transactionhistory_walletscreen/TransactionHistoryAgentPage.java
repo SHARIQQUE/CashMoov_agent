@@ -510,6 +510,11 @@ public class TransactionHistoryAgentPage extends LogoutAppCompactActivity implem
                                                 transactionTypeNAme=data.optString("transactionTypeName");
                                             }
 
+                                            if (data.optString("fromWalletOwnerCode").equalsIgnoreCase(data.optString("toWalletOwnerCode"))) {
+                                                toName = data.optString("toWalletName").trim();
+                                                name = data.optString("fromWalletName").trim();
+                                            }
+
 
                                             if (data.optString("transactionTypeCode").equalsIgnoreCase("106443")
                                                     || data.optString("transactionTypeCode").equalsIgnoreCase("101677")) {

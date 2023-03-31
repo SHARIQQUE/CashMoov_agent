@@ -259,6 +259,7 @@ public class SplashScreen extends AppCompatActivity implements View.OnClickListe
                             MyApplication.saveString("COUNTRY",jsonObject.optString("country_name"),SplashScreen.this);
                             MyApplication.saveString("CC",jsonObject.optString("country_code"),SplashScreen.this);
 
+
                            /* MyApplication.saveString("COUNTRY","Guinea",SplashScreen.this);
                             MyApplication.saveString("CC","GN",SplashScreen.this);*/
                             loginPage();

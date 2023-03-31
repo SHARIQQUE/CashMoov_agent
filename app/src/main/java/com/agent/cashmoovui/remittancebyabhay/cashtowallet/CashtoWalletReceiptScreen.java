@@ -178,6 +178,7 @@ public class CashtoWalletReceiptScreen extends LogoutAppCompactActivity implemen
                 + 	MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("fee")));
         tvAmountPaid.setText((LocalRemittanceCashtowalletActivity.toCurrencySymbolnew+" "+MyApplication.addDecimal(""+CashtoWalletConfirmScreen.receiptJson.optJSONObject("walletTransfer").optDouble("finalAmount"))));
 
+       // tvAmountPaid.setText(C.tvAmountPaid.getText().toString());
         String tamount=tvTransAmount.getText().toString();
         String paid=tvAmountPaid.getText().toString();
 

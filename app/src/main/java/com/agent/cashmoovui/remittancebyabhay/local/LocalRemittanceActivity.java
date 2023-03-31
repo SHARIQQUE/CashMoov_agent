@@ -1150,7 +1150,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            // MyApplication.hideLoader();
+                            MyApplication.hideLoader();
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1262,7 +1262,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                     new Api_Responce_Handler() {
                         @Override
                         public void success(JSONObject jsonObject) {
-                            MyApplication.hideLoader();
+
                             System.out.println("International response======="+jsonObject.toString());
                             if (jsonObject != null) {
                                 if(jsonObject.optString("resultCode", "N/A").equalsIgnoreCase("0")){
@@ -1310,6 +1310,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         }
                                         catch (Exception e)
                                         {
+                                            MyApplication.hideLoader();
                                             edittext_amount.setText("");
                                             edittext_amount_pay.setText("");
                                             e.printStackTrace();
@@ -1353,6 +1354,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                                         tvNext.setEnabled(true);
                                     }
                                 } else {
+                                    MyApplication.hideLoader();
                                     edittext_amount.setText("");
                                     edittext_amount_pay.setText("");
                                     tvNext.setEnabled(true);
@@ -1363,6 +1365,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
 
                         @Override
                         public void failure(String aFalse) {
+                            MyApplication.hideLoader();
                             tvNext.setEnabled(true);
                             edittext_amount.setText("");
                             edittext_amount_pay.setText("");
@@ -1372,6 +1375,7 @@ DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.ENGLISH);
                     });
 
         } catch (Exception e) {
+            MyApplication.hideLoader();
             tvNext.setEnabled(true);
             edittext_amount.setText("");
             edittext_amount_pay.setText("");
