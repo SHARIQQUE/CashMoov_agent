@@ -194,7 +194,7 @@ public class OtpPage extends AppCompatActivity implements OnOtpCompletionListene
             loginJson.put("fcmToken",FCM_TOKEN);
             loginJson.put("country",MyApplication.getSaveString("COUNTRY",OtpPage.this));
             loginJson.put("cc",MyApplication.getSaveString("CC",OtpPage.this));
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(OtpPage.this,"Verify OTP");
             API.POST_REQEST_LoginOTP("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {

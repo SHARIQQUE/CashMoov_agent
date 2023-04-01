@@ -692,14 +692,11 @@ HorizontalScrollView allview;
 
 
 
-                                             fee = data.optDouble("fee");
+                                          //   fee = data.optDouble("fee");
 
                                             if (data.has("isReverse") && data.optBoolean("isReverse")) {
                                                 taxAsJson = "";
                                                 fee=0.00;
-                                            } else {
-                                                fee = data.optDouble("fee");
-                                                taxAsJson = data.optString("taxAsJson");
                                             }
                                            /* if (data.optString("transactionTypeCode").equalsIgnoreCase("105219")) {
                                                 if (data.has("receiverBearer") && !data.optBoolean("receiverBearer")) {

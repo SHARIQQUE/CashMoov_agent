@@ -353,7 +353,7 @@ public class PhoneNumberRegistrationScreen extends LogoutAppCompactActivity {
             loginJson.put("country",MyApplication.getSaveString("COUNTRY",PhoneNumberRegistrationScreen.this));
             loginJson.put("cc",MyApplication.getSaveString("CC",PhoneNumberRegistrationScreen.this));
            // loginJson.put("scope","read write");
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(phnoregistrationccreenC,getString(R.string.getting_user_info));
             API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {

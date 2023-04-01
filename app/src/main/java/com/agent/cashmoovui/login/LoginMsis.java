@@ -786,7 +786,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
 
 
             MyApplication.saveString("USERNAME", strPhoneNo, LoginMsis.this);
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
 
             API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", jsonObject, new Api_Responce_Handler() {
                 @Override
@@ -985,7 +985,7 @@ public class LoginMsis extends AppCompatActivity implements View.OnClickListener
             //  applicationComponentClass.getmSharedPreferences().edit().putString("USERNAME", strPhoneNo).commit();
             //  applicationComponentClass.getmSharedPreferences().edit().putString("PASSWORD", strPasword).commit();
 
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", jsonObject, new Api_Responce_Handler() {
                 @Override
                 public void success(JSONObject jsonObject) {

@@ -430,7 +430,7 @@ public class LoginPin extends AppCompatActivity {
             // loginJson.put("scope","read write");
 
             System.out.println("Login request"+loginJson.toString());
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             MyApplication.showloader(loginpinC,getString(R.string.getting_user_info));
             API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {
                 @Override
@@ -667,6 +667,7 @@ public class LoginPin extends AppCompatActivity {
 
             // loginJson.put("scope","read write");
 
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(loginpinC,getString(R.string.getting_user_info));
             API.POST_REQEST_LOGIN_TOKEN("ewallet/oauth/token", loginJson, new Api_Responce_Handler() {

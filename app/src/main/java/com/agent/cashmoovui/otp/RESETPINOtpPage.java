@@ -193,7 +193,7 @@ public class RESETPINOtpPage extends AppCompatActivity implements OnOtpCompletio
             loginJson.put("fcmToken",FCM_TOKEN);
             loginJson.put("country",MyApplication.getSaveString("COUNTRY", RESETPINOtpPage.this));
             loginJson.put("cc",MyApplication.getSaveString("CC",RESETPINOtpPage.this));
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(RESETPINOtpPage.this,"Verify OTP");
             API.POST_REQEST_RESETPIN("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {

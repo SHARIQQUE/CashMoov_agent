@@ -123,7 +123,7 @@ public class VerifyLoginOTPScreen extends AppCompatActivity implements OnOtpComp
 //            loginJson.put("country",MyApplication.getSaveString("COUNTRY", VerifyLoginOTPScreen.this));
 //            loginJson.put("cc",MyApplication.getSaveString("CC",VerifyLoginOTPScreen.this));
             // loginJson.put("scope","read write");
-
+            MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
             System.out.println("Login request"+loginJson.toString());
             MyApplication.showloader(VerifyLoginOTPScreen.this,"Verify OTP");
             API.POST_REQEST_GENERATEOTP("ewallet/oauth/token",loginJson, new Api_Responce_Handler() {

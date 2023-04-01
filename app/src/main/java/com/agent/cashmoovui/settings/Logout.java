@@ -106,7 +106,7 @@ public class Logout extends LogoutAppCompactActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.btnConfirm:
-
+                MyApplication.saveBool("FirstLoginCounter",true,MyApplication.getInstance());
                 API.POST_REQEST_WH_NEW("ewallet/oauth/logout", null, new Api_Responce_Handler() {
                     @Override
                     public void success(JSONObject jsonObject) {

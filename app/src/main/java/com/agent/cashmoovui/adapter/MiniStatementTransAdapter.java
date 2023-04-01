@@ -327,13 +327,13 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
             }
 
             if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("105068")) {
-                if (miniStatementTrans.isBearerSender()) {
+
                     //    Double fees=
                     String taxJSON = "";
                     Double fee = 0.00;
                     Double tax = 0.00;
                     Double total = 0.00;
-                    if (miniStatementTrans.isBearerSender()) {
+                    if (!miniStatementTrans.isBearerSender()) {
                         taxJSON = miniStatementTrans.getTaxAsJson();
                         fee = miniStatementTrans.getFee();
 
@@ -349,36 +349,71 @@ public class MiniStatementTransAdapter extends RecyclerView.Adapter<MiniStatemen
 
                         }
 
-                    } else {
-                        fee = 0.00;
-                        taxJSON = "";
-                    }
-                    total = fee + tax + miniStatementTrans.getReceiverFee();
-                    total=miniStatementTrans.getToAmount()-total;
+                        total = fee + tax + miniStatementTrans.getReceiverFee();
 
-                    if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
-                        holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
-                        //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                        if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+                            total=miniStatementTrans.getFromAmount()-total;
 
-                        holder.tvAmount.setText(MyApplication.addDecimal(total+"") + " " + MyApplication.currencySymbol);
-                        holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
-                        MyApplication.Amount = MyApplication.addDecimal("" + total);
-                    }
-                    if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
-                        holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
-                        if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
-                            holder.tvAmount.setText(MyApplication.addDecimal(total+"") + " " + MyApplication.currencySymbol);
+                            holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                            //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+
+                            holder.tvAmount.setText(MyApplication.addDecimal("" + total) + " " + MyApplication.currencySymbol);
+                            holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
                             MyApplication.Amount = MyApplication.addDecimal("" + total);
-                            // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
-                        } else {
-                            holder.tvAmount.setText((MyApplication.addDecimal(total+"") + " " + MyApplication.currencySymbol));
-                            MyApplication.Amount = MyApplication.addDecimal("" + total);
-                            // holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
                         }
-                        holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+                        if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+                            holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+                            total=miniStatementTrans.getToAmount()-total;
+
+                            if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                                holder.tvAmount.setText(MyApplication.addDecimal("" + total) + " " + MyApplication.currencySymbol);
+                                MyApplication.Amount = MyApplication.addDecimal("" +total);
+                                // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                            } else {
+                                holder.tvAmount.setText(MyApplication.addDecimal("" + total) + " " + MyApplication.currencySymbol);
+                                MyApplication.Amount = MyApplication.addDecimal("" + total);
+                                // holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
+                            }
+                            holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+
+                        }
+
+
+
+
+                    } else {
+                        if (miniStatementTrans.getFromWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+
+
+                            holder.tvAmount.setTextColor(Color.parseColor("#D32F2F"));
+                            //holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+
+                            holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getFromAmount()) + " " + MyApplication.currencySymbol);
+                            holder.tvMsisdn.setText(miniStatementTrans.getToWalletOwnerMsisdn());
+                            MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getFromAmount());
+                        }
+                        if (miniStatementTrans.getToWalletOwnerCode().equalsIgnoreCase(MyApplication.userCodeTransaction)) {
+                            holder.tvAmount.setTextColor(Color.parseColor("#388E3C"));
+
+
+                            if (miniStatementTrans.getTransactionTypeCode().equalsIgnoreCase("106445")) {
+                                holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getToAmount()) + " " + MyApplication.currencySymbol);
+                                MyApplication.Amount = MyApplication.addDecimal("" +miniStatementTrans.getToAmount());
+                                // holder.tvAmount.setText(df.format(miniStatementTrans.getFromAmount())+" "+miniStatementTrans.getFromCurrencySymbol());
+                            } else {
+                                holder.tvAmount.setText(MyApplication.addDecimal("" + miniStatementTrans.getToAmount()) + " " + MyApplication.currencySymbol);
+                                MyApplication.Amount = MyApplication.addDecimal("" + miniStatementTrans.getToAmount());
+                                // holder.tvAmount.setText(df.format(miniStatementTrans.getToAmount()) + " " + miniStatementTrans.getToCurrencySymbol());
+                            }
+                            holder.tvMsisdn.setText(miniStatementTrans.getFromWalletOwnerMsisdn());
+
+                        }
 
                     }
-                }
+
+
+
+
 
 
             }
