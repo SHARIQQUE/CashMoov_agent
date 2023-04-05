@@ -151,7 +151,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
     public boolean isSet=false;
     public static JSONObject walletOwner = new JSONObject();
     public static JSONObject serviceCategory = new JSONObject();
-
+        String mobilelength;
 
     private void getIds() {
         spinner_provider = findViewById(R.id.spinner_provider);
@@ -281,7 +281,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
         });
 
 
-        String mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+         mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
+        if(mobilelength.equalsIgnoreCase("")){
+            mobilelength="9";
+        }
 
         et_sender_phoneNumber.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});

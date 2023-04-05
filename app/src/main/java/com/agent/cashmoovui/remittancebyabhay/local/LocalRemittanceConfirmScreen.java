@@ -327,6 +327,8 @@ public class LocalRemittanceConfirmScreen extends LogoutAppCompactActivity imple
             remitJson.put("transactionCoordinate", MainActivity.transactionCoordinate);
             remitJson.put("transactionArea",MainActivity.transactionArea);
             remitJson.put("isGpsOn",true);
+            remitJson.put("isSenderImage",false);
+            remitJson.put("isReceiverImage",false);
         }catch (Exception e){
 
         }

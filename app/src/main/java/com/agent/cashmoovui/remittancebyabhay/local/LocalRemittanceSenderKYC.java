@@ -154,9 +154,15 @@ public class LocalRemittanceSenderKYC extends LogoutAppCompactActivity implement
 
         mobilelength=MyApplication.getSaveString("MobileLength",MyApplication.appInstance);
         System.out.println("get lengh new"+mobilelength);
+        if(mobilelength.equalsIgnoreCase("")){
+            mobilelength="9";
+        }
 
-        et_sender_phoneNumber.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
+            et_sender_phoneNumber.setFilters(new InputFilter[] {
+                    new InputFilter.LengthFilter(Integer.parseInt(mobilelength))});
+
+
 
         spCity = findViewById(R.id.spCity);
         spCity.setOnClickListener(new View.OnClickListener() {

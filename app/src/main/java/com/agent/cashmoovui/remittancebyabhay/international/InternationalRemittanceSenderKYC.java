@@ -473,6 +473,8 @@ public class InternationalRemittanceSenderKYC extends LogoutAppCompactActivity i
         }
     }
 
+    public static Boolean isSenderImage=false;
+    public static Boolean isReceiverImage=false;
 
 
     private void callApigenderType() {
@@ -980,6 +982,7 @@ public class InternationalRemittanceSenderKYC extends LogoutAppCompactActivity i
                                     //MyApplication.showToast(getString(R.string.document_upload_msg));
                                     documentUploadJsonObj=jsonObject;
                                     MyApplication.showToast(internationalremitsenderkycC,getString(R.string.upload_success_toast));
+
                                     // callApiUpdateDataApproval();
                                     Intent i = new Intent(internationalremitsenderkycC, InternationalRemittanceBenefiKYC.class);
                                     startActivity(i);

@@ -1200,7 +1200,8 @@ public class RemittanceReceive extends AppCompatActivity implements View.OnClick
             jsonObject.put("firstName", firstName_from_confcode);
             jsonObject.put("lastName", lastName_from_confcode);
             jsonObject.put("toCurrencyCode", currencyCode_from_confcode);
-
+            jsonObject.put("isSenderImage",false);
+            jsonObject.put("isReceiverImage",false);
 
             if (MyApplication.getSaveString("Locale", MyApplication.getInstance()).equalsIgnoreCase("fr")) {
 

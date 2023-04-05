@@ -38,7 +38,7 @@ public class InternationalRemittanceConfirmScreen extends LogoutAppCompactActivi
     public static TextView tvTransAmount;
     private TextView tvAgentCode,tvSenderCode,tvBenefiCode,tvSendCurrency,tvBenefiCurrency,
             tvConvRate,tvFee,tvAmountCharged,tvAmountPaid,tvComment,tax_label,tax_r,vat_label,vat_r;
-    private LinearLayout tax_label_layout,vat_label_layout,pinLenear;
+    private LinearLayout tax_label_layout,vat_label_layout,pinLenear,amoutpaidLinear;
     private EditText etPin;
     private Button btnCancel,btnConfirm;
     boolean  isPasswordVisible;
@@ -107,6 +107,17 @@ public class InternationalRemittanceConfirmScreen extends LogoutAppCompactActivi
 
         finalamount=Double.parseDouble(InternationalRemittanceActivity.fee)+Double.parseDouble(InternationalRemittanceActivity.amount);
 
+        String tamount=tvTransAmount.getText().toString();
+        String paid=tvAmountPaid.getText().toString();
+
+        System.out.println("get amount"+tamount);
+        System.out.println("get paid"+paid);
+        amoutpaidLinear=findViewById(R.id.amoutpaidLinear);
+        if(!tamount.equalsIgnoreCase(paid)){
+            amoutpaidLinear.setVisibility(View.VISIBLE);
+        }else{
+            amoutpaidLinear.setVisibility(View.GONE);
+        }
         if(InternationalRemittanceActivity.taxConfigurationList!=null){
             if(InternationalRemittanceActivity.taxConfigurationList.length()==1){
                 tax_label_layout.setVisibility(View.VISIBLE);
@@ -344,6 +355,8 @@ public class InternationalRemittanceConfirmScreen extends LogoutAppCompactActivi
             remitJson.put("transactionCoordinate", MainActivity.transactionCoordinate);
             remitJson.put("transactionArea",MainActivity.transactionArea);
             remitJson.put("isGpsOn",true);
+            remitJson.put("isSenderImage",true);
+            remitJson.put("isReceiverImage",false);
         }catch (Exception e){
 
         }
